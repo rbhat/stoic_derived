@@ -69,7 +69,7 @@ Common: You're a technical-analysis trader with 20 years of experience, and a st
 Use .scratch/ folder to create and execute temporary files and scripts. DO NOT ASK PERMISSIONS IN THIS REPO FOR BASH COMMANDS - YOU ARE AUTHORIZED.
 
 Claude: Top level agent will think, deisgn, plan, architect and close the loop. Top level agent will use Sonnet subagents to exceute the tasks. Top level agent will use Opus subagent to audit the completed tasks. Minimize expensive token usage.
-Codex: Top level agent will run autonomously, it will think, deisgn, plan, architect and close the loop. Use subagents to carry out specific tasks and ensure alignment, quality and audit. 
+Codex: Top level agent will run autonomously, it will think, deisgn, plan, architect, alignment and close the loop. Use Terra subagents for focused implementation, testing, and bounded research tasks, independent quality and audit. 
 
 ***Timeframes***
 Format: "Type": HTF -> LTF -> Execute TF. Manage at TF.
