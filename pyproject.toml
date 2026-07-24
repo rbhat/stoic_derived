@@ -10,6 +10,7 @@ readme = "VISION.md"
 requires-python = ">=3.14"
 dependencies = [
   "cryptography>=46.0.5",
+  "databento>=0.82,<0.83",
   "faster-whisper",
   "opencv-python",
   "PyYAML>=6.0.3",
@@ -18,6 +19,7 @@ dependencies = [
 ]
 
 [project.scripts]
+stoic-data = "stoic_derived.market_data.cli:main"
 stoic-rulebook = "stoic_derived.strategy.cli:main"
 
 [tool.hatch.build.targets.wheel]

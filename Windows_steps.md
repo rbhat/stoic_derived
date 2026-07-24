@@ -74,7 +74,7 @@ uv run stoic-rulebook render strategy/rulebook.yaml --check strategy/RULEBOOK.md
 
 Expected result:
 
-- 56 tests pass;
+- all tests pass (the suite grows as roadmap milestones land);
 - formatting, lint, typing, lock, and dossier drift checks pass;
 - rulebook validation says `valid` and `readiness: BLOCKED`;
 - blockers are expected because exact strategy rules and human approval are not
@@ -102,3 +102,40 @@ git status --short --branch
 
 The CUDA fine-tuning package is a later, offline research task. It is not part
 of this SP0 verification and does not gate deterministic live signals.
+
+## 6. Run the portable SP1 checks
+
+After the SP1 milestone is announced and pushed:
+
+```bash
+cd ~/dev/stoic_derived
+git checkout main
+git pull --ff-only origin main
+uv sync --group dev
+uv run pytest -q
+uv run ruff format --check src tests
+uv run ruff check src tests
+uv run mypy src
+uv lock --check
+```
+
+These checks use fakes and require neither a Databento key nor local DBN files.
+Expected result: every command passes.
+
+If the small NQ tail DBN has also been copied into `data/historical/`, run:
+
+```bash
+mkdir -p .scratch/windows
+TAIL_FILE='data/historical/GLBX.MDP3__NQ__2026-06-06__2026-06-10T16:45:00.trades.dbn.zst'
+CALENDAR='config/market_data/calendars/cme-equity-index-2026-06-tail-v1.json'
+
+uv run stoic-data inspect "$TAIL_FILE"
+uv run stoic-data sample "$TAIL_FILE" \
+  --records 10000 \
+  --calendar-manifest "$CALENDAR" \
+  > .scratch/windows/sp1-sample.json
+```
+
+The sample should report 10,000 events, all six timeframes, no issues, and six
+degraded final bars because the bounded sample intentionally ends inside open
+intervals. Do not copy a Databento API key into the repository.
