@@ -29,6 +29,7 @@ Two machines and I want to develop on both, using whichever is better for the ta
 1. Macbook M4 Pro, 48GB
 2. Windows desktop, RTX 5070 Ti (16GB VRAM), 32GB RAM, WSL
 Code stays portable across both. Heavy VLM/large models run better on the Mac (unified memory); CUDA-friendly stuff can go on the Windows box.
+3. all run artifacts stay relative to the repo working directory. Default for `STOIC_TRAIN_HOME`: `<repo>/.artifacts/training/`. 
 
 Tools: LM Studio locally (several models), Python, Node, Databento live feed via API, Github repo, Google Drive. 
 Environment strategy: Mac mines & infers (heavy VLM/LLM inference, transcription), Windows trains (CUDA fine-tuning), deterministic code is portable across both, GCP runs production. Portability contract: pathlib only, config via env vars, one device-select helper, no hardware assumptions. Sync: GitHub for code, Google Drive for large artifacts.
