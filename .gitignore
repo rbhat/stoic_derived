@@ -38,3 +38,6 @@ token*.json
 
 # OS
 .DS_Store
+
+# Video archive — kept in Google Drive, restored via ./unzip_videos.sh
+videos.zip
