@@ -21,6 +21,7 @@ dependencies = [
 [project.scripts]
 stoic-data = "stoic_derived.market_data.cli:main"
 stoic-rulebook = "stoic_derived.strategy.cli:main"
+stoic-signal = "stoic_derived.signal_engine.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/stoic_derived"]

@@ -139,3 +139,43 @@ uv run stoic-data sample "$TAIL_FILE" \
 The sample should report 10,000 events, all six timeframes, no issues, and six
 degraded final bars because the bounded sample intentionally ends inside open
 intervals. Do not copy a Databento API key into the repository.
+
+## 7. Run the portable SP2 checks
+
+After the SP2 milestone is announced and pushed:
+
+```bash
+cd ~/dev/stoic_derived
+git checkout main
+git pull --ff-only origin main
+uv sync --group dev
+
+uv run pytest -q tests/signal_engine
+uv run pytest -q
+uv run ruff format --check src tests
+uv run ruff check src tests
+uv run mypy src
+uv lock --check
+```
+
+Inspect the production readiness boundary:
+
+```bash
+mkdir -p .scratch/windows
+uv run stoic-signal readiness \
+  --candidate strategy/rulebook.yaml \
+  | tee .scratch/windows/sp2-readiness.json
+```
+
+Expected result:
+
+- all checks pass without network, Databento, model, broker, or CUDA access;
+- readiness reports `"status": "blocked"` and
+  `"signal_engine_ready": false`;
+- the blockers list the still-unvalidated strategy profiles, unresolved
+  decisions, source conflict, and missing human approval.
+
+That blocked state is correct: SP2 may produce live signals only from a pinned,
+signed, semantically complete SP0 release. The strategy-neutral signal tests
+exercise engine mechanics and are not trading rules. Do not create or copy an
+approval private key into the repository.
