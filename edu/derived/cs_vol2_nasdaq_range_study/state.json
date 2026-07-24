@@ -1,0 +1,41 @@
+{
+  "source": "resources/case_studies/vol2/videos/Nasdaq Range Study - Stoic Trader Concepts · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1784869472.727283,
+      "pid": 38626,
+      "heartbeat": 1784869472.566765,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1784869474.191024,
+      "pid": 38626,
+      "heartbeat": 1784869472.727655,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1784869523.986337,
+      "pid": 38626,
+      "heartbeat": 1784869519.204608,
+      "attempts": 1
+    },
+    "moments": {
+      "status": "done",
+      "ts": 1784869820.994355,
+      "pid": 38626,
+      "heartbeat": 1784869809.09886,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1784869835.347723,
+      "pid": 38626,
+      "heartbeat": 1784869820.995256,
+      "attempts": 1
+    }
+  },
+  "signature": "68771852-1784847922"
+}

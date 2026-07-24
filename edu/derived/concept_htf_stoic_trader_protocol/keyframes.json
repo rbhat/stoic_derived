@@ -1,0 +1,2351 @@
+{
+  "source": "videos/HTF Stoic Trader Protocol - Stoic Trader Concepts · Stoic Traders.mp4",
+  "count": 234,
+  "by_source": {
+    "llm": 188,
+    "drift": 24,
+    "gap": 22
+  },
+  "keyframes": [
+    {
+      "index": 0,
+      "t": 0,
+      "hms": "00:00:00",
+      "file": "keyframes/0000_000000.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Hello Stoic Traders! Welcome to the final video number three of the Simple Stoic Setups."
+    },
+    {
+      "index": 1,
+      "t": 6,
+      "hms": "00:00:06",
+      "file": "keyframes/0001_000006.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Hello Stoic Traders! Welcome to the final video number three of the Simple Stoic Setups."
+    },
+    {
+      "index": 2,
+      "t": 12,
+      "hms": "00:00:12",
+      "file": "keyframes/0002_000012.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Hello Stoic Traders! Welcome to the final video number three of the Simple Stoic Setups."
+    },
+    {
+      "index": 3,
+      "t": 18,
+      "hms": "00:00:18",
+      "file": "keyframes/0003_000018.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Hello Stoic Traders! Welcome to the final video number three of the Simple Stoic Setups. Video 1 gave you the foundation, 3 levels, 2 setups, the 3 day cycle. Video 2 gave you the radar, breakout mode, degrading system, DMA chop zone, session timings. You already know a lot, but there is still a gap. You know the signal, but you do not yet know how the 3 day cycle actually works from start to finish. You do not know which shape the cycle is taking on your chart today. You do not know when to go all in and hold until close or when to take a quick trade during your session."
+    },
+    {
+      "index": 4,
+      "t": 63,
+      "hms": "00:01:03",
+      "file": "keyframes/0004_000103.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "You do not know when to go all in and hold until close or when to take a quick trade during your session. This video closes every loop and it changes how you see the market. Not as a patterns on the screen, but as people making decisions under pressure."
+    },
+    {
+      "index": 5,
+      "t": 76,
+      "hms": "00:01:16",
+      "file": "keyframes/0005_000116.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Not as a patterns on the screen, but as people making decisions under pressure. Here's the gap. You can identify the level, you can grade the signal, you can confirm the chop zone, but you sit down Thursday morning with the chop zone confirmed and you freeze. Is this just a quick trade or is this a hold to close opportunity? You do not know yet because nobody showed you the full three-day cycle from start to finish. And more importantly, nobody showed you why these setups actually work. Not the chart mechanics, but the human mechanics. Who got trapped, what they are feeling, when they will be forced to exit. That is what this video fixes."
+    },
+    {
+      "index": 6,
+      "t": 121,
+      "hms": "00:02:01",
+      "file": "keyframes/0006_000201.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "Who got trapped, what they are feeling, when they will be forced to exit. That is what this video fixes. Everything in this system follows five steps. Plan, environment, setup, execution, management. You can find out more about this inside the Stoic Trader Protocol course. This is the framework that we use in order to build any trading system. So as far as the simple Stoic setups, it's a high time frame trading system. And video one covered plan and environment. Video two covered setup and the first layer of execution. and this video 3 finishes everything the three-day cycle the five shapes it takes the full flow from signal to exit nothing left open after this video but before anything else let me anchor the whole"
+    },
+    {
+      "index": 7,
+      "t": 167,
+      "hms": "00:02:47",
+      "file": "keyframes/0007_000247.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "and this video 3 finishes everything the three-day cycle the five shapes it takes the full flow from signal to exit nothing left open after this video but before anything else let me anchor the whole game of trading the market only does three things breakout and continue breakout and reverse or trading range. Everything in this system is a specific version of one of those three behaviors at a specific level, on a specific day, in a specific session. But here is the part most traders never think about. Every breakout has people on one side who are wrong. Every reversal has people who are trapped. Every range has people building positions that will blow up"
+    },
+    {
+      "index": 8,
+      "t": 216,
+      "hms": "00:03:36",
+      "file": "keyframes/0008_000336.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "has people who are trapped. Every range has people building positions that will blow up when the range breaks. The market only does three things. But behind every move, there are traders being squeezed, panicking, and exiting. That is what we are really trading. And I need you to hear"
+    },
+    {
+      "index": 9,
+      "t": 231,
+      "hms": "00:03:51",
+      "file": "keyframes/0009_000351.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "being squeezed, panicking, and exiting. That is what we are really trading. And I need you to hear this before we go any further. We are not trading price action patterns. We are not trading every little move on a one minute chart we are aligning ourselves with a higher time frame and trading the trader's psychology every setup in this system every template every trade is about understanding three things who is trapped where their stops are and when they will be forced to exit the explosive moves you see on charts the ones that go straight down or straight up and never come back those happen because trapped traders are forced to exit simultaneously everybody exits"
+    },
+    {
+      "index": 10,
+      "t": 276,
+      "hms": "00:04:36",
+      "file": "keyframes/0010_000436.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "the explosive moves you see on charts the ones that go straight down or straight up and never come back those happen because trapped traders are forced to exit simultaneously everybody exits at the same time there is not just a random price action pattern that every trading guru trying to teach you that is human behavior and human behavior repeats and the thing is that price action patterns and trading models order blocks sweeps soups planet alignments they all work until everyone knows about them a triangle pattern works perfectly until a million traders draw the same triangle and the market stops respecting it. But fear and greed, those never change."
+    },
+    {
+      "index": 11,
+      "t": 321,
+      "hms": "00:05:21",
+      "file": "keyframes/0011_000521.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "same triangle and the market stops respecting it. But fear and greed, those never change. A trader who is trapped in a losing position will always feel denial first, then anxiety, then panic. And that panic creates the exit. That exit multiplied by thousands of traders at the same time is the explosive move. Every template I am about to show you is a different version of the same thing. People getting confident, then getting trapped, then being forced to exit. The chart mechanics, technical analysis, adjust the tool for seeing where those people are."
+    },
+    {
+      "index": 12,
+      "t": 366,
+      "hms": "00:06:06",
+      "file": "keyframes/0012_000606.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "The chart mechanics, technical analysis, adjust the tool for seeing where those people are. You are not predicting where price will go. You are identifying where trapped traders will be forced to exit. And that is the actual edge that you can rely on. Here's the concept."
+    },
+    {
+      "index": 13,
+      "t": 381,
+      "hms": "00:06:21",
+      "file": "keyframes/0013_000621.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "And that is the actual edge that you can rely on. Here's the concept. The three-day cycle. Everything in this system, every template, every grade, every trade comes from this structure. Day one is the move. This is when traders get trapped. Day two is the signal. This is when trapped traders start to feel the pressure. Day three is the trade. This is when they are forced to exit and you profit from that exit. This is not just a chart pattern that repeats. It is a cycle of human emotion that repeats. Confidence on day one, doubt on day two panic on day three in video one i introduced this to you using the weekly calendar"
+    },
+    {
+      "index": 14,
+      "t": 426,
+      "hms": "00:07:06",
+      "file": "keyframes/0014_000706.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "chart pattern that repeats. It is a cycle of human emotion that repeats. Confidence on day one, doubt on day two panic on day three in video one i introduced this to you using the weekly calendar monday is usually day one tuesday is usually the day two wednesday is often the day three but sometimes what happens is that you have wednesday extend into thursday and thursday becomes the most highest probability trade of the whole week. And that is the most common version of the week. But to keep it simple, we're just focusing on day one, day two, and day three. Three-day cycle. And this cycle is not really tied to the calendar. Day one can happen any day of the week."
+    },
+    {
+      "index": 15,
+      "t": 471,
+      "hms": "00:07:51",
+      "file": "keyframes/0015_000751.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "And this cycle is not really tied to the calendar. Day one can happen any day of the week. It's not day one just because it's Monday. What makes a day one is the move that traps traders on the wrong side. The market breaks out of the high or low of the week. Think about what happens when the breakout occurs."
+    },
+    {
+      "index": 16,
+      "t": 488,
+      "hms": "00:08:08",
+      "file": "keyframes/0016_000808.jpg",
+      "source": "llm",
+      "label": "Market breaks weekly high/low",
+      "why": "Instructor explains how a breakout from the weekly high or low traps traders, with chart showing this level on screen.",
+      "narration": "The market breaks out of the high or low of the week. Think about what happens when the breakout occurs. Traders see the breakout and feel urgency. The price is moving. They do not want to miss it. Long spiral in about the high. Short spiral in below the low. then the market closes back inside the previous day's range the breakout failed now think about"
+    },
+    {
+      "index": 17,
+      "t": 503,
+      "hms": "00:08:23",
+      "file": "keyframes/0017_000823.jpg",
+      "source": "llm",
+      "label": "Breakout fails and price closes back",
+      "why": "Instructor describes the false breakout scenario where price pulls in traders and then closes back inside range, with chart showing this pattern.",
+      "narration": "Short spiral in below the low. then the market closes back inside the previous day's range the breakout failed now think about what those traders are feeling they chased a breakout that did not hold they are underwater but they are not panicking yet they are telling themselves oh it will come back it was just one day that hope is what keeps them in and their stops sitting on the other side of the range and those stops will fuel the move on the day three day one can happen on monday it can happen on tuesday it can happen on thursday what matters is not the day of the week what actually matters"
+    },
+    {
+      "index": 18,
+      "t": 548,
+      "hms": "00:09:08",
+      "file": "keyframes/0018_000908.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "on tuesday it can happen on thursday what matters is not the day of the week what actually matters is that the market broke the weekly high or low pulled in a group of traders and failed when you see that day one is confirmed start your count now that's the most common version of day one i also put here on the slide continuation sometimes instead of the"
+    },
+    {
+      "index": 19,
+      "t": 570,
+      "hms": "00:09:30",
+      "file": "keyframes/0019_000930.jpg",
+      "source": "llm",
+      "label": "Day one confirmed",
+      "why": "Instructor identifies the false break as the start of day one, with chart showing this confirmation point.",
+      "narration": "when you see that day one is confirmed start your count now that's the most common version of day one i also put here on the slide continuation sometimes instead of the false break you have a strong close above the weekly high and that could become also a day one"
+    },
+    {
+      "index": 20,
+      "t": 577,
+      "hms": "00:09:37",
+      "file": "keyframes/0020_000937.jpg",
+      "source": "llm",
+      "label": "Continuation as day one",
+      "why": "Instructor introduces the alternative day one scenario where a strong close above weekly high acts as a continuation, with chart showing this setup.",
+      "narration": "of day one i also put here on the slide continuation sometimes instead of the false break you have a strong close above the weekly high and that could become also a day one continuation but the most common one is day one starts with the false break false breakout swing failure pattern this is how you start the count and identify the day one day two is the signal day This is the evening scan from the video two."
+    },
+    {
+      "index": 21,
+      "t": 604,
+      "hms": "00:10:04",
+      "file": "keyframes/0021_001004.jpg",
+      "source": "llm",
+      "label": "Day two signal",
+      "why": "Instructor refers to the evening scan from video 2, showing a daily close that signals trader psychology on day two.",
+      "narration": "failure pattern this is how you start the count and identify the day one day two is the signal day This is the evening scan from the video two. You are looking at the daily close asking one question. What did the market tell me today? But here's the deeper question. What are the trapped traders from day one feeling right now? And there are a couple more signal days and templates that I will cover later in this video. But the day two is the signal. We do not trade on day two. We trade on day three. Day three is when doubt turns to panic. The chop zone forms. Moving averages are flat and converging. The price disrespecting moving"
+    },
+    {
+      "index": 22,
+      "t": 642,
+      "hms": "00:10:42",
+      "file": "keyframes/0022_001042.jpg",
+      "source": "llm",
+      "label": "Chop zone forms",
+      "why": "Instructor describes the chop zone with moving averages flat and converging, price disrespecting them on a 5-minute chart.",
+      "narration": "We do not trade on day two. We trade on day three. Day three is when doubt turns to panic. The chop zone forms. Moving averages are flat and converging. The price disrespecting moving averages on the five minute chart, chopping around, creating consolidation. It could be just a small"
+    },
+    {
+      "index": 23,
+      "t": 649,
+      "hms": "00:10:49",
+      "file": "keyframes/0023_001049.jpg",
+      "source": "llm",
+      "label": "Price disrespecting moving averages",
+      "why": "Instructor explains price action on a 5-minute chart where it chops around moving averages, indicating consolidation.",
+      "narration": "The chop zone forms. Moving averages are flat and converging. The price disrespecting moving averages on the five minute chart, chopping around, creating consolidation. It could be just a small five-minute consolidation it could be a big consolidation and the main point is consolidation because consolidation leads to expansion and we want to be able to trade that expansion consolidation is that calm before the storm during this consolidation the trap traders are watching hoping, telling themselves, if it just comes back to my entry, I will get out."
+    },
+    {
+      "index": 24,
+      "t": 680,
+      "hms": "00:11:20",
+      "file": "keyframes/0024_001120.jpg",
+      "source": "llm",
+      "label": "Trapped traders watching",
+      "why": "Instructor describes trapped traders hoping for a return to entry, with chart showing consolidation phase.",
+      "narration": "consolidation is that calm before the storm during this consolidation the trap traders are watching hoping, telling themselves, if it just comes back to my entry, I will get out. Then the consolidation breaks and it breaks in the wrong direction for them. Doubt becomes fear, fear becomes panic and they all hit the exit at the same time."
+    },
+    {
+      "index": 25,
+      "t": 694,
+      "hms": "00:11:34",
+      "file": "keyframes/0025_001134.jpg",
+      "source": "llm",
+      "label": "Consolidation breaks wrong way",
+      "why": "Instructor explains the breakout from consolidation in the direction that triggers panic, with chart showing this break.",
+      "narration": "Then the consolidation breaks and it breaks in the wrong direction for them. Doubt becomes fear, fear becomes panic and they all hit the exit at the same time. That simultaneous panic exit is what creates the vertical fast move. The mood that just goes and goes and never comes back and you can hold it into close."
+    },
+    {
+      "index": 26,
+      "t": 708,
+      "hms": "00:11:48",
+      "file": "keyframes/0026_001148.jpg",
+      "source": "llm",
+      "label": "Vertical fast move",
+      "why": "Instructor describes the explosive vertical move caused by simultaneous panic exits, with chart showing this price action.",
+      "narration": "That simultaneous panic exit is what creates the vertical fast move. The mood that just goes and goes and never comes back and you can hold it into close. That is why the best day 3 trades look so easy in hindsight. The fuel was already built on day 1 and day 2. You were just waiting for the emotion to ignite. Every other approach tries to predict where price will go. This approach predicts human behavior and that human behavior under pressure is the most predictable thing in this market. in video one i taught you the weekly rhythm monday is day one tuesday is day two wednesday"
+    },
+    {
+      "index": 27,
+      "t": 748,
+      "hms": "00:12:28",
+      "file": "keyframes/0027_001228.jpg",
+      "source": "llm",
+      "label": "Weekly rhythm pattern",
+      "why": "Instructor references the common Monday-Tuesday-Wednesday cycle, with chart showing weekly calendar and day labels.",
+      "narration": "This approach predicts human behavior and that human behavior under pressure is the most predictable thing in this market. in video one i taught you the weekly rhythm monday is day one tuesday is day two wednesday is where it often pivots that is the most common pattern and it holds most weeks but now you have the full picture day one is not always monday day one is the day the market traps a group of"
+    },
+    {
+      "index": 28,
+      "t": 766,
+      "hms": "00:12:46",
+      "file": "keyframes/0028_001246.jpg",
+      "source": "llm",
+      "label": "Day one not tied to calendar",
+      "why": "Instructor explains day one is defined by market action, not the day of week, with chart showing a false break on Thursday.",
+      "narration": "is where it often pivots that is the most common pattern and it holds most weeks but now you have the full picture day one is not always monday day one is the day the market traps a group of traders on the wrong side that can happen on tuesday it can happen on a thursday the weekly rhythm is your default map the false break tells you where the cycle actually is and one more thing sometimes day three does not fire instead of reversing the market closes beyond the level again. When that happens, that candle becomes the new day one. A new group of traders just got"
+    },
+    {
+      "index": 29,
+      "t": 798,
+      "hms": "00:13:18",
+      "file": "keyframes/0029_001318.jpg",
+      "source": "llm",
+      "label": "New day one resets cycle",
+      "why": "Instructor describes how a close beyond the level creates a new day one, with chart showing this breakout.",
+      "narration": "sometimes day three does not fire instead of reversing the market closes beyond the level again. When that happens, that candle becomes the new day one. A new group of traders just got pulled in. The count resets and new three-day cycle begins. In that case, you stop looking for the reversal and you start looking for the next day two signal. That ability to reset is what stops you from fighting a trend that is still running. Before you look at the single trade,"
+    },
+    {
+      "index": 30,
+      "t": 824,
+      "hms": "00:13:44",
+      "file": "keyframes/0030_001344.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "for the reversal and you start looking for the next day two signal. That ability to reset is what stops you from fighting a trend that is still running. Before you look at the single trade, you need the monthly bias. It takes two minutes on the first day of the month and you are done. Pull up your daily chart, go back 30 days. Is the market making higher highs and higher lows?"
+    },
+    {
+      "index": 31,
+      "t": 836,
+      "hms": "00:13:56",
+      "file": "keyframes/0031_001356.jpg",
+      "source": "llm",
+      "label": "Monthly bias setup",
+      "why": "Instructor explains how to determine monthly bias using 30-day daily chart, with chart showing higher highs/lower lows.",
+      "narration": "you need the monthly bias. It takes two minutes on the first day of the month and you are done. Pull up your daily chart, go back 30 days. Is the market making higher highs and higher lows? That means you have a long bias month. You are looking for buy setups only. Is the market making lower highs and lower lows short bias month sell setups only is the previous month shopping sideways it's range month both sides are valid use the weekly extreme to decide this filter runs the whole month you do not question it again until the month closes inside that monthly bias two"
+    },
+    {
+      "index": 32,
+      "t": 871,
+      "hms": "00:14:31",
+      "file": "keyframes/0032_001431.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "whole month you do not question it again until the month closes inside that monthly bias two levels matter the most the highest closing price of the month and the lowest closing price of the"
+    },
+    {
+      "index": 33,
+      "t": 877,
+      "hms": "00:14:37",
+      "file": "keyframes/0033_001437.jpg",
+      "source": "llm",
+      "label": "Monthly bias levels",
+      "why": "Instructor identifies the highest and lowest closing prices of the month as key levels, with chart showing these points.",
+      "narration": "whole month you do not question it again until the month closes inside that monthly bias two levels matter the most the highest closing price of the month and the lowest closing price of the month not the highest wick not the intraday spike the close the 5 pm new york close and if you're asking why closes and not just wicks it's because a close represents commitment a trader who held"
+    },
+    {
+      "index": 34,
+      "t": 897,
+      "hms": "00:14:57",
+      "file": "keyframes/0034_001457.jpg",
+      "source": "llm",
+      "label": "Closes vs wicks",
+      "why": "Instructor explains why closing prices matter more than intraday spikes, with chart showing a close at the monthly high/low.",
+      "narration": "month not the highest wick not the intraday spike the close the 5 pm new york close and if you're asking why closes and not just wicks it's because a close represents commitment a trader who held through the close, made a decision to stay in overnight. That is conviction. That is something that's very real in the market. A wick is just a spike. Nobody committed to it. When the market approaches the highest close of the month, longs are most extended. They have been right for weeks. They are confident and confident traders are the ones who get trapped worst because they hold too long. When the market approaches the lowest close of the month, the shorts are most extended."
+    },
+    {
+      "index": 35,
+      "t": 942,
+      "hms": "00:15:42",
+      "file": "keyframes/0035_001542.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "They are confident and confident traders are the ones who get trapped worst because they hold too long. When the market approaches the lowest close of the month, the shorts are most extended. Same psychology, opposite direction. Mark these two levels at the start of every single month. Inside every month, there are four weeks."
+    },
+    {
+      "index": 36,
+      "t": 955,
+      "hms": "00:15:55",
+      "file": "keyframes/0036_001555.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Mark these two levels at the start of every single month. Inside every month, there are four weeks. Each one has a different job. Week 1 is the opening range. Observe, do not force trades. Week 2 and 3 are the main campaign. The monthly trend runs and this is where you find the most consistent setups. Week 4 is where the extremes happen. The market often reaches the monthly high or low. in week four. By week four, the traders who have been right all month are the most confident they have been. And the traders who have been fighting the trend all month are the most desperate."
+    },
+    {
+      "index": 37,
+      "t": 1000,
+      "hms": "00:16:40",
+      "file": "keyframes/0037_001640.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "in week four. By week four, the traders who have been right all month are the most confident they have been. And the traders who have been fighting the trend all month are the most desperate. That combination of peak confidence on one side and capitulation on the other is what makes week for reversals so explosive that is where a day two signal fires at the monthly extreme that is the setup of the whole month and here i have an example on gold during february and march"
+    },
+    {
+      "index": 38,
+      "t": 1027,
+      "hms": "00:17:07",
+      "file": "keyframes/0038_001707.jpg",
+      "source": "llm",
+      "label": "Monthly levels example on gold",
+      "why": "Instructor shows a chart of gold with monthly lines and bias, highlighting bullish trend and reversal at month end.",
+      "narration": "for reversals so explosive that is where a day two signal fires at the monthly extreme that is the setup of the whole month and here i have an example on gold during february and march these lines are going to be the monthly lines so monthly bias as you can see this is a bullish"
+    },
+    {
+      "index": 39,
+      "t": 1035,
+      "hms": "00:17:15",
+      "file": "keyframes/0039_001715.jpg",
+      "source": "llm",
+      "label": "Monthly bias and structure",
+      "why": "Instructor marks monthly lines on gold chart, showing bullish bias and weekly progression.",
+      "narration": "that is the setup of the whole month and here i have an example on gold during february and march these lines are going to be the monthly lines so monthly bias as you can see this is a bullish bias you have week one week two week three week four massive reversal at the end of the month so you have month developed everybody piles in and at the end of the month you got the reversal we have another bullish month right so we following the previous month so this was"
+    },
+    {
+      "index": 40,
+      "t": 1064,
+      "hms": "00:17:44",
+      "file": "keyframes/0040_001744.jpg",
+      "source": "llm",
+      "label": "Bullish month continuation",
+      "why": "Instructor explains how current bullish bias follows previous month, with market reaching prior high and reversing.",
+      "narration": "so you have month developed everybody piles in and at the end of the month you got the reversal we have another bullish month right so we following the previous month so this was bullish we taking bullish setups because the previous month was bullish we run into the previous month highest close market reverses we have the first red day and the following day market sells off and now it's developing a bigger range. The bias is still bullish from the previous month but this month stayed inside of the previous month. So this is a ranging bias"
+    },
+    {
+      "index": 41,
+      "t": 1099,
+      "hms": "00:18:19",
+      "file": "keyframes/0041_001819.jpg",
+      "source": "llm",
+      "label": "Ranging bias development",
+      "why": "Market stays inside previous month's range, indicating a ranging bias instead of trend continuation.",
+      "narration": "market sells off and now it's developing a bigger range. The bias is still bullish from the previous month but this month stayed inside of the previous month. So this is a ranging bias going into the current months so we can expect ranging bias. This is more of a subjective way of kind of understanding where you are within the monthly cycle. What we want to focus on is extremes, especially previous month, highest close, previous month, lowest close, and the current month, highest close,"
+    },
+    {
+      "index": 42,
+      "t": 1130,
+      "hms": "00:18:50",
+      "file": "keyframes/0042_001850.jpg",
+      "source": "llm",
+      "label": "Previous month highest close",
+      "why": "Instructor identifies the previous month's highest close as a key level on the chart.",
+      "narration": "especially previous month, highest close, previous month, lowest close, and the current month, highest close, which is right now over here, and the lowest close right now over here."
+    },
+    {
+      "index": 43,
+      "t": 1137,
+      "hms": "00:18:57",
+      "file": "keyframes/0043_001857.jpg",
+      "source": "llm",
+      "label": "Current month lowest close",
+      "why": "Instructor points to the current month's lowest close on the chart.",
+      "narration": "which is right now over here, and the lowest close right now over here. So the same concept we apply to the week, and you want to focus on four weekly levels. High of the week, this is where stop clusters build above."
+    },
+    {
+      "index": 44,
+      "t": 1148,
+      "hms": "00:19:08",
+      "file": "keyframes/0044_001908.jpg",
+      "source": "llm",
+      "label": "Weekly high and stop clusters",
+      "why": "Instructor identifies the weekly high as a stop cluster zone above where short hunters operate.",
+      "narration": "and you want to focus on four weekly levels. High of the week, this is where stop clusters build above. Every short in the market has a stop somewhere above here. Short hunters live at this level. Highest close of the week, which is real resistance,"
+    },
+    {
+      "index": 45,
+      "t": 1160,
+      "hms": "00:19:20",
+      "file": "keyframes/0045_001920.jpg",
+      "source": "llm",
+      "label": "Highest close of the week",
+      "why": "Instructor identifies the highest close of the week as real resistance where committed longs hold.",
+      "narration": "Short hunters live at this level. Highest close of the week, which is real resistance, where committed longs held overnight. These traders made a conscious decision to stay in. Their conviction is highest here. Lowest close of the week. Real support where committed shorts held overnight."
+    },
+    {
+      "index": 46,
+      "t": 1178,
+      "hms": "00:19:38",
+      "file": "keyframes/0046_001938.jpg",
+      "source": "llm",
+      "label": "Lowest close of the week",
+      "why": "Instructor identifies the lowest close of the week as real support where committed shorts hold.",
+      "narration": "Lowest close of the week. Real support where committed shorts held overnight. Same conviction, opposite direction. And you held low of the week. Stop clusters below. Every long in the market has a stop somewhere below here."
+    },
+    {
+      "index": 47,
+      "t": 1186,
+      "hms": "00:19:46",
+      "file": "keyframes/0047_001946.jpg",
+      "source": "llm",
+      "label": "Weekly low and stop clusters",
+      "why": "Instructor identifies the weekly low as a stop cluster zone below where long hunters operate.",
+      "narration": "And you held low of the week. Stop clusters below. Every long in the market has a stop somewhere below here. Long hunters live at this level. The weeks are stop hunt zones. That is where the market goes to trigger panic exits. The closes are conviction zones. That is where the most committed traders made their stand. When the market approaches a close level, it has more trapped traders than when it approaches a wick. Closes grade higher, wicks are just noise. And here the same gold chart just zoomed in. And what you can do is mark out the highest close of the previous week and the high of the previous week. And that will create a zone where you can short during the intraday price action."
+    },
+    {
+      "index": 48,
+      "t": 1226,
+      "hms": "00:20:26",
+      "file": "keyframes/0048_002026.jpg",
+      "source": "llm",
+      "label": "Intraday zone for shorting",
+      "why": "Instructor zooms in on gold chart, marking highest close and high of previous week to create a shorting zone.",
+      "narration": "Closes grade higher, wicks are just noise. And here the same gold chart just zoomed in. And what you can do is mark out the highest close of the previous week and the high of the previous week. And that will create a zone where you can short during the intraday price action. And also it gives you the idea where the trapped traders are. There is the first red day, also is inside day, and you have continuation. So you have day one. Day one is the breakout that fails, remember?"
+    },
+    {
+      "index": 49,
+      "t": 1259,
+      "hms": "00:20:59",
+      "file": "keyframes/0049_002059.jpg",
+      "source": "llm",
+      "label": "Day one breakout failure",
+      "why": "Instructor identifies day one as a failed breakout, setting up the three-day cycle.",
+      "narration": "There is the first red day, also is inside day, and you have continuation. So you have day one. Day one is the breakout that fails, remember? So we have the day one. Day one is the breakout that fails. We have the day two signal, which is the inside day, also a first red day."
+    },
+    {
+      "index": 50,
+      "t": 1270,
+      "hms": "00:21:10",
+      "file": "keyframes/0050_002110.jpg",
+      "source": "llm",
+      "label": "Day two signal",
+      "why": "Instructor identifies day two as an inside day and first red day, signaling a potential reversal.",
+      "narration": "Day one is the breakout that fails. We have the day two signal, which is the inside day, also a first red day. and then you have the day three that you trade."
+    },
+    {
+      "index": 51,
+      "t": 1276,
+      "hms": "00:21:16",
+      "file": "keyframes/0051_002116.jpg",
+      "source": "llm",
+      "label": "Day three trade",
+      "why": "Instructor identifies day three as the actual trading opportunity in the cycle.",
+      "narration": "We have the day two signal, which is the inside day, also a first red day. and then you have the day three that you trade. And this is also Thursday. You have Monday, Tuesday, Wednesday, Thursday. And Friday closes out the week. A lot of Fridays are just a continuation, but this is how you can use the higher time frame levels. So most important ones are monthly levels. previous month highest close of the month and lowest close of the month and the current highest and lowest close of the month and the same for the week monthly is more significant than weekly but both could provide explosive setups this over here is ideal week when we have monday tuesday"
+    },
+    {
+      "index": 52,
+      "t": 1320,
+      "hms": "00:22:00",
+      "file": "keyframes/0052_002200.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "and lowest close of the month and the same for the week monthly is more significant than weekly but both could provide explosive setups this over here is ideal week when we have monday tuesday Wednesday runs and extends usually Thursday is going to be the best day to trade and if you have a Thursday setup you want to target Monday's range so Monday's close is a good target because the first half of the week Monday Tuesday Wednesday is where the market trends and the second half of the week is where the market reverses and liquidates those confident traders that's been holding for too long. This is how it looks like. Beautiful setup. And this is the daily chart of"
+    },
+    {
+      "index": 53,
+      "t": 1361,
+      "hms": "00:22:41",
+      "file": "keyframes/0053_002241.jpg",
+      "source": "llm",
+      "label": "Ideal week setup",
+      "why": "Instructor shows a daily chart of AUD/USD with a strong trend from Monday to Wednesday, leading to Thursday reversal.",
+      "narration": "the week is where the market reverses and liquidates those confident traders that's been holding for too long. This is how it looks like. Beautiful setup. And this is the daily chart of Australian dollar against the United States dollar. The system works on all the charts, all the instruments, because trader psychology never changes. The chart doesn't matter. we are trading the psychology as you can see over here on this chart we have monday tuesday wednesday"
+    },
+    {
+      "index": 54,
+      "t": 1384,
+      "hms": "00:23:04",
+      "file": "keyframes/0054_002304.jpg",
+      "source": "llm",
+      "label": "Monthly close as key level",
+      "why": "Instructor emphasizes the importance of daily closes, showing price pushing into previous month's highest close.",
+      "narration": "all the instruments, because trader psychology never changes. The chart doesn't matter. we are trading the psychology as you can see over here on this chart we have monday tuesday wednesday market pushes above the previous month highest close and also pushes about the previous month high the weeks are not that important for the monthly the close on the monthly is the most important price and i would argue that the daily close is the most important price in the market so this was the highest daily close for the whole month and you can see even over here price pushes into that highest close of the month first red day inside day and you have beautiful continuation"
+    },
+    {
+      "index": 55,
+      "t": 1428,
+      "hms": "00:23:48",
+      "file": "keyframes/0055_002348.jpg",
+      "source": "llm",
+      "label": "First red day and continuation",
+      "why": "Instructor shows price pushing into highest close of the month, followed by a first red day and continuation.",
+      "narration": "so this was the highest daily close for the whole month and you can see even over here price pushes into that highest close of the month first red day inside day and you have beautiful continuation at the start of the new month. But going back to this three higher closes that you learned from the video two, this is the scenario where the day three extends into Thursday and these two days become the day three. And this is where you have the ideal week happening where the Thursday is a beautiful trade that trades down into the Monday close. And Friday, if you hold overnight, you catch Friday move all the way down to the lowest close of the month."
+    },
+    {
+      "index": 56,
+      "t": 1472,
+      "hms": "00:24:32",
+      "file": "keyframes/0056_002432.jpg",
+      "source": "llm",
+      "label": "Friday move to lowest close",
+      "why": "Instructor shows price closing below the lowest close of the month, targeting further downside.",
+      "narration": "And Friday, if you hold overnight, you catch Friday move all the way down to the lowest close of the month. And now we are closing below the lowest close of the month. So now this is the lowest close of the month. And we're likely to go down to the previous monthly lowest close. and this was absolutely beautiful setup i actually took this setup here's my executions"
+    },
+    {
+      "index": 57,
+      "t": 1492,
+      "hms": "00:24:52",
+      "file": "keyframes/0057_002452.jpg",
+      "source": "llm",
+      "label": "Targeting previous monthly low",
+      "why": "Instructor identifies the previous monthly lowest close as a target after breaking below current low.",
+      "narration": "And we're likely to go down to the previous monthly lowest close. and this was absolutely beautiful setup i actually took this setup here's my executions and i only took it into the monday close it was the trade i took it at the 9 30 over here and you have this consolidation that breaks lower and everything lines up you have the day"
+    },
+    {
+      "index": 58,
+      "t": 1508,
+      "hms": "00:25:08",
+      "file": "keyframes/0058_002508.jpg",
+      "source": "llm",
+      "label": "Trade execution at 9:30",
+      "why": "Instructor shows trade entry point at 9:30, with price breaking lower after consolidation.",
+      "narration": "and i only took it into the monday close it was the trade i took it at the 9 30 over here and you have this consolidation that breaks lower and everything lines up you have the day previous daily close rejection you got the sbs pattern one two three four five beautiful you have another pullback in here the london sets up this reversal the sweep and then when the price"
+    },
+    {
+      "index": 59,
+      "t": 1524,
+      "hms": "00:25:24",
+      "file": "keyframes/0059_002524.jpg",
+      "source": "llm",
+      "label": "SBS pattern and pullback",
+      "why": "Instructor points to a bearish SBS pattern with five legs, followed by a pullback.",
+      "narration": "previous daily close rejection you got the sbs pattern one two three four five beautiful you have another pullback in here the london sets up this reversal the sweep and then when the price starts breaking below the 20 sma this is where you want to pay attention and take the trade"
+    },
+    {
+      "index": 60,
+      "t": 1534,
+      "hms": "00:25:34",
+      "file": "keyframes/0060_002534.jpg",
+      "source": "llm",
+      "label": "20 SMA breakdown",
+      "why": "Instructor identifies price breaking below the 20 SMA as a key trigger for trade entry.",
+      "narration": "you have another pullback in here the london sets up this reversal the sweep and then when the price starts breaking below the 20 sma this is where you want to pay attention and take the trade because I started taking this trade after the price closed below the 20 SMA. And again, I talk more about the 20 and 200 SMA trading in the Stoic Trader Protocol course. But this was a beautiful setup. 15-minute chart. I suggest you to get rid of the 1-minute chart unless you are trying to scalp because 1-minute chart is going to be full of noise."
+    },
+    {
+      "index": 61,
+      "t": 1567,
+      "hms": "00:26:07",
+      "file": "keyframes/0061_002607.jpg",
+      "source": "llm",
+      "label": "Recommended timeframes",
+      "why": "Instructor recommends 5-minute and 15-minute charts, suggesting to avoid 1-minute due to noise.",
+      "narration": "I suggest you to get rid of the 1-minute chart unless you are trying to scalp because 1-minute chart is going to be full of noise. and on the inside days on the ranging days you're going to lose your mind trying to catch a big move while the price just staying in the range so i suggest you to focus on the five minute and 15 minute charts mainly the five minute is going to be the best time frame for this high time frame system and you can use whatever entry model you want you can use a simple close below the 20 simple moving average and that could be your entry signal but also pay attention to what the price action is actually printing you know this was a bearish setup this was a bearish sbs beautiful"
+    },
+    {
+      "index": 62,
+      "t": 1612,
+      "hms": "00:26:52",
+      "file": "keyframes/0062_002652.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "action is actually printing you know this was a bearish setup this was a bearish sbs beautiful entry during the asia session then another entry during the london session so you have lower lows lower highs it's trending lower we have nice consolidation consolidation leads to expansion and we have the key timing which is right at 9 30 open here's another example of thursday"
+    },
+    {
+      "index": 63,
+      "t": 1637,
+      "hms": "00:27:17",
+      "file": "keyframes/0063_002717.jpg",
+      "source": "llm",
+      "label": "Key timing at 9:30",
+      "why": "Instructor highlights 9:30 open as a key timing for trade entry during Asia session.",
+      "narration": "lower highs it's trending lower we have nice consolidation consolidation leads to expansion and we have the key timing which is right at 9 30 open here's another example of thursday being the best trade of the week."
+    },
+    {
+      "index": 64,
+      "t": 1646,
+      "hms": "00:27:26",
+      "file": "keyframes/0064_002726.jpg",
+      "source": "llm",
+      "label": "Thursday as best trade day",
+      "why": "Instructor shows NASDAQ chart with Thursdays leading to big candles, indicating strong trading days.",
+      "narration": "and we have the key timing which is right at 9 30 open here's another example of thursday being the best trade of the week. And here's the NASDAQ. Even during this choppiness, I marked out every Thursday and you can see how every Thursday leads to a big candle. Of course, not always. You have stuff like this. Not every Thursday is going to be super explosive. But the best ones are going to be the ones that Monday, Tuesday, Wednesday trends and the Thursday liquidates those confident traders that were holding for Monday, Tuesday and Wednesday."
+    },
+    {
+      "index": 65,
+      "t": 1680,
+      "hms": "00:28:00",
+      "file": "keyframes/0065_002800.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "and the Thursday liquidates those confident traders that were holding for Monday, Tuesday and Wednesday. And here's the thing about Friday. Friday is a setup day. When Friday closes as an inside day at the weekly high,"
+    },
+    {
+      "index": 66,
+      "t": 1688,
+      "hms": "00:28:08",
+      "file": "keyframes/0066_002808.jpg",
+      "source": "llm",
+      "label": "Friday as setup day",
+      "why": "Instructor explains how Friday's inside day at weekly high sets up Monday reversal.",
+      "narration": "Friday is a setup day. When Friday closes as an inside day at the weekly high, think about who is still holding. The longs who bought the breakout earlier in the week are sitting at the extreme. They held through Friday because they believe the trend will continue. They went into the weekend confident."
+    },
+    {
+      "index": 67,
+      "t": 1705,
+      "hms": "00:28:25",
+      "file": "keyframes/0067_002825.jpg",
+      "source": "llm",
+      "label": "Monday flush of confident longs",
+      "why": "Instructor describes how Monday opens above Friday's inside day high, trapping confident longs.",
+      "narration": "because they believe the trend will continue. They went into the weekend confident. Monday opens, takes out the inside day high, and those confident longs add to their position. Then the market reverses. Now they are trapped, they just added, and the weekend gap makes it worse. And this sets up a Monday trade. When Friday closes as an inside day at the weekly low, it is the exact mirror."
+    },
+    {
+      "index": 68,
+      "t": 1728,
+      "hms": "00:28:48",
+      "file": "keyframes/0068_002848.jpg",
+      "source": "llm",
+      "label": "Friday close at weekly low",
+      "why": "Instructor shows how Friday closing at weekly low sets up Monday flush of shorts.",
+      "narration": "And this sets up a Monday trade. When Friday closes as an inside day at the weekly low, it is the exact mirror. Shorts are confident, Monday flushes them. And here's a general rule. The tightest inside day, Friday, will give you the biggest Monday move."
+    },
+    {
+      "index": 69,
+      "t": 1739,
+      "hms": "00:28:59",
+      "file": "keyframes/0069_002859.jpg",
+      "source": "llm",
+      "label": "Tightest inside day",
+      "why": "Instructor explains that tightest Friday inside day leads to biggest Monday move.",
+      "narration": "And here's a general rule. The tightest inside day, Friday, will give you the biggest Monday move. Double inside day, Thursday and Friday both inside, is maximum consolidation. Both sides have been frozen for two days. The pressure is at its peak."
+    },
+    {
+      "index": 70,
+      "t": 1752,
+      "hms": "00:29:12",
+      "file": "keyframes/0070_002912.jpg",
+      "source": "llm",
+      "label": "Double inside day",
+      "why": "Instructor identifies double inside day (Thursday and Friday) as maximum consolidation before explosive move.",
+      "narration": "Double inside day, Thursday and Friday both inside, is maximum consolidation. Both sides have been frozen for two days. The pressure is at its peak. That is the spring before the explosive move. now the actual setups and templates every good trade is a three-day cycle there are five ways"
+    },
+    {
+      "index": 71,
+      "t": 1759,
+      "hms": "00:29:19",
+      "file": "keyframes/0071_002919.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "The pressure is at its peak. That is the spring before the explosive move. now the actual setups and templates every good trade is a three-day cycle there are five ways this cycle resolves first red day first green day day three trend reversal day three trend continuation consolidation to expansion and the inside day each one has a different day one day two day three but more importantly each one traps a different group of traders using a different emotion template one traps them with greed the pump feels safe so they pile in template two traps them with fomo each breakout pulls in a new group who cannot stand missing the move"
+    },
+    {
+      "index": 72,
+      "t": 1804,
+      "hms": "00:30:04",
+      "file": "keyframes/0072_003004.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "emotion template one traps them with greed the pump feels safe so they pile in template two traps them with fomo each breakout pulls in a new group who cannot stand missing the move template 3 traps the counter trend traders who think the move is over template 4 traps range traders whose positions blow up when the consolidation breaks template 5 traps breakout traders on the wrong side of a false break different emotions different traps but the same result forced exits create explosive moves here's the template one first red day first green"
+    },
+    {
+      "index": 73,
+      "t": 1841,
+      "hms": "00:30:41",
+      "file": "keyframes/0073_003041.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "same result forced exits create explosive moves here's the template one first red day first green day this is a reversal setup two sides of the same coin let me walk you through the psychology first"
+    },
+    {
+      "index": 74,
+      "t": 1848,
+      "hms": "00:30:48",
+      "file": "keyframes/0074_003048.jpg",
+      "source": "llm",
+      "label": "Template 1 Reversal Setup",
+      "why": "Instructor introduces the first template, showing a red day followed by a green day as a reversal setup on the chart.",
+      "narration": "same result forced exits create explosive moves here's the template one first red day first green day this is a reversal setup two sides of the same coin let me walk you through the psychology first because that is what makes the trade work for the short version day one the market grinds higher three or more higher closes each close higher than the last think about what that does to the traders watching each green day builds confidence it is going up i should buy the first buyer is cautious the second feels validated by the third higher close traders are buying because it feels safe greed replaces caution day two the first red day the market goes up first pulling in the last"
+    },
+    {
+      "index": 75,
+      "t": 1893,
+      "hms": "00:31:33",
+      "file": "keyframes/0075_003133.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "safe greed replaces caution day two the first red day the market goes up first pulling in the last group of longs these are the ones who finally could not resist they buy at the highest price at the absolute worst price possible then the market closes below its own open that close below the open is the first crack not in the chart but in the confidence of the traders but the confident longs do not sell not yet they tell themselves it is just one red day the trend is still up they hold day three comes around the chop zone has been building up on top"
+    },
+    {
+      "index": 76,
+      "t": 1938,
+      "hms": "00:32:18",
+      "file": "keyframes/0076_003218.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "the trend is still up they hold day three comes around the chop zone has been building up on top Asia held the high London held the high during this consolidation the trapped lungs are watching hoping telling themselves it will recover New York opens the consolidation breaks down and hope turns to panic every long from day one and day two hits the exit at the same time that simultaneous panic selling is the explosive move the dump is fast vertical and does not come back because it is not a pattern breaking down it is actual people breaking down and for the long version for the first green day it's the exact mirror and here's the example on gold as you can"
+    },
+    {
+      "index": 77,
+      "t": 1984,
+      "hms": "00:33:04",
+      "file": "keyframes/0077_003304.jpg",
+      "source": "llm",
+      "label": "Gold Example of Template 1",
+      "why": "Instructor shows a gold chart example illustrating the first template with higher closes followed by a red day and breakdown.",
+      "narration": "because it is not a pattern breaking down it is actual people breaking down and for the long version for the first green day it's the exact mirror and here's the example on gold as you can see the gold has been making higher closes and eventually it has first red day and day three that's where you trade and this also happened on thursday as you can see beautiful consolidation and consolidation leads to expansion and yet again you can follow the 20 and 200 simple moving averages right at 9 30 for the new york session you can watch for the sweeps for the manipulation"
+    },
+    {
+      "index": 78,
+      "t": 2017,
+      "hms": "00:33:37",
+      "file": "keyframes/0078_003337.jpg",
+      "source": "llm",
+      "label": "SMA Breakdown Entry",
+      "why": "Instructor points to the 20 and 200 SMA on a chart, showing price breaking below both as an entry signal.",
+      "narration": "and consolidation leads to expansion and yet again you can follow the 20 and 200 simple moving averages right at 9 30 for the new york session you can watch for the sweeps for the manipulation and then once the price starts breaking below the 20 sma and in this case it also broke below the 200 sma this could be a nice entry stop loss goes above the sweep and you have beautiful sbs with"
+    },
+    {
+      "index": 79,
+      "t": 2034,
+      "hms": "00:33:54",
+      "file": "keyframes/0079_003354.jpg",
+      "source": "llm",
+      "label": "Entry and Stop Loss Setup",
+      "why": "Instructor demonstrates a trade entry below the 20 SMA with stop loss above the sweep and target at 2618 Fibonacci level.",
+      "narration": "and then once the price starts breaking below the 20 sma and in this case it also broke below the 200 sma this could be a nice entry stop loss goes above the sweep and you have beautiful sbs with the 2618 target or you trail and get stopped out in profit day one day two is the signal day three is the trade template number two day three trend reversal this is the most psychologically"
+    },
+    {
+      "index": 80,
+      "t": 2052,
+      "hms": "00:34:12",
+      "file": "keyframes/0080_003412.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "the 2618 target or you trail and get stopped out in profit day one day two is the signal day three is the trade template number two day three trend reversal this is the most psychologically violent setup in the system and here's why on day one the market breaks out of a key level"
+    },
+    {
+      "index": 81,
+      "t": 2063,
+      "hms": "00:34:23",
+      "file": "keyframes/0081_003423.jpg",
+      "source": "llm",
+      "label": "Template 2 Trend Reversal",
+      "why": "Instructor introduces the second template, describing a breakout followed by two more consecutive breakouts leading to reversal.",
+      "narration": "day three is the trade template number two day three trend reversal this is the most psychologically violent setup in the system and here's why on day one the market breaks out of a key level the first group of breakout traders sees the move and enters they feel smart they caught the breakout early day two the market breaks about day one's high and closes there now a second group enters there are the fomo traders they watched day one happen without them and they cannot stand it it broke out and it's still going i need to get in now they tell themselves two consecutive breakout closes in the same direction that is the signal day three the market pushes about day two's high"
+    },
+    {
+      "index": 82,
+      "t": 2108,
+      "hms": "00:35:08",
+      "file": "keyframes/0082_003508.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "closes in the same direction that is the signal day three the market pushes about day two's high the third group of traders enter these are the last ones in the most desperate the most emotional They tell themselves the trend is real. It's been going up for three days. Now all three groups are positioned in the same direction. Every trader who was going to buy has bought. There is no one left to push it higher. The market reverses and now we watch the emotions unfold. Group 3 is underwater immediately. Their first reaction is denial. It will come back. Group 2"
+    },
+    {
+      "index": 83,
+      "t": 2142,
+      "hms": "00:35:42",
+      "file": "keyframes/0083_003542.jpg",
+      "source": "llm",
+      "label": "Emotional Reaction of Traders",
+      "why": "Instructor explains the psychological breakdown of three trader groups as stops trigger during a reversal.",
+      "narration": "They tell themselves the trend is real. It's been going up for three days. Now all three groups are positioned in the same direction. Every trader who was going to buy has bought. There is no one left to push it higher. The market reverses and now we watch the emotions unfold. Group 3 is underwater immediately. Their first reaction is denial. It will come back. Group 2 sees their profit evaporating. Anxiety sets in. Group 1, who was up the most, watches their winner turn into break-even. That is the worst feeling in trading, watching a winner disappear. year then the stop losses start triggering group threes stops go first because they enter the highest their exits push the price lower that triggers group two stops which pushes price even lower which triggers group one three groups panicking at three different prices is the most"
+    },
+    {
+      "index": 84,
+      "t": 2187,
+      "hms": "00:36:27",
+      "file": "keyframes/0084_003627.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "lower which triggers group one three groups panicking at three different prices is the most violent flash in the market that is the sfp swing failure pattern the market swung through the level failed and reversed and this is the type of setup that can potentially produce 5r or even 10r"
+    },
+    {
+      "index": 85,
+      "t": 2198,
+      "hms": "00:36:38",
+      "file": "keyframes/0085_003638.jpg",
+      "source": "llm",
+      "label": "SFP Swing Failure Pattern",
+      "why": "Instructor identifies the SFP (Swing Failure Pattern) on a chart, showing price swinging through and failing at key levels.",
+      "narration": "violent flash in the market that is the sfp swing failure pattern the market swung through the level failed and reversed and this is the type of setup that can potentially produce 5r or even 10r trades it is not the most common but when it fires at the weekly or monthly extreme it is the trade of the month on that instrument and here's the example on the forex this is australian dollar"
+    },
+    {
+      "index": 86,
+      "t": 2216,
+      "hms": "00:36:56",
+      "file": "keyframes/0086_003656.jpg",
+      "source": "llm",
+      "label": "AUD/USD Example of Template 2",
+      "why": "Instructor shows an AUD/USD chart with a three-day breakout followed by reversal, illustrating template 2.",
+      "narration": "trades it is not the most common but when it fires at the weekly or monthly extreme it is the trade of the month on that instrument and here's the example on the forex this is australian dollar against united states dollar you have the previous monthly high close you have the current highest close of the month and it all lines up perfectly after the three higher closes while in sell-off on day three also on thursday like i said the best setups usually come on thursday as you can see obvious consolidation you have smaller consolidation over here the first"
+    },
+    {
+      "index": 87,
+      "t": 2248,
+      "hms": "00:37:28",
+      "file": "keyframes/0087_003728.jpg",
+      "source": "llm",
+      "label": "Consolidation Leading to Breakdown",
+      "why": "Instructor points out consolidation on a chart before a breakdown, highlighting the setup for template 2.",
+      "narration": "while in sell-off on day three also on thursday like i said the best setups usually come on thursday as you can see obvious consolidation you have smaller consolidation over here the first signs of breakdown happened right below the 200 simple moving averages this is opportunity to enter right at nine o'clock there this is opportunity to enter in london session this is"
+    },
+    {
+      "index": 88,
+      "t": 2264,
+      "hms": "00:37:44",
+      "file": "keyframes/0088_003744.jpg",
+      "source": "llm",
+      "label": "Entry Opportunity at 9:00",
+      "why": "Instructor identifies an entry opportunity during the London session at 9:00, with price breaking below key levels.",
+      "narration": "signs of breakdown happened right below the 200 simple moving averages this is opportunity to enter right at nine o'clock there this is opportunity to enter in london session this is opportunity to enter during asia session and 9 30 over here this was an opportunity to enter right at the new york session but the move started in asia continued in london and continued into new york selling off all the way down to the monday open this is where the monday candle opened and And based on the weekly template, when you have Monday, Tuesday, Wednesday extends, you want to trade reversal on Thursday, targeting Monday range. And this is the same trade that I showed you earlier that I took over here where I targeted Monday close."
+    },
+    {
+      "index": 89,
+      "t": 2309,
+      "hms": "00:38:29",
+      "file": "keyframes/0089_003829.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "And based on the weekly template, when you have Monday, Tuesday, Wednesday extends, you want to trade reversal on Thursday, targeting Monday range. And this is the same trade that I showed you earlier that I took over here where I targeted Monday close. And of course, same logic works on the long side."
+    },
+    {
+      "index": 90,
+      "t": 2320,
+      "hms": "00:38:40",
+      "file": "keyframes/0090_003840.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "And this is the same trade that I showed you earlier that I took over here where I targeted Monday close. And of course, same logic works on the long side. Just reverse it. Template number three. Day 3 trend continuation. This looks like template 2 at first. It has same start but different finish."
+    },
+    {
+      "index": 91,
+      "t": 2327,
+      "hms": "00:38:47",
+      "file": "keyframes/0091_003847.jpg",
+      "source": "llm",
+      "label": "Template 3 Trend Continuation",
+      "why": "Instructor introduces template 3, describing a breakout followed by a pullback and retest as continuation setup.",
+      "narration": "Just reverse it. Template number three. Day 3 trend continuation. This looks like template 2 at first. It has same start but different finish. And the difference comes down to who gets trapped on day 3. Day 1. The market breaks out of key level and closes there. These are committed buyers they held through the close. Day number 2. The market breaks out again in the same direction second consecutive breakout close that is the signal two breakout closes in the same direction tells you the trend has real commitment behind it now here's what is different from template two day three the market pulls back and this pullback"
+    },
+    {
+      "index": 92,
+      "t": 2372,
+      "hms": "00:39:32",
+      "file": "keyframes/0092_003932.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "now here's what is different from template two day three the market pulls back and this pullback triggers a specific type of trader the counter trend trader the contrarian these traders see"
+    },
+    {
+      "index": 93,
+      "t": 2378,
+      "hms": "00:39:38",
+      "file": "keyframes/0093_003938.jpg",
+      "source": "llm",
+      "label": "Counter Trend Traders Entry",
+      "why": "Instructor explains how counter trend traders enter during a pullback, setting up for a trap.",
+      "narration": "now here's what is different from template two day three the market pulls back and this pullback triggers a specific type of trader the counter trend trader the contrarian these traders see two strong days and think it has gone too far it has to come back they short the pullback they feel clever they think they are fading the crowd but the trend was real confirmed by two closes the original breakout traders from day one and day two are still in they are still right and they know that this broken level now is acting as support the market retests the breakout level and"
+    },
+    {
+      "index": 94,
+      "t": 2412,
+      "hms": "00:40:12",
+      "file": "keyframes/0094_004012.jpg",
+      "source": "llm",
+      "label": "Break and Retest Entry",
+      "why": "Instructor shows a chart where price retests the breakout level and holds, indicating entry for trend continuation.",
+      "narration": "closes the original breakout traders from day one and day two are still in they are still right and they know that this broken level now is acting as support the market retests the breakout level and holds this is break and retest now the counter trend traders realize they made a mistake they shorted into a confirmed trend the level is holding the market is about to continue without them or even worse against them so they cower their covering is the fuel for the next leg who is trapped here the faders the people who fought the move was over the simple break and retest entry where the price pulls back retests and holds that is your entry with the trend this is a continuation trade the trend was real the pullback was just contrarians getting taught a"
+    },
+    {
+      "index": 95,
+      "t": 2457,
+      "hms": "00:40:57",
+      "file": "keyframes/0095_004057.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "retest entry where the price pulls back retests and holds that is your entry with the trend this is a continuation trade the trend was real the pullback was just contrarians getting taught a lesson here's a good example of trend continuation trade on day three after closing above previous"
+    },
+    {
+      "index": 96,
+      "t": 2466,
+      "hms": "00:41:06",
+      "file": "keyframes/0096_004106.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "is a continuation trade the trend was real the pullback was just contrarians getting taught a lesson here's a good example of trend continuation trade on day three after closing above previous highest close of the month this is an obvious breakout you have a closure above the price"
+    },
+    {
+      "index": 97,
+      "t": 2478,
+      "hms": "00:41:18",
+      "file": "keyframes/0097_004118.jpg",
+      "source": "llm",
+      "label": "Trend Continuation Example",
+      "why": "Instructor displays a chart of a breakout followed by pullback and retest, confirming trend continuation.",
+      "narration": "lesson here's a good example of trend continuation trade on day three after closing above previous highest close of the month this is an obvious breakout you have a closure above the price pulls back to the breakout level over here and continues higher and this is how it looks like on five minute short you have consolidation price even drops down below consolidation and at 9 30 you have a sweep and immediate trade higher closing about the 20 and 200 simple moving averages about the previous day close this line over here this one is previous day close"
+    },
+    {
+      "index": 98,
+      "t": 2513,
+      "hms": "00:41:53",
+      "file": "keyframes/0098_004153.jpg",
+      "source": "llm",
+      "label": "Previous Day Close as Key Level",
+      "why": "Instructor highlights the previous day close on a chart, showing it as a key reference for entry and confirmation.",
+      "narration": "and at 9 30 you have a sweep and immediate trade higher closing about the 20 and 200 simple moving averages about the previous day close this line over here this one is previous day close market made a low of the day created consolidation breaks out there's even sbs in here one two three four five beautiful sbs breakout closing about the moving averages this is where you can enter set your stop loss below the 930 manipulation and you can confidently hold into close because"
+    },
+    {
+      "index": 99,
+      "t": 2541,
+      "hms": "00:42:21",
+      "file": "keyframes/0099_004221.jpg",
+      "source": "llm",
+      "label": "Entry with Stop Loss Below Manipulation",
+      "why": "Instructor shows an entry point at 9:30 with stop loss below the manipulation low.",
+      "narration": "two three four five beautiful sbs breakout closing about the moving averages this is where you can enter set your stop loss below the 930 manipulation and you can confidently hold into close because these are explosive moves they don't really come back these are the moves that going to compound your trading account significantly these are the asymmetrical opportunities that are fueled by traders who were trapped and you want to be watching the previous day close because if price"
+    },
+    {
+      "index": 100,
+      "t": 2565,
+      "hms": "00:42:45",
+      "file": "keyframes/0100_004245.jpg",
+      "source": "llm",
+      "label": "Price Holding Above Previous Close",
+      "why": "Instructor emphasizes that price must hold above the previous day close to confirm continuation.",
+      "narration": "your trading account significantly these are the asymmetrical opportunities that are fueled by traders who were trapped and you want to be watching the previous day close because if price cannot break back about the previous day close that means that this template turns into the previous template that i was talking about which is the third day trend reversal so the key"
+    },
+    {
+      "index": 101,
+      "t": 2581,
+      "hms": "00:43:01",
+      "file": "keyframes/0101_004301.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "cannot break back about the previous day close that means that this template turns into the previous template that i was talking about which is the third day trend reversal so the key difference is that the price needs to hold the close and needs to hold the breakout you have the"
+    },
+    {
+      "index": 102,
+      "t": 2588,
+      "hms": "00:43:08",
+      "file": "keyframes/0102_004308.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "previous template that i was talking about which is the third day trend reversal so the key difference is that the price needs to hold the close and needs to hold the breakout you have the breakout over here and you have the close over here you can see the price breaks out and pulls"
+    },
+    {
+      "index": 103,
+      "t": 2598,
+      "hms": "00:43:18",
+      "file": "keyframes/0103_004318.jpg",
+      "source": "llm",
+      "label": "Breakout and Close Confirmation",
+      "why": "Instructor shows a breakout followed by closing above the previous high, confirming trend continuation.",
+      "narration": "difference is that the price needs to hold the close and needs to hold the breakout you have the breakout over here and you have the close over here you can see the price breaks out and pulls back to test the breakup template number four consolidation leads to expansion and this is also"
+    },
+    {
+      "index": 104,
+      "t": 2605,
+      "hms": "00:43:25",
+      "file": "keyframes/0104_004325.jpg",
+      "source": "llm",
+      "label": "Template 4 Consolidation Leads to Expansion",
+      "why": "Instructor introduces template 4, describing how consolidation leads to expansion.",
+      "narration": "breakout over here and you have the close over here you can see the price breaks out and pulls back to test the breakup template number four consolidation leads to expansion and this is also a universal concept that works on any market and this is how market moves is that consolidation always leads to expansion this template is about what happens when conviction dies on day one the market reaches a key high time frame level and stalls starts consolidating no explosion no reversal just consolidation day two the market goes sideways think about what is happening inside"
+    },
+    {
+      "index": 105,
+      "t": 2638,
+      "hms": "00:43:58",
+      "file": "keyframes/0105_004358.jpg",
+      "source": "llm",
+      "label": "Market Stalls at Key High",
+      "why": "Instructor points to a chart where the market stalls and consolidates at a key high, starting template 4.",
+      "narration": "market reaches a key high time frame level and stalls starts consolidating no explosion no reversal just consolidation day two the market goes sideways think about what is happening inside that range bulls and bears are fighting both sides are building positions the bulls are buying the low of the consolidation the bears are selling the high of the consolidation both sides believe they are right the longer this consolidation lasts the more traders have committed to positions inside it and also you got range traders that are selling the high and buying the low over and over again they believe the range will hold day three comes around and the consolidation breaks and one side is completely and immediately wrong every trader who was selling the high of the consolidation"
+    },
+    {
+      "index": 106,
+      "t": 2686,
+      "hms": "00:44:46",
+      "file": "keyframes/0106_004446.jpg",
+      "source": "llm",
+      "label": "Breakout Triggers Forced Exits",
+      "why": "Instructor shows a chart where consolidation breaks, causing forced exits and explosive move.",
+      "narration": "again they believe the range will hold day three comes around and the consolidation breaks and one side is completely and immediately wrong every trader who was selling the high of the consolidation during a bullish breakout is now short in the breakout every trader who was buying the low during a bearish break is now long in a breakdown their forced exit is the measured move the longer the consolidation the more traders were wrong on one side the more traders forced to exit the more violent the breakout and what you can do for the targets is that you have the consolidation"
+    },
+    {
+      "index": 107,
+      "t": 2718,
+      "hms": "00:45:18",
+      "file": "keyframes/0107_004518.jpg",
+      "source": "llm",
+      "label": "Measured Move Target",
+      "why": "Instructor explains measuring consolidation height for target projection on chart",
+      "narration": "the consolidation the more traders were wrong on one side the more traders forced to exit the more violent the breakout and what you can do for the targets is that you have the consolidation clear consolidation over here and you measure the height of this consolidation and project that height for the target that is called a measured move you are measuring the height of the consolidation and projecting it as a target the hundred percent could be your first target and the two hundred percent could be your second target and always remember that consolidation always leads to expansion and here's the example of day one day two consolidation and day three explosive move"
+    },
+    {
+      "index": 108,
+      "t": 2753,
+      "hms": "00:45:53",
+      "file": "keyframes/0108_004553.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "percent could be your second target and always remember that consolidation always leads to expansion and here's the example of day one day two consolidation and day three explosive move this was on the oil like i said the price runs into a key high time frame level which is was"
+    },
+    {
+      "index": 109,
+      "t": 2765,
+      "hms": "00:46:05",
+      "file": "keyframes/0109_004605.jpg",
+      "source": "llm",
+      "label": "Key High Time Frame Level",
+      "why": "Price runs into key high time frame level, highest close of the month",
+      "narration": "expansion and here's the example of day one day two consolidation and day three explosive move this was on the oil like i said the price runs into a key high time frame level which is was highest close of the month this is where the price reversed before price pulls back into that highest close of the month closes above it has an consolidation day and on day three has a nice"
+    },
+    {
+      "index": 110,
+      "t": 2782,
+      "hms": "00:46:22",
+      "file": "keyframes/0110_004622.jpg",
+      "source": "llm",
+      "label": "Consolidation Day",
+      "why": "Price pulls back into highest close of the month, closes above it with consolidation day",
+      "narration": "highest close of the month this is where the price reversed before price pulls back into that highest close of the month closes above it has an consolidation day and on day three has a nice sweep and a beautiful trend day that you could have taken advantage of and here's how it looked on the five minute chart we are going from monday into the tuesday you have consolidation"
+    },
+    {
+      "index": 111,
+      "t": 2800,
+      "hms": "00:46:40",
+      "file": "keyframes/0111_004640.jpg",
+      "source": "llm",
+      "label": "Five Minute Chart Example",
+      "why": "Switch to five minute chart showing consolidation and breakout",
+      "narration": "sweep and a beautiful trend day that you could have taken advantage of and here's how it looked on the five minute chart we are going from monday into the tuesday you have consolidation by 9 30 market breaking above highest close of the month retesting it at 9 30 and this is your entry"
+    },
+    {
+      "index": 112,
+      "t": 2809,
+      "hms": "00:46:49",
+      "file": "keyframes/0112_004649.jpg",
+      "source": "llm",
+      "label": "Entry at Breakout",
+      "why": "Market breaks above highest close of the month, retesting at 9:30 as entry point",
+      "narration": "on the five minute chart we are going from monday into the tuesday you have consolidation by 9 30 market breaking above highest close of the month retesting it at 9 30 and this is your entry also nice consolidation you can enter on the breakout of this consolidation if you are waiting"
+    },
+    {
+      "index": 113,
+      "t": 2820,
+      "hms": "00:47:00",
+      "file": "keyframes/0113_004700.jpg",
+      "source": "llm",
+      "label": "Breakout Entry",
+      "why": "Enter on breakout of consolidation after 9:30 retest",
+      "narration": "by 9 30 market breaking above highest close of the month retesting it at 9 30 and this is your entry also nice consolidation you can enter on the breakout of this consolidation if you are waiting for the price to close about the 20 simple moving average this is your entry stop loss below 9 30"
+    },
+    {
+      "index": 114,
+      "t": 2827,
+      "hms": "00:47:07",
+      "file": "keyframes/0114_004707.jpg",
+      "source": "llm",
+      "label": "Entry at SMA Close",
+      "why": "Enter when price closes above 20 simple moving average",
+      "narration": "also nice consolidation you can enter on the breakout of this consolidation if you are waiting for the price to close about the 20 simple moving average this is your entry stop loss below 9 30 and you write this into the clothes beautiful setup yet again 200 simple moving average"
+    },
+    {
+      "index": 115,
+      "t": 2836,
+      "hms": "00:47:16",
+      "file": "keyframes/0115_004716.jpg",
+      "source": "llm",
+      "label": "Stop Loss Placement",
+      "why": "Stop loss below 9:30 level",
+      "narration": "for the price to close about the 20 simple moving average this is your entry stop loss below 9 30 and you write this into the clothes beautiful setup yet again 200 simple moving average you can see how the price dips below gets back above you have a london session setup"
+    },
+    {
+      "index": 116,
+      "t": 2844,
+      "hms": "00:47:24",
+      "file": "keyframes/0116_004724.jpg",
+      "source": "llm",
+      "label": "SMA Confirmation",
+      "why": "Price dips below and returns above 200 SMA, confirming setup",
+      "narration": "and you write this into the clothes beautiful setup yet again 200 simple moving average you can see how the price dips below gets back above you have a london session setup you have a new york session setup even in asia this was a beautiful setup and this is the key the day two needs to consolidate and you can see this is like a doji it broke the hype it"
+    },
+    {
+      "index": 117,
+      "t": 2860,
+      "hms": "00:47:40",
+      "file": "keyframes/0117_004740.jpg",
+      "source": "llm",
+      "label": "Inside Day Pattern",
+      "why": "Day two is a doji-like consolidation, leading to expansion",
+      "narration": "you have a new york session setup even in asia this was a beautiful setup and this is the key the day two needs to consolidate and you can see this is like a doji it broke the hype it went lower but then pulled back it this is consolidation that leads to the beautiful expansions template number five inside day this is similar to the consolidation day but a bit"
+    },
+    {
+      "index": 118,
+      "t": 2875,
+      "hms": "00:47:55",
+      "file": "keyframes/0118_004755.jpg",
+      "source": "llm",
+      "label": "Inside Day Definition",
+      "why": "Explanation of inside day as full range fitting within previous day's range",
+      "narration": "went lower but then pulled back it this is consolidation that leads to the beautiful expansions template number five inside day this is similar to the consolidation day but a bit different inside day this is when the market is at maximum uncertainty and inside day is the full range fitting inside the previous day's range nobody can decide bulls cannot push higher bears cannot push lower both sides are frozen this is the day two in the three-day cycle day one set the range day two compressed inside it both sides are watching waiting holding positions and hoping"
+    },
+    {
+      "index": 119,
+      "t": 2911,
+      "hms": "00:48:31",
+      "file": "keyframes/0119_004831.jpg",
+      "source": "llm",
+      "label": "Three-Day Cycle Setup",
+      "why": "Day one sets range, day two compresses inside it, day three breaks out",
+      "narration": "cannot push lower both sides are frozen this is the day two in the three-day cycle day one set the range day two compressed inside it both sides are watching waiting holding positions and hoping day three breaks out of that consolidation but here's the psychology that makes this trade beautiful. The false break on day three is the market flushing out the weak hands first. Think about it. Both sides have been frozen for a full day. The tension is enormous. When the market breaks on one side of the inside day, the breakout traders on that side feel instant relief. Finally,"
+    },
+    {
+      "index": 120,
+      "t": 2944,
+      "hms": "00:49:04",
+      "file": "keyframes/0120_004904.jpg",
+      "source": "llm",
+      "label": "False Break Psychology",
+      "why": "Market breaks one side of inside day, traps breakout traders",
+      "narration": "about it. Both sides have been frozen for a full day. The tension is enormous. When the market breaks on one side of the inside day, the breakout traders on that side feel instant relief. Finally, it picked a direction so they enter and in most cases those traders are immediately wrong because the market reverses through the other side of the inside day those breakout traders who just entered are now trapped their stops fuel the real move in the opposite direction and that direction comes from context. If the inside day sitting at the weekly high, the false break is above."
+    },
+    {
+      "index": 121,
+      "t": 2975,
+      "hms": "00:49:35",
+      "file": "keyframes/0121_004935.jpg",
+      "source": "llm",
+      "label": "Context-Driven Move",
+      "why": "Real move direction depends on inside day location (high/low)",
+      "narration": "entered are now trapped their stops fuel the real move in the opposite direction and that direction comes from context. If the inside day sitting at the weekly high, the false break is above. The real move is down. The same for the opposite side. Inside day sitting at the weekly low, the false break is below. The real move is up. The shorts who entered the false breakdown get crushed. But here's the thing that inside day can also fire as a continuation. If the trend is really strong and the inside day is mid-range the day three can explode in the trend direction with no false break at all the spring is already loaded so the location of the inside day tells you which version to expect and here's the example of the inside day on nasdaq after price ran into the"
+    },
+    {
+      "index": 122,
+      "t": 3023,
+      "hms": "00:50:23",
+      "file": "keyframes/0122_005023.jpg",
+      "source": "llm",
+      "label": "Inside Day Continuation",
+      "why": "Inside day in mid-range leads to trend continuation",
+      "narration": "with no false break at all the spring is already loaded so the location of the inside day tells you which version to expect and here's the example of the inside day on nasdaq after price ran into the highest close of the month you have day two an inside day and day three a violent continuation"
+    },
+    {
+      "index": 123,
+      "t": 3033,
+      "hms": "00:50:33",
+      "file": "keyframes/0123_005033.jpg",
+      "source": "llm",
+      "label": "Nasdaq Inside Day Example",
+      "why": "Inside day after price rejects highest close of the month, leads to violent down move",
+      "narration": "which version to expect and here's the example of the inside day on nasdaq after price ran into the highest close of the month you have day two an inside day and day three a violent continuation we already have day one rejecting from the highest close of the month day two created the first red day and also an inside day and the location of the inside day is right below highest close of the"
+    },
+    {
+      "index": 124,
+      "t": 3051,
+      "hms": "00:50:51",
+      "file": "keyframes/0124_005051.jpg",
+      "source": "llm",
+      "label": "First Red Day Confirmation",
+      "why": "Day two is first red day and inside day, confirming bearish trend",
+      "narration": "we already have day one rejecting from the highest close of the month day two created the first red day and also an inside day and the location of the inside day is right below highest close of the month and this is a continuation version the bearish trend already started on day one day"
+    },
+    {
+      "index": 125,
+      "t": 3060,
+      "hms": "00:51:00",
+      "file": "keyframes/0125_005100.jpg",
+      "source": "llm",
+      "label": "Location of Inside Day",
+      "why": "Inside day below highest close of the month indicates continuation",
+      "narration": "day and also an inside day and the location of the inside day is right below highest close of the month and this is a continuation version the bearish trend already started on day one day two just confirmed and day three had a violent explosion down sometimes you will be able to fit multiple templates on one trade and that makes your trade even stronger even higher probability gives you more confidence to risk more and also pay attention this is a monday candle so we swept the monday candle and continue down this was also on thursday and this is friday"
+    },
+    {
+      "index": 126,
+      "t": 3091,
+      "hms": "00:51:31",
+      "file": "keyframes/0126_005131.jpg",
+      "source": "llm",
+      "label": "Monday Candle Sweep",
+      "why": "Sweep of monday candle and continuation down",
+      "narration": "gives you more confidence to risk more and also pay attention this is a monday candle so we swept the monday candle and continue down this was also on thursday and this is friday continuation beautiful weekly setup on nasdaq also pay attention to the five minute chart the same 200 simple moving average you got consolidation leading into the new york open"
+    },
+    {
+      "index": 127,
+      "t": 3109,
+      "hms": "00:51:49",
+      "file": "keyframes/0127_005149.jpg",
+      "source": "llm",
+      "label": "Five Minute SMA Setup",
+      "why": "Consolidation leading into New York open, 200 SMA as key level",
+      "narration": "continuation beautiful weekly setup on nasdaq also pay attention to the five minute chart the same 200 simple moving average you got consolidation leading into the new york open like i said you want to see consolidation no consolidation no trade and yet again price breaks back below the 200 sma and 20 sma provides a beautiful opportunity to enter at 9 30 an"
+    },
+    {
+      "index": 128,
+      "t": 3126,
+      "hms": "00:52:06",
+      "file": "keyframes/0128_005206.jpg",
+      "source": "llm",
+      "label": "Break Below SMA",
+      "why": "Price breaks back below 200 and 20 SMA, creating entry opportunity",
+      "narration": "like i said you want to see consolidation no consolidation no trade and yet again price breaks back below the 200 sma and 20 sma provides a beautiful opportunity to enter at 9 30 an opportunity to enter after the sweep during london and if you entered somewhere over here"
+    },
+    {
+      "index": 129,
+      "t": 3136,
+      "hms": "00:52:16",
+      "file": "keyframes/0129_005216.jpg",
+      "source": "llm",
+      "label": "Entry After London Sweep",
+      "why": "Opportunity to enter after sweep during London session",
+      "narration": "breaks back below the 200 sma and 20 sma provides a beautiful opportunity to enter at 9 30 an opportunity to enter after the sweep during london and if you entered somewhere over here your stop loss goes about here and then you hold into the close absolutely beautiful trade"
+    },
+    {
+      "index": 130,
+      "t": 3143,
+      "hms": "00:52:23",
+      "file": "keyframes/0130_005223.jpg",
+      "source": "llm",
+      "label": "Stop Loss Placement",
+      "why": "Stop loss placed below entry area",
+      "narration": "opportunity to enter after the sweep during london and if you entered somewhere over here your stop loss goes about here and then you hold into the close absolutely beautiful trade now here's something powerful these five templates do not only work on the daily chart"
+    },
+    {
+      "index": 131,
+      "t": 3152,
+      "hms": "00:52:32",
+      "file": "keyframes/0131_005232.jpg",
+      "source": "llm",
+      "label": "Intraday Templates",
+      "why": "Five templates work across three sessions (Asia, London, New York)",
+      "narration": "your stop loss goes about here and then you hold into the close absolutely beautiful trade now here's something powerful these five templates do not only work on the daily chart They also show up inside a single day across three sessions. Same psychology compressed into hours instead of days. Asia is session one, the move, traders get trapped."
+    },
+    {
+      "index": 132,
+      "t": 3170,
+      "hms": "00:52:50",
+      "file": "keyframes/0132_005250.jpg",
+      "source": "llm",
+      "label": "Session Breakdown",
+      "why": "Asia = session one (move), London = signal, New York = trade",
+      "narration": "Same psychology compressed into hours instead of days. Asia is session one, the move, traders get trapped. London is session two, the signal, their confidence cracks. New York is session three, the trade, they panic and exit. A first red day can fire across sessions. Asia pushes higher, building greed. London closes red, cracking the confidence, and New York dumps as the Longs panic."
+    },
+    {
+      "index": 133,
+      "t": 3186,
+      "hms": "00:53:06",
+      "file": "keyframes/0133_005306.jpg",
+      "source": "llm",
+      "label": "New York Session Trade",
+      "why": "New York dumps as Longs panic",
+      "narration": "New York is session three, the trade, they panic and exit. A first red day can fire across sessions. Asia pushes higher, building greed. London closes red, cracking the confidence, and New York dumps as the Longs panic. The same with SFP. Asia breaks out, pulling in Group 1, London extends, pulling in Group 2, New York pushes beyond both, pulls in the last group, then fails. All three groups flush in two hours."
+    },
+    {
+      "index": 134,
+      "t": 3200,
+      "hms": "00:53:20",
+      "file": "keyframes/0134_005320.jpg",
+      "source": "llm",
+      "label": "SFP Pattern Across Sessions",
+      "why": "Asia breaks out, London extends, New York pushes beyond and fails",
+      "narration": "A first red day can fire across sessions. Asia pushes higher, building greed. London closes red, cracking the confidence, and New York dumps as the Longs panic. The same with SFP. Asia breaks out, pulling in Group 1, London extends, pulling in Group 2, New York pushes beyond both, pulls in the last group, then fails. All three groups flush in two hours. the same with break and retest asia breaks out london extends new york pulls back and the counter"
+    },
+    {
+      "index": 135,
+      "t": 3219,
+      "hms": "00:53:39",
+      "file": "keyframes/0135_005339.jpg",
+      "source": "llm",
+      "label": "Break and Retest Pattern",
+      "why": "Asia breaks out, London extends, New York pulls back",
+      "narration": "The same with SFP. Asia breaks out, pulling in Group 1, London extends, pulling in Group 2, New York pushes beyond both, pulls in the last group, then fails. All three groups flush in two hours. the same with break and retest asia breaks out london extends new york pulls back and the counter trend traders who think it has gone too far get run over when the retest holds also the consolidation can form across all three sessions asia creates low of the range london creates high of the range"
+    },
+    {
+      "index": 136,
+      "t": 3235,
+      "hms": "00:53:55",
+      "file": "keyframes/0136_005355.jpg",
+      "source": "llm",
+      "label": "Consolidation Across Sessions",
+      "why": "Asia creates low, London high, New York breaks out",
+      "narration": "trend traders who think it has gone too far get run over when the retest holds also the consolidation can form across all three sessions asia creates low of the range london creates high of the range and new york breaks out and one side panics the same for the inside session the london could be consolidating inside asia session and then the new york explodes same shapes same human behavior"
+    },
+    {
+      "index": 137,
+      "t": 3251,
+      "hms": "00:54:11",
+      "file": "keyframes/0137_005411.jpg",
+      "source": "llm",
+      "label": "Inside Session Pattern",
+      "why": "London consolidates inside Asia session, New York explodes",
+      "narration": "and new york breaks out and one side panics the same for the inside session the london could be consolidating inside asia session and then the new york explodes same shapes same human behavior same trap traders the difference is the time frame and the target daily templates give you those big opportunities that you can hold into close and the intraday session templates give you"
+    },
+    {
+      "index": 138,
+      "t": 3266,
+      "hms": "00:54:26",
+      "file": "keyframes/0138_005426.jpg",
+      "source": "llm",
+      "label": "Daily vs Intraday Templates",
+      "why": "Daily templates give big opportunities, intraday give quick trades",
+      "narration": "same trap traders the difference is the time frame and the target daily templates give you those big opportunities that you can hold into close and the intraday session templates give you quick session trades and if your session trade does not align with the daily trade do not try to hold that session trade into close understand the difference when you are trading the session trade"
+    },
+    {
+      "index": 139,
+      "t": 3282,
+      "hms": "00:54:42",
+      "file": "keyframes/0139_005442.jpg",
+      "source": "llm",
+      "label": "Session Trade vs Daily Trade",
+      "why": "Do not hold session trade into close if it doesn't align with daily trend",
+      "narration": "quick session trades and if your session trade does not align with the daily trade do not try to hold that session trade into close understand the difference when you are trading the session trade versus the daily hold into close trade when the trend is already running on the daily chart inside that trending day there is always one counter trend session one bounce traders hoping"
+    },
+    {
+      "index": 140,
+      "t": 3297,
+      "hms": "00:54:57",
+      "file": "keyframes/0140_005457.jpg",
+      "source": "llm",
+      "label": "Counter Trend Session",
+      "why": "One counter trend session inside strong daily trend",
+      "narration": "versus the daily hold into close trade when the trend is already running on the daily chart inside that trending day there is always one counter trend session one bounce traders hoping the trend is over bottom pickers and top pickers who want to be heroes the trend resumes and"
+    },
+    {
+      "index": 141,
+      "t": 3306,
+      "hms": "00:55:06",
+      "file": "keyframes/0141_005506.jpg",
+      "source": "llm",
+      "label": "Hero Traders",
+      "why": "Bottom pickers and top pickers trying to reverse trend",
+      "narration": "inside that trending day there is always one counter trend session one bounce traders hoping the trend is over bottom pickers and top pickers who want to be heroes the trend resumes and crushes them your job is not to call the reversal your job is to join the continuation of the session"
+    },
+    {
+      "index": 142,
+      "t": 3313,
+      "hms": "00:55:13",
+      "file": "keyframes/0142_005513.jpg",
+      "source": "llm",
+      "label": "Trend Resumes",
+      "why": "Trend crushes counter trend traders",
+      "narration": "the trend is over bottom pickers and top pickers who want to be heroes the trend resumes and crushes them your job is not to call the reversal your job is to join the continuation of the session pullback after all of those hero traders have been punished one counter trend session inside a strong trend and of course the chop zone consolidation confirms the continuation"
+    },
+    {
+      "index": 143,
+      "t": 3328,
+      "hms": "00:55:28",
+      "file": "keyframes/0143_005528.jpg",
+      "source": "llm",
+      "label": "Chop Zone Confirmation",
+      "why": "Consolidation confirms continuation",
+      "narration": "pullback after all of those hero traders have been punished one counter trend session inside a strong trend and of course the chop zone consolidation confirms the continuation on the five minute chart so the best scenario for the session trade is when you have a daily setup that's already been running from Asia or London and you want to trade continuation in New York."
+    },
+    {
+      "index": 144,
+      "t": 3341,
+      "hms": "00:55:41",
+      "file": "keyframes/0144_005541.jpg",
+      "source": "llm",
+      "label": "Bread and Butter Trade",
+      "why": "Best scenario: daily setup running, trade continuation in New York",
+      "narration": "on the five minute chart so the best scenario for the session trade is when you have a daily setup that's already been running from Asia or London and you want to trade continuation in New York. This is the bread and butter trade for most sessions. Also let me tell you about the location of the consolidation. If the consolidation building near the high of the day, week or month,"
+    },
+    {
+      "index": 145,
+      "t": 3356,
+      "hms": "00:55:56",
+      "file": "keyframes/0145_005556.jpg",
+      "source": "llm",
+      "label": "Consolidation Location",
+      "why": "Consolidation near high of day/week/month indicates short setup",
+      "narration": "This is the bread and butter trade for most sessions. Also let me tell you about the location of the consolidation. If the consolidation building near the high of the day, week or month, that is where the longs are most extended, most confident and most vulnerable. That setup is almost always short to the downside if the consolidation building near the low"
+    },
+    {
+      "index": 146,
+      "t": 3371,
+      "hms": "00:56:11",
+      "file": "keyframes/0146_005611.jpg",
+      "source": "llm",
+      "label": "Short Setup at High",
+      "why": "Consolidation near top leads to short setup",
+      "narration": "that is where the longs are most extended, most confident and most vulnerable. That setup is almost always short to the downside if the consolidation building near the low that is where the shorts are most extended most confident and most"
+    },
+    {
+      "index": 147,
+      "t": 3378,
+      "hms": "00:56:18",
+      "file": "keyframes/0147_005618.jpg",
+      "source": "llm",
+      "label": "Long Setup at Low",
+      "why": "Consolidation near bottom leads to long setup",
+      "narration": "almost always short to the downside if the consolidation building near the low that is where the shorts are most extended most confident and most vulnerable setup is almost always long in that scenario you do not predict"
+    },
+    {
+      "index": 148,
+      "t": 3384,
+      "hms": "00:56:24",
+      "file": "keyframes/0148_005624.jpg",
+      "source": "llm",
+      "label": "Vulnerable Traders",
+      "why": "Setup tells who is trapped and when they will exit",
+      "narration": "that is where the shorts are most extended most confident and most vulnerable setup is almost always long in that scenario you do not predict anything the setups templates high time frame levels tell you everything the level tells you who is trapped the consolidation tells you when they will break if the consolidation at the top you're short if the consolidation at the bottom you long and here i simplified it for you into one decision three takes about three minutes every morning answer these questions"
+    },
+    {
+      "index": 149,
+      "t": 3413,
+      "hms": "00:56:53",
+      "file": "keyframes/0149_005653.jpg",
+      "source": "llm",
+      "label": "Decision Tree",
+      "why": "Simplified morning routine to answer key questions",
+      "narration": "at the top you're short if the consolidation at the bottom you long and here i simplified it for you into one decision three takes about three minutes every morning answer these questions what is the monthly bias long short or ranging what day is it thursday with a wednesday signal"
+    },
+    {
+      "index": 150,
+      "t": 3420,
+      "hms": "00:57:00",
+      "file": "keyframes/0150_005700.jpg",
+      "source": "llm",
+      "label": "Monthly Bias",
+      "why": "Determine monthly bias (long/short/ranging)",
+      "narration": "you into one decision three takes about three minutes every morning answer these questions what is the monthly bias long short or ranging what day is it thursday with a wednesday signal is the priority is anything in breakout mode from last night if nothing is in play there is no trade"
+    },
+    {
+      "index": 151,
+      "t": 3427,
+      "hms": "00:57:07",
+      "file": "keyframes/0151_005707.jpg",
+      "source": "llm",
+      "label": "Day of the Week",
+      "why": "Identify day and signal from previous day",
+      "narration": "what is the monthly bias long short or ranging what day is it thursday with a wednesday signal is the priority is anything in breakout mode from last night if nothing is in play there is no trade today where are we in the three day cycle is this day two or day three did day three fire or reset"
+    },
+    {
+      "index": 152,
+      "t": 3436,
+      "hms": "00:57:16",
+      "file": "keyframes/0152_005716.jpg",
+      "source": "llm",
+      "label": "Breakout Mode Check",
+      "why": "Check if anything is in breakout mode from last night",
+      "narration": "is the priority is anything in breakout mode from last night if nothing is in play there is no trade today where are we in the three day cycle is this day two or day three did day three fire or reset which template fits name it before you trade it first red day or first green day day three"
+    },
+    {
+      "index": 153,
+      "t": 3446,
+      "hms": "00:57:26",
+      "file": "keyframes/0153_005726.jpg",
+      "source": "llm",
+      "label": "Three-Day Cycle",
+      "why": "Determine if it's day two or three in cycle",
+      "narration": "today where are we in the three day cycle is this day two or day three did day three fire or reset which template fits name it before you trade it first red day or first green day day three reversal day three continuation consolidation to expansion inside day if you cannot name it you do"
+    },
+    {
+      "index": 154,
+      "t": 3453,
+      "hms": "00:57:33",
+      "file": "keyframes/0154_005733.jpg",
+      "source": "llm",
+      "label": "Template Identification",
+      "why": "Name the template before trading (first red day, inside day, etc.)",
+      "narration": "which template fits name it before you trade it first red day or first green day day three reversal day three continuation consolidation to expansion inside day if you cannot name it you do not take it naming the template means you can answer the question who is trapped and why will"
+    },
+    {
+      "index": 155,
+      "t": 3461,
+      "hms": "00:57:41",
+      "file": "keyframes/0155_005741.jpg",
+      "source": "llm",
+      "label": "Template Naming",
+      "why": "Cannot trade without naming the template",
+      "narration": "reversal day three continuation consolidation to expansion inside day if you cannot name it you do not take it naming the template means you can answer the question who is trapped and why will they exit and last but not the least is the chop zone confirmed is there major news in your session"
+    },
+    {
+      "index": 156,
+      "t": 3468,
+      "hms": "00:57:48",
+      "file": "keyframes/0156_005748.jpg",
+      "source": "llm",
+      "label": "Who is Trapped",
+      "why": "Naming template answers who is trapped and why they will exit",
+      "narration": "not take it naming the template means you can answer the question who is trapped and why will they exit and last but not the least is the chop zone confirmed is there major news in your session and if you can't answer one of these questions you just wait for the better opportunity and the"
+    },
+    {
+      "index": 157,
+      "t": 3478,
+      "hms": "00:57:58",
+      "file": "keyframes/0157_005758.jpg",
+      "source": "llm",
+      "label": "Chop Zone Confirmation",
+      "why": "Check if chop zone is confirmed",
+      "narration": "they exit and last but not the least is the chop zone confirmed is there major news in your session and if you can't answer one of these questions you just wait for the better opportunity and the thing is that the one minute chart gives you 60 decisions per hour your brain cannot process that"
+    },
+    {
+      "index": 158,
+      "t": 3485,
+      "hms": "00:58:05",
+      "file": "keyframes/0158_005805.jpg",
+      "source": "llm",
+      "label": "News Days",
+      "why": "One minute chart gives 60 decisions per hour, too much for brain",
+      "narration": "and if you can't answer one of these questions you just wait for the better opportunity and the thing is that the one minute chart gives you 60 decisions per hour your brain cannot process that what it can process is who is trapped and when will they exit these questions answer that in"
+    },
+    {
+      "index": 159,
+      "t": 3492,
+      "hms": "00:58:12",
+      "file": "keyframes/0159_005812.jpg",
+      "source": "llm",
+      "label": "Human Behavior Focus",
+      "why": "Focus on who is trapped and when they will exit",
+      "narration": "thing is that the one minute chart gives you 60 decisions per hour your brain cannot process that what it can process is who is trapped and when will they exit these questions answer that in three minutes another thing i want to mention is about news this is not a template this is more of"
+    },
+    {
+      "index": 160,
+      "t": 3499,
+      "hms": "00:58:19",
+      "file": "keyframes/0160_005819.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "what it can process is who is trapped and when will they exit these questions answer that in three minutes another thing i want to mention is about news this is not a template this is more of a modification for news days i'm talking about nfp cpi fomc red folder news the psychology here is"
+    },
+    {
+      "index": 161,
+      "t": 3509,
+      "hms": "00:58:29",
+      "file": "keyframes/0161_005829.jpg",
+      "source": "llm",
+      "label": "News Psychology",
+      "why": "News days cause panic and euphoria simultaneously",
+      "narration": "three minutes another thing i want to mention is about news this is not a template this is more of a modification for news days i'm talking about nfp cpi fomc red folder news the psychology here is pure panic and euphoria happening simultaneously one side of the market gets crushed instantly"
+    },
+    {
+      "index": 162,
+      "t": 3519,
+      "hms": "00:58:39",
+      "file": "keyframes/0162_005839.jpg",
+      "source": "llm",
+      "label": "News Release Rule",
+      "why": "Never enter before news release",
+      "narration": "a modification for news days i'm talking about nfp cpi fomc red folder news the psychology here is pure panic and euphoria happening simultaneously one side of the market gets crushed instantly the other side gets greedy instantly and here's the rule you never enter before the news release"
+    },
+    {
+      "index": 163,
+      "t": 3528,
+      "hms": "00:58:48",
+      "file": "keyframes/0163_005848.jpg",
+      "source": "llm",
+      "label": "News Spike",
+      "why": "First spike is emotional traders reacting on instinct",
+      "narration": "pure panic and euphoria happening simultaneously one side of the market gets crushed instantly the other side gets greedy instantly and here's the rule you never enter before the news release when news fires in the direction of your thesis wait 10 to 15 minutes let the first spike happen that spike is the emotional traders reacting on instinct let the market pull back that pullback"
+    },
+    {
+      "index": 164,
+      "t": 3546,
+      "hms": "00:59:06",
+      "file": "keyframes/0164_005906.jpg",
+      "source": "llm",
+      "label": "Pullback Entry",
+      "why": "Wait 10-15 minutes after news, let pullback happen",
+      "narration": "when news fires in the direction of your thesis wait 10 to 15 minutes let the first spike happen that spike is the emotional traders reacting on instinct let the market pull back that pullback is the first group of profit takers and the counter trend traders trying to be heroes that"
+    },
+    {
+      "index": 165,
+      "t": 3555,
+      "hms": "00:59:15",
+      "file": "keyframes/0165_005915.jpg",
+      "source": "llm",
+      "label": "First Bounce Entry",
+      "why": "Pullback is first bounce entry",
+      "narration": "that spike is the emotional traders reacting on instinct let the market pull back that pullback is the first group of profit takers and the counter trend traders trying to be heroes that pullback is the first bounce entry and here you can even use the one minute chart instead of the five minute but you want to keep the same stop-loss discipline the same targets and the first bounce"
+    },
+    {
+      "index": 166,
+      "t": 3569,
+      "hms": "00:59:29",
+      "file": "keyframes/0166_005929.jpg",
+      "source": "llm",
+      "label": "One Minute Chart Use",
+      "why": "Can use one minute chart for news entry timing",
+      "narration": "pullback is the first bounce entry and here you can even use the one minute chart instead of the five minute but you want to keep the same stop-loss discipline the same targets and the first bounce eliminates the new spike risk entirely an important part that your trade thesis does not"
+    },
+    {
+      "index": 167,
+      "t": 3577,
+      "hms": "00:59:37",
+      "file": "keyframes/0167_005937.jpg",
+      "source": "llm",
+      "label": "First Bounce Eliminates Risk",
+      "why": "Eliminates new spike risk",
+      "narration": "five minute but you want to keep the same stop-loss discipline the same targets and the first bounce eliminates the new spike risk entirely an important part that your trade thesis does not change on news days only the timing of your entry changes execution is simple once the decision tree"
+    },
+    {
+      "index": 168,
+      "t": 3584,
+      "hms": "00:59:44",
+      "file": "keyframes/0168_005944.jpg",
+      "source": "llm",
+      "label": "Thesis Consistency",
+      "why": "Trade thesis does not change on news days",
+      "narration": "eliminates the new spike risk entirely an important part that your trade thesis does not change on news days only the timing of your entry changes execution is simple once the decision tree is done by this point you know who is trapped you know where their stops are you know which template"
+    },
+    {
+      "index": 169,
+      "t": 3594,
+      "hms": "00:59:54",
+      "file": "keyframes/0169_005954.jpg",
+      "source": "llm",
+      "label": "Decision Tree Execution",
+      "why": "Once decision tree is done, know who is trapped and where stops are",
+      "narration": "change on news days only the timing of your entry changes execution is simple once the decision tree is done by this point you know who is trapped you know where their stops are you know which template is in play you know the grade now you just need the timing step one the chop zone consolidation starts to break in your direction the trap traders are beginning to panic step number two"
+    },
+    {
+      "index": 170,
+      "t": 3610,
+      "hms": "01:00:10",
+      "file": "keyframes/0170_010010.jpg",
+      "source": "llm",
+      "label": "Chop Zone Break",
+      "why": "Chop zone consolidation starts to break in direction of trade",
+      "narration": "is in play you know the grade now you just need the timing step one the chop zone consolidation starts to break in your direction the trap traders are beginning to panic step number two a five minute candle closes through the 20 simple moving average in your direction not a wick but a"
+    },
+    {
+      "index": 171,
+      "t": 3617,
+      "hms": "01:00:17",
+      "file": "keyframes/0171_010017.jpg",
+      "source": "llm",
+      "label": "Price close through SMA",
+      "why": "Instructor discusses a five-minute candle closing below the 20 simple moving average, indicating a directional signal on the chart.",
+      "narration": "starts to break in your direction the trap traders are beginning to panic step number two a five minute candle closes through the 20 simple moving average in your direction not a wick but a close on the five minute chart and even better if you are watching 15 minute chart that signals a"
+    },
+    {
+      "index": 172,
+      "t": 3626,
+      "hms": "01:00:26",
+      "file": "keyframes/0172_010026.jpg",
+      "source": "llm",
+      "label": "Signal on higher timeframe",
+      "why": "Instructor refers to a 15-minute chart signaling trader commitment, suggesting a key visual confirmation on the screen.",
+      "narration": "a five minute candle closes through the 20 simple moving average in your direction not a wick but a close on the five minute chart and even better if you are watching 15 minute chart that signals a real commitment from the traders step number three you enter stop on the other side of the"
+    },
+    {
+      "index": 173,
+      "t": 3634,
+      "hms": "01:00:34",
+      "file": "keyframes/0173_010034.jpg",
+      "source": "llm",
+      "label": "Entry point setup",
+      "why": "Instructor introduces step three: entering the trade, which implies a visible entry point on the chart.",
+      "narration": "close on the five minute chart and even better if you are watching 15 minute chart that signals a real commitment from the traders step number three you enter stop on the other side of the consolidation chop zone you can preset the take profit target at the logical place and walk away"
+    },
+    {
+      "index": 174,
+      "t": 3642,
+      "hms": "01:00:42",
+      "file": "keyframes/0174_010042.jpg",
+      "source": "llm",
+      "label": "Stop placement",
+      "why": "Instructor mentions placing the stop loss on the other side of the consolidation chop zone, indicating a visible stop level.",
+      "narration": "real commitment from the traders step number three you enter stop on the other side of the consolidation chop zone you can preset the take profit target at the logical place and walk away Or you can also simply just check the trade on your phone."
+    },
+    {
+      "index": 175,
+      "t": 3650,
+      "hms": "01:00:50",
+      "file": "keyframes/0175_010050.jpg",
+      "source": "llm",
+      "label": "Take profit target",
+      "why": "Instructor discusses setting a take profit target, which would be visible on the chart as a price level.",
+      "narration": "consolidation chop zone you can preset the take profit target at the logical place and walk away Or you can also simply just check the trade on your phone. From time to time, you can set alerts and trail the stop loss behind the structure, trying to hold into the close. And what you will notice that the best trades never come back. The best trades move strongly almost right away because the forced exit is happening right now. thousands of traders hitting the same button at the same time if you enter the trade and market goes nowhere for hours just close the trade it's not worth it because the best trades do not fight you the best trades never come back they just a vertical up or down liquidation move and that's"
+    },
+    {
+      "index": 176,
+      "t": 3695,
+      "hms": "01:01:35",
+      "file": "keyframes/0176_010135.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "you the best trades never come back they just a vertical up or down liquidation move and that's what we are after we are liquidating all of those overconfident traders that thought they were right but now they are very very wrong as far as the targets there are simple ways to target i suggest"
+    },
+    {
+      "index": 177,
+      "t": 3708,
+      "hms": "01:01:48",
+      "file": "keyframes/0177_010148.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "what we are after we are liquidating all of those overconfident traders that thought they were right but now they are very very wrong as far as the targets there are simple ways to target i suggest you to hold into close try to trail it into the close because that way you will make the most"
+    },
+    {
+      "index": 178,
+      "t": 3716,
+      "hms": "01:01:56",
+      "file": "keyframes/0178_010156.jpg",
+      "source": "llm",
+      "label": "Target strategy",
+      "why": "Instructor explains holding into close and trailing stops, indicating a visual target or dynamic stop placement.",
+      "narration": "but now they are very very wrong as far as the targets there are simple ways to target i suggest you to hold into close try to trail it into the close because that way you will make the most r possible on your trade but you can also use the measured move like i said you measure the consolidation height and you project that height up or down in order to target 100% or 200% of that"
+    },
+    {
+      "index": 179,
+      "t": 3730,
+      "hms": "01:02:10",
+      "file": "keyframes/0179_010210.jpg",
+      "source": "llm",
+      "label": "Measured move target",
+      "why": "Instructor describes measuring consolidation height to project a 100% or 200% move, which would be shown as a projected price level.",
+      "narration": "r possible on your trade but you can also use the measured move like i said you measure the consolidation height and you project that height up or down in order to target 100% or 200% of that move. Also, I have taught you in FIB geometry, you can use the 2618, 423 and 686 targets and also the"
+    },
+    {
+      "index": 180,
+      "t": 3738,
+      "hms": "01:02:18",
+      "file": "keyframes/0180_010218.jpg",
+      "source": "llm",
+      "label": "Fibonacci targets",
+      "why": "Instructor mentions using 2618, 423, and 686 Fibonacci levels as targets, which would be visible on the chart.",
+      "narration": "consolidation height and you project that height up or down in order to target 100% or 200% of that move. Also, I have taught you in FIB geometry, you can use the 2618, 423 and 686 targets and also the highest close of the month, lowest close of the month. You can also use the previous highest"
+    },
+    {
+      "index": 181,
+      "t": 3748,
+      "hms": "01:02:28",
+      "file": "keyframes/0181_010228.jpg",
+      "source": "llm",
+      "label": "Monthly close targets",
+      "why": "Instructor refers to highest and lowest daily closes of the month, which would be marked on the chart.",
+      "narration": "move. Also, I have taught you in FIB geometry, you can use the 2618, 423 and 686 targets and also the highest close of the month, lowest close of the month. You can also use the previous highest close of the month and the previous lowest close of the month and i'm talking about daily closes i'm not talking about monthly close i'm talking about highest or lowest daily close during the"
+    },
+    {
+      "index": 182,
+      "t": 3763,
+      "hms": "01:02:43",
+      "file": "keyframes/0182_010243.jpg",
+      "source": "llm",
+      "label": "Daily close targets",
+      "why": "Instructor clarifies that daily closes are used for targeting, which would be visible on the chart.",
+      "narration": "close of the month and the previous lowest close of the month and i'm talking about daily closes i'm not talking about monthly close i'm talking about highest or lowest daily close during the month because that's where the money is committed on a daily basis and as far as the break even you want to make sure that you give the room for the trade to develop and once the trade goes to"
+    },
+    {
+      "index": 183,
+      "t": 3780,
+      "hms": "01:03:00",
+      "file": "keyframes/0183_010300.jpg",
+      "source": "llm",
+      "label": "Break even stop",
+      "why": "Instructor discusses moving the stop loss to break even once target is hit, indicating a visible stop level.",
+      "narration": "month because that's where the money is committed on a daily basis and as far as the break even you want to make sure that you give the room for the trade to develop and once the trade goes to your target one or passes a high time frame level you want to move your stop loss to break even"
+    },
+    {
+      "index": 184,
+      "t": 3787,
+      "hms": "01:03:07",
+      "file": "keyframes/0184_010307.jpg",
+      "source": "llm",
+      "label": "Break even trigger",
+      "why": "Instructor explains moving stop to break even when trade hits target or high time frame level, which would be visible.",
+      "narration": "you want to make sure that you give the room for the trade to develop and once the trade goes to your target one or passes a high time frame level you want to move your stop loss to break even because i would rather be stopped at break even than give back a winner because our number one goal as traders is protecting capital so when you have a very good trade and it goes into your direction they're not supposed to come back and reverse on you if you are right on your thesis and you aligned with the higher time frame your trade would be easy so once the trade starts going into your direction protect it put the stop loss at break even and walk away and you have two"
+    },
+    {
+      "index": 185,
+      "t": 3824,
+      "hms": "01:03:44",
+      "file": "keyframes/0185_010344.jpg",
+      "source": "llm",
+      "label": "Break even placement",
+      "why": "Instructor reiterates moving stop to break even after trade moves in direction, indicating a visible adjustment.",
+      "narration": "and you aligned with the higher time frame your trade would be easy so once the trade starts going into your direction protect it put the stop loss at break even and walk away and you have two operating modes for this system and you need to decide before you enter what setup are you trading"
+    },
+    {
+      "index": 186,
+      "t": 3831,
+      "hms": "01:03:51",
+      "file": "keyframes/0186_010351.jpg",
+      "source": "llm",
+      "label": "Operating modes",
+      "why": "Instructor introduces two trade types: hold until close and quick trades, which would be visualized on the chart.",
+      "narration": "going into your direction protect it put the stop loss at break even and walk away and you have two operating modes for this system and you need to decide before you enter what setup are you trading Is it hold till close or just a quick trade? Hold until close is for Thursday trades. Monthly and weekly extremes. Three session consolidation. When three sessions of trap"
+    },
+    {
+      "index": 187,
+      "t": 3847,
+      "hms": "01:04:07",
+      "file": "keyframes/0187_010407.jpg",
+      "source": "llm",
+      "label": "Hold until close setup",
+      "why": "Instructor describes setups for hold until close, including monthly and weekly extremes, which would be visible.",
+      "narration": "Is it hold till close or just a quick trade? Hold until close is for Thursday trades. Monthly and weekly extremes. Three session consolidation. When three sessions of trap traders are all about to unwind, you hold for the full move. Any of the five templates based"
+    },
+    {
+      "index": 188,
+      "t": 3854,
+      "hms": "01:04:14",
+      "file": "keyframes/0188_010414.jpg",
+      "source": "llm",
+      "label": "Three-session consolidation",
+      "why": "Instructor refers to three sessions of trap traders unwinding, which would be visible on the chart.",
+      "narration": "Monthly and weekly extremes. Three session consolidation. When three sessions of trap traders are all about to unwind, you hold for the full move. Any of the five templates based on the higher time frame qualifies for the hold until close. Quick trades are the session trades."
+    },
+    {
+      "index": 189,
+      "t": 3862,
+      "hms": "01:04:22",
+      "file": "keyframes/0189_010422.jpg",
+      "source": "llm",
+      "label": "Higher timeframe templates",
+      "why": "Instructor mentions higher time frame templates qualifying for hold until close, which would be visible.",
+      "narration": "traders are all about to unwind, you hold for the full move. Any of the five templates based on the higher time frame qualifies for the hold until close. Quick trades are the session trades. You apply same daily templates but to the three sessions of Asia, London and New York."
+    },
+    {
+      "index": 190,
+      "t": 3869,
+      "hms": "01:04:29",
+      "file": "keyframes/0190_010429.jpg",
+      "source": "llm",
+      "label": "Session trades",
+      "why": "Instructor discusses session-based trades (Asia, London, New York), which would be visible on the chart.",
+      "narration": "on the higher time frame qualifies for the hold until close. Quick trades are the session trades. You apply same daily templates but to the three sessions of Asia, London and New York. The best trade is hold until close but if that trade is already in motion your next best trade would be the session trade continuation of the hold until close trade so the very simple understanding is that you always hunting for the hold until close setups and when those setups"
+    },
+    {
+      "index": 191,
+      "t": 3893,
+      "hms": "01:04:53",
+      "file": "keyframes/0191_010453.jpg",
+      "source": "llm",
+      "label": "Hunting for hold until close",
+      "why": "Instructor emphasizes hunting for hold until close setups, which would be visible on the chart.",
+      "narration": "would be the session trade continuation of the hold until close trade so the very simple understanding is that you always hunting for the hold until close setups and when those setups already developed in during asia london what you can do is you can trade continuation during new york session for a quick session trade now let's talk about self-sabotaging behavior the system"
+    },
+    {
+      "index": 192,
+      "t": 3910,
+      "hms": "01:05:10",
+      "file": "keyframes/0192_010510.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "already developed in during asia london what you can do is you can trade continuation during new york session for a quick session trade now let's talk about self-sabotaging behavior the system works the edge is real the reason most traders do not make money is not the strategy it is their own"
+    },
+    {
+      "index": 193,
+      "t": 3918,
+      "hms": "01:05:18",
+      "file": "keyframes/0193_010518.jpg",
+      "source": "llm",
+      "label": "Self-sabotaging behavior",
+      "why": "Instructor discusses trader psychology, which is tied to chart patterns and trade decisions.",
+      "narration": "york session for a quick session trade now let's talk about self-sabotaging behavior the system works the edge is real the reason most traders do not make money is not the strategy it is their own behavior and here's the irony this entire system is about reading the psychology of other traders Who is trapped? What they are feeling? When they will break? But the hardest psychology to manage is your own. And when you are trading, when there is no setup because you are bored, that is you creating your own trap. Closing a winner at 2R on a hold until close setup because you are scared."
+    },
+    {
+      "index": 194,
+      "t": 3950,
+      "hms": "01:05:50",
+      "file": "keyframes/0194_010550.jpg",
+      "source": "llm",
+      "label": "Creating your own trap",
+      "why": "Instructor refers to creating a trade when no setup exists, which would be visible as an invalid entry.",
+      "narration": "And when you are trading, when there is no setup because you are bored, that is you creating your own trap. Closing a winner at 2R on a hold until close setup because you are scared. That is you exiting for emotional reasons."
+    },
+    {
+      "index": 195,
+      "t": 3960,
+      "hms": "01:06:00",
+      "file": "keyframes/0195_010600.jpg",
+      "source": "llm",
+      "label": "Exiting for emotional reasons",
+      "why": "Instructor discusses closing a winner at 2R due to fear, which would be visible as an early exit.",
+      "narration": "Closing a winner at 2R on a hold until close setup because you are scared. That is you exiting for emotional reasons. the same thing the trap traders do. Re-entering after being stopped because you are convinced you were right. That is you doubling down on a losing position. The exact behavior that creates"
+    },
+    {
+      "index": 196,
+      "t": 3971,
+      "hms": "01:06:11",
+      "file": "keyframes/0196_010611.jpg",
+      "source": "llm",
+      "label": "Doubling down on losing trade",
+      "why": "Instructor describes re-entering after being stopped, which would be visible as a second entry.",
+      "narration": "the same thing the trap traders do. Re-entering after being stopped because you are convinced you were right. That is you doubling down on a losing position. The exact behavior that creates the setups we trade. Do you see it? The behavior we profit from in other traders are the same behavior that will destroy us if we let them. These are not strategy problems. They are behavior problems. And behavior is the only variable in this system you fully control. So here's the complete daily routine. Evening, five minutes. Scan your instruments basket for signal closes. Ask,"
+    },
+    {
+      "index": 197,
+      "t": 4004,
+      "hms": "01:06:44",
+      "file": "keyframes/0197_010644.jpg",
+      "source": "llm",
+      "label": "Daily routine",
+      "why": "Instructor outlines the evening scan process for signal closes, which would be visible on the chart.",
+      "narration": "problems. And behavior is the only variable in this system you fully control. So here's the complete daily routine. Evening, five minutes. Scan your instruments basket for signal closes. Ask, where are we in the three-day cycle on each instrument? Is this a day two signal or is it a day three already in play? The real question you are asking is who got trapped today and will"
+    },
+    {
+      "index": 198,
+      "t": 4020,
+      "hms": "01:07:00",
+      "file": "keyframes/0198_010700.jpg",
+      "source": "llm",
+      "label": "Three-day cycle analysis",
+      "why": "Instructor asks where we are in the three-day cycle, which would be visible on the chart.",
+      "narration": "where are we in the three-day cycle on each instrument? Is this a day two signal or is it a day three already in play? The real question you are asking is who got trapped today and will they be forced out tomorrow? Grade each signal and check the economic calendar. In the morning"
+    },
+    {
+      "index": 199,
+      "t": 4028,
+      "hms": "01:07:08",
+      "file": "keyframes/0199_010708.jpg",
+      "source": "llm",
+      "label": "Trapped traders",
+      "why": "Instructor discusses who got trapped and when they will be forced out, which would be visible on the chart.",
+      "narration": "a day three already in play? The real question you are asking is who got trapped today and will they be forced out tomorrow? Grade each signal and check the economic calendar. In the morning for three minutes, run the decision tree. Name the template before you touch the screen."
+    },
+    {
+      "index": 200,
+      "t": 4036,
+      "hms": "01:07:16",
+      "file": "keyframes/0200_010716.jpg",
+      "source": "llm",
+      "label": "Decision tree",
+      "why": "Instructor describes running a decision tree before trading, which would be visible as a checklist.",
+      "narration": "they be forced out tomorrow? Grade each signal and check the economic calendar. In the morning for three minutes, run the decision tree. Name the template before you touch the screen. If you can say this is a first red day, the longs from Tuesday and Wednesday are trapped"
+    },
+    {
+      "index": 201,
+      "t": 4043,
+      "hms": "01:07:23",
+      "file": "keyframes/0201_010723.jpg",
+      "source": "llm",
+      "label": "Naming the template",
+      "why": "Instructor says to name the template before touching the screen, which would be visible on the chart.",
+      "narration": "for three minutes, run the decision tree. Name the template before you touch the screen. If you can say this is a first red day, the longs from Tuesday and Wednesday are trapped at the weekly high and the consolidation job zone is forming, then you are ready. If you cannot say that you are not ready. Just wait. During your session, three hours maximum. Wait for the"
+    },
+    {
+      "index": 202,
+      "t": 4058,
+      "hms": "01:07:38",
+      "file": "keyframes/0202_010738.jpg",
+      "source": "llm",
+      "label": "Not ready to trade",
+      "why": "Instructor says if you can't name the template, wait—indicating a visual filter.",
+      "narration": "at the weekly high and the consolidation job zone is forming, then you are ready. If you cannot say that you are not ready. Just wait. During your session, three hours maximum. Wait for the rotation time. Enter when the consolidation breaks. Move to break even and walk away."
+    },
+    {
+      "index": 203,
+      "t": 4066,
+      "hms": "01:07:46",
+      "file": "keyframes/0203_010746.jpg",
+      "source": "llm",
+      "label": "Rotation time",
+      "why": "Instructor mentions waiting for rotation time to enter, which would be visible on the chart.",
+      "narration": "that you are not ready. Just wait. During your session, three hours maximum. Wait for the rotation time. Enter when the consolidation breaks. Move to break even and walk away. And at the end of the day, for two minutes, journal everything. Template, grade, result,"
+    },
+    {
+      "index": 204,
+      "t": 4073,
+      "hms": "01:07:53",
+      "file": "keyframes/0204_010753.jpg",
+      "source": "llm",
+      "label": "Break even move",
+      "why": "Instructor discusses moving to break even and walking away, indicating a visible stop adjustment.",
+      "narration": "rotation time. Enter when the consolidation breaks. Move to break even and walk away. And at the end of the day, for two minutes, journal everything. Template, grade, result, journal if you followed your rules. How well did you follow your rules? It will take you about 30"
+    },
+    {
+      "index": 205,
+      "t": 4081,
+      "hms": "01:08:01",
+      "file": "keyframes/0205_010801.jpg",
+      "source": "llm",
+      "label": "Journaling",
+      "why": "Instructor mentions journaling trade details, which would be visible in a log or chart annotation.",
+      "narration": "And at the end of the day, for two minutes, journal everything. Template, grade, result, journal if you followed your rules. How well did you follow your rules? It will take you about 30 minutes for everything and the hardest part is walking away and not checking charts after that one great opportunity that you decided day before is worth taking. And I have three rules for you."
+    },
+    {
+      "index": 206,
+      "t": 4099,
+      "hms": "01:08:19",
+      "file": "keyframes/0206_010819.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "one great opportunity that you decided day before is worth taking. And I have three rules for you. Rule one, pick one template and master it first before adding the others. For most New York session traders that would be first red or green day learn to see one type of trap trader learn to"
+    },
+    {
+      "index": 207,
+      "t": 4111,
+      "hms": "01:08:31",
+      "file": "keyframes/0207_010831.jpg",
+      "source": "llm",
+      "label": "Master one template",
+      "why": "Instructor advises mastering one template first, which would be visible on the chart.",
+      "narration": "Rule one, pick one template and master it first before adding the others. For most New York session traders that would be first red or green day learn to see one type of trap trader learn to read their emotions on the chart master that one trap then add the next template rule number two no chop zone no trade every time without exception the consolidation the chop zone"
+    },
+    {
+      "index": 208,
+      "t": 4129,
+      "hms": "01:08:49",
+      "file": "keyframes/0208_010849.jpg",
+      "source": "llm",
+      "label": "No chop zone no trade",
+      "why": "Instructor emphasizes that without a consolidation, there is no trade—indicating a visible chop zone.",
+      "narration": "read their emotions on the chart master that one trap then add the next template rule number two no chop zone no trade every time without exception the consolidation the chop zone tells you the trapped traders are concentrated at one price without that concentration the forced"
+    },
+    {
+      "index": 209,
+      "t": 4138,
+      "hms": "01:08:58",
+      "file": "keyframes/0209_010858.jpg",
+      "source": "llm",
+      "label": "Chop zone concentration",
+      "why": "Instructor discusses trapped traders being concentrated at one price, which would be visible on the chart.",
+      "narration": "no chop zone no trade every time without exception the consolidation the chop zone tells you the trapped traders are concentrated at one price without that concentration the forced exit will not be clean the move will not be explosive that rule alone eliminates 90 of your losses rule number three one and done your best trade of the day is almost your first after your"
+    },
+    {
+      "index": 210,
+      "t": 4156,
+      "hms": "01:09:16",
+      "file": "keyframes/0210_010916.jpg",
+      "source": "llm",
+      "label": "Eliminating losses",
+      "why": "Instructor states the chop zone rule eliminates 90% of losses, which would be visible on the chart.",
+      "narration": "exit will not be clean the move will not be explosive that rule alone eliminates 90 of your losses rule number three one and done your best trade of the day is almost your first after your first trade hits the target close the screen your second trade is almost always worse because after"
+    },
+    {
+      "index": 211,
+      "t": 4165,
+      "hms": "01:09:25",
+      "file": "keyframes/0211_010925.jpg",
+      "source": "llm",
+      "label": "One and done rule",
+      "why": "Instructor discusses closing the screen after first trade hits target, which would be visible as a trade exit.",
+      "narration": "losses rule number three one and done your best trade of the day is almost your first after your first trade hits the target close the screen your second trade is almost always worse because after a winner your confidence spikes you feel invincible and confident traders are vulnerable traders that"
+    },
+    {
+      "index": 212,
+      "t": 4173,
+      "hms": "01:09:33",
+      "file": "keyframes/0212_010933.jpg",
+      "source": "llm",
+      "label": "Confidence spike",
+      "why": "Instructor describes confidence spikes after a winner, which would be visible as overtrading.",
+      "narration": "first trade hits the target close the screen your second trade is almost always worse because after a winner your confidence spikes you feel invincible and confident traders are vulnerable traders that is exactly the psychology we trade against and your third trade is almost always a mistake one"
+    },
+    {
+      "index": 213,
+      "t": 4182,
+      "hms": "01:09:42",
+      "file": "keyframes/0213_010942.jpg",
+      "source": "llm",
+      "label": "Vulnerable traders",
+      "why": "Instructor refers to confident traders being vulnerable, which would be visible on the chart.",
+      "narration": "a winner your confidence spikes you feel invincible and confident traders are vulnerable traders that is exactly the psychology we trade against and your third trade is almost always a mistake one and done walk away here's the full system monthly bias where are we in the cycle which side has been"
+    },
+    {
+      "index": 214,
+      "t": 4191,
+      "hms": "01:09:51",
+      "file": "keyframes/0214_010951.jpg",
+      "source": "llm",
+      "label": "One and done walk away",
+      "why": "Instructor reiterates walking away after first trade, which would be visible as a screen closure.",
+      "narration": "is exactly the psychology we trade against and your third trade is almost always a mistake one and done walk away here's the full system monthly bias where are we in the cycle which side has been confident the longest weekly structure what day is it where are we in the three-day cycle who got"
+    },
+    {
+      "index": 215,
+      "t": 4200,
+      "hms": "01:10:00",
+      "file": "keyframes/0215_011000.jpg",
+      "source": "llm",
+      "label": "Monthly bias",
+      "why": "Instructor discusses monthly bias and cycle position, which would be visible on the chart.",
+      "narration": "and done walk away here's the full system monthly bias where are we in the cycle which side has been confident the longest weekly structure what day is it where are we in the three-day cycle who got trapped and when signal close what did yesterday's candle tell you which emotion is cracking template"
+    },
+    {
+      "index": 216,
+      "t": 4209,
+      "hms": "01:10:09",
+      "file": "keyframes/0216_011009.jpg",
+      "source": "llm",
+      "label": "Trapped traders",
+      "why": "Instructor asks who got trapped and when they will be forced out, which would be visible on the chart.",
+      "narration": "confident the longest weekly structure what day is it where are we in the three-day cycle who got trapped and when signal close what did yesterday's candle tell you which emotion is cracking template Which of the five shapes is this?"
+    },
+    {
+      "index": 217,
+      "t": 4219,
+      "hms": "01:10:19",
+      "file": "keyframes/0217_011019.jpg",
+      "source": "llm",
+      "label": "Template identification",
+      "why": "Instructor asks which of the five shapes is present, indicating a visible chart pattern.",
+      "narration": "trapped and when signal close what did yesterday's candle tell you which emotion is cracking template Which of the five shapes is this? Which group of traders is about to be forced out and why? Or is this just a quick session version of that trade?"
+    },
+    {
+      "index": 218,
+      "t": 4227,
+      "hms": "01:10:27",
+      "file": "keyframes/0218_011027.jpg",
+      "source": "llm",
+      "label": "Quick session trade",
+      "why": "Instructor discusses a quick version of the trade, which would be visible on the chart.",
+      "narration": "Which group of traders is about to be forced out and why? Or is this just a quick session version of that trade? The same psychology compressed into ours. Job zone. Confirmed or not? Are the trapped traders concentrated at one price?"
+    },
+    {
+      "index": 219,
+      "t": 4236,
+      "hms": "01:10:36",
+      "file": "keyframes/0219_011036.jpg",
+      "source": "llm",
+      "label": "Job zone",
+      "why": "Instructor mentions the job zone, which would be visible as a consolidation area.",
+      "narration": "The same psychology compressed into ours. Job zone. Confirmed or not? Are the trapped traders concentrated at one price? And finally, execute and manage. Every trade you take flows through these layers."
+    },
+    {
+      "index": 220,
+      "t": 4243,
+      "hms": "01:10:43",
+      "file": "keyframes/0220_011043.jpg",
+      "source": "llm",
+      "label": "Concentration at one price",
+      "why": "Instructor discusses trapped traders being concentrated, which would be visible on the chart.",
+      "narration": "Are the trapped traders concentrated at one price? And finally, execute and manage. Every trade you take flows through these layers. Every trade you should not take gets filtered out somewhere in those layers. The market has been doing the same three things for 100 years. Breakout and continue, breakout and reverse, trade and arrange."
+    },
+    {
+      "index": 221,
+      "t": 4261,
+      "hms": "01:11:01",
+      "file": "keyframes/0221_011101.jpg",
+      "source": "llm",
+      "label": "Market behavior",
+      "why": "Instructor discusses breakout and continue/reverse patterns, which would be visible on the chart.",
+      "narration": "The market has been doing the same three things for 100 years. Breakout and continue, breakout and reverse, trade and arrange. Behind every move, the same human behavior, confidence, greed, fear, panic, forced exits. Your job is to identify where we are in the three-day cycle, name the template, confirm the consolidation, and execute."
+    },
+    {
+      "index": 222,
+      "t": 4274,
+      "hms": "01:11:14",
+      "file": "keyframes/0222_011114.jpg",
+      "source": "llm",
+      "label": "Forced exits",
+      "why": "Instructor discusses forced exits, which would be visible as sharp price moves.",
+      "narration": "Behind every move, the same human behavior, confidence, greed, fear, panic, forced exits. Your job is to identify where we are in the three-day cycle, name the template, confirm the consolidation, and execute. You are not predicting where price will go."
+    },
+    {
+      "index": 223,
+      "t": 4284,
+      "hms": "01:11:24",
+      "file": "keyframes/0223_011124.jpg",
+      "source": "llm",
+      "label": "Identifying trapped traders",
+      "why": "Instructor says the job is to identify where trapped traders will be forced out, which would be visible on the chart.",
+      "narration": "Your job is to identify where we are in the three-day cycle, name the template, confirm the consolidation, and execute. You are not predicting where price will go. You are identifying where trapped traders will be forced to exit. That is the difference between pattern trading and what we do. Three videos, the complete system."
+    },
+    {
+      "index": 224,
+      "t": 4299,
+      "hms": "01:11:39",
+      "file": "keyframes/0224_011139.jpg",
+      "source": "llm",
+      "label": "Three videos system",
+      "why": "Instructor outlines the three-video structure of the system, which would be visible as a roadmap.",
+      "narration": "That is the difference between pattern trading and what we do. Three videos, the complete system. Video 1 give you the foundation, 3 levels, 2 setups, the 3-day cycle anchored to the weekly. Video 2 give you the radar, the breakout mode, the grading system, the consolidation and a chop zone for our rotations."
+    },
+    {
+      "index": 225,
+      "t": 4311,
+      "hms": "01:11:51",
+      "file": "keyframes/0225_011151.jpg",
+      "source": "llm",
+      "label": "Foundation video",
+      "why": "Instructor describes Video 1 as the foundation, which would be visible in a system diagram.",
+      "narration": "Video 1 give you the foundation, 3 levels, 2 setups, the 3-day cycle anchored to the weekly. Video 2 give you the radar, the breakout mode, the grading system, the consolidation and a chop zone for our rotations. And this video 3 give you the entire engine, the 3-day cycle from scratch to finish,"
+    },
+    {
+      "index": 226,
+      "t": 4321,
+      "hms": "01:12:01",
+      "file": "keyframes/0226_011201.jpg",
+      "source": "llm",
+      "label": "Radar video",
+      "why": "Instructor describes Video 2 as the radar, which would be visible on the chart.",
+      "narration": "Video 2 give you the radar, the breakout mode, the grading system, the consolidation and a chop zone for our rotations. And this video 3 give you the entire engine, the 3-day cycle from scratch to finish, the five shapes it takes, and the understanding of what drives every single one of them."
+    },
+    {
+      "index": 227,
+      "t": 4328,
+      "hms": "01:12:08",
+      "file": "keyframes/0227_011208.jpg",
+      "source": "llm",
+      "label": "Engine video",
+      "why": "Instructor describes Video 3 as the engine, which would be visible in a system flow.",
+      "narration": "And this video 3 give you the entire engine, the 3-day cycle from scratch to finish, the five shapes it takes, and the understanding of what drives every single one of them. Not patterns, not indicators, not triangles on a chart, but people. People getting confident,"
+    },
+    {
+      "index": 228,
+      "t": 4336,
+      "hms": "01:12:16",
+      "file": "keyframes/0228_011216.jpg",
+      "source": "llm",
+      "label": "People-driven market",
+      "why": "Instructor emphasizes that markets are driven by people, which would be visible in price action.",
+      "narration": "the five shapes it takes, and the understanding of what drives every single one of them. Not patterns, not indicators, not triangles on a chart, but people. People getting confident, people getting trapped, people being forced to exit. You now see the market differently, Not as lines and candles on a screen, but as a human behavior. And human behavior repeats, not because charts repeat, but because fear and greed do not change."
+    },
+    {
+      "index": 229,
+      "t": 4358,
+      "hms": "01:12:38",
+      "file": "keyframes/0229_011238.jpg",
+      "source": "llm",
+      "label": "Human behavior repeats",
+      "why": "Instructor discusses fear and greed repeating, visible in chart patterns.",
+      "narration": "Not as lines and candles on a screen, but as a human behavior. And human behavior repeats, not because charts repeat, but because fear and greed do not change. Because a trader who is trapped today will react the same way a trader who was trapped 10 years ago. That is the edge. And it is yours now. Tonight, open your daily chart, scan your instruments basket and ask who got trapped today?"
+    },
+    {
+      "index": 230,
+      "t": 4379,
+      "hms": "01:12:59",
+      "file": "keyframes/0230_011259.jpg",
+      "source": "llm",
+      "label": "Evening scan",
+      "why": "Instructor says to open daily chart and scan instruments basket, which would be visible on the screen.",
+      "narration": "And it is yours now. Tonight, open your daily chart, scan your instruments basket and ask who got trapped today? What are they feeling? When will they be forced to exit?"
+    },
+    {
+      "index": 231,
+      "t": 4388,
+      "hms": "01:13:08",
+      "file": "keyframes/0231_011308.jpg",
+      "source": "llm",
+      "label": "Who got trapped today",
+      "why": "Instructor asks who got trapped and when they will be forced out, which would be visible on the chart.",
+      "narration": "Tonight, open your daily chart, scan your instruments basket and ask who got trapped today? What are they feeling? When will they be forced to exit? Grade it. Name the template. Check the calendar. Do that every evening."
+    },
+    {
+      "index": 232,
+      "t": 4394,
+      "hms": "01:13:14",
+      "file": "keyframes/0232_011314.jpg",
+      "source": "llm",
+      "label": "Name the template",
+      "why": "Instructor says to name the template before trading, which would be visible on the chart.",
+      "narration": "When will they be forced to exit? Grade it. Name the template. Check the calendar. Do that every evening. Run the decision tree every morning. Execute in your session window one trade at a time, one template at a time."
+    },
+    {
+      "index": 233,
+      "t": 4401,
+      "hms": "01:13:21",
+      "file": "keyframes/0233_011321.jpg",
+      "source": "llm",
+      "label": "Execute one trade at a time",
+      "why": "Instructor emphasizes executing one trade at a time, which would be visible as a single entry.",
+      "narration": "Run the decision tree every morning. Execute in your session window one trade at a time, one template at a time. and always remember that doesn't matter what you do in this life, doesn't matter how you trade now or how you traded before, doesn't matter what any guru tells you, as long as you keep going, the only way is always up."
+    }
+  ]
+}

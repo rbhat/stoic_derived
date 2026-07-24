@@ -1,0 +1,1582 @@
+{
+  "source": "resources/case_studies/vol2/videos/Nasdaq Range Study - Stoic Trader Concepts · Stoic Traders.mp4",
+  "language": "en",
+  "model": "mlx-community/whisper-large-v3-turbo",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 21.44,
+      "text": "hello stoic traders welcome back to another case study of the stoic edge system simple stoic setups"
+    },
+    {
+      "start": 21.44,
+      "end": 28.64,
+      "text": "based on a higher time frame trader psychology and you know everybody tells you that the problem"
+    },
+    {
+      "start": 28.64,
+      "end": 35.28,
+      "text": "is discipline you are not disciplined enough and i used to believe that too i thought i was the"
+    },
+    {
+      "start": 35.28,
+      "end": 42.46,
+      "text": "problem but think about it if your system requires 14 decisions before you can press the button"
+    },
+    {
+      "start": 42.46,
+      "end": 50.22,
+      "text": "it's not a discipline problem it's a design problem the system has too many life decisions"
+    },
+    {
+      "start": 50.22,
+      "end": 57.36,
+      "text": "your brain can't handle that under pressure nobody's brain can handle that and of course"
+    },
+    {
+      "start": 57.36,
+      "end": 63.26,
+      "text": "you could try harder, more screen time, more backtesting, more, more, more. But you've done"
+    },
+    {
+      "start": 63.26,
+      "end": 69.5,
+      "text": "that and you know how it ends. If you're doing the same thing and expecting different results,"
+    },
+    {
+      "start": 69.92,
+      "end": 77.14,
+      "text": "that's the definition of insanity. The traders who figured this out reduced the decisions"
+    },
+    {
+      "start": 77.14,
+      "end": 84.46,
+      "text": "and the discipline showed up on its own. That's what being a stoic trader actually means."
+    },
+    {
+      "start": 84.46,
+      "end": 94.0,
+      "text": "it's not about having more willpower it's about having fewer decisions and this is why i keep"
+    },
+    {
+      "start": 94.0,
+      "end": 102.6,
+      "text": "saying less is more so yet again we are only focusing on the highest close of the month"
+    },
+    {
+      "start": 102.6,
+      "end": 110.04,
+      "text": "and the lowest close of the month because if we can do that we will be able to avoid"
+    },
+    {
+      "start": 110.04,
+      "end": 119.04,
+      "text": "garbage setups and it's all about avoiding garbage setups if you caught this move and you"
+    },
+    {
+      "start": 119.04,
+      "end": 125.08,
+      "text": "held it for three days let's say and you in heavy profit you took the profit beautiful trade"
+    },
+    {
+      "start": 125.08,
+      "end": 135.46,
+      "text": "and then you start trading when the price is not at the level and what happens you give away all"
+    },
+    {
+      "start": 135.46,
+      "end": 144.54,
+      "text": "of the profits to mediocre garbage setups and that's the whole point of stoic trading our goal"
+    },
+    {
+      "start": 144.54,
+      "end": 153.16,
+      "text": "is to be selective and only focus on the best of the best setups so while everybody is crying right"
+    },
+    {
+      "start": 153.16,
+      "end": 161.18,
+      "text": "now on the twitter about how difficult this price action has been let me just show you what happens"
+    },
+    {
+      "start": 161.18,
+      "end": 167.44,
+      "text": "if you only wait for the monthly extremes, for the monthly levels."
+    },
+    {
+      "start": 168.24,
+      "end": 172.0,
+      "text": "So we're going to start with beginning of the February here."
+    },
+    {
+      "start": 172.52,
+      "end": 179.46,
+      "text": "And this was the very first setup right after the first day of the month."
+    },
+    {
+      "start": 179.9,
+      "end": 182.18,
+      "text": "And the first day of the month was over here."
+    },
+    {
+      "start": 182.36,
+      "end": 183.18,
+      "text": "It was Monday."
+    },
+    {
+      "start": 184.0,
+      "end": 186.92,
+      "text": "And you can see that the Nasdaq has been coming down."
+    },
+    {
+      "start": 186.92,
+      "end": 189.4,
+      "text": "We have a first red day."
+    },
+    {
+      "start": 189.4,
+      "end": 194.68,
+      "text": "we have an inside day, and then we have this over here,"
+    },
+    {
+      "start": 195.1,
+      "end": 197.6,
+      "text": "which is, if you look at the templates,"
+    },
+    {
+      "start": 198.34,
+      "end": 203.0,
+      "text": "this is the consolidation into the expansion setup."
+    },
+    {
+      "start": 203.94,
+      "end": 208.5,
+      "text": "And these two candles are consolidation candles."
+    },
+    {
+      "start": 209.08,
+      "end": 210.96,
+      "text": "So the inside day is a consolidation,"
+    },
+    {
+      "start": 211.42,
+      "end": 216.84,
+      "text": "and then you have this one that kind of takes out,"
+    },
+    {
+      "start": 216.84,
+      "end": 220.56,
+      "text": "but all it does is enticing longs."
+    },
+    {
+      "start": 221.28,
+      "end": 223.54,
+      "text": "So everybody thinks this is a bounce,"
+    },
+    {
+      "start": 224.0,
+      "end": 228.08,
+      "text": "but this is the highest close of the month."
+    },
+    {
+      "start": 228.92,
+      "end": 230.84,
+      "text": "And on the very first day,"
+    },
+    {
+      "start": 231.04,
+      "end": 234.26,
+      "text": "we established the highest close of the February."
+    },
+    {
+      "start": 235.24,
+      "end": 240.24,
+      "text": "So you have the sweep, the swing failure pattern,"
+    },
+    {
+      "start": 240.8,
+      "end": 242.2,
+      "text": "and trade lower."
+    },
+    {
+      "start": 243.24,
+      "end": 246.12,
+      "text": "So this in itself was a beautiful setup."
+    },
+    {
+      "start": 246.12,
+      "end": 256.52,
+      "text": "as you can see consolidation you got an sbs also if you measure this pullback this is your 618"
+    },
+    {
+      "start": 256.52,
+      "end": 264.6,
+      "text": "pullback and the easiest way to understand these setups is just watching 20 and 200 simple moving"
+    },
+    {
+      "start": 264.6,
+      "end": 274.68,
+      "text": "average and only execute when the price drops below the 20 and 200 simple moving average as"
+    },
+    {
+      "start": 274.68,
+      "end": 282.04,
+      "text": "you can see over here this was a setup during london session beautiful sbs little consolidation"
+    },
+    {
+      "start": 282.04,
+      "end": 290.76,
+      "text": "and price starts dropping you have drop into the 9 30 little pullback and price continues"
+    },
+    {
+      "start": 290.76,
+      "end": 301.32,
+      "text": "but the price is below the 20 and 200 sma price above 20 and 200 sma and over here price"
+    },
+    {
+      "start": 301.32,
+      "end": 310.12,
+      "text": "broke the 20 in 200 sma the moving averages has been flipped and you have consolidation"
+    },
+    {
+      "start": 310.12,
+      "end": 317.56,
+      "text": "leading to expansion also you got the beautiful targets from the fib geometry"
+    },
+    {
+      "start": 317.56,
+      "end": 324.04,
+      "text": "measuring the very first pullback see this was a beautiful target"
+    },
+    {
+      "start": 324.04,
+      "end": 333.2,
+      "text": "had a beautiful setup 9 30 had a brief retracement and continuation lower and if you're entering in"
+    },
+    {
+      "start": 333.2,
+      "end": 340.36,
+      "text": "9 30 you probably want to have stop loss at least about the moving averages and you hold into the"
+    },
+    {
+      "start": 340.36,
+      "end": 350.0,
+      "text": "close or you hold until the 20 sma has been violated moving on to the next day as you can"
+    },
+    {
+      "start": 350.0,
+      "end": 360.36,
+      "text": "see over here this was the first red day so this is yet again another setup and yet again another"
+    },
+    {
+      "start": 360.36,
+      "end": 368.8,
+      "text": "consolidation as you can see the price is already below 20 and 200 sma we get back above it over"
+    },
+    {
+      "start": 368.8,
+      "end": 377.82,
+      "text": "here looks like maybe it's going to bounce but this was just an sbs previous daily close"
+    },
+    {
+      "start": 377.82,
+      "end": 387.7,
+      "text": "and you have moving area just flipped yet again below the previous daily close 9 30 open beautiful"
+    },
+    {
+      "start": 387.7,
+      "end": 394.74,
+      "text": "setup over here this is also was an sbs in there there is a small sbs and there is even a bigger"
+    },
+    {
+      "start": 394.74,
+      "end": 403.62,
+      "text": "over here beautiful retracement 9 30 everybody's buying everybody looks at this and they think"
+    },
+    {
+      "start": 403.62,
+      "end": 405.1,
+      "text": "that is going to be going."
+    },
+    {
+      "start": 406.3,
+      "end": 409.32,
+      "text": "But if you just pay attention"
+    },
+    {
+      "start": 409.32,
+      "end": 411.9,
+      "text": "to the higher time frame levels,"
+    },
+    {
+      "start": 412.58,
+      "end": 415.1,
+      "text": "this thing only can go one way"
+    },
+    {
+      "start": 415.1,
+      "end": 418.28,
+      "text": "because we have first red day."
+    },
+    {
+      "start": 418.82,
+      "end": 421.74,
+      "text": "First red day doesn't say it's going to go up."
+    },
+    {
+      "start": 422.3,
+      "end": 424.76,
+      "text": "First red day says continuation."
+    },
+    {
+      "start": 425.92,
+      "end": 427.24,
+      "text": "That's the setup."
+    },
+    {
+      "start": 427.24,
+      "end": 430.62,
+      "text": "So when the price sweeping over here in London"
+    },
+    {
+      "start": 430.62,
+      "end": 435.04,
+      "text": "and it starts to make a bullish price action flip"
+    },
+    {
+      "start": 435.04,
+      "end": 437.94,
+      "text": "and there is a bullish price action coming up"
+    },
+    {
+      "start": 437.94,
+      "end": 441.98,
+      "text": "and everybody who's buying is simply trading"
+    },
+    {
+      "start": 441.98,
+      "end": 444.76,
+      "text": "against the higher timeframe buyers."
+    },
+    {
+      "start": 445.38,
+      "end": 449.1,
+      "text": "And this is how you pick the best setups."
+    },
+    {
+      "start": 449.78,
+      "end": 453.92,
+      "text": "You don't buy when you have a first red day"
+    },
+    {
+      "start": 453.92,
+      "end": 456.04,
+      "text": "because that's not a setup."
+    },
+    {
+      "start": 456.3,
+      "end": 458.06,
+      "text": "You're going against your rules."
+    },
+    {
+      "start": 458.4,
+      "end": 460.46,
+      "text": "If you have the first red day,"
+    },
+    {
+      "start": 460.62,
+      "end": 471.26,
+      "text": "there is only shorts set up over here and yet again 423 beautiful target you can exit over here"
+    },
+    {
+      "start": 471.26,
+      "end": 476.86,
+      "text": "or if you're trying to hold for more of course you are because you are holding in too close"
+    },
+    {
+      "start": 476.86,
+      "end": 486.38,
+      "text": "just make sure that when the price breaks back about 20 sma this is a very good place to get"
+    },
+    {
+      "start": 486.38,
+      "end": 493.66,
+      "text": "out because then it kind of retrace higher so when you have the move this is the move and this"
+    },
+    {
+      "start": 493.66,
+      "end": 501.14,
+      "text": "is where you want to get out beautiful maybe six are here depends how if you just sell stop this"
+    },
+    {
+      "start": 501.14,
+      "end": 508.84,
+      "text": "whole structure this was a beautiful six our trade and moving on to the next setup we have"
+    },
+    {
+      "start": 508.84,
+      "end": 519.58,
+      "text": "big drop we have three lower closes the price is very extended right we have the lowest close for"
+    },
+    {
+      "start": 519.58,
+      "end": 529.98,
+      "text": "the february and this was a third day reversal template for this setup and yet again we only"
+    },
+    {
+      "start": 529.98,
+      "end": 537.6,
+      "text": "trading from the extremes because the extremes will provide the best of the best setups"
+    },
+    {
+      "start": 537.6,
+      "end": 539.72,
+      "text": "swing failure pattern"
+    },
+    {
+      "start": 539.72,
+      "end": 541.06,
+      "text": "SFP"
+    },
+    {
+      "start": 541.06,
+      "end": 543.92,
+      "text": "price dips below the lowest close"
+    },
+    {
+      "start": 543.92,
+      "end": 546.16,
+      "text": "of the month and recovers"
+    },
+    {
+      "start": 546.16,
+      "end": 548.4,
+      "text": "this was Asia session"
+    },
+    {
+      "start": 548.4,
+      "end": 549.7,
+      "text": "during"
+    },
+    {
+      "start": 549.7,
+      "end": 552.06,
+      "text": "London session this was the setup"
+    },
+    {
+      "start": 552.06,
+      "end": 554.04,
+      "text": "you have the small consolidation"
+    },
+    {
+      "start": 554.04,
+      "end": 555.56,
+      "text": "and break upwards"
+    },
+    {
+      "start": 555.56,
+      "end": 557.48,
+      "text": "you can buy stuff this"
+    },
+    {
+      "start": 557.48,
+      "end": 560.26,
+      "text": "and try to catch that like that"
+    },
+    {
+      "start": 560.26,
+      "end": 561.12,
+      "text": "not a bad"
+    },
+    {
+      "start": 561.12,
+      "end": 563.56,
+      "text": "we have another consolidation"
+    },
+    {
+      "start": 563.56,
+      "end": 565.38,
+      "text": "leading into the new year"
+    },
+    {
+      "start": 565.38,
+      "end": 574.8,
+      "text": "beautiful SBS manipulation in New York right at 9 30 and you have an extension higher yet again"
+    },
+    {
+      "start": 574.8,
+      "end": 583.14,
+      "text": "measuring the very first pullback there is also an SBS in here so you gotta measure the first"
+    },
+    {
+      "start": 583.14,
+      "end": 594.84,
+      "text": "pullback and then beautiful targets 423 absolutely beautiful yet again we have the moving averages"
+    },
+    {
+      "start": 594.84,
+      "end": 602.62,
+      "text": "flip this is the best indicator that you can have on your chart and i know i keep dunking on"
+    },
+    {
+      "start": 602.62,
+      "end": 611.08,
+      "text": "indicators but if you're going to have one indicator on your chart just have 20 and 200 sma"
+    },
+    {
+      "start": 611.08,
+      "end": 618.86,
+      "text": "because that's all you need on a five minute chart just wait for the price"
+    },
+    {
+      "start": 618.86,
+      "end": 621.68,
+      "text": "about moving averages"
+    },
+    {
+      "start": 621.68,
+      "end": 624.16,
+      "text": "because the bias is set"
+    },
+    {
+      "start": 624.16,
+      "end": 629.02,
+      "text": "after the flip of the February lowest close of the month"
+    },
+    {
+      "start": 629.02,
+      "end": 631.16,
+      "text": "the price is bullish."
+    },
+    {
+      "start": 631.54,
+      "end": 633.86,
+      "text": "We have third day reversal."
+    },
+    {
+      "start": 634.52,
+      "end": 637.42,
+      "text": "So we are expecting a short squeeze."
+    },
+    {
+      "start": 637.42,
+      "end": 640.64,
+      "text": "We are expecting for the price to trade higher."
+    },
+    {
+      "start": 642.14,
+      "end": 647.12,
+      "text": "And that's why we do not short below the 200 SMA."
+    },
+    {
+      "start": 647.12,
+      "end": 648.72,
+      "text": "we wait for the"
+    },
+    {
+      "start": 648.72,
+      "end": 651.66,
+      "text": "and as you can see over here"
+    },
+    {
+      "start": 651.66,
+      "end": 653.82,
+      "text": "this is where it started"
+    },
+    {
+      "start": 653.82,
+      "end": 655.84,
+      "text": "to flip so you can"
+    },
+    {
+      "start": 655.84,
+      "end": 657.84,
+      "text": "buy stop this whole structure"
+    },
+    {
+      "start": 657.84,
+      "end": 659.94,
+      "text": "or wait for the scandal closure"
+    },
+    {
+      "start": 659.94,
+      "end": 662.04,
+      "text": "buy stop it"
+    },
+    {
+      "start": 662.04,
+      "end": 663.74,
+      "text": "set stop below and you"
+    },
+    {
+      "start": 663.74,
+      "end": 665.44,
+      "text": "hold it into the New York"
+    },
+    {
+      "start": 665.44,
+      "end": 667.68,
+      "text": "you can hold it past New York"
+    },
+    {
+      "start": 667.68,
+      "end": 668.58,
+      "text": "if you got in"
+    },
+    {
+      "start": 668.58,
+      "end": 671.88,
+      "text": "this would be not an easy way"
+    },
+    {
+      "start": 671.88,
+      "end": 673.96,
+      "text": "to get in if you bought"
+    },
+    {
+      "start": 673.96,
+      "end": 674.9,
+      "text": "this breakout"
+    },
+    {
+      "start": 674.9,
+      "end": 676.44,
+      "text": "this was"
+    },
+    {
+      "start": 676.44,
+      "end": 683.92,
+      "text": "decent trade but not a lot of rr mainly this was a setup during london session"
+    },
+    {
+      "start": 683.92,
+      "end": 693.64,
+      "text": "moving on to another trade and this was a trade from the weekly level now the weekly level is not"
+    },
+    {
+      "start": 693.64,
+      "end": 701.54,
+      "text": "as good as the monthly level but still when something like this sets up you can take it"
+    },
+    {
+      "start": 701.54,
+      "end": 707.04,
+      "text": "you don't have to take it of course if you are being more selective it's even better"
+    },
+    {
+      "start": 707.04,
+      "end": 717.58,
+      "text": "still this is a nice setup you have the previous weekly highest close right you have the weekly"
+    },
+    {
+      "start": 717.58,
+      "end": 727.74,
+      "text": "high so this zone is the short zone and this was a third day reversal we have second day"
+    },
+    {
+      "start": 727.74,
+      "end": 738.22,
+      "text": "second day drives into the highs but the price struggling to break and retest and go higher"
+    },
+    {
+      "start": 738.22,
+      "end": 744.98,
+      "text": "so on the range breakout we're looking for the break and retest or swing failure pattern there"
+    },
+    {
+      "start": 744.98,
+      "end": 753.74,
+      "text": "are only two break and retest swing failure pattern and as you can see over here this was"
+    },
+    {
+      "start": 753.74,
+      "end": 760.78,
+      "text": "also thursday price opens up creates this sbs consolidation manipulation"
+    },
+    {
+      "start": 761.82,
+      "end": 769.98,
+      "text": "takes down in london now you wait until the price gets back below the 20 and 200 sma"
+    },
+    {
+      "start": 770.78,
+      "end": 779.74,
+      "text": "and this was also a setup break and retest during the 9 30 and this was an opportunity to get in"
+    },
+    {
+      "start": 779.74,
+      "end": 788.5,
+      "text": "and ride this not a bad setup as far as the fib geometry you can measure this whole thing"
+    },
+    {
+      "start": 788.5,
+      "end": 800.24,
+      "text": "and it didn't quite go to the 2618 it went to it next day but still gain 930 beautiful setup"
+    },
+    {
+      "start": 800.24,
+      "end": 803.52,
+      "text": "because it can only go one way."
+    },
+    {
+      "start": 804.44,
+      "end": 807.08,
+      "text": "This is a third day reversal."
+    },
+    {
+      "start": 807.68,
+      "end": 812.72,
+      "text": "Moving on to another setup from the highest close of the month."
+    },
+    {
+      "start": 813.2,
+      "end": 815.4,
+      "text": "And this is now we are going into the March."
+    },
+    {
+      "start": 816.34,
+      "end": 822.08,
+      "text": "And I wanted to show you this one because not every day is going to..."
+    },
+    {
+      "start": 822.08,
+      "end": 827.1,
+      "text": "Just because we know these setups and we're only trading from the monthly levels,"
+    },
+    {
+      "start": 827.1,
+      "end": 834.92,
+      "text": "it doesn't mean that every time it's going to be an easy trade and this is the example of the first"
+    },
+    {
+      "start": 834.92,
+      "end": 844.98,
+      "text": "red day and sometimes when we have especially a tight range just like this is where you can expect"
+    },
+    {
+      "start": 844.98,
+      "end": 852.84,
+      "text": "sharpiness this is where you can expect the first red day not to be as clean because the best"
+    },
+    {
+      "start": 852.84,
+      "end": 861.26,
+      "text": "setups coming from monthly extremes and if i go back and look at this chart on enqueue"
+    },
+    {
+      "start": 861.26,
+      "end": 869.98,
+      "text": "this is the first red day that i'm highlighting and as you can see the price is in a tight range"
+    },
+    {
+      "start": 869.98,
+      "end": 880.36,
+      "text": "and the setups before this i showed you from here and here as you can see this is monthly extremes"
+    },
+    {
+      "start": 880.36,
+      "end": 883.7,
+      "text": "And that's why it's so good."
+    },
+    {
+      "start": 884.36,
+      "end": 890.74,
+      "text": "This one, when we drop so hard, you have multiple lower closes down."
+    },
+    {
+      "start": 891.22,
+      "end": 895.76,
+      "text": "And eventually, this is the setup, the swing failure pattern."
+    },
+    {
+      "start": 896.16,
+      "end": 898.66,
+      "text": "But let's get back to this one over here."
+    },
+    {
+      "start": 899.26,
+      "end": 901.06,
+      "text": "As you can see, this was ugly."
+    },
+    {
+      "start": 901.5,
+      "end": 903.56,
+      "text": "You have 330 over here."
+    },
+    {
+      "start": 904.02,
+      "end": 906.26,
+      "text": "The price got back about the 20."
+    },
+    {
+      "start": 907.2,
+      "end": 909.18,
+      "text": "Closing above HCOM."
+    },
+    {
+      "start": 909.18,
+      "end": 918.4,
+      "text": "sells off 930 opens up and if you shorted this because the price closed back below the"
+    },
+    {
+      "start": 918.4,
+      "end": 925.74,
+      "text": "20 and 200 sma if you shorted this and your stop loss was over here this is still a good trade"
+    },
+    {
+      "start": 925.74,
+      "end": 934.58,
+      "text": "but if you shorted let's say 930 you got excited and you shorted and this is it don't try to trade"
+    },
+    {
+      "start": 934.58,
+      "end": 940.8,
+      "text": "it again maybe if you tried it again here and you got stopped out on these wicks just walk away"
+    },
+    {
+      "start": 940.8,
+      "end": 949.6,
+      "text": "two losses is the maximum losses for the day do not tilt because i keep showing you the best setups"
+    },
+    {
+      "start": 949.6,
+      "end": 960.36,
+      "text": "and this one was off of the highest close of the month but you see that not every day is going to"
+    },
+    {
+      "start": 960.36,
+      "end": 969.12,
+      "text": "be the perfect day we do not have control of this market and it's very important to keep this in mind"
+    },
+    {
+      "start": 969.12,
+      "end": 978.58,
+      "text": "because it's so easy to get into this price action and if you are not trading or after you're done"
+    },
+    {
+      "start": 978.58,
+      "end": 986.0,
+      "text": "trading close your laptop close the charts and walk away do not look at the charts and i'm going"
+    },
+    {
+      "start": 986.0,
+      "end": 994.22,
+      "text": "to repeat after you're done trading do not look at the charts because the chart is always"
+    },
+    {
+      "start": 994.22,
+      "end": 1001.86,
+      "text": "advertising you're always going to see the setup you missed oh why did i stop trading when"
+    },
+    {
+      "start": 1001.86,
+      "end": 1010.28,
+      "text": "perfect setup you stop trading because you're following your rules you stop trading because"
+    },
+    {
+      "start": 1010.28,
+      "end": 1016.36,
+      "text": "you're protecting your capital. You stop trading because you know that if you keep trading,"
+    },
+    {
+      "start": 1016.36,
+      "end": 1024.76,
+      "text": "most likely or not, you're going to tilt and blow up. One and done. Walk away."
+    },
+    {
+      "start": 1025.84,
+      "end": 1033.34,
+      "text": "Moving on to another setup, which is the next day. After the first red day, this is the setup."
+    },
+    {
+      "start": 1033.34,
+      "end": 1034.76,
+      "text": "on Friday."
+    },
+    {
+      "start": 1037.06,
+      "end": 1041.58,
+      "text": "Trading above 20 and 200 SMA."
+    },
+    {
+      "start": 1042.24,
+      "end": 1044.66,
+      "text": "345 London setup."
+    },
+    {
+      "start": 1045.14,
+      "end": 1046.66,
+      "text": "You have the first pullback."
+    },
+    {
+      "start": 1046.78,
+      "end": 1048.2,
+      "text": "You have the second pullback."
+    },
+    {
+      "start": 1048.74,
+      "end": 1050.34,
+      "text": "You have SBS over here."
+    },
+    {
+      "start": 1051.46,
+      "end": 1053.1,
+      "text": "But you don't trade this"
+    },
+    {
+      "start": 1053.1,
+      "end": 1058.34,
+      "text": "because the price is still staying above 200 SMA"
+    },
+    {
+      "start": 1058.34,
+      "end": 1061.58,
+      "text": "and above the previous daily close here."
+    },
+    {
+      "start": 1061.58,
+      "end": 1071.56,
+      "text": "maybe you can start your position here but do not go full all in on the setup until it's breaking"
+    },
+    {
+      "start": 1071.56,
+      "end": 1081.18,
+      "text": "below the 20 sma so after here you can start shorting stop loss goes above here and it drops"
+    },
+    {
+      "start": 1081.18,
+      "end": 1091.18,
+      "text": "into the 930 and you can get out after the price closing above 20 sma and you can see this was"
+    },
+    {
+      "start": 1091.58,
+      "end": 1100.12,
+      "text": "setup i think there was some kind of news at 8 30 there is an sbs in here one two three four five"
+    },
+    {
+      "start": 1100.12,
+      "end": 1106.96,
+      "text": "most likely there was some kind of news you could have entered on sbs and write this down"
+    },
+    {
+      "start": 1106.96,
+      "end": 1115.78,
+      "text": "423 beautiful exit it's the same setup over and over again and that's the whole point"
+    },
+    {
+      "start": 1115.78,
+      "end": 1127.14,
+      "text": "next day now we are reacting from the support yet again the same thing we have february"
+    },
+    {
+      "start": 1127.14,
+      "end": 1136.36,
+      "text": "lowest close of the month this is the third day reversal we have the one two and on the third day"
+    },
+    {
+      "start": 1136.36,
+      "end": 1146.92,
+      "text": "and you had set up in london and new york so price opens up gets back"
+    },
+    {
+      "start": 1146.92,
+      "end": 1155.96,
+      "text": "i measured the first pullback as you can see 686 final target absolutely beautiful"
+    },
+    {
+      "start": 1155.96,
+      "end": 1164.94,
+      "text": "price trading about 20 sma this is could be a london setup this is where you can start your"
+    },
+    {
+      "start": 1164.94,
+      "end": 1173.32,
+      "text": "position but we only trading one way you starting your position with anticipation that the price"
+    },
+    {
+      "start": 1173.32,
+      "end": 1182.8,
+      "text": "will get back about 200 sma so riskier setup during london but this is no question we have"
+    },
+    {
+      "start": 1182.8,
+      "end": 1192.02,
+      "text": "beautiful consolidation we have 930 manipulation price gets below one more sweep into the 618 so"
+    },
+    {
+      "start": 1192.02,
+      "end": 1200.98,
+      "text": "if you measure this uh move from this low to the high to the sbs you'll get the 618 retracement"
+    },
+    {
+      "start": 1201.86,
+      "end": 1210.5,
+      "text": "beautiful retracement you can just gets back about 20 sma yeah this could be your entry this could be"
+    },
+    {
+      "start": 1210.5,
+      "end": 1222.58,
+      "text": "a risk and you take profits at 686 beautiful notice breakout about pdc pdl retest continuation"
+    },
+    {
+      "start": 1222.58,
+      "end": 1232.58,
+      "text": "higher the same thing over and over again on to another setup so we have this big bounce and then"
+    },
+    {
+      "start": 1232.58,
+      "end": 1240.82,
+      "text": "price can't get back about highest close of the month we have inside day which was just"
+    },
+    {
+      "start": 1240.82,
+      "end": 1251.94,
+      "text": "consolidation and this was the setup on thursday yet again after the inside day double the hcom"
+    },
+    {
+      "start": 1252.74,
+      "end": 1260.74,
+      "text": "so we know what's going on we are rejecting from the highest close of the month this is your setup"
+    },
+    {
+      "start": 1260.74,
+      "end": 1269.08,
+      "text": "what happened on thursday we have big sbs here one two three four five this was a big sbs"
+    },
+    {
+      "start": 1269.08,
+      "end": 1278.04,
+      "text": "we are below the previous daily close we have a break and retest of the previous daily low"
+    },
+    {
+      "start": 1278.04,
+      "end": 1288.8,
+      "text": "setup in here consolidation during london session new york opens up beautiful setup at 9 30 after"
+    },
+    {
+      "start": 1288.8,
+      "end": 1297.04,
+      "text": "the sbs below the 20 and 200 sma and you have 2618 beautiful exit towards the end of the day"
+    },
+    {
+      "start": 1298.16,
+      "end": 1304.64,
+      "text": "while everybody's complaining about such a bad price action i'm showing you the same thing"
+    },
+    {
+      "start": 1304.64,
+      "end": 1317.04,
+      "text": "over and over again this over and over again the stoic edge system works but only if you focus on"
+    },
+    {
+      "start": 1317.04,
+      "end": 1324.88,
+      "text": "high time frame setups because like i said you can trade all kinds of moves you can try to trade"
+    },
+    {
+      "start": 1324.88,
+      "end": 1333.76,
+      "text": "sbs in here one two three four five and then trade it towards the end of the day you can try to trade"
+    },
+    {
+      "start": 1333.76,
+      "end": 1346.08,
+      "text": "every single the chart but ask yourself is it worth it is it worth your time is it worth your"
+    },
+    {
+      "start": 1346.08,
+      "end": 1354.82,
+      "text": "emotion, stress, constantly staring at the screen. That's not trading. That's gambling."
+    },
+    {
+      "start": 1355.38,
+      "end": 1362.7,
+      "text": "And they all running like headless chicken in this market. Oh my God, how bad this price action is."
+    },
+    {
+      "start": 1363.02,
+      "end": 1372.96,
+      "text": "Bring back. Oh, it's Trump's fault. That's victim mentality. This market has been doing"
+    },
+    {
+      "start": 1372.96,
+      "end": 1379.94,
+      "text": "the same thing for hundreds of years and i'm going to show you that and i will continue to"
+    },
+    {
+      "start": 1379.94,
+      "end": 1387.52,
+      "text": "show you that the same thing has been happening over and over and over again the only problem is"
+    },
+    {
+      "start": 1387.52,
+      "end": 1395.86,
+      "text": "that you've been looking at the wrong place moving up now coming back from the support"
+    },
+    {
+      "start": 1395.86,
+      "end": 1405.14,
+      "text": "after the three lower closes you have the third day reversal beautiful setup yet again this was"
+    },
+    {
+      "start": 1405.14,
+      "end": 1415.1,
+      "text": "set up beautiful consolidation price is staying about 20 and 200 sma 9 30 new york session wasn't"
+    },
+    {
+      "start": 1415.1,
+      "end": 1424.76,
+      "text": "that great but still we went up previous daily high and then after the we break above reaching"
+    },
+    {
+      "start": 1424.76,
+      "end": 1434.22,
+      "text": "the 423 target and i measured this pullback over here this first pullback i have a couple more"
+    },
+    {
+      "start": 1434.22,
+      "end": 1443.34,
+      "text": "this is another setup the next day we have the first green day and the next day is the gap and"
+    },
+    {
+      "start": 1443.34,
+      "end": 1452.54,
+      "text": "run this is foolish setup so what happens we have the gap up over here price trades back fill some"
+    },
+    {
+      "start": 1452.54,
+      "end": 1461.58,
+      "text": "of the gap and then during the london session starts reversing we have higher highs higher lows"
+    },
+    {
+      "start": 1461.58,
+      "end": 1468.78,
+      "text": "right i actually measured this one as the first pullback you have 423 beautiful price action"
+    },
+    {
+      "start": 1468.78,
+      "end": 1477.0,
+      "text": "beautiful london setup all you do is flip the moving averages and you start buying you start"
+    },
+    {
+      "start": 1477.0,
+      "end": 1485.16,
+      "text": "loading in another consolidation by 9 30 is a bit too late if you bought it you probably need to"
+    },
+    {
+      "start": 1485.16,
+      "end": 1494.2,
+      "text": "exit over here after the price breaking 20 sma but still yet again traders get paid"
+    },
+    {
+      "start": 1495.32,
+      "end": 1504.44,
+      "text": "here's the next day yet again third day reversal two days of pump into the highest close of the"
+    },
+    {
+      "start": 1504.44,
+      "end": 1513.32,
+      "text": "month and the third day reversal swing failure pattern and here this was on wednesday you can"
+    },
+    {
+      "start": 1513.32,
+      "end": 1520.84,
+      "text": "see the market goes grinds higher consolidation starts breaking down there is an sbs in there also"
+    },
+    {
+      "start": 1521.56,
+      "end": 1531.0,
+      "text": "six one based on this one over here and if you measure we achieved this 686 and this one over"
+    },
+    {
+      "start": 1531.0,
+      "end": 1537.88,
+      "text": "here on the smaller measurement but it actually went even lower so as you can see sometimes it's"
+    },
+    {
+      "start": 1537.88,
+      "end": 1544.36,
+      "text": "worth holding into the close but if you caught this in london you probably want to get out here"
+    },
+    {
+      "start": 1544.36,
+      "end": 1552.22,
+      "text": "after the 20 sma gets violated and maybe try to short again during the new york session when we"
+    },
+    {
+      "start": 1552.22,
+      "end": 1561.28,
+      "text": "get back below 20 sma so you realize this is a fake out stop loss goes about here and you just"
+    },
+    {
+      "start": 1561.28,
+      "end": 1569.98,
+      "text": "hold it into the close but yet again down below the 20 200 sma this is where you can short"
+    },
+    {
+      "start": 1569.98,
+      "end": 1577.4,
+      "text": "stop loss gets about the moving averages about the structure this is your risk and you're"
+    },
+    {
+      "start": 1577.4,
+      "end": 1580.1,
+      "text": "capturing some very decent profits."
+    },
+    {
+      "start": 1581.14,
+      "end": 1584.94,
+      "text": "And this was trade from the highest close of the month."
+    },
+    {
+      "start": 1585.28,
+      "end": 1588.18,
+      "text": "And I just showed you the trade one,"
+    },
+    {
+      "start": 1588.72,
+      "end": 1591.76,
+      "text": "the trade two, and the trade three."
+    },
+    {
+      "start": 1592.7,
+      "end": 1596.6,
+      "text": "And each day had defined bias."
+    },
+    {
+      "start": 1597.12,
+      "end": 1600.94,
+      "text": "We were bullish here because we are trading back"
+    },
+    {
+      "start": 1600.94,
+      "end": 1603.52,
+      "text": "about the February lowest close of the month."
+    },
+    {
+      "start": 1603.72,
+      "end": 1605.4,
+      "text": "We had the swing failure pattern."
+    },
+    {
+      "start": 1605.4,
+      "end": 1609.08,
+      "text": "We were bullish here because this is the first green day."
+    },
+    {
+      "start": 1609.62,
+      "end": 1610.9,
+      "text": "And we were bearish here."
+    },
+    {
+      "start": 1611.42,
+      "end": 1614.98,
+      "text": "This is the rejection from the highest close of the month."
+    },
+    {
+      "start": 1615.2,
+      "end": 1616.52,
+      "text": "Yet again, swing."
+    },
+    {
+      "start": 1618.12,
+      "end": 1625.18,
+      "text": "So I'm not going to talk about this over here because this one tried to bounce."
+    },
+    {
+      "start": 1625.76,
+      "end": 1627.3,
+      "text": "Didn't do anything here."
+    },
+    {
+      "start": 1627.78,
+      "end": 1628.84,
+      "text": "This was consolidation."
+    },
+    {
+      "start": 1628.84,
+      "end": 1635.22,
+      "text": "And this was a follow through after that consolidation and the price closed below."
+    },
+    {
+      "start": 1635.4,
+      "end": 1638.1,
+      "text": "the February lowest close of the month."
+    },
+    {
+      "start": 1638.32,
+      "end": 1641.72,
+      "text": "So now we have range breaking down."
+    },
+    {
+      "start": 1642.62,
+      "end": 1645.56,
+      "text": "So this was not signal day."
+    },
+    {
+      "start": 1645.94,
+      "end": 1647.64,
+      "text": "We didn't bounce for February."
+    },
+    {
+      "start": 1648.64,
+      "end": 1651.82,
+      "text": "And the next day we tried to do that,"
+    },
+    {
+      "start": 1652.16,
+      "end": 1655.72,
+      "text": "but closed below the February outcome."
+    },
+    {
+      "start": 1656.4,
+      "end": 1658.5,
+      "text": "Maybe there was some kind of trades here,"
+    },
+    {
+      "start": 1658.62,
+      "end": 1659.68,
+      "text": "swing failure pattern."
+    },
+    {
+      "start": 1660.52,
+      "end": 1663.0,
+      "text": "But the important thing is that,"
+    },
+    {
+      "start": 1663.0,
+      "end": 1669.18,
+      "text": "As you can see, now we had two inside days."
+    },
+    {
+      "start": 1670.42,
+      "end": 1671.88,
+      "text": "So here's the setup."
+    },
+    {
+      "start": 1672.86,
+      "end": 1673.8,
+      "text": "You have the bounce."
+    },
+    {
+      "start": 1674.96,
+      "end": 1676.42,
+      "text": "A lot of traders got in."
+    },
+    {
+      "start": 1676.52,
+      "end": 1678.22,
+      "text": "You got the buyers getting in."
+    },
+    {
+      "start": 1678.22,
+      "end": 1684.72,
+      "text": "But the problem is that we are below the February lowest close of the month."
+    },
+    {
+      "start": 1684.72,
+      "end": 1694.16,
+      "text": "so you can see how the price staying and closing below right below that february close of the month"
+    },
+    {
+      "start": 1694.16,
+      "end": 1702.12,
+      "text": "do you think these levels are random these are factual price levels everybody has these levels"
+    },
+    {
+      "start": 1702.12,
+      "end": 1708.14,
+      "text": "on their chart they just don't mark it out because they don't think about them like i do"
+    },
+    {
+      "start": 1708.14,
+      "end": 1718.12,
+      "text": "The close of the day is the most important thing because that's where the committed traders held."
+    },
+    {
+      "start": 1719.32,
+      "end": 1725.9,
+      "text": "So that's why you see these price levels being so sensitive."
+    },
+    {
+      "start": 1726.5,
+      "end": 1731.78,
+      "text": "And this is how we can form our bias on the higher time frame chart."
+    },
+    {
+      "start": 1731.78,
+      "end": 1734.42,
+      "text": "And that's all we need in order to trade."
+    },
+    {
+      "start": 1734.42,
+      "end": 1748.62,
+      "text": "We need a bias where the price goes and then we apply the price action, whatever models, kung fu kicks, tricks, tips, whatever you want."
+    },
+    {
+      "start": 1749.4,
+      "end": 1752.4,
+      "text": "And that's why we have the SBS."
+    },
+    {
+      "start": 1753.26,
+      "end": 1762.24,
+      "text": "That's why we have 20 and 200 SMA, 618 retracements after the higher timeframe bias."
+    },
+    {
+      "start": 1762.24,
+      "end": 1770.5,
+      "text": "so yet again while everybody is trying to buy this up all i see is rejection after rejection"
+    },
+    {
+      "start": 1770.5,
+      "end": 1779.96,
+      "text": "from the february lowest close of the month so this is the inside day this is another inside day"
+    },
+    {
+      "start": 1779.96,
+      "end": 1789.28,
+      "text": "and today was the flash we had buyers trying to hold and hope oh look at this this is now"
+    },
+    {
+      "start": 1789.28,
+      "end": 1799.28,
+      "text": "a reversal the mark back to the moon but the market needs to close back about the levels"
+    },
+    {
+      "start": 1800.24,
+      "end": 1811.52,
+      "text": "monthly extremes and this wasn't an easy trade but the bias was correct sbs during the asia session"
+    },
+    {
+      "start": 1811.52,
+      "end": 1814.32,
+      "text": "the London session breaks down"
+    },
+    {
+      "start": 1814.32,
+      "end": 1817.84,
+      "text": "and this is not an easy one to trade"
+    },
+    {
+      "start": 1817.84,
+      "end": 1820.28,
+      "text": "because we have this big retracement"
+    },
+    {
+      "start": 1820.28,
+      "end": 1822.96,
+      "text": "yet again we are rejecting"
+    },
+    {
+      "start": 1822.96,
+      "end": 1826.62,
+      "text": "a 10 o'clock rotation below the 200 SMA"
+    },
+    {
+      "start": 1826.62,
+      "end": 1829.5,
+      "text": "lowest close of the month"
+    },
+    {
+      "start": 1829.5,
+      "end": 1831.02,
+      "text": "this is the rejection"
+    },
+    {
+      "start": 1831.02,
+      "end": 1833.58,
+      "text": "with the SBS"
+    },
+    {
+      "start": 1833.58,
+      "end": 1838.68,
+      "text": "20 SMA you can short this"
+    },
+    {
+      "start": 1838.68,
+      "end": 1846.0,
+      "text": "this is your risk and you hold it into close for three four hour if you're catching this"
+    },
+    {
+      "start": 1846.0,
+      "end": 1854.26,
+      "text": "but yet again this is not an easy trade to trade because where we are and we are still fighting"
+    },
+    {
+      "start": 1854.26,
+      "end": 1861.86,
+      "text": "that bigger range and we are still fighting and trying to decide is this going to break down"
+    },
+    {
+      "start": 1861.86,
+      "end": 1865.84,
+      "text": "or is this going to be a double bottom and continuation higher?"
+    },
+    {
+      "start": 1866.18,
+      "end": 1867.14,
+      "text": "We don't know."
+    },
+    {
+      "start": 1867.74,
+      "end": 1870.34,
+      "text": "And frankly speaking, we don't care."
+    },
+    {
+      "start": 1871.08,
+      "end": 1874.12,
+      "text": "We don't care if it's going to go to all-time high"
+    },
+    {
+      "start": 1874.12,
+      "end": 1876.36,
+      "text": "or we're going into the bare model."
+    },
+    {
+      "start": 1877.08,
+      "end": 1878.38,
+      "text": "That doesn't matter."
+    },
+    {
+      "start": 1879.02,
+      "end": 1881.66,
+      "text": "All we care about is the setups,"
+    },
+    {
+      "start": 1882.3,
+      "end": 1883.68,
+      "text": "higher time frame levels,"
+    },
+    {
+      "start": 1884.32,
+      "end": 1885.54,
+      "text": "the five templates,"
+    },
+    {
+      "start": 1886.12,
+      "end": 1888.36,
+      "text": "and the execution model."
+    },
+    {
+      "start": 1889.18,
+      "end": 1889.92,
+      "text": "That's it."
+    },
+    {
+      "start": 1890.14,
+      "end": 1891.72,
+      "text": "And with that being said,"
+    },
+    {
+      "start": 1891.86,
+      "end": 1896.6,
+      "text": "This is going to be it for this case study, and I will talk to you in the next one."
+    },
+    {
+      "start": 1896.76,
+      "end": 1897.32,
+      "text": "Take care."
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+{
+  "source": "resources/case_studies/vol3/videos/Gold Futures Study - Stoic Trader Concepts · Stoic Traders.mp4",
+  "model": "qwen3-vl-30b-a3b-instruct-mlx",
+  "windows": 2,
+  "count": 71,
+  "moments": [
+    {
+      "t": 105.0,
+      "label": "First red day signal",
+      "why": "Price shows a first red day after multiple green candles, indicating a potential reversal."
+    },
+    {
+      "t": 124.4,
+      "label": "No trade due to lack of breakdown",
+      "why": "Price does not break below previous daily close or low, so no trade is taken despite the red day."
+    },
+    {
+      "t": 157.0,
+      "label": "SMA and SBS setup",
+      "why": "Instructor points to 20 and 200 SMA, SBS patterns as key elements for trade setup."
+    },
+    {
+      "t": 162.9,
+      "label": "FIB geometry targets",
+      "why": "Fibonacci geometry targets (423 and 686) are shown on the chart from a previous reversal."
+    },
+    {
+      "t": 177.4,
+      "label": "Measuring FIB geometry",
+      "why": "Instructor measures the reversal on a previous day to calculate FIB targets."
+    },
+    {
+      "t": 223.4,
+      "label": "SBS pattern at 9:30",
+      "why": "Price breaks below 20 SMA, shows SBS pattern at 9:30 open."
+    },
+    {
+      "t": 248.6,
+      "label": "FIB pullback targets",
+      "why": "Instructor shows 2.618 and 4.23 FIB targets from a previous reversal."
+    },
+    {
+      "t": 304.8,
+      "label": "618 retracement measurement",
+      "why": "Instructor measures the pullback from high to low, identifying 618 retracement level."
+    },
+    {
+      "t": 376.1,
+      "label": "Lowest close of the month",
+      "why": "Instructor highlights the lowest close of February as a key reversal level."
+    },
+    {
+      "t": 432.5,
+      "label": "True reversal after SMA retest",
+      "why": "Price returns to 20 and 200 SMA, confirming a true reversal."
+    },
+    {
+      "t": 441.8,
+      "label": "2618 target delivery",
+      "why": "Price delivers into the 2.618 FIB target after a measured pullback."
+    },
+    {
+      "t": 493.6,
+      "label": "Avoid shorting after L-Com bounce",
+      "why": "Instructor warns against shorting back into the L-Com after price has already reacted."
+    },
+    {
+      "t": 501.8,
+      "label": "Break and retest setup",
+      "why": "Instructor identifies a break and retest pattern during London session."
+    },
+    {
+      "t": 512.8,
+      "label": "SBS Model 1 at range top",
+      "why": "Instructor shows SBS Model 1 setup at the top of price range."
+    },
+    {
+      "t": 524.2,
+      "label": "POI at structure responsible",
+      "why": "Instructor identifies a point of interest (POI) from market structure."
+    },
+    {
+      "t": 531.6,
+      "label": "Buy entry at 20 SMA",
+      "why": "Instructor suggests buying after price returns to 20 SMA."
+    },
+    {
+      "t": 560.8,
+      "label": "Previous high of the week",
+      "why": "Instructor points to previous weekly high as a key resistance level."
+    },
+    {
+      "t": 570.2,
+      "label": "Consolidation at previous high",
+      "why": "Price consolidates near the weekly high, indicating potential reversal."
+    },
+    {
+      "t": 583.1,
+      "label": "Third day reversal",
+      "why": "Instructor notes a third-day reversal pattern forming."
+    },
+    {
+      "t": 605.9,
+      "label": "Consolidation throughout sessions",
+      "why": "Instructor highlights consolidation across Asia, London, and New York."
+    },
+    {
+      "t": 618.9,
+      "label": "SBS manipulation at 9:30",
+      "why": "Instructor points to SBS fakeout during 9:30 open."
+    },
+    {
+      "t": 629.0,
+      "label": "Short entry below SMA",
+      "why": "Instructor suggests shorting below 20 and 200 SMA after 9:30 open."
+    },
+    {
+      "t": 647.1,
+      "label": "FIB geometry delivery to 423",
+      "why": "Price delivers into the 4.23 FIB target."
+    },
+    {
+      "t": 670.5,
+      "label": "Consolidation across three sessions",
+      "why": "Instructor emphasizes the ideal setup with consolidation throughout Asia, London, and New York."
+    },
+    {
+      "t": 763.3,
+      "label": "First red day after HECOM rejection",
+      "why": "Instructor identifies a first red day following rejection from February HECOM."
+    },
+    {
+      "t": 780.0,
+      "label": "SBS during Asia session",
+      "why": "Instructor points to SBS pattern forming during Asia session."
+    },
+    {
+      "t": 783.6,
+      "label": "Short below March highest close",
+      "why": "Instructor identifies short entry below the March monthly high."
+    },
+    {
+      "t": 792.3,
+      "label": "Short entry below SMA",
+      "why": "Instructor suggests shorting below 20,200 SMA."
+    },
+    {
+      "t": 810.3,
+      "label": "FIB geometry precision",
+      "why": "Instructor shows precise FIB reactions after reversal."
+    },
+    {
+      "t": 849.7,
+      "label": "Consolidation leads to expansion",
+      "why": "Instructor highlights consolidation followed by a big move."
+    },
+    {
+      "t": 864.1,
+      "label": "Swept weekly high",
+      "why": "Price sweeps the previous weekly high, indicating expansion."
+    },
+    {
+      "t": 872.9,
+      "label": "Inside day and first red day",
+      "why": "Instructor identifies inside day and first red day as setup elements."
+    },
+    {
+      "t": 890.6,
+      "label": "SBS during London and New York",
+      "why": "Instructor shows SBS patterns in both sessions."
+    },
+    {
+      "t": 898.9,
+      "label": "Short entry at 10 AM",
+      "why": "Instructor suggests shorting after price breaks below SMA and rotates at 10 AM."
+    },
+    {
+      "t": 908.4,
+      "label": "First pullback 618 retracement",
+      "why": "Price level and SBS pattern on the chart"
+    },
+    {
+      "t": 916.4,
+      "label": "Price fails below previous daily close",
+      "why": "Market structure and trade setup at key price level"
+    },
+    {
+      "t": 932.3,
+      "label": "Price breaks below 20 and 200 SMA",
+      "why": "Moving averages as key support levels"
+    },
+    {
+      "t": 940.4,
+      "label": "Trade into 423 target",
+      "why": "Entry and target level on chart"
+    },
+    {
+      "t": 948.5,
+      "label": "Next setup after drop",
+      "why": "Consolidation leading to expansion pattern"
+    },
+    {
+      "t": 973.4,
+      "label": "Another great setup on Wednesday",
+      "why": "SBS and trade entry during London session"
+    },
+    {
+      "t": 989.5,
+      "label": "Shorting attempt during New York session",
+      "why": "Trade setup timing and price action"
+    },
+    {
+      "t": 1006.4,
+      "label": "Avoid trading if price stays above 20 SMA",
+      "why": "Moving average as trade filter"
+    },
+    {
+      "t": 1014.9,
+      "label": "SBS in the market",
+      "why": "Sweep and continuation pattern"
+    },
+    {
+      "t": 1035.4,
+      "label": "Previous daily close rejection",
+      "why": "Key price action signal for trade direction"
+    },
+    {
+      "t": 1054.0,
+      "label": "Previous monthly levels as trade reference",
+      "why": "Monthly LCM level used for trade setup"
+    },
+    {
+      "t": 1068.1,
+      "label": "Break and retest continuation down",
+      "why": "Price action pattern at monthly level"
+    },
+    {
+      "t": 1083.6,
+      "label": "Three session consolidation",
+      "why": "Consolidation pattern leading to trade"
+    },
+    {
+      "t": 1108.3,
+      "label": "First pullback measured for fib geometry",
+      "why": "Fibonacci measurement on chart"
+    },
+    {
+      "t": 1122.8,
+      "label": "SBS continuation into close",
+      "why": "Price action pattern and entry signal"
+    },
+    {
+      "t": 1132.0,
+      "label": "February LCM rejection",
+      "why": "Break and retest trade from monthly level"
+    },
+    {
+      "t": 1145.8,
+      "label": "Trading based on monthly extreme",
+      "why": "No template trade from LCM level"
+    },
+    {
+      "t": 1178.5,
+      "label": "Previous weekly high as trade reference",
+      "why": "Rejection from weekly high"
+    },
+    {
+      "t": 1209.6,
+      "label": "Short into the close",
+      "why": "Price action and entry at 10:30"
+    },
+    {
+      "t": 1238.4,
+      "label": "Not worth trading every setup",
+      "why": "Trade selection and risk management"
+    },
+    {
+      "t": 1247.3,
+      "label": "Tighter consolidation better setup",
+      "why": "Consolidation quality as trade indicator"
+    },
+    {
+      "t": 1273.4,
+      "label": "First green day setup",
+      "why": "Price dips below previous daily close"
+    },
+    {
+      "t": 1285.3,
+      "label": "Targets at 2618",
+      "why": "Price target level on chart"
+    },
+    {
+      "t": 1340.2,
+      "label": "Break and retest previous daily high",
+      "why": "Entry setup at key price level"
+    },
+    {
+      "t": 1357.7,
+      "label": "Entry at 20 SMA",
+      "why": "Moving average as entry trigger"
+    },
+    {
+      "t": 1378.5,
+      "label": "Consolidation into expansion",
+      "why": "Template pattern on chart"
+    },
+    {
+      "t": 1401.4,
+      "label": "SBS breakout in Asia",
+      "why": "Price action pattern during Asian session"
+    },
+    {
+      "t": 1427.2,
+      "label": "SBS model one on top of range",
+      "why": "Price action pattern at key level"
+    },
+    {
+      "t": 1432.4,
+      "label": "Entry near 20 SMA",
+      "why": "Moving average as entry point"
+    },
+    {
+      "t": 1435.2,
+      "label": "Stop loss below swing point",
+      "why": "Risk management on chart"
+    },
+    {
+      "t": 1455.6,
+      "label": "Break and retest from February LCM",
+      "why": "Price action pattern at monthly level"
+    },
+    {
+      "t": 1476.4,
+      "label": "Market structure flip",
+      "why": "Change in market direction"
+    },
+    {
+      "t": 1492.5,
+      "label": "SBS model one on top of range",
+      "why": "Price action pattern at key level"
+    },
+    {
+      "t": 1500.2,
+      "label": "Wait after 9:30 open for entry",
+      "why": "Entry timing and price action"
+    },
+    {
+      "t": 1524.4,
+      "label": "Exit at 20 SMA",
+      "why": "Moving average as profit-taking level"
+    },
+    {
+      "t": 1570.7,
+      "label": "Use 20 and 200 SMA as guide",
+      "why": "Moving averages for trade filtering"
+    },
+    {
+      "t": 1594.7,
+      "label": "Trade only above or below both SMAs",
+      "why": "Entry condition based on moving averages"
+    }
+  ]
+}

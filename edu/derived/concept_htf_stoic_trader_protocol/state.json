@@ -1,0 +1,41 @@
+{
+  "source": "videos/HTF Stoic Trader Protocol - Stoic Trader Concepts · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1784873269.112235,
+      "pid": 38626,
+      "heartbeat": 1784873268.5456262,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1784873273.014573,
+      "pid": 38626,
+      "heartbeat": 1784873269.113516,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1784873379.73336,
+      "pid": 38626,
+      "heartbeat": 1784873378.0906801,
+      "attempts": 1
+    },
+    "moments": {
+      "status": "done",
+      "ts": 1784873651.9496949,
+      "pid": 38626,
+      "heartbeat": 1784873649.885222,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1784873715.0381598,
+      "pid": 38626,
+      "heartbeat": 1784873711.997513,
+      "attempts": 1
+    }
+  },
+  "signature": "129786366-1784847705"
+}

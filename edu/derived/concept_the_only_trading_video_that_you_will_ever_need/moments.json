@@ -1,0 +1,653 @@
+{
+  "source": "start_here/The-Only-Trading-Video-That-You-Will-Ever_Need_1080p.mp4",
+  "model": "qwen3-vl-30b-a3b-instruct-mlx",
+  "windows": 6,
+  "count": 129,
+  "moments": [
+    {
+      "t": 286.7,
+      "label": "Core Stoic Trader Concepts Overview",
+      "why": "Instructor lists key concepts like no edge zone, H-com and L-com, monthly extremes, trap trader logic, asymmetrical risk to reward, daily levels, simplified market structure, break and retest, swing failure pattern, SBS, 20/200 moving averages, FIB geometry, risk management, invalidation, and review. These are all chart-based concepts that would be visible on a screen."
+    },
+    {
+      "t": 307.4,
+      "label": "Daily Levels and Market Structure",
+      "why": "Instructor discusses previous day high, low, close, and simplified market structure around those levels—key chart elements that would be visible in a screenshot."
+    },
+    {
+      "t": 314.2,
+      "label": "Break and Retest / Swing Failure Pattern",
+      "why": "Instructor introduces two setups: break and retest, swing failure pattern—both are chart patterns that would be visible on a screen."
+    },
+    {
+      "t": 323.0,
+      "label": "Swing Breakout Sequence (SBS) Entry Model",
+      "why": "Instructor describes SBS as an entry model, which is a specific chart-based trading setup."
+    },
+    {
+      "t": 344.0,
+      "label": "Defining Trade Territory and Conditions",
+      "why": "Instructor emphasizes defining territory, conditions, invalidation, risk management, and review—key elements of a trading system that would be shown on charts."
+    },
+    {
+      "t": 376.9,
+      "label": "Community Execution Process",
+      "why": "Instructor describes how the community helps build a consistent execution process, including studying watch lists and full execution logic—implying visual chart examples."
+    },
+    {
+      "t": 451.8,
+      "label": "Trading Triggers and Emotional Reactions",
+      "why": "Instructor describes how a level breaks, a week forms, and someone posts online—indicating chart movements that would be visible."
+    },
+    {
+      "t": 475.0,
+      "label": "Explaining Liquidity and Sweeps",
+      "why": "Instructor mentions explaining liquidity, sweeps—concepts that are visually represented on charts."
+    },
+    {
+      "t": 476.5,
+      "label": "Retest and Moving Averages",
+      "why": "Instructor discusses retests, moving averages—key chart elements that would be visible in a screenshot."
+    },
+    {
+      "t": 481.4,
+      "label": "FIB Geometry and Retracements",
+      "why": "Instructor mentions FIB retracements and geometry—technical analysis tools shown on charts."
+    },
+    {
+      "t": 670.3,
+      "label": "Patience Over Entertainment",
+      "why": "Instructor discusses the stoic way of trading, emphasizing patience and cash as a position—implying chart-based decisions where no trade is valid unless it deserves risk."
+    },
+    {
+      "t": 873.3,
+      "label": "Anti-Chaos Trading Lens",
+      "why": "Instructor describes the lens that reduces noise and focuses on context, invalidation, asymmetrical risk—key visual elements in chart analysis."
+    },
+    {
+      "t": 880.7,
+      "label": "Filtering What Matters",
+      "why": "Instructor discusses what matters vs. doesn't matter, context, invalidation, risk to reward—concepts that are visually represented on charts."
+    },
+    {
+      "t": 896.1,
+      "label": "Seduction by Movement",
+      "why": "Instructor warns against being seduced by movement, implying chart patterns and price action that would be visible in screenshots."
+    },
+    {
+      "t": 1680.0,
+      "label": "Defining HCOM and LCOM levels",
+      "why": "Instructor explains and defines HCOM (Highest Daily Close of the Month) and LCOM (Lowest Daily Close of the Month) as key levels on the chart, which are visually marked and central to their trading system."
+    },
+    {
+      "t": 1847.1,
+      "label": "H-Com and L-Com levels on higher timeframe",
+      "why": "Instructor explains H-Com and L-Com as key levels on the higher timeframe that show where the market is stretched, visible on chart"
+    },
+    {
+      "t": 1908.4,
+      "label": "H-Com and L-Com framing market bias",
+      "why": "Instructor emphasizes how H-Com and L-Com frame the higher timeframe map to determine overall market bias"
+    },
+    {
+      "t": 2128.5,
+      "label": "PDH, PDL, PDC levels on daily chart",
+      "why": "Instructor introduces Previous Day High (PDH), Low (PDL), and Close (PDC) as key levels on the daily chart"
+    },
+    {
+      "t": 2195.4,
+      "label": "Monthly extremes and previous day levels combined",
+      "why": "Instructor combines monthly extremes with PDH/PDL/PDC to form a higher timeframe map"
+    },
+    {
+      "t": 2261.2,
+      "label": "Market structure: consolidation and expansion cycle",
+      "why": "Instructor describes the basic market structure loop of consolidation and expansion, visible on chart"
+    },
+    {
+      "t": 2461.6,
+      "label": "Break and retest setup",
+      "why": "Instructor introduces the break and retest as one of two core trading setups, visible on chart"
+    },
+    {
+      "t": 2517.8,
+      "label": "Swing failure pattern (sweep and retest)",
+      "why": "Instructor explains the swing failure pattern as a key setup, visible on chart"
+    },
+    {
+      "t": 2596.0,
+      "label": "Consolidation phase leading to break and retest or swing failure",
+      "why": "Instructor discusses how consolidation sets up the two main trading setups, visible on chart"
+    },
+    {
+      "t": 2679.1,
+      "label": "20 and 200 SMA on 5-minute chart",
+      "why": "Instructor introduces the use of 20 and 200 SMA on the 5-minute chart for session bias"
+    },
+    {
+      "t": 2707.3,
+      "label": "Moving Averages Context",
+      "why": "Instructor discusses price interaction with 20 and 200 SMA, indicating consolidation or expansion around the moving averages."
+    },
+    {
+      "t": 2751.9,
+      "label": "Context Over Touch",
+      "why": "Instructor emphasizes that the broader market context matters more than just price touching the 20 SMA."
+    },
+    {
+      "t": 2815.8,
+      "label": "Swing Breakout Sequence Intro",
+      "why": "Instructor introduces the Swing Breakout Sequence (SBS) as a key pattern, setting up for visual explanation."
+    },
+    {
+      "t": 2855.0,
+      "label": "SBS Model One Break and Retest",
+      "why": "Instructor describes SBS model one, involving a breakout followed by retest of resistance-turned-support."
+    },
+    {
+      "t": 2894.2,
+      "label": "Double Bottom Formation",
+      "why": "Instructor explains the formation of a double bottom after breakout and retest, indicating potential entry."
+    },
+    {
+      "t": 2954.8,
+      "label": "SBS Model Two Deep Retracement",
+      "why": "Instructor introduces SBS model two, involving a deeper retracement into the move origin or order block."
+    },
+    {
+      "t": 2980.6,
+      "label": "SBS Model Two Retracement",
+      "why": "Instructor describes the deeper retracement into move origin, highlighting SBS model two's structure."
+    },
+    {
+      "t": 3049.4,
+      "label": "Full SBS Sequence",
+      "why": "Instructor presents the full schematic of SBS, including both models and their sequence."
+    },
+    {
+      "t": 3164.2,
+      "label": "Fibonacci Targets",
+      "why": "Instructor shows Fibonacci extension targets (2618, 423, 686) for measuring trade objectives."
+    },
+    {
+      "t": 3173.7,
+      "label": "Fib Geometry Schematic",
+      "why": "Instructor refers to a schematic showing Fib geometry application, likely visible on screen."
+    },
+    {
+      "t": 3184.9,
+      "label": "Chart Setup Introduction",
+      "why": "Instructor prepares to show a daily and 5-minute chart side-by-side for analysis."
+    },
+    {
+      "t": 3207.4,
+      "label": "Break and Retest on Higher Timeframe",
+      "why": "Instructor points out a break and retest pattern on the daily chart of Russell RTY."
+    },
+    {
+      "t": 3223.9,
+      "label": "Resistance as Support",
+      "why": "Instructor identifies the January high as resistance that now serves as support after retest."
+    },
+    {
+      "t": 3248.5,
+      "label": "Sweep and Retest Pattern",
+      "why": "Instructor highlights a sweep with test pattern, identifying it as a swing failure."
+    },
+    {
+      "t": 3273.5,
+      "label": "Moving Average Alignment Check",
+      "why": "Instructor checks if price is above 20 and 200 SMA before entering, indicating alignment with bias."
+    },
+    {
+      "t": 3281.6,
+      "label": "Stop Loss Placement",
+      "why": "Instructor places stop loss behind structure, showing logical risk management on chart."
+    },
+    {
+      "t": 3297.6,
+      "label": "Structure Confirmation",
+      "why": "Instructor confirms structure with upward trend lines and price behavior."
+    },
+    {
+      "t": 3304.6,
+      "label": "Entry During London Session",
+      "why": "Instructor marks entry point during the London session when price closes above 20 SMA."
+    },
+    {
+      "t": 3326.8,
+      "label": "Breakout and Retest on New York Open",
+      "why": "Instructor identifies a breakout and retest pattern at 9:30 market open in New York session."
+    },
+    {
+      "t": 3342.1,
+      "label": "Fibonacci Retracement Levels",
+      "why": "Instructor measures Fibonacci retracement (50%, 61.8%) from low to high for pullback analysis."
+    },
+    {
+      "t": 3357.4,
+      "label": "Trade Execution After Retracement",
+      "why": "Instructor shows trade taken after Fibonacci retracement, with precise timing."
+    },
+    {
+      "t": 3371.5,
+      "label": "Break and Retest Confirmation",
+      "why": "Instructor confirms the break and retest setup on both higher and lower timeframes."
+    },
+    {
+      "t": 3394.8,
+      "label": "Swing Failure Pattern",
+      "why": "Instructor identifies a swing failure pattern during London session opening."
+    },
+    {
+      "t": 3407.4,
+      "label": "Moving Average Bias",
+      "why": "Instructor emphasizes following moving averages during consolidation, especially before New York open."
+    },
+    {
+      "t": 3420.3,
+      "label": "Consolidation Leading to Expansion",
+      "why": "Instructor points out consolidation phase leading into New York open, preparing for expansion."
+    },
+    {
+      "t": 3439.3,
+      "label": "Swing Failure Setup",
+      "why": "Instructor identifies swing failure pattern setup after London session opens."
+    },
+    {
+      "t": 3444.8,
+      "label": "Break and Retest Setup",
+      "why": "Instructor identifies break and retest setup after New York opens."
+    },
+    {
+      "t": 3450.6,
+      "label": "Gold Chart Setup",
+      "why": "Instructor transitions to a gold chart example, showing a generational run-up."
+    },
+    {
+      "t": 3460.4,
+      "label": "First Red Day as Signal",
+      "why": "Instructor highlights the first red day after run-up, indicating trap traders being liquidated."
+    },
+    {
+      "t": 3470.7,
+      "label": "Trap Traders Liquidated",
+      "why": "Instructor identifies trap traders who bought after first red day, now at risk."
+    },
+    {
+      "t": 3489.4,
+      "label": "Break and Retest on London Session",
+      "why": "Instructor shows break and retest pattern during London session with pullback."
+    },
+    {
+      "t": 3495.3,
+      "label": "Sweep of Number Two",
+      "why": "Instructor identifies a sweep into the number two level, part of SBS model two."
+    },
+    {
+      "t": 3501.7,
+      "label": "Manipulation During 9:30 Open",
+      "why": "Instructor points out price manipulation during New York open, setting up trade."
+    },
+    {
+      "t": 3505.3,
+      "label": "Short Bias from Moving Averages",
+      "why": "Instructor states short bias due to price below 200 SMA, visible on chart."
+    },
+    {
+      "t": 3517.1,
+      "label": "Fib Extension Targets",
+      "why": "Instructor identifies higher time frame Fib extensions as target levels for short trade."
+    },
+    {
+      "t": 3527.9,
+      "label": "Fib Geometry Extension",
+      "why": "Instructor refers to final Fib geometry extension target, likely visible on chart."
+    },
+    {
+      "t": 3534.8,
+      "label": "First Pullback Measurement",
+      "why": "Instructor measures first pullback to project Fibonacci levels for trade entry."
+    },
+    {
+      "t": 3543.4,
+      "label": "Precision at Fib Levels",
+      "why": "Instructor highlights price reaction at measured Fibonacci levels, showing precision."
+    },
+    {
+      "t": 3550.3,
+      "label": "Rejection from Highest Close",
+      "why": "Instructor identifies rejection from highest close of the month, a key structural level."
+    },
+    {
+      "t": 3565.4,
+      "label": "Short Bias Confirmation",
+      "why": "Instructor reinforces short bias based on moving averages and structure, not opposing price."
+    },
+    {
+      "t": 3573.5,
+      "label": "Moving Average Confirmation",
+      "why": "Instructor explains that moving averages give session bias immediately, visible on chart."
+    },
+    {
+      "t": 3580.3,
+      "label": "Break Below Previous Daily Close",
+      "why": "Instructor identifies break below previous daily close (PDC), triggering higher time frame levels."
+    },
+    {
+      "t": 3587.4,
+      "label": "Break and Retest Setup",
+      "why": "Instructor identifies break and retest of PDC as a setup on the chart."
+    },
+    {
+      "t": 3594.1,
+      "label": "Swing Failure Pattern on Higher Timeframe",
+      "why": "Instructor identifies swing failure pattern as the higher time frame structure."
+    },
+    {
+      "t": 3617.1,
+      "label": "Swing failure pattern",
+      "why": "Instructor points to a swing failure pattern on the chart during late London session."
+    },
+    {
+      "t": 3689.6,
+      "label": "Lowest close of the month",
+      "why": "Instructor highlights February's lowest close of the month on the chart."
+    },
+    {
+      "t": 3704.2,
+      "label": "Break and retest",
+      "why": "Instructor shows a break and retest pattern after the Asian session opens."
+    },
+    {
+      "t": 3713.4,
+      "label": "Resistance becomes support",
+      "why": "Instructor points to the reversal where resistance turns into support."
+    },
+    {
+      "t": 3723.5,
+      "label": "Market structure reversal",
+      "why": "Instructor identifies a market structure reversal at 3 a.m. London session."
+    },
+    {
+      "t": 3732.4,
+      "label": "Swing failure pattern",
+      "why": "Instructor refers to another swing failure pattern on the chart."
+    },
+    {
+      "t": 3749.3,
+      "label": "Fibonacci retracement and extension",
+      "why": "Instructor discusses the 618 and 100 Fibonacci levels based on first pullback."
+    },
+    {
+      "t": 3758.7,
+      "label": "Fib geometry",
+      "why": "Instructor explains measuring the first pullback for fib geometry."
+    },
+    {
+      "t": 3767.2,
+      "label": "Entry and target",
+      "why": "Instructor shows entry long with a clear target after the 100 extension."
+    },
+    {
+      "t": 3781.9,
+      "label": "Previous daily low and close",
+      "why": "Instructor points to previous daily low and close levels on the chart."
+    },
+    {
+      "t": 3803.1,
+      "label": "Highest close of the month",
+      "why": "Instructor highlights Bitcoin's highest close of the month."
+    },
+    {
+      "t": 3817.5,
+      "label": "Rejection from HECOM",
+      "why": "Instructor shows price rejecting from the HECOM level."
+    },
+    {
+      "t": 3825.0,
+      "label": "Swing failure pattern",
+      "why": "Instructor identifies a swing failure pattern during 4 a.m. London session."
+    },
+    {
+      "t": 3840.0,
+      "label": "Consolidation leads to expansion",
+      "why": "Instructor explains the concept of consolidation leading to expansion."
+    },
+    {
+      "t": 3862.5,
+      "label": "Break and retest",
+      "why": "Instructor shows a break and retest of support that turned resistance."
+    },
+    {
+      "t": 3917.7,
+      "label": "Lowest close of the month",
+      "why": "Instructor points to the lowest close of the month on the chart."
+    },
+    {
+      "t": 3924.2,
+      "label": "Swing failure pattern",
+      "why": "Instructor highlights a swing failure pattern on the five-minute chart."
+    },
+    {
+      "t": 3931.5,
+      "label": "Break and retest",
+      "why": "Instructor shows a break and retest during 9:30 open on the five-minute chart."
+    },
+    {
+      "t": 3947.8,
+      "label": "Consolidation leads to expansion",
+      "why": "Instructor points to consolidation leading to expansion on the Nasdaq chart."
+    },
+    {
+      "t": 3956.6,
+      "label": "Fibonacci retracement and projection",
+      "why": "Instructor measures the first pullback for fib retracement and projections."
+    },
+    {
+      "t": 3965.3,
+      "label": "Fibonacci targets",
+      "why": "Instructor shows the 2618 and 423 as target levels."
+    },
+    {
+      "t": 4009.5,
+      "label": "Swing failure pattern",
+      "why": "Instructor identifies a swing failure pattern after three lower closes."
+    },
+    {
+      "t": 4019.1,
+      "label": "Break and retest",
+      "why": "Instructor shows a break and retest of support that turned resistance."
+    },
+    {
+      "t": 4037.7,
+      "label": "Stop loss placement",
+      "why": "Instructor shows stop loss below structure on the Nasdaq chart."
+    },
+    {
+      "t": 4053.6,
+      "label": "Fibonacci geometry",
+      "why": "Instructor measures the first pullback for fib geometry."
+    },
+    {
+      "t": 4068.7,
+      "label": "Precision setup",
+      "why": "Instructor highlights a precise trade with clear targets."
+    },
+    {
+      "t": 4076.7,
+      "label": "Rejection from HECOM",
+      "why": "Instructor shows price bouncing and rejecting from the February HECOM."
+    },
+    {
+      "t": 4089.8,
+      "label": "HCOM and LCOM levels",
+      "why": "Instructor points to HECOM and LECOM on the chart for trade setup."
+    },
+    {
+      "t": 4098.1,
+      "label": "SBS sweep",
+      "why": "Instructor shows a SBS sweep at 3 a.m. on the Nasdaq chart."
+    },
+    {
+      "t": 4129.1,
+      "label": "Rejection from HECOM",
+      "why": "Instructor highlights a rejection from the February HECOM."
+    },
+    {
+      "t": 4152.0,
+      "label": "PDC and PDL levels",
+      "why": "Instructor points to previous daily close and low on the chart."
+    },
+    {
+      "t": 4168.8,
+      "label": "Rejection from LCOM",
+      "why": "Instructor shows a rejection from the February LCOM."
+    },
+    {
+      "t": 4183.8,
+      "label": "Entry and stop loss",
+      "why": "Instructor shows entry short with a stop loss below 20 SMA."
+    },
+    {
+      "t": 4198.0,
+      "label": "Setup logic",
+      "why": "Instructor explains the consistent logic behind different setups."
+    },
+    {
+      "t": 4231.0,
+      "label": "Moving average context",
+      "why": "Instructor discusses the broader context of moving averages."
+    },
+    {
+      "t": 4259.3,
+      "label": "Moving average alignment",
+      "why": "Instructor explains how moving averages help clarity in context."
+    },
+    {
+      "t": 4266.3,
+      "label": "FIPS tool explanation",
+      "why": "Instructor discusses FIPS as a measurement tool for pullbacks and targets."
+    },
+    {
+      "t": 4293.8,
+      "label": "Tool within a system",
+      "why": "Instructor emphasizes tools used inside a larger trading lens."
+    },
+    {
+      "t": 4309.6,
+      "label": "Concepts list",
+      "why": "Instructor lists all the concepts used in the Stoic Edge system."
+    },
+    {
+      "t": 4367.3,
+      "label": "Strategy vs System vs Protocol",
+      "why": "Instructor distinguishes between strategy, system, and protocol."
+    },
+    {
+      "t": 4381.6,
+      "label": "Strategy examples",
+      "why": "Instructor lists visible tools like break and retest, swing failure pattern."
+    },
+    {
+      "t": 4412.5,
+      "label": "System definition",
+      "why": "Instructor defines the system as the operating environment around strategy."
+    },
+    {
+      "t": 4449.1,
+      "label": "Protocol loop",
+      "why": "Instructor explains the Stoic Trader protocol as a repeatable process."
+    },
+    {
+      "t": 4456.6,
+      "label": "Generate trade ideas",
+      "why": "Instructor describes the first step of generating trade ideas."
+    },
+    {
+      "t": 4472.0,
+      "label": "Trade idea context",
+      "why": "Instructor explains evaluating market and setup context before trading."
+    },
+    {
+      "t": 4487.7,
+      "label": "Commit to trade idea",
+      "why": "Instructor discusses defining the plan before emotions enter."
+    },
+    {
+      "t": 4504.6,
+      "label": "Execute trade",
+      "why": "Instructor emphasizes following the plan after entering a trade."
+    },
+    {
+      "t": 4703.6,
+      "label": "Define Market",
+      "why": "Instructor discusses defining the market (stocks, crypto, futures, etc.) as step one in building a trading system."
+    },
+    {
+      "t": 4726.1,
+      "label": "Define Time Frame",
+      "why": "Instructor explains defining the time frame (scalp, day trade, swing trade) as step two."
+    },
+    {
+      "t": 4751.0,
+      "label": "Define Territory",
+      "why": "Instructor outlines defining the territory (H-com, L-com, previous day levels) as step three."
+    },
+    {
+      "t": 4771.6,
+      "label": "Define Setup",
+      "why": "Instructor introduces defining the setup as step four, mentioning break and retest or swing failure pattern."
+    },
+    {
+      "t": 4781.6,
+      "label": "Define Entry",
+      "why": "Instructor discusses defining the entry method using SBS (Swing Break Sequence) as part of step four."
+    },
+    {
+      "t": 4796.6,
+      "label": "Define Invalidation",
+      "why": "Instructor explains defining invalidation as step five, where the idea is considered wrong."
+    },
+    {
+      "t": 4804.1,
+      "label": "Define Risk",
+      "why": "Instructor discusses defining risk as step six—how much to lose if the idea is wrong."
+    },
+    {
+      "t": 4825.3,
+      "label": "Define Trade Management",
+      "why": "Instructor outlines defining trade management as step seven, including partials and stop movement."
+    },
+    {
+      "t": 4838.4,
+      "label": "Define Review Questions",
+      "why": "Instructor describes defining review questions as step eight, including what screenshots to take and process mistakes."
+    },
+    {
+      "t": 4901.4,
+      "label": "List of Concepts",
+      "why": "Instructor lists various trading concepts (H-com, L-com, PDH, PDL, etc.) that are likely visible on the chart."
+    },
+    {
+      "t": 4911.0,
+      "label": "Stoic Trader Protocol",
+      "why": "Instructor mentions the Stoic Trader Protocol, which may be referenced on screen as a process framework."
+    },
+    {
+      "t": 5013.2,
+      "label": "20 and 200 SMA",
+      "why": "Instructor refers to adding 20 and 200 SMA on the chart, which is likely visible."
+    },
+    {
+      "t": 5029.5,
+      "label": "Fibonacci Geometry",
+      "why": "Instructor discusses using Fibonacci retracements and extensions as risk and target tools, likely shown on chart."
+    },
+    {
+      "t": 5061.5,
+      "label": "Implementation Matters",
+      "why": "Instructor emphasizes implementation over concept names, possibly referencing a chart example of real trading behavior."
+    }
+  ]
+}

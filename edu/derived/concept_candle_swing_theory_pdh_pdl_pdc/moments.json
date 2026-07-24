@@ -1,0 +1,443 @@
+{
+  "source": "videos/Candle Swing Theory PDH PDL PDC - Stoic Trader Concepts · Stoic Traders.mp4",
+  "model": "qwen3-vl-30b-a3b-instruct-mlx",
+  "windows": 2,
+  "count": 87,
+  "moments": [
+    {
+      "t": 225.7,
+      "label": "Identifying POI levels",
+      "why": "Instructor introduces the three key price levels: previous daily high, low, and close as the core POIs for trading."
+    },
+    {
+      "t": 360.1,
+      "label": "Focusing on daily candles",
+      "why": "Instructor specifies that the system will focus only on daily candles for identifying setups."
+    },
+    {
+      "t": 372.1,
+      "label": "Marking three levels on chart",
+      "why": "Instructor explains marking out the previous daily high, low, and close on the chart as foundational elements."
+    },
+    {
+      "t": 387.6,
+      "label": "Two setups: sweep and break retest",
+      "why": "Instructor introduces the two primary trading setups based on previous daily candle: swing failure (sweep) and break and retest."
+    },
+    {
+      "t": 402.8,
+      "label": "Break and retest pattern example",
+      "why": "Instructor points to a specific chart example showing break and retest off the previous daily high."
+    },
+    {
+      "t": 424.7,
+      "label": "Continuation and reversal setups",
+      "why": "Instructor explains that both continuation (break and retest) and reversal (swing failure) patterns are valid setups."
+    },
+    {
+      "t": 471.3,
+      "label": "Anchor bar concept",
+      "why": "Instructor defines the previous daily candle as the 'anchor bar' for all trading decisions."
+    },
+    {
+      "t": 482.8,
+      "label": "Inside bars as noise",
+      "why": "Instructor identifies inside candles as consolidation and advises treating them as market noise."
+    },
+    {
+      "t": 520.1,
+      "label": "Illustrating swing failure pattern",
+      "why": "Instructor shows a schematic of the swing failure pattern, highlighting price sweeping and reversing."
+    },
+    {
+      "t": 536.0,
+      "label": "Break and retest example",
+      "why": "Instructor points to a chart showing break and retest of previous daily low with price moving higher."
+    },
+    {
+      "t": 549.7,
+      "label": "Trading the candle as it happens",
+      "why": "Instructor emphasizes entering trades immediately after price breaks and retests, without waiting for candle close."
+    },
+    {
+      "t": 577.7,
+      "label": "Introducing environment concept",
+      "why": "Instructor introduces the idea of market environment using a three-day cycle to determine context."
+    },
+    {
+      "t": 629.0,
+      "label": "Three-day cycle explanation",
+      "why": "Instructor explains the market's tendency to push three times (three green or red days) before reversal."
+    },
+    {
+      "t": 670.5,
+      "label": "Monday as expansion day",
+      "why": "Instructor describes Monday as typically a trend-expanding day, contrary to common belief."
+    },
+    {
+      "t": 673.2,
+      "label": "Tuesday as continuation day",
+      "why": "Instructor explains Tuesday is usually a trend continuation day."
+    },
+    {
+      "t": 680.9,
+      "label": "Wednesday as reversal or continuation day",
+      "why": "Instructor identifies Wednesday as a potential reversal point after three days of trend."
+    },
+    {
+      "t": 701.6,
+      "label": "Friday as big movement day",
+      "why": "Instructor notes Friday often has significant price movements, either reversal or continuation."
+    },
+    {
+      "t": 730.4,
+      "label": "Three green days leading to short bias",
+      "why": "Instructor explains that after three consecutive green days, the market is likely exhausted and bias shifts to short."
+    },
+    {
+      "t": 742.8,
+      "label": "Shorting back to 200 SMA",
+      "why": "Instructor describes the strategy of shorting back to the 200 SMA after three green days."
+    },
+    {
+      "t": 760.2,
+      "label": "Inside day as indecision",
+      "why": "Instructor identifies inside days as periods of market indecision."
+    },
+    {
+      "t": 785.6,
+      "label": "First reversal day after three green/red days",
+      "why": "Instructor explains that the first day following three green or red days signals a trend shift."
+    },
+    {
+      "t": 813.9,
+      "label": "Trading the environment",
+      "why": "Instructor emphasizes trading based on current market structure, not desired outcome."
+    },
+    {
+      "t": 839.0,
+      "label": "Three-day trend profile",
+      "why": "Instructor shows a schematic of the three-day cycle with bullish days and potential reversal."
+    },
+    {
+      "t": 865.9,
+      "label": "Continuation trade setup",
+      "why": "Instructor points to a chart showing continuation of trend on second day."
+    },
+    {
+      "t": 870.0,
+      "label": "Breakout and sweep on third day",
+      "why": "Instructor shows a chart where price breaks out, sweeps the second day's range."
+    },
+    {
+      "t": 890.9,
+      "label": "Previous weekly high/low as confirmation",
+      "why": "Instructor explains that sweeping previous weekly highs or lows adds confirmation to a trade setup."
+    },
+    {
+      "t": 903.7,
+      "label": "High time frame trend confluence",
+      "why": "Instructor discusses high time frame trend favoring bearish continuation, visible on chart as a downward trend line or structure."
+    },
+    {
+      "t": 923.3,
+      "label": "Pump and dump manipulation pattern",
+      "why": "Instructor describes a fake-out reversal after London push into New York, visible as price spike and reversal on chart."
+    },
+    {
+      "t": 938.5,
+      "label": "Structural break pattern",
+      "why": "Instructor illustrates a simple structural break with price breaking lower after a bounce, visible as a breakdown below key level."
+    },
+    {
+      "t": 945.9,
+      "label": "Consolidation and sweep continuation",
+      "why": "Instructor describes consolidation followed by a sweep lower, visible as price hovering above high then breaking down."
+    },
+    {
+      "t": 954.8,
+      "label": "New York open sweep lower",
+      "why": "Instructor explains price sweeping down during New York session, visible as sharp downward move on chart."
+    },
+    {
+      "t": 974.5,
+      "label": "First red day expectation",
+      "why": "Instructor identifies the first red day as a key signal for short entries, visible on chart as potential reversal after bullish move."
+    },
+    {
+      "t": 982.0,
+      "label": "First red day example",
+      "why": "Instructor points to a potential first red day on chart, indicating short bias."
+    },
+    {
+      "t": 996.5,
+      "label": "Day one to day three trend continuation",
+      "why": "Instructor explains the pattern of daily price action from day one to three, visible as continuation on chart."
+    },
+    {
+      "t": 1005.2,
+      "label": "Break and retest at New York open",
+      "why": "Instructor identifies break and retest setup around New York AM session, visible as price breaking level then returning."
+    },
+    {
+      "t": 1012.7,
+      "label": "Break and retest on second day",
+      "why": "Instructor points to a break and retest pattern on the second day, visible as price breaking level then retracing."
+    },
+    {
+      "t": 1028.7,
+      "label": "Daily close level",
+      "why": "Instructor introduces daily close as a key price level, visible on chart as horizontal line."
+    },
+    {
+      "t": 1032.2,
+      "label": "Daily close alignment with previous high",
+      "why": "Instructor shows daily close aligning with prior day's high, visible as price closing near previous high."
+    },
+    {
+      "t": 1042.4,
+      "label": "Break and retest on daily close",
+      "why": "Instructor identifies break and retest at the daily close level, visible as price breaking then returning to that level."
+    },
+    {
+      "t": 1055.0,
+      "label": "Sweep of previous weekly low",
+      "why": "Instructor notes sweep of prior weekly low as bullish confluence, visible on chart as price breaking below previous low."
+    },
+    {
+      "t": 1063.6,
+      "label": "Trend line bounce",
+      "why": "Instructor shows trend line with price bouncing off it, visible as price touching and reversing from a diagonal support."
+    },
+    {
+      "t": 1076.2,
+      "label": "Early sellers trapped",
+      "why": "Instructor describes psychology of early sellers being trapped, visible as price breaking trend line and continuing lower."
+    },
+    {
+      "t": 1089.3,
+      "label": "Inside day reversal",
+      "why": "Instructor introduces inside day reversal pattern, visible as a small candle within prior day's range."
+    },
+    {
+      "t": 1096.7,
+      "label": "Inside day reversal setup",
+      "why": "Instructor explains trading the third day after inside day, visible as price sweeping high/low on day three."
+    },
+    {
+      "t": 1137.7,
+      "label": "Sweep of inside day high/low",
+      "why": "Instructor identifies sweep of inside day range as key for reversal setup, visible on chart."
+    },
+    {
+      "t": 1154.0,
+      "label": "Swing failure pattern",
+      "why": "Instructor describes swing failure after sweep, visible as price breaking and reversing from inside day range."
+    },
+    {
+      "t": 1173.0,
+      "label": "Sweep direction and high time frame",
+      "why": "Instructor explains trading in direction of sweep, visible as price breaking and continuing in one direction."
+    },
+    {
+      "t": 1193.5,
+      "label": "Energy building in inside day",
+      "why": "Instructor describes indecision and energy buildup during inside day, visible as price consolidating."
+    },
+    {
+      "t": 1206.9,
+      "label": "First red day as resistance",
+      "why": "Instructor explains first red day turning into resistance, visible as price failing to break above prior close."
+    },
+    {
+      "t": 1222.6,
+      "label": "Day one level as resistance",
+      "why": "Instructor identifies day one close as key resistance, visible on chart as horizontal level."
+    },
+    {
+      "t": 1239.5,
+      "label": "Fib geometry setup",
+      "why": "Instructor mentions fib geometry at key level, visible as Fibonacci retracement lines on chart."
+    },
+    {
+      "t": 1245.4,
+      "label": "Break and retest continuation lower",
+      "why": "Instructor describes break and retest setup continuing lower, visible as price breaking level then returning."
+    },
+    {
+      "t": 1258.8,
+      "label": "Higher time frame levels",
+      "why": "Instructor emphasizes importance of weekly and monthly levels, visible as horizontal lines on chart."
+    },
+    {
+      "t": 1271.6,
+      "label": "Sweep on day one or three",
+      "why": "Instructor notes sweeps often occur on day one or three, visible as price breaking key level."
+    },
+    {
+      "t": 1285.0,
+      "label": "First red day continuation shorts",
+      "why": "Instructor identifies first red day as signal for short entries, visible on chart as price breaking down."
+    },
+    {
+      "t": 1307.9,
+      "label": "Daily checklist levels",
+      "why": "Instructor lists daily high/low/close as key levels, visible on chart as horizontal lines."
+    },
+    {
+      "t": 1325.3,
+      "label": "Daily level interaction",
+      "why": "Instructor emphasizes interacting with daily levels, visible as price approaching key horizontal lines."
+    },
+    {
+      "t": 1342.5,
+      "label": "Three-day cycle bias",
+      "why": "Instructor explains how three-day pattern supports bias, visible as price action over multiple days."
+    },
+    {
+      "t": 1350.2,
+      "label": "Trading only at levels",
+      "why": "Instructor states trading only when price reaches key levels, visible as price approaching daily high/low."
+    },
+    {
+      "t": 1367.8,
+      "label": "Fib geometry example",
+      "why": "Instructor references fib geometry as part of setup, visible as Fibonacci retracement lines on chart."
+    },
+    {
+      "t": 1389.0,
+      "label": "Trading view template setup",
+      "why": "Instructor begins showing how to set up indicators on TradingView, visible as chart with levels."
+    },
+    {
+      "t": 1422.9,
+      "label": "Previous week on Nasdaq hourly chart",
+      "why": "Instructor shows hourly chart with previous weekly levels, visible as orange dotted lines."
+    },
+    {
+      "t": 1431.0,
+      "label": "Daily high and low on hourly chart",
+      "why": "Instructor points to daily high/low levels on hourly chart, visible as horizontal lines."
+    },
+    {
+      "t": 1448.9,
+      "label": "Break and retest of Friday low",
+      "why": "Instructor identifies break and retest at previous daily low, visible as price breaking then returning."
+    },
+    {
+      "t": 1474.2,
+      "label": "Tuesday inside day",
+      "why": "Instructor shows inside day on Tuesday with no action, visible as small candle within prior range."
+    },
+    {
+      "t": 1482.7,
+      "label": "Monday close level",
+      "why": "Instructor points to Monday's closing price as key level, visible on chart."
+    },
+    {
+      "t": 1502.6,
+      "label": "Previous daily high/low/close indicator",
+      "why": "Instructor shows indicator plotting previous day's key levels, visible as horizontal lines."
+    },
+    {
+      "t": 1524.7,
+      "label": "Wednesday break and retest",
+      "why": "Instructor identifies break and retest on Wednesday, visible as price breaking level then returning."
+    },
+    {
+      "t": 1531.5,
+      "label": "Previous daily low and close interaction",
+      "why": "Instructor points to price interacting with prior day's high/low/close, visible as horizontal levels."
+    },
+    {
+      "t": 1540.2,
+      "label": "Price sweeping at 9:30 open",
+      "why": "Instructor describes price sweep at New York open, visible as sharp move on chart."
+    },
+    {
+      "t": 1550.3,
+      "label": "Retest of candle on hourly chart",
+      "why": "Instructor identifies retest of prior candle, visible as price returning to previous high/low."
+    },
+    {
+      "t": 1562.2,
+      "label": "Three candle cycle reversal",
+      "why": "Instructor shows three-candle pattern leading to reversal, visible as price action over three candles."
+    },
+    {
+      "t": 1570.4,
+      "label": "Four candle cycle",
+      "why": "Instructor contrasts three-candle success with four-candle failure, visible as price action over multiple candles."
+    },
+    {
+      "t": 1584.1,
+      "label": "Higher time frame success rate",
+      "why": "Instructor explains higher time frames increase pattern reliability, visible as larger candles or longer trends."
+    },
+    {
+      "t": 1602.7,
+      "label": "Friday big day reversal/continuation",
+      "why": "Instructor identifies Friday as key day for moves, visible on chart with large price action."
+    },
+    {
+      "t": 1639.6,
+      "label": "Swing failure pattern",
+      "why": "Instructor shows swing failure after sweep, visible as price breaking and reversing."
+    },
+    {
+      "t": 1650.1,
+      "label": "Consolidation and explosive move lower",
+      "why": "Instructor describes consolidation followed by sharp downward move, visible as price range then breakout."
+    },
+    {
+      "t": 1674.8,
+      "label": "Bearish trend continuation",
+      "why": "Instructor explains bearish trend continuing despite breakout attempts, visible as lower highs and lows."
+    },
+    {
+      "t": 1684.4,
+      "label": "Weekly planning and level marking",
+      "why": "Instructor begins marking previous week levels, visible as horizontal lines on chart."
+    },
+    {
+      "t": 1692.0,
+      "label": "Marking previous daily high/low/close",
+      "why": "Instructor marks key levels on chart, visible as horizontal lines."
+    },
+    {
+      "t": 1709.1,
+      "label": "Weekly analysis with previous weekly high/low",
+      "why": "Instructor marks weekly levels, visible as horizontal lines on chart."
+    },
+    {
+      "t": 1725.8,
+      "label": "Weekly range marking",
+      "why": "Instructor marks weekly price range, visible as horizontal lines on chart."
+    },
+    {
+      "t": 1739.1,
+      "label": "Weekly levels as confluence",
+      "why": "Instructor explains weekly levels adding confluence, visible on chart."
+    },
+    {
+      "t": 1746.8,
+      "label": "Inside month on Nasdaq",
+      "why": "Instructor shows inside month pattern, visible as price consolidating within prior monthly range."
+    },
+    {
+      "t": 1754.2,
+      "label": "Sweep and continuation lower",
+      "why": "Instructor describes sweep and continuation from inside month, visible as price breaking out."
+    },
+    {
+      "t": 1767.6,
+      "label": "Daily levels with previous weekly low",
+      "why": "Instructor shows daily chart with weekly level, visible as horizontal line."
+    },
+    {
+      "t": 1784.2,
+      "label": "Three levels for Monday",
+      "why": "Instructor identifies three key levels to watch on Monday, visible as horizontal lines."
+    }
+  ]
+}

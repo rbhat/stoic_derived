@@ -1,0 +1,41 @@
+{
+  "source": "resources/live_trading_sessions/videos/Live Trading Session 4.3R on CL - Stoic Trader Concepts · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1784871595.56778,
+      "pid": 38626,
+      "heartbeat": 1784871595.204967,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1784871597.87358,
+      "pid": 38626,
+      "heartbeat": 1784871595.568198,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1784871684.981917,
+      "pid": 38626,
+      "heartbeat": 1784871672.92215,
+      "attempts": 1
+    },
+    "moments": {
+      "status": "done",
+      "ts": 1784872055.3613582,
+      "pid": 38626,
+      "heartbeat": 1784872045.2194402,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1784872116.758083,
+      "pid": 38626,
+      "heartbeat": 1784872115.405101,
+      "attempts": 1
+    }
+  },
+  "signature": "191535738-1784848639"
+}

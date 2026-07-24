@@ -1,0 +1,41 @@
+{
+  "source": "videos/Candle Swing Theory PDH PDL PDC - Stoic Trader Concepts · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1784872978.4777422,
+      "pid": 38626,
+      "heartbeat": 1784872978.272264,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1784872979.795042,
+      "pid": 38626,
+      "heartbeat": 1784872978.48275,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1784873030.4629261,
+      "pid": 38626,
+      "heartbeat": 1784873024.82778,
+      "attempts": 1
+    },
+    "moments": {
+      "status": "done",
+      "ts": 1784873257.5437188,
+      "pid": 38626,
+      "heartbeat": 1784873255.582901,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1784873268.515876,
+      "pid": 38626,
+      "heartbeat": 1784873257.545737,
+      "attempts": 1
+    }
+  },
+  "signature": "58813655-1784847318"
+}

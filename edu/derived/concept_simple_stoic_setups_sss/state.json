@@ -1,0 +1,41 @@
+{
+  "source": "videos/Simple Stoic Setups SSS - Stoic Trader Concepts · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1784873715.3331041,
+      "pid": 38626,
+      "heartbeat": 1784873715.0778508,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1784873718.349206,
+      "pid": 38626,
+      "heartbeat": 1784873715.333654,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1784873815.6303291,
+      "pid": 38626,
+      "heartbeat": 1784873808.383038,
+      "attempts": 1
+    },
+    "moments": {
+      "status": "done",
+      "ts": 1784874112.728416,
+      "pid": 38626,
+      "heartbeat": 1784874100.8043468,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1784874168.382099,
+      "pid": 38626,
+      "heartbeat": 1784874157.763266,
+      "attempts": 1
+    }
+  },
+  "signature": "116057204-1784847706"
+}

@@ -1,0 +1,503 @@
+{
+  "source": "resources/case_studies/vol2/videos/Nasdaq Range Study - Stoic Trader Concepts · Stoic Traders.mp4",
+  "model": "qwen3-vl-30b-a3b-instruct-mlx",
+  "windows": 3,
+  "count": 99,
+  "moments": [
+    {
+      "t": 182.4,
+      "label": "First red day of February",
+      "why": "The instructor highlights the first red day of February on the chart, marking a key price action event."
+    },
+    {
+      "t": 231.0,
+      "label": "Highest close of February",
+      "why": "The instructor identifies the highest close of February, a critical level for the trading setup."
+    },
+    {
+      "t": 256.5,
+      "label": "618 pullback measurement",
+      "why": "The instructor measures the 618 pullback on the chart, showing a key Fibonacci level."
+    },
+    {
+      "t": 274.7,
+      "label": "Price below 20 and 200 SMA",
+      "why": "The price is shown breaking below the 20 and 200 simple moving averages, a key trigger for entry."
+    },
+    {
+      "t": 317.6,
+      "label": "Fibonacci targets from pullback",
+      "why": "The instructor points to Fibonacci geometry targets derived from the initial pullback."
+    },
+    {
+      "t": 350.0,
+      "label": "First red day setup",
+      "why": "The instructor highlights the first red day as a new setup opportunity."
+    },
+    {
+      "t": 377.8,
+      "label": "SBS pattern at previous daily close",
+      "why": "The instructor identifies a small SBS (swing breakdown setup) at the previous daily close."
+    },
+    {
+      "t": 423.0,
+      "label": "Beautiful target at 423",
+      "why": "The instructor points to a specific price target of 423 as the expected outcome."
+    },
+    {
+      "t": 519.6,
+      "label": "Lowest close of February",
+      "why": "The instructor identifies the lowest close of February as a key level for a new setup."
+    },
+    {
+      "t": 543.9,
+      "label": "Price dips below lowest close and recovers",
+      "why": "The instructor highlights a swing failure pattern after price dips below the lowest close."
+    },
+    {
+      "t": 563.6,
+      "label": "Consolidation leading to expansion",
+      "why": "The instructor points to a consolidation phase followed by an upward breakout."
+    },
+    {
+      "t": 574.8,
+      "label": "Fibonacci targets from first pullback",
+      "why": "The instructor measures Fibonacci targets based on the initial pullback."
+    },
+    {
+      "t": 629.0,
+      "label": "Moving averages flip",
+      "why": "The instructor highlights the 20 and 200 SMA flipping, indicating a change in bias."
+    },
+    {
+      "t": 651.7,
+      "label": "Breakout and buy stop setup",
+      "why": "The instructor identifies a breakout point where a buy stop can be placed."
+    },
+    {
+      "t": 717.6,
+      "label": "Weekly high zone for short setup",
+      "why": "The instructor marks the weekly high as a key resistance level for a short trade."
+    },
+    {
+      "t": 753.7,
+      "label": "SBS consolidation manipulation in New York",
+      "why": "The instructor highlights a small SBS pattern during the New York session."
+    },
+    {
+      "t": 761.8,
+      "label": "Price back below 20 and 200 SMA",
+      "why": "The price is shown returning below the moving averages, confirming a short setup."
+    },
+    {
+      "t": 779.7,
+      "label": "Break and retest setup at 9:30",
+      "why": "The instructor identifies a break and retest pattern during the 9:30 session."
+    },
+    {
+      "t": 816.3,
+      "label": "Highest close of March",
+      "why": "The instructor introduces the highest close of March as a new monthly extreme."
+    },
+    {
+      "t": 861.3,
+      "label": "First red day in tight range",
+      "why": "The instructor highlights a first red day occurring within a tight price range, indicating potential difficulty."
+    },
+    {
+      "t": 896.2,
+      "label": "Swing failure pattern after multiple lower closes",
+      "why": "The instructor identifies a swing failure pattern following several lower closes."
+    },
+    {
+      "t": 901.5,
+      "label": "Price level at 330",
+      "why": "Instructor points to a price level of 330 on the chart."
+    },
+    {
+      "t": 904.0,
+      "label": "Price back to 20 SMA",
+      "why": "Instructor refers to price returning to the 20 SMA, a key technical level."
+    },
+    {
+      "t": 907.2,
+      "label": "Closing above HCOM",
+      "why": "Instructor highlights the price closing above the highest close of the month (HCOM), a key market structure level."
+    },
+    {
+      "t": 918.4,
+      "label": "Short trade with stop loss above 20 and 200 SMA",
+      "why": "Instructor discusses a short trade with stop loss placed above the 20 and 200 SMA, indicating key risk levels."
+    },
+    {
+      "t": 934.6,
+      "label": "Price wicks and stop loss",
+      "why": "Instructor refers to price wicks and a stopped-out trade, indicating key candlestick patterns and stop loss placement."
+    },
+    {
+      "t": 1037.1,
+      "label": "Trading above 20 and 200 SMA",
+      "why": "Instructor notes price trading above both the 20 and 200 SMA, a key trend confirmation."
+    },
+    {
+      "t": 1045.1,
+      "label": "London setup at 345",
+      "why": "Instructor identifies a specific London session trading setup with price at 345."
+    },
+    {
+      "t": 1046.8,
+      "label": "First pullback",
+      "why": "Instructor points to the first pullback in a price pattern."
+    },
+    {
+      "t": 1048.7,
+      "label": "SBS at this point",
+      "why": "Instructor references an SBS (small balance setup) on the chart."
+    },
+    {
+      "t": 1053.1,
+      "label": "Price above 200 SMA",
+      "why": "Instructor emphasizes price staying above the 200 SMA, a key structural level."
+    },
+    {
+      "t": 1058.3,
+      "label": "Above previous daily close",
+      "why": "Instructor notes price above the prior day's close, a key level for continuation."
+    },
+    {
+      "t": 1061.6,
+      "label": "Position start here",
+      "why": "Instructor suggests starting a position at this point, indicating an entry."
+    },
+    {
+      "t": 1071.6,
+      "label": "Entry after breaking below 20 SMA",
+      "why": "Instructor identifies the entry point when price breaks below the 20 SMA."
+    },
+    {
+      "t": 1081.2,
+      "label": "Exit after closing above 20 SMA",
+      "why": "Instructor indicates exit when price closes back above the 20 SMA."
+    },
+    {
+      "t": 1091.6,
+      "label": "Setup with news at 8:30",
+      "why": "Instructor references a setup influenced by news, with SBS count and timing."
+    },
+    {
+      "t": 1107.0,
+      "label": "423 exit level",
+      "why": "Instructor highlights a specific price target of 423 as an exit point."
+    },
+    {
+      "t": 1115.8,
+      "label": "Third day reversal setup",
+      "why": "Instructor identifies a third-day reversal pattern, key for trade bias."
+    },
+    {
+      "t": 1127.1,
+      "label": "February lowest close of the month",
+      "why": "Instructor points to a key historical price level, February lowest close."
+    },
+    {
+      "t": 1146.9,
+      "label": "First pullback measured",
+      "why": "Instructor measures the first pullback, indicating a key retracement level."
+    },
+    {
+      "t": 1156.0,
+      "label": "Price trading about 20 SMA",
+      "why": "Instructor notes price action near the 20 SMA, a key level for entry."
+    },
+    {
+      "t": 1173.3,
+      "label": "Anticipation of price returning to 200 SMA",
+      "why": "Instructor discusses anticipation for price to return above the 200 SMA, a key bias."
+    },
+    {
+      "t": 1182.8,
+      "label": "Beautiful consolidation",
+      "why": "Instructor highlights a period of price consolidation on the chart."
+    },
+    {
+      "t": 1192.0,
+      "label": "618 retracement measurement",
+      "why": "Instructor measures a 618 Fibonacci retracement from low to high."
+    },
+    {
+      "t": 1201.9,
+      "label": "Entry near 20 SMA",
+      "why": "Instructor identifies entry at or near the 20 SMA."
+    },
+    {
+      "t": 1210.5,
+      "label": "Risk and profit targets",
+      "why": "Instructor discusses risk management with entry at 20 SMA and exit at 686."
+    },
+    {
+      "t": 1222.6,
+      "label": "Breakout and retest continuation",
+      "why": "Instructor describes a breakout above PDC/PDL followed by retest and continuation."
+    },
+    {
+      "t": 1232.6,
+      "label": "Price can't get back above highest close of the month",
+      "why": "Instructor highlights rejection from a key monthly high."
+    },
+    {
+      "t": 1240.8,
+      "label": "Inside day consolidation",
+      "why": "Instructor identifies an inside day pattern as a key setup."
+    },
+    {
+      "t": 1252.7,
+      "label": "Setup after inside day and double HCOM",
+      "why": "Instructor identifies a setup following an inside day and rejection from highest close."
+    },
+    {
+      "t": 1260.7,
+      "label": "Setup from rejection of highest close",
+      "why": "Instructor points to a setup formed after price rejects the highest close of the month."
+    },
+    {
+      "t": 1269.1,
+      "label": "Big SBS with five bars",
+      "why": "Instructor counts a large SBS pattern on the chart."
+    },
+    {
+      "t": 1278.0,
+      "label": "Break and retest of previous daily low",
+      "why": "Instructor identifies a breakdown and retest pattern."
+    },
+    {
+      "t": 1288.8,
+      "label": "Setup below 20 and 200 SMA",
+      "why": "Instructor identifies a short setup below both moving averages."
+    },
+    {
+      "t": 1298.2,
+      "label": "2618 exit target",
+      "why": "Instructor highlights a specific price target of 2618 as an exit."
+    },
+    {
+      "t": 1379.9,
+      "label": "Same thing over and over again",
+      "why": "Instructor emphasizes recurring patterns, indicating repeated chart setups."
+    },
+    {
+      "t": 1395.9,
+      "label": "Third day reversal from support",
+      "why": "Instructor identifies a third-day reversal pattern after three lower closes."
+    },
+    {
+      "t": 1405.1,
+      "label": "Consolidation above 20 and 200 SMA",
+      "why": "Instructor notes price consolidation above key moving averages."
+    },
+    {
+      "t": 1424.8,
+      "label": "Break above reaching 423 target",
+      "why": "Instructor identifies a breakout and achievement of the 423 price level."
+    },
+    {
+      "t": 1434.2,
+      "label": "First pullback measurement",
+      "why": "Instructor measures a pullback from the 423 target."
+    },
+    {
+      "t": 1452.5,
+      "label": "Gap fill and reversal in London session",
+      "why": "Instructor identifies a gap-fill followed by a reversal during the London session."
+    },
+    {
+      "t": 1468.8,
+      "label": "London setup with 423 target",
+      "why": "Instructor identifies a London session setup leading to the 423 price target."
+    },
+    {
+      "t": 1504.4,
+      "label": "Third day reversal swing failure",
+      "why": "Instructor identifies a third-day reversal with a swing failure pattern."
+    },
+    {
+      "t": 1513.3,
+      "label": "SBS in the pattern",
+      "why": "Instructor points to an SBS within a price pattern."
+    },
+    {
+      "t": 1521.6,
+      "label": "Six one based on this",
+      "why": "Instructor refers to a specific SBS count of six bars."
+    },
+    {
+      "t": 1537.9,
+      "label": "686 target achieved",
+      "why": "Instructor notes the achievement of a 686 price level."
+    },
+    {
+      "t": 1544.4,
+      "label": "Exit after 20 SMA violation",
+      "why": "Instructor identifies an exit point when price breaks below the 20 SMA."
+    },
+    {
+      "t": 1561.3,
+      "label": "Short entry below 20 and 200 SMA",
+      "why": "Instructor identifies a short entry below both moving averages."
+    },
+    {
+      "t": 1570.0,
+      "label": "Stop loss above moving averages",
+      "why": "Instructor places stop loss above the 20 and 200 SMA."
+    },
+    {
+      "t": 1577.4,
+      "label": "Capturing decent profits",
+      "why": "Instructor highlights a profitable trade after the short entry."
+    },
+    {
+      "t": 1585.3,
+      "label": "Trade one shown",
+      "why": "Instructor begins to summarize the first trade."
+    },
+    {
+      "t": 1597.1,
+      "label": "Bullish bias from February lowest close",
+      "why": "Instructor identifies bullish bias based on price trading above the February lowest close."
+    },
+    {
+      "t": 1603.7,
+      "label": "Swing failure pattern",
+      "why": "Instructor identifies a swing failure pattern as part of the trade setup."
+    },
+    {
+      "t": 1609.6,
+      "label": "Bullish bias from first green day",
+      "why": "Instructor identifies bullish bias based on the first green day."
+    },
+    {
+      "t": 1611.4,
+      "label": "Bearish bias from rejection of highest close",
+      "why": "Instructor identifies bearish bias due to price rejecting the highest close of the month."
+    },
+    {
+      "t": 1635.4,
+      "label": "Price closed below February lowest close",
+      "why": "Instructor notes price closing below a key monthly low."
+    },
+    {
+      "t": 1642.6,
+      "label": "Range breaking down",
+      "why": "Instructor identifies a breakdown of the price range."
+    },
+    {
+      "t": 1663.0,
+      "label": "Two inside days",
+      "why": "Instructor identifies two consecutive inside day patterns."
+    },
+    {
+      "t": 1672.9,
+      "label": "Setup after bounce",
+      "why": "Instructor identifies a setup following a price bounce."
+    },
+    {
+      "t": 1684.7,
+      "label": "Price staying below February lowest close",
+      "why": "Instructor highlights price action remaining below a key monthly level."
+    },
+    {
+      "t": 1702.1,
+      "label": "Factual price levels",
+      "why": "Instructor emphasizes the importance of key historical price levels."
+    },
+    {
+      "t": 1719.3,
+      "label": "Close of the day is most important",
+      "why": "Instructor stresses the significance of daily closes as key levels."
+    },
+    {
+      "t": 1734.4,
+      "label": "Need a bias for trading",
+      "why": "Instructor emphasizes the need for higher timeframe bias before applying price action."
+    },
+    {
+      "t": 1749.4,
+      "label": "SBS pattern",
+      "why": "Instructor references the SBS (small balance setup) as a key tool."
+    },
+    {
+      "t": 1753.3,
+      "label": "20 and 200 SMA with 618 retracements",
+      "why": "Instructor combines moving averages and Fibonacci levels for trade setup."
+    },
+    {
+      "t": 1762.2,
+      "label": "Rejection after rejection from February lowest close",
+      "why": "Instructor identifies repeated rejections from a key monthly level."
+    },
+    {
+      "t": 1780.0,
+      "label": "Flash reversal attempt",
+      "why": "Instructor identifies a flash reversal pattern after an inside day."
+    },
+    {
+      "t": 1789.3,
+      "label": "Market needs to close back above levels",
+      "why": "Instructor emphasizes the need for a closing price above key levels to confirm reversal."
+    },
+    {
+      "t": 1800.2,
+      "label": "Bias was correct despite difficulty",
+      "why": "Instructor confirms the correctness of the trade bias even if execution was challenging."
+    },
+    {
+      "t": 1820.0,
+      "label": "Price rejection below 200 SMA",
+      "why": "The instructor points out a price rejection below the 200 SMA, indicating a key market structure level on the chart."
+    },
+    {
+      "t": 1823.0,
+      "label": "SBS rejection at 10 o'clock rotation",
+      "why": "The instructor highlights a specific SBS (Support-Based Structure) rejection at the 10 o'clock rotation, which is a visible chart pattern."
+    },
+    {
+      "t": 1829.0,
+      "label": "Lowest close of the month",
+      "why": "The instructor identifies a significant price level—the lowest close of the month—visible on the chart."
+    },
+    {
+      "t": 1831.0,
+      "label": "SBS signal for short entry",
+      "why": "The instructor points to the SBS as a trigger for a short trade, which is visible on the chart."
+    },
+    {
+      "t": 1833.0,
+      "label": "20 SMA as entry trigger",
+      "why": "The instructor indicates the 20 SMA as a key level for entering a short trade, visible on the chart."
+    },
+    {
+      "t": 1838.0,
+      "label": "Risk level for short trade",
+      "why": "The instructor shows the risk placement for the short trade, which is a visible chart annotation."
+    },
+    {
+      "t": 1846.0,
+      "label": "Market structure uncertainty",
+      "why": "The instructor discusses the ongoing battle between breakdown and double bottom, referencing visible price action on the chart."
+    },
+    {
+      "t": 1854.0,
+      "label": "Big range and market decision",
+      "why": "The instructor refers to a larger price range and the uncertainty of breakout direction, visible on the chart."
+    },
+    {
+      "t": 1861.0,
+      "label": "Double bottom vs breakdown",
+      "why": "The instructor contrasts two possible market outcomes—double bottom and breakdown—based on visible chart patterns."
+    },
+    {
+      "t": 1879.0,
+      "label": "Focus on setups and templates",
+      "why": "The instructor emphasizes the importance of higher time frame levels, five templates, and execution model, all visible on the chart."
+    }
+  ]
+}

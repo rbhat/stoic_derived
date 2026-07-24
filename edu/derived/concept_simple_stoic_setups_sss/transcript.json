@@ -1,0 +1,2747 @@
+{
+  "source": "videos/Simple Stoic Setups SSS - Stoic Trader Concepts · Stoic Traders.mp4",
+  "language": "en",
+  "model": "mlx-community/whisper-large-v3-turbo",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 21.12,
+      "text": "hello stoic traders welcome back to another upgrade to our stoic edge system to the simple"
+    },
+    {
+      "start": 21.12,
+      "end": 27.44,
+      "text": "framework that we already have so you know previous daily high previous daily low previous"
+    },
+    {
+      "start": 27.44,
+      "end": 34.88,
+      "text": "daily close you know break and retest you know swing failure pattern price reacts to the previous"
+    },
+    {
+      "start": 34.88,
+      "end": 41.52,
+      "text": "day levels and most importantly reacts to the previous daily close and in this video we are"
+    },
+    {
+      "start": 41.52,
+      "end": 50.24,
+      "text": "going to dive deeper into the understanding of how the market functions and why some days you get"
+    },
+    {
+      "start": 50.24,
+      "end": 57.44,
+      "text": "chopped up some days you catch a big move and some days you even miss the big move because you"
+    },
+    {
+      "start": 57.44,
+      "end": 65.2,
+      "text": "took the profits early i try to keep it very simple so you don't have analysis paralysis"
+    },
+    {
+      "start": 66.0,
+      "end": 73.04,
+      "text": "and previous day levels work very nicely but sometimes you don't know which direction is going"
+    },
+    {
+      "start": 73.04,
+      "end": 81.6,
+      "text": "to go so there is still involves a 50 50 guess of which direction are we trading and hopefully this"
+    },
+    {
+      "start": 81.6,
+      "end": 89.2,
+      "text": "video is going to answer many questions about the bias and direction we're going to build on top of"
+    },
+    {
+      "start": 89.2,
+      "end": 95.68,
+      "text": "what i've already shown you that takes everything we do and turns it into something completely"
+    },
+    {
+      "start": 95.68,
+      "end": 104.24,
+      "text": "different same foundation but now you are going to understand why certain setups explode and others"
+    },
+    {
+      "start": 104.24,
+      "end": 112.08,
+      "text": "just chop you out and once you see this i promise you you can't unsee it here's the thing you"
+    },
+    {
+      "start": 112.08,
+      "end": 119.68,
+      "text": "probably noticed that sometimes you get a clean breakout price closes above previous daily high"
+    },
+    {
+      "start": 119.68,
+      "end": 126.4,
+      "text": "you take the trade and it rips and other times you get the exact same signal and it just goes"
+    },
+    {
+      "start": 126.4,
+      "end": 134.08,
+      "text": "sideways and stops you out same setup same rules different result but why this happens and the"
+    },
+    {
+      "start": 134.08,
+      "end": 142.24,
+      "text": "answer is high time frame context where is that breakout happening in the bigger picture that's"
+    },
+    {
+      "start": 142.24,
+      "end": 150.08,
+      "text": "what separates a random signal from a setup that's basically free money everything starts with the"
+    },
+    {
+      "start": 150.08,
+      "end": 159.6,
+      "text": "month every new month is a reset new cycle new monthly candle has an open high low and close"
+    },
+    {
+      "start": 159.6,
+      "end": 166.64,
+      "text": "just like any candle but the closing price is what matters because that's where the real money"
+    },
+    {
+      "start": 166.64,
+      "end": 174.24,
+      "text": "committed not the wicks not the high and low of the candle it's all about the close and"
+    },
+    {
+      "start": 175.04,
+      "end": 182.0,
+      "text": "i need to emphasize this i am not talking about the five minute close about the range i'm not"
+    },
+    {
+      "start": 182.0,
+      "end": 190.32,
+      "text": "talking about 15 minute candles even hourly candles i'm talking about big time frames where"
+    },
+    {
+      "start": 190.32,
+      "end": 198.16,
+      "text": "the real money is committed where big traders vote with their wallets so those are going to be daily"
+    },
+    {
+      "start": 198.16,
+      "end": 205.36,
+      "text": "closes weekly closes and monthly closes that's the closing price that is actually important"
+    },
+    {
+      "start": 205.36,
+      "end": 212.88,
+      "text": "the month consists of four weeks so in the first half of the month the first two weeks"
+    },
+    {
+      "start": 212.88,
+      "end": 220.08,
+      "text": "that's where you usually get range expansions the breakouts trending moves and on the second"
+    },
+    {
+      "start": 220.08,
+      "end": 226.32,
+      "text": "half of the month the last two weeks that's where you get reversals at the extremes"
+    },
+    {
+      "start": 227.12,
+      "end": 234.64,
+      "text": "the market pushes too far and now it's coming back just knowing where you are in the month"
+    },
+    {
+      "start": 234.64,
+      "end": 238.82,
+      "text": "tells you what type of trade to look for."
+    },
+    {
+      "start": 239.3,
+      "end": 242.4,
+      "text": "And this is different from the time cycles"
+    },
+    {
+      "start": 242.4,
+      "end": 246.58,
+      "text": "that a lot of traders learned from ICT"
+    },
+    {
+      "start": 246.58,
+      "end": 250.46,
+      "text": "and other people that claiming that they know"
+    },
+    {
+      "start": 250.46,
+      "end": 253.24,
+      "text": "about the algorithm,"
+    },
+    {
+      "start": 253.72,
+      "end": 255.4,
+      "text": "the how to solve the market"
+    },
+    {
+      "start": 255.4,
+      "end": 259.6,
+      "text": "and how can we time the entries on one minute chart"
+    },
+    {
+      "start": 259.6,
+      "end": 264.04,
+      "text": "and the macro timeframes and macro time windows"
+    },
+    {
+      "start": 264.04,
+      "end": 273.86,
+      "text": "and all of that nonsense. Let's keep it simple. Everybody understands that every month starts"
+    },
+    {
+      "start": 273.86,
+      "end": 282.7,
+      "text": "new monthly cycle. It's just a simple concept. So the first half of the month, the price usually"
+    },
+    {
+      "start": 282.7,
+      "end": 291.18,
+      "text": "sets the opening range for the month. And on the second half of the month, price usually reverses"
+    },
+    {
+      "start": 291.18,
+      "end": 299.6,
+      "text": "and pulls back. The same concept we can apply on a weekly and that's a weekly cycle. You have"
+    },
+    {
+      "start": 299.6,
+      "end": 307.0,
+      "text": "first half of the week and you have second half of the week. Monday, Tuesday, Wednesday, that's the"
+    },
+    {
+      "start": 307.0,
+      "end": 314.88,
+      "text": "first half of the week and usually the price will set the opening range for the week and the second"
+    },
+    {
+      "start": 314.88,
+      "end": 322.84,
+      "text": "half of the week is wednesday thursday friday is when the reversals usually happen so just keep it"
+    },
+    {
+      "start": 322.84,
+      "end": 331.1,
+      "text": "simple when i say time cycles i am not really talking about the actual time cycles that algorithm"
+    },
+    {
+      "start": 331.1,
+      "end": 339.24,
+      "text": "might follow we are here not to solve the algorithm we are here to understand how can we position"
+    },
+    {
+      "start": 339.24,
+      "end": 347.64,
+      "text": "ourselves to have asymmetrical risk to reward opportunities i'm talking about one to five"
+    },
+    {
+      "start": 347.64,
+      "end": 355.94,
+      "text": "risk to reward one to ten one to fifteen and once we understand the simple concept of monthly and"
+    },
+    {
+      "start": 355.94,
+      "end": 363.58,
+      "text": "weekly time cycles there are four price levels that i watch on every instrument and i wait for"
+    },
+    {
+      "start": 363.58,
+      "end": 370.8,
+      "text": "this to happen because when the instrument is in this condition it has a higher probability"
+    },
+    {
+      "start": 370.8,
+      "end": 378.92,
+      "text": "setups so highest daily closing price of the month again it's not the high of the month"
+    },
+    {
+      "start": 378.92,
+      "end": 388.46,
+      "text": "or low of the month it's the highest daily closing price of the month so highest or lowest"
+    },
+    {
+      "start": 388.46,
+      "end": 396.8,
+      "text": "daily closing price of the month this is the highest price that market actually closed during"
+    },
+    {
+      "start": 396.8,
+      "end": 403.58,
+      "text": "this month that's where the most aggressive buyers put their money where their mouth is"
+    },
+    {
+      "start": 403.58,
+      "end": 410.74,
+      "text": "the same thing for the lowest closing price of the month just flip it same thing on the weekly"
+    },
+    {
+      "start": 410.74,
+      "end": 417.9,
+      "text": "highest and lowest closing price of the week and here's important thing to understand is that"
+    },
+    {
+      "start": 418.46,
+      "end": 426.38,
+      "text": "i am using closes instead of wicks or highs and lows a wick is just could be a temporary"
+    },
+    {
+      "start": 426.38,
+      "end": 434.94,
+      "text": "liquidity grab it means really nothing but a close on a higher time frame is a commitment"
+    },
+    {
+      "start": 435.58,
+      "end": 443.1,
+      "text": "when the market closes at the highest price of the entire month that's a real thing that's where"
+    },
+    {
+      "start": 443.1,
+      "end": 451.58,
+      "text": "this setup is here's the rule which is very simple when the market closes at the highest close of the"
+    },
+    {
+      "start": 451.58,
+      "end": 461.74,
+      "text": "month it's a short setup when it closes at the lowest close of the month it's a long setup and"
+    },
+    {
+      "start": 461.74,
+      "end": 469.5,
+      "text": "it's all because most breakouts fail the market pushes to the top of its monthly range everyone"
+    },
+    {
+      "start": 469.5,
+      "end": 477.9,
+      "text": "gets bullish fomo kicks in and that's exactly when it turns around not always some breakouts"
+    },
+    {
+      "start": 477.9,
+      "end": 487.26,
+      "text": "continue but the default at a monthly extreme is reversal and once you have a tight consolidation"
+    },
+    {
+      "start": 487.26,
+      "end": 496.06,
+      "text": "confirming this the direction is locked in and this is a biggest upgrade to our current previous"
+    },
+    {
+      "start": 496.06,
+      "end": 505.02,
+      "text": "day level system now this is going to give you a directional bias because really once the setup"
+    },
+    {
+      "start": 505.02,
+      "end": 513.58,
+      "text": "is set up on the higher time frames there is only one way the price could go so let's talk about the"
+    },
+    {
+      "start": 513.58,
+      "end": 522.62,
+      "text": "multi-time frame breakouts close about the previous daily high or below the previous daily low that's"
+    },
+    {
+      "start": 522.62,
+      "end": 529.42,
+      "text": "the starting point when i'm talking about a breakout i'm talking about a breakout on a daily"
+    },
+    {
+      "start": 529.42,
+      "end": 538.14,
+      "text": "chart where the daily candle closes above a previous daily high or a previous daily low"
+    },
+    {
+      "start": 538.14,
+      "end": 543.98,
+      "text": "that's the number one condition that's the starting point now we can stack this"
+    },
+    {
+      "start": 545.1,
+      "end": 551.9,
+      "text": "is the weekly also breaking out what about the monthly the more time frames aligned"
+    },
+    {
+      "start": 551.9,
+      "end": 559.68,
+      "text": "the stronger the signal. If it's only the daily breakout, that's a basic signal. Take it or leave"
+    },
+    {
+      "start": 559.68,
+      "end": 568.2,
+      "text": "it. Daily plus weekly, now we are talking. That's double alignment. Daily plus weekly plus monthly,"
+    },
+    {
+      "start": 568.72,
+      "end": 575.74,
+      "text": "triple alignment. Every time frame saying the same thing. And those are the setups where you"
+    },
+    {
+      "start": 575.74,
+      "end": 583.78,
+      "text": "size up because everything is lined up and i want to emphasize this i am no longer interested in"
+    },
+    {
+      "start": 583.78,
+      "end": 591.42,
+      "text": "chasing every wiggle every fluctuations on the one minute chart or even five minute chart"
+    },
+    {
+      "start": 591.42,
+      "end": 599.44,
+      "text": "i'm looking for the explosive moves i'm looking for the moves that i can confidently size up"
+    },
+    {
+      "start": 599.44,
+      "end": 607.3,
+      "text": "because I have a perfect setup where daily, weekly, monthly lines up. That's where I know"
+    },
+    {
+      "start": 607.3,
+      "end": 615.6,
+      "text": "if I can position myself right, this trade could end up being 10R. This trade could end up being"
+    },
+    {
+      "start": 615.6,
+      "end": 622.78,
+      "text": "15R. If I can just look for this one trade, it will definitely compound my trading account."
+    },
+    {
+      "start": 622.78,
+      "end": 648.26,
+      "text": "And again, I want to mention about different styles of trading. I went from swing trading. I started in 2020 when the COVID happened. I started with swing trading and I tried to swing trade with the basic market structure principles, Fibonacci, moving averages. And then I found scalping. I got addicted to scalping. I have an addictive personality."
+    },
+    {
+      "start": 648.26,
+      "end": 654.9,
+      "text": "sometimes i would have very good days sometimes i would have bad days i would give it all back"
+    },
+    {
+      "start": 654.9,
+      "end": 662.16,
+      "text": "and sometimes i took a lot of trades and ended up break even and mentally exhausted by the end of"
+    },
+    {
+      "start": 662.16,
+      "end": 668.08,
+      "text": "the day but even in this stoic traders community we have different people different personalities"
+    },
+    {
+      "start": 668.08,
+      "end": 674.68,
+      "text": "and you will see some people scalping 15 second charts some people scalping one minute chart"
+    },
+    {
+      "start": 674.68,
+      "end": 679.72,
+      "text": "Some people just taking one or two trades and moving on based on the SBS."
+    },
+    {
+      "start": 680.66,
+      "end": 683.38,
+      "text": "I'm not saying it doesn't work."
+    },
+    {
+      "start": 683.94,
+      "end": 687.78,
+      "text": "I'm just saying I realized that it's not for me."
+    },
+    {
+      "start": 688.18,
+      "end": 696.06,
+      "text": "So it's important to sit down and take a good look at yourself, at your life and your tendencies."
+    },
+    {
+      "start": 696.66,
+      "end": 697.86,
+      "text": "How do you trade?"
+    },
+    {
+      "start": 698.3,
+      "end": 700.0,
+      "text": "What fits your personality?"
+    },
+    {
+      "start": 700.58,
+      "end": 701.82,
+      "text": "I love scalping."
+    },
+    {
+      "start": 701.82,
+      "end": 725.28,
+      "text": "I could be scalping all day long. But if I'm being honest, I take a lot of action for very little results when I'm scalping. So that's why I'm going back more towards the swing trading and towards the higher timeframes because I'm realizing that that's better for me, better for my personality."
+    },
+    {
+      "start": 725.28,
+      "end": 732.04,
+      "text": "and since I'm running now this community, I need time for the community and I don't want to feel"
+    },
+    {
+      "start": 732.04,
+      "end": 740.46,
+      "text": "exhausted after a trading day because I have other things to do. And this is the best way to"
+    },
+    {
+      "start": 740.46,
+      "end": 747.86,
+      "text": "approach trading in my opinion. Trading is a job. We are hunting for setups every single day."
+    },
+    {
+      "start": 747.86,
+      "end": 755.54,
+      "text": "just like any job you need to have trading hours you need to have the schedule and the routine"
+    },
+    {
+      "start": 755.54,
+      "end": 764.74,
+      "text": "doing the same thing every single day so during this stoic edge course you have all the information"
+    },
+    {
+      "start": 764.74,
+      "end": 772.14,
+      "text": "and tools in order to build your own trading system and during this 90-day challenge that"
+    },
+    {
+      "start": 772.14,
+      "end": 780.7,
+      "text": "we have going on right now, you see me in real time building my own trading system. This is me"
+    },
+    {
+      "start": 780.7,
+      "end": 787.9,
+      "text": "building a new trading system for myself, moving towards the higher timeframes. It might not be for"
+    },
+    {
+      "start": 787.9,
+      "end": 796.54,
+      "text": "everybody, but I am sharing my journey as a trader. Like I said, I'm not here to convince you that my"
+    },
+    {
+      "start": 796.54,
+      "end": 803.12,
+      "text": "trading strategy works best. I'm here to tell you that you need to build your own trading strategy,"
+    },
+    {
+      "start": 803.12,
+      "end": 810.28,
+      "text": "your own trading system that works for you. So whatever I'm teaching, you take those pieces and"
+    },
+    {
+      "start": 810.28,
+      "end": 816.88,
+      "text": "you put it together into your own trading strategy. And the good guideline is the Stoic Edge"
+    },
+    {
+      "start": 816.88,
+      "end": 824.38,
+      "text": "workbook that you have access to. So you can fill that out and use it as a reference in order to"
+    },
+    {
+      "start": 824.38,
+      "end": 830.64,
+      "text": "build your own trading system and once you have that you need to take reps you need to build"
+    },
+    {
+      "start": 830.64,
+      "end": 839.46,
+      "text": "execution muscle the muscle memory of pressing a button on the same setup every single time"
+    },
+    {
+      "start": 839.46,
+      "end": 847.84,
+      "text": "so going back to the multi-time frame breakout this is what i call a breakout mode and after"
+    },
+    {
+      "start": 847.84,
+      "end": 854.62,
+      "text": "we identify the instruments that are in the breakout mode only three things can happen after"
+    },
+    {
+      "start": 854.62,
+      "end": 863.16,
+      "text": "the breakout the market reverses the market continues or it does nothing that's it that's"
+    },
+    {
+      "start": 863.16,
+      "end": 869.86,
+      "text": "the only three things that happen after the breakout and most breakouts fail so the default"
+    },
+    {
+      "start": 869.86,
+      "end": 878.34,
+      "text": "at the monthly extreme is a reversal but some are genuine especially with multi-time frame alignment"
+    },
+    {
+      "start": 878.34,
+      "end": 886.42,
+      "text": "those give you continuation trades and sometimes the market just chops around in which case you"
+    },
+    {
+      "start": 886.42,
+      "end": 895.3,
+      "text": "sit on your hands no setup no trade but let me show you some specific setups this is the one"
+    },
+    {
+      "start": 895.3,
+      "end": 903.06,
+      "text": "the best setup this system produces monday tuesday market pushes in one direction"
+    },
+    {
+      "start": 903.78,
+      "end": 912.26,
+      "text": "and market closes at the highest daily close of the entire month so these lines these vertical"
+    },
+    {
+      "start": 912.26,
+      "end": 920.9,
+      "text": "lines this is was the beginning of the 2026 the start of january and this is the end of january"
+    },
+    {
+      "start": 920.9,
+      "end": 927.62,
+      "text": "So this daily chart represents a month of price action on a daily."
+    },
+    {
+      "start": 928.3,
+      "end": 933.78,
+      "text": "So you can see how first week, second week, price dips,"
+    },
+    {
+      "start": 934.28,
+      "end": 940.36,
+      "text": "and the third, fourth week, price reverses and continues higher."
+    },
+    {
+      "start": 941.48,
+      "end": 946.08,
+      "text": "So this over here was a setup at the lowest closing price of the month,"
+    },
+    {
+      "start": 946.08,
+      "end": 951.14,
+      "text": "And this was the setup at the highest closing price of the month."
+    },
+    {
+      "start": 951.9,
+      "end": 955.88,
+      "text": "So this condition on the daily chart is the setup."
+    },
+    {
+      "start": 956.38,
+      "end": 969.76,
+      "text": "The price is in the breakout mode, breaking out on the daily, closing about previous daily candle, also closing about previous weekly high."
+    },
+    {
+      "start": 969.76,
+      "end": 978.32,
+      "text": "also this is the highest closing price of the week and this is the highest closing price of the month"
+    },
+    {
+      "start": 978.32,
+      "end": 984.88,
+      "text": "because you have the high of the month low of the month over here and then price makes a higher high"
+    },
+    {
+      "start": 984.88,
+      "end": 993.24,
+      "text": "so this is the highest closing price of the month triple breakout mode as i call it and once we have"
+    },
+    {
+      "start": 993.24,
+      "end": 1003.16,
+      "text": "is set up on a daily chart we look at the price action on thursday and on thursday the market goes"
+    },
+    {
+      "start": 1003.16,
+      "end": 1012.84,
+      "text": "sideways it consolidates through asia through london session and in new york at 9 30 open"
+    },
+    {
+      "start": 1012.84,
+      "end": 1022.92,
+      "text": "If you just sold below the moving averages, below the 20 SMA, you would catch 10R trade."
+    },
+    {
+      "start": 1023.84,
+      "end": 1030.06,
+      "text": "And especially if it drops this fast, you should be trailing tight."
+    },
+    {
+      "start": 1030.46,
+      "end": 1038.1,
+      "text": "You can trail it about this 20 SMA and you would be out with 8R trade."
+    },
+    {
+      "start": 1038.52,
+      "end": 1042.78,
+      "text": "So this is the best setup that this system produces."
+    },
+    {
+      "start": 1042.84,
+      "end": 1051.72,
+      "text": "and the main point is that consolidation throughout the three sessions and new york"
+    },
+    {
+      "start": 1051.72,
+      "end": 1061.08,
+      "text": "sets up a trade where you can place a entry i like to enter on the sell stop of the structure"
+    },
+    {
+      "start": 1061.08,
+      "end": 1069.34,
+      "text": "this could be sell stop of the 15 minute candle also this chart is five minute i don't really"
+    },
+    {
+      "start": 1069.34,
+      "end": 1077.34,
+      "text": "recommend to look at one minute chart for this system because it's irrelevant what we want to see"
+    },
+    {
+      "start": 1077.34,
+      "end": 1086.88,
+      "text": "is consolidation into the new york open and if all of these conditions are met with the daily chart"
+    },
+    {
+      "start": 1086.88,
+      "end": 1096.28,
+      "text": "and the consolidation very important consolidation leads to expansion as i like to always say"
+    },
+    {
+      "start": 1096.28,
+      "end": 1103.54,
+      "text": "market goes from consolidation to expansion and back to consolidation and the expansion"
+    },
+    {
+      "start": 1103.54,
+      "end": 1109.92,
+      "text": "is where all the opportunity is and notice the previous daily high previous daily close"
+    },
+    {
+      "start": 1109.92,
+      "end": 1119.4,
+      "text": "the price is at extreme rejecting from the previous daily close below the previous daily high"
+    },
+    {
+      "start": 1119.4,
+      "end": 1126.92,
+      "text": "and if we look at the chart, where is the asymmetric risk to reward? And because the price"
+    },
+    {
+      "start": 1126.92,
+      "end": 1135.12,
+      "text": "is closing at the highest for the month and for the week, the asymmetrical risk to reward"
+    },
+    {
+      "start": 1135.12,
+      "end": 1142.04,
+      "text": "is to the downside. Because all of these people that are buying, they are buying at the worst"
+    },
+    {
+      "start": 1142.04,
+      "end": 1152.0,
+      "text": "price so the longs are buying at the worst price hoping that price continues and that's exactly why"
+    },
+    {
+      "start": 1152.0,
+      "end": 1159.96,
+      "text": "the price reverses so the asymmetric risk to reward is to the downside because all of those"
+    },
+    {
+      "start": 1159.96,
+      "end": 1168.6,
+      "text": "buyers are going to get stopped out and that's exactly what the price does in order to stop"
+    },
+    {
+      "start": 1168.6,
+      "end": 1176.66,
+      "text": "everyone out and liquidate so this is the liquidation event that we want to trade"
+    },
+    {
+      "start": 1176.66,
+      "end": 1183.02,
+      "text": "this is where all the opportunity is and if you can just look for this one setup"
+    },
+    {
+      "start": 1183.02,
+      "end": 1191.74,
+      "text": "it could make your whole trading career notice 12 plus hours of energy building"
+    },
+    {
+      "start": 1191.74,
+      "end": 1193.56,
+      "text": "of the build-up."
+    },
+    {
+      "start": 1194.52,
+      "end": 1198.58,
+      "text": "This is the consolidation that we want to see."
+    },
+    {
+      "start": 1199.58,
+      "end": 1203.62,
+      "text": "Every trapped trader on both sides is in pain."
+    },
+    {
+      "start": 1204.26,
+      "end": 1208.54,
+      "text": "When it breaks out, all of them unwind at once."
+    },
+    {
+      "start": 1209.46,
+      "end": 1212.76,
+      "text": "That's what makes the move so violent."
+    },
+    {
+      "start": 1213.76,
+      "end": 1217.86,
+      "text": "We have trapped longs and shorts at this point."
+    },
+    {
+      "start": 1218.78,
+      "end": 1220.84,
+      "text": "And shorts are going to take profit."
+    },
+    {
+      "start": 1220.84,
+      "end": 1226.68,
+      "text": "and long is going to get stopped out, creating this cascade of liquidations."
+    },
+    {
+      "start": 1227.14,
+      "end": 1230.26,
+      "text": "It could be as simple as asking one question."
+    },
+    {
+      "start": 1230.84,
+      "end": 1236.26,
+      "text": "Did Wednesday close at the highest close of the month or lowest close of the month?"
+    },
+    {
+      "start": 1236.82,
+      "end": 1242.06,
+      "text": "And if it did, that market goes on your Thursday watch list."
+    },
+    {
+      "start": 1242.62,
+      "end": 1245.58,
+      "text": "Direction already predetermined and that's it."
+    },
+    {
+      "start": 1245.66,
+      "end": 1249.2,
+      "text": "You just watch for the consolidation into the New York Open."
+    },
+    {
+      "start": 1249.2,
+      "end": 1253.0,
+      "text": "and I'm talking about the New York Open specifically."
+    },
+    {
+      "start": 1253.72,
+      "end": 1255.48,
+      "text": "Later in this video, I'm going to show you"
+    },
+    {
+      "start": 1255.48,
+      "end": 1257.7,
+      "text": "for the London session and Asian session,"
+    },
+    {
+      "start": 1257.88,
+      "end": 1262.58,
+      "text": "but as far as the best of the best setups, this is it."
+    },
+    {
+      "start": 1263.18,
+      "end": 1266.16,
+      "text": "Also the same thing for the shorts, just flip it around."
+    },
+    {
+      "start": 1267.06,
+      "end": 1269.18,
+      "text": "The other setup is the three closes."
+    },
+    {
+      "start": 1270.1,
+      "end": 1273.14,
+      "text": "So I'm talking about three daily candle closes"
+    },
+    {
+      "start": 1273.14,
+      "end": 1275.8,
+      "text": "and I have the same chart over here."
+    },
+    {
+      "start": 1275.8,
+      "end": 1277.2,
+      "text": "It's the same setup."
+    },
+    {
+      "start": 1277.2,
+      "end": 1297.44,
+      "text": "We have price reverses. This candle over here stopped out previous buyers, so we can start counting the candles. We have daily close one, daily close two, and daily close three. And on the fourth day, we're getting a first red day reversal."
+    },
+    {
+      "start": 1297.44,
+      "end": 1304.82,
+      "text": "So three higher closes, three consecutive days where each close is higher than the last."
+    },
+    {
+      "start": 1305.48,
+      "end": 1320.62,
+      "text": "When the third close is the highest closing price of the month, you have a market that's pushed up for three straight days and is now sitting at the extreme and the momentum is exhausted."
+    },
+    {
+      "start": 1320.96,
+      "end": 1322.74,
+      "text": "But you don't enter."
+    },
+    {
+      "start": 1323.4,
+      "end": 1325.5,
+      "text": "You wait for the first red day."
+    },
+    {
+      "start": 1325.5,
+      "end": 1333.78,
+      "text": "that's the first close lower after those three higher closes that's your confirmation that the"
+    },
+    {
+      "start": 1333.78,
+      "end": 1340.36,
+      "text": "buyers are done so in a previous setup i was saying to short it when you see consolidation"
+    },
+    {
+      "start": 1340.36,
+      "end": 1348.12,
+      "text": "into the new york open when you don't get this long consolidation you want to wait for the first"
+    },
+    {
+      "start": 1348.12,
+      "end": 1355.94,
+      "text": "red day because that's indication that the wall is cracked and you can trade the second following"
+    },
+    {
+      "start": 1355.94,
+      "end": 1362.58,
+      "text": "day after the first red day. The first red day, that's your confirmation that the buyers are done."
+    },
+    {
+      "start": 1363.14,
+      "end": 1368.88,
+      "text": "Day after the first red day, you look for the consolidation on the five-minute chart"
+    },
+    {
+      "start": 1368.88,
+      "end": 1375.82,
+      "text": "and if it forms, you enter short. But the key difference is that after the first red day,"
+    },
+    {
+      "start": 1375.82,
+      "end": 1382.5,
+      "text": "you don't have to have consolidation through Asia, London. After the first red day, you could"
+    },
+    {
+      "start": 1382.5,
+      "end": 1390.32,
+      "text": "have set up in Asia or London. So that's the key difference from the previous setup that I was"
+    },
+    {
+      "start": 1390.32,
+      "end": 1398.6,
+      "text": "explaining. So we always look for consolidation. If we don't see consolidation into our session,"
+    },
+    {
+      "start": 1398.6,
+      "end": 1408.12,
+      "text": "there is no entry here's another chart on nasdaq another example you have the monthly range"
+    },
+    {
+      "start": 1408.12,
+      "end": 1418.68,
+      "text": "over here and price sold off in the first two weeks like i said first two weeks price sold off"
+    },
+    {
+      "start": 1418.68,
+      "end": 1425.4,
+      "text": "and the second two weeks price reversed we have first daily close below"
+    },
+    {
+      "start": 1425.4,
+      "end": 1436.96,
+      "text": "we have second daily close we have a counter trend move and a third close which is also"
+    },
+    {
+      "start": 1436.96,
+      "end": 1445.28,
+      "text": "the lowest close of the month and the lowest close of the whole week and look what happens"
+    },
+    {
+      "start": 1445.28,
+      "end": 1455.38,
+      "text": "asia session reverses like i said we have tight consolidations in asia and a breakout"
+    },
+    {
+      "start": 1455.4,
+      "end": 1458.5,
+      "text": "that continues in London session"
+    },
+    {
+      "start": 1458.5,
+      "end": 1461.64,
+      "text": "and New York session in this case did nothing."
+    },
+    {
+      "start": 1462.4,
+      "end": 1465.88,
+      "text": "This is where the three close reversal comes in"
+    },
+    {
+      "start": 1465.88,
+      "end": 1469.46,
+      "text": "and where you can look for the Asia session"
+    },
+    {
+      "start": 1469.46,
+      "end": 1473.82,
+      "text": "or London session if you can't trade the New York session."
+    },
+    {
+      "start": 1474.54,
+      "end": 1477.18,
+      "text": "Also pay attention, previous daily close,"
+    },
+    {
+      "start": 1477.34,
+      "end": 1478.3,
+      "text": "previous daily low."
+    },
+    {
+      "start": 1478.8,
+      "end": 1481.38,
+      "text": "Do you see how they stacked at the bottom?"
+    },
+    {
+      "start": 1482.1,
+      "end": 1483.2,
+      "text": "It's not a coincidence."
+    },
+    {
+      "start": 1483.96,
+      "end": 1486.54,
+      "text": "This is where you want to see the consolidation."
+    },
+    {
+      "start": 1487.36,
+      "end": 1491.24,
+      "text": "You want to see consolidation at the previous daily close."
+    },
+    {
+      "start": 1491.96,
+      "end": 1495.48,
+      "text": "And sometimes you even have manipulation below the previous daily low."
+    },
+    {
+      "start": 1496.16,
+      "end": 1500.72,
+      "text": "But the key point is that the setup is over here on daily chart."
+    },
+    {
+      "start": 1501.22,
+      "end": 1508.82,
+      "text": "And then you look and maybe it sets up in Asia and you can catch it continuation in London."
+    },
+    {
+      "start": 1509.3,
+      "end": 1512.98,
+      "text": "But the best entry would be over here."
+    },
+    {
+      "start": 1513.2,
+      "end": 1519.44,
+      "text": "inside of this consolidation and i like to enter on the top of the consolidation"
+    },
+    {
+      "start": 1519.44,
+      "end": 1528.06,
+      "text": "as this breaking out you can set your stop loss below here entry about here and you have a"
+    },
+    {
+      "start": 1528.06,
+      "end": 1535.98,
+      "text": "beautiful trade on your hands if you caught it in asia if you're coming into the london the same"
+    },
+    {
+      "start": 1535.98,
+      "end": 1542.78,
+      "text": "thing you can just buy stop the structure and notice how it's making higher highs"
+    },
+    {
+      "start": 1542.78,
+      "end": 1551.54,
+      "text": "higher lows there is sbs in here so you gotta watch out for the sbs it's still there it still"
+    },
+    {
+      "start": 1551.54,
+      "end": 1560.4,
+      "text": "works but once you in this trade you just trail it and you take profit as simple as that this setup"
+    },
+    {
+      "start": 1560.4,
+      "end": 1568.24,
+      "text": "is different this is not a reversal this is trend continuation this is breakout continuation"
+    },
+    {
+      "start": 1569.04,
+      "end": 1576.08,
+      "text": "so the price breaks out it has a small pullback to the breakout level here the previous daily"
+    },
+    {
+      "start": 1576.08,
+      "end": 1584.16,
+      "text": "close this is inside candle here but on the daily charts this is consolidation and all of this is"
+    },
+    {
+      "start": 1584.16,
+      "end": 1591.1,
+      "text": "just a small counter move in order to continue the trend so you got to watch out for these because"
+    },
+    {
+      "start": 1591.1,
+      "end": 1597.68,
+      "text": "these are great continuation trades they are not as highest probability as the other ones i showed"
+    },
+    {
+      "start": 1597.68,
+      "end": 1604.56,
+      "text": "you but this is still a great setup it's a classic setup and see this is where a lot of people get in"
+    },
+    {
+      "start": 1604.56,
+      "end": 1609.8,
+      "text": "and think now we are sweeping the low we've been going to the moon and we're going to reverse"
+    },
+    {
+      "start": 1609.8,
+      "end": 1618.4,
+      "text": "and this is bitcoin here but all of this is just a simple counter trend move the difference from"
+    },
+    {
+      "start": 1618.4,
+      "end": 1625.76,
+      "text": "the reversals is that the consolidation forms at the breakout level so over here we have"
+    },
+    {
+      "start": 1625.76,
+      "end": 1634.06,
+      "text": "consolidation and we we can't break back about that previous daily close so this on the five"
+    },
+    {
+      "start": 1634.06,
+      "end": 1642.5,
+      "text": "minute chart what you see is this counter trend move reversal so after this one green day of trend"
+    },
+    {
+      "start": 1642.5,
+      "end": 1648.7,
+      "text": "continuation this is the signal over here this is the signal day when we have something like this"
+    },
+    {
+      "start": 1648.7,
+      "end": 1657.64,
+      "text": "we want to look for the consolidation right and continuation lower and a lot of these are going"
+    },
+    {
+      "start": 1657.64,
+      "end": 1665.22,
+      "text": "to be set up in the new york the best time for these setups is still going to be new york because"
+    },
+    {
+      "start": 1665.22,
+      "end": 1673.08,
+      "text": "new york is the most liquid session of them all still you can try to enter in london session this"
+    },
+    {
+      "start": 1673.08,
+      "end": 1679.66,
+      "text": "was a nice here manipulation sweep whatever you want to call it this was a sweep you can enter in"
+    },
+    {
+      "start": 1679.66,
+      "end": 1687.74,
+      "text": "London and just wait because New York could have a nice explosive move. Most of the time,"
+    },
+    {
+      "start": 1687.88,
+      "end": 1693.54,
+      "text": "usually New York will have the move. But sometimes, like I showed you before, sometimes you can have"
+    },
+    {
+      "start": 1693.54,
+      "end": 1701.84,
+      "text": "Asia set up or London set up. But it's very nice. You can see obvious consolidation at the previous"
+    },
+    {
+      "start": 1701.84,
+      "end": 1709.92,
+      "text": "daily close previous daily high again they are stacked and you can obviously see the asymmetric"
+    },
+    {
+      "start": 1709.92,
+      "end": 1717.76,
+      "text": "opportunity especially when it starts breaking the consolidation we have the first break over here"
+    },
+    {
+      "start": 1717.76,
+      "end": 1726.08,
+      "text": "there is an sbs pullback and you can just simply enter on the breakdown set your stop loss about"
+    },
+    {
+      "start": 1726.08,
+      "end": 1734.06,
+      "text": "here and you catch 10r absolutely beautiful these are the trades that i would love to see these are"
+    },
+    {
+      "start": 1734.06,
+      "end": 1739.78,
+      "text": "the trains that will compound your trading account here's another breakout continuation"
+    },
+    {
+      "start": 1739.78,
+      "end": 1749.3,
+      "text": "on the crude oil and these breakout continuations are the best really on the range breakout"
+    },
+    {
+      "start": 1749.3,
+      "end": 1755.48,
+      "text": "So you see how we had a few days of range and then got this range breakout."
+    },
+    {
+      "start": 1756.08,
+      "end": 1760.1,
+      "text": "And this is the candle that I want to trade."
+    },
+    {
+      "start": 1760.86,
+      "end": 1768.54,
+      "text": "So the key is that this range breakout needs to consolidate right at the breakout level."
+    },
+    {
+      "start": 1768.98,
+      "end": 1775.64,
+      "text": "You see that previous daily close and this consolidation over here, all of this."
+    },
+    {
+      "start": 1775.64,
+      "end": 1784.08,
+      "text": "This is telling me that breakout is getting ready to succeed, especially when we get back about the moving averages."
+    },
+    {
+      "start": 1784.62,
+      "end": 1791.56,
+      "text": "And if you want to learn more about the 20 and 200 SMA, watch the Stoic Trader Protocol."
+    },
+    {
+      "start": 1792.46,
+      "end": 1800.68,
+      "text": "I dive deeper into these charts with the 20 and 200 SMA, but hopefully you can see how this all fits together."
+    },
+    {
+      "start": 1800.68,
+      "end": 1810.06,
+      "text": "this is the moving averages job zone this is where the price is going sideways you can see"
+    },
+    {
+      "start": 1810.06,
+      "end": 1816.66,
+      "text": "it going sideways because the price is disrespecting the moving averages there is no clear direction"
+    },
+    {
+      "start": 1816.66,
+      "end": 1822.24,
+      "text": "and this is what we want to see not every consolidation is going to look the same"
+    },
+    {
+      "start": 1822.24,
+      "end": 1828.52,
+      "text": "some consolidations are going to be a bit tricky and this was a beautiful sbs model too"
+    },
+    {
+      "start": 1828.52,
+      "end": 1836.06,
+      "text": "and after this breakout you can confidently enter here set your stop loss and let it ride"
+    },
+    {
+      "start": 1836.06,
+      "end": 1845.8,
+      "text": "this day wasn't as good it ran the next day after consolidation beautiful pump but"
+    },
+    {
+      "start": 1845.8,
+      "end": 1853.62,
+      "text": "i'm just showing you that this is the setup we want to see consolidation at the breakout level"
+    },
+    {
+      "start": 1853.62,
+      "end": 1861.98,
+      "text": "and here's the same thing but a bit higher you can see previous daily close price dips into that"
+    },
+    {
+      "start": 1861.98,
+      "end": 1868.64,
+      "text": "breakout level and comes back out but it's okay if you miss the trade it's fine if it doesn't"
+    },
+    {
+      "start": 1868.64,
+      "end": 1875.9,
+      "text": "look clear to you it's better not to force the trade than to take a mediocre setup that's going"
+    },
+    {
+      "start": 1875.9,
+      "end": 1884.24,
+      "text": "to end up minus one r but this is still not enough i have another filter you got the setups"
+    },
+    {
+      "start": 1884.24,
+      "end": 1892.98,
+      "text": "but how do you know when a setup is actually ready to fire that's what the signal days are for"
+    },
+    {
+      "start": 1892.98,
+      "end": 1900.68,
+      "text": "signal days are specific daily patterns that reveal what's happening under the surface"
+    },
+    {
+      "start": 1900.68,
+      "end": 1909.0,
+      "text": "who's trapped who's exhausted where the energy is building and all of these signal days connect"
+    },
+    {
+      "start": 1909.0,
+      "end": 1916.64,
+      "text": "in a sequence we have three higher closes three lower closes the third day is a signal day"
+    },
+    {
+      "start": 1916.64,
+      "end": 1924.12,
+      "text": "first green day first red day is a signal day and the inside day is the signal day also"
+    },
+    {
+      "start": 1924.12,
+      "end": 1931.88,
+      "text": "So let's talk about three higher or lower closes. And why three daily closes, you may ask? Well,"
+    },
+    {
+      "start": 1931.96,
+      "end": 1941.0,
+      "text": "it's because that's how our brain works. One update is noise. Two is coincidence. And three,"
+    },
+    {
+      "start": 1941.54,
+      "end": 1949.62,
+      "text": "your brain goes, this is a trend. I need to get in. And that's what fear of missing out looks like."
+    },
+    {
+      "start": 1949.62,
+      "end": 1957.46,
+      "text": "that's FOMO. By day three, here's who's in the market. The aggressive traders got in on day one,"
+    },
+    {
+      "start": 1958.06,
+      "end": 1965.62,
+      "text": "the cautious ones on day two, and the FOMO crowd on day three at the absolute worst price."
+    },
+    {
+      "start": 1966.46,
+      "end": 1974.56,
+      "text": "Now think about institutions, big money, central banks. They are too big to just click a buy"
+    },
+    {
+      "start": 1974.56,
+      "end": 1983.84,
+      "text": "button they need liquidity they need someone to sell to after three consecutive higher closes"
+    },
+    {
+      "start": 1983.84,
+      "end": 1993.54,
+      "text": "there is a wall of eager buyers absolutely perfect that's exactly when institutions"
+    },
+    {
+      "start": 1993.54,
+      "end": 2002.64,
+      "text": "start selling into all that demand they are distributing their positions into the strength"
+    },
+    {
+      "start": 2002.64,
+      "end": 2011.94,
+      "text": "that retail is handing them. Retail fully loaded on one side, institutions distributing on the"
+    },
+    {
+      "start": 2011.94,
+      "end": 2021.06,
+      "text": "other. The market is done. But here's the thing. Three higher closes is the signal, not the trigger."
+    },
+    {
+      "start": 2021.06,
+      "end": 2029.4,
+      "text": "You don't enter just because you have three higher closes. The only exception if you have"
+    },
+    {
+      "start": 2029.4,
+      "end": 2036.64,
+      "text": "a nice consolidation on Thursday from Wednesday to Thursday like I showed you on this example over"
+    },
+    {
+      "start": 2036.64,
+      "end": 2043.92,
+      "text": "here. When you see this setup you better take it because this is the best A++ setup."
+    },
+    {
+      "start": 2045.1,
+      "end": 2052.7,
+      "text": "And the key understanding here is that we can have three daily closes and when we see the"
+    },
+    {
+      "start": 2052.7,
+      "end": 2060.56,
+      "text": "consolidation into the new york open consolidation through asia through london into the new york open"
+    },
+    {
+      "start": 2060.56,
+      "end": 2069.36,
+      "text": "this is where you can take the setup without the signal candle without the first red day or first"
+    },
+    {
+      "start": 2069.36,
+      "end": 2077.02,
+      "text": "green day so the third daily close is the signal candle but it needs to be wednesday going into"
+    },
+    {
+      "start": 2077.02,
+      "end": 2085.24,
+      "text": "the Thursday. That's really the best of the best setups and very, very specific. The other ones"
+    },
+    {
+      "start": 2085.24,
+      "end": 2092.76,
+      "text": "have more flexibility, but I want to emphasize that this is going to be your bread and butter,"
+    },
+    {
+      "start": 2092.9,
+      "end": 2100.88,
+      "text": "the best setup. And the frequency of this setup is not that high. You might get maybe one or two"
+    },
+    {
+      "start": 2100.88,
+      "end": 2109.22,
+      "text": "of these setups for the whole month per instrument so that brings me to the first red day green day"
+    },
+    {
+      "start": 2109.22,
+      "end": 2117.48,
+      "text": "so the first red day is the first close lower after the market's been going up first crack in"
+    },
+    {
+      "start": 2117.48,
+      "end": 2126.34,
+      "text": "the wall two things happen when this hits the buy the dip crowd sees the red day and gets excited"
+    },
+    {
+      "start": 2126.34,
+      "end": 2134.36,
+      "text": "thinks it's a discount they buy more that's why the market doesn't always collapse immediately"
+    },
+    {
+      "start": 2134.36,
+      "end": 2143.18,
+      "text": "there is a cushion of dip buyers but the people who bought on day three at highest close of the"
+    },
+    {
+      "start": 2143.18,
+      "end": 2153.4,
+      "text": "month they are underwater now first time seeing red if the next day is red too their small loss"
+    },
+    {
+      "start": 2153.4,
+      "end": 2162.6,
+      "text": "becomes a real loss and they start hitting the exit their stops cascade into more and more stops"
+    },
+    {
+      "start": 2162.6,
+      "end": 2170.24,
+      "text": "that second group is what fuels the reversal the institutions who were already distributing"
+    },
+    {
+      "start": 2170.24,
+      "end": 2177.8,
+      "text": "they are just watching and the first green day is the absolute mirror after three lower closes"
+    },
+    {
+      "start": 2177.8,
+      "end": 2179.46,
+      "text": "at the lowest close of the month,"
+    },
+    {
+      "start": 2179.68,
+      "end": 2184.34,
+      "text": "the first up close means selling is running out of gas."
+    },
+    {
+      "start": 2185.12,
+      "end": 2189.74,
+      "text": "Short starts covering and every cover is a buy order,"
+    },
+    {
+      "start": 2190.26,
+      "end": 2191.48,
+      "text": "feeds on itself."
+    },
+    {
+      "start": 2192.24,
+      "end": 2194.66,
+      "text": "And that's why we have short squeeze."
+    },
+    {
+      "start": 2195.38,
+      "end": 2196.8,
+      "text": "One thing worth knowing,"
+    },
+    {
+      "start": 2196.8,
+      "end": 2202.32,
+      "text": "research shows that losses hurt about twice as much"
+    },
+    {
+      "start": 2202.32,
+      "end": 2204.38,
+      "text": "as gains feel good."
+    },
+    {
+      "start": 2205.0,
+      "end": 2207.7,
+      "text": "So the fear is stronger than greed."
+    },
+    {
+      "start": 2207.8,
+      "end": 2212.34,
+      "text": "That's why sell-offs overshoot more than rallies."
+    },
+    {
+      "start": 2213.2,
+      "end": 2220.38,
+      "text": "So first green day reversals from oversold extremes can be particularly violent."
+    },
+    {
+      "start": 2221.0,
+      "end": 2229.44,
+      "text": "Going back to our examples, and like I said, sometimes that first green day is going to be a great opportunity to trade."
+    },
+    {
+      "start": 2229.44,
+      "end": 2237.4,
+      "text": "but if it's not consolidating through the Asia London New York session you gotta be cautious"
+    },
+    {
+      "start": 2237.4,
+      "end": 2244.18,
+      "text": "and you gotta be careful because you don't have a signal yet but once you have the signal first"
+    },
+    {
+      "start": 2244.18,
+      "end": 2253.6,
+      "text": "green day the second green day becomes an obvious trade to the upside the same on the reversal"
+    },
+    {
+      "start": 2253.6,
+      "end": 2263.36,
+      "text": "we have the first red day and then you trade to the downside so the signal is the first red day"
+    },
+    {
+      "start": 2263.36,
+      "end": 2273.0,
+      "text": "and you look for the setup the next day we don't trade the signal we trade the day after the signal"
+    },
+    {
+      "start": 2273.0,
+      "end": 2282.28,
+      "text": "and the key again you need to see consolidation in order to take that trade no consolidation no"
+    },
+    {
+      "start": 2282.28,
+      "end": 2290.62,
+      "text": "trade because it's all about consolidation leads to expansion we need to have consolidation where"
+    },
+    {
+      "start": 2290.62,
+      "end": 2298.62,
+      "text": "the energy is building and then the expansion is the release of that energy and then last but not"
+    },
+    {
+      "start": 2298.62,
+      "end": 2307.86,
+      "text": "the least we have inside day so the inside day is when today's high is lower than yesterday's high"
+    },
+    {
+      "start": 2307.86,
+      "end": 2314.74,
+      "text": "and today's low is higher than yesterday's low the whole day fits inside the previous day"
+    },
+    {
+      "start": 2314.74,
+      "end": 2323.7,
+      "text": "and market is consolidating compressing going sideways on its own this means nothing these"
+    },
+    {
+      "start": 2323.7,
+      "end": 2330.9,
+      "text": "inside days happen all the time all over the place but after a first red day at the highest close of"
+    },
+    {
+      "start": 2330.9,
+      "end": 2340.1,
+      "text": "demand this is a completely different story that's consolidation at the point of maximum exhaustion"
+    },
+    {
+      "start": 2340.74,
+      "end": 2348.66,
+      "text": "the three higher closes identified the exhaustion the first red day confirmed the reversal"
+    },
+    {
+      "start": 2349.46,
+      "end": 2358.66,
+      "text": "and the inside day is the market consolidating one last time before it explodes think of it as a"
+    },
+    {
+      "start": 2358.66,
+      "end": 2366.88,
+      "text": "pattern within a pattern the daily chart built the signal the inside day is the consolidation"
+    },
+    {
+      "start": 2366.88,
+      "end": 2374.7,
+      "text": "on the daily and if you zoom into the five minute chart on the inside day you'll see the moving"
+    },
+    {
+      "start": 2374.7,
+      "end": 2384.26,
+      "text": "averages all over the place they are tangled and they are converging flat same compression at every"
+    },
+    {
+      "start": 2384.26,
+      "end": 2393.02,
+      "text": "level so the important thing to understand is that volatility is cyclical tight ranges are always"
+    },
+    {
+      "start": 2393.02,
+      "end": 2400.58,
+      "text": "followed by wide ranges that's why i say consolidation leads to expansion always"
+    },
+    {
+      "start": 2400.58,
+      "end": 2410.36,
+      "text": "so when you see an inside day at a signal day what comes next is going to be big here's the"
+    },
+    {
+      "start": 2410.36,
+      "end": 2420.04,
+      "text": "example of you have the first red day you have the second red day but this was actually a close"
+    },
+    {
+      "start": 2420.04,
+      "end": 2427.48,
+      "text": "below the previous day so we can look at this just as consolidation but this is actually a"
+    },
+    {
+      "start": 2427.48,
+      "end": 2435.88,
+      "text": "first red day that stopped out the previous people the buyers and then you have inside day"
+    },
+    {
+      "start": 2435.88,
+      "end": 2445.72,
+      "text": "consolidation and this following day is expansion down and sometimes the price will sweep"
+    },
+    {
+      "start": 2445.72,
+      "end": 2452.06,
+      "text": "this inside day that's what i told you in the first video about the candle swing theory"
+    },
+    {
+      "start": 2452.06,
+      "end": 2460.18,
+      "text": "about the previous daily levels and i said about the inside days it's the same thing just the"
+    },
+    {
+      "start": 2460.18,
+      "end": 2467.78,
+      "text": "upgraded version and upgraded context based on the higher time frames so sometimes you get the sweep"
+    },
+    {
+      "start": 2468.5,
+      "end": 2475.06,
+      "text": "and continuation lower of this inside day and sometimes it's just going to consolidate at this"
+    },
+    {
+      "start": 2475.06,
+      "end": 2483.06,
+      "text": "previous daily close and continue lower again we want to see consolidation it can look like this"
+    },
+    {
+      "start": 2483.06,
+      "end": 2491.3,
+      "text": "consolidation and then dump previous daily high previous daily close and that's how we treat the"
+    },
+    {
+      "start": 2491.3,
+      "end": 2499.18,
+      "text": "inside days when we get an inside day that's a signal to look for the next day so at the end of"
+    },
+    {
+      "start": 2499.18,
+      "end": 2507.7,
+      "text": "every day we can scan the charts and we can build the watch list with specific instruments that are"
+    },
+    {
+      "start": 2507.7,
+      "end": 2515.64,
+      "text": "set up for the highest probability outcomes. And here's an interesting part about the breakout"
+    },
+    {
+      "start": 2515.64,
+      "end": 2522.14,
+      "text": "sequence. You know the SBS, the swing breakout sequence. And I've been studying breakouts for a"
+    },
+    {
+      "start": 2522.14,
+      "end": 2528.82,
+      "text": "long, long time now since I started trading. I realized that it's all about the breakouts"
+    },
+    {
+      "start": 2528.82,
+      "end": 2536.86,
+      "text": "because the breakouts attract the buyers or sellers. And that's where the action is. And"
+    },
+    {
+      "start": 2536.86,
+      "end": 2542.54,
+      "text": "that's where the highest probability setups will be. And the more I study about the breakouts,"
+    },
+    {
+      "start": 2542.66,
+      "end": 2547.48,
+      "text": "the more I realize that there is a sequence, just like with the swing breakout sequence,"
+    },
+    {
+      "start": 2547.48,
+      "end": 2554.94,
+      "text": "there is a sequence with the signal days. So it's not going to be ideal every time,"
+    },
+    {
+      "start": 2555.08,
+      "end": 2561.04,
+      "text": "but sometimes you're going to see the sequence play out and you will remember this video."
+    },
+    {
+      "start": 2561.04,
+      "end": 2568.98,
+      "text": "so here's how all of the signal days connect so day one through three market pushes to the"
+    },
+    {
+      "start": 2568.98,
+      "end": 2578.28,
+      "text": "highest closing price of the month three higher closes exhaustion day four first red day first"
+    },
+    {
+      "start": 2578.28,
+      "end": 2588.5,
+      "text": "close lower confirmation that the buyers are done day five inside day range contracts on the five"
+    },
+    {
+      "start": 2588.5,
+      "end": 2596.26,
+      "text": "minute chart the moving averages are flat they are tangled up price disrespecting moving averages"
+    },
+    {
+      "start": 2596.26,
+      "end": 2605.46,
+      "text": "it's obvious consolidation energy is building and day six it breaks short at highest close of the"
+    },
+    {
+      "start": 2605.46,
+      "end": 2612.34,
+      "text": "month long at lowest close of the month these moves are parabolic and they don't come back"
+    },
+    {
+      "start": 2613.06,
+      "end": 2619.38,
+      "text": "like i said you're not always going to get every single day in this exact sequence sometimes it"
+    },
+    {
+      "start": 2619.38,
+      "end": 2626.66,
+      "text": "skips the inside day sometimes the first red day leads straight into the move just like i showed"
+    },
+    {
+      "start": 2626.66,
+      "end": 2633.46,
+      "text": "you on the nasdaq over here the first right day just sold off and like i said the best case"
+    },
+    {
+      "start": 2633.46,
+      "end": 2640.74,
+      "text": "scenario for this to happen is you want to see consolidation throughout all the trading sessions"
+    },
+    {
+      "start": 2640.74,
+      "end": 2648.02,
+      "text": "and then new york sets up the big move but when you get the full sequence that's where the money"
+    },
+    {
+      "start": 2648.02,
+      "end": 2655.7,
+      "text": "is laying on the floor this is easy money now you know the setups you know the signal days"
+    },
+    {
+      "start": 2655.7,
+      "end": 2664.42,
+      "text": "but how do you actually time the entry five minute chart two moving averages 20 and 200 sma"
+    },
+    {
+      "start": 2664.42,
+      "end": 2672.54,
+      "text": "only on the five-minute chart nowhere else when the moving averages are flat tangled up"
+    },
+    {
+      "start": 2672.54,
+      "end": 2681.56,
+      "text": "price disrespecting moving averages trading in the tight sideways range that's the chop zone"
+    },
+    {
+      "start": 2681.56,
+      "end": 2687.78,
+      "text": "the ma chop zone whatever you want to call it doesn't really matter it's consolidation it's"
+    },
+    {
+      "start": 2687.78,
+      "end": 2695.74,
+      "text": "tight consolidation that's building energy and a well-built chop zone can only break one way"
+    },
+    {
+      "start": 2695.74,
+      "end": 2703.38,
+      "text": "this is not a guess the higher time frame already told you the direction highest close of the month"
+    },
+    {
+      "start": 2703.38,
+      "end": 2711.18,
+      "text": "means short lowest close of the month means long and the chop zone just tells you when"
+    },
+    {
+      "start": 2711.18,
+      "end": 2720.72,
+      "text": "you are waiting for the spring to release most important rule no job zone no trade don't put"
+    },
+    {
+      "start": 2720.72,
+      "end": 2728.4,
+      "text": "these moving averages on random charts looking for convergence they'll eat you alive the moving"
+    },
+    {
+      "start": 2728.4,
+      "end": 2735.98,
+      "text": "averages are only useful when you have a setup from the daily chart daily gives you the signal"
+    },
+    {
+      "start": 2735.98,
+      "end": 2744.98,
+      "text": "five minute gives you the entry without the daily setup the five minute is just noise if you are"
+    },
+    {
+      "start": 2744.98,
+      "end": 2753.2,
+      "text": "getting chopped up you are trading a chart without a setup go back to the daily and start over the"
+    },
+    {
+      "start": 2753.2,
+      "end": 2760.26,
+      "text": "other thing that's a very simple understanding is four hour rotations that's also part of the time"
+    },
+    {
+      "start": 2760.26,
+      "end": 2767.62,
+      "text": "cycles that market follows throughout the day and every market trades in four hour rotations"
+    },
+    {
+      "start": 2768.42,
+      "end": 2776.9,
+      "text": "each new four hour candle can shift the cycle the ma chop zone break usually lines up with one of"
+    },
+    {
+      "start": 2776.9,
+      "end": 2786.5,
+      "text": "these indexes metals crude oil start at 6 p.m cycles every four hours currencies and crypto"
+    },
+    {
+      "start": 2786.5,
+      "end": 2796.04,
+      "text": "one hour earlier you don't need to memorize all of them three windows matter the 6 a.m 10 a.m"
+    },
+    {
+      "start": 2796.04,
+      "end": 2804.46,
+      "text": "2 p.m for the indexes metals oils and 5 a.m 9 a.m 1 p.m for the currency script these are just"
+    },
+    {
+      "start": 2804.46,
+      "end": 2811.96,
+      "text": "guidelines don't take them too literally this is what i noticed that the price sets up during these"
+    },
+    {
+      "start": 2811.96,
+      "end": 2825.22,
+      "text": "hours 6 a.m 10 a.m 2 p.m i am most familiar with the indexes nq es ym russell so i am most"
+    },
+    {
+      "start": 2825.22,
+      "end": 2832.52,
+      "text": "experienced in 10 a.m sometimes you're going to have 9 30 open and the market just explodes"
+    },
+    {
+      "start": 2832.52,
+      "end": 2841.1,
+      "text": "without 10 a.m manipulation rotation whatever you want to call it but this is in my experience what"
+    },
+    {
+      "start": 2841.1,
+      "end": 2850.18,
+      "text": "i noticed and i encourage you to go back test also and collect data with these setups and the timing"
+    },
+    {
+      "start": 2850.18,
+      "end": 2859.76,
+      "text": "when these setups usually happen but first 6 a.m london crossover if this four hour candle puts"
+    },
+    {
+      "start": 2859.76,
+      "end": 2870.8,
+      "text": "in an extreme that's your max risk reference so whatever high or low the market puts at 6 a.m"
+    },
+    {
+      "start": 2870.8,
+      "end": 2878.5,
+      "text": "london crossover that low or high usually will stay intact for the whole day second window we"
+    },
+    {
+      "start": 2878.5,
+      "end": 2886.08,
+      "text": "have the 10 a.m this is the money window for me personally this is start of the second new york"
+    },
+    {
+      "start": 2886.08,
+      "end": 2893.34,
+      "text": "rotation this is where the most chop zones will break out if you had a signal from last night"
+    },
+    {
+      "start": 2893.34,
+      "end": 2902.54,
+      "text": "and the market's been chopping around all morning, 10 a.m. is when it typically goes and explodes."
+    },
+    {
+      "start": 2903.08,
+      "end": 2910.14,
+      "text": "And the third time window would be 2 p.m., which also serves as a deadline."
+    },
+    {
+      "start": 2910.76,
+      "end": 2915.3,
+      "text": "If the trade hasn't worked by now, it's probably not going to."
+    },
+    {
+      "start": 2915.74,
+      "end": 2916.82,
+      "text": "Don't force it."
+    },
+    {
+      "start": 2917.36,
+      "end": 2922.6,
+      "text": "Most days, you only need to be at your screen for the money window."
+    },
+    {
+      "start": 2922.6,
+      "end": 2932.02,
+      "text": "set the watch list at night check the chop zone in the morning be ready at 10 a.m and that's the"
+    },
+    {
+      "start": 2932.02,
+      "end": 2939.08,
+      "text": "whole schedule and like i said that's my schedule you need to take whatever i'm teaching and apply"
+    },
+    {
+      "start": 2939.08,
+      "end": 2945.18,
+      "text": "it to your own schedule and develop your own trading system that based on your personality"
+    },
+    {
+      "start": 2945.18,
+      "end": 2953.4,
+      "text": "and your schedule that's the only way so reminding you again the best version of any setup"
+    },
+    {
+      "start": 2953.4,
+      "end": 2962.8,
+      "text": "is that market will consolidate through asia still consolidates through london breaks in the new york"
+    },
+    {
+      "start": 2962.8,
+      "end": 2972.6,
+      "text": "12 hours plus with compression consolidation everyone trapped on both sides the lungs at"
+    },
+    {
+      "start": 2972.6,
+      "end": 2979.72,
+      "text": "highest close of the month watching the market go nowhere getting nervous the shorts who tried to"
+    },
+    {
+      "start": 2979.72,
+      "end": 2989.32,
+      "text": "fade it also stuck nobody's happy and then new york opens and all of them unwind at once thursday"
+    },
+    {
+      "start": 2989.32,
+      "end": 2998.44,
+      "text": "after a wednesday signal with a three session consolidation that's the absolute best of the best"
+    },
+    {
+      "start": 2998.44,
+      "end": 3008.0,
+      "text": "setups two to five times a month across the full baskets of instruments three session consolidation"
+    },
+    {
+      "start": 3008.0,
+      "end": 3016.0,
+      "text": "that's the best of the best every evening after market closes for five minutes open the daily"
+    },
+    {
+      "start": 3016.0,
+      "end": 3024.24,
+      "text": "charts did anything close about previous daily high or previous daily low if yes is it the highest"
+    },
+    {
+      "start": 3024.24,
+      "end": 3032.12,
+      "text": "or lowest closing price of the week? What about the month? Is it breaking weekly or monthly ranges?"
+    },
+    {
+      "start": 3032.96,
+      "end": 3042.84,
+      "text": "If it's in the breakout mode and at an extreme, it goes on the watch list. Done and you go do"
+    },
+    {
+      "start": 3042.84,
+      "end": 3050.78,
+      "text": "something else. In the morning, the next day, check the economic calendar. Any major red folder"
+    },
+    {
+      "start": 3050.78,
+      "end": 3061.36,
+      "text": "news today? What about NFP, CPI, FOMC? If yes, note that time and do not enter before news."
+    },
+    {
+      "start": 3062.16,
+      "end": 3070.04,
+      "text": "Wait for the release. Pull up your watch list on the five-minute chart with the 20 and 200 SMA"
+    },
+    {
+      "start": 3070.04,
+      "end": 3078.12,
+      "text": "going flat. Ask yourself, is the job zone building up? Are the price consolidating"
+    },
+    {
+      "start": 3078.12,
+      "end": 3087.74,
+      "text": "in the tight range. If yes, get ready. But if there is no chop zone, close the charts. There"
+    },
+    {
+      "start": 3087.74,
+      "end": 3094.54,
+      "text": "is no trade today. And this is the hardest part, sitting on your hands when you want to trade."
+    },
+    {
+      "start": 3095.46,
+      "end": 3102.5,
+      "text": "But that's where the edge is. Here's your entry checklist. Five things must be true before you"
+    },
+    {
+      "start": 3102.5,
+      "end": 3110.62,
+      "text": "enter breakout mode on a daily at a weekly or monthly extreme job zone on the five minute"
+    },
+    {
+      "start": 3110.62,
+      "end": 3118.58,
+      "text": "direction is clear no news about to drop if you are asking could this go either way"
+    },
+    {
+      "start": 3118.58,
+      "end": 3127.78,
+      "text": "there is no setup walk away and for your entry you scale in as the job zone tightens"
+    },
+    {
+      "start": 3127.78,
+      "end": 3136.4,
+      "text": "stop goes at the other side of the chop zone this will give you very tight risk but sometimes you"
+    },
+    {
+      "start": 3136.4,
+      "end": 3144.74,
+      "text": "will get stopped out you can also just buy stop or sell stop the whole consolidation zone the whole"
+    },
+    {
+      "start": 3144.74,
+      "end": 3153.46,
+      "text": "range so as the price breaks out into your predetermined direction you simply enter on the"
+    },
+    {
+      "start": 3153.46,
+      "end": 3161.14,
+      "text": "breakout and you set the stop loss at the opposing side of the consolidation once the market clears"
+    },
+    {
+      "start": 3161.14,
+      "end": 3168.5,
+      "text": "the previous daily level high of the day or love of the day move the stop loss to break even and"
+    },
+    {
+      "start": 3168.5,
+      "end": 3177.46,
+      "text": "walk away hold until close or take profits in the last hour also i recommend checking your charts"
+    },
+    {
+      "start": 3177.46,
+      "end": 3184.34,
+      "text": "once in a while and just trailing behind the obvious structure. So after the move unfolds,"
+    },
+    {
+      "start": 3184.34,
+      "end": 3190.7,
+      "text": "you want to make sure that you are taking profits because all of the work done in preparation,"
+    },
+    {
+      "start": 3190.98,
+      "end": 3199.24,
+      "text": "in the patience, sitting on your hands, waiting for the specific setup. Like I said, I don't care"
+    },
+    {
+      "start": 3199.24,
+      "end": 3205.88,
+      "text": "what the price action is. I don't care how the one minute looks or five minute what sweeps"
+    },
+    {
+      "start": 3205.88,
+      "end": 3213.02,
+      "text": "happening over there i don't care about that all i care about is tight consolidation after the"
+    },
+    {
+      "start": 3213.02,
+      "end": 3223.14,
+      "text": "signal day with a daily setup so because our stop loss is tight compared to the liquidation event"
+    },
+    {
+      "start": 3223.14,
+      "end": 3231.86,
+      "text": "to the whole move the chop zone is like a narrow range and the target is so far and when you hold"
+    },
+    {
+      "start": 3231.86,
+      "end": 3240.68,
+      "text": "it too close the risk to reward is absolutely ridiculous five to one at minimum it's very"
+    },
+    {
+      "start": 3240.68,
+      "end": 3249.04,
+      "text": "typical for the trade to go more than 5r and some of the best setups will produce like 15r or more"
+    },
+    {
+      "start": 3249.04,
+      "end": 3255.72,
+      "text": "and i know it sounds ridiculous but once you start backtesting and actually seeing these moves play"
+    },
+    {
+      "start": 3255.72,
+      "end": 3262.68,
+      "text": "out on all of these charts you will realize that this is the setup that you should be hunting and"
+    },
+    {
+      "start": 3262.68,
+      "end": 3268.62,
+      "text": "like i said maybe you're good at scalping but this is what i want to trade based on everything that's"
+    },
+    {
+      "start": 3268.62,
+      "end": 3276.44,
+      "text": "going on in my life and my available time and schedule my personality i want these trades i want"
+    },
+    {
+      "start": 3276.44,
+      "end": 3282.86,
+      "text": "absolute bangers i don't want to waste my time trying to catch every single move on one minute"
+    },
+    {
+      "start": 3282.86,
+      "end": 3289.48,
+      "text": "chart. I've done that before. I'm done with that. I'm not saying that it doesn't work. I'm just"
+    },
+    {
+      "start": 3289.48,
+      "end": 3295.38,
+      "text": "saying it's not for everybody. And I know some of you just like me been in this game for years,"
+    },
+    {
+      "start": 3295.94,
+      "end": 3303.88,
+      "text": "years and years trying to find your way in trading. And hopefully after joining this community,"
+    },
+    {
+      "start": 3303.88,
+      "end": 3311.88,
+      "text": "you are done with copy trading other traders. You are done with copying systems and trying to trade"
+    },
+    {
+      "start": 3311.88,
+      "end": 3319.94,
+      "text": "like somebody else it's really all about you and developing your own way of trading your own"
+    },
+    {
+      "start": 3319.94,
+      "end": 3327.94,
+      "text": "system and all i'm doing is i'm sharing what works i'm giving you all the tools for scalping"
+    },
+    {
+      "start": 3327.94,
+      "end": 3334.46,
+      "text": "for swing trading if you want to invest just buy and hold dollar cost average that's really best"
+    },
+    {
+      "start": 3334.46,
+      "end": 3341.76,
+      "text": "way for investing but really what i'm doing is i am documenting my journey going from the swing"
+    },
+    {
+      "start": 3341.76,
+      "end": 3347.98,
+      "text": "trading to the scalping and now back to swing trading and I'm trying to share all of the aha"
+    },
+    {
+      "start": 3347.98,
+      "end": 3354.32,
+      "text": "moments and lessons that I learned on my journey so hopefully you don't have to make the same"
+    },
+    {
+      "start": 3354.32,
+      "end": 3361.96,
+      "text": "mistakes that I did. So moving on to the basket of instruments this is the basket you can scan"
+    },
+    {
+      "start": 3361.96,
+      "end": 3370.62,
+      "text": "every night you don't trade all of them you scan all of them and trade whichever one's setting up"
+    },
+    {
+      "start": 3371.28,
+      "end": 3373.46,
+      "text": "Some weeks, it's going to be nothing."
+    },
+    {
+      "start": 3374.08,
+      "end": 3378.32,
+      "text": "Some weeks, three or four instruments line up at once."
+    },
+    {
+      "start": 3378.74,
+      "end": 3384.1,
+      "text": "The point is you got enough that you are never forcing a trade."
+    },
+    {
+      "start": 3384.42,
+      "end": 3387.28,
+      "text": "If gold is dead, maybe oil is moving."
+    },
+    {
+      "start": 3387.76,
+      "end": 3390.26,
+      "text": "Currency is flat, check indexes."
+    },
+    {
+      "start": 3390.6,
+      "end": 3392.46,
+      "text": "And I don't really trade currencies."
+    },
+    {
+      "start": 3393.12,
+      "end": 3396.74,
+      "text": "I'm going to try to do it on the future side."
+    },
+    {
+      "start": 3396.74,
+      "end": 3404.08,
+      "text": "but most of my experience like i said is going to be about indexes and what i'm looking for is the"
+    },
+    {
+      "start": 3404.08,
+      "end": 3413.48,
+      "text": "big volatile moves and usually on indexes nasdaq and dow is going to have most volatile moves"
+    },
+    {
+      "start": 3413.48,
+      "end": 3421.96,
+      "text": "and s&p 500 usually less volatile it's good for the very small account where you can't risk"
+    },
+    {
+      "start": 3421.96,
+      "end": 3430.84,
+      "text": "a lot on nasdaq and dow you might be able to risk on the s&p 500 and russell as well but the most"
+    },
+    {
+      "start": 3430.84,
+      "end": 3438.26,
+      "text": "the best trades on the index is going to be on nasdaq and dow as far as the metals gold silver"
+    },
+    {
+      "start": 3438.26,
+      "end": 3446.5,
+      "text": "copper usually just gold is the best thing to trade as far as the metals energy is going to"
+    },
+    {
+      "start": 3446.5,
+      "end": 3455.48,
+      "text": "be crude oil nothing else is really worth it crude oil moves everything else is just not worth it in"
+    },
+    {
+      "start": 3455.48,
+      "end": 3461.36,
+      "text": "my opinion currencies like i said i don't have a lot of experience with currencies but what i see"
+    },
+    {
+      "start": 3461.36,
+      "end": 3471.76,
+      "text": "is usually the gbp crosses are the heavy hitters gbp jpy gbp cad not a lot of opportunities on these"
+    },
+    {
+      "start": 3471.76,
+      "end": 3479.14,
+      "text": "But when these set up, especially on these currencies, they're going to have massive moves."
+    },
+    {
+      "start": 3479.72,
+      "end": 3483.16,
+      "text": "So it's worth keeping an eye on currencies."
+    },
+    {
+      "start": 3483.7,
+      "end": 3489.2,
+      "text": "I usually don't trade them because I find better opportunities on NASDAQ or Dow."
+    },
+    {
+      "start": 3490.04,
+      "end": 3495.3,
+      "text": "Interesting pair for the Asian session especially is Euro New Zealand dollar."
+    },
+    {
+      "start": 3495.3,
+      "end": 3503.52,
+      "text": "so for those of you who trading asian session backtest euro new zealand dollar and for the"
+    },
+    {
+      "start": 3503.52,
+      "end": 3510.56,
+      "text": "crypto ethereum bitcoin those are the only two i'm willing to trade on uh crypto but now let's"
+    },
+    {
+      "start": 3510.56,
+      "end": 3518.0,
+      "text": "talk about the real talk about what will destroy you with this trading system trading every day"
+    },
+    {
+      "start": 3518.0,
+      "end": 3525.8,
+      "text": "Some weeks there is nothing. That's fine. That's supposed to happen. And like I said,"
+    },
+    {
+      "start": 3525.88,
+      "end": 3533.78,
+      "text": "that's the biggest skill in trading is patience. The other thing is putting the 20 and 200 SMA"
+    },
+    {
+      "start": 3533.78,
+      "end": 3541.38,
+      "text": "on random charts. They are really useless without a daily setup. And all we're really using the"
+    },
+    {
+      "start": 3541.38,
+      "end": 3548.8,
+      "text": "moving averages for is to visually see that price is consolidating. You can add more moving"
+    },
+    {
+      "start": 3548.8,
+      "end": 3555.34,
+      "text": "averages. It really doesn't matter which ones you add. The moving averages is just an average price."
+    },
+    {
+      "start": 3555.62,
+      "end": 3563.12,
+      "text": "Based on previous 20, 100 or 200 candles, you can add multiple moving averages. But what we are"
+    },
+    {
+      "start": 3563.12,
+      "end": 3569.38,
+      "text": "using them really for is just to see the consolidation on the five-minute chart. The"
+    },
+    {
+      "start": 3569.38,
+      "end": 3577.24,
+      "text": "other thing that i highly recommend for you not to do is entering before the news if nfp is at 8 30"
+    },
+    {
+      "start": 3577.24,
+      "end": 3584.9,
+      "text": "and you enter at 8 25 that's on you that's you as a trader not following your own rules"
+    },
+    {
+      "start": 3584.9,
+      "end": 3592.78,
+      "text": "the other thing is chasing the chop zone broke out and the market's already 50 points away"
+    },
+    {
+      "start": 3592.78,
+      "end": 3601.22,
+      "text": "just let it go. Another one is coming. The very best positioning is inside consolidation."
+    },
+    {
+      "start": 3602.12,
+      "end": 3610.04,
+      "text": "The second best positioning is entering right at the breakup of the consolidation. And the least"
+    },
+    {
+      "start": 3610.04,
+      "end": 3616.92,
+      "text": "opportunity is trying to catch continuation. Sometimes you will be able to catch continuation"
+    },
+    {
+      "start": 3616.92,
+      "end": 3619.34,
+      "text": "in the New York PM session."
+    },
+    {
+      "start": 3619.88,
+      "end": 3623.78,
+      "text": "Sometimes you're going to be able to catch continuation"
+    },
+    {
+      "start": 3623.78,
+      "end": 3628.64,
+      "text": "after Asia sets up and continuation in London session."
+    },
+    {
+      "start": 3629.28,
+      "end": 3634.04,
+      "text": "But understand that the opportunity gets less and less."
+    },
+    {
+      "start": 3634.54,
+      "end": 3638.52,
+      "text": "More price moves away from the consolidation zone."
+    },
+    {
+      "start": 3639.12,
+      "end": 3640.7,
+      "text": "It's okay to miss trades."
+    },
+    {
+      "start": 3640.7,
+      "end": 3644.5,
+      "text": "Don't feel dumb or stupid for doing so."
+    },
+    {
+      "start": 3644.78,
+      "end": 3646.58,
+      "text": "Everybody makes mistakes."
+    },
+    {
+      "start": 3646.58,
+      "end": 3651.82,
+      "text": "everybody has losing days, everybody has losing weeks, everybody has losing months."
+    },
+    {
+      "start": 3652.6,
+      "end": 3659.28,
+      "text": "Trading is a tough game. You need to follow your rules and you need to be very, very disciplined"
+    },
+    {
+      "start": 3659.28,
+      "end": 3667.42,
+      "text": "because risk is real. Money is real. We are not playing games here. We are looking only for the"
+    },
+    {
+      "start": 3667.42,
+      "end": 3674.34,
+      "text": "best of the best opportunities with the highest risk to reward. And that's what brings me to"
+    },
+    {
+      "start": 3674.34,
+      "end": 3681.7,
+      "text": "another thing you should never ever do is calling everything a setup. Be honest with yourself."
+    },
+    {
+      "start": 3681.7,
+      "end": 3691.08,
+      "text": "If the setup isn't obvious, it doesn't exist. Before every trade, ask five questions. Am I"
+    },
+    {
+      "start": 3691.08,
+      "end": 3697.42,
+      "text": "trading a setup or just looking for something to do? If you are looking for trade, just close the"
+    },
+    {
+      "start": 3697.42,
+      "end": 3707.3,
+      "text": "charts is the chop zone actually flat not close enough not kind of but actually consolidating"
+    },
+    {
+      "start": 3707.3,
+      "end": 3717.74,
+      "text": "actually flat going sideways can this only go one way highest close of the month it means short"
+    },
+    {
+      "start": 3717.74,
+      "end": 3726.08,
+      "text": "lowest close of the month it means long if you are saying it could go either way there is no setup"
+    },
+    {
+      "start": 3726.08,
+      "end": 3734.98,
+      "text": "the best trades feel like the money is just sitting there waiting for you if you are struggling to see"
+    },
+    {
+      "start": 3734.98,
+      "end": 3743.02,
+      "text": "it it's not really there like i said there are outsized opportunities because we have three"
+    },
+    {
+      "start": 3743.02,
+      "end": 3752.26,
+      "text": "daily closes the buyers are buying at the absolute worst price so we can only go one way"
+    },
+    {
+      "start": 3752.26,
+      "end": 3771.76,
+      "text": "And it's easy direction. It's easy money. Because once the buyers are starting to get stopped out, it's just going to be very easy for you to take profit when the Nasdaq drops 100 or 200 points. That's why I'm saying it's easy money."
+    },
+    {
+      "start": 3771.76,
+      "end": 3781.24,
+      "text": "Of course, trading itself is hard, but making money in trading is easy once you know what you're looking for."
+    },
+    {
+      "start": 3782.14,
+      "end": 3788.9,
+      "text": "And the last question, very interesting one, is that would I show a beginner this trade?"
+    },
+    {
+      "start": 3789.3,
+      "end": 3794.1,
+      "text": "If it's clear enough for a beginner, it's clear enough for you."
+    },
+    {
+      "start": 3795.04,
+      "end": 3799.74,
+      "text": "And that's why I say that technical analysis is really useless."
+    },
+    {
+      "start": 3799.74,
+      "end": 3805.16,
+      "text": "is really not that important because it's all about psychology."
+    },
+    {
+      "start": 3806.24,
+      "end": 3810.66,
+      "text": "Any beginner can see that the market has been going up, up, up, and up."
+    },
+    {
+      "start": 3811.12,
+      "end": 3814.16,
+      "text": "Beginner might say, okay, I'm going to be buying trend,"
+    },
+    {
+      "start": 3814.16,
+      "end": 3817.74,
+      "text": "but you're going to show your trade and say,"
+    },
+    {
+      "start": 3817.92,
+      "end": 3822.06,
+      "text": "I'm going to short because everybody's buying."
+    },
+    {
+      "start": 3822.6,
+      "end": 3825.2,
+      "text": "It's easy to understand, right?"
+    },
+    {
+      "start": 3825.5,
+      "end": 3829.42,
+      "text": "Because the market is a battlefield."
+    },
+    {
+      "start": 3829.74,
+      "end": 3838.62,
+      "text": "war between buyers and sellers so the most money you can make when you catch everybody's offside"
+    },
+    {
+      "start": 3838.62,
+      "end": 3848.0,
+      "text": "so if there is a lot of bias into one direction most likely scenario is liquidation event"
+    },
+    {
+      "start": 3848.0,
+      "end": 3857.36,
+      "text": "the whole system in one slide evening scan the basket build the watch list morning check for"
+    },
+    {
+      "start": 3857.36,
+      "end": 3865.86,
+      "text": "the chop zone 10 a.m it breaks out you enter stop behind the chop zone once a daily level clears"
+    },
+    {
+      "start": 3865.86,
+      "end": 3873.92,
+      "text": "you set a break even walk away and in last hour you just come back and check the charts and take"
+    },
+    {
+      "start": 3873.92,
+      "end": 3882.02,
+      "text": "profits uh also i recommend to for you to keep checking on the on your phone or just occasionally"
+    },
+    {
+      "start": 3882.02,
+      "end": 3888.5,
+      "text": "check your trade and trail it because sometimes you don't want to risk the a big retracement"
+    },
+    {
+      "start": 3888.5,
+      "end": 3895.8,
+      "text": "but most of these trades when they play out they just trade in one direction into the close"
+    },
+    {
+      "start": 3895.8,
+      "end": 3903.04,
+      "text": "most of the time but you always want to be protecting your capital protecting your profits"
+    },
+    {
+      "start": 3903.04,
+      "end": 3910.86,
+      "text": "and when you have big profits on the table don't give it away here's the expectations for this"
+    },
+    {
+      "start": 3910.86,
+      "end": 3919.38,
+      "text": "system this is what you can expect you won't trade every day some weeks you get three setups"
+    },
+    {
+      "start": 3919.38,
+      "end": 3928.04,
+      "text": "some weeks maybe zero the wednesday reversal shows up two to five times a month across the"
+    },
+    {
+      "start": 3928.04,
+      "end": 3936.02,
+      "text": "full basket of instruments trend continuations multiple per month if that market is trending"
+    },
+    {
+      "start": 3936.02,
+      "end": 3945.04,
+      "text": "best of the best maybe two to three per year per instrument so the best of the best trades"
+    },
+    {
+      "start": 3945.04,
+      "end": 3953.02,
+      "text": "when all the start online maybe you'll get two to three opportunities per year i'm talking about"
+    },
+    {
+      "start": 3953.02,
+      "end": 3962.06,
+      "text": "moves like we had recently on gold these explosive moves that some of them been setting up for months"
+    },
+    {
+      "start": 3962.06,
+      "end": 3971.9,
+      "text": "and months and years but most importantly your job as a trader is to be ready when these moves"
+    },
+    {
+      "start": 3971.9,
+      "end": 3979.42,
+      "text": "show up not to force trades in between very important we are sitting on our hands ready"
+    },
+    {
+      "start": 3979.42,
+      "end": 3988.18,
+      "text": "to pull the trigger only when the stars align only when we have consolidation only when there"
+    },
+    {
+      "start": 3988.18,
+      "end": 3995.86,
+      "text": "is a signal day and the only way to find consistency is follow your rules every single day"
+    },
+    {
+      "start": 3996.74,
+      "end": 4004.9,
+      "text": "so here's the upgrade summary so before you had previous day levels with basic uh setups like break"
+    },
+    {
+      "start": 4004.9,
+      "end": 4013.06,
+      "text": "and retest and swing failure pattern and now you have the full picture with multi-time frame breakouts"
+    },
+    {
+      "start": 4013.06,
+      "end": 4020.74,
+      "text": "on daily weekly monthly highest lowest close of the month on week this is where the direction"
+    },
+    {
+      "start": 4020.74,
+      "end": 4029.7,
+      "text": "comes from you get signal days three higher or lower closes first red or green day inside day"
+    },
+    {
+      "start": 4030.26,
+      "end": 4040.26,
+      "text": "this is how you know the setup is ready the ma job zone for entry timing for our rotations for"
+    },
+    {
+      "start": 4040.26,
+      "end": 4048.5,
+      "text": "when to be at your screen and the three session consolidation for the absolute highest probability"
+    },
+    {
+      "start": 4048.5,
+      "end": 4057.06,
+      "text": "version of everything daily level gives you the signal weekly and monthly gives you the context"
+    },
+    {
+      "start": 4057.06,
+      "end": 4067.3,
+      "text": "and the direction signal days tell you it's ready the chop zone gives you the entry and the rotations"
+    },
+    {
+      "start": 4067.3,
+      "end": 4074.74,
+      "text": "give you the timing go through your charts find these setups and once you see them they are"
+    },
+    {
+      "start": 4074.74,
+      "end": 4083.94,
+      "text": "everywhere and once you start waiting for only the best ones everything changes and the only way is up"
+    }
+  ]
+}

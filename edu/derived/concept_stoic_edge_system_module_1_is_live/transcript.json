@@ -1,0 +1,1017 @@
+{
+  "source": "videos/Stoic Edge System Module 1 is Live · Stoic Traders.mp4",
+  "language": "en",
+  "model": "mlx-community/whisper-large-v3-turbo",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 18.36,
+      "text": "Before we open the chart, I want to explain how this course relates to the material that"
+    },
+    {
+      "start": 18.36,
+      "end": 25.2,
+      "text": "came before it. Over the years I have recorded patterns, market observations, lessons and"
+    },
+    {
+      "start": 25.2,
+      "end": 32.4,
+      "text": "changes in my own thinking as my understanding changed the lessons changed too that older"
+    },
+    {
+      "start": 32.4,
+      "end": 39.28,
+      "text": "material now lives in the legacy archive most of the ideas are still going to be relevant others"
+    },
+    {
+      "start": 39.28,
+      "end": 45.92,
+      "text": "were combined or removed because they added decisions without improving the read the legacy"
+    },
+    {
+      "start": 45.92,
+      "end": 52.8,
+      "text": "archive contains my full research treated as history and context you are not expected to"
+    },
+    {
+      "start": 52.8,
+      "end": 59.84,
+      "text": "collect the old concepts and combine them into another system the stoic edge system course is"
+    },
+    {
+      "start": 59.84,
+      "end": 66.64,
+      "text": "the current operating version it is my latest synthesis of that work and the framework i now"
+    },
+    {
+      "start": 66.64,
+      "end": 74.08,
+      "text": "use to organize my own technical decisions if an older lesson conflicts with the rule taught here"
+    },
+    {
+      "start": 74.08,
+      "end": 80.24,
+      "text": "follow this course and the current rulebook my contribution here is the way i have organized"
+    },
+    {
+      "start": 80.24,
+      "end": 87.44,
+      "text": "familiar market behavior into one repeatable decision sequence trading research is part of"
+    },
+    {
+      "start": 87.44,
+      "end": 93.84,
+      "text": "my work i still study the market i still review charts question my understanding record mistakes"
+    },
+    {
+      "start": 93.84,
+      "end": 101.2,
+      "text": "and remove ideas that do not improve the decision a trader's education does not end because a course"
+    },
+    {
+      "start": 101.2,
+      "end": 108.24,
+      "text": "was recorded chart patterns are one part of the work money management risk and honest review"
+    },
+    {
+      "start": 108.24,
+      "end": 114.56,
+      "text": "matter just as much this course keeps those decisions separate from the technical signal"
+    },
+    {
+      "start": 114.56,
+      "end": 120.08,
+      "text": "so the system stays clear my research will continue in the background but this course"
+    },
+    {
+      "start": 120.08,
+      "end": 126.96,
+      "text": "gives you a stable operating version the core technical rules are locked but i may sharpen an"
+    },
+    {
+      "start": 126.96,
+      "end": 134.32,
+      "text": "explanation replace a confusing example or expose a place where two serious traders see the chart"
+    },
+    {
+      "start": 134.32,
+      "end": 141.12,
+      "text": "differently so this first beta version of the course will be a real-time test of the teachings"
+    },
+    {
+      "start": 141.12,
+      "end": 148.2,
+      "text": "but the main rules are going to remain the same during this private beta we use fresh charts to"
+    },
+    {
+      "start": 148.2,
+      "end": 155.14,
+      "text": "test recognition and judgment across the same rules we compare what we marked explain why we"
+    },
+    {
+      "start": 155.14,
+      "end": 162.14,
+      "text": "marked it and identify where the teaching is still unclear that lets us test the course without"
+    },
+    {
+      "start": 162.14,
+      "end": 169.56,
+      "text": "adding a new setup every week. The more I studied, the more important it became to reduce the number"
+    },
+    {
+      "start": 169.56,
+      "end": 177.32,
+      "text": "of decisions on the chart. A concept can be useful and still be unnecessary at the moment of entry or"
+    },
+    {
+      "start": 177.32,
+      "end": 184.28,
+      "text": "exit. I kept reducing the process until the technical decision could be expressed with just"
+    },
+    {
+      "start": 184.28,
+      "end": 191.02,
+      "text": "one selected chart, simple moving averages, and one repeated sequence in each direction."
+    },
+    {
+      "start": 191.62,
+      "end": 198.4,
+      "text": "The rules fit on one slide, but applying them well still takes deliberate practice."
+    },
+    {
+      "start": 199.04,
+      "end": 204.68,
+      "text": "Before I give you the exact sequence, I want you to see why we use simple moving averages,"
+    },
+    {
+      "start": 205.16,
+      "end": 211.72,
+      "text": "how the same visual language travels across chart timeframes, and where the pattern sits"
+    },
+    {
+      "start": 211.72,
+      "end": 217.6,
+      "text": "inside the broad price cycle. That gives us one decision language we can recognize,"
+    },
+    {
+      "start": 218.16,
+      "end": 225.66,
+      "text": "execute, and review repeatedly. So why build the framework around moving averages? After working"
+    },
+    {
+      "start": 225.66,
+      "end": 234.2,
+      "text": "with many indicators and price patterns, I found that simple moving averages like 10, 20, 50,"
+    },
+    {
+      "start": 234.2,
+      "end": 242.18,
+      "text": "and 200 simple moving averages give me enough structure without hiding price. They are calculated"
+    },
+    {
+      "start": 242.18,
+      "end": 248.28,
+      "text": "from price, they are widely available on common charting platforms and they recalculate for the"
+    },
+    {
+      "start": 248.28,
+      "end": 255.02,
+      "text": "chart time frame you select. Together they give me a simple visual reference for recent direction"
+    },
+    {
+      "start": 255.02,
+      "end": 262.84,
+      "text": "and momentum. They also make three conditions easier to see. Price can move through the recent"
+    },
+    {
+      "start": 262.84,
+      "end": 269.72,
+      "text": "trend structure, price can return towards that structure, price can become visibly extended from"
+    },
+    {
+      "start": 269.72,
+      "end": 277.46,
+      "text": "it. The moving averages do not predict the next candle. For me, their job is very simple. Organize"
+    },
+    {
+      "start": 277.46,
+      "end": 283.76,
+      "text": "what price is already doing. They keep my attention on the relationship between price,"
+    },
+    {
+      "start": 283.76,
+      "end": 291.04,
+      "text": "the recent trend, and the consolidation that is forming. The moving averages provide the visual"
+    },
+    {
+      "start": 291.04,
+      "end": 297.84,
+      "text": "trend area but the actual entry will come from a break in price structure which we will define"
+    },
+    {
+      "start": 297.84,
+      "end": 305.44,
+      "text": "after the cycle overview in my own process extra indicators added more decisions without improving"
+    },
+    {
+      "start": 305.44,
+      "end": 311.68,
+      "text": "the core read that is why the simple moving averages became the common visual language for"
+    },
+    {
+      "start": 311.68,
+      "end": 318.4,
+      "text": "this entire system the same framework can be practiced across different trading time frames"
+    },
+    {
+      "start": 318.4,
+      "end": 324.88,
+      "text": "a short-term trader can read it on the intraday chart a swing trader can use a daily chart"
+    },
+    {
+      "start": 324.88,
+      "end": 330.8,
+      "text": "position trader can use a weekly chart an investor can use the structure as a technical"
+    },
+    {
+      "start": 330.8,
+      "end": 338.24,
+      "text": "timing and management lens alongside fundamental research the chart interval and the speed of the"
+    },
+    {
+      "start": 338.24,
+      "end": 346.32,
+      "text": "sequence changes but the operating sequence remains consistent choose the chart that matches"
+    },
+    {
+      "start": 346.32,
+      "end": 352.98,
+      "text": "the decision you are trying to make. Once the sequence begins, keep the chart, time frame,"
+    },
+    {
+      "start": 353.24,
+      "end": 360.42,
+      "text": "session and moving average settings fixed until the complete opposite sequence provides the final"
+    },
+    {
+      "start": 360.42,
+      "end": 367.7,
+      "text": "technical exit. When I call this framework universal, I mean that the same analysis structure"
+    },
+    {
+      "start": 367.7,
+      "end": 374.88,
+      "text": "can travel across chart timeframes. It does not mean every chart contains a trade,"
+    },
+    {
+      "start": 374.88,
+      "end": 382.8,
+      "text": "every instrument is suitable or every valid pattern makes money, the pattern still requires"
+    },
+    {
+      "start": 382.8,
+      "end": 390.84,
+      "text": "meaningful, obvious structure, liquidity, spreads, volatility, account risk, and whether to take a"
+    },
+    {
+      "start": 390.84,
+      "end": 397.46,
+      "text": "valid signal belong to the separate trading decision. And sometimes the right trading decision"
+    },
+    {
+      "start": 397.46,
+      "end": 404.86,
+      "text": "is to pass even when the chart signal exists. Before we study the three system steps,"
+    },
+    {
+      "start": 404.86,
+      "end": 412.14,
+      "text": "look at the broad consolidation to expansion path. Price often alternates between periods"
+    },
+    {
+      "start": 412.14,
+      "end": 420.0,
+      "text": "of consolidation and expansion. Stage 1 is consolidation after a decline. Stage 2 is"
+    },
+    {
+      "start": 420.0,
+      "end": 428.92,
+      "text": "expansion up. Stage three is consolidation after an advance. Stage four is expansion down. Then the"
+    },
+    {
+      "start": 428.92,
+      "end": 436.22,
+      "text": "process can begin again. I use the word consolidation or balance as per auction market"
+    },
+    {
+      "start": 436.22,
+      "end": 443.98,
+      "text": "theory. Instead of assuming that every lower base is accumulation or every upper base is distribution,"
+    },
+    {
+      "start": 443.98,
+      "end": 452.46,
+      "text": "balance is what we can see we can obviously see consolidation and price moves from consolidation"
+    },
+    {
+      "start": 452.46,
+      "end": 461.16,
+      "text": "to expansion from balance to imbalance and back to the balance we cannot know the direction of"
+    },
+    {
+      "start": 461.16,
+      "end": 468.74,
+      "text": "the next expansion until price resolves the structure these stages have no fixed duration"
+    },
+    {
+      "start": 468.74,
+      "end": 471.18,
+      "text": "and they rarely look perfect."
+    },
+    {
+      "start": 471.72,
+      "end": 477.26,
+      "text": "They give us a simple way to describe where price sits in the broad cycle."
+    },
+    {
+      "start": 477.9,
+      "end": 483.08,
+      "text": "So let's say price is sitting in the stage 1, balance after decline."
+    },
+    {
+      "start": 483.54,
+      "end": 485.3,
+      "text": "Is that enough to buy?"
+    },
+    {
+      "start": 486.36,
+      "end": 487.54,
+      "text": "The answer is no."
+    },
+    {
+      "start": 488.02,
+      "end": 490.9,
+      "text": "The balance can break in either direction."
+    },
+    {
+      "start": 491.58,
+      "end": 495.12,
+      "text": "A particular stage describes the market condition."
+    },
+    {
+      "start": 495.12,
+      "end": 500.08,
+      "text": "It does not create, filter, confirm or exit a trade."
+    },
+    {
+      "start": 500.66,
+      "end": 504.76,
+      "text": "Use the cycle stages to understand the broad map."
+    },
+    {
+      "start": 505.28,
+      "end": 509.22,
+      "text": "Use the system steps to make the technical decision."
+    },
+    {
+      "start": 509.74,
+      "end": 515.6,
+      "text": "Now we can place the operating system inside the broad market context."
+    },
+    {
+      "start": 516.26,
+      "end": 518.74,
+      "text": "Here's the main one slide framework."
+    },
+    {
+      "start": 519.3,
+      "end": 523.66,
+      "text": "You can pause the video, take a screenshot, study the price cycle."
+    },
+    {
+      "start": 523.66,
+      "end": 532.82,
+      "text": "step one is a meaningful break and close beyond both moving averages 10 and 20 sma moving averages"
+    },
+    {
+      "start": 532.82,
+      "end": 539.64,
+      "text": "step two is a visual return toward the moving average trend area followed by an obvious"
+    },
+    {
+      "start": 539.64,
+      "end": 547.46,
+      "text": "consolidation a lot of people call it a base step three is the break of the consolidation that we"
+    },
+    {
+      "start": 547.46,
+      "end": 555.54,
+      "text": "selected before the event in the direction established by step one the break creates the"
+    },
+    {
+      "start": 555.54,
+      "end": 564.1,
+      "text": "entry opportunity a meaningful close beyond the boundary confirms step three then we simply stay"
+    },
+    {
+      "start": 564.1,
+      "end": 572.02,
+      "text": "with the move until the complete opposite one two three pattern confirms that confirmed"
+    },
+    {
+      "start": 572.02,
+      "end": 579.94,
+      "text": "opposite step three is the final technical exit for the remaining position this is the complete"
+    },
+    {
+      "start": 579.94,
+      "end": 587.86,
+      "text": "operating sequence every chart comes back to three questions question number one did price break and"
+    },
+    {
+      "start": 587.86,
+      "end": 594.58,
+      "text": "close beyond both moving averages for a bullish sequence step one requires price to make a"
+    },
+    {
+      "start": 594.58,
+      "end": 603.06,
+      "text": "meaningful visual break and close above both the 10 and 20 simple moving averages for a better"
+    },
+    {
+      "start": 603.06,
+      "end": 610.66,
+      "text": "sequence price must break and close below both a wick alone does not count a quick test through"
+    },
+    {
+      "start": 610.66,
+      "end": 618.1,
+      "text": "the averages that closes back inside does not complete step one i use the word meaningful on"
+    },
+    {
+      "start": 618.1,
+      "end": 624.98,
+      "text": "purpose a fixed percentage or minimum candle size would create precision that the chart does not"
+    },
+    {
+      "start": 624.98,
+      "end": 632.98,
+      "text": "provide price rarely gives us textbook price action the clothes should look clear on the chart"
+    },
+    {
+      "start": 632.98,
+      "end": 640.74,
+      "text": "if you have to argue with yourself about it pass and wait for something cleaner step one tells us"
+    },
+    {
+      "start": 640.74,
+      "end": 649.3,
+      "text": "that a directional shift has become visible entry still waits for the retest the base and the break"
+    },
+    {
+      "start": 649.3,
+      "end": 657.62,
+      "text": "of that base after step one we wait for price to return toward the trend area represented by the 10"
+    },
+    {
+      "start": 657.62,
+      "end": 665.46,
+      "text": "and 20 simple moving average so the question we ask here did price return and form an obvious base"
+    },
+    {
+      "start": 666.1,
+      "end": 674.18,
+      "text": "an exact touch of one or both averages is optional the moving averages help us see the return within"
+    },
+    {
+      "start": 674.18,
+      "end": 681.78,
+      "text": "the developing trend they are visual guides not laser lines that price must obey to the tick"
+    },
+    {
+      "start": 682.34,
+      "end": 691.06,
+      "text": "during that return i want to see an obvious visual base with a boundary i can mark before the break"
+    },
+    {
+      "start": 691.06,
+      "end": 698.58,
+      "text": "clear support resistance or an obvious trend line can define that boundary other consolidation"
+    },
+    {
+      "start": 698.58,
+      "end": 705.7,
+      "text": "patterns shapes can qualify without creating another setup system the structure needs to be"
+    },
+    {
+      "start": 705.7,
+      "end": 714.34,
+      "text": "clear enough for us to choose the active boundary while the outcome is still hidden the visible base"
+    },
+    {
+      "start": 714.34,
+      "end": 722.34,
+      "text": "and the boundary selected before the break are what matter here you can see my clear resistance"
+    },
+    {
+      "start": 722.34,
+      "end": 731.94,
+      "text": "boundary displayed as horizontal dashed line i am choosing the active boundary while i still cannot"
+    },
+    {
+      "start": 731.94,
+      "end": 739.94,
+      "text": "see what happens next a perfect line discovered after price has moved is hindsight price can"
+    },
+    {
+      "start": 739.94,
+      "end": 747.3,
+      "text": "always go higher after you sell price can always go lower after you buy we never going to be perfect"
+    },
+    {
+      "start": 747.86,
+      "end": 753.46,
+      "text": "but keep in mind that when you're looking at the historical chart you're looking at the perfect"
+    },
+    {
+      "start": 753.46,
+      "end": 761.62,
+      "text": "examples and real trading decisions are going to be messier than the hindsight study mark the level"
+    },
+    {
+      "start": 761.62,
+      "end": 769.38,
+      "text": "before the move sometimes two possible bases will appear select the one that clearly controls the"
+    },
+    {
+      "start": 769.38,
+      "end": 777.7,
+      "text": "setup before the break if two boundaries look equally valid there is no clean step three yet"
+    },
+    {
+      "start": 777.7,
+      "end": 784.82,
+      "text": "this is a perfect time to be patient and wait if price never breaks the base in the direction of"
+    },
+    {
+      "start": 784.82,
+      "end": 794.26,
+      "text": "step one the pattern remains incomplete a wrong way break a visibly destroyed base or a clear"
+    },
+    {
+      "start": 794.26,
+      "end": 802.9,
+      "text": "replacement structure cancels depending setup no step 3 means no entry now price trades through"
+    },
+    {
+      "start": 802.9,
+      "end": 810.82,
+      "text": "the boundary in the direction of step one this is where step 3 begins and the simple question here"
+    },
+    {
+      "start": 810.82,
+      "end": 818.42,
+      "text": "is did price break the pre-selected boundary in the direction of step one there are two execution"
+    },
+    {
+      "start": 818.42,
+      "end": 826.74,
+      "text": "choices you can enter while the break is happening using discretion and accepting that the signal is"
+    },
+    {
+      "start": 826.74,
+      "end": 834.82,
+      "text": "not confirmed yet or you can wait for the candle to close beyond the boundary and evaluate the"
+    },
+    {
+      "start": 834.82,
+      "end": 842.34,
+      "text": "entry after confirmation whether to take the signal at all remains a separate trading decision"
+    },
+    {
+      "start": 842.34,
+      "end": 850.18,
+      "text": "at step 3 the trade through the selected boundary creates the discretionary entry opportunity"
+    },
+    {
+      "start": 850.18,
+      "end": 858.66,
+      "text": "while the meaningful close confirms that the base break held only a confirmed step 3 changes the"
+    },
+    {
+      "start": 858.66,
+      "end": 866.26,
+      "text": "chart's technical directional state an intra-bar break can permit an early entry but it does not"
+    },
+    {
+      "start": 866.26,
+      "end": 872.84,
+      "text": "make the system technically bullish or bearish before the meaningful close. A gap through the"
+    },
+    {
+      "start": 872.84,
+      "end": 879.68,
+      "text": "boundary still counts as a break. The location of the close determines whether it confirms."
+    },
+    {
+      "start": 880.32,
+      "end": 887.04,
+      "text": "If price trades or gaps through the boundary and closes back inside the consolidation,"
+    },
+    {
+      "start": 887.7,
+      "end": 894.98,
+      "text": "step 3 did not confirm. The same base may remain pending while it is still visually intact."
+    },
+    {
+      "start": 894.98,
+      "end": 899.6,
+      "text": "Otherwise, discard it and wait for a fresh consolidation."
+    },
+    {
+      "start": 900.42,
+      "end": 906.72,
+      "text": "An early entry can fail, and the response to that position belongs to the separate risk plan."
+    },
+    {
+      "start": 907.14,
+      "end": 910.8,
+      "text": "Do not rewrite the chart and call it a confirmed signal."
+    },
+    {
+      "start": 911.36,
+      "end": 912.2,
+      "text": "Keep it simple."
+    },
+    {
+      "start": 912.56,
+      "end": 920.82,
+      "text": "The break opens the entry opportunity, but only after a meaningful close the pattern is confirmed."
+    },
+    {
+      "start": 921.64,
+      "end": 927.9,
+      "text": "Once bullish step 3 confirms, the system is technically bullish on this selected chart."
+    },
+    {
+      "start": 927.9,
+      "end": 931.78,
+      "text": "Keep the selected chart unchanged through the sequence."
+    },
+    {
+      "start": 932.36,
+      "end": 940.42,
+      "text": "Switching the time frame, session display or moving average settings midway would create a different chart decision."
+    },
+    {
+      "start": 940.88,
+      "end": 945.5,
+      "text": "If you miss the initial step 3, leave the old break alone."
+    },
+    {
+      "start": 945.5,
+      "end": 956.44,
+      "text": "While the original directional structure remains active, wait on the same chart for a fresh base and a new break of that base."
+    },
+    {
+      "start": 956.9,
+      "end": 961.3,
+      "text": "On the continuation entries, a new step one is not required."
+    },
+    {
+      "start": 961.44,
+      "end": 968.02,
+      "text": "We're simply trading continuation consolidations that retrace to moving averages."
+    },
+    {
+      "start": 968.02,
+      "end": 978.52,
+      "text": "The 50 and 200 SMA climax conditions, additional entries, partial profits may appear as optional management context."
+    },
+    {
+      "start": 979.24,
+      "end": 991.1,
+      "text": "A move running far away from the 10 simple moving average can be a visual climax clue and a reason to stop adding or consider a partial profit."
+    },
+    {
+      "start": 991.1,
+      "end": 998.24,
+      "text": "These are management choices. They do not create a new signal or change the chart's technical state."
+    },
+    {
+      "start": 998.8,
+      "end": 1004.12,
+      "text": "The core signal remains the 1020 SMA and the three-step system."
+    },
+    {
+      "start": 1004.58,
+      "end": 1012.44,
+      "text": "For this first module, keep the core chart clean. Use 1020 SMA and learn to see the complete pattern."
+    },
+    {
+      "start": 1012.44,
+      "end": 1024.06,
+      "text": "The 50 SMA is green, the 200 SMA is red, and I have 10 and 20 SMA on the chart."
+    },
+    {
+      "start": 1024.28,
+      "end": 1035.52,
+      "text": "So we can follow the sequence, step one, step two, step three, and simply we can hold until"
+    },
+    {
+      "start": 1035.52,
+      "end": 1039.68,
+      "text": "the new sequence appears to the bearish side, like over here."
+    },
+    {
+      "start": 1039.68,
+      "end": 1048.08,
+      "text": "You can see price breaks below. Step two. Step three is the break of the base and we can hold"
+    },
+    {
+      "start": 1048.08,
+      "end": 1055.84,
+      "text": "it to the climax. You see how the price extends far away from the moving averages, especially"
+    },
+    {
+      "start": 1055.84,
+      "end": 1063.64,
+      "text": "from the 10 SMA. This is a good idea to take partials. Depends on your trade management style."
+    },
+    {
+      "start": 1063.64,
+      "end": 1070.6,
+      "text": "again keep it simple for now just study the relationship between price and moving averages"
+    },
+    {
+      "start": 1070.6,
+      "end": 1079.44,
+      "text": "and the three-step system so over here we have break this was a little retest and a base you"
+    },
+    {
+      "start": 1079.44,
+      "end": 1087.88,
+      "text": "can try to enter on this or you wait for the larger retest larger base you can see how the price"
+    },
+    {
+      "start": 1087.88,
+      "end": 1095.46,
+      "text": "retested also 50 moving average you can see there is no closure below the 20 simple moving average"
+    },
+    {
+      "start": 1095.46,
+      "end": 1102.8,
+      "text": "and price continues higher over here we have a climax price breaks below moving averages"
+    },
+    {
+      "start": 1102.8,
+      "end": 1110.5,
+      "text": "retest a little consolidation if you want to wait a little longer there is a bigger consolidation"
+    },
+    {
+      "start": 1110.5,
+      "end": 1118.4,
+      "text": "but keep in mind that the best setups are going to be in the direction of the 50 and 200 simple"
+    },
+    {
+      "start": 1118.4,
+      "end": 1127.62,
+      "text": "moving average so when the price is staying above 50 you only want to take bullish setups when the"
+    },
+    {
+      "start": 1127.62,
+      "end": 1135.66,
+      "text": "price is staying below 50 you want to look for the bearish setups so there is an example of bearish"
+    },
+    {
+      "start": 1135.66,
+      "end": 1143.58,
+      "text": "set up over here price creates a lower high breaks below moving averages there is a little"
+    },
+    {
+      "start": 1143.58,
+      "end": 1152.14,
+      "text": "consolidation it goes down below but then comes back up trying to get back above moving averages"
+    },
+    {
+      "start": 1152.14,
+      "end": 1158.86,
+      "text": "right so technically this is now a bullish sequence appearing here but what have you noticed"
+    },
+    {
+      "start": 1158.86,
+      "end": 1167.58,
+      "text": "the step three have not been completed we have the step one break about moving averages we have"
+    },
+    {
+      "start": 1167.58,
+      "end": 1175.8,
+      "text": "step two consolidation here right and the step three would be the breakout at least like this"
+    },
+    {
+      "start": 1175.8,
+      "end": 1186.3,
+      "text": "and continuation but we just barely swept that high as you can see it and continues lower yet"
+    },
+    {
+      "start": 1186.3,
+      "end": 1194.22,
+      "text": "again price tries to go back up above the moving averages and we are looking for the bullish setup"
+    },
+    {
+      "start": 1194.22,
+      "end": 1201.42,
+      "text": "here because the price is staying above 200 sma you don't see it here on the chart but the price"
+    },
+    {
+      "start": 1201.42,
+      "end": 1209.1,
+      "text": "has been staying about 200 sma so the overall trend the higher time frame trend is bullish"
+    },
+    {
+      "start": 1209.1,
+      "end": 1215.04,
+      "text": "So we use 50 and 200 SMA for the higher timeframe trend."
+    },
+    {
+      "start": 1215.16,
+      "end": 1220.96,
+      "text": "And we use 10 and 20 SMA for the three-step sequence."
+    },
+    {
+      "start": 1221.42,
+      "end": 1225.98,
+      "text": "So finally, we get this breakout here, right?"
+    },
+    {
+      "start": 1226.12,
+      "end": 1227.52,
+      "text": "There is a little consolidation."
+    },
+    {
+      "start": 1227.96,
+      "end": 1228.92,
+      "text": "Maybe you missed it."
+    },
+    {
+      "start": 1229.0,
+      "end": 1232.24,
+      "text": "You just wait for the obvious consolidation."
+    },
+    {
+      "start": 1232.9,
+      "end": 1234.76,
+      "text": "There is your obvious consolidation."
+    },
+    {
+      "start": 1235.42,
+      "end": 1236.94,
+      "text": "Price closes above."
+    },
+    {
+      "start": 1236.94,
+      "end": 1243.42,
+      "text": "maybe you're not sure because it's way too close to the resistance fine next candle we have a gap"
+    },
+    {
+      "start": 1243.42,
+      "end": 1252.32,
+      "text": "up an obvious break of the consolidation the entry could be over here or you can start entering over"
+    },
+    {
+      "start": 1252.32,
+      "end": 1258.76,
+      "text": "here but the more you wait for the confirmation the worse your risk to reward will be so just"
+    },
+    {
+      "start": 1258.76,
+      "end": 1265.66,
+      "text": "keep that in mind but you can see how the price just keeps retesting going back about here's"
+    },
+    {
+      "start": 1265.66,
+      "end": 1273.82,
+      "text": "another sequence right we break about retest little consolidation and price continues higher"
+    },
+    {
+      "start": 1273.82,
+      "end": 1281.74,
+      "text": "and you can see how the price maintains about the 10 20 simple moving average until we have the break"
+    },
+    {
+      "start": 1281.74,
+      "end": 1290.38,
+      "text": "of the trend line and we have bigger retracement you now have the complete framework take it to"
+    },
+    {
+      "start": 1290.38,
+      "end": 1296.86,
+      "text": "markets and time frames you already understand go back through historical price use chart replay"
+    },
+    {
+      "start": 1296.86,
+      "end": 1303.58,
+      "text": "or your own back testing process or watch the pattern develop through paper trading in real time"
+    },
+    {
+      "start": 1303.58,
+      "end": 1310.3,
+      "text": "the purpose right now is to become familiar with what the sequence looks like the setups will look"
+    },
+    {
+      "start": 1310.3,
+      "end": 1317.18,
+      "text": "different one consolidation may be tight and obvious another may form around a trend line"
+    },
+    {
+      "start": 1317.18,
+      "end": 1324.94,
+      "text": "a retest may happen quickly or take more time some charts will be too messy to classify cleanly"
+    },
+    {
+      "start": 1324.94,
+      "end": 1331.82,
+      "text": "keep the sequence consistent while allowing price to look different from one example to the next"
+    },
+    {
+      "start": 1332.38,
+      "end": 1340.14,
+      "text": "notice where the system fits with what you already understand about price action and how market moves"
+    },
+    {
+      "start": 1340.14,
+      "end": 1346.22,
+      "text": "it may print something you already recognize it may also show you where your current read"
+    },
+    {
+      "start": 1346.22,
+      "end": 1352.78,
+      "text": "is still fuzzy but if you have to force the sequence onto a chart leave the chart alone"
+    },
+    {
+      "start": 1353.5,
+      "end": 1360.46,
+      "text": "work with this in whatever way helps you learn rewatch the lesson mark and save examples or"
+    },
+    {
+      "start": 1360.46,
+      "end": 1367.66,
+      "text": "simply observe how the pattern develops use the stoic traders community to your advantage post"
+    },
+    {
+      "start": 1367.66,
+      "end": 1374.46,
+      "text": "charts questions observations or suggest refinements explain what you saw and where you"
+    },
+    {
+      "start": 1374.46,
+      "end": 1381.58,
+      "text": "became uncertain use whatever format makes the chart easy to understand those discussions help"
+    },
+    {
+      "start": 1381.58,
+      "end": 1388.14,
+      "text": "us test the clarity of the teaching suggestions can improve the explanation and the examples"
+    },
+    {
+      "start": 1388.14,
+      "end": 1395.82,
+      "text": "while the current rulebook stays stable keep the operating sequence simple one selected chart with"
+    },
+    {
+      "start": 1395.82,
+      "end": 1403.26,
+      "text": "the 10 and 20 simple moving average step one is the meaningful break and close beyond both moving"
+    },
+    {
+      "start": 1403.26,
+      "end": 1411.58,
+      "text": "averages step two is the return towards the moving average area and the formation of an obvious base"
+    },
+    {
+      "start": 1411.58,
+      "end": 1418.46,
+      "text": "step three is the break of the boundary selected before the move the break creates the entry"
+    },
+    {
+      "start": 1418.46,
+      "end": 1426.38,
+      "text": "opportunity and a meaningful close confirms it the confirmed opposite step three is the final"
+    },
+    {
+      "start": 1426.38,
+      "end": 1433.34,
+      "text": "technical exit for the remaining position you can take partials before it but after the step"
+    },
+    {
+      "start": 1433.34,
+      "end": 1440.22,
+      "text": "three in the opposite direction is your sign to exit full position that is enough to begin"
+    },
+    {
+      "start": 1440.86,
+      "end": 1456.22,
+      "text": "open one of your charts and see what you notice"
+    }
+  ]
+}

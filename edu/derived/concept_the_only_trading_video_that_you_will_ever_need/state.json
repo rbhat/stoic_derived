@@ -1,0 +1,41 @@
+{
+  "source": "start_here/The-Only-Trading-Video-That-You-Will-Ever_Need_1080p.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1784872116.8851368,
+      "pid": 38626,
+      "heartbeat": 1784872116.78689,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1784872120.4922109,
+      "pid": 38626,
+      "heartbeat": 1784872116.8862321,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1784872244.0203478,
+      "pid": 38626,
+      "heartbeat": 1784872240.572402,
+      "attempts": 1
+    },
+    "moments": {
+      "status": "done",
+      "ts": 1784872903.424549,
+      "pid": 38626,
+      "heartbeat": 1784872889.437143,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1784872978.234327,
+      "pid": 38626,
+      "heartbeat": 1784872963.456832,
+      "attempts": 1
+    }
+  },
+  "signature": "200960127-1784868871"
+}

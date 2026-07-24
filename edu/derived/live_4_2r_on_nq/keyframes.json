@@ -1,0 +1,2411 @@
+{
+  "source": "resources/live_trading_sessions/videos/LIVE Trading Session 4.2R on NQ - Stoic Trader Concepts · Stoic Traders.mp4",
+  "count": 240,
+  "by_source": {
+    "llm": 142,
+    "drift": 85,
+    "gap": 13
+  },
+  "keyframes": [
+    {
+      "index": 0,
+      "t": 0,
+      "hms": "00:00:00",
+      "file": "keyframes/0000_000000.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "good morning stoic traders welcome back to another live trading session today's tuesday yesterday i"
+    },
+    {
+      "index": 1,
+      "t": 6,
+      "hms": "00:00:06",
+      "file": "keyframes/0001_000006.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "good morning stoic traders welcome back to another live trading session today's tuesday yesterday i didn't take any trades on monday it was the beginning of the week a lot of uh tickers were"
+    },
+    {
+      "index": 2,
+      "t": 12,
+      "hms": "00:00:12",
+      "file": "keyframes/0002_000012.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "good morning stoic traders welcome back to another live trading session today's tuesday yesterday i didn't take any trades on monday it was the beginning of the week a lot of uh tickers were consolidating but today i am looking for this trade on bitcoin and ideally i want to see the"
+    },
+    {
+      "index": 3,
+      "t": 18,
+      "hms": "00:00:18",
+      "file": "keyframes/0003_000018.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "didn't take any trades on monday it was the beginning of the week a lot of uh tickers were consolidating but today i am looking for this trade on bitcoin and ideally i want to see the"
+    },
+    {
+      "index": 4,
+      "t": 24,
+      "hms": "00:00:24",
+      "file": "keyframes/0004_000024.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "consolidating but today i am looking for this trade on bitcoin and ideally i want to see the sweep of the previous daily low and we got the market opening up soon and again ideally i want"
+    },
+    {
+      "index": 5,
+      "t": 30,
+      "hms": "00:00:30",
+      "file": "keyframes/0005_000030.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "consolidating but today i am looking for this trade on bitcoin and ideally i want to see the sweep of the previous daily low and we got the market opening up soon and again ideally i want to wait for the opening range so the first 30 minutes we're just going to be watching mainly"
+    },
+    {
+      "index": 6,
+      "t": 36,
+      "hms": "00:00:36",
+      "file": "keyframes/0006_000036.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "sweep of the previous daily low and we got the market opening up soon and again ideally i want to wait for the opening range so the first 30 minutes we're just going to be watching mainly unless it's providing such a good sweep if it does that i might go in sooner but the main idea is"
+    },
+    {
+      "index": 7,
+      "t": 42,
+      "hms": "00:00:42",
+      "file": "keyframes/0007_000042.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "to wait for the opening range so the first 30 minutes we're just going to be watching mainly unless it's providing such a good sweep if it does that i might go in sooner but the main idea is that the price needs to get back at least about 20 sma and then 200 sma uh also looking for the"
+    },
+    {
+      "index": 8,
+      "t": 53,
+      "hms": "00:00:53",
+      "file": "keyframes/0008_000053.jpg",
+      "source": "llm",
+      "label": "Price levels: 20 SMA and 200 SMA",
+      "why": "Instructor discusses price needing to get back to 20 SMA and 200 SMA on the chart.",
+      "narration": "unless it's providing such a good sweep if it does that i might go in sooner but the main idea is that the price needs to get back at least about 20 sma and then 200 sma uh also looking for the gold maybe as you can see also gold is bouncing from the support the goal needs to get about pdh"
+    },
+    {
+      "index": 9,
+      "t": 62,
+      "hms": "00:01:02",
+      "file": "keyframes/0009_000102.jpg",
+      "source": "llm",
+      "label": "Gold bouncing from support",
+      "why": "Instructor points out gold bouncing from support on the chart.",
+      "narration": "that the price needs to get back at least about 20 sma and then 200 sma uh also looking for the gold maybe as you can see also gold is bouncing from the support the goal needs to get about pdh that's the weekly opening range there so the gold needs to get back about"
+    },
+    {
+      "index": 10,
+      "t": 72,
+      "hms": "00:01:12",
+      "file": "keyframes/0010_000112.jpg",
+      "source": "llm",
+      "label": "Gold target: PDH",
+      "why": "Instructor mentions gold needs to get back about PDH, indicating a price level on the chart.",
+      "narration": "gold maybe as you can see also gold is bouncing from the support the goal needs to get about pdh that's the weekly opening range there so the gold needs to get back about also the rty the russell 2000 i really like how russell is reacting here so this could be a sweep"
+    },
+    {
+      "index": 11,
+      "t": 81,
+      "hms": "00:01:21",
+      "file": "keyframes/0011_000121.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "also the rty the russell 2000 i really like how russell is reacting here so this could be a sweep and reaction from the resistance so that's what i have it drawn over here if it can do that"
+    },
+    {
+      "index": 12,
+      "t": 88,
+      "hms": "00:01:28",
+      "file": "keyframes/0012_000128.jpg",
+      "source": "llm",
+      "label": "Resistance sweep and reaction",
+      "why": "Instructor refers to a potential sweep and reaction from resistance, with drawing on the chart.",
+      "narration": "also the rty the russell 2000 i really like how russell is reacting here so this could be a sweep and reaction from the resistance so that's what i have it drawn over here if it can do that that would be an amazing trade for me there is the tree test of the monthly opening range"
+    },
+    {
+      "index": 13,
+      "t": 97,
+      "hms": "00:01:37",
+      "file": "keyframes/0013_000137.jpg",
+      "source": "llm",
+      "label": "Tree test of monthly opening range",
+      "why": "Instructor points to a tree test on the chart, indicating a specific pattern.",
+      "narration": "and reaction from the resistance so that's what i have it drawn over here if it can do that that would be an amazing trade for me there is the tree test of the monthly opening range this is now new york opening range i don't really want to long any of the indices"
+    },
+    {
+      "index": 14,
+      "t": 104,
+      "hms": "00:01:44",
+      "file": "keyframes/0014_000144.jpg",
+      "source": "llm",
+      "label": "New York opening range",
+      "why": "Instructor identifies the New York opening range on the chart.",
+      "narration": "that would be an amazing trade for me there is the tree test of the monthly opening range this is now new york opening range i don't really want to long any of the indices yet again and q as you can see and q just sweeping the weekly opening range here"
+    },
+    {
+      "index": 15,
+      "t": 112,
+      "hms": "00:01:52",
+      "file": "keyframes/0015_000152.jpg",
+      "source": "llm",
+      "label": "Q sweeping weekly opening range",
+      "why": "Instructor notes Q is sweeping the weekly opening range on the chart.",
+      "narration": "this is now new york opening range i don't really want to long any of the indices yet again and q as you can see and q just sweeping the weekly opening range here and q could be a nice short down and this is an inside candle on nq by the way"
+    },
+    {
+      "index": 16,
+      "t": 119,
+      "hms": "00:01:59",
+      "file": "keyframes/0016_000159.jpg",
+      "source": "llm",
+      "label": "Inside candle on NQ",
+      "why": "Instructor points out an inside candle pattern on the NQ chart.",
+      "narration": "yet again and q as you can see and q just sweeping the weekly opening range here and q could be a nice short down and this is an inside candle on nq by the way so the sweep of the inside candle is a good trade yeah yes i don't like it there is the bitcoin"
+    },
+    {
+      "index": 17,
+      "t": 125,
+      "hms": "00:02:05",
+      "file": "keyframes/0017_000205.jpg",
+      "source": "llm",
+      "label": "Sweep of inside candle trade",
+      "why": "Instructor discusses a sweep of the inside candle as a potential trade setup.",
+      "narration": "and q could be a nice short down and this is an inside candle on nq by the way so the sweep of the inside candle is a good trade yeah yes i don't like it there is the bitcoin see this bitcoin this is what i would like to see very nice bitcoin setup here coming in"
+    },
+    {
+      "index": 18,
+      "t": 135,
+      "hms": "00:02:15",
+      "file": "keyframes/0018_000215.jpg",
+      "source": "llm",
+      "label": "Bitcoin sweep of PDL",
+      "why": "Instructor highlights a Bitcoin setup with a sweep of the previous daily low (PDL).",
+      "narration": "so the sweep of the inside candle is a good trade yeah yes i don't like it there is the bitcoin see this bitcoin this is what i would like to see very nice bitcoin setup here coming in sweep of the pdl this is a v-shape reversal looking like gold needs to get about pdh i'm"
+    },
+    {
+      "index": 19,
+      "t": 143,
+      "hms": "00:02:23",
+      "file": "keyframes/0019_000223.jpg",
+      "source": "llm",
+      "label": "V-shape reversal on Bitcoin",
+      "why": "Instructor identifies a V-shape reversal pattern forming on the Bitcoin chart.",
+      "narration": "see this bitcoin this is what i would like to see very nice bitcoin setup here coming in sweep of the pdl this is a v-shape reversal looking like gold needs to get about pdh i'm not interested in gold like this because gold could continue lower not interested in gold cl"
+    },
+    {
+      "index": 20,
+      "t": 152,
+      "hms": "00:02:32",
+      "file": "keyframes/0020_000232.jpg",
+      "source": "llm",
+      "label": "Gold not interesting due to lower trend",
+      "why": "Instructor expresses disinterest in gold as it may continue lower, referencing chart trend.",
+      "narration": "sweep of the pdl this is a v-shape reversal looking like gold needs to get about pdh i'm not interested in gold like this because gold could continue lower not interested in gold cl now cl could be the sweep but i'm not really interested in that rty is just ripping so far"
+    },
+    {
+      "index": 21,
+      "t": 161,
+      "hms": "00:02:41",
+      "file": "keyframes/0021_000241.jpg",
+      "source": "llm",
+      "label": "Crude oil sweep potential",
+      "why": "Instructor mentions crude oil (CL) could be a sweep, indicating chart action.",
+      "narration": "not interested in gold like this because gold could continue lower not interested in gold cl now cl could be the sweep but i'm not really interested in that rty is just ripping so far"
+    },
+    {
+      "index": 22,
+      "t": 167,
+      "hms": "00:02:47",
+      "file": "keyframes/0022_000247.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "now cl could be the sweep but i'm not really interested in that rty is just ripping so far is gonna be ym yeah ym is ripping back into the highs big opening range on ym i don't like it"
+    },
+    {
+      "index": 23,
+      "t": 173,
+      "hms": "00:02:53",
+      "file": "keyframes/0023_000253.jpg",
+      "source": "llm",
+      "label": "YM ripping into highs",
+      "why": "Instructor notes YM is moving back into highs, showing chart movement.",
+      "narration": "now cl could be the sweep but i'm not really interested in that rty is just ripping so far is gonna be ym yeah ym is ripping back into the highs big opening range on ym i don't like it"
+    },
+    {
+      "index": 24,
+      "t": 179,
+      "hms": "00:02:59",
+      "file": "keyframes/0024_000259.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "is gonna be ym yeah ym is ripping back into the highs big opening range on ym i don't like it and q is setting up for the short so we'll see what uh and q does we'll see what um"
+    },
+    {
+      "index": 25,
+      "t": 185,
+      "hms": "00:03:05",
+      "file": "keyframes/0025_000305.jpg",
+      "source": "llm",
+      "label": "Q setting up for short",
+      "why": "Instructor identifies Q as a potential short setup on the chart.",
+      "narration": "is gonna be ym yeah ym is ripping back into the highs big opening range on ym i don't like it and q is setting up for the short so we'll see what uh and q does we'll see what um bitcoin rejecting here not a good sign uh maybe consolidation during the opening range on"
+    },
+    {
+      "index": 26,
+      "t": 195,
+      "hms": "00:03:15",
+      "file": "keyframes/0026_000315.jpg",
+      "source": "llm",
+      "label": "Bitcoin rejecting price",
+      "why": "Instructor observes Bitcoin rejecting the price level on the chart.",
+      "narration": "and q is setting up for the short so we'll see what uh and q does we'll see what um bitcoin rejecting here not a good sign uh maybe consolidation during the opening range on on Bitcoin and then we're going to play the opening range, break and retest or swing failure pattern."
+    },
+    {
+      "index": 27,
+      "t": 202,
+      "hms": "00:03:22",
+      "file": "keyframes/0027_000322.jpg",
+      "source": "llm",
+      "label": "Opening range break and retest pattern",
+      "why": "Instructor discusses playing the opening range break and retest or swing failure pattern.",
+      "narration": "bitcoin rejecting here not a good sign uh maybe consolidation during the opening range on on Bitcoin and then we're going to play the opening range, break and retest or swing failure pattern. But I don't want to just go in just yet. Like I said, looking for the NQ, looking for the Bitcoin."
+    },
+    {
+      "index": 28,
+      "t": 209,
+      "hms": "00:03:29",
+      "file": "keyframes/0028_000329.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "on Bitcoin and then we're going to play the opening range, break and retest or swing failure pattern. But I don't want to just go in just yet. Like I said, looking for the NQ, looking for the Bitcoin. NQ is very enticing. So as you can see, there is a sweep. That's like a retest. It's really hard"
+    },
+    {
+      "index": 29,
+      "t": 220,
+      "hms": "00:03:40",
+      "file": "keyframes/0029_000340.jpg",
+      "source": "llm",
+      "label": "NQ sweep and retest",
+      "why": "Instructor identifies a sweep and retest pattern on NQ.",
+      "narration": "But I don't want to just go in just yet. Like I said, looking for the NQ, looking for the Bitcoin. NQ is very enticing. So as you can see, there is a sweep. That's like a retest. It's really hard to trust in Q. This is a $1,300 risk. This is more of a $1,000 risk,"
+    },
+    {
+      "index": 30,
+      "t": 233,
+      "hms": "00:03:53",
+      "file": "keyframes/0030_000353.jpg",
+      "source": "llm",
+      "label": "Risk levels: $1,300 and $1,000",
+      "why": "Instructor discusses risk amounts for trades, indicating trade sizing on the chart.",
+      "narration": "to trust in Q. This is a $1,300 risk. This is more of a $1,000 risk, but I don't really trust in Q. It's just recovering here, going back up."
+    },
+    {
+      "index": 31,
+      "t": 241,
+      "hms": "00:04:01",
+      "file": "keyframes/0031_000401.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "but I don't really trust in Q. It's just recovering here, going back up. It needs to really reject. If it does reject, we can use the FIB geometry, try to"
+    },
+    {
+      "index": 32,
+      "t": 250,
+      "hms": "00:04:10",
+      "file": "keyframes/0032_000410.jpg",
+      "source": "llm",
+      "label": "FIB geometry entry",
+      "why": "Instructor refers to using FIB geometry for an entry, indicating a drawing on the chart.",
+      "narration": "It needs to really reject. If it does reject, we can use the FIB geometry, try to enter like that. Depends if it rejects. This would be the first pullback. And the trade back into Asia opening range."
+    },
+    {
+      "index": 33,
+      "t": 263,
+      "hms": "00:04:23",
+      "file": "keyframes/0033_000423.jpg",
+      "source": "llm",
+      "label": "Trade back into Asia opening range",
+      "why": "Instructor points to a trade setup involving the Asia opening range.",
+      "narration": "if it rejects. This would be the first pullback. And the trade back into Asia opening range. That's a good trade from top to the bottom here. That's a good trade."
+    },
+    {
+      "index": 34,
+      "t": 272,
+      "hms": "00:04:32",
+      "file": "keyframes/0034_000432.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "That's a good trade from top to the bottom here. That's a good trade. Really would like to see a trade go back down to the 6.86, right?"
+    },
+    {
+      "index": 35,
+      "t": 279,
+      "hms": "00:04:39",
+      "file": "keyframes/0035_000439.jpg",
+      "source": "llm",
+      "label": "Target: 6.86",
+      "why": "Instructor mentions a target price level of 6.86 on the chart.",
+      "narration": "Really would like to see a trade go back down to the 6.86, right? But I'm not sure if we're actually going to do anything here. bitcoin wow bitcoin is just selling off into another direction yeah gc hanging really would"
+    },
+    {
+      "index": 36,
+      "t": 288,
+      "hms": "00:04:48",
+      "file": "keyframes/0036_000448.jpg",
+      "source": "llm",
+      "label": "Bitcoin selling off",
+      "why": "Instructor notes Bitcoin is selling off on the chart.",
+      "narration": "But I'm not sure if we're actually going to do anything here. bitcoin wow bitcoin is just selling off into another direction yeah gc hanging really would like to see bitcoin or even crude oil if crude oil recovers and sweeps i'd be looking for the crude"
+    },
+    {
+      "index": 37,
+      "t": 298,
+      "hms": "00:04:58",
+      "file": "keyframes/0037_000458.jpg",
+      "source": "llm",
+      "label": "Crude oil recovery and sweep",
+      "why": "Instructor discusses crude oil recovering and potentially sweeping, indicating chart action.",
+      "narration": "bitcoin wow bitcoin is just selling off into another direction yeah gc hanging really would like to see bitcoin or even crude oil if crude oil recovers and sweeps i'd be looking for the crude oil break and retest of the opening range bitcoin not looking good and q is just still hanging on"
+    },
+    {
+      "index": 38,
+      "t": 308,
+      "hms": "00:05:08",
+      "file": "keyframes/0038_000508.jpg",
+      "source": "llm",
+      "label": "Bitcoin not looking good",
+      "why": "Instructor observes Bitcoin is not forming a favorable setup on the chart.",
+      "narration": "like to see bitcoin or even crude oil if crude oil recovers and sweeps i'd be looking for the crude oil break and retest of the opening range bitcoin not looking good and q is just still hanging on"
+    },
+    {
+      "index": 39,
+      "t": 314,
+      "hms": "00:05:14",
+      "file": "keyframes/0039_000514.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "oil break and retest of the opening range bitcoin not looking good and q is just still hanging on if this fails on nq it would be a nice short in my opinion but not really interested"
+    },
+    {
+      "index": 40,
+      "t": 320,
+      "hms": "00:05:20",
+      "file": "keyframes/0040_000520.jpg",
+      "source": "llm",
+      "label": "NQ failure for short",
+      "why": "Instructor identifies a potential short setup if NQ fails.",
+      "narration": "oil break and retest of the opening range bitcoin not looking good and q is just still hanging on if this fails on nq it would be a nice short in my opinion but not really interested oh the rty rty did a nice break and retest and it's a big opening range when we have such a big"
+    },
+    {
+      "index": 41,
+      "t": 330,
+      "hms": "00:05:30",
+      "file": "keyframes/0041_000530.jpg",
+      "source": "llm",
+      "label": "RTY break and retest",
+      "why": "Instructor points to RTY doing a break and retest pattern.",
+      "narration": "if this fails on nq it would be a nice short in my opinion but not really interested oh the rty rty did a nice break and retest and it's a big opening range when we have such a big opening range i don't really like to trade it because the majority of the move is happening"
+    },
+    {
+      "index": 42,
+      "t": 340,
+      "hms": "00:05:40",
+      "file": "keyframes/0042_000540.jpg",
+      "source": "llm",
+      "label": "Big opening range on YM",
+      "why": "Instructor notes a large opening range on YM, indicating chart structure.",
+      "narration": "oh the rty rty did a nice break and retest and it's a big opening range when we have such a big opening range i don't really like to trade it because the majority of the move is happening right at open so it's not a good idea to chase moves and q could be a good short and it is a sweep we swept and even tested right so this is a sweep and test and we"
+    },
+    {
+      "index": 43,
+      "t": 356,
+      "hms": "00:05:56",
+      "file": "keyframes/0043_000556.jpg",
+      "source": "llm",
+      "label": "Sweep and test of London opening range",
+      "why": "Instructor identifies a sweep and test pattern on the London opening range.",
+      "narration": "right at open so it's not a good idea to chase moves and q could be a good short and it is a sweep we swept and even tested right so this is a sweep and test and we got London opening range so the if London opening range fails"
+    },
+    {
+      "index": 44,
+      "t": 365,
+      "hms": "00:06:05",
+      "file": "keyframes/0044_000605.jpg",
+      "source": "llm",
+      "label": "London opening range failure",
+      "why": "Instructor discusses the potential failure of the London opening range.",
+      "narration": "and it is a sweep we swept and even tested right so this is a sweep and test and we got London opening range so the if London opening range fails sell stop thousand dollar risk right and the take profit take profit really would be all the way"
+    },
+    {
+      "index": 45,
+      "t": 373,
+      "hms": "00:06:13",
+      "file": "keyframes/0045_000613.jpg",
+      "source": "llm",
+      "label": "Sell stop and risk level",
+      "why": "Instructor sets a sell stop with $1,000 risk on the chart.",
+      "narration": "sell stop thousand dollar risk right and the take profit take profit really would be all the way down here if this plays out this would be a beautiful trade we'll see how this plays out"
+    },
+    {
+      "index": 46,
+      "t": 384,
+      "hms": "00:06:24",
+      "file": "keyframes/0046_000624.jpg",
+      "source": "llm",
+      "label": "Take profit target",
+      "why": "Instructor identifies a take profit level all the way down on the chart.",
+      "narration": "sell stop thousand dollar risk right and the take profit take profit really would be all the way down here if this plays out this would be a beautiful trade we'll see how this plays out thousand dollar risk i'm trying to just um trade this failure let me actually put it down here"
+    },
+    {
+      "index": 47,
+      "t": 394,
+      "hms": "00:06:34",
+      "file": "keyframes/0047_000634.jpg",
+      "source": "llm",
+      "label": "Thousand dollar risk trade",
+      "why": "Instructor reiterates a $1,000 risk level for the trade.",
+      "narration": "down here if this plays out this would be a beautiful trade we'll see how this plays out thousand dollar risk i'm trying to just um trade this failure let me actually put it down here because it might sweep the inside candle but this is an inside candle what inside candles are"
+    },
+    {
+      "index": 48,
+      "t": 404,
+      "hms": "00:06:44",
+      "file": "keyframes/0048_000644.jpg",
+      "source": "llm",
+      "label": "Inside candle consolidation",
+      "why": "Instructor explains inside candles as consolidations, indicating a chart pattern.",
+      "narration": "thousand dollar risk i'm trying to just um trade this failure let me actually put it down here because it might sweep the inside candle but this is an inside candle what inside candles are they are consolidations so when we see inside candle we might see a big move afterwards"
+    },
+    {
+      "index": 49,
+      "t": 413,
+      "hms": "00:06:53",
+      "file": "keyframes/0049_000653.jpg",
+      "source": "llm",
+      "label": "Inside candle breakout potential",
+      "why": "Instructor discusses the possibility of a big move after an inside candle.",
+      "narration": "because it might sweep the inside candle but this is an inside candle what inside candles are they are consolidations so when we see inside candle we might see a big move afterwards so thousand dollar risk this is a very good trade wow rty is just ripping uh bitcoin yeah if bitcoin can't recover about pdl there is no trade"
+    },
+    {
+      "index": 50,
+      "t": 427,
+      "hms": "00:07:07",
+      "file": "keyframes/0050_000707.jpg",
+      "source": "llm",
+      "label": "RTY ripping",
+      "why": "Instructor notes RTY is moving sharply upward on the chart.",
+      "narration": "wow rty is just ripping uh bitcoin yeah if bitcoin can't recover about pdl there is no trade but it could it could be and if it does i will probably buy it and mnq if bitcoin and nq going"
+    },
+    {
+      "index": 51,
+      "t": 438,
+      "hms": "00:07:18",
+      "file": "keyframes/0051_000718.jpg",
+      "source": "llm",
+      "label": "Bitcoin PDL sweep not happening",
+      "why": "Instructor observes Bitcoin is failing to sweep the previous daily low.",
+      "narration": "wow rty is just ripping uh bitcoin yeah if bitcoin can't recover about pdl there is no trade but it could it could be and if it does i will probably buy it and mnq if bitcoin and nq going together trading together then one of these trades are going to be wrong"
+    },
+    {
+      "index": 52,
+      "t": 449,
+      "hms": "00:07:29",
+      "file": "keyframes/0052_000729.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "but it could it could be and if it does i will probably buy it and mnq if bitcoin and nq going together trading together then one of these trades are going to be wrong well technically it is a fib geo entry here"
+    },
+    {
+      "index": 53,
+      "t": 456,
+      "hms": "00:07:36",
+      "file": "keyframes/0053_000736.jpg",
+      "source": "llm",
+      "label": "Fib geo entry",
+      "why": "Instructor identifies a Fibonacci geometry entry on the chart.",
+      "narration": "together trading together then one of these trades are going to be wrong well technically it is a fib geo entry here yeah because this high is higher so this is the fib geometry entry as you can see the bitcoin is"
+    },
+    {
+      "index": 54,
+      "t": 467,
+      "hms": "00:07:47",
+      "file": "keyframes/0054_000747.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "yeah because this high is higher so this is the fib geometry entry as you can see the bitcoin is really trying here and this is what i want to see a sweep of the inside day and trade back about"
+    },
+    {
+      "index": 55,
+      "t": 474,
+      "hms": "00:07:54",
+      "file": "keyframes/0055_000754.jpg",
+      "source": "llm",
+      "label": "Bitcoin trying to sweep inside day",
+      "why": "Instructor discusses Bitcoin attempting a sweep of the inside day.",
+      "narration": "yeah because this high is higher so this is the fib geometry entry as you can see the bitcoin is really trying here and this is what i want to see a sweep of the inside day and trade back about that's what we want to see and right now everybody's bearish on bitcoin this is like a squeeze"
+    },
+    {
+      "index": 56,
+      "t": 482,
+      "hms": "00:08:02",
+      "file": "keyframes/0056_000802.jpg",
+      "source": "llm",
+      "label": "Squeeze territory on Bitcoin",
+      "why": "Instructor identifies a squeeze pattern forming on the Bitcoin chart.",
+      "narration": "really trying here and this is what i want to see a sweep of the inside day and trade back about that's what we want to see and right now everybody's bearish on bitcoin this is like a squeeze territory and now nq is going to be ripping good that i didn't short that of course we don't really"
+    },
+    {
+      "index": 57,
+      "t": 488,
+      "hms": "00:08:08",
+      "file": "keyframes/0057_000808.jpg",
+      "source": "llm",
+      "label": "NQ ripping",
+      "why": "Instructor notes NQ is moving sharply upward.",
+      "narration": "that's what we want to see and right now everybody's bearish on bitcoin this is like a squeeze territory and now nq is going to be ripping good that i didn't short that of course we don't really want to short about 200 sma that's what really is the problem for a lot of people is that they go"
+    },
+    {
+      "index": 58,
+      "t": 495,
+      "hms": "00:08:15",
+      "file": "keyframes/0058_000815.jpg",
+      "source": "llm",
+      "label": "Avoiding shorts near 200 SMA",
+      "why": "Instructor warns against shorting near the 200 SMA on the chart.",
+      "narration": "territory and now nq is going to be ripping good that i didn't short that of course we don't really want to short about 200 sma that's what really is the problem for a lot of people is that they go against the moving averages this is not showing anything because this is the futures chart"
+    },
+    {
+      "index": 59,
+      "t": 504,
+      "hms": "00:08:24",
+      "file": "keyframes/0059_000824.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "want to short about 200 sma that's what really is the problem for a lot of people is that they go against the moving averages this is not showing anything because this is the futures chart but ultimately i'm basing my decisions from the actual bitcoin chart and not the futures"
+    },
+    {
+      "index": 60,
+      "t": 510,
+      "hms": "00:08:30",
+      "file": "keyframes/0060_000830.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "against the moving averages this is not showing anything because this is the futures chart but ultimately i'm basing my decisions from the actual bitcoin chart and not the futures right this is the actual bitcoin chart it's all the same but you can see how"
+    },
+    {
+      "index": 61,
+      "t": 520,
+      "hms": "00:08:40",
+      "file": "keyframes/0061_000840.jpg",
+      "source": "llm",
+      "label": "Actual Bitcoin vs futures chart",
+      "why": "Instructor compares actual Bitcoin and futures charts, indicating both are on screen.",
+      "narration": "but ultimately i'm basing my decisions from the actual bitcoin chart and not the futures right this is the actual bitcoin chart it's all the same but you can see how we are sweeping pdl on the bitcoin chart but we are not doing that on futures but this is still a"
+    },
+    {
+      "index": 62,
+      "t": 528,
+      "hms": "00:08:48",
+      "file": "keyframes/0062_000848.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "we are sweeping pdl on the bitcoin chart but we are not doing that on futures but this is still a PDL here. I know it is. It's a different chart between futures and actual Bitcoin, but I trust"
+    },
+    {
+      "index": 63,
+      "t": 534,
+      "hms": "00:08:54",
+      "file": "keyframes/0063_000854.jpg",
+      "source": "llm",
+      "label": "PDL on futures vs actual Bitcoin",
+      "why": "Instructor compares PDL levels between futures and actual Bitcoin charts.",
+      "narration": "we are sweeping pdl on the bitcoin chart but we are not doing that on futures but this is still a PDL here. I know it is. It's a different chart between futures and actual Bitcoin, but I trust the actual Bitcoin better. Yeah, and Q here trying to get back about that resistance."
+    },
+    {
+      "index": 64,
+      "t": 543,
+      "hms": "00:09:03",
+      "file": "keyframes/0064_000903.jpg",
+      "source": "llm",
+      "label": "Trust in actual Bitcoin chart",
+      "why": "Instructor expresses trust in the actual Bitcoin chart over futures.",
+      "narration": "PDL here. I know it is. It's a different chart between futures and actual Bitcoin, but I trust the actual Bitcoin better. Yeah, and Q here trying to get back about that resistance. 15 minutes for the opening range to settle. Wait for the opening range. It's always better to do"
+    },
+    {
+      "index": 65,
+      "t": 552,
+      "hms": "00:09:12",
+      "file": "keyframes/0065_000912.jpg",
+      "source": "llm",
+      "label": "Q approaching resistance",
+      "why": "Instructor notes Q is trying to get back about a resistance level.",
+      "narration": "the actual Bitcoin better. Yeah, and Q here trying to get back about that resistance. 15 minutes for the opening range to settle. Wait for the opening range. It's always better to do that gotta watch out though because this would be an sbs if it sweeps that's an sbs"
+    },
+    {
+      "index": 66,
+      "t": 559,
+      "hms": "00:09:19",
+      "file": "keyframes/0066_000919.jpg",
+      "source": "llm",
+      "label": "Opening range settling",
+      "why": "Instructor discusses waiting for the opening range to settle on the chart.",
+      "narration": "15 minutes for the opening range to settle. Wait for the opening range. It's always better to do that gotta watch out though because this would be an sbs if it sweeps that's an sbs go got one two yeah that's an sbs there so we need to see break and retest that's what i would love"
+    },
+    {
+      "index": 67,
+      "t": 567,
+      "hms": "00:09:27",
+      "file": "keyframes/0067_000927.jpg",
+      "source": "llm",
+      "label": "SBS (Support Break and Sweep) pattern",
+      "why": "Instructor identifies an SBS pattern on the chart.",
+      "narration": "that gotta watch out though because this would be an sbs if it sweeps that's an sbs go got one two yeah that's an sbs there so we need to see break and retest that's what i would love on bitcoin and there is that SBS wow like I said that's why I didn't want to go in so I'm just gonna"
+    },
+    {
+      "index": 68,
+      "t": 577,
+      "hms": "00:09:37",
+      "file": "keyframes/0068_000937.jpg",
+      "source": "llm",
+      "label": "SBS on Bitcoin",
+      "why": "Instructor points to an SBS pattern forming on the Bitcoin chart.",
+      "narration": "go got one two yeah that's an sbs there so we need to see break and retest that's what i would love on bitcoin and there is that SBS wow like I said that's why I didn't want to go in so I'm just gonna be waiting for the opening range setup and Q just fell in now this is still could be a nice"
+    },
+    {
+      "index": 69,
+      "t": 589,
+      "hms": "00:09:49",
+      "file": "keyframes/0069_000949.jpg",
+      "source": "llm",
+      "label": "Waiting for opening range setup",
+      "why": "Instructor states they are waiting for the opening range setup on the chart.",
+      "narration": "and there is that SBS wow like I said that's why I didn't want to go in so I'm just gonna be waiting for the opening range setup and Q just fell in now this is still could be a nice bearish setup if we can have something like this but I'll be watching like I said"
+    },
+    {
+      "index": 70,
+      "t": 599,
+      "hms": "00:09:59",
+      "file": "keyframes/0070_000959.jpg",
+      "source": "llm",
+      "label": "Bearish setup potential",
+      "why": "Instructor identifies a bearish setup forming on the chart.",
+      "narration": "be waiting for the opening range setup and Q just fell in now this is still could be a nice bearish setup if we can have something like this but I'll be watching like I said until 10 30 and that's my one hour trader wow look at this what a beauty but you can't catch"
+    },
+    {
+      "index": 71,
+      "t": 606,
+      "hms": "00:10:06",
+      "file": "keyframes/0071_001006.jpg",
+      "source": "llm",
+      "label": "Waiting until 10:30",
+      "why": "Instructor states they will watch until 10:30, indicating a time-based chart observation.",
+      "narration": "bearish setup if we can have something like this but I'll be watching like I said until 10 30 and that's my one hour trader wow look at this what a beauty but you can't catch these big moves because these big moves are going to be like this they're going to be"
+    },
+    {
+      "index": 72,
+      "t": 618,
+      "hms": "00:10:18",
+      "file": "keyframes/0072_001018.jpg",
+      "source": "llm",
+      "label": "Big opening range move",
+      "why": "Instructor observes a big opening range move on the chart.",
+      "narration": "until 10 30 and that's my one hour trader wow look at this what a beauty but you can't catch these big moves because these big moves are going to be like this they're going to be opening range moves and i would like to see after opening range nice opening range tight and then breakout or whatnot or sweep that's a good move but when we"
+    },
+    {
+      "index": 73,
+      "t": 631,
+      "hms": "00:10:31",
+      "file": "keyframes/0073_001031.jpg",
+      "source": "llm",
+      "label": "Tight opening range and breakout",
+      "why": "Instructor discusses a tight opening range followed by a breakout.",
+      "narration": "opening range moves and i would like to see after opening range nice opening range tight and then breakout or whatnot or sweep that's a good move but when we have a big range opening range like this it's it's not a good idea to chase it"
+    },
+    {
+      "index": 74,
+      "t": 640,
+      "hms": "00:10:40",
+      "file": "keyframes/0074_001040.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "nice opening range tight and then breakout or whatnot or sweep that's a good move but when we have a big range opening range like this it's it's not a good idea to chase it now i'm willing to buy this after this big candle i'm willing to buy just the breakout of this new"
+    },
+    {
+      "index": 75,
+      "t": 648,
+      "hms": "00:10:48",
+      "file": "keyframes/0075_001048.jpg",
+      "source": "llm",
+      "label": "Breakout of new opening range",
+      "why": "Instructor identifies a breakout from the new opening range.",
+      "narration": "have a big range opening range like this it's it's not a good idea to chase it now i'm willing to buy this after this big candle i'm willing to buy just the breakout of this new opening range right this would be the the buy by stop by stop about here stop loss here it could sweep"
+    },
+    {
+      "index": 76,
+      "t": 660,
+      "hms": "00:11:00",
+      "file": "keyframes/0076_001100.jpg",
+      "source": "llm",
+      "label": "Buy by stop entry",
+      "why": "Instructor sets a buy by stop order on the chart.",
+      "narration": "now i'm willing to buy this after this big candle i'm willing to buy just the breakout of this new opening range right this would be the the buy by stop by stop about here stop loss here it could sweep below but if we get back about there that's an also sbs on the lower time frame sweeping this"
+    },
+    {
+      "index": 77,
+      "t": 677,
+      "hms": "00:11:17",
+      "file": "keyframes/0077_001117.jpg",
+      "source": "llm",
+      "label": "SBS on lower timeframe",
+      "why": "Instructor points to an SBS pattern on a lower time frame.",
+      "narration": "opening range right this would be the the buy by stop by stop about here stop loss here it could sweep below but if we get back about there that's an also sbs on the lower time frame sweeping this low is an sbs so if we go back up i'll go in with 30 micro contracts um let me see if i can do the"
+    },
+    {
+      "index": 78,
+      "t": 688,
+      "hms": "00:11:28",
+      "file": "keyframes/0078_001128.jpg",
+      "source": "llm",
+      "label": "Sweep of low as SBS",
+      "why": "Instructor identifies a sweep of the low as an SBS pattern.",
+      "narration": "below but if we get back about there that's an also sbs on the lower time frame sweeping this low is an sbs so if we go back up i'll go in with 30 micro contracts um let me see if i can do the whole btc uh futures"
+    },
+    {
+      "index": 79,
+      "t": 704,
+      "hms": "00:11:44",
+      "file": "keyframes/0079_001144.jpg",
+      "source": "llm",
+      "label": "BTC futures chart",
+      "why": "Instructor switches to the BTC futures chart, indicating a new visual focus.",
+      "narration": "low is an sbs so if we go back up i'll go in with 30 micro contracts um let me see if i can do the whole btc uh futures yeah i can't really go with the whole btc so i gotta do 30 contracts"
+    },
+    {
+      "index": 80,
+      "t": 712,
+      "hms": "00:11:52",
+      "file": "keyframes/0080_001152.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "yeah i can't really go with the whole btc so i gotta do 30 contracts still watching nq and bitcoin"
+    },
+    {
+      "index": 81,
+      "t": 719,
+      "hms": "00:11:59",
+      "file": "keyframes/0081_001159.jpg",
+      "source": "llm",
+      "label": "30 micro contracts",
+      "why": "Instructor mentions trading 30 micro contracts, indicating trade sizing on the chart.",
+      "narration": "yeah i can't really go with the whole btc so i gotta do 30 contracts still watching nq and bitcoin bitcoin will be in the trade if we can get back about those highs and nq looking like a sweep so"
+    },
+    {
+      "index": 82,
+      "t": 726,
+      "hms": "00:12:06",
+      "file": "keyframes/0082_001206.jpg",
+      "source": "llm",
+      "label": "Bitcoin and NQ trade setup",
+      "why": "Instructor discusses a potential trade if Bitcoin and NQ move together.",
+      "narration": "still watching nq and bitcoin bitcoin will be in the trade if we can get back about those highs and nq looking like a sweep so"
+    },
+    {
+      "index": 83,
+      "t": 732,
+      "hms": "00:12:12",
+      "file": "keyframes/0083_001212.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "bitcoin will be in the trade if we can get back about those highs and nq looking like a sweep so The RTY here ripped CL."
+    },
+    {
+      "index": 84,
+      "t": 738,
+      "hms": "00:12:18",
+      "file": "keyframes/0084_001218.jpg",
+      "source": "llm",
+      "label": "RTY ripping CL",
+      "why": "Instructor notes RTY is moving sharply, affecting crude oil (CL).",
+      "narration": "bitcoin will be in the trade if we can get back about those highs and nq looking like a sweep so The RTY here ripped CL. Yet again, CL is actually looking like a sweep of the New York opening range, but it's way below the 20 SMA."
+    },
+    {
+      "index": 85,
+      "t": 748,
+      "hms": "00:12:28",
+      "file": "keyframes/0085_001228.jpg",
+      "source": "llm",
+      "label": "CL below 20 SMA",
+      "why": "Instructor notes crude oil is way below the 20 SMA on the chart.",
+      "narration": "Yet again, CL is actually looking like a sweep of the New York opening range, but it's way below the 20 SMA. It is very likely that we move at least to the 20 SMA. It is very likely. But it is not likely we will do it on this daily candle."
+    },
+    {
+      "index": 86,
+      "t": 758,
+      "hms": "00:12:38",
+      "file": "keyframes/0086_001238.jpg",
+      "source": "llm",
+      "label": "Likely move to 20 SMA",
+      "why": "Instructor predicts a likely move toward the 20 SMA on crude oil.",
+      "narration": "It is very likely that we move at least to the 20 SMA. It is very likely. But it is not likely we will do it on this daily candle. yeah bitcoin is crashing so there is the new york is just rejected it rejected from the"
+    },
+    {
+      "index": 87,
+      "t": 764,
+      "hms": "00:12:44",
+      "file": "keyframes/0087_001244.jpg",
+      "source": "llm",
+      "label": "Bitcoin crashing",
+      "why": "Instructor observes Bitcoin is crashing on the chart.",
+      "narration": "But it is not likely we will do it on this daily candle. yeah bitcoin is crashing so there is the new york is just rejected it rejected from the sbs and it won't come back so there is no long trade for me that's okay but we're going to be"
+    },
+    {
+      "index": 88,
+      "t": 776,
+      "hms": "00:12:56",
+      "file": "keyframes/0088_001256.jpg",
+      "source": "llm",
+      "label": "New York opening range rejection",
+      "why": "Instructor identifies a rejection from the New York opening range.",
+      "narration": "yeah bitcoin is crashing so there is the new york is just rejected it rejected from the sbs and it won't come back so there is no long trade for me that's okay but we're going to be watching the new york i'm still looking for the nq to get back below the opening ranges"
+    },
+    {
+      "index": 89,
+      "t": 784,
+      "hms": "00:13:04",
+      "file": "keyframes/0089_001304.jpg",
+      "source": "llm",
+      "label": "No long trade for Bitcoin",
+      "why": "Instructor states there is no long trade opportunity on Bitcoin.",
+      "narration": "sbs and it won't come back so there is no long trade for me that's okay but we're going to be watching the new york i'm still looking for the nq to get back below the opening ranges Yeah, that was a good trade on currencies."
+    },
+    {
+      "index": 90,
+      "t": 794,
+      "hms": "00:13:14",
+      "file": "keyframes/0090_001314.jpg",
+      "source": "llm",
+      "label": "NQ below opening ranges",
+      "why": "Instructor identifies NQ is below the opening ranges on the chart.",
+      "narration": "watching the new york i'm still looking for the nq to get back below the opening ranges Yeah, that was a good trade on currencies. This was the GBP, USD, even GBP CAD."
+    },
+    {
+      "index": 91,
+      "t": 800,
+      "hms": "00:13:20",
+      "file": "keyframes/0091_001320.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Yeah, that was a good trade on currencies. This was the GBP, USD, even GBP CAD. Wow, that was a good one."
+    },
+    {
+      "index": 92,
+      "t": 810,
+      "hms": "00:13:30",
+      "file": "keyframes/0092_001330.jpg",
+      "source": "llm",
+      "label": "GBP/USD break and retest",
+      "why": "Instructor points to a break and retest pattern on GBP/USD.",
+      "narration": "This was the GBP, USD, even GBP CAD. Wow, that was a good one. Break and retest on May H.com. Aussie USD did nothing. Don't like it. Some days are not going to be trading days."
+    },
+    {
+      "index": 93,
+      "t": 822,
+      "hms": "00:13:42",
+      "file": "keyframes/0093_001342.jpg",
+      "source": "llm",
+      "label": "Aussie USD doing nothing",
+      "why": "Instructor notes Aussie/USD is not forming a trade setup.",
+      "narration": "Aussie USD did nothing. Don't like it. Some days are not going to be trading days. And that's okay. I am not interested in forcing trades. This is very interesting."
+    },
+    {
+      "index": 94,
+      "t": 835,
+      "hms": "00:13:55",
+      "file": "keyframes/0094_001355.jpg",
+      "source": "llm",
+      "label": "Not forcing trades",
+      "why": "Instructor states they are not interested in forcing trades, indicating chart observation.",
+      "narration": "I am not interested in forcing trades. This is very interesting. So if we can get the break and retest, that's what I want. Close below opening range."
+    },
+    {
+      "index": 95,
+      "t": 847,
+      "hms": "00:14:07",
+      "file": "keyframes/0095_001407.jpg",
+      "source": "llm",
+      "label": "Close below opening range",
+      "why": "Instructor discusses a close below the opening range on the chart.",
+      "narration": "Close below opening range. Let me check one minute chart and see what's going on here. So there is a break."
+    },
+    {
+      "index": 96,
+      "t": 854,
+      "hms": "00:14:14",
+      "file": "keyframes/0096_001414.jpg",
+      "source": "llm",
+      "label": "Break and sell-off into 200 SMA",
+      "why": "Instructor identifies a break and sell-off into the 200 SMA on Bitcoin.",
+      "narration": "Let me check one minute chart and see what's going on here. So there is a break. There is the sell-off into the 200 SMA. Bitcoin crashed."
+    },
+    {
+      "index": 97,
+      "t": 861,
+      "hms": "00:14:21",
+      "file": "keyframes/0097_001421.jpg",
+      "source": "llm",
+      "label": "Bitcoin crashed",
+      "why": "Instructor notes Bitcoin has crashed on the chart.",
+      "narration": "There is the sell-off into the 200 SMA. Bitcoin crashed. Crude oil trying to come back. Gold not touching. Really, the only one that I like is NQ."
+    },
+    {
+      "index": 98,
+      "t": 868,
+      "hms": "00:14:28",
+      "file": "keyframes/0098_001428.jpg",
+      "source": "llm",
+      "label": "Only NQ is interesting",
+      "why": "Instructor identifies NQ as the only favorable setup on the chart.",
+      "narration": "Gold not touching. Really, the only one that I like is NQ. YM not touching. ES."
+    },
+    {
+      "index": 99,
+      "t": 875,
+      "hms": "00:14:35",
+      "file": "keyframes/0099_001435.jpg",
+      "source": "llm",
+      "label": "YM not touching",
+      "why": "Instructor notes YM is not forming a trade setup.",
+      "narration": "YM not touching. ES. ES also swept. Yeah, so the ES could be a trade. but I like NQ better."
+    },
+    {
+      "index": 100,
+      "t": 881,
+      "hms": "00:14:41",
+      "file": "keyframes/0100_001441.jpg",
+      "source": "llm",
+      "label": "ES could be a trade",
+      "why": "Instructor identifies ES as a potential trade setup.",
+      "narration": "ES also swept. Yeah, so the ES could be a trade. but I like NQ better. Now we are below London."
+    },
+    {
+      "index": 101,
+      "t": 888,
+      "hms": "00:14:48",
+      "file": "keyframes/0101_001448.jpg",
+      "source": "llm",
+      "label": "Below London",
+      "why": "Instructor notes the price is below the London session level.",
+      "narration": "Now we are below London. I will go in and put my stop loss about 20 SMA, but I'm also going to try to go in and add more contracts"
+    },
+    {
+      "index": 102,
+      "t": 897,
+      "hms": "00:14:57",
+      "file": "keyframes/0102_001457.jpg",
+      "source": "llm",
+      "label": "Adding more contracts",
+      "why": "Instructor plans to add more contracts due to wide price movement.",
+      "narration": "I will go in and put my stop loss about 20 SMA, but I'm also going to try to go in and add more contracts because this is wide. I want to wait for this five-minute candle close,"
+    },
+    {
+      "index": 103,
+      "t": 906,
+      "hms": "00:15:06",
+      "file": "keyframes/0103_001506.jpg",
+      "source": "llm",
+      "label": "Wait for five-minute candle close",
+      "why": "Instructor waits for a specific candle to close on the chart before acting.",
+      "narration": "because this is wide. I want to wait for this five-minute candle close, and then I'll put my stop loss about 20 SMA. Still risking $1,000. Yeah, I'm just going to sell it here."
+    },
+    {
+      "index": 104,
+      "t": 922,
+      "hms": "00:15:22",
+      "file": "keyframes/0104_001522.jpg",
+      "source": "llm",
+      "label": "Sell entry at current price",
+      "why": "Instructor executes a sell trade at the current market price.",
+      "narration": "Yeah, I'm just going to sell it here. Stop loss a bit higher, but still $1,000 stop loss here."
+    },
+    {
+      "index": 105,
+      "t": 928,
+      "hms": "00:15:28",
+      "file": "keyframes/0105_001528.jpg",
+      "source": "llm",
+      "label": "Adjust stop loss higher",
+      "why": "Instructor moves the stop loss to a higher price level, visible on chart.",
+      "narration": "Stop loss a bit higher, but still $1,000 stop loss here. It's a tough entry."
+    },
+    {
+      "index": 106,
+      "t": 935,
+      "hms": "00:15:35",
+      "file": "keyframes/0106_001535.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "but still $1,000 stop loss here. It's a tough entry. Maybe it's going to leave the gap open, go back below PVC and do that."
+    },
+    {
+      "index": 107,
+      "t": 941,
+      "hms": "00:15:41",
+      "file": "keyframes/0107_001541.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Maybe it's going to leave the gap open, go back below PVC and do that. That's what I'm looking for. But not the best entry, not the best trade."
+    },
+    {
+      "index": 108,
+      "t": 947,
+      "hms": "00:15:47",
+      "file": "keyframes/0108_001547.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Maybe it's going to leave the gap open, go back below PVC and do that. That's what I'm looking for. But not the best entry, not the best trade. Don't really feel good about it, but it is what it is."
+    },
+    {
+      "index": 109,
+      "t": 953,
+      "hms": "00:15:53",
+      "file": "keyframes/0109_001553.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "But not the best entry, not the best trade. Don't really feel good about it, but it is what it is. Trusting my system and that's it. This is a very high likelihood bounce area over here."
+    },
+    {
+      "index": 110,
+      "t": 964,
+      "hms": "00:16:04",
+      "file": "keyframes/0110_001604.jpg",
+      "source": "llm",
+      "label": "High likelihood bounce area",
+      "why": "Instructor points to a specific zone on the chart where a bounce is expected.",
+      "narration": "Trusting my system and that's it. This is a very high likelihood bounce area over here. so that's the whole thing i'm trying to see if we can crash below the pdc i'm gonna be very surprised if we don't have any pullbacks"
+    },
+    {
+      "index": 111,
+      "t": 973,
+      "hms": "00:16:13",
+      "file": "keyframes/0111_001613.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "so that's the whole thing i'm trying to see if we can crash below the pdc i'm gonna be very surprised if we don't have any pullbacks but sometimes that's how it goes sometimes it's just a sell-off"
+    },
+    {
+      "index": 112,
+      "t": 981,
+      "hms": "00:16:21",
+      "file": "keyframes/0112_001621.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "i'm gonna be very surprised if we don't have any pullbacks but sometimes that's how it goes sometimes it's just a sell-off it was a late short i could have been already at break even and i could have been already"
+    },
+    {
+      "index": 113,
+      "t": 987,
+      "hms": "00:16:27",
+      "file": "keyframes/0113_001627.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "it was a late short i could have been already at break even and i could have been already in profits but how do you know how do you know that this is going to do this you know no break and retest nothing is just bam it's just a selling off it is what it is and that's why we can't really predict the market we need to jump in with the market and don't try to build these grandiose scenarios in the"
+    },
+    {
+      "index": 114,
+      "t": 1017,
+      "hms": "00:16:57",
+      "file": "keyframes/0114_001657.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "it's just a selling off it is what it is and that's why we can't really predict the market we need to jump in with the market and don't try to build these grandiose scenarios in the head trying to understand of well which pullback is the final pullback or which sweep is the final"
+    },
+    {
+      "index": 115,
+      "t": 1023,
+      "hms": "00:17:03",
+      "file": "keyframes/0115_001703.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "we need to jump in with the market and don't try to build these grandiose scenarios in the head trying to understand of well which pullback is the final pullback or which sweep is the final"
+    },
+    {
+      "index": 116,
+      "t": 1029,
+      "hms": "00:17:09",
+      "file": "keyframes/0116_001709.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "head trying to understand of well which pullback is the final pullback or which sweep is the final sweep we don't really know but this was a beautiful sweep and then it just starts selling off"
+    },
+    {
+      "index": 117,
+      "t": 1037,
+      "hms": "00:17:17",
+      "file": "keyframes/0117_001717.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "sweep we don't really know but this was a beautiful sweep and then it just starts selling off if it goes into one r profit i'm gonna move my stopless at break even if it does some kind of pullbacks or something i'm gonna try to add more would like to go with more size if asia fails this is a sell-off sell-off day if asia supports we're gonna be chopping around would like to see some kind of pullbacks though but if it drops into one our profit i have to put my stop loss at break even that's my rules"
+    },
+    {
+      "index": 118,
+      "t": 1077,
+      "hms": "00:17:57",
+      "file": "keyframes/0118_001757.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "i have to put my stop loss at break even that's my rules let me check on oil oil is reversing this is good idea for the oil to go long and for the nq to keep"
+    },
+    {
+      "index": 119,
+      "t": 1083,
+      "hms": "00:18:03",
+      "file": "keyframes/0119_001803.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "let me check on oil oil is reversing this is good idea for the oil to go long and for the nq to keep dropping let's see rejection at pdc so this would be very good sign if we reject at pdc"
+    },
+    {
+      "index": 120,
+      "t": 1089,
+      "hms": "00:18:09",
+      "file": "keyframes/0120_001809.jpg",
+      "source": "llm",
+      "label": "Rejection at PDC",
+      "why": "Instructor identifies a rejection pattern at the PDC level on the chart.",
+      "narration": "let me check on oil oil is reversing this is good idea for the oil to go long and for the nq to keep dropping let's see rejection at pdc so this would be very good sign if we reject at pdc rejection at pdc and i'm gonna short some more"
+    },
+    {
+      "index": 121,
+      "t": 1099,
+      "hms": "00:18:19",
+      "file": "keyframes/0121_001819.jpg",
+      "source": "llm",
+      "label": "Short more on rejection",
+      "why": "Instructor plans to add short positions after a PDC rejection.",
+      "narration": "dropping let's see rejection at pdc so this would be very good sign if we reject at pdc rejection at pdc and i'm gonna short some more because then my stop loss could be like a bow"
+    },
+    {
+      "index": 122,
+      "t": 1108,
+      "hms": "00:18:28",
+      "file": "keyframes/0122_001828.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "because then my stop loss could be like a bow yeah i can go in with two more or one more"
+    },
+    {
+      "index": 123,
+      "t": 1114,
+      "hms": "00:18:34",
+      "file": "keyframes/0123_001834.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "yeah i can go in with two more or one more but i don't like this reversal i really don't like this reversal"
+    },
+    {
+      "index": 124,
+      "t": 1120,
+      "hms": "00:18:40",
+      "file": "keyframes/0124_001840.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "yeah i can go in with two more or one more but i don't like this reversal i really don't like this reversal i'm gonna close this at break even there was a little loss i don't like this reversal at all"
+    },
+    {
+      "index": 125,
+      "t": 1126,
+      "hms": "00:18:46",
+      "file": "keyframes/0125_001846.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "but i don't like this reversal i really don't like this reversal i'm gonna close this at break even there was a little loss i don't like this reversal at all"
+    },
+    {
+      "index": 126,
+      "t": 1132,
+      "hms": "00:18:52",
+      "file": "keyframes/0126_001852.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "i'm gonna close this at break even there was a little loss i don't like this reversal at all this was a nice scalp but it didn't continue lower so it is what it is"
+    },
+    {
+      "index": 127,
+      "t": 1138,
+      "hms": "00:18:58",
+      "file": "keyframes/0127_001858.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "i'm gonna close this at break even there was a little loss i don't like this reversal at all this was a nice scalp but it didn't continue lower so it is what it is"
+    },
+    {
+      "index": 128,
+      "t": 1144,
+      "hms": "00:19:04",
+      "file": "keyframes/0128_001904.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "this was a nice scalp but it didn't continue lower so it is what it is gold gold collapsed really don't want to touch the gold it's just doing nothing"
+    },
+    {
+      "index": 129,
+      "t": 1150,
+      "hms": "00:19:10",
+      "file": "keyframes/0129_001910.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "gold gold collapsed really don't want to touch the gold it's just doing nothing I'm going to give it a little bit of time"
+    },
+    {
+      "index": 130,
+      "t": 1156,
+      "hms": "00:19:16",
+      "file": "keyframes/0130_001916.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "gold gold collapsed really don't want to touch the gold it's just doing nothing I'm going to give it a little bit of time and then I'm just going to wrap this up. Yeah, it looks like this is failing. So I'm just going to short this like this."
+    },
+    {
+      "index": 131,
+      "t": 1167,
+      "hms": "00:19:27",
+      "file": "keyframes/0131_001927.jpg",
+      "source": "llm",
+      "label": "Short at failing price level",
+      "why": "Instructor initiates a short trade after identifying a failure in price action.",
+      "narration": "Yeah, it looks like this is failing. So I'm just going to short this like this. And I'm just going to do it like this."
+    },
+    {
+      "index": 132,
+      "t": 1176,
+      "hms": "00:19:36",
+      "file": "keyframes/0132_001936.jpg",
+      "source": "llm",
+      "label": "Short PDC",
+      "why": "Instructor executes a short trade directly at the PDC level.",
+      "narration": "And I'm just going to do it like this. Just shorting PDC really. I'm going to do three contracts."
+    },
+    {
+      "index": 133,
+      "t": 1184,
+      "hms": "00:19:44",
+      "file": "keyframes/0133_001944.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "I'm going to do three contracts. short PDC. If it sells off, it's going to sell off."
+    },
+    {
+      "index": 134,
+      "t": 1190,
+      "hms": "00:19:50",
+      "file": "keyframes/0134_001950.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "short PDC. If it sells off, it's going to sell off. If not, not. But that's the trade now."
+    },
+    {
+      "index": 135,
+      "t": 1196,
+      "hms": "00:19:56",
+      "file": "keyframes/0135_001956.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "If not, not. But that's the trade now. And really, the trend-based FIB, GEO, something like that, yep. Let me check one minute so I can anchor the FIB geometry better."
+    },
+    {
+      "index": 136,
+      "t": 1210,
+      "hms": "00:20:10",
+      "file": "keyframes/0136_002010.jpg",
+      "source": "llm",
+      "label": "Check one-minute chart for FIB anchor",
+      "why": "Instructor switches to a lower timeframe (1-minute) to better anchor FIB levels.",
+      "narration": "Let me check one minute so I can anchor the FIB geometry better. So we want to see the first pullback. where is it it's right here the first pullback if this fails beautiful trade to the downside"
+    },
+    {
+      "index": 137,
+      "t": 1217,
+      "hms": "00:20:17",
+      "file": "keyframes/0137_002017.jpg",
+      "source": "llm",
+      "label": "First pullback zone",
+      "why": "Instructor identifies the first pullback on the chart as a key area.",
+      "narration": "So we want to see the first pullback. where is it it's right here the first pullback if this fails beautiful trade to the downside and i'm okay sacrificing that break even because it could have easily reversed on me and i don't"
+    },
+    {
+      "index": 138,
+      "t": 1226,
+      "hms": "00:20:26",
+      "file": "keyframes/0138_002026.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "where is it it's right here the first pullback if this fails beautiful trade to the downside and i'm okay sacrificing that break even because it could have easily reversed on me and i don't"
+    },
+    {
+      "index": 139,
+      "t": 1232,
+      "hms": "00:20:32",
+      "file": "keyframes/0139_002032.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "and i'm okay sacrificing that break even because it could have easily reversed on me and i don't want that i want to see what happens at pdc and this is only the decision you need to make in the first hour 9 30 to 10 30 that's the only decision so i had the break even no problem"
+    },
+    {
+      "index": 140,
+      "t": 1242,
+      "hms": "00:20:42",
+      "file": "keyframes/0140_002042.jpg",
+      "source": "llm",
+      "label": "Decision window: 9:30-10:30",
+      "why": "Instructor emphasizes a critical time window for trade decisions.",
+      "narration": "want that i want to see what happens at pdc and this is only the decision you need to make in the first hour 9 30 to 10 30 that's the only decision so i had the break even no problem let's try it again right let's try one more time now you can see 100 this is the pullback zone"
+    },
+    {
+      "index": 141,
+      "t": 1250,
+      "hms": "00:20:50",
+      "file": "keyframes/0141_002050.jpg",
+      "source": "llm",
+      "label": "Try again: pullback zone",
+      "why": "Instructor re-enters a trade setup based on the same pullback zone.",
+      "narration": "in the first hour 9 30 to 10 30 that's the only decision so i had the break even no problem let's try it again right let's try one more time now you can see 100 this is the pullback zone and now we are trying to see if 2618 is gonna fail if 2618 fails we're going to 423"
+    },
+    {
+      "index": 142,
+      "t": 1258,
+      "hms": "00:20:58",
+      "file": "keyframes/0142_002058.jpg",
+      "source": "llm",
+      "label": "Pullback to 2618",
+      "why": "Instructor identifies the 2618 level as a key pullback zone.",
+      "narration": "let's try it again right let's try one more time now you can see 100 this is the pullback zone and now we are trying to see if 2618 is gonna fail if 2618 fails we're going to 423 and 6.86. Really, we just need to do 4.23."
+    },
+    {
+      "index": 143,
+      "t": 1268,
+      "hms": "00:21:08",
+      "file": "keyframes/0143_002108.jpg",
+      "source": "llm",
+      "label": "Target at 4.23",
+      "why": "Instructor sets a target price of 4.23 on the chart.",
+      "narration": "and 6.86. Really, we just need to do 4.23. That's the trade. If I can get out at 4.23, I would be happy, really. So let me put the buy limit over here at 4.23."
+    },
+    {
+      "index": 144,
+      "t": 1277,
+      "hms": "00:21:17",
+      "file": "keyframes/0144_002117.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "If I can get out at 4.23, I would be happy, really. So let me put the buy limit over here at 4.23."
+    },
+    {
+      "index": 145,
+      "t": 1283,
+      "hms": "00:21:23",
+      "file": "keyframes/0145_002123.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "So let me put the buy limit over here at 4.23. This is previous low of the week. That's what we are really targeting. if it sells off even more with 686 so we'll see what happens at 423"
+    },
+    {
+      "index": 146,
+      "t": 1289,
+      "hms": "00:21:29",
+      "file": "keyframes/0146_002129.jpg",
+      "source": "llm",
+      "label": "Previous low of the week target",
+      "why": "Instructor identifies the previous weekly low as a key target.",
+      "narration": "This is previous low of the week. That's what we are really targeting. if it sells off even more with 686 so we'll see what happens at 423 but that's the trade i'm just gonna let this ride all right there it is there is the shorts this is a nice breakdown very nice breakdown"
+    },
+    {
+      "index": 147,
+      "t": 1303,
+      "hms": "00:21:43",
+      "file": "keyframes/0147_002143.jpg",
+      "source": "llm",
+      "label": "Shorts executed on breakdown",
+      "why": "Instructor confirms a successful short trade after a clear breakdown.",
+      "narration": "but that's the trade i'm just gonna let this ride all right there it is there is the shorts this is a nice breakdown very nice breakdown might be two break-evens today that looks like an engulfing candle i don't really want to get"
+    },
+    {
+      "index": 148,
+      "t": 1315,
+      "hms": "00:21:55",
+      "file": "keyframes/0148_002155.jpg",
+      "source": "llm",
+      "label": "Engulfing candle at break-even",
+      "why": "Instructor identifies an engulfing candle pattern near the break-even level.",
+      "narration": "all right there it is there is the shorts this is a nice breakdown very nice breakdown might be two break-evens today that looks like an engulfing candle i don't really want to get stopped out at break-even twice and the price goes back to my direction but rules are rules so i'm just gonna let this play out you're going to be tested every single day and there is no correct way to doing this there is no correct way the first goal is to preserve capital the first goal is to be a break-even trader and then once you can follow your rules and once you can be at least a break-even trader then you can start selecting better opportunities better setups and starting to"
+    },
+    {
+      "index": 149,
+      "t": 1365,
+      "hms": "00:22:45",
+      "file": "keyframes/0149_002245.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "break-even trader and then once you can follow your rules and once you can be at least a break-even trader then you can start selecting better opportunities better setups and starting to hold trades for longer because you realize that you need big winners to cover the losses we'll see how it goes like i said i'm just gonna let it ride beautiful sell-off that's what we love to see now we have a clear stop loss if this comes back"
+    },
+    {
+      "index": 150,
+      "t": 1385,
+      "hms": "00:23:05",
+      "file": "keyframes/0150_002305.jpg",
+      "source": "llm",
+      "label": "Beautiful sell-off",
+      "why": "Instructor highlights a strong selling move on the chart.",
+      "narration": "we'll see how it goes like i said i'm just gonna let it ride beautiful sell-off that's what we love to see now we have a clear stop loss if this comes back it's going to be unfortunate but we're not going to lose money"
+    },
+    {
+      "index": 151,
+      "t": 1397,
+      "hms": "00:23:17",
+      "file": "keyframes/0151_002317.jpg",
+      "source": "llm",
+      "label": "Clear stop loss level",
+      "why": "Instructor defines a clear stop loss based on price action.",
+      "narration": "beautiful sell-off that's what we love to see now we have a clear stop loss if this comes back it's going to be unfortunate but we're not going to lose money and the target is pdl and then we will see if price wants to go back down below the for 2360 and maybe go down below into the 686 that would be amazing so i'm just gonna let this ride"
+    },
+    {
+      "index": 152,
+      "t": 1411,
+      "hms": "00:23:31",
+      "file": "keyframes/0152_002331.jpg",
+      "source": "llm",
+      "label": "Target at PDL and below",
+      "why": "Instructor sets a target to the previous daily low (PDL) and below.",
+      "narration": "and the target is pdl and then we will see if price wants to go back down below the for 2360 and maybe go down below into the 686 that would be amazing so i'm just gonna let this ride"
+    },
+    {
+      "index": 153,
+      "t": 1417,
+      "hms": "00:23:37",
+      "file": "keyframes/0153_002337.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "for 2360 and maybe go down below into the 686 that would be amazing so i'm just gonna let this ride let this run and we will check on this later yeah target almost smashed here gotta watch out for this sweep okay this sweep could be an sbs"
+    },
+    {
+      "index": 154,
+      "t": 1426,
+      "hms": "00:23:46",
+      "file": "keyframes/0154_002346.jpg",
+      "source": "llm",
+      "label": "Sweep at SBS",
+      "why": "Instructor warns about a potential sweep to the SBS level.",
+      "narration": "let this run and we will check on this later yeah target almost smashed here gotta watch out for this sweep okay this sweep could be an sbs"
+    },
+    {
+      "index": 155,
+      "t": 1435,
+      "hms": "00:23:55",
+      "file": "keyframes/0155_002355.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "yeah target almost smashed here gotta watch out for this sweep okay this sweep could be an sbs gotta watch out for the sweep if we can just keep breaking levels that that would be the best"
+    },
+    {
+      "index": 156,
+      "t": 1441,
+      "hms": "00:24:01",
+      "file": "keyframes/0156_002401.jpg",
+      "source": "llm",
+      "label": "Watch for sweep continuation",
+      "why": "Instructor monitors a potential sweep to continue lower.",
+      "narration": "yeah target almost smashed here gotta watch out for this sweep okay this sweep could be an sbs gotta watch out for the sweep if we can just keep breaking levels that that would be the best of course but gotta pay attention to that sweep the sell-off could continue all the way into the"
+    },
+    {
+      "index": 157,
+      "t": 1447,
+      "hms": "00:24:07",
+      "file": "keyframes/0157_002407.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "gotta watch out for the sweep if we can just keep breaking levels that that would be the best of course but gotta pay attention to that sweep the sell-off could continue all the way into the"
+    },
+    {
+      "index": 158,
+      "t": 1453,
+      "hms": "00:24:13",
+      "file": "keyframes/0158_002413.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "of course but gotta pay attention to that sweep the sell-off could continue all the way into the monthly or you know so i don't want to be greedy but i want to let it run for as much as possible"
+    },
+    {
+      "index": 159,
+      "t": 1459,
+      "hms": "00:24:19",
+      "file": "keyframes/0159_002419.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "of course but gotta pay attention to that sweep the sell-off could continue all the way into the monthly or you know so i don't want to be greedy but i want to let it run for as much as possible right now it's 3r and if it starts retracing i gotta get out of the trade and take the profit"
+    },
+    {
+      "index": 160,
+      "t": 1468,
+      "hms": "00:24:28",
+      "file": "keyframes/0160_002428.jpg",
+      "source": "llm",
+      "label": "3R trade",
+      "why": "Instructor identifies the current trade as a 3R (three times risk) opportunity.",
+      "narration": "monthly or you know so i don't want to be greedy but i want to let it run for as much as possible right now it's 3r and if it starts retracing i gotta get out of the trade and take the profit but if it's not i would like to let it drop as much as possible and this is the monthly or"
+    },
+    {
+      "index": 161,
+      "t": 1475,
+      "hms": "00:24:35",
+      "file": "keyframes/0161_002435.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "right now it's 3r and if it starts retracing i gotta get out of the trade and take the profit but if it's not i would like to let it drop as much as possible and this is the monthly or monthly opening range previous month opening range so that would be my target there"
+    },
+    {
+      "index": 162,
+      "t": 1486,
+      "hms": "00:24:46",
+      "file": "keyframes/0162_002446.jpg",
+      "source": "llm",
+      "label": "Monthly opening range target",
+      "why": "Instructor sets a long-term target at the monthly opening range.",
+      "narration": "but if it's not i would like to let it drop as much as possible and this is the monthly or monthly opening range previous month opening range so that would be my target there but if it's going to drop today it's already did a big drop it's already did a very nice drop"
+    },
+    {
+      "index": 163,
+      "t": 1495,
+      "hms": "00:24:55",
+      "file": "keyframes/0163_002455.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "but if it's going to drop today it's already did a big drop it's already did a very nice drop more likely or not it's going to go down and take out the previous low of the week"
+    },
+    {
+      "index": 164,
+      "t": 1501,
+      "hms": "00:25:01",
+      "file": "keyframes/0164_002501.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "but if it's going to drop today it's already did a big drop it's already did a very nice drop more likely or not it's going to go down and take out the previous low of the week and there is that 423.6 which is a good target very good target the only"
+    },
+    {
+      "index": 165,
+      "t": 1508,
+      "hms": "00:25:08",
+      "file": "keyframes/0165_002508.jpg",
+      "source": "llm",
+      "label": "423.6 target",
+      "why": "Instructor identifies 423.6 as a key price target.",
+      "narration": "more likely or not it's going to go down and take out the previous low of the week and there is that 423.6 which is a good target very good target the only question is can we go and drop into 686 because if we drop into the 686 then we can go even lower"
+    },
+    {
+      "index": 166,
+      "t": 1518,
+      "hms": "00:25:18",
+      "file": "keyframes/0166_002518.jpg",
+      "source": "llm",
+      "label": "686 target",
+      "why": "Instructor discusses the possibility of price dropping to 686.",
+      "narration": "and there is that 423.6 which is a good target very good target the only question is can we go and drop into 686 because if we drop into the 686 then we can go even lower into that monthly range monthly opening range so we'll see"
+    },
+    {
+      "index": 167,
+      "t": 1527,
+      "hms": "00:25:27",
+      "file": "keyframes/0167_002527.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "question is can we go and drop into 686 because if we drop into the 686 then we can go even lower into that monthly range monthly opening range so we'll see and this is textbook example of the inside day so monday was an inside day weekly opening range"
+    },
+    {
+      "index": 168,
+      "t": 1533,
+      "hms": "00:25:33",
+      "file": "keyframes/0168_002533.jpg",
+      "source": "llm",
+      "label": "Textbook inside day example",
+      "why": "Instructor points to an inside day pattern on the chart.",
+      "narration": "into that monthly range monthly opening range so we'll see and this is textbook example of the inside day so monday was an inside day weekly opening range price sweeps the Monday high and continues lower back to the outcome beautiful back to the previous"
+    },
+    {
+      "index": 169,
+      "t": 1545,
+      "hms": "00:25:45",
+      "file": "keyframes/0169_002545.jpg",
+      "source": "llm",
+      "label": "Inside day trade from PDH to PDL",
+      "why": "Instructor explains the inside day trading framework using chart levels.",
+      "narration": "and this is textbook example of the inside day so monday was an inside day weekly opening range price sweeps the Monday high and continues lower back to the outcome beautiful back to the previous daily low beautiful this is the inside day protocol so the inside day trade is done from PDH to PDL that's the inside day trading framework now two things could happen right"
+    },
+    {
+      "index": 170,
+      "t": 1564,
+      "hms": "00:26:04",
+      "file": "keyframes/0170_002604.jpg",
+      "source": "llm",
+      "label": "Break and retest or swing failure",
+      "why": "Instructor outlines two possible setups from the inside day pattern.",
+      "narration": "daily low beautiful this is the inside day protocol so the inside day trade is done from PDH to PDL that's the inside day trading framework now two things could happen right break and retest or swing failure pattern at the slow so that's what we're looking for there's only two setups keep it simple keep it straightforward like i said it's not about trying to be smart it's not about trying to be perfect it's about making money that's what it's all about so your goal is to think about risk every time not about price action not about what candle it's sweeping risk what are you risking how long have you been holding the trade is it"
+    },
+    {
+      "index": 171,
+      "t": 1609,
+      "hms": "00:26:49",
+      "file": "keyframes/0171_002649.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "candle it's sweeping risk what are you risking how long have you been holding the trade is it worth this consolidation if price consolidating and you've been holding the trade all day long why you keep holding and hoping. Just take the money, take the profit and move on. Your day is done. Think about trading in days. Today might be no trade. Today might be break-even. Today might be a losing day. You never know. But we show up with the same system, with the same rules. And sometimes we have good days like today. Even I made a mistake with the breakeven, right? You can argue that that was not a mistake."
+    },
+    {
+      "index": 172,
+      "t": 1651,
+      "hms": "00:27:31",
+      "file": "keyframes/0172_002731.jpg",
+      "source": "llm",
+      "label": "Break-even trade decision",
+      "why": "Instructor reflects on a break-even exit and re-entry.",
+      "narration": "Even I made a mistake with the breakeven, right? You can argue that that was not a mistake. You can say that it was calculated or whatever. But if I didn't have my stop loss at breakeven, I would be in one hour more of a profit. So that's how you need to think about it. It's okay. You made a decision. You put the stop loss at breakeven."
+    },
+    {
+      "index": 173,
+      "t": 1669,
+      "hms": "00:27:49",
+      "file": "keyframes/0173_002749.jpg",
+      "source": "llm",
+      "label": "Stop loss at break-even",
+      "why": "Instructor confirms the use of a stop loss at break-even.",
+      "narration": "So that's how you need to think about it. It's okay. You made a decision. You put the stop loss at breakeven. You got stopped out at breakeven and you re-entered. as long as you followed your rules as long as that was your plan it doesn't matter if"
+    },
+    {
+      "index": 174,
+      "t": 1676,
+      "hms": "00:27:56",
+      "file": "keyframes/0174_002756.jpg",
+      "source": "llm",
+      "label": "Re-enter after break-even",
+      "why": "Instructor re-enters the trade after being stopped out at break-even.",
+      "narration": "You got stopped out at breakeven and you re-entered. as long as you followed your rules as long as that was your plan it doesn't matter if break even was correct or not there is no right or wrong in trading like i said a complete idiot"
+    },
+    {
+      "index": 175,
+      "t": 1683,
+      "hms": "00:28:03",
+      "file": "keyframes/0175_002803.jpg",
+      "source": "llm",
+      "label": "No right or wrong in trading",
+      "why": "Instructor discusses the psychological aspect of trade decisions.",
+      "narration": "as long as you followed your rules as long as that was your plan it doesn't matter if break even was correct or not there is no right or wrong in trading like i said a complete idiot can press buy or sell and find themselves in a winning trade your easiest and the most profitable trade is going to be when you buy or sell and you hold it into the close you hold it even past the close some of the trades might be setting up in a way on a higher time frame where we can hold them"
+    },
+    {
+      "index": 176,
+      "t": 1707,
+      "hms": "00:28:27",
+      "file": "keyframes/0176_002827.jpg",
+      "source": "llm",
+      "label": "Hold trades overnight",
+      "why": "Instructor discusses holding trades beyond the close.",
+      "narration": "trade is going to be when you buy or sell and you hold it into the close you hold it even past the close some of the trades might be setting up in a way on a higher time frame where we can hold them overnight but this way of thinking is way easier psychologically is way easier mentally than trying to scalp every little move on one minute chart and the more you're trying to trade this way the more you're going to realize that you're becoming less and less impulsive you're becoming more patient even on the days where you miss the setup you no longer chase you just accept the outcome"
+    },
+    {
+      "index": 177,
+      "t": 1736,
+      "hms": "00:28:56",
+      "file": "keyframes/0177_002856.jpg",
+      "source": "llm",
+      "label": "Patient trading mindset",
+      "why": "Instructor emphasizes patience and avoiding impulsive trades.",
+      "narration": "more you're going to realize that you're becoming less and less impulsive you're becoming more patient even on the days where you miss the setup you no longer chase you just accept the outcome that you missed your setup it's okay it's okay if you missed your setup close the chart and just accept that you missed the setup because the more you sit in front of the screen the more reasons"
+    },
+    {
+      "index": 178,
+      "t": 1752,
+      "hms": "00:29:12",
+      "file": "keyframes/0178_002912.jpg",
+      "source": "llm",
+      "label": "Accept missed setups",
+      "why": "Instructor advises accepting when a setup is missed.",
+      "narration": "that you missed your setup it's okay it's okay if you missed your setup close the chart and just accept that you missed the setup because the more you sit in front of the screen the more reasons you're going to find to enter the trade and that's how you over trade and blow up eventually you want to treat this business seriously this is real money real risk we're not playing games"
+    },
+    {
+      "index": 179,
+      "t": 1765,
+      "hms": "00:29:25",
+      "file": "keyframes/0179_002925.jpg",
+      "source": "llm",
+      "label": "Real money and real risk",
+      "why": "Instructor stresses the seriousness of trading with real capital.",
+      "narration": "you're going to find to enter the trade and that's how you over trade and blow up eventually you want to treat this business seriously this is real money real risk we're not playing games That's why I am so against prop firms because it's gamified. People treating it like a video game. Although it is very close to the video game,"
+    },
+    {
+      "index": 180,
+      "t": 1783,
+      "hms": "00:29:43",
+      "file": "keyframes/0180_002943.jpg",
+      "source": "llm",
+      "label": "Trading vs video game",
+      "why": "Instructor contrasts real trading with gamified prop firm environments.",
+      "narration": "People treating it like a video game. Although it is very close to the video game, trading is about risking real money. And if you never learn to be comfortable with risk, you will continue to hop systems. You will continue to have good winning streaks and then blow up in one day. It's all about the system. following the system and don't look at anybody else don't try to compare yourself to anybody everybody's journey different and this is why i don't want to show you my traits i don't really want to give you signals the whole point of this membership community mentorship whatever you want want to call it is for me to show you how i do it and pass on that knowledge to you so you can do it"
+    },
+    {
+      "index": 181,
+      "t": 1828,
+      "hms": "00:30:28",
+      "file": "keyframes/0181_003028.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "want to give you signals the whole point of this membership community mentorship whatever you want want to call it is for me to show you how i do it and pass on that knowledge to you so you can do it on your own i don't want to be coming on every day live streaming and giving all the secrets away giving all of my analysis so you don't have to think that's the biggest problem in this industry is outsourced thinking. I can't press a button for you. I can't put $1,000 risk for you. It's your responsibility. And that's the very first lesson to learn in trading. You are responsible for your own risk and your own decisions. And if you are outsourcing your"
+    },
+    {
+      "index": 182,
+      "t": 1873,
+      "hms": "00:31:13",
+      "file": "keyframes/0182_003113.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "You are responsible for your own risk and your own decisions. And if you are outsourcing your own decisions that means you don't have a system that you can trust you don't have any system because you are outsourcing decisions if you keep doing that you will never develop a skill of a trader because trading is all about making decisions under pressure with real risk and if you're looking something that is not risky it doesn't exist everything is risk in life you living and breathing today is already risky there is a risk of you walking out on the street crossing the road and some idiot just recklessly driving and one wrong step one wrong day wrong"
+    },
+    {
+      "index": 183,
+      "t": 1918,
+      "hms": "00:31:58",
+      "file": "keyframes/0183_003158.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "you living and breathing today is already risky there is a risk of you walking out on the street crossing the road and some idiot just recklessly driving and one wrong step one wrong day wrong timing and that's it your life is gone poof just like that it's the same with trading survival is first adapting to the conditions first that's what we do as humans that's what we do as people we adapt to the conditions doesn't matter what you might think doesn't matter what book you read what course you watch, what video you watch, what live stream you watch, it doesn't matter. Until you do it yourself, until you experience that thing, you will never know how it actually"
+    },
+    {
+      "index": 184,
+      "t": 1963,
+      "hms": "00:32:43",
+      "file": "keyframes/0184_003243.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "Until you do it yourself, until you experience that thing, you will never know how it actually is. You can't be reading how to ride a bike and expecting that first time you sit on a bike, you're going to know immediately what to do. You're not going to know what that knowledge means until you put it into practice. And you can watch the videos all you want. You can watch the courses. You can watch everything. But until you put that knowledge into practice, until you observe it with your own eyes, until you make the decision, you will never know what it's like to do anything. so i'm just watching this and trying to figure out when can i trail my stop loss"
+    },
+    {
+      "index": 185,
+      "t": 2008,
+      "hms": "00:33:28",
+      "file": "keyframes/0185_003328.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "you will never know what it's like to do anything. so i'm just watching this and trying to figure out when can i trail my stop loss so if it breaks down and closes back below like previous low of the week"
+    },
+    {
+      "index": 186,
+      "t": 2016,
+      "hms": "00:33:36",
+      "file": "keyframes/0186_003336.jpg",
+      "source": "llm",
+      "label": "Break and retest pattern",
+      "why": "Instructor discusses break and retest of previous low of the week, with visible chart support/resistance levels.",
+      "narration": "so i'm just watching this and trying to figure out when can i trail my stop loss so if it breaks down and closes back below like previous low of the week i'm going to put my stop loss about that high about this recent high here this is a break and retest and previous low of the week is the same as friday low"
+    },
+    {
+      "index": 187,
+      "t": 2029,
+      "hms": "00:33:49",
+      "file": "keyframes/0187_003349.jpg",
+      "source": "llm",
+      "label": "Stop loss placement",
+      "why": "Instructor places stop loss above recent high, referencing visible chart level.",
+      "narration": "i'm going to put my stop loss about that high about this recent high here this is a break and retest and previous low of the week is the same as friday low it's stacked pdl lcom previous low of the week so this creates a very clean support and resistance"
+    },
+    {
+      "index": 188,
+      "t": 2039,
+      "hms": "00:33:59",
+      "file": "keyframes/0188_003359.jpg",
+      "source": "llm",
+      "label": "Support and resistance area",
+      "why": "Instructor identifies a clean support/resistance zone from previous low of the week, visible on chart.",
+      "narration": "this is a break and retest and previous low of the week is the same as friday low it's stacked pdl lcom previous low of the week so this creates a very clean support and resistance area for the break and retest or swing failure pattern this could all back go back up you know You never know. I keep saying you know. No, we never know. We never know. We're just here to manage risk and let go of the outcome. If it's going to stop me out, whatever, I'll take my profit. If it wants to run lower, I'll take my profit as well. My plan is always the same. Buy or sell, take profit and trail. inside candle what is the inside candle is the consolidation exactly"
+    },
+    {
+      "index": 189,
+      "t": 2089,
+      "hms": "00:34:49",
+      "file": "keyframes/0189_003449.jpg",
+      "source": "llm",
+      "label": "Inside candle consolidation",
+      "why": "Instructor points to an inside candle pattern forming on the chart, indicating consolidation.",
+      "narration": "inside candle what is the inside candle is the consolidation exactly simple concepts work the best the more you complicate stuff the more you're going to be confused the more things you add the more you're going to be confused everything that i share with you guys, is something that works extremely well. All you have to do is manage risk. And forget about everything else. Because it doesn't matter what concepts you use, the money is the same. Making $1,000 with ICT or making $1,000 with Stoic Edge, it doesn't matter. It's all about risk management. Even coin flip could work in theory."
+    },
+    {
+      "index": 190,
+      "t": 2134,
+      "hms": "00:35:34",
+      "file": "keyframes/0190_003534.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "the money is the same. Making $1,000 with ICT or making $1,000 with Stoic Edge, it doesn't matter. It's all about risk management. Even coin flip could work in theory. I'd be up 5R if I didn't get stopped out and break even. And what, am I going to feel bad about it now? No. That was it. I did it. I did it. That was my decision. There is no right or wrong. And of course, now in hindsight, you could say like, oh, that break-even was wrong. But sometimes you're going to get stopped out of break-even and you're going to save yourself from minus one R. And there is no right or wrong. Like I said, the price can do whatever it wants."
+    },
+    {
+      "index": 191,
+      "t": 2179,
+      "hms": "00:36:19",
+      "file": "keyframes/0191_003619.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "And there is no right or wrong. Like I said, the price can do whatever it wants. We have no control over it. So today, it was wrong. and maybe tomorrow it's going to be right. I don't know. You never know. As soon as you're starting to think and believe that you know, that's where the market comes back and humbles your ass. So we keep going, following the system."
+    },
+    {
+      "index": 192,
+      "t": 2204,
+      "hms": "00:36:44",
+      "file": "keyframes/0192_003644.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "that's where the market comes back and humbles your ass. So we keep going, following the system. This is easy. And after the first one hour is done, all it is is trailing. All you see me do is trailing. so you can just walk away and trail you can put your alerts so over here you can set alerted SBS"
+    },
+    {
+      "index": 193,
+      "t": 2224,
+      "hms": "00:37:04",
+      "file": "keyframes/0193_003704.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "so you can just walk away and trail you can put your alerts so over here you can set alerted SBS so when the price gets to the SBS you can set an alert and be alerted and you take a look at the"
+    },
+    {
+      "index": 194,
+      "t": 2230,
+      "hms": "00:37:10",
+      "file": "keyframes/0194_003710.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "so when the price gets to the SBS you can set an alert and be alerted and you take a look at the chart and you just keep moving your stop loss lower and lower and lower until you get stopped out or you need to close at the end of the day or you can even leave it running but this is just"
+    },
+    {
+      "index": 195,
+      "t": 2242,
+      "hms": "00:37:22",
+      "file": "keyframes/0195_003722.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "chart and you just keep moving your stop loss lower and lower and lower until you get stopped out or you need to close at the end of the day or you can even leave it running but this is just beautiful if it keeps going lower i'll just hold it if not i'll be stopped out in about"
+    },
+    {
+      "index": 196,
+      "t": 2248,
+      "hms": "00:37:28",
+      "file": "keyframes/0196_003728.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "out or you need to close at the end of the day or you can even leave it running but this is just beautiful if it keeps going lower i'll just hold it if not i'll be stopped out in about"
+    },
+    {
+      "index": 197,
+      "t": 2254,
+      "hms": "00:37:34",
+      "file": "keyframes/0197_003734.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "beautiful if it keeps going lower i'll just hold it if not i'll be stopped out in about three and a half hour i believe and all of these lines all of the high time frame lines are not"
+    },
+    {
+      "index": 198,
+      "t": 2260,
+      "hms": "00:37:40",
+      "file": "keyframes/0198_003740.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "three and a half hour i believe and all of these lines all of the high time frame lines are not important to me after i enter the trade after i enter the trade all of my focus is going to managing risk. I'm looking to maximize this winning position as much as possible. And I'm going to try my best to do that. I'm not trying my best to predict if the SBS line is going to be the reversal. All I'm trying to do is hold the position for as long as possible. and if market keeps dropping i'll be holding the position it's very simple thinking less is more"
+    },
+    {
+      "index": 199,
+      "t": 2305,
+      "hms": "00:38:25",
+      "file": "keyframes/0199_003825.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "and if market keeps dropping i'll be holding the position it's very simple thinking less is more all right so what is happening now so i got an alert right it retraced back about to sbs and i opened the chart i look at the chart okay well the stop loss in the right place"
+    },
+    {
+      "index": 200,
+      "t": 2316,
+      "hms": "00:38:36",
+      "file": "keyframes/0200_003836.jpg",
+      "source": "llm",
+      "label": "SBS alert and stop loss check",
+      "why": "Instructor reacts to an SBS (Smart Money Concept) alert, checking stop loss placement on chart.",
+      "narration": "all right so what is happening now so i got an alert right it retraced back about to sbs and i opened the chart i look at the chart okay well the stop loss in the right place whatever if it goes back up it goes back up i don't care and still just like i used the logic in my previous trade last week now if i get stopped out it's like getting stopped out at 423 target so i could close the trade here or i let it play out i sacrifice a little bit profit and I let the price breathe. I let the price do whatever it wants to do. This is another inside candle here developing."
+    },
+    {
+      "index": 201,
+      "t": 2351,
+      "hms": "00:39:11",
+      "file": "keyframes/0201_003911.jpg",
+      "source": "llm",
+      "label": "Inside candle development",
+      "why": "Instructor identifies a new inside candle forming, visible on chart.",
+      "narration": "I let the price do whatever it wants to do. This is another inside candle here developing. So we can contain you down lower after this inside candle if we stay below the SBS. And this is the plan that I set when the price was all the way up here."
+    },
+    {
+      "index": 202,
+      "t": 2362,
+      "hms": "00:39:22",
+      "file": "keyframes/0202_003922.jpg",
+      "source": "llm",
+      "label": "Price below SBS",
+      "why": "Instructor confirms price is staying below the SBS line, a key condition for trade continuation.",
+      "narration": "if we stay below the SBS. And this is the plan that I set when the price was all the way up here. I said the same things. And all I'm doing is just following my plan. this is the trade this is the perfect trade that you want to take but quality over quantity if you're taking a lot of trades before this trade there is a high chance that you get chopped up before you actually catch and capitalize on this type of move so it's all about patience minimizing risk maximizing reward buy a cell take profit and trail inside candle leads to expansion consolidation to expansion"
+    },
+    {
+      "index": 203,
+      "t": 2412,
+      "hms": "00:40:12",
+      "file": "keyframes/0203_004012.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "inside candle leads to expansion consolidation to expansion i mean it's just as simple as that now we are at 5r almost"
+    },
+    {
+      "index": 204,
+      "t": 2420,
+      "hms": "00:40:20",
+      "file": "keyframes/0204_004020.jpg",
+      "source": "llm",
+      "label": "Expansion after consolidation",
+      "why": "Instructor describes the price moving from consolidation to expansion, visible on chart.",
+      "narration": "inside candle leads to expansion consolidation to expansion i mean it's just as simple as that now we are at 5r almost and people always crack me up on twitter when they mark out this whatever volume imbalance"
+    },
+    {
+      "index": 205,
+      "t": 2429,
+      "hms": "00:40:29",
+      "file": "keyframes/0205_004029.jpg",
+      "source": "llm",
+      "label": "5R profit target",
+      "why": "Instructor notes the trade is approaching 5R, indicating a significant profit level on chart.",
+      "narration": "and people always crack me up on twitter when they mark out this whatever volume imbalance which is coming from this daily chart here right this is what ict traders call volume imbalance"
+    },
+    {
+      "index": 206,
+      "t": 2441,
+      "hms": "00:40:41",
+      "file": "keyframes/0206_004041.jpg",
+      "source": "llm",
+      "label": "Volume imbalance target",
+      "why": "Instructor references a volume imbalance on daily chart, pointing to a potential price target.",
+      "narration": "and people always crack me up on twitter when they mark out this whatever volume imbalance which is coming from this daily chart here right this is what ict traders call volume imbalance and people would be like this is the target the price is going here"
+    },
+    {
+      "index": 207,
+      "t": 2448,
+      "hms": "00:40:48",
+      "file": "keyframes/0207_004048.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "which is coming from this daily chart here right this is what ict traders call volume imbalance and people would be like this is the target the price is going here and then they repost on Twitter that I told you the price was going here. But for some reason, they never show a trade."
+    },
+    {
+      "index": 208,
+      "t": 2464,
+      "hms": "00:41:04",
+      "file": "keyframes/0208_004104.jpg",
+      "source": "llm",
+      "label": "Target not traded",
+      "why": "Instructor critiques others for marking targets without taking trades, referencing visible chart.",
+      "narration": "and then they repost on Twitter that I told you the price was going here. But for some reason, they never show a trade. Like, okay, this was the target. I don't care. This was a target. Did you take a trade? Did you do something about it? Are you just going to post it on Twitter and trying to get some likes? There is so much noise on Twitter. There's so much noise everywhere."
+    },
+    {
+      "index": 209,
+      "t": 2483,
+      "hms": "00:41:23",
+      "file": "keyframes/0209_004123.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Are you just going to post it on Twitter and trying to get some likes? There is so much noise on Twitter. There's so much noise everywhere. And if you keep engaging in that noise, you're going to get consumed."
+    },
+    {
+      "index": 210,
+      "t": 2489,
+      "hms": "00:41:29",
+      "file": "keyframes/0210_004129.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "There's so much noise everywhere. And if you keep engaging in that noise, you're going to get consumed. That's why we want to stay stoic, stoic traders. That's why my whole brand is stoic, because that's what requires for you to be consistently"
+    },
+    {
+      "index": 211,
+      "t": 2498,
+      "hms": "00:41:38",
+      "file": "keyframes/0211_004138.jpg",
+      "source": "llm",
+      "label": "Stoic trading philosophy",
+      "why": "Instructor emphasizes stoicism and discipline, referencing the strategy being followed on chart.",
+      "narration": "That's why we want to stay stoic, stoic traders. That's why my whole brand is stoic, because that's what requires for you to be consistently profitable. If 95% of traders trading ICT and trying to be algorithmic traders, that means that we"
+    },
+    {
+      "index": 212,
+      "t": 2509,
+      "hms": "00:41:49",
+      "file": "keyframes/0212_004149.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "If 95% of traders trading ICT and trying to be algorithmic traders, that means that we need to be the opposite whatever's the most popular is wrong whatever is the most popular"
+    },
+    {
+      "index": 213,
+      "t": 2515,
+      "hms": "00:41:55",
+      "file": "keyframes/0213_004155.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "If 95% of traders trading ICT and trying to be algorithmic traders, that means that we need to be the opposite whatever's the most popular is wrong whatever is the most popular is going to lead you towards the noise and like i said if i wanted to make as biggest trading community ever and i if i wanted to make as much money possible teaching and mentoring I would be sculpting. I would be trading ICT. I would be making ICT tutorials with gazillion"
+    },
+    {
+      "index": 214,
+      "t": 2544,
+      "hms": "00:42:24",
+      "file": "keyframes/0214_004224.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "I would be sculpting. I would be trading ICT. I would be making ICT tutorials with gazillion trading models and showing you affiliate links to the prop firms. I would be live streaming every"
+    },
+    {
+      "index": 215,
+      "t": 2550,
+      "hms": "00:42:30",
+      "file": "keyframes/0215_004230.jpg",
+      "source": "llm",
+      "label": "ICT tutorials and live streaming",
+      "why": "Instructor contrasts his method with popular ICT teaching styles, referencing visible chart examples.",
+      "narration": "I would be sculpting. I would be trading ICT. I would be making ICT tutorials with gazillion trading models and showing you affiliate links to the prop firms. I would be live streaming every day. I would be just pointing out these moves. Oh, this could be SBS. This could be that. This"
+    },
+    {
+      "index": 216,
+      "t": 2556,
+      "hms": "00:42:36",
+      "file": "keyframes/0216_004236.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "trading models and showing you affiliate links to the prop firms. I would be live streaming every day. I would be just pointing out these moves. Oh, this could be SBS. This could be that. This could be this. Oh, look, it played out. Oh, look, it didn't play out. Oh, look, this and that, blah blah blah i could be running my mouth for hours about price action and there are people that want that there are people that just willing to sit in front of the screen and just let somebody else make decisions but i'm not like everybody else i genuinely want to help you guys everything that i'm sharing works for me because i did it i tested it i implemented it i'm doing it right now and whatever's working for me i want to share it with people i want to teach people"
+    },
+    {
+      "index": 217,
+      "t": 2601,
+      "hms": "00:43:21",
+      "file": "keyframes/0217_004321.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "that i'm sharing works for me because i did it i tested it i implemented it i'm doing it right now and whatever's working for me i want to share it with people i want to teach people unfortunately you can't teach everybody for free because unless there is some kind of stakes weeks people don't pay attention and that's why I have to charge and also my time worth money and I love the game not only trading I love the entrepreneurship I love growing communities but I don't want just anybody in my community I want serious traders who want to do this properly I don't want DGN gamblers trying to flip prop firm accounts and trying to figure out which the best rule to follow during the prop firm account. And then they have to beg prop firm for a payout for the trades that they already done, which is ridiculous."
+    },
+    {
+      "index": 218,
+      "t": 2646,
+      "hms": "00:44:06",
+      "file": "keyframes/0218_004406.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "I don't want DGN gamblers trying to flip prop firm accounts and trying to figure out which the best rule to follow during the prop firm account. And then they have to beg prop firm for a payout for the trades that they already done, which is ridiculous. And of course, this type of trading like I'm doing right now is not exciting. It only exciting is when the price going into your favor and it's now 5R, 6R, whatever."
+    },
+    {
+      "index": 219,
+      "t": 2662,
+      "hms": "00:44:22",
+      "file": "keyframes/0219_004422.jpg",
+      "source": "llm",
+      "label": "Profit excitement",
+      "why": "Instructor discusses the thrill of a 5R+ move, referencing visible profit on chart.",
+      "narration": "And of course, this type of trading like I'm doing right now is not exciting. It only exciting is when the price going into your favor and it's now 5R, 6R, whatever. Now it's exciting. But when you're taking break even or some losses or there is a slow day or there is a day that you shouldn't be trading like Monday, for example, or like a day after big sell off, you want to be in a trade. You coming in every week, every day, you trying to get a big trade. And that's the wrong way to think about it. We don't know when this big trade will come in. And some days this strategy will look stupid."
+    },
+    {
+      "index": 220,
+      "t": 2697,
+      "hms": "00:44:57",
+      "file": "keyframes/0220_004457.jpg",
+      "source": "llm",
+      "label": "Strategy looks stupid",
+      "why": "Instructor acknowledges the strategy may seem ineffective on certain days, referencing chart performance.",
+      "narration": "We don't know when this big trade will come in. And some days this strategy will look stupid. Because, oh, you could have caught this scalp and you could have caught this little move. And only if you can see the future, you can be timing every little move. Look how easy it is. Look, look at this. Oh, that failed. Well, that's part of the plan. Oh, it failed again. Oh, you"
+    },
+    {
+      "index": 221,
+      "t": 2713,
+      "hms": "00:45:13",
+      "file": "keyframes/0221_004513.jpg",
+      "source": "llm",
+      "label": "Failed trade example",
+      "why": "Instructor points out a failed trade on the chart, highlighting an incorrect entry or market reaction.",
+      "narration": "And only if you can see the future, you can be timing every little move. Look how easy it is. Look, look at this. Oh, that failed. Well, that's part of the plan. Oh, it failed again. Oh, you blowed up. Well, that's because you were not patient. And that's the industry trap, the dopamine, the excitement. Well, everything is the opposite. It's about consistently doing the same thing every single day. And most of the days, and put this into your head that 80% of the days are going to suck. And only 20% are going to be the ones that are going to make the difference, the ones that are going to compound the account. We cannot expect that every single day is going"
+    },
+    {
+      "index": 222,
+      "t": 2758,
+      "hms": "00:45:58",
+      "file": "keyframes/0222_004558.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "the ones that are going to compound the account. We cannot expect that every single day is going to be an absolute banger we cannot expect that every week is going to be a banger survival first and then we focus on taking profits that's the name of the game that's the way of stoic trader"
+    },
+    {
+      "index": 223,
+      "t": 2780,
+      "hms": "00:46:20",
+      "file": "keyframes/0223_004620.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "that's the name of the game that's the way of stoic trader yeah if i get stopped out this is going to be 4.5 r Let me just give it a little bit of room in case we retest this high time from SBS."
+    },
+    {
+      "index": 224,
+      "t": 2800,
+      "hms": "00:46:40",
+      "file": "keyframes/0224_004640.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "The sweep of the candle and continuation higher, that's what I don't want to see."
+    },
+    {
+      "index": 225,
+      "t": 2806,
+      "hms": "00:46:46",
+      "file": "keyframes/0225_004646.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "The sweep of the candle and continuation higher, that's what I don't want to see. So I'm putting my stop loss right above those candles."
+    },
+    {
+      "index": 226,
+      "t": 2814,
+      "hms": "00:46:54",
+      "file": "keyframes/0226_004654.jpg",
+      "source": "llm",
+      "label": "Stop loss placement",
+      "why": "Instructor places a stop loss above recent candles, indicating risk management.",
+      "narration": "The sweep of the candle and continuation higher, that's what I don't want to see. So I'm putting my stop loss right above those candles. just a little bit higher. This is SBS break and retest on the lower time frame."
+    },
+    {
+      "index": 227,
+      "t": 2822,
+      "hms": "00:47:02",
+      "file": "keyframes/0227_004702.jpg",
+      "source": "llm",
+      "label": "SBS break and retest",
+      "why": "Instructor identifies a SBS (Support Break and Sweep) pattern on the lower timeframe chart.",
+      "narration": "just a little bit higher. This is SBS break and retest on the lower time frame. So we can look into one minute."
+    },
+    {
+      "index": 228,
+      "t": 2828,
+      "hms": "00:47:08",
+      "file": "keyframes/0228_004708.jpg",
+      "source": "llm",
+      "label": "Lower time frame analysis",
+      "why": "Instructor switches to a one-minute chart for detailed SBS pattern analysis.",
+      "narration": "This is SBS break and retest on the lower time frame. So we can look into one minute. Sweep of the slow. This is break and retest. It's the SBS model one on top of here."
+    },
+    {
+      "index": 229,
+      "t": 2834,
+      "hms": "00:47:14",
+      "file": "keyframes/0229_004714.jpg",
+      "source": "llm",
+      "label": "Sweep of the slow",
+      "why": "Instructor discusses a sweep pattern on the chart, likely indicating price action behavior.",
+      "narration": "Sweep of the slow. This is break and retest. It's the SBS model one on top of here. That's what I'm risking. If we can sweep this high here,"
+    },
+    {
+      "index": 230,
+      "t": 2840,
+      "hms": "00:47:20",
+      "file": "keyframes/0230_004720.jpg",
+      "source": "llm",
+      "label": "Risk level discussion",
+      "why": "Instructor states the risk amount (R value) for a trade, referencing chart levels.",
+      "narration": "It's the SBS model one on top of here. That's what I'm risking. If we can sweep this high here, that would be sbs on higher time from sbs but i don't want to give away too much profits"
+    },
+    {
+      "index": 231,
+      "t": 2846,
+      "hms": "00:47:26",
+      "file": "keyframes/0231_004726.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "that would be sbs on higher time from sbs but i don't want to give away too much profits i really don't this looks like a sbs but we need to reverse"
+    },
+    {
+      "index": 232,
+      "t": 2852,
+      "hms": "00:47:32",
+      "file": "keyframes/0232_004732.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "that would be sbs on higher time from sbs but i don't want to give away too much profits i really don't this looks like a sbs but we need to reverse and if this is a reversal this is a fib geo going down into 686 you see it that's the monthly"
+    },
+    {
+      "index": 233,
+      "t": 2859,
+      "hms": "00:47:39",
+      "file": "keyframes/0233_004739.jpg",
+      "source": "llm",
+      "label": "Fibonacci and monthly range",
+      "why": "Instructor points to a Fibonacci level and the monthly opening range high on the chart.",
+      "narration": "i really don't this looks like a sbs but we need to reverse and if this is a reversal this is a fib geo going down into 686 you see it that's the monthly if this plays out that's the monthly opening range high here"
+    },
+    {
+      "index": 234,
+      "t": 2871,
+      "hms": "00:47:51",
+      "file": "keyframes/0234_004751.jpg",
+      "source": "llm",
+      "label": "Monthly opening range high",
+      "why": "Instructor highlights the monthly opening range high as a key price level.",
+      "narration": "and if this is a reversal this is a fib geo going down into 686 you see it that's the monthly if this plays out that's the monthly opening range high here all right that's it it was about uh 4.2 r not bad very nice trade beautiful i would say"
+    },
+    {
+      "index": 235,
+      "t": 2878,
+      "hms": "00:47:58",
+      "file": "keyframes/0235_004758.jpg",
+      "source": "llm",
+      "label": "Trade conclusion",
+      "why": "Instructor concludes a trade with a positive outcome, referencing the chart's price action.",
+      "narration": "if this plays out that's the monthly opening range high here all right that's it it was about uh 4.2 r not bad very nice trade beautiful i would say"
+    },
+    {
+      "index": 236,
+      "t": 2885,
+      "hms": "00:48:05",
+      "file": "keyframes/0236_004805.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "all right that's it it was about uh 4.2 r not bad very nice trade beautiful i would say this is it for today beautiful day beautiful trade love to see it that high time from sbs"
+    },
+    {
+      "index": 237,
+      "t": 2891,
+      "hms": "00:48:11",
+      "file": "keyframes/0237_004811.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "all right that's it it was about uh 4.2 r not bad very nice trade beautiful i would say this is it for today beautiful day beautiful trade love to see it that high time from sbs it's expected to act as a sweep."
+    },
+    {
+      "index": 238,
+      "t": 2901,
+      "hms": "00:48:21",
+      "file": "keyframes/0238_004821.jpg",
+      "source": "llm",
+      "label": "Expected sweep behavior",
+      "why": "Instructor discusses expected price action at a specific level, likely referencing a chart pattern.",
+      "narration": "this is it for today beautiful day beautiful trade love to see it that high time from sbs it's expected to act as a sweep. But anyway, with that being said, this is going to be it for this live trading session and I will talk to you in the next one. Take care."
+    },
+    {
+      "index": 239,
+      "t": 2910,
+      "hms": "00:48:30",
+      "file": "keyframes/0239_004830.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "But anyway, with that being said, this is going to be it for this live trading session and I will talk to you in the next one. Take care."
+    }
+  ]
+}

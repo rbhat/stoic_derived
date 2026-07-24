@@ -1,0 +1,40 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Scratch / temp working files
+.scratch/
+
+# Large media — kept in Google Drive, not git
+*.mp4
+*.mov
+*.mkv
+*.m4v
+*.webm
+*.wav
+*.mp3
+
+# Keyframe images — regenerable by edu/pipeline
+edu/derived/**/keyframes/
+
+# Market data — kept in Google Drive, not git
+data/historical/*.dbn
+data/historical/*.dbn.zst
+
+# Secrets / credentials
+.env
+.env.*
+*.pem
+*.key
+client_secret*.json
+credentials*.json
+service_account*.json
+token*.json
+
+# OS
+.DS_Store

@@ -1,0 +1,4117 @@
+{
+  "source": "start_here/The-Only-Trading-Video-That-You-Will-Ever_Need_1080p.mp4",
+  "language": "en",
+  "model": "mlx-community/whisper-large-v3-turbo",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 13.22,
+      "text": "All right, welcome in. If you can hear me clearly, if you can see the screen, and if you are tired of waking up every day and letting random candles control your mood, then you are in the right place."
+    },
+    {
+      "start": 13.64,
+      "end": 18.24,
+      "text": "Because this free training is for traders who struggle with execution."
+    },
+    {
+      "start": 18.24,
+      "end": 29.22,
+      "text": "I'm going to show you how Stoic Edge helps inconsistent traders become Stoic traders in 90 days through the Stoic Trader protocol."
+    },
+    {
+      "start": 29.62,
+      "end": 41.56,
+      "text": "Without relying on signals, without studying endless theory, so you can finally stop strategy hopping and build a consistent execution process you can actually follow."
+    },
+    {
+      "start": 41.94,
+      "end": 44.16,
+      "text": "From noise to the process."
+    },
+    {
+      "start": 44.84,
+      "end": 46.16,
+      "text": "And that's the whole point."
+    },
+    {
+      "start": 46.16,
+      "end": 50.3,
+      "text": "Most traders think that the next setup is going to save them."
+    },
+    {
+      "start": 50.78,
+      "end": 54.1,
+      "text": "They think the next entry model is going to save them."
+    },
+    {
+      "start": 54.5,
+      "end": 67.46,
+      "text": "They think if they can just find the right strategy, the right trader to follow, the right watch list, the right indicator, the right candle pattern, then all of the chaos is finally going to stop."
+    },
+    {
+      "start": 67.98,
+      "end": 69.94,
+      "text": "But that's usually not what happens."
+    },
+    {
+      "start": 70.34,
+      "end": 72.1,
+      "text": "They learn the new setup."
+    },
+    {
+      "start": 72.38,
+      "end": 73.48,
+      "text": "They get excited."
+    },
+    {
+      "start": 73.74,
+      "end": 75.38,
+      "text": "They mark up a few charts."
+    },
+    {
+      "start": 75.38,
+      "end": 81.52,
+      "text": "They take a trade, maybe it works, maybe it fails, then the market starts moving again."
+    },
+    {
+      "start": 81.96,
+      "end": 87.62,
+      "text": "The emotion comes back, the rules get fuzzy and suddenly they are right back when they"
+    },
+    {
+      "start": 87.62,
+      "end": 88.18,
+      "text": "started."
+    },
+    {
+      "start": 88.64,
+      "end": 94.46,
+      "text": "Chasing, hesitating, over-trading, revenge trading, taking trades they can't explain,"
+    },
+    {
+      "start": 94.94,
+      "end": 100.5,
+      "text": "moving stops they promised they would not move, calling everything manipulation, trying"
+    },
+    {
+      "start": 100.5,
+      "end": 103.04,
+      "text": "to make the money back before the day ends."
+    },
+    {
+      "start": 103.04,
+      "end": 109.54,
+      "text": "And then they close the laptop with the same tired feeling, not only because they lost money,"
+    },
+    {
+      "start": 109.86,
+      "end": 117.62,
+      "text": "but because they lost trust in themselves again. And that's the deeper problem. Trading tests more"
+    },
+    {
+      "start": 117.62,
+      "end": 124.54,
+      "text": "than just your chart knowledge. Trading is testing your attention, patience, self-control, risk"
+    },
+    {
+      "start": 124.54,
+      "end": 131.14,
+      "text": "tolerance, boredom tolerance, and ability to follow a process when the next candle is trying"
+    },
+    {
+      "start": 131.14,
+      "end": 137.98,
+      "text": "to pull you out of it. If you take this seriously and actually build the process, it can serve you"
+    },
+    {
+      "start": 137.98,
+      "end": 144.4,
+      "text": "for a lifetime. Not because you learn how to predict every move, you won't. But because you"
+    },
+    {
+      "start": 144.4,
+      "end": 151.44,
+      "text": "learn how to manage risk. You learn how to make decisions under pressure. You learn how to stay"
+    },
+    {
+      "start": 151.44,
+      "end": 158.68,
+      "text": "calm when money, emotion, fear, greed, and uncertainty are all hitting at the same time."
+    },
+    {
+      "start": 158.68,
+      "end": 166.7,
+      "text": "that's not just chart reading that's a life skill trading becomes the place where you meet yourself"
+    },
+    {
+      "start": 166.7,
+      "end": 173.38,
+      "text": "you see where you chase you see where you hesitate you see where you get greedy you see where you"
+    },
+    {
+      "start": 173.38,
+      "end": 180.46,
+      "text": "panic and if you can learn to manage yourself there if you can win that battle against yourself"
+    },
+    {
+      "start": 180.46,
+      "end": 187.78,
+      "text": "you build a skill that stays with you so today i am not going to sell you a fantasy"
+    },
+    {
+      "start": 188.26,
+      "end": 192.22,
+      "text": "I'm not going to tell you that one video can make you profitable."
+    },
+    {
+      "start": 192.78,
+      "end": 197.46,
+      "text": "I'm not going to tell you that a community can remove entire risk."
+    },
+    {
+      "start": 197.86,
+      "end": 202.06,
+      "text": "And I'm not going to tell you to blindly copy anything I do."
+    },
+    {
+      "start": 202.5,
+      "end": 204.74,
+      "text": "That's not the stoic way of trading."
+    },
+    {
+      "start": 205.32,
+      "end": 207.98,
+      "text": "Here's what we're going to cover in this video."
+    },
+    {
+      "start": 207.98,
+      "end": 214.58,
+      "text": "First, I'm going to show you why the current trading environment is so dangerous for undisciplined"
+    },
+    {
+      "start": 214.58,
+      "end": 215.22,
+      "text": "traders."
+    },
+    {
+      "start": 215.22,
+      "end": 222.74,
+      "text": "not because markets are evil manipulated but because markets are markets the danger is that"
+    },
+    {
+      "start": 222.74,
+      "end": 230.26,
+      "text": "most traders are walking into a high stimulation environment with no operating system they have a"
+    },
+    {
+      "start": 230.26,
+      "end": 237.52,
+      "text": "chart a social feed a few concepts maybe some indicators and a lot of emotion and that combination"
+    },
+    {
+      "start": 237.52,
+      "end": 244.56,
+      "text": "of puzzle pieces is not really a process. Second, I'm going to show you the real enemy,"
+    },
+    {
+      "start": 244.84,
+      "end": 250.92,
+      "text": "which is the noise trap. And the noise trap is way bigger than just watching too many YouTube"
+    },
+    {
+      "start": 250.92,
+      "end": 258.02,
+      "text": "videos. It's the condition where everything looks tradable, every move feels urgent, every missed"
+    },
+    {
+      "start": 258.02,
+      "end": 264.86,
+      "text": "move feels personal, and every loss creates the desire to get even. Third, I'm going to teach you"
+    },
+    {
+      "start": 264.86,
+      "end": 271.12,
+      "text": "the stoic lens. This is the filter we use to decide what matters and what does not matter."
+    },
+    {
+      "start": 271.48,
+      "end": 279.14,
+      "text": "Higher time frame context, trap trader psychology, patience, process, restraint. Without a lens,"
+    },
+    {
+      "start": 279.3,
+      "end": 286.66,
+      "text": "every candle can become a reason to do something. But with a lens, the chart gets quiet. Fourth,"
+    },
+    {
+      "start": 286.66,
+      "end": 293.92,
+      "text": "I'm going to show you the core stoic trader concepts. The no edge zone, H-com and L-com,"
+    },
+    {
+      "start": 293.92,
+      "end": 300.48,
+      "text": "the monthly extremes that give the higher time frame bias trapped trader logic and asymmetrical"
+    },
+    {
+      "start": 300.48,
+      "end": 306.8,
+      "text": "risk to reward daily levels like previous day high previous day low and previous day close"
+    },
+    {
+      "start": 307.36,
+      "end": 314.16,
+      "text": "simplified market structure around those levels the two setups break and retest or swing failure"
+    },
+    {
+      "start": 314.16,
+      "end": 322.96,
+      "text": "pattern sbs swing breakout sequence as the entry model the 20 and 200 moving averages logic fib"
+    },
+    {
+      "start": 322.96,
+      "end": 330.82,
+      "text": "geometry, trap traders, risk, invalidation, target management, and review. I'm not hiding the names"
+    },
+    {
+      "start": 330.82,
+      "end": 338.08,
+      "text": "of the concepts. The names aren't the edge. How you implement them is the real edge. Fifth, I'm"
+    },
+    {
+      "start": 338.08,
+      "end": 344.02,
+      "text": "going to show you how these concepts become a system you can actually execute. Here's where"
+    },
+    {
+      "start": 344.02,
+      "end": 349.9,
+      "text": "most traders fail. They collect strategies, but they never define their territory. They never"
+    },
+    {
+      "start": 349.9,
+      "end": 356.12,
+      "text": "define their conditions. They never define what invalidates the trade. They never define how they"
+    },
+    {
+      "start": 356.12,
+      "end": 363.4,
+      "text": "manage risk. They never define how they review the decision after it's over. So the concept never"
+    },
+    {
+      "start": 363.4,
+      "end": 370.0,
+      "text": "becomes a system. And finally, I'm going to show you how Stoic Traders community helps you implement."
+    },
+    {
+      "start": 370.54,
+      "end": 376.92,
+      "text": "Inside the community, the goal isn't to create signal dependency. The goal is to help you build"
+    },
+    {
+      "start": 376.92,
+      "end": 384.42,
+      "text": "a consistent execution process over the next 90 days. You learn the concepts, you see current"
+    },
+    {
+      "start": 384.42,
+      "end": 390.44,
+      "text": "market context, you study the full watch list and execution logic, you build your own system,"
+    },
+    {
+      "start": 390.9,
+      "end": 396.84,
+      "text": "you review your own decisions, and you learn how to think through risk like a stoic trader"
+    },
+    {
+      "start": 396.84,
+      "end": 403.36,
+      "text": "and not just react like a gambler with a chart software. And again, if this training helps you"
+    },
+    {
+      "start": 403.36,
+      "end": 409.22,
+      "text": "and you want the full Stoic Trader protocol, the implementation environment, and the next 90-day"
+    },
+    {
+      "start": 409.22,
+      "end": 417.64,
+      "text": "execution challenge, join us at stoicedge.com. But before we go any deeper, let me be very clear"
+    },
+    {
+      "start": 417.64,
+      "end": 425.08,
+      "text": "on who this is for. This is for the trader whose main issue is execution, not lack of trading"
+    },
+    {
+      "start": 425.08,
+      "end": 433.48,
+      "text": "concepts not lack of videos or lack of another strategy execution this is what it's all about"
+    },
+    {
+      "start": 433.48,
+      "end": 438.9,
+      "text": "this is for the trader who's tired of being pulled around by lower time frame movement"
+    },
+    {
+      "start": 438.9,
+      "end": 444.74,
+      "text": "you know what it feels like you tell yourself you are only going to take one or two trades"
+    },
+    {
+      "start": 444.74,
+      "end": 451.84,
+      "text": "then the chart moves then a level breaks then a week forms then someone online posts a chart"
+    },
+    {
+      "start": 451.84,
+      "end": 455.14,
+      "text": "Then suddenly you are in a trade you didn't plan."
+    },
+    {
+      "start": 455.5,
+      "end": 458.5,
+      "text": "Then you are managing a position you don't understand."
+    },
+    {
+      "start": 458.92,
+      "end": 461.52,
+      "text": "Then you are hoping instead of executing."
+    },
+    {
+      "start": 461.94,
+      "end": 464.92,
+      "text": "If that sounds like you, this video is for you."
+    },
+    {
+      "start": 465.44,
+      "end": 469.88,
+      "text": "This is for the trader who has learned enough concepts to sound smart,"
+    },
+    {
+      "start": 470.24,
+      "end": 472.88,
+      "text": "but still doesn't trust himself under pressure."
+    },
+    {
+      "start": 473.24,
+      "end": 474.78,
+      "text": "You can explain liquidity."
+    },
+    {
+      "start": 475.0,
+      "end": 476.34,
+      "text": "You can explain a sweep."
+    },
+    {
+      "start": 476.46,
+      "end": 481.38,
+      "text": "You can explain a retest, moving averages, FIB geometry, FIB retracements."
+    },
+    {
+      "start": 481.38,
+      "end": 489.56,
+      "text": "but when real money is on the line you still hesitate chase oversize move stops close early"
+    },
+    {
+      "start": 489.56,
+      "end": 497.02,
+      "text": "hold too long or take trades that don't belong in your plan this is for the trader who doesn't want"
+    },
+    {
+      "start": 497.02,
+      "end": 503.26,
+      "text": "to live in the charts all day maybe you have a job maybe you run a business maybe you have a family"
+    },
+    {
+      "start": 503.26,
+      "end": 509.4,
+      "text": "maybe you are just trying to build a life where trading supports your freedom instead of stealing"
+    },
+    {
+      "start": 509.4,
+      "end": 516.36,
+      "text": "your attention you are not trying to become a full-time candle addict you want a clear way to"
+    },
+    {
+      "start": 516.36,
+      "end": 523.64,
+      "text": "identify opportunities understand risk and participate with discipline if that's you this"
+    },
+    {
+      "start": 523.64,
+      "end": 530.36,
+      "text": "video is for you this is for the former scalper or day trader who knows the lower time frames can"
+    },
+    {
+      "start": 530.36,
+      "end": 537.88,
+      "text": "teach real skill but also knows they can become chaos if there is no structure the same edge can"
+    },
+    {
+      "start": 537.88,
+      "end": 544.0,
+      "text": "be raised to a bigger time frame. The same concepts can be used with more patience. The"
+    },
+    {
+      "start": 544.0,
+      "end": 551.2,
+      "text": "same market understanding can be turned into a cleaner process. If that's you, this video is for"
+    },
+    {
+      "start": 551.2,
+      "end": 557.9,
+      "text": "you. This is also for the course collector, the trader who has bought trainings, watched videos,"
+    },
+    {
+      "start": 558.12,
+      "end": 566.0,
+      "text": "joined groups, downloaded PDFs, built giant folders of screenshots, and still doesn't have a process"
+    },
+    {
+      "start": 566.0,
+      "end": 573.42,
+      "text": "he can actually follow. You don't need more random information. You need to stop strategy hopping and"
+    },
+    {
+      "start": 573.42,
+      "end": 581.76,
+      "text": "finally start building an execution process. If that's you, this video is for you. But this isn't"
+    },
+    {
+      "start": 581.76,
+      "end": 587.98,
+      "text": "for everyone. Before we get into the concepts, there are a few house rules. Rule number one,"
+    },
+    {
+      "start": 588.4,
+      "end": 594.48,
+      "text": "this is education, not financial advice. I'm not telling you what to buy. I'm not telling you what"
+    },
+    {
+      "start": 594.48,
+      "end": 601.48,
+      "text": "to sell, I'm not telling you that any market, setup, strategy or process is guaranteed to make"
+    },
+    {
+      "start": 601.48,
+      "end": 608.94,
+      "text": "money. Trading involves risk. You are ultimately responsible for your own decisions. Rule number"
+    },
+    {
+      "start": 608.94,
+      "end": 616.24,
+      "text": "two, this isn't a signal room pitch. Stoic traders isn't built around blind copy trading."
+    },
+    {
+      "start": 616.24,
+      "end": 623.14,
+      "text": "The point isn't for you to become dependent on someone else's button. The point is for you to"
+    },
+    {
+      "start": 623.14,
+      "end": 630.68,
+      "text": "build a process strong enough that you can understand why a setup matters what risk is"
+    },
+    {
+      "start": 630.68,
+      "end": 638.42,
+      "text": "involved what would invalidate the idea and whether it fits your own system rule number three"
+    },
+    {
+      "start": 638.42,
+      "end": 648.18,
+      "text": "no concept removes uncertainty not breaking readers not sfp fib geometry 2200 sma daily"
+    },
+    {
+      "start": 648.18,
+      "end": 655.12,
+      "text": "levels, not a watch list, not a community, not an order block, enigma, whatever you might"
+    },
+    {
+      "start": 655.12,
+      "end": 663.8,
+      "text": "learned. A concept can improve your lens, but it can't remove real risk. Rule number four,"
+    },
+    {
+      "start": 663.94,
+      "end": 670.32,
+      "text": "if you are looking for constant action, you'll probably hate this. The stoic way of trading puts"
+    },
+    {
+      "start": 670.32,
+      "end": 678.4,
+      "text": "patience about entertainment. Cash is a position. No trade is valid outcome. The setup has to"
+    },
+    {
+      "start": 678.4,
+      "end": 685.46,
+      "text": "deserve risk. Rule number five, the concepts are only the beginning. This is the big one. I can"
+    },
+    {
+      "start": 685.46,
+      "end": 692.58,
+      "text": "give you concepts in a video. I can explain a noise trap. I can explain stoic lands, no edge zone."
+    },
+    {
+      "start": 692.58,
+      "end": 700.28,
+      "text": "I can explain daily levels, retests, failures, moving averages, fibs, and the protocol. But I"
+    },
+    {
+      "start": 700.28,
+      "end": 707.22,
+      "text": "can't do your repetitions for you. I can't make you follow your stop loss. I can't make you avoid"
+    },
+    {
+      "start": 707.22,
+      "end": 713.64,
+      "text": "the trade that's outside of your plan. I can't make you journal honestly. And ultimately, I can't"
+    },
+    {
+      "start": 713.64,
+      "end": 720.72,
+      "text": "make you stop using one win as permission to lose discipline. And this is exactly why implementation"
+    },
+    {
+      "start": 720.72,
+      "end": 728.46,
+      "text": "matters. Information can be consumed alone, but that's not enough anymore. There was a time when"
+    },
+    {
+      "start": 728.46,
+      "end": 734.52,
+      "text": "the problem was lack of information. But now the problem is abundance of misinformation."
+    },
+    {
+      "start": 735.22,
+      "end": 742.2,
+      "text": "Not because every trader online is trying to hurt you, but because the market rewards confidence,"
+    },
+    {
+      "start": 742.68,
+      "end": 748.98,
+      "text": "content rewards certainty. And most people who teach trading are still trapped in the same noise"
+    },
+    {
+      "start": 748.98,
+      "end": 755.5,
+      "text": "they are selling you away out of. So the real question isn't, can you consume more information?"
+    },
+    {
+      "start": 755.5,
+      "end": 762.3,
+      "text": "You can, of course. Go ahead, knock yourself out. But the real question is, do you have a process"
+    },
+    {
+      "start": 762.3,
+      "end": 768.74,
+      "text": "strong enough to filter what deserves your attention? Implementation usually needs an"
+    },
+    {
+      "start": 768.74,
+      "end": 775.86,
+      "text": "environment. That's what the Stoic Trader community is for. Right now, traders have more information"
+    },
+    {
+      "start": 775.86,
+      "end": 781.58,
+      "text": "than ever. More videos, more strategies, more indicators, more backtests, platforms, opinions,"
+    },
+    {
+      "start": 781.58,
+      "end": 788.8,
+      "text": "screenshots, watchlists, more people yelling about the next move. And yet, most traders aren't"
+    },
+    {
+      "start": 788.8,
+      "end": 795.72,
+      "text": "becoming calmer. They are becoming more reactor. And why is that? Well, because more information"
+    },
+    {
+      "start": 795.72,
+      "end": 802.9,
+      "text": "doesn't automatically create better judgment. More information without a filter creates more noise."
+    },
+    {
+      "start": 803.26,
+      "end": 810.14,
+      "text": "And trading noise is especially dangerous because it looks useful. A random candle looks like"
+    },
+    {
+      "start": 810.14,
+      "end": 815.94,
+      "text": "information. A random chart post looks like opportunity. A random opinion looks like"
+    },
+    {
+      "start": 815.94,
+      "end": 822.96,
+      "text": "confirmation. And a random missed move looks like evidence that you are behind. So the trader keeps"
+    },
+    {
+      "start": 822.96,
+      "end": 831.24,
+      "text": "consuming. He thinks he is studying. But emotionally, he is training urgency. He is training the belief"
+    },
+    {
+      "start": 831.24,
+      "end": 837.98,
+      "text": "that every move matters. He is training the feeling that being flat means he is missing out."
+    },
+    {
+      "start": 837.98,
+      "end": 845.16,
+      "text": "he is training himself to look for reasons to trade instead of reasons to wait and that's the"
+    },
+    {
+      "start": 845.16,
+      "end": 852.62,
+      "text": "modern trading trap the market doesn't only move it now moves inside an attention machine"
+    },
+    {
+      "start": 852.62,
+      "end": 858.86,
+      "text": "your chart is moving your phone is moving your feed is moving your group chat is moving your"
+    },
+    {
+      "start": 858.86,
+      "end": 866.24,
+      "text": "emotions are moving and if you don't have a process movement becomes your master that's why"
+    },
+    {
+      "start": 866.24,
+      "end": 873.32,
+      "text": "I say Stoic Traders is the anti-chaos trading brand. I am not trying to give you more things"
+    },
+    {
+      "start": 873.32,
+      "end": 880.72,
+      "text": "to react to. I am trying to give you a lens that reduces the field. What matters? What doesn't"
+    },
+    {
+      "start": 880.72,
+      "end": 888.18,
+      "text": "matter? What's the context? Who is trapped? Where is the clean invalidation? Where is the asymmetrical"
+    },
+    {
+      "start": 888.18,
+      "end": 896.08,
+      "text": "risk to reward opportunity? Is this my territory? Does this setup deserve risk? Or am I just being"
+    },
+    {
+      "start": 896.08,
+      "end": 903.14,
+      "text": "seduced by movement. That's the real paradigm shift that needs to happen for every trader if"
+    },
+    {
+      "start": 903.14,
+      "end": 911.02,
+      "text": "they want to be consistently profitable. From reaction to selection, from noise to process,"
+    },
+    {
+      "start": 911.02,
+      "end": 918.24,
+      "text": "from random candles to the stoic lens. And personally, I got into markets during the COVID"
+    },
+    {
+      "start": 918.24,
+      "end": 924.76,
+      "text": "crash in 2020. That was the beginning. Like a lot of traders, I started with the basics,"
+    },
+    {
+      "start": 924.76,
+      "end": 932.88,
+      "text": "simple charts swing trading basic ideas about price then over time i got pulled deeper into"
+    },
+    {
+      "start": 932.88,
+      "end": 940.82,
+      "text": "the lower time frames more detail more concepts terminology complexity eventually i went deep into"
+    },
+    {
+      "start": 940.82,
+      "end": 948.0,
+      "text": "ict smart money concepts liquidity language kill zones fair value gaps order blocks breaker blocks"
+    },
+    {
+      "start": 948.0,
+      "end": 955.52,
+      "text": "new models, new variations, and all that language that comes with that world. And I want to be fair,"
+    },
+    {
+      "start": 956.18,
+      "end": 962.32,
+      "text": "there are real market ideas there. Liquidity matters, trap traders matter, fake moves matter,"
+    },
+    {
+      "start": 962.48,
+      "end": 969.08,
+      "text": "time of day can matter, context matters. But the ecosystem around complexity can become"
+    },
+    {
+      "start": 969.08,
+      "end": 976.16,
+      "text": "very dangerous. Over time, I started refining. And that word matters a lot, because I'm not"
+    },
+    {
+      "start": 976.16,
+      "end": 982.94,
+      "text": "trying to teach every concept I ever learned, I'm trying to strip the market down to the pieces that"
+    },
+    {
+      "start": 982.94,
+      "end": 989.72,
+      "text": "keep proving useful. The levels that matter, the patterns that matter, the places where traders"
+    },
+    {
+      "start": 989.72,
+      "end": 996.24,
+      "text": "get trapped, the conditions where the risk is actually worth considering. That's why the higher"
+    },
+    {
+      "start": 996.24,
+      "end": 1002.74,
+      "text": "time frame became more important to me. Lower time frame trading can train your eye, but it can"
+    },
+    {
+      "start": 1002.74,
+      "end": 1010.1,
+      "text": "also train you to chase tiny moves and overreact to every candle close. A five-minute candle close"
+    },
+    {
+      "start": 1010.1,
+      "end": 1017.24,
+      "text": "can look convincing, but on the one-hour chart it may only be a week. A candle can close through a"
+    },
+    {
+      "start": 1017.24,
+      "end": 1023.58,
+      "text": "level on one time frame and mean almost nothing on the time frame that actually controls the move."
+    },
+    {
+      "start": 1023.94,
+      "end": 1030.68,
+      "text": "That's why I don't blindly trust candle closures by themselves. I care about higher time frame"
+    },
+    {
+      "start": 1030.68,
+      "end": 1038.06,
+      "text": "context first. Lower timeframes can help with execution, but they don't decide the trade for me."
+    },
+    {
+      "start": 1038.06,
+      "end": 1044.34,
+      "text": "The higher timeframe is what lets you think in bigger structure, cleaner invalidation,"
+    },
+    {
+      "start": 1044.78,
+      "end": 1051.44,
+      "text": "and better risk instead of trying to scalp every little reaction. This is the move from collecting"
+    },
+    {
+      "start": 1051.44,
+      "end": 1058.94,
+      "text": "concepts to building a real trading system. So I kept the pieces that made the system clear."
+    },
+    {
+      "start": 1058.94,
+      "end": 1068.06,
+      "text": "hcom and lcom trapped trader logic asymmetrical risk to reward pdh pdl pdc simplified market"
+    },
+    {
+      "start": 1068.06,
+      "end": 1076.84,
+      "text": "structure two setups break and retest or swing failure pattern sbs as the entry model 2200 sma"
+    },
+    {
+      "start": 1076.84,
+      "end": 1085.16,
+      "text": "logic fib geometry and this is not because those names are some kind of magic it's because those"
+    },
+    {
+      "start": 1085.16,
+      "end": 1092.1,
+      "text": "are the ingredients of the consistently profitable trading system. These are the ingredients that I"
+    },
+    {
+      "start": 1092.1,
+      "end": 1099.82,
+      "text": "kept seeing matter when they are placed inside a full trading process. Because when a trader is"
+    },
+    {
+      "start": 1099.82,
+      "end": 1107.02,
+      "text": "confused, he keeps looking for the missing piece. When a trader feels almost there, he keeps consuming."
+    },
+    {
+      "start": 1107.54,
+      "end": 1113.96,
+      "text": "When a trader thinks the next model will finally solve everything, he never has to face the more"
+    },
+    {
+      "start": 1113.96,
+      "end": 1121.22,
+      "text": "uncomfortable question. Can I follow a simple process? And that's the exact question most"
+    },
+    {
+      "start": 1121.22,
+      "end": 1128.18,
+      "text": "traders avoid. It's way easier and more satisfying to learn another concept than to review the last"
+    },
+    {
+      "start": 1128.18,
+      "end": 1134.66,
+      "text": "10 trades honestly. It's easier to blame manipulation than to admit that the setup"
+    },
+    {
+      "start": 1134.66,
+      "end": 1141.68,
+      "text": "had no clean invalidation. It's easier to say the model failed than to admit you entered in the"
+    },
+    {
+      "start": 1141.68,
+      "end": 1147.9,
+      "text": "middle of nowhere because you were bored. It's just easier to keep studying than to define rules"
+    },
+    {
+      "start": 1147.9,
+      "end": 1155.7,
+      "text": "that expose you. That's why stoic traders exist. Not to create another hype discord room, not to"
+    },
+    {
+      "start": 1155.7,
+      "end": 1163.7,
+      "text": "make traders dependent on alerts. Stoic traders exist to help traders leave the noise trap and"
+    },
+    {
+      "start": 1163.7,
+      "end": 1171.36,
+      "text": "learn to trade through the stoic lens. The vision is very simple. A trader should know what kind of"
+    },
+    {
+      "start": 1171.36,
+      "end": 1178.04,
+      "text": "market he is trying to trade. He should know where he has edge and where he doesn't. He should know"
+    },
+    {
+      "start": 1178.04,
+      "end": 1185.36,
+      "text": "the difference between movement and opportunity. He should understand risk before entry. He should"
+    },
+    {
+      "start": 1185.36,
+      "end": 1191.88,
+      "text": "have invalidation before entry. He should have a management plan before entry. He should be able to"
+    },
+    {
+      "start": 1191.88,
+      "end": 1198.54,
+      "text": "sit in cash without feeling punished. He should be able to miss a move without losing his mind."
+    },
+    {
+      "start": 1198.54,
+      "end": 1204.8,
+      "text": "He should be able to take a loss without turning the next trade into emotional revenge."
+    },
+    {
+      "start": 1205.72,
+      "end": 1207.66,
+      "text": "That's the stoic trader standard."
+    },
+    {
+      "start": 1208.42,
+      "end": 1210.66,
+      "text": "And that's exactly what we are building."
+    },
+    {
+      "start": 1211.16,
+      "end": 1215.54,
+      "text": "The first concept that I want to talk about is the noise trap."
+    },
+    {
+      "start": 1215.96,
+      "end": 1220.9,
+      "text": "The noise trap is the condition most traders are in before they have a real process."
+    },
+    {
+      "start": 1221.38,
+      "end": 1222.56,
+      "text": "Here's what it looks like."
+    },
+    {
+      "start": 1222.56,
+      "end": 1225.28,
+      "text": "You open the chart, price is moving."
+    },
+    {
+      "start": 1225.28,
+      "end": 1231.54,
+      "text": "immediately your brain starts creating stories this could be a breakout this could be a fake"
+    },
+    {
+      "start": 1231.54,
+      "end": 1237.66,
+      "text": "out sweep retest this could be the start of the move this could be the reversal or maybe this"
+    },
+    {
+      "start": 1237.66,
+      "end": 1245.76,
+      "text": "could be the one i can't miss notice what happens the chart has not given you a complete trade idea"
+    },
+    {
+      "start": 1245.76,
+      "end": 1253.5,
+      "text": "yet but emotionally you are already involved you start looking for reasons you zoom in you change"
+    },
+    {
+      "start": 1253.5,
+      "end": 1260.24,
+      "text": "time frame you draw another level you look at social media you check what someone else is saying"
+    },
+    {
+      "start": 1260.24,
+      "end": 1267.62,
+      "text": "you find confirmation then you click and after you click you try to build the plan around the trade"
+    },
+    {
+      "start": 1267.62,
+      "end": 1274.26,
+      "text": "and that's actually backwards the noise trap is when the market creates the emotion first"
+    },
+    {
+      "start": 1274.26,
+      "end": 1281.24,
+      "text": "and the trader creates the justification second and that's exactly why traders can know a lot"
+    },
+    {
+      "start": 1281.24,
+      "end": 1288.56,
+      "text": "but still trade badly. Knowledge doesn't protect you if the environment keeps making you impulsive."
+    },
+    {
+      "start": 1289.12,
+      "end": 1296.1,
+      "text": "In the noise trap, everything feels important. Every candle has a meaning. Every missed move"
+    },
+    {
+      "start": 1296.1,
+      "end": 1302.58,
+      "text": "feels like failure. Every loss feels like something that needs to be repaired immediately."
+    },
+    {
+      "start": 1303.04,
+      "end": 1309.34,
+      "text": "Every win feels like permission to keep going. Every opinion online becomes a possible signal."
+    },
+    {
+      "start": 1309.34,
+      "end": 1312.48,
+      "text": "Every chart looks like it has something."
+    },
+    {
+      "start": 1313.0,
+      "end": 1314.1,
+      "text": "That's not freedom."
+    },
+    {
+      "start": 1314.68,
+      "end": 1316.26,
+      "text": "That's mental prison."
+    },
+    {
+      "start": 1317.02,
+      "end": 1319.94,
+      "text": "The trader thinks he is scanning for opportunity,"
+    },
+    {
+      "start": 1320.42,
+      "end": 1324.18,
+      "text": "but really he is waiting for the next emotional trigger."
+    },
+    {
+      "start": 1324.92,
+      "end": 1326.66,
+      "text": "And if he doesn't escape that,"
+    },
+    {
+      "start": 1326.98,
+      "end": 1329.36,
+      "text": "it doesn't matter how many concepts he learns,"
+    },
+    {
+      "start": 1329.82,
+      "end": 1333.54,
+      "text": "he will use every concept as another excuse to trade."
+    },
+    {
+      "start": 1334.4,
+      "end": 1336.64,
+      "text": "Break and retest becomes an excuse."
+    },
+    {
+      "start": 1336.64,
+      "end": 1343.34,
+      "text": "swing failure pattern becomes an excuse, an order block, liquidity grab, whatever."
+    },
+    {
+      "start": 1344.08,
+      "end": 1346.08,
+      "text": "Daily levels become an excuse."
+    },
+    {
+      "start": 1346.36,
+      "end": 1348.14,
+      "text": "Moving averages become an excuse."
+    },
+    {
+      "start": 1348.98,
+      "end": 1351.32,
+      "text": "Fibonacci retracements become an excuse."
+    },
+    {
+      "start": 1351.86,
+      "end": 1357.2,
+      "text": "Everything becomes an excuse because the underlying behavior never changed."
+    },
+    {
+      "start": 1357.66,
+      "end": 1359.68,
+      "text": "So the first step is diagnosis."
+    },
+    {
+      "start": 1360.42,
+      "end": 1365.7,
+      "text": "Are you trading a plan or are you trading noise by pretending to be smart money?"
+    },
+    {
+      "start": 1366.5,
+      "end": 1369.42,
+      "text": "The second concept is the stoic lens."
+    },
+    {
+      "start": 1369.76,
+      "end": 1374.58,
+      "text": "The stoic lens is the filter we use before we let any setup matter."
+    },
+    {
+      "start": 1375.2,
+      "end": 1377.52,
+      "text": "This is very, very, very important."
+    },
+    {
+      "start": 1377.52,
+      "end": 1382.94,
+      "text": "A setup doesn't get authority just because it appears on a chart."
+    },
+    {
+      "start": 1383.52,
+      "end": 1388.28,
+      "text": "A level doesn't get authority just because price touches it."
+    },
+    {
+      "start": 1388.6,
+      "end": 1391.62,
+      "text": "A candle doesn't matter just because it moves fast."
+    },
+    {
+      "start": 1392.44,
+      "end": 1397.12,
+      "text": "The lens decides whether the information is allowed to matter."
+    },
+    {
+      "start": 1397.74,
+      "end": 1399.68,
+      "text": "The stoic lens has five parts."
+    },
+    {
+      "start": 1400.42,
+      "end": 1407.66,
+      "text": "Higher time frame context, trapped trader psychology, patience, process, and professional restraint."
+    },
+    {
+      "start": 1408.48,
+      "end": 1411.58,
+      "text": "Higher time frame context tells you where you are."
+    },
+    {
+      "start": 1411.58,
+      "end": 1413.0,
+      "text": "Are you in a trend?"
+    },
+    {
+      "start": 1413.26,
+      "end": 1414.16,
+      "text": "Are you in a range?"
+    },
+    {
+      "start": 1414.66,
+      "end": 1417.0,
+      "text": "Are you near a meaningful high or low?"
+    },
+    {
+      "start": 1417.72,
+      "end": 1419.5,
+      "text": "Maybe you are in the middle of nowhere."
+    },
+    {
+      "start": 1419.5,
+      "end": 1424.68,
+      "text": "Are you at the place where a bigger group of traders is likely watching?"
+    },
+    {
+      "start": 1425.36,
+      "end": 1428.82,
+      "text": "Without context, you are just reacting to candles."
+    },
+    {
+      "start": 1429.5,
+      "end": 1433.44,
+      "text": "Trap trader psychology tells you who might be vulnerable."
+    },
+    {
+      "start": 1434.18,
+      "end": 1437.46,
+      "text": "Where did traders get long and then lose control?"
+    },
+    {
+      "start": 1438.04,
+      "end": 1440.94,
+      "text": "Where did traders get short and then got squeezed?"
+    },
+    {
+      "start": 1441.48,
+      "end": 1443.62,
+      "text": "Where did a breakout fail?"
+    },
+    {
+      "start": 1444.22,
+      "end": 1447.92,
+      "text": "Where did the level look obvious enough to attract participation"
+    },
+    {
+      "start": 1447.92,
+      "end": 1455.5,
+      "text": "and then punish the late participants. The market is more than just lines and shapes and rectangles."
+    },
+    {
+      "start": 1456.06,
+      "end": 1464.06,
+      "text": "It's people, positioning, emotion, leverage, hope, and most importantly, pain. Patience keeps you"
+    },
+    {
+      "start": 1464.06,
+      "end": 1470.18,
+      "text": "from forcing the setup before the market reaches territory that matters. Most traders don't lose"
+    },
+    {
+      "start": 1470.18,
+      "end": 1475.52,
+      "text": "only because they are wrong. They actually lose because they enter early, in the middle,"
+    },
+    {
+      "start": 1475.52,
+      "end": 1482.2,
+      "text": "without the market giving them enough confirmation. They want the move before the setup deserves the"
+    },
+    {
+      "start": 1482.2,
+      "end": 1490.08,
+      "text": "risk. Process tells you what happens next. If this is valid, what's the entry logic? What's the"
+    },
+    {
+      "start": 1490.08,
+      "end": 1497.92,
+      "text": "invalidation? Where is risk defined? Where is the target? How will the trade be managed? What will"
+    },
+    {
+      "start": 1497.92,
+      "end": 1505.46,
+      "text": "be reviewed? And restraint tells you when no trade is the correct trade. This is the part that"
+    },
+    {
+      "start": 1505.46,
+      "end": 1512.98,
+      "text": "hurts undisciplined traders. They want the lens to tell them where to enter, but a good lens will"
+    },
+    {
+      "start": 1512.98,
+      "end": 1519.34,
+      "text": "often tell you not to trade. And that's actually a feature, not a bug. And that's the whole point."
+    },
+    {
+      "start": 1519.78,
+      "end": 1526.34,
+      "text": "The stoic lens isn't there to create more trades. It's there to create better decisions."
+    },
+    {
+      "start": 1526.9,
+      "end": 1534.42,
+      "text": "The third stoic trader concept is the no edge zone. The no edge zone is any part of the chart"
+    },
+    {
+      "start": 1534.42,
+      "end": 1541.42,
+      "text": "where price may be moving, but the stoic lens gives you no clear reason to risk capital. That"
+    },
+    {
+      "start": 1541.42,
+      "end": 1547.54,
+      "text": "definition matters. Price can move in a no-edge zone. Price can move aggressively in a no-edge"
+    },
+    {
+      "start": 1547.54,
+      "end": 1554.08,
+      "text": "zone. Price can make you feel stupid for not participating. That doesn't mean you were supposed"
+    },
+    {
+      "start": 1554.08,
+      "end": 1560.74,
+      "text": "to trade it. One of the hardest parts of becoming a better trader is accepting that market can move"
+    },
+    {
+      "start": 1560.74,
+      "end": 1567.36,
+      "text": "without you. A bad trade can work. A good trade can lose. You can skip the trade and the market"
+    },
+    {
+      "start": 1567.36,
+      "end": 1574.5,
+      "text": "provides an absolute banger. And this is exactly why you can't judge the process by one candle."
+    },
+    {
+      "start": 1574.5,
+      "end": 1581.66,
+      "text": "You have to know your territory. And the common no-edge zone includes the middle of the range,"
+    },
+    {
+      "start": 1582.18,
+      "end": 1589.06,
+      "text": "messy chop around the 20 and 200 simple moving averages, low contact scandals far away from"
+    },
+    {
+      "start": 1589.06,
+      "end": 1596.26,
+      "text": "meaningful levels, setups with no trap site, trades with no clean invalidation, trades with"
+    },
+    {
+      "start": 1596.26,
+      "end": 1602.14,
+      "text": "no realistic target, trades you are taking because you are bored, trades you are taking because you"
+    },
+    {
+      "start": 1602.14,
+      "end": 1607.64,
+      "text": "missed the first move and want to catch the second one, trades you are taking because someone else"
+    },
+    {
+      "start": 1607.64,
+      "end": 1615.5,
+      "text": "posted a chart and now you feel behind. The no edge zone gives patience a name. It gives the"
+    },
+    {
+      "start": 1615.5,
+      "end": 1622.48,
+      "text": "trader a reason to stay out without feeling like he failed. This is one of the biggest identity"
+    },
+    {
+      "start": 1622.48,
+      "end": 1629.56,
+      "text": "shifts. The random candle chaser asks, can I trade this? But the stoic trader asks,"
+    },
+    {
+      "start": 1629.56,
+      "end": 1634.58,
+      "text": "should I be playing this game? Different question, different trader."
+    },
+    {
+      "start": 1635.46,
+      "end": 1642.34,
+      "text": "Now let's talk about levels. Because most traders mark too many levels. They mark every swing,"
+    },
+    {
+      "start": 1642.34,
+      "end": 1649.06,
+      "text": "every wick, they mark every tiny support and resistance area, then they wonder why their chart"
+    },
+    {
+      "start": 1649.06,
+      "end": 1656.46,
+      "text": "feels confusing. If everything is a level, nothing is a level. Inside the stoic lens, levels aren't"
+    },
+    {
+      "start": 1656.46,
+      "end": 1663.26,
+      "text": "decoration. They are decision territory. And the very first levels, the most important levels on"
+    },
+    {
+      "start": 1663.26,
+      "end": 1669.54,
+      "text": "any chart that I care about, aren't one minute time frame levels. They are the higher time frame"
+    },
+    {
+      "start": 1669.54,
+      "end": 1680.28,
+      "text": "levels hcom and lcom hcom means highest daily close of the month lcom means lowest daily close"
+    },
+    {
+      "start": 1680.28,
+      "end": 1688.74,
+      "text": "of the month not the highest week not the lowest week highest daily close of the month lowest"
+    },
+    {
+      "start": 1688.74,
+      "end": 1697.78,
+      "text": "daily close of the month that distinction matters a week can be just an emotional reaction but a"
+    },
+    {
+      "start": 1697.78,
+      "end": 1705.14,
+      "text": "real daily close shows where the market actually accepted price at the end of the day. For this"
+    },
+    {
+      "start": 1705.14,
+      "end": 1712.38,
+      "text": "part of my system, the daily close is the level that matters the most. It filters out a lot of"
+    },
+    {
+      "start": 1712.38,
+      "end": 1720.06,
+      "text": "lower time frame noise. So when I mark out HCOM and LCOM, I am not trying to mark every possible"
+    },
+    {
+      "start": 1720.06,
+      "end": 1726.68,
+      "text": "support and resistance level. I am trying to identify the monthly extremes that are actually"
+    },
+    {
+      "start": 1726.68,
+      "end": 1733.52,
+      "text": "mattered on a closing basis. If you go back and mark the highest daily close and the lowest daily"
+    },
+    {
+      "start": 1733.52,
+      "end": 1740.74,
+      "text": "close from prior months, you'll start noticing something. Those levels often become real decision"
+    },
+    {
+      "start": 1740.74,
+      "end": 1747.98,
+      "text": "zones. They can act as support or resistance. They can become the place where acceptance or rejection"
+    },
+    {
+      "start": 1747.98,
+      "end": 1755.06,
+      "text": "finally becomes obvious. That's why I ignore most of the other levels. The market gives you infinite"
+    },
+    {
+      "start": 1755.06,
+      "end": 1761.72,
+      "text": "lines if you want them. I don't want infinite lines. I want the few levels that help me frame"
+    },
+    {
+      "start": 1761.72,
+      "end": 1768.88,
+      "text": "the system. And here's the logic. When price extends far away during the month, especially"
+    },
+    {
+      "start": 1768.88,
+      "end": 1775.48,
+      "text": "after multiple higher closes, that tells you buyers have been committing higher and higher."
+    },
+    {
+      "start": 1776.0,
+      "end": 1782.86,
+      "text": "After three higher closes into a monthly extreme, you can visually see the pressure. Late buyers"
+    },
+    {
+      "start": 1782.86,
+      "end": 1789.12,
+      "text": "start feeling safe. They think the breakout is confirmed. They think the move is obvious."
+    },
+    {
+      "start": 1789.6,
+      "end": 1797.46,
+      "text": "But if price extended into H-com and then fails, those buyers can become trapped. That's where the"
+    },
+    {
+      "start": 1797.46,
+      "end": 1804.48,
+      "text": "asymmetrical risk to reward can shift. The clean move may not be chasing the last part of the long."
+    },
+    {
+      "start": 1804.48,
+      "end": 1812.4,
+      "text": "The clean move may be the reversal as trapped traders start to panic and are forced to respond."
+    },
+    {
+      "start": 1812.86,
+      "end": 1820.72,
+      "text": "Same idea on the downside. If price keeps pushing lower into L-com and sellers start pressing after"
+    },
+    {
+      "start": 1820.72,
+      "end": 1828.8,
+      "text": "multiple lower closes, then a reclaim can trap the late sellers. That's the trapped trader logic,"
+    },
+    {
+      "start": 1829.06,
+      "end": 1837.14,
+      "text": "not in theory, but visually. Where did one side commit very hard? Where did they get comfortable?"
+    },
+    {
+      "start": 1838.0,
+      "end": 1839.34,
+      "text": "Where would they be wrong?"
+    },
+    {
+      "start": 1840.06,
+      "end": 1842.52,
+      "text": "Where would they be forced to exit?"
+    },
+    {
+      "start": 1843.28,
+      "end": 1847.08,
+      "text": "That's why H-Com and L-Com matter so much."
+    },
+    {
+      "start": 1847.08,
+      "end": 1852.76,
+      "text": "They tell you exactly where the market is stretched on the higher time frame before"
+    },
+    {
+      "start": 1852.76,
+      "end": 1856.42,
+      "text": "you ever start thinking about an intraday setup."
+    },
+    {
+      "start": 1857.12,
+      "end": 1861.04,
+      "text": "And this is also why I'm so careful with candle closures."
+    },
+    {
+      "start": 1861.6,
+      "end": 1864.28,
+      "text": "A candle close isn't automatically true."
+    },
+    {
+      "start": 1864.28,
+      "end": 1872.2,
+      "text": "A 5-minute candle can close above a level, but on the 1-hour chart, the same move can be nothing but a week."
+    },
+    {
+      "start": 1872.76,
+      "end": 1876.66,
+      "text": "A lower time frame close can make you feel like something confirmed,"
+    },
+    {
+      "start": 1877.1,
+      "end": 1881.64,
+      "text": "while the higher time frame chart is telling you nothing has really accepted yet."
+    },
+    {
+      "start": 1881.98,
+      "end": 1885.26,
+      "text": "So I don't trade just because a candle closed somewhere."
+    },
+    {
+      "start": 1885.64,
+      "end": 1888.28,
+      "text": "I want the higher time frame context first."
+    },
+    {
+      "start": 1888.6,
+      "end": 1892.9,
+      "text": "I want to know whether price is near HCOM or LCOM."
+    },
+    {
+      "start": 1892.9,
+      "end": 1900.08,
+      "text": "I want to know whether the market is accepting, rejecting, extending, or trapping one side."
+    },
+    {
+      "start": 1900.8,
+      "end": 1908.42,
+      "text": "And that's exactly what gives the actual overall market bias. Hcom and Lcom frame the higher"
+    },
+    {
+      "start": 1908.42,
+      "end": 1915.98,
+      "text": "timeframe map. Then trap trader logic tells me where the asymmetrical risk to reward might be."
+    },
+    {
+      "start": 1915.98,
+      "end": 1923.22,
+      "text": "and that brings me to the concept number five trapped traders this is the part most traders"
+    },
+    {
+      "start": 1923.22,
+      "end": 1930.2,
+      "text": "miss they look for a trading pattern while i'm looking for pressure i'm looking for the side of"
+    },
+    {
+      "start": 1930.2,
+      "end": 1937.48,
+      "text": "the market that's vulnerable that's what trap trader logic means markets aren't just scandals"
+    },
+    {
+      "start": 1937.48,
+      "end": 1945.34,
+      "text": "markets are fear greed positioning leverage confidence panic and pain when price extends"
+    },
+    {
+      "start": 1945.34,
+      "end": 1952.56,
+      "text": "hard in one direction, traders start believing the move is obvious. Late buyers chase strength,"
+    },
+    {
+      "start": 1952.98,
+      "end": 1960.2,
+      "text": "late sellers chase weakness. People add after the move is already extended because they don't want"
+    },
+    {
+      "start": 1960.2,
+      "end": 1967.2,
+      "text": "to miss it. And that's the greed. FOMO, fear of missing out. Then if the market fails at a"
+    },
+    {
+      "start": 1967.2,
+      "end": 1974.48,
+      "text": "meaningful higher time frame level, that greed turns into fear. The late side is now trapped."
+    },
+    {
+      "start": 1974.48,
+      "end": 1982.06,
+      "text": "They entered late. They are holding and hoping from bad location. Their invalidation is very"
+    },
+    {
+      "start": 1982.06,
+      "end": 1990.36,
+      "text": "close. Their pain point is very obvious. And that's where asymmetrical risk to reward can appear."
+    },
+    {
+      "start": 1991.26,
+      "end": 1997.98,
+      "text": "Asymmetry doesn't mean the trade is guaranteed, but it means the risk can be defined clearly"
+    },
+    {
+      "start": 1997.98,
+      "end": 2005.52,
+      "text": "while the possible forced move is way larger. If price extends into H-com after multiple higher"
+    },
+    {
+      "start": 2005.52,
+      "end": 2013.24,
+      "text": "closes, I am not thinking how do I scalp a tiny base hit in the middle of the move. I am thinking"
+    },
+    {
+      "start": 2013.24,
+      "end": 2021.04,
+      "text": "is this where the late buyers get trapped? If the answer is yes, the risk can be above the failed"
+    },
+    {
+      "start": 2021.04,
+      "end": 2028.4,
+      "text": "high or about the invalidation area and the target can be back towards the structure prior close"
+    },
+    {
+      "start": 2028.4,
+      "end": 2035.96,
+      "text": "levels the old range or the next meaningful level that's a completely different kind of opportunity"
+    },
+    {
+      "start": 2035.96,
+      "end": 2043.54,
+      "text": "than chasing a one minute candle the higher time frame context is what gives the setup weight"
+    },
+    {
+      "start": 2043.54,
+      "end": 2050.64,
+      "text": "it's what gives the setup meaning it lets me filter harder it lets me ignore most trades"
+    },
+    {
+      "start": 2050.64,
+      "end": 2060.48,
+      "text": "It lets me wait for the few setups where the trap side, the level, the invalidation and the target all make sense together."
+    },
+    {
+      "start": 2060.9,
+      "end": 2065.12,
+      "text": "That's what I mean by looking for asymmetrical risk opportunities."
+    },
+    {
+      "start": 2065.92,
+      "end": 2067.74,
+      "text": "I'm not looking for more trades."
+    },
+    {
+      "start": 2068.5,
+      "end": 2071.24,
+      "text": "I'm looking for better selected trades."
+    },
+    {
+      "start": 2072.04,
+      "end": 2075.46,
+      "text": "And to be clear, sometimes the market keeps going."
+    },
+    {
+      "start": 2075.46,
+      "end": 2080.66,
+      "text": "Sometimes price extends into Hcom holds and keeps grinding higher."
+    },
+    {
+      "start": 2081.22,
+      "end": 2082.7,
+      "text": "And that's completely fine."
+    },
+    {
+      "start": 2083.16,
+      "end": 2084.56,
+      "text": "I don't need to fight it."
+    },
+    {
+      "start": 2084.84,
+      "end": 2087.02,
+      "text": "I don't need to predict the top."
+    },
+    {
+      "start": 2087.34,
+      "end": 2089.64,
+      "text": "I only care about the setup."
+    },
+    {
+      "start": 2090.18,
+      "end": 2093.14,
+      "text": "If the failure doesn't happen, there is no trade."
+    },
+    {
+      "start": 2093.58,
+      "end": 2097.3,
+      "text": "If the trap side never appears, there is no trade."
+    },
+    {
+      "start": 2097.6,
+      "end": 2101.58,
+      "text": "If the risk to reward isn't there, there is no trade."
+    },
+    {
+      "start": 2102.16,
+      "end": 2104.62,
+      "text": "We don't care what the market does."
+    },
+    {
+      "start": 2104.62,
+      "end": 2107.96,
+      "text": "We care whether our setup is there."
+    },
+    {
+      "start": 2108.74,
+      "end": 2111.26,
+      "text": "That's how you stop chasing every move."
+    },
+    {
+      "start": 2111.86,
+      "end": 2117.56,
+      "text": "You stop asking where price is going and you start asking, is my setup here?"
+    },
+    {
+      "start": 2118.1,
+      "end": 2123.12,
+      "text": "That's the difference between studying trading and trading a system."
+    },
+    {
+      "start": 2124.2,
+      "end": 2128.48,
+      "text": "Concept number six, PDH, PDL, PDC."
+    },
+    {
+      "start": 2128.48,
+      "end": 2136.4,
+      "text": "once the monthly map is clear then i come down into the previous day levels previous day high"
+    },
+    {
+      "start": 2136.4,
+      "end": 2144.36,
+      "text": "previous day low previous day close these aren't just random lines either they tell you where"
+    },
+    {
+      "start": 2144.36,
+      "end": 2150.92,
+      "text": "yesterday's market made decisions those levels can help frame where the market is stretching"
+    },
+    {
+      "start": 2150.92,
+      "end": 2158.38,
+      "text": "reclaiming failing breaking retesting or trapping one side the point isn't that every touch of a"
+    },
+    {
+      "start": 2158.38,
+      "end": 2165.52,
+      "text": "daily level is a trade. That's how traders turn useful concepts into noise. The point is the daily"
+    },
+    {
+      "start": 2165.52,
+      "end": 2173.46,
+      "text": "levels can help you ask better questions. Where are the traders likely positioned? Where would a"
+    },
+    {
+      "start": 2173.46,
+      "end": 2180.74,
+      "text": "breakout attract late buyers? Where would a breakout attract late sellers? Where could a failure"
+    },
+    {
+      "start": 2180.74,
+      "end": 2187.6,
+      "text": "create trapped traders? Where would reclaiming a level change the read? Where is the market"
+    },
+    {
+      "start": 2187.6,
+      "end": 2195.4,
+      "text": "relative to yesterday's important territory. This is the order that matters. Monthly extremes"
+    },
+    {
+      "start": 2195.4,
+      "end": 2203.22,
+      "text": "give the higher time frame bias. Previous day levels frame the day. The 20 and 200 SMA logic"
+    },
+    {
+      "start": 2203.22,
+      "end": 2211.58,
+      "text": "help with session bias. Then the setup has to form. That's how a level becomes part of a process."
+    },
+    {
+      "start": 2211.58,
+      "end": 2219.6,
+      "text": "It gives context. It gives territory. It gives a place to wait. But it doesn't give permission by"
+    },
+    {
+      "start": 2219.6,
+      "end": 2225.84,
+      "text": "itself. The level isn't the trade. The level is where the market may offer information."
+    },
+    {
+      "start": 2226.38,
+      "end": 2232.44,
+      "text": "Now that we have the structural framework, HCOM and LCOM give me the monthly extremes."
+    },
+    {
+      "start": 2232.88,
+      "end": 2240.02,
+      "text": "PDH, PDL, PDC give me the previous day structure. Together, those levels create a higher time frame"
+    },
+    {
+      "start": 2240.02,
+      "end": 2246.98,
+      "text": "map they tell me where price is stretched where price is accepting where price is rejecting where"
+    },
+    {
+      "start": 2246.98,
+      "end": 2254.66,
+      "text": "one side may be trapped where is the risk may be worth considering but the levels are still not"
+    },
+    {
+      "start": 2254.66,
+      "end": 2261.22,
+      "text": "enough you also need to understand how price behaves around those levels that's where market"
+    },
+    {
+      "start": 2261.22,
+      "end": 2268.26,
+      "text": "structure comes in and market structure isn't as complicated as people make it price consolidates"
+    },
+    {
+      "start": 2268.26,
+      "end": 2274.74,
+      "text": "then it expands, then it consolidates again, then it expands again. That's the basic loop."
+    },
+    {
+      "start": 2275.44,
+      "end": 2283.32,
+      "text": "Consolidation, expansion, consolidation, expansion. Our job isn't to trade every candle inside that"
+    },
+    {
+      "start": 2283.32,
+      "end": 2291.6,
+      "text": "loop. Our job is to know where we are in the loop. If price is consolidating, the job is usually"
+    },
+    {
+      "start": 2291.6,
+      "end": 2298.36,
+      "text": "patience, not forcing trades, not chopping yourself up, not taking a trade just because"
+    },
+    {
+      "start": 2298.36,
+      "end": 2305.84,
+      "text": "the chart is moving. Some days are expansion days and some days are trend days. Some days are clean."
+    },
+    {
+      "start": 2306.38,
+      "end": 2313.16,
+      "text": "Some days are just chopping around. And on the choppy days, the best trade may be walking away."
+    },
+    {
+      "start": 2313.7,
+      "end": 2320.42,
+      "text": "Sounds very simple, but for most traders, it's one of the hardest skills because walking away"
+    },
+    {
+      "start": 2320.42,
+      "end": 2327.02,
+      "text": "feels like doing nothing. But walking away is often the thing that protects the trader from tilt."
+    },
+    {
+      "start": 2327.44,
+      "end": 2334.66,
+      "text": "The best way to not tilt is to walk away. If the structure isn't clean, walk away. If the risk to"
+    },
+    {
+      "start": 2334.66,
+      "end": 2342.26,
+      "text": "reward isn't clean, walk away. If the setup isn't there, walk away. If you already broken your rules,"
+    },
+    {
+      "start": 2342.26,
+      "end": 2349.26,
+      "text": "just walk away. And here's how you become more level-headed. Not by pretending you have no"
+    },
+    {
+      "start": 2349.26,
+      "end": 2356.78,
+      "text": "emotions but actually having rules that stop emotion from taking control and you have to"
+    },
+    {
+      "start": 2356.78,
+      "end": 2364.64,
+      "text": "slowly get adjusted to the feeling of taking risk start as small as possible trade small enough that"
+    },
+    {
+      "start": 2364.64,
+      "end": 2371.94,
+      "text": "you can actually follow the plan then slowly increase risk only as your process becomes more"
+    },
+    {
+      "start": 2371.94,
+      "end": 2379.76,
+      "text": "consistent. Because the real work isn't executing the exact same trade model every single time like"
+    },
+    {
+      "start": 2379.76,
+      "end": 2387.32,
+      "text": "a robot. The real work is generating a trade idea, defining the risk, waiting for the setup,"
+    },
+    {
+      "start": 2387.84,
+      "end": 2394.5,
+      "text": "executing the idea, managing the trade according to your rules, and reviewing the decision after"
+    },
+    {
+      "start": 2394.5,
+      "end": 2402.46,
+      "text": "the trade is done. That's the refinement loop. Idea, execution, review, refinement. That's how"
+    },
+    {
+      "start": 2402.46,
+      "end": 2409.22,
+      "text": "your trading strategy becomes your own. People add 100 names to price action. Liquidity sweep,"
+    },
+    {
+      "start": 2409.22,
+      "end": 2416.2,
+      "text": "fair value gap, order block, breaker, whatever the label is. Price is still moving through the"
+    },
+    {
+      "start": 2416.2,
+      "end": 2423.5,
+      "text": "same basic cycle. Compression, acceptance, rejection, continuation, reversal. And it's"
+    },
+    {
+      "start": 2423.5,
+      "end": 2430.4,
+      "text": "simply consolidation expansion consolidation. I don't care about collecting more names. I care"
+    },
+    {
+      "start": 2430.4,
+      "end": 2437.38,
+      "text": "about whether there is a clean risk to reward. I care about whether one side is dropped. I care"
+    },
+    {
+      "start": 2437.38,
+      "end": 2444.64,
+      "text": "about whether the setup belongs inside my system. That's the real framework. And now we can talk"
+    },
+    {
+      "start": 2444.64,
+      "end": 2451.88,
+      "text": "about setups. And I want to make this very simple. There are only two trading setups I care about."
+    },
+    {
+      "start": 2451.88,
+      "end": 2458.9,
+      "text": "This is what price does every single time, every day, on any chart, on any time frames."
+    },
+    {
+      "start": 2459.04,
+      "end": 2461.16,
+      "text": "There are only two trading setups."
+    },
+    {
+      "start": 2461.64,
+      "end": 2462.6,
+      "text": "Keep it simple."
+    },
+    {
+      "start": 2463.16,
+      "end": 2466.02,
+      "text": "Break and retest or swing failure pattern."
+    },
+    {
+      "start": 2466.72,
+      "end": 2467.74,
+      "text": "That's it."
+    },
+    {
+      "start": 2468.18,
+      "end": 2474.18,
+      "text": "Not 50 setups, not a new name every week, not a different pattern for every candle."
+    },
+    {
+      "start": 2474.96,
+      "end": 2476.08,
+      "text": "Two setups."
+    },
+    {
+      "start": 2476.86,
+      "end": 2481.32,
+      "text": "The reason this matters is because we just talked about market structure."
+    },
+    {
+      "start": 2481.96,
+      "end": 2487.9,
+      "text": "Price consolidates, then price expands, then it consolidates again, then it expands again."
+    },
+    {
+      "start": 2488.52,
+      "end": 2494.62,
+      "text": "So the question is, how do we participate when price is building pressure inside consolidation"
+    },
+    {
+      "start": 2494.62,
+      "end": 2496.72,
+      "text": "before the next expansion?"
+    },
+    {
+      "start": 2497.32,
+      "end": 2499.96,
+      "text": "We do it through one of two setups."
+    },
+    {
+      "start": 2500.12,
+      "end": 2507.06,
+      "text": "Our goal is to enter from the consolidation phase and not to chase after the expansion"
+    },
+    {
+      "start": 2507.06,
+      "end": 2508.82,
+      "text": "is already obvious."
+    },
+    {
+      "start": 2509.68,
+      "end": 2515.74,
+      "text": "Either price breaks a meaningful level and retests it, or price sweeps a level, fails"
+    },
+    {
+      "start": 2515.74,
+      "end": 2517.42,
+      "text": "and traps the late side."
+    },
+    {
+      "start": 2517.84,
+      "end": 2519.06,
+      "text": "That's the framework."
+    },
+    {
+      "start": 2519.92,
+      "end": 2522.68,
+      "text": "Break and retest is the continuation setup."
+    },
+    {
+      "start": 2523.24,
+      "end": 2527.96,
+      "text": "Price breaks a meaningful level, then price comes back to test that level."
+    },
+    {
+      "start": 2528.18,
+      "end": 2535.02,
+      "text": "If the retest holds, the idea is that the market may be accepting the new side of the"
+    },
+    {
+      "start": 2535.02,
+      "end": 2535.34,
+      "text": "level."
+    },
+    {
+      "start": 2535.66,
+      "end": 2538.04,
+      "text": "But the level is still not the trade."
+    },
+    {
+      "start": 2538.04,
+      "end": 2544.84,
+      "text": "The retest has to happen in the right context, at the right level, with clean invalidation,"
+    },
+    {
+      "start": 2545.28,
+      "end": 2553.0,
+      "text": "with enough room to target, with risk to reward that makes sense. Swing failure pattern is the"
+    },
+    {
+      "start": 2553.0,
+      "end": 2559.72,
+      "text": "failure setup and it's the same thing as break and retest. I also call it sweep and retest"
+    },
+    {
+      "start": 2559.72,
+      "end": 2566.44,
+      "text": "because we are sweeping the level and retesting it. Swing failure pattern and sweep and retest"
+    },
+    {
+      "start": 2566.44,
+      "end": 2572.72,
+      "text": "is the same thing. I'm just trying to keep it simple. So for the sweep and retest, price takes"
+    },
+    {
+      "start": 2572.72,
+      "end": 2580.24,
+      "text": "a prior swing high or low, breakout buyers or breakout sellers enter late, stops may be triggered,"
+    },
+    {
+      "start": 2580.44,
+      "end": 2586.38,
+      "text": "liquidity gets taken, then price fails back through the level, now the late side can be trapped."
+    },
+    {
+      "start": 2586.92,
+      "end": 2592.32,
+      "text": "That's the basic idea behind these setups. And don't worry, we're going to put this all together"
+    },
+    {
+      "start": 2592.32,
+      "end": 2595.52,
+      "text": "and I'm going to show you examples later in this video."
+    },
+    {
+      "start": 2595.96,
+      "end": 2597.74,
+      "text": "But when I'm watching consolidation,"
+    },
+    {
+      "start": 2598.16,
+      "end": 2601.4,
+      "text": "I'm not asking, can I find a random entry?"
+    },
+    {
+      "start": 2601.74,
+      "end": 2605.2,
+      "text": "I'm asking, is this consolidation setting up"
+    },
+    {
+      "start": 2605.2,
+      "end": 2606.5,
+      "text": "a break and retest?"
+    },
+    {
+      "start": 2606.5,
+      "end": 2610.66,
+      "text": "Or is this consolidation setting up a swing failure pattern?"
+    },
+    {
+      "start": 2611.18,
+      "end": 2612.7,
+      "text": "Those are two paths."
+    },
+    {
+      "start": 2613.3,
+      "end": 2616.08,
+      "text": "If neither path is forming, there is no setup."
+    },
+    {
+      "start": 2616.42,
+      "end": 2619.5,
+      "text": "If the level isn't meaningful, there is no setup."
+    },
+    {
+      "start": 2619.5,
+      "end": 2626.5,
+      "text": "If the invalidation isn't clean, there is no setup. If the target doesn't justify the risk,"
+    },
+    {
+      "start": 2626.88,
+      "end": 2634.54,
+      "text": "there is no setup. If price is just chopping around and making you emotional, there is no setup."
+    },
+    {
+      "start": 2635.04,
+      "end": 2641.82,
+      "text": "Walk away. And this is exactly how you keep the system simple. And believe it or not,"
+    },
+    {
+      "start": 2641.82,
+      "end": 2648.98,
+      "text": "This is exactly how you stay consistent as a trader and you develop an actual execution"
+    },
+    {
+      "start": 2648.98,
+      "end": 2652.76,
+      "text": "edge because you know how to stay away."
+    },
+    {
+      "start": 2653.48,
+      "end": 2657.8,
+      "text": "See, most traders want the concept to make the decision for them."
+    },
+    {
+      "start": 2658.22,
+      "end": 2658.96,
+      "text": "It won't."
+    },
+    {
+      "start": 2659.34,
+      "end": 2661.7,
+      "text": "Break and retest isn't automatically a trade."
+    },
+    {
+      "start": 2661.98,
+      "end": 2664.0,
+      "text": "SFP isn't automatically a trade."
+    },
+    {
+      "start": 2664.56,
+      "end": 2666.18,
+      "text": "The process decides."
+    },
+    {
+      "start": 2666.56,
+      "end": 2669.12,
+      "text": "It's all about your process."
+    },
+    {
+      "start": 2669.12,
+      "end": 2673.9,
+      "text": "The stoic lens decides whether the setup deserves the risk."
+    },
+    {
+      "start": 2674.68,
+      "end": 2678.5,
+      "text": "Now let's talk about 20 and 200 simple moving averages."
+    },
+    {
+      "start": 2679.06,
+      "end": 2680.98,
+      "text": "Again, these are tools."
+    },
+    {
+      "start": 2681.36,
+      "end": 2682.28,
+      "text": "They aren't magic."
+    },
+    {
+      "start": 2682.7,
+      "end": 2686.58,
+      "text": "The 20 and 200 SMA help with session bias."
+    },
+    {
+      "start": 2687.16,
+      "end": 2689.56,
+      "text": "And mainly I use them on the 5-minute chart."
+    },
+    {
+      "start": 2689.86,
+      "end": 2694.56,
+      "text": "I no longer look at the 1-minute chart and I only focus on 5-minute."
+    },
+    {
+      "start": 2694.56,
+      "end": 2699.0,
+      "text": "I find it way more peaceful and keeps you patient as a trader."
+    },
+    {
+      "start": 2699.12,
+      "end": 2707.34,
+      "text": "hcom and lcom give me the higher time frame map pdh pdl pdc frame the day simplified market"
+    },
+    {
+      "start": 2707.34,
+      "end": 2714.74,
+      "text": "structure tells me whether price is consolidating or expanding around that map the 20 and 200 sma"
+    },
+    {
+      "start": 2714.74,
+      "end": 2721.8,
+      "text": "help me read the session environment inside that map is price about the moving averages and"
+    },
+    {
+      "start": 2721.8,
+      "end": 2728.94,
+      "text": "accepting is price below them and failing is price chopping through them and telling me this is a no"
+    },
+    {
+      "start": 2728.94,
+      "end": 2736.94,
+      "text": "edge zone that's how i use them they can help you see whether the market is extended consolidating"
+    },
+    {
+      "start": 2736.94,
+      "end": 2744.06,
+      "text": "reclaiming structure or chopping in a place where patience is required but a moving average isn't a"
+    },
+    {
+      "start": 2744.06,
+      "end": 2751.9,
+      "text": "trade by itself if you use it like a button you'll get hurt the question isn't did price touch the 20"
+    },
+    {
+      "start": 2751.9,
+      "end": 2760.46,
+      "text": "sma the question is what's the broader context is the market trending is price respecting dynamic"
+    },
+    {
+      "start": 2760.46,
+      "end": 2768.22,
+      "text": "structure is the 20 sma aligned with the territory you already care about is the 200 showing a larger"
+    },
+    {
+      "start": 2768.22,
+      "end": 2774.78,
+      "text": "directional filter are the moving averages actually creating clarity or are they becoming another"
+    },
+    {
+      "start": 2774.78,
+      "end": 2783.3,
+      "text": "reason to force a trade and i have more detailed video about 20 and 200 sma bias you can find it on"
+    },
+    {
+      "start": 2783.3,
+      "end": 2789.02,
+      "text": "this youtube channel if you want more information about this concept i will link those youtube"
+    },
+    {
+      "start": 2789.02,
+      "end": 2796.16,
+      "text": "videos down below in the description but the next concept that i want to talk about is my"
+    },
+    {
+      "start": 2796.16,
+      "end": 2802.3,
+      "text": "proprietary concept that i have personally developed throughout my trading career and this"
+    },
+    {
+      "start": 2802.3,
+      "end": 2808.54,
+      "text": "is one of the most important patterns this is the one of the most common patterns that i see"
+    },
+    {
+      "start": 2808.54,
+      "end": 2815.82,
+      "text": "price doing every single day on any time frame every single time this is the sequence"
+    },
+    {
+      "start": 2815.82,
+      "end": 2823.8,
+      "text": "the swing breakout sequence sbs this is one of the patterns i keep coming back to because it forces"
+    },
+    {
+      "start": 2823.8,
+      "end": 2831.34,
+      "text": "the right order of thinking not entry first but the context first monthly extremes first previous"
+    },
+    {
+      "start": 2831.34,
+      "end": 2839.26,
+      "text": "day level second session bias after that then the setup then the entry model and that entry model"
+    },
+    {
+      "start": 2839.26,
+      "end": 2846.78,
+      "text": "is the swing breakout sequence and sbs is more than just a candle pattern it's a sequence"
+    },
+    {
+      "start": 2847.58,
+      "end": 2855.02,
+      "text": "and there are two sbs models there is a sbs model one which is simply looks like break and retest"
+    },
+    {
+      "start": 2855.02,
+      "end": 2862.54,
+      "text": "of the resistance that becoming support and this is one of the most common market structure"
+    },
+    {
+      "start": 2862.54,
+      "end": 2870.3,
+      "text": "behaviors this is how the price moves around the support and resistance levels and the sequence"
+    },
+    {
+      "start": 2870.3,
+      "end": 2879.18,
+      "text": "is the breakout first people that bought the breakout price creates a new high and then returns"
+    },
+    {
+      "start": 2879.18,
+      "end": 2886.38,
+      "text": "to liquidate the first people the first people that bought this breakout after this liquidation"
+    },
+    {
+      "start": 2887.26,
+      "end": 2894.22,
+      "text": "the price usually creates a double bottom you can have a lower low double bottom or you can have"
+    },
+    {
+      "start": 2894.22,
+      "end": 2902.22,
+      "text": "a lower high double bottom don't try to time which one is it but enter on this breakout over here"
+    },
+    {
+      "start": 2902.22,
+      "end": 2910.98,
+      "text": "because the price is fractal so just like we have a break and retest based on this resistance that"
+    },
+    {
+      "start": 2910.98,
+      "end": 2920.28,
+      "text": "turns support now we have the same break and retest based on this resistance that become support"
+    },
+    {
+      "start": 2920.28,
+      "end": 2930.5,
+      "text": "and that's the sbs model one the sbs is the sweep of the number two and the best entry for the sbs"
+    },
+    {
+      "start": 2930.5,
+      "end": 2938.3,
+      "text": "is buying this breakout you can buy the breakout or break and retest sometimes you don't get the"
+    },
+    {
+      "start": 2938.3,
+      "end": 2947.22,
+      "text": "retest sometimes the price just rockets but this is the sequence of price and i call it swing"
+    },
+    {
+      "start": 2947.22,
+      "end": 2954.78,
+      "text": "breakout sequence this is the sbs model one where you have break and retest on top of the range"
+    },
+    {
+      "start": 2954.78,
+      "end": 2964.62,
+      "text": "now sbs model 2 is a little bit more complicated because now instead of retesting on top of the"
+    },
+    {
+      "start": 2964.62,
+      "end": 2973.06,
+      "text": "range the price sweeps down below into the move origin and yet again i talk about move origin and"
+    },
+    {
+      "start": 2973.06,
+      "end": 2980.56,
+      "text": "snd responsible here i talk about them on this youtube channel but the difference between sbs"
+    },
+    {
+      "start": 2980.56,
+      "end": 2989.68,
+      "text": "model one and sbs model two is that the sbs model two has a deeper retracement into this move origin"
+    },
+    {
+      "start": 2990.32,
+      "end": 2997.92,
+      "text": "this is what you can also call the order block this is the last move down before the price goes"
+    },
+    {
+      "start": 2997.92,
+      "end": 3006.96,
+      "text": "higher so this is also an sbs in here we have the breakout and the retest this is the first buyers"
+    },
+    {
+      "start": 3006.96,
+      "end": 3015.04,
+      "text": "that bought this low price breaks out so now these buyers feel comfortable these buyers are trapped"
+    },
+    {
+      "start": 3015.04,
+      "end": 3023.12,
+      "text": "traders this is the whole premise of sbs we are hunting the trap traders and you can take the"
+    },
+    {
+      "start": 3023.12,
+      "end": 3030.32,
+      "text": "short down to the number two down to this number two but you gotta keep in mind that sbs model one"
+    },
+    {
+      "start": 3030.32,
+      "end": 3040.64,
+      "text": "might be here so if this level holds it's likely to be sbs model one but if this level fails you"
+    },
+    {
+      "start": 3040.64,
+      "end": 3049.36,
+      "text": "have sbs model two and here's the full schematic the full sequence you might have sbs model one"
+    },
+    {
+      "start": 3049.36,
+      "end": 3058.08,
+      "text": "on top of the range but then after sbs model one completes it creates a bigger sbs model two"
+    },
+    {
+      "start": 3058.08,
+      "end": 3065.46,
+      "text": "and price comes back all the way down here for these first buyers and that's the swing breakout"
+    },
+    {
+      "start": 3065.46,
+      "end": 3073.34,
+      "text": "sequence the SBS if there is a holy grail of price action this is it this is the model that allowed"
+    },
+    {
+      "start": 3073.34,
+      "end": 3079.26,
+      "text": "me to become profitable I used to sculpt with this model and now I'm applying it on the higher time"
+    },
+    {
+      "start": 3079.26,
+      "end": 3087.86,
+      "text": "frames. Moving on to the concept number 11, Fib geometry. This is also the concept that I have"
+    },
+    {
+      "start": 3087.86,
+      "end": 3095.68,
+      "text": "created from the understanding of the Fibonacci sequence. Fib geometry helps me measure the target"
+    },
+    {
+      "start": 3095.68,
+      "end": 3102.2,
+      "text": "and asymmetrical risk to reward opportunity. And there is a video on this YouTube channel also"
+    },
+    {
+      "start": 3102.2,
+      "end": 3109.24,
+      "text": "explaining in depth how you can use this model as a mechanical trading system. But if you come"
+    },
+    {
+      "start": 3109.24,
+      "end": 3115.32,
+      "text": "combine this with the higher time frame structure and levels this becomes dangerous with the proper"
+    },
+    {
+      "start": 3115.32,
+      "end": 3121.64,
+      "text": "risk management you can capitalize on the asymmetrical risk to reward trades i'm not going"
+    },
+    {
+      "start": 3121.64,
+      "end": 3128.2,
+      "text": "to dive deep into how to use the fib geometry but we are using it for the targets so we're using"
+    },
+    {
+      "start": 3128.2,
+      "end": 3135.46,
+      "text": "fib retracements to measure the pullbacks so there is a first pullback second pullback just like here"
+    },
+    {
+      "start": 3135.46,
+      "end": 3143.06,
+      "text": "first pullback second pullback we measuring the first and second pullback after reversal so because"
+    },
+    {
+      "start": 3143.06,
+      "end": 3150.42,
+      "text": "we don't know the first pullback might be a fake out we looking for the second pullback and once"
+    },
+    {
+      "start": 3150.42,
+      "end": 3156.74,
+      "text": "the second pullback occurs then that's more likely that price actually reversed then we use the trend"
+    },
+    {
+      "start": 3156.74,
+      "end": 3164.18,
+      "text": "extension tool to measure this very first pullback in order to give us these targets and we have"
+    },
+    {
+      "start": 3164.18,
+      "end": 3173.66,
+      "text": "target of 2618, 423, and there is even a higher target of 686. Here's another schematic if you"
+    },
+    {
+      "start": 3173.66,
+      "end": 3178.84,
+      "text": "want to take a screenshot, but you can also find this in the video on this YouTube channel, link in"
+    },
+    {
+      "start": 3178.84,
+      "end": 3184.88,
+      "text": "the description down below. All right, let's put this all together on the charts. And on the left,"
+    },
+    {
+      "start": 3184.88,
+      "end": 3191.26,
+      "text": "I'm going to have daily chart, and on the right, I'm going to have five-minute chart. So this is"
+    },
+    {
+      "start": 3191.26,
+      "end": 3199.74,
+      "text": "what happened on russell rty symbol this is the futures for the russell 2000 these are the small"
+    },
+    {
+      "start": 3199.74,
+      "end": 3207.44,
+      "text": "caps but the chart is the chart it moves it breaks out it retests and this is what exactly happened"
+    },
+    {
+      "start": 3207.44,
+      "end": 3215.68,
+      "text": "on the higher time frame this is break and retest so you can go back and look at the chart this was"
+    },
+    {
+      "start": 3215.68,
+      "end": 3223.92,
+      "text": "a all-time high breakout and this was a retest so when the price came back down into the january"
+    },
+    {
+      "start": 3223.92,
+      "end": 3232.32,
+      "text": "hcom this was the resistance that now served as support and so what happened here on this day"
+    },
+    {
+      "start": 3232.32,
+      "end": 3239.84,
+      "text": "you have the day starting over here from the asia session this is your previous daily close this is"
+    },
+    {
+      "start": 3239.84,
+      "end": 3248.48,
+      "text": "your previous daily low and what have you noticed after market opens up it drives down and creates"
+    },
+    {
+      "start": 3248.48,
+      "end": 3258.88,
+      "text": "a sweep with a test this is your sweep and retest this is the swing failure pattern 3 a.m london"
+    },
+    {
+      "start": 3258.88,
+      "end": 3265.84,
+      "text": "session opens up price trades higher this could be your entry after this over here this is a"
+    },
+    {
+      "start": 3265.84,
+      "end": 3273.52,
+      "text": "structural break and retest on the lower time frames but wait actually we can notice that 20"
+    },
+    {
+      "start": 3273.52,
+      "end": 3281.6,
+      "text": "and 200 sma is not agreeing with our entry the price is below moving averages so if we want to"
+    },
+    {
+      "start": 3281.6,
+      "end": 3288.88,
+      "text": "be careful we wait for the price to get back about moving averages we're placing the stop loss in the"
+    },
+    {
+      "start": 3288.88,
+      "end": 3297.6,
+      "text": "logical place which is behind structure so you can see you have structure going up this is also"
+    },
+    {
+      "start": 3297.6,
+      "end": 3304.56,
+      "text": "structure this slow by the way over here never swept these lows so let's say you entered over"
+    },
+    {
+      "start": 3304.56,
+      "end": 3309.68,
+      "text": "here during the london session let's say you entered here when the price started to close"
+    },
+    {
+      "start": 3309.68,
+      "end": 3320.26,
+      "text": "back about 2200 sma and all you have to do now is just hold you hold about 20 and 200 sma and as"
+    },
+    {
+      "start": 3320.26,
+      "end": 3326.76,
+      "text": "you can see price trades into the new york session and eventually at 9 30 market open it has a"
+    },
+    {
+      "start": 3326.76,
+      "end": 3336.02,
+      "text": "breakout and it has a retest there is actually a small sbs sequence over here on that maybe on the"
+    },
+    {
+      "start": 3336.02,
+      "end": 3342.12,
+      "text": "one minute chart and also if we measure this pullback from this low where the move started"
+    },
+    {
+      "start": 3342.12,
+      "end": 3350.0,
+      "text": "to the high we will get the retracement we will get the Fibonacci retracement of 50% and 618"
+    },
+    {
+      "start": 3350.0,
+      "end": 3357.42,
+      "text": "and this is exactly the trade that I took and I took it right after this retracement and I was"
+    },
+    {
+      "start": 3357.42,
+      "end": 3365.28,
+      "text": "able to hold this trade and look at this timing you got 9 30 market open you have a pullback 10"
+    },
+    {
+      "start": 3365.28,
+      "end": 3371.48,
+      "text": "a.m is a very popular time for the New York session rotation. So that's what you see over"
+    },
+    {
+      "start": 3371.48,
+      "end": 3380.08,
+      "text": "here. And this was exactly the break and retest. This was exactly the same setup that is happening"
+    },
+    {
+      "start": 3380.08,
+      "end": 3387.54,
+      "text": "on higher timeframes because there are only two setups, break and retest and swing failure pattern."
+    },
+    {
+      "start": 3387.98,
+      "end": 3394.78,
+      "text": "So you can see how this is a break and retest on higher timeframe, but this over here is a swing"
+    },
+    {
+      "start": 3394.78,
+      "end": 3401.7,
+      "text": "failure pattern. So when the price opens up, dives and sweeps, and by the time you open your chart,"
+    },
+    {
+      "start": 3401.8,
+      "end": 3407.4,
+      "text": "let's say you are in New York, you shouldn't be looking for the trade back or whatever. You"
+    },
+    {
+      "start": 3407.4,
+      "end": 3414.32,
+      "text": "should be just following the moving averages. I made it very simple. Consolidation leads to"
+    },
+    {
+      "start": 3414.32,
+      "end": 3420.3,
+      "text": "expansion. That's all you really need. And we're trying to position ourselves during the consolidation."
+    },
+    {
+      "start": 3420.3,
+      "end": 3431.18,
+      "text": "So this is the consolidation that you want to see leading into the New York Open, leading into the 3 a.m. London session."
+    },
+    {
+      "start": 3431.42,
+      "end": 3438.9,
+      "text": "And notice, right after the London session opened, it provides a swing failure pattern setup."
+    },
+    {
+      "start": 3439.32,
+      "end": 3444.42,
+      "text": "After the New York opens, it provides break and retest setup."
+    },
+    {
+      "start": 3444.78,
+      "end": 3448.0,
+      "text": "So this should tell you something about the best timing."
+    },
+    {
+      "start": 3448.66,
+      "end": 3450.14,
+      "text": "Here's a setup on gold."
+    },
+    {
+      "start": 3450.6,
+      "end": 3456.08,
+      "text": "This is when we had that generational run-up on gold and everybody was so excited."
+    },
+    {
+      "start": 3456.08,
+      "end": 3459.84,
+      "text": "But then the price printed a first red day."
+    },
+    {
+      "start": 3460.42,
+      "end": 3467.9,
+      "text": "So the first red day by itself is very meaningful because this is the first day after this big"
+    },
+    {
+      "start": 3467.9,
+      "end": 3470.52,
+      "text": "run-up where this candle got liquidated."
+    },
+    {
+      "start": 3470.68,
+      "end": 3473.64,
+      "text": "So these are trap traders that got liquidated."
+    },
+    {
+      "start": 3473.64,
+      "end": 3481.22,
+      "text": "and anybody who's buying after the first red day is in danger because on the following day we had"
+    },
+    {
+      "start": 3481.22,
+      "end": 3489.36,
+      "text": "a beautiful setup this is was the setup during the London session there's a little pull back in there"
+    },
+    {
+      "start": 3489.36,
+      "end": 3495.3,
+      "text": "there is a break and retest of the range but then the price comes back and sweeps the number two"
+    },
+    {
+      "start": 3495.3,
+      "end": 3501.7,
+      "text": "so not the best setup for the London session but we got a good setup during the 9.30 open"
+    },
+    {
+      "start": 3501.7,
+      "end": 3504.84,
+      "text": "Look at that manipulation, right?"
+    },
+    {
+      "start": 3505.26,
+      "end": 3512.28,
+      "text": "During 9.30 open, the bias is short because we are below 200 simple moving averages."
+    },
+    {
+      "start": 3512.78,
+      "end": 3516.52,
+      "text": "And these are also the higher time frame FIB extensions."
+    },
+    {
+      "start": 3517.1,
+      "end": 3518.96,
+      "text": "So I am targeting lower."
+    },
+    {
+      "start": 3519.28,
+      "end": 3521.78,
+      "text": "I'm targeting the 6.86 here."
+    },
+    {
+      "start": 3522.16,
+      "end": 3527.86,
+      "text": "This is where you can't see it on the chart here, but that's the final FIB geometry extension."
+    },
+    {
+      "start": 3527.86,
+      "end": 3534.76,
+      "text": "and also based on this setup this is the first pullback we measure the first pullback and we get"
+    },
+    {
+      "start": 3534.76,
+      "end": 3543.36,
+      "text": "these projections and look at this precision how the price reacts from these levels these are not"
+    },
+    {
+      "start": 3543.36,
+      "end": 3550.3,
+      "text": "just random levels and yet again because we know where we are within the higher time frame structure"
+    },
+    {
+      "start": 3550.3,
+      "end": 3557.58,
+      "text": "we know that we are rejecting from this highest close of the month there it is over here we never"
+    },
+    {
+      "start": 3557.58,
+      "end": 3565.4,
+      "text": "even tested it right but we don't try to argue with price we don't try to go in on this trade and"
+    },
+    {
+      "start": 3565.4,
+      "end": 3573.46,
+      "text": "try to go long the bias is short and you need to trust the moving averages that's why they there"
+    },
+    {
+      "start": 3573.46,
+      "end": 3580.34,
+      "text": "it gives you the session bias right away and because we are breaking below the previous daily"
+    },
+    {
+      "start": 3580.34,
+      "end": 3587.38,
+      "text": "close which is the same as this february hcom now the daily levels coming into play and then you"
+    },
+    {
+      "start": 3587.38,
+      "end": 3594.1,
+      "text": "have the setup. What is the setup? This is a break and retest, well there is over here, break and"
+    },
+    {
+      "start": 3594.1,
+      "end": 3601.98,
+      "text": "retest of the PDC. But ultimately this is a swing failure pattern on the higher time frame. Then you"
+    },
+    {
+      "start": 3601.98,
+      "end": 3609.72,
+      "text": "drive into the session. You have the 9.30 open. This is a pullback. Over here there is a little"
+    },
+    {
+      "start": 3609.72,
+      "end": 3617.06,
+      "text": "break and retest. This sweep over here during the late London session, this was a swing failure"
+    },
+    {
+      "start": 3617.06,
+      "end": 3622.6,
+      "text": "pattern. There are only two setups and they are happening all over the place on every time frame."
+    },
+    {
+      "start": 3622.6,
+      "end": 3628.78,
+      "text": "But you don't just take any setup. You take the setups that line up with the higher time frame"
+    },
+    {
+      "start": 3628.78,
+      "end": 3636.64,
+      "text": "bias. Because if we think about this chart, who are the traders that are trapped? The shorts are"
+    },
+    {
+      "start": 3636.64,
+      "end": 3643.98,
+      "text": "not trapped over here. It's the longs that are entering late. They get stopped out and then"
+    },
+    {
+      "start": 3643.98,
+      "end": 3650.62,
+      "text": "lower traders panic they panic panic panic everybody panics and that's what creates the"
+    },
+    {
+      "start": 3650.62,
+      "end": 3657.72,
+      "text": "move and that's the exact move that we are after like i said i'm not interested in chasing one"
+    },
+    {
+      "start": 3657.72,
+      "end": 3665.3,
+      "text": "minute candles i'm interested in asymmetrical risk to reward opportunities the opportunities"
+    },
+    {
+      "start": 3665.3,
+      "end": 3672.62,
+      "text": "that just sell off they don't come back then those stop you out because the bias is there"
+    },
+    {
+      "start": 3672.62,
+      "end": 3680.46,
+      "text": "we are trying to trade a trending day and trying to stay out of the choppy days of the consolidation"
+    },
+    {
+      "start": 3680.46,
+      "end": 3689.6,
+      "text": "days this was another gold setup after it sold off it created lowest close of the month this"
+    },
+    {
+      "start": 3689.6,
+      "end": 3697.14,
+      "text": "was february lowest close of the month and then it came back and retested that lowest close of the"
+    },
+    {
+      "start": 3697.14,
+      "end": 3704.16,
+      "text": "month so this is the trade candle that i'm showing you right now you have february lowest close"
+    },
+    {
+      "start": 3704.16,
+      "end": 3713.36,
+      "text": "asian session opens up retesting breaking about 2200 sma and look at this this is a break"
+    },
+    {
+      "start": 3713.36,
+      "end": 3723.46,
+      "text": "and retest right the resistance becomes support and there is the 3 a.m london session what is this"
+    },
+    {
+      "start": 3723.46,
+      "end": 3732.4,
+      "text": "a reversal right this is a simple market structure reversal change of character whatever you want to"
+    },
+    {
+      "start": 3732.4,
+      "end": 3737.96,
+      "text": "call it it doesn't matter all it is is a swing failure pattern and then here it was a break and"
+    },
+    {
+      "start": 3737.96,
+      "end": 3749.28,
+      "text": "retest and then here at 9 30 it's a break and retest and also sbs and also a retracement into"
+    },
+    {
+      "start": 3749.28,
+      "end": 3758.72,
+      "text": "the 618 and also there is the 100 extension based on the first pullback after reversal right"
+    },
+    {
+      "start": 3758.72,
+      "end": 3766.4,
+      "text": "we measure the first pullback this is the fib geometry 100 to 618 hits right after the hours"
+    },
+    {
+      "start": 3767.2,
+      "end": 3774.64,
+      "text": "beautiful and all you have to do is just enter long and hold into the close absolutely beautiful"
+    },
+    {
+      "start": 3774.64,
+      "end": 3781.92,
+      "text": "stuff look at that previous daily close the levels line up everything lines up previous daily low"
+    },
+    {
+      "start": 3781.92,
+      "end": 3790.88,
+      "text": "previous daily close gets swept and price trades the opposite way from the lcom monthly extremes"
+    },
+    {
+      "start": 3790.88,
+      "end": 3803.08,
+      "text": "daily levels 2200 sma session bias sbs fib retracement fib projections all comes into one"
+    },
+    {
+      "start": 3803.08,
+      "end": 3810.62,
+      "text": "cohesive trading system. Here's beautiful trade on Bitcoin yet again highest close of the month."
+    },
+    {
+      "start": 3810.74,
+      "end": 3817.52,
+      "text": "The month's just open. This green candle couldn't break out and we have the next candle rejecting"
+    },
+    {
+      "start": 3817.52,
+      "end": 3825.04,
+      "text": "from the HECOM. You can see how the price is staying below 20 and 200 simple moving averages."
+    },
+    {
+      "start": 3825.04,
+      "end": 3834.04,
+      "text": "you have a sweep over here this is beautiful swing failure pattern during the 4 a.m london session"
+    },
+    {
+      "start": 3834.04,
+      "end": 3840.02,
+      "text": "so this breaks below moving averages it's already telling you that it wants to go short"
+    },
+    {
+      "start": 3840.02,
+      "end": 3849.04,
+      "text": "then it consolidates again consolidation leads to expansion it's all the same thing but when"
+    },
+    {
+      "start": 3849.04,
+      "end": 3854.54,
+      "text": "you're looking for the setup and you don't see consolidation that's the time where you walk away"
+    },
+    {
+      "start": 3854.54,
+      "end": 3862.54,
+      "text": "because if the price already extending then you are chasing we want to enter during consolidation"
+    },
+    {
+      "start": 3862.54,
+      "end": 3873.34,
+      "text": "look at this 9 30 a.m breakdown and then 10 a.m rotation here creates sbs and this was a break"
+    },
+    {
+      "start": 3873.34,
+      "end": 3882.92,
+      "text": "and retest of this support that turned resistance right it's all the same thing guys and it's so"
+    },
+    {
+      "start": 3882.92,
+      "end": 3889.4,
+      "text": "funny to me when people accuse me of hopping the strategies i've been refining the same thing over"
+    },
+    {
+      "start": 3889.4,
+      "end": 3896.3,
+      "text": "and over for years this is just higher time frame but when you put these concepts together and when"
+    },
+    {
+      "start": 3896.3,
+      "end": 3902.82,
+      "text": "they align for the session that's when the real magic happens that's when you can capture this"
+    },
+    {
+      "start": 3902.82,
+      "end": 3910.64,
+      "text": "type of movement truly asymmetrical trades right and this on the higher time frame wasn't that big"
+    },
+    {
+      "start": 3910.64,
+      "end": 3916.92,
+      "text": "of a deal. This was just from previous daily close to the previous daily low. That was the trade."
+    },
+    {
+      "start": 3917.74,
+      "end": 3924.24,
+      "text": "Price sells off and here's the lowest close of the month. Here's the swing failure pattern."
+    },
+    {
+      "start": 3924.24,
+      "end": 3931.54,
+      "text": "Look at the five-minute chart. Asia opens up, sweeps, creates SBS, price gets above moving"
+    },
+    {
+      "start": 3931.54,
+      "end": 3938.82,
+      "text": "averages. There is your break-in retest during 9.30 open and price extends. Beautiful setup."
+    },
+    {
+      "start": 3938.82,
+      "end": 3947.76,
+      "text": "there is your consolidation right consolidation leads to expansion here's nasdaq beginning of the"
+    },
+    {
+      "start": 3947.76,
+      "end": 3956.64,
+      "text": "month price does the sweep yet again consolidation leads to expansion if we measure this first pull"
+    },
+    {
+      "start": 3956.64,
+      "end": 3965.32,
+      "text": "back after this sbs with the retracement into the 618 50 retracement you have fib projections"
+    },
+    {
+      "start": 3965.32,
+      "end": 3972.82,
+      "text": "6.86 final target and then it reverses and closes and hopefully you can notice that i am showing you"
+    },
+    {
+      "start": 3972.82,
+      "end": 3980.54,
+      "text": "the same behavior in price these are the same setups consolidation leading to expansion you"
+    },
+    {
+      "start": 3980.54,
+      "end": 3987.12,
+      "text": "will have some kind of sbs it's not going to look the same but the logic is the same consolidation"
+    },
+    {
+      "start": 3987.12,
+      "end": 3996.68,
+      "text": "leads to expansion. Price needs to be below 220 SMA. If your bias is short, that's what you do."
+    },
+    {
+      "start": 3996.68,
+      "end": 4002.64,
+      "text": "You wait for the price to get below moving averages and then you're short at 930."
+    },
+    {
+      "start": 4003.44,
+      "end": 4009.5,
+      "text": "Here's another Nasdaq chart after it's sold off, right? You have three lower closes. Price"
+    },
+    {
+      "start": 4009.5,
+      "end": 4019.14,
+      "text": "extended into the lcom asia opens up sweeps right swing failure parent first then you have a break"
+    },
+    {
+      "start": 4019.14,
+      "end": 4030.08,
+      "text": "and retest beautiful price gets back about 2200 sma consolidation leads to expansion consolidation"
+    },
+    {
+      "start": 4030.08,
+      "end": 4037.66,
+      "text": "leads to expansion not every day is going to be clean right this wasn't a really clean day"
+    },
+    {
+      "start": 4037.66,
+      "end": 4046.3,
+      "text": "but 9 30 manipulation here 10 a.m rotation and you can just place your stop loss below structure"
+    },
+    {
+      "start": 4046.3,
+      "end": 4053.64,
+      "text": "and write this into the close also fib geometry we measure the first pullback there is the first"
+    },
+    {
+      "start": 4053.64,
+      "end": 4060.46,
+      "text": "100 this is your second pullback where we enter i didn't measure this but there is probably 50"
+    },
+    {
+      "start": 4060.46,
+      "end": 4067.78,
+      "text": "percent retracement and then you get the first target 2618 and the second target 423."
+    },
+    {
+      "start": 4068.74,
+      "end": 4076.68,
+      "text": "This is what real precision looks like and it's all the same thing. Here's another Nasdaq setup"
+    },
+    {
+      "start": 4076.68,
+      "end": 4083.8,
+      "text": "from the HECOM. You can see price bouncing from the February HECOM back to the HECOM. This is"
+    },
+    {
+      "start": 4083.8,
+      "end": 4089.82,
+      "text": "where everybody was crying about Nasdaq consolidating but if you had HECOM, LECOM on your"
+    },
+    {
+      "start": 4089.82,
+      "end": 4098.06,
+      "text": "chart, you could have taken this trade. 3 a.m., right? You got consolidation, breakdown, breaks"
+    },
+    {
+      "start": 4098.06,
+      "end": 4108.18,
+      "text": "down, and 9.30 has a nice SBS sweep and sells off into the close. And because this was a"
+    },
+    {
+      "start": 4108.18,
+      "end": 4116.04,
+      "text": "rejection from HECOM, you can hold it into the close. You know, there is more trust to hold these"
+    },
+    {
+      "start": 4116.04,
+      "end": 4122.2,
+      "text": "moves instead of just you know maybe you could have taken this sweep and then target the buy"
+    },
+    {
+      "start": 4122.2,
+      "end": 4129.14,
+      "text": "side liquidity and that's it your trade is done but if you just looked at the rejection from hcom"
+    },
+    {
+      "start": 4129.14,
+      "end": 4137.12,
+      "text": "you would be holding into the close and not giving up on the perfect setup and also this one over here"
+    },
+    {
+      "start": 4137.12,
+      "end": 4144.32,
+      "text": "this was a rejection from the february hcom and a lot of people were bullish here a lot of people"
+    },
+    {
+      "start": 4144.32,
+      "end": 4152.04,
+      "text": "were trying to buy this but i just saw multiple rejections from the february hcom and you can see"
+    },
+    {
+      "start": 4152.04,
+      "end": 4160.18,
+      "text": "there is a pdc pdl there is a consolidation big sbs in there there is a sweep but more importantly"
+    },
+    {
+      "start": 4160.18,
+      "end": 4168.84,
+      "text": "i trade 9 30 10 o'clock this is wasn't a pretty setup but the logic was there you got the rejection"
+    },
+    {
+      "start": 4168.84,
+      "end": 4176.04,
+      "text": "from the lcom you got the rejection from the february lcom it was just bearish so while a"
+    },
+    {
+      "start": 4176.04,
+      "end": 4183.82,
+      "text": "lot of people might be getting faked out here trying to buy this up i saw rejection so this"
+    },
+    {
+      "start": 4183.82,
+      "end": 4190.86,
+      "text": "is the trade there is your 10 o'clock rotation price gets back below 20 sma and you can start"
+    },
+    {
+      "start": 4190.86,
+      "end": 4198.04,
+      "text": "shorting this the stop loss goes about here and you hold it into the close and of course these"
+    },
+    {
+      "start": 4198.04,
+      "end": 4204.32,
+      "text": "setups are not going to be perfect. They're all going to look a little bit different, but the"
+    },
+    {
+      "start": 4204.32,
+      "end": 4211.62,
+      "text": "logic stays the same. We are targeting trapped traders, vulnerable traders, traders who are"
+    },
+    {
+      "start": 4211.62,
+      "end": 4217.84,
+      "text": "offside, traders who are too comfortable. That's the whole point of the Stoic Edge system."
+    },
+    {
+      "start": 4218.66,
+      "end": 4224.22,
+      "text": "All of these Stoic Trader concepts are just tools. They can help you see whether the market is"
+    },
+    {
+      "start": 4224.22,
+      "end": 4231.02,
+      "text": "extended consolidating reclaiming structure or chopping in place where patience is required"
+    },
+    {
+      "start": 4231.02,
+      "end": 4237.74,
+      "text": "but a moving average isn't a trade by itself if you use it like a button you'll get hurt"
+    },
+    {
+      "start": 4237.74,
+      "end": 4245.26,
+      "text": "the question isn't did price touch the 20sma the question is what's the broader context"
+    },
+    {
+      "start": 4245.26,
+      "end": 4252.64,
+      "text": "is the market trending is price respecting dynamic structure is the 20sma aligned with"
+    },
+    {
+      "start": 4252.64,
+      "end": 4259.34,
+      "text": "the territory you already care about? Is the 200 showing a larger directional filter? Are the moving"
+    },
+    {
+      "start": 4259.34,
+      "end": 4266.3,
+      "text": "averages helping clarity or are they becoming another reason to force a trade? FIPS can help"
+    },
+    {
+      "start": 4266.3,
+      "end": 4273.02,
+      "text": "you think about pullback, structure, continuation, and trader logic. They can help you define where"
+    },
+    {
+      "start": 4273.02,
+      "end": 4279.68,
+      "text": "a retracement might become interesting and where extension targets might be reasonable. But FIPS"
+    },
+    {
+      "start": 4279.68,
+      "end": 4287.14,
+      "text": "aren't prophecy. They are measurement tools. They help frame risk and target. They don't remove"
+    },
+    {
+      "start": 4287.14,
+      "end": 4293.82,
+      "text": "uncertainty. This is the pattern you should notice in everything I'm teaching. The tool is never"
+    },
+    {
+      "start": 4293.82,
+      "end": 4302.86,
+      "text": "enough by itself. The tool only becomes useful when it's inside a lens, a system, and a review"
+    },
+    {
+      "start": 4302.86,
+      "end": 4309.64,
+      "text": "process. That's why I don't care about hiding concepts. I am sharing all of my concepts for"
+    },
+    {
+      "start": 4309.64,
+      "end": 4316.46,
+      "text": "free and I've been doing that since I started trading. I share my progress as a trader. I share"
+    },
+    {
+      "start": 4316.46,
+      "end": 4323.28,
+      "text": "my development of my own trading system and trying to teach you what helped me on my trading journey."
+    },
+    {
+      "start": 4323.78,
+      "end": 4329.82,
+      "text": "That's why I don't care about giving away concepts because I know without the right implementations,"
+    },
+    {
+      "start": 4329.82,
+      "end": 4335.94,
+      "text": "concepts are going to be useless the two setups break and read the swing failure pattern"
+    },
+    {
+      "start": 4335.94,
+      "end": 4346.72,
+      "text": "sbs hcom lcom pdh pdl pdc market structure 2200 sma fib geometry no edge zone stoic lens"
+    },
+    {
+      "start": 4346.72,
+      "end": 4353.14,
+      "text": "protocol here they are all of the concepts that i use and now you have them for free"
+    },
+    {
+      "start": 4353.14,
+      "end": 4359.78,
+      "text": "but the real question is can you implement them without turning them into excuses for"
+    },
+    {
+      "start": 4359.78,
+      "end": 4367.26,
+      "text": "impulsive trades. And that's the real work that nobody wants to talk about. Now I want to make"
+    },
+    {
+      "start": 4367.26,
+      "end": 4374.78,
+      "text": "a distinction that can change how you think about trading. Strategy, system, protocol. Most traders"
+    },
+    {
+      "start": 4374.78,
+      "end": 4381.14,
+      "text": "use these words like they are the same. Well, they are not. A strategy is the visible tool."
+    },
+    {
+      "start": 4381.62,
+      "end": 4387.5,
+      "text": "It's the setup. Break and retest, swing failure pattern, fit pullback, moving average trend,"
+    },
+    {
+      "start": 4387.5,
+      "end": 4394.86,
+      "text": "daily level reclaim. Those are strategy or concepts. They tell you what might work,"
+    },
+    {
+      "start": 4395.1,
+      "end": 4400.08,
+      "text": "but a strategy doesn't automatically tell you when to use it, when to ignore it,"
+    },
+    {
+      "start": 4400.28,
+      "end": 4406.24,
+      "text": "what market condition it belongs in, how much risk it deserves, where it's invalidated,"
+    },
+    {
+      "start": 4406.46,
+      "end": 4412.52,
+      "text": "how it should be managed, or whether it fits your life. That's actually the job of the system."
+    },
+    {
+      "start": 4412.52,
+      "end": 4420.32,
+      "text": "A system is the operating environment around the strategy. Your system answers, what markets do I"
+    },
+    {
+      "start": 4420.32,
+      "end": 4426.28,
+      "text": "trade? What time frame do I focus on? What conditions am I looking for? What levels matter?"
+    },
+    {
+      "start": 4426.72,
+      "end": 4433.88,
+      "text": "What setups am I allowed to take? What makes a setup invalid? What's my risk per trade? What's"
+    },
+    {
+      "start": 4433.88,
+      "end": 4440.64,
+      "text": "my maximum number of trades? What conditions make me stop? How do I manage winners? How do I manage"
+    },
+    {
+      "start": 4440.64,
+      "end": 4449.1,
+      "text": "losers. What do I review? What do I track? What do I improve? Now, the protocol is the loop that"
+    },
+    {
+      "start": 4449.1,
+      "end": 4456.12,
+      "text": "keeps that system alive. And the Stoic Trader protocol is very simple. Generate trade ideas,"
+    },
+    {
+      "start": 4456.64,
+      "end": 4464.24,
+      "text": "commit to trade ideas, execute trade ideas, manage your trade, and then review the process."
+    },
+    {
+      "start": 4464.24,
+      "end": 4472.04,
+      "text": "generate means you build the idea before your trade what's the market what's the setup what's"
+    },
+    {
+      "start": 4472.04,
+      "end": 4479.4,
+      "text": "the context is there a asymmetrical risk to reward why does this setup deserve my attention"
+    },
+    {
+      "start": 4479.4,
+      "end": 4487.74,
+      "text": "committing to trade idea means you define the plan before emotions enters you want to see the price"
+    },
+    {
+      "start": 4487.74,
+      "end": 4496.14,
+      "text": "doing what you thought it will do you want to see the price confirming your entry invalidation risk"
+    },
+    {
+      "start": 4496.14,
+      "end": 4504.58,
+      "text": "target management no improvising after the candle starts moving execute means you follow that plan"
+    },
+    {
+      "start": 4504.58,
+      "end": 4511.86,
+      "text": "not your mood not the feeling not the panic your plan that you made before you enter the trade"
+    },
+    {
+      "start": 4512.74,
+      "end": 4519.64,
+      "text": "Manage means you handle the trade according to your rules, not according to fear or greed"
+    },
+    {
+      "start": 4519.64,
+      "end": 4526.48,
+      "text": "or revenge, but the rules that again, you predefine before you enter the trade."
+    },
+    {
+      "start": 4527.26,
+      "end": 4531.84,
+      "text": "And finally, review means you study the decision after the outcome."
+    },
+    {
+      "start": 4531.84,
+      "end": 4536.96,
+      "text": "And very important, you're not studying the outcome, you're studying the decision."
+    },
+    {
+      "start": 4537.7,
+      "end": 4539.28,
+      "text": "Did you follow the process?"
+    },
+    {
+      "start": 4539.78,
+      "end": 4541.04,
+      "text": "Was the setup valid?"
+    },
+    {
+      "start": 4541.04,
+      "end": 4549.48,
+      "text": "was the risk correct was the management clean what needs to change what needs to stay and this"
+    },
+    {
+      "start": 4549.48,
+      "end": 4557.78,
+      "text": "is very very important review doesn't mean staring at the chart after the fact and inventing reasons"
+    },
+    {
+      "start": 4557.78,
+      "end": 4565.7,
+      "text": "why priced move most traders do that they win then they look for the liquidity sweep that proves they"
+    },
+    {
+      "start": 4565.7,
+      "end": 4573.22,
+      "text": "were a genius they lose then they look for the candle wick imbalance or the block or hidden reason"
+    },
+    {
+      "start": 4573.22,
+      "end": 4580.86,
+      "text": "that explains exactly why the market betrayed them that's not a review that's storytelling"
+    },
+    {
+      "start": 4580.86,
+      "end": 4588.94,
+      "text": "price action repeats the same broad behavior over and over and over and over and over and over again"
+    },
+    {
+      "start": 4588.94,
+      "end": 4596.28,
+      "text": "consolidation expansion consolidation again expansion again the chart is always going to"
+    },
+    {
+      "start": 4596.28,
+      "end": 4604.02,
+      "text": "give you labels reasons names if you go hunting for them after the fact real review is different"
+    },
+    {
+      "start": 4604.02,
+      "end": 4612.8,
+      "text": "you review yourself you review the process you review the behavior winner or loser same standard"
+    },
+    {
+      "start": 4612.8,
+      "end": 4615.92,
+      "text": "Did I generate the idea before entry?"
+    },
+    {
+      "start": 4616.28,
+      "end": 4619.52,
+      "text": "Did I commit to the plan before the candle was light?"
+    },
+    {
+      "start": 4619.82,
+      "end": 4622.96,
+      "text": "Did I execute where I said I'd execute?"
+    },
+    {
+      "start": 4623.44,
+      "end": 4625.6,
+      "text": "Did I size risk correctly?"
+    },
+    {
+      "start": 4625.92,
+      "end": 4628.16,
+      "text": "Did I manage according to rules?"
+    },
+    {
+      "start": 4628.62,
+      "end": 4630.44,
+      "text": "Did I move the stop loss?"
+    },
+    {
+      "start": 4630.56,
+      "end": 4631.34,
+      "text": "Did I hesitate?"
+    },
+    {
+      "start": 4631.8,
+      "end": 4633.92,
+      "text": "Did I take profit out of fear?"
+    },
+    {
+      "start": 4634.22,
+      "end": 4636.04,
+      "text": "Did I hold because of greed?"
+    },
+    {
+      "start": 4636.66,
+      "end": 4639.46,
+      "text": "Did I chase because I missed the first move?"
+    },
+    {
+      "start": 4639.46,
+      "end": 4647.64,
+      "text": "and that's the real review that actually matters not whether you can find a new name for what price"
+    },
+    {
+      "start": 4647.64,
+      "end": 4658.6,
+      "text": "did whether you can improve the action of trading the action of executing your trade ideas"
+    },
+    {
+      "start": 4658.6,
+      "end": 4667.68,
+      "text": "that's how the trader improves not by worshiping one win not by hating himself after one loss"
+    },
+    {
+      "start": 4667.68,
+      "end": 4673.7,
+      "text": "but by reviewing the process over a series of decisions."
+    },
+    {
+      "start": 4674.48,
+      "end": 4678.8,
+      "text": "This is the difference between someone who knows trading language"
+    },
+    {
+      "start": 4678.8,
+      "end": 4683.42,
+      "text": "and someone who's building a professional trading process"
+    },
+    {
+      "start": 4683.42,
+      "end": 4686.88,
+      "text": "that they can follow day in and day out"
+    },
+    {
+      "start": 4686.88,
+      "end": 4691.74,
+      "text": "following the same habits, the same schedule and the same routine."
+    },
+    {
+      "start": 4692.4,
+      "end": 4695.5,
+      "text": "That's what makes the real difference for the trader."
+    },
+    {
+      "start": 4695.5,
+      "end": 4703.56,
+      "text": "Now you know all the concepts, so let's turn this into something practical. If you want to build your"
+    },
+    {
+      "start": 4703.56,
+      "end": 4711.88,
+      "text": "own execution system, don't start with 50 setups. Start with constraints. A system without constraints"
+    },
+    {
+      "start": 4711.88,
+      "end": 4719.42,
+      "text": "is just a wish. Step one, define your market. Are you trading stocks, crypto, futures, forex,"
+    },
+    {
+      "start": 4719.42,
+      "end": 4726.12,
+      "text": "options, a mix of both or two or three, you don't need to trade everything. The more you trade,"
+    },
+    {
+      "start": 4726.12,
+      "end": 4732.74,
+      "text": "the more noise you invite. Step number two, define your time frame. Are you trying to scalp"
+    },
+    {
+      "start": 4732.74,
+      "end": 4738.04,
+      "text": "day trade, swing trade, position trade? You can learn from multiple time frames,"
+    },
+    {
+      "start": 4738.28,
+      "end": 4744.4,
+      "text": "but your system needs a primary operating lane. If your time frame changes every time you are"
+    },
+    {
+      "start": 4744.4,
+      "end": 4750.6,
+      "text": "emotional, you don't have a time frame. You simply have a coping mechanism. Step number three,"
+    },
+    {
+      "start": 4750.96,
+      "end": 4757.84,
+      "text": "define your territory. Where are you allowed to care? H-com or L-com, previous day levels,"
+    },
+    {
+      "start": 4758.0,
+      "end": 4763.88,
+      "text": "higher time frame breakouts, retests, sweeps of meaningful highs or lows, pullbacks into structure,"
+    },
+    {
+      "start": 4763.88,
+      "end": 4771.18,
+      "text": "clean moving average alignment. If price isn't in your territory, you wait. Step number four,"
+    },
+    {
+      "start": 4771.64,
+      "end": 4772.88,
+      "text": "Define your setup."
+    },
+    {
+      "start": 4773.44,
+      "end": 4779.8,
+      "text": "Pick one setup to study first, break and retest or swing failure pattern, then define the entry"
+    },
+    {
+      "start": 4779.8,
+      "end": 4781.6,
+      "text": "you use to execute it."
+    },
+    {
+      "start": 4781.6,
+      "end": 4788.98,
+      "text": "For me and many others, we use SBS that helps structure the entry sequence, but do not start"
+    },
+    {
+      "start": 4788.98,
+      "end": 4790.86,
+      "text": "by trying to trade everything."
+    },
+    {
+      "start": 4791.46,
+      "end": 4793.2,
+      "text": "Mustery comes from repetition."
+    },
+    {
+      "start": 4794.26,
+      "end": 4796.56,
+      "text": "Step five, define invalidation."
+    },
+    {
+      "start": 4796.56,
+      "end": 4804.06,
+      "text": "before you enter you need to know where the idea is wrong if you don't know where the idea is wrong"
+    },
+    {
+      "start": 4804.06,
+      "end": 4810.98,
+      "text": "you don't know what you are risking so the step six define the risk how much are you willing to"
+    },
+    {
+      "start": 4810.98,
+      "end": 4817.76,
+      "text": "lose if the idea is wrong how many trades are you allowed to take what happens after a loss"
+    },
+    {
+      "start": 4817.76,
+      "end": 4825.32,
+      "text": "what happens after two losses what happens after a win if the answer is emotional it's not a system"
+    },
+    {
+      "start": 4825.32,
+      "end": 4832.48,
+      "text": "step seven define trade management where do you take partials if you take partials where do you"
+    },
+    {
+      "start": 4832.48,
+      "end": 4838.44,
+      "text": "move the stop if you move it what has to happen for you to hold what has to happen for you to exit"
+    },
+    {
+      "start": 4838.44,
+      "end": 4845.96,
+      "text": "what will you not negotiate and finally step eight define review questions what screenshots"
+    },
+    {
+      "start": 4845.96,
+      "end": 4852.96,
+      "text": "do you have what questions do you answer what counts as a process mistake what counts as a"
+    },
+    {
+      "start": 4852.96,
+      "end": 4859.7,
+      "text": "clean loss, what counts as a valid skip. Here's how you stop being a trader who collects concepts"
+    },
+    {
+      "start": 4859.7,
+      "end": 4865.8,
+      "text": "and start becoming a trader who builds a process. And if it feels like more work than watching"
+    },
+    {
+      "start": 4865.8,
+      "end": 4871.26,
+      "text": "another strategy video, then it's actually a good feeling because that's the exact point."
+    },
+    {
+      "start": 4871.26,
+      "end": 4878.3,
+      "text": "The market isn't going to reward you for having a folder full of notes. The market is going to test"
+    },
+    {
+      "start": 4878.3,
+      "end": 4886.3,
+      "text": "whether you can turn those notes into decisions under pressure. Now I want to address the most"
+    },
+    {
+      "start": 4886.3,
+      "end": 4892.76,
+      "text": "important part of this whole trading. I am giving you the concepts. That's intentional. The noise"
+    },
+    {
+      "start": 4892.76,
+      "end": 4901.36,
+      "text": "trap, the stoic lens, the no edge zone, H-com, L-com, PDH, PDL, PDC, market structure, trap trader"
+    },
+    {
+      "start": 4901.36,
+      "end": 4910.2,
+      "text": "logic, two setups, break and retest, SFP, swing breakout sequence, 2200 SMA, FIB geometry,"
+    },
+    {
+      "start": 4910.98,
+      "end": 4917.5,
+      "text": "the Stoic Trader Protocol, generate, commit, execute, manage, review. I'm not hiding these"
+    },
+    {
+      "start": 4917.5,
+      "end": 4925.1,
+      "text": "behind a paywall. Although I do have more nuanced trading around these concepts inside the Stoic"
+    },
+    {
+      "start": 4925.1,
+      "end": 4930.34,
+      "text": "Traders community, and I'm constantly refining my framework, understanding, and process,"
+    },
+    {
+      "start": 4930.34,
+      "end": 4938.94,
+      "text": "but what i want to make clear is that the concept name isn't the real value the real value is"
+    },
+    {
+      "start": 4938.94,
+      "end": 4946.52,
+      "text": "implementation the real value is what happens after the concept sound obvious and that's where"
+    },
+    {
+      "start": 4946.52,
+      "end": 4953.42,
+      "text": "traders actually break not when they hear the word reset not when they hear the word failure"
+    },
+    {
+      "start": 4953.42,
+      "end": 4963.42,
+      "text": "not when they draw a daily level they break when the market is open price is moving they feel late"
+    },
+    {
+      "start": 4963.42,
+      "end": 4970.46,
+      "text": "and they have to decide whether the thing in front of them actually deserves risk that's why i'm not"
+    },
+    {
+      "start": 4970.46,
+      "end": 4977.76,
+      "text": "going to pretend that the concept name is some sacred secret anyone can say break and retest"
+    },
+    {
+      "start": 4977.76,
+      "end": 4980.64,
+      "text": "Can you define which break matters?"
+    },
+    {
+      "start": 4981.3,
+      "end": 4983.78,
+      "text": "Anyone can say swing failure pattern."
+    },
+    {
+      "start": 4984.26,
+      "end": 4989.26,
+      "text": "Can you tell the difference between a meaningful failure and a random wick?"
+    },
+    {
+      "start": 4989.68,
+      "end": 4991.74,
+      "text": "Anyone can draw H.com."
+    },
+    {
+      "start": 4992.36,
+      "end": 4998.3,
+      "text": "But can you tell whether price is accepting at a monthly extreme or trapping the late side?"
+    },
+    {
+      "start": 4998.84,
+      "end": 5001.12,
+      "text": "Anyone can draw previous day high."
+    },
+    {
+      "start": 5001.74,
+      "end": 5004.9,
+      "text": "But can you actually use it inside a full context read?"
+    },
+    {
+      "start": 5005.22,
+      "end": 5007.22,
+      "text": "Anyone can say SBS."
+    },
+    {
+      "start": 5007.76,
+      "end": 5012.36,
+      "text": "Can you actually wait for the sequence instead of forcing the entry?"
+    },
+    {
+      "start": 5013.24,
+      "end": 5019.68,
+      "text": "And for sure, anyone can add 20 and 200 SME on their chart, but can you use them without"
+    },
+    {
+      "start": 5019.68,
+      "end": 5020.96,
+      "text": "overtrading CHOP?"
+    },
+    {
+      "start": 5021.76,
+      "end": 5029.54,
+      "text": "Anyone can draw Fibonacci retracements, extensions, but can you use it as a risk and target tool"
+    },
+    {
+      "start": 5029.54,
+      "end": 5031.56,
+      "text": "instead of a prediction machine?"
+    },
+    {
+      "start": 5031.56,
+      "end": 5039.34,
+      "text": "and of course anyone can say i'll follow my rules but can you actually follow them after you miss"
+    },
+    {
+      "start": 5039.34,
+      "end": 5045.94,
+      "text": "the first move anyone can say i am disciplined but can you stay disciplined after a red trade"
+    },
+    {
+      "start": 5045.94,
+      "end": 5054.1,
+      "text": "anyone can say i am building a trading system but have you reviewed your last 10 trades honestly"
+    },
+    {
+      "start": 5054.1,
+      "end": 5061.5,
+      "text": "and let the data correct you did you refine your system based on that decision and see that's where"
+    },
+    {
+      "start": 5061.5,
+      "end": 5068.72,
+      "text": "the actual implementation matters a lot. Stoic Traders Community and Stoic Trader Protocol"
+    },
+    {
+      "start": 5068.72,
+      "end": 5076.14,
+      "text": "are not about collecting more trading concepts. The concepts are free. I shared them in this video"
+    },
+    {
+      "start": 5076.14,
+      "end": 5083.16,
+      "text": "and I've said this for a long, long time. Almost everything can work. Break and Retest can work,"
+    },
+    {
+      "start": 5083.16,
+      "end": 5092.2,
+      "text": "sfp sbs can work pullback model can work reclaim model can work turtle soup enigma breakers"
+    },
+    {
+      "start": 5092.2,
+      "end": 5100.78,
+      "text": "even your own trading concepts that you created can work but the caveat here is that it needs to"
+    },
+    {
+      "start": 5100.78,
+      "end": 5110.08,
+      "text": "be inside defined process the concept is not the edge the trader is the edge more specifically"
+    },
+    {
+      "start": 5110.08,
+      "end": 5118.98,
+      "text": "the trader's process is the edge. His routine, his preparation, his risk rules, his execution"
+    },
+    {
+      "start": 5118.98,
+      "end": 5128.38,
+      "text": "standard, his review. What he does every single day. How you do one thing is how you do everything."
+    },
+    {
+      "start": 5129.04,
+      "end": 5135.84,
+      "text": "If you are sloppy in preparation, that shows up in execution. If you negotiate your risk,"
+    },
+    {
+      "start": 5135.84,
+      "end": 5142.44,
+      "text": "that shows up in management if you avoid review that shows up in the same mistakes"
+    },
+    {
+      "start": 5142.44,
+      "end": 5151.52,
+      "text": "repeating again and again week after week months after months years after years"
+    },
+    {
+      "start": 5151.52,
+      "end": 5161.62,
+      "text": "that is why traders still stuck after years and years of deliberate study and trying to make this"
+    },
+    {
+      "start": 5161.62,
+      "end": 5170.9,
+      "text": "work that's not what creates skill of trading not the concept by itself the routine around the"
+    },
+    {
+      "start": 5170.9,
+      "end": 5179.42,
+      "text": "concept the process around the concept the way the trader applies it and the pressure when the real"
+    },
+    {
+      "start": 5179.42,
+      "end": 5187.46,
+      "text": "risk is on when the money when the pnl is there that's the skill that can serve you for a lifetime"
+    },
+    {
+      "start": 5187.46,
+      "end": 5196.64,
+      "text": "managing risk everybody says risk management is the most important thing yes it is everybody knows"
+    },
+    {
+      "start": 5196.64,
+      "end": 5203.9,
+      "text": "what to do why everyone ignores the risk management that's the skill that can serve you for a lifetime"
+    },
+    {
+      "start": 5203.9,
+      "end": 5212.74,
+      "text": "so if you are already having a trading concept if you know smc ict or whatever enigma order blocks"
+    },
+    {
+      "start": 5212.74,
+      "end": 5219.78,
+      "text": "you've been studying, bring it on. If you already know a trading system, bring it. If your main issue"
+    },
+    {
+      "start": 5219.78,
+      "end": 5225.46,
+      "text": "is execution, which is the case for the most traders, especially traders under pressure,"
+    },
+    {
+      "start": 5225.96,
+      "end": 5231.7,
+      "text": "then the Stoic Trader Protocol can still help you. I've designed this program to help you take"
+    },
+    {
+      "start": 5231.7,
+      "end": 5237.68,
+      "text": "all of those trading puzzle pieces you've been collecting and organizing from many mentors"
+    },
+    {
+      "start": 5237.68,
+      "end": 5242.68,
+      "text": "and put them into one cohesive execution system."
+    },
+    {
+      "start": 5243.24,
+      "end": 5246.56,
+      "text": "The one system that you can actually follow,"
+    },
+    {
+      "start": 5246.86,
+      "end": 5248.26,
+      "text": "the one that you can execute,"
+    },
+    {
+      "start": 5248.88,
+      "end": 5250.5,
+      "text": "the one that you can review,"
+    },
+    {
+      "start": 5251.04,
+      "end": 5254.96,
+      "text": "and most importantly, the one that you can continue refining"
+    },
+    {
+      "start": 5254.96,
+      "end": 5258.32,
+      "text": "and stop starting from scratch"
+    },
+    {
+      "start": 5258.32,
+      "end": 5260.24,
+      "text": "every time you're hopping the system."
+    },
+    {
+      "start": 5260.9,
+      "end": 5263.76,
+      "text": "That's how you get better at the act of trading."
+    },
+    {
+      "start": 5264.64,
+      "end": 5266.38,
+      "text": "A video can give you the map,"
+    },
+    {
+      "start": 5266.38,
+      "end": 5272.56,
+      "text": "but the community helps you walk that path. The course can teach you the structure,"
+    },
+    {
+      "start": 5273.08,
+      "end": 5280.88,
+      "text": "but the market makes you apply it again and again under different conditions. So this is the clean"
+    },
+    {
+      "start": 5280.88,
+      "end": 5287.62,
+      "text": "decision. Keep collecting free concepts or come inside and finally start building your own trading"
+    },
+    {
+      "start": 5287.62,
+      "end": 5294.42,
+      "text": "system that you can trust. So if you are a trader who struggles with execution, if you are ready to"
+    },
+    {
+      "start": 5294.42,
+      "end": 5301.26,
+      "text": "stop strategy hopping if you are ready to become a stoic trader in the next 90 days through the"
+    },
+    {
+      "start": 5301.26,
+      "end": 5307.88,
+      "text": "stoic trader protocol join stoic traders community today go to the stoic edge.com"
+    },
+    {
+      "start": 5307.88,
+      "end": 5314.14,
+      "text": "join for the year keep the course and start building the execution process i'll see you inside"
+    }
+  ]
+}

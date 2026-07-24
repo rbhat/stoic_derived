@@ -1,0 +1,978 @@
+{
+  "source": "videos/HTF Stoic Trader Protocol - Stoic Trader Concepts · Stoic Traders.mp4",
+  "model": "qwen3-vl-30b-a3b-instruct-mlx",
+  "windows": 5,
+  "count": 194,
+  "moments": [
+    {
+      "t": 485.3,
+      "label": "Market breaks weekly high/low",
+      "why": "Instructor explains how a breakout from the weekly high or low traps traders, with chart showing this level on screen."
+    },
+    {
+      "t": 500.4,
+      "label": "Breakout fails and price closes back",
+      "why": "Instructor describes the false breakout scenario where price pulls in traders and then closes back inside range, with chart showing this pattern."
+    },
+    {
+      "t": 566.7,
+      "label": "Day one confirmed",
+      "why": "Instructor identifies the false break as the start of day one, with chart showing this confirmation point."
+    },
+    {
+      "t": 573.7,
+      "label": "Continuation as day one",
+      "why": "Instructor introduces the alternative day one scenario where a strong close above weekly high acts as a continuation, with chart showing this setup."
+    },
+    {
+      "t": 601.5,
+      "label": "Day two signal",
+      "why": "Instructor refers to the evening scan from video 2, showing a daily close that signals trader psychology on day two."
+    },
+    {
+      "t": 638.8,
+      "label": "Chop zone forms",
+      "why": "Instructor describes the chop zone with moving averages flat and converging, price disrespecting them on a 5-minute chart."
+    },
+    {
+      "t": 646.3,
+      "label": "Price disrespecting moving averages",
+      "why": "Instructor explains price action on a 5-minute chart where it chops around moving averages, indicating consolidation."
+    },
+    {
+      "t": 677.4,
+      "label": "Trapped traders watching",
+      "why": "Instructor describes trapped traders hoping for a return to entry, with chart showing consolidation phase."
+    },
+    {
+      "t": 690.9,
+      "label": "Consolidation breaks wrong way",
+      "why": "Instructor explains the breakout from consolidation in the direction that triggers panic, with chart showing this break."
+    },
+    {
+      "t": 705.5,
+      "label": "Vertical fast move",
+      "why": "Instructor describes the explosive vertical move caused by simultaneous panic exits, with chart showing this price action."
+    },
+    {
+      "t": 744.6,
+      "label": "Weekly rhythm pattern",
+      "why": "Instructor references the common Monday-Tuesday-Wednesday cycle, with chart showing weekly calendar and day labels."
+    },
+    {
+      "t": 762.6,
+      "label": "Day one not tied to calendar",
+      "why": "Instructor explains day one is defined by market action, not the day of week, with chart showing a false break on Thursday."
+    },
+    {
+      "t": 795.0,
+      "label": "New day one resets cycle",
+      "why": "Instructor describes how a close beyond the level creates a new day one, with chart showing this breakout."
+    },
+    {
+      "t": 832.7,
+      "label": "Monthly bias setup",
+      "why": "Instructor explains how to determine monthly bias using 30-day daily chart, with chart showing higher highs/lower lows."
+    },
+    {
+      "t": 874.0,
+      "label": "Monthly bias levels",
+      "why": "Instructor identifies the highest and lowest closing prices of the month as key levels, with chart showing these points."
+    },
+    {
+      "t": 893.6,
+      "label": "Closes vs wicks",
+      "why": "Instructor explains why closing prices matter more than intraday spikes, with chart showing a close at the monthly high/low."
+    },
+    {
+      "t": 1023.9,
+      "label": "Monthly levels example on gold",
+      "why": "Instructor shows a chart of gold with monthly lines and bias, highlighting bullish trend and reversal at month end."
+    },
+    {
+      "t": 1032.2,
+      "label": "Monthly bias and structure",
+      "why": "Instructor marks monthly lines on gold chart, showing bullish bias and weekly progression."
+    },
+    {
+      "t": 1061.2,
+      "label": "Bullish month continuation",
+      "why": "Instructor explains how current bullish bias follows previous month, with market reaching prior high and reversing."
+    },
+    {
+      "t": 1096.4,
+      "label": "Ranging bias development",
+      "why": "Market stays inside previous month's range, indicating a ranging bias instead of trend continuation."
+    },
+    {
+      "t": 1126.8,
+      "label": "Previous month highest close",
+      "why": "Instructor identifies the previous month's highest close as a key level on the chart."
+    },
+    {
+      "t": 1129.3,
+      "label": "Previous month lowest close",
+      "why": "Instructor identifies the previous month's lowest close as a key level on the chart."
+    },
+    {
+      "t": 1131.9,
+      "label": "Current month highest close",
+      "why": "Instructor points to the current month's highest close on the chart."
+    },
+    {
+      "t": 1133.9,
+      "label": "Current month lowest close",
+      "why": "Instructor points to the current month's lowest close on the chart."
+    },
+    {
+      "t": 1145.4,
+      "label": "Weekly high and stop clusters",
+      "why": "Instructor identifies the weekly high as a stop cluster zone above where short hunters operate."
+    },
+    {
+      "t": 1157.0,
+      "label": "Highest close of the week",
+      "why": "Instructor identifies the highest close of the week as real resistance where committed longs hold."
+    },
+    {
+      "t": 1174.7,
+      "label": "Lowest close of the week",
+      "why": "Instructor identifies the lowest close of the week as real support where committed shorts hold."
+    },
+    {
+      "t": 1183.4,
+      "label": "Weekly low and stop clusters",
+      "why": "Instructor identifies the weekly low as a stop cluster zone below where long hunters operate."
+    },
+    {
+      "t": 1222.6,
+      "label": "Intraday zone for shorting",
+      "why": "Instructor zooms in on gold chart, marking highest close and high of previous week to create a shorting zone."
+    },
+    {
+      "t": 1256.1,
+      "label": "Day one breakout failure",
+      "why": "Instructor identifies day one as a failed breakout, setting up the three-day cycle."
+    },
+    {
+      "t": 1267.2,
+      "label": "Day two signal",
+      "why": "Instructor identifies day two as an inside day and first red day, signaling a potential reversal."
+    },
+    {
+      "t": 1273.1,
+      "label": "Day three trade",
+      "why": "Instructor identifies day three as the actual trading opportunity in the cycle."
+    },
+    {
+      "t": 1358.3,
+      "label": "Ideal week setup",
+      "why": "Instructor shows a daily chart of AUD/USD with a strong trend from Monday to Wednesday, leading to Thursday reversal."
+    },
+    {
+      "t": 1380.7,
+      "label": "Monthly close as key level",
+      "why": "Instructor emphasizes the importance of daily closes, showing price pushing into previous month's highest close."
+    },
+    {
+      "t": 1424.5,
+      "label": "First red day and continuation",
+      "why": "Instructor shows price pushing into highest close of the month, followed by a first red day and continuation."
+    },
+    {
+      "t": 1469.5,
+      "label": "Friday move to lowest close",
+      "why": "Instructor shows price closing below the lowest close of the month, targeting further downside."
+    },
+    {
+      "t": 1489.5,
+      "label": "Targeting previous monthly low",
+      "why": "Instructor identifies the previous monthly lowest close as a target after breaking below current low."
+    },
+    {
+      "t": 1504.8,
+      "label": "Trade execution at 9:30",
+      "why": "Instructor shows trade entry point at 9:30, with price breaking lower after consolidation."
+    },
+    {
+      "t": 1520.6,
+      "label": "SBS pattern and pullback",
+      "why": "Instructor points to a bearish SBS pattern with five legs, followed by a pullback."
+    },
+    {
+      "t": 1530.7,
+      "label": "20 SMA breakdown",
+      "why": "Instructor identifies price breaking below the 20 SMA as a key trigger for trade entry."
+    },
+    {
+      "t": 1564.2,
+      "label": "Recommended timeframes",
+      "why": "Instructor recommends 5-minute and 15-minute charts, suggesting to avoid 1-minute due to noise."
+    },
+    {
+      "t": 1633.6,
+      "label": "Key timing at 9:30",
+      "why": "Instructor highlights 9:30 open as a key timing for trade entry during Asia session."
+    },
+    {
+      "t": 1642.9,
+      "label": "Thursday as best trade day",
+      "why": "Instructor shows NASDAQ chart with Thursdays leading to big candles, indicating strong trading days."
+    },
+    {
+      "t": 1684.8,
+      "label": "Friday as setup day",
+      "why": "Instructor explains how Friday's inside day at weekly high sets up Monday reversal."
+    },
+    {
+      "t": 1702.1,
+      "label": "Monday flush of confident longs",
+      "why": "Instructor describes how Monday opens above Friday's inside day high, trapping confident longs."
+    },
+    {
+      "t": 1725.1,
+      "label": "Friday close at weekly low",
+      "why": "Instructor shows how Friday closing at weekly low sets up Monday flush of shorts."
+    },
+    {
+      "t": 1736.2,
+      "label": "Tightest inside day",
+      "why": "Instructor explains that tightest Friday inside day leads to biggest Monday move."
+    },
+    {
+      "t": 1748.7,
+      "label": "Double inside day",
+      "why": "Instructor identifies double inside day (Thursday and Friday) as maximum consolidation before explosive move."
+    },
+    {
+      "t": 1845.1,
+      "label": "Template 1 Reversal Setup",
+      "why": "Instructor introduces the first template, showing a red day followed by a green day as a reversal setup on the chart."
+    },
+    {
+      "t": 1980.6,
+      "label": "Gold Example of Template 1",
+      "why": "Instructor shows a gold chart example illustrating the first template with higher closes followed by a red day and breakdown."
+    },
+    {
+      "t": 2013.9,
+      "label": "SMA Breakdown Entry",
+      "why": "Instructor points to the 20 and 200 SMA on a chart, showing price breaking below both as an entry signal."
+    },
+    {
+      "t": 2031.2,
+      "label": "Entry and Stop Loss Setup",
+      "why": "Instructor demonstrates a trade entry below the 20 SMA with stop loss above the sweep and target at 2618 Fibonacci level."
+    },
+    {
+      "t": 2059.6,
+      "label": "Template 2 Trend Reversal",
+      "why": "Instructor introduces the second template, describing a breakout followed by two more consecutive breakouts leading to reversal."
+    },
+    {
+      "t": 2139.5,
+      "label": "Emotional Reaction of Traders",
+      "why": "Instructor explains the psychological breakdown of three trader groups as stops trigger during a reversal."
+    },
+    {
+      "t": 2195.4,
+      "label": "SFP Swing Failure Pattern",
+      "why": "Instructor identifies the SFP (Swing Failure Pattern) on a chart, showing price swinging through and failing at key levels."
+    },
+    {
+      "t": 2213.5,
+      "label": "AUD/USD Example of Template 2",
+      "why": "Instructor shows an AUD/USD chart with a three-day breakout followed by reversal, illustrating template 2."
+    },
+    {
+      "t": 2245.0,
+      "label": "Consolidation Leading to Breakdown",
+      "why": "Instructor points out consolidation on a chart before a breakdown, highlighting the setup for template 2."
+    },
+    {
+      "t": 2261.2,
+      "label": "Entry Opportunity at 9:00",
+      "why": "Instructor identifies an entry opportunity during the London session at 9:00, with price breaking below key levels."
+    },
+    {
+      "t": 2324.4,
+      "label": "Template 3 Trend Continuation",
+      "why": "Instructor introduces template 3, describing a breakout followed by a pullback and retest as continuation setup."
+    },
+    {
+      "t": 2374.9,
+      "label": "Counter Trend Traders Entry",
+      "why": "Instructor explains how counter trend traders enter during a pullback, setting up for a trap."
+    },
+    {
+      "t": 2408.8,
+      "label": "Break and Retest Entry",
+      "why": "Instructor shows a chart where price retests the breakout level and holds, indicating entry for trend continuation."
+    },
+    {
+      "t": 2474.5,
+      "label": "Trend Continuation Example",
+      "why": "Instructor displays a chart of a breakout followed by pullback and retest, confirming trend continuation."
+    },
+    {
+      "t": 2510.0,
+      "label": "Previous Day Close as Key Level",
+      "why": "Instructor highlights the previous day close on a chart, showing it as a key reference for entry and confirmation."
+    },
+    {
+      "t": 2537.8,
+      "label": "Entry with Stop Loss Below Manipulation",
+      "why": "Instructor shows an entry point at 9:30 with stop loss below the manipulation low."
+    },
+    {
+      "t": 2561.7,
+      "label": "Price Holding Above Previous Close",
+      "why": "Instructor emphasizes that price must hold above the previous day close to confirm continuation."
+    },
+    {
+      "t": 2595.2,
+      "label": "Breakout and Close Confirmation",
+      "why": "Instructor shows a breakout followed by closing above the previous high, confirming trend continuation."
+    },
+    {
+      "t": 2601.8,
+      "label": "Template 4 Consolidation Leads to Expansion",
+      "why": "Instructor introduces template 4, describing how consolidation leads to expansion."
+    },
+    {
+      "t": 2635.4,
+      "label": "Market Stalls at Key High",
+      "why": "Instructor points to a chart where the market stalls and consolidates at a key high, starting template 4."
+    },
+    {
+      "t": 2683.0,
+      "label": "Breakout Triggers Forced Exits",
+      "why": "Instructor shows a chart where consolidation breaks, causing forced exits and explosive move."
+    },
+    {
+      "t": 2715.0,
+      "label": "Measured Move Target",
+      "why": "Instructor explains measuring consolidation height for target projection on chart"
+    },
+    {
+      "t": 2762.1,
+      "label": "Key High Time Frame Level",
+      "why": "Price runs into key high time frame level, highest close of the month"
+    },
+    {
+      "t": 2779.1,
+      "label": "Consolidation Day",
+      "why": "Price pulls back into highest close of the month, closes above it with consolidation day"
+    },
+    {
+      "t": 2797.4,
+      "label": "Five Minute Chart Example",
+      "why": "Switch to five minute chart showing consolidation and breakout"
+    },
+    {
+      "t": 2805.6,
+      "label": "Entry at Breakout",
+      "why": "Market breaks above highest close of the month, retesting at 9:30 as entry point"
+    },
+    {
+      "t": 2817.4,
+      "label": "Breakout Entry",
+      "why": "Enter on breakout of consolidation after 9:30 retest"
+    },
+    {
+      "t": 2824.1,
+      "label": "Entry at SMA Close",
+      "why": "Enter when price closes above 20 simple moving average"
+    },
+    {
+      "t": 2833.1,
+      "label": "Stop Loss Placement",
+      "why": "Stop loss below 9:30 level"
+    },
+    {
+      "t": 2840.9,
+      "label": "SMA Confirmation",
+      "why": "Price dips below and returns above 200 SMA, confirming setup"
+    },
+    {
+      "t": 2856.8,
+      "label": "Inside Day Pattern",
+      "why": "Day two is a doji-like consolidation, leading to expansion"
+    },
+    {
+      "t": 2872.0,
+      "label": "Inside Day Definition",
+      "why": "Explanation of inside day as full range fitting within previous day's range"
+    },
+    {
+      "t": 2908.1,
+      "label": "Three-Day Cycle Setup",
+      "why": "Day one sets range, day two compresses inside it, day three breaks out"
+    },
+    {
+      "t": 2940.7,
+      "label": "False Break Psychology",
+      "why": "Market breaks one side of inside day, traps breakout traders"
+    },
+    {
+      "t": 2972.2,
+      "label": "Context-Driven Move",
+      "why": "Real move direction depends on inside day location (high/low)"
+    },
+    {
+      "t": 3020.1,
+      "label": "Inside Day Continuation",
+      "why": "Inside day in mid-range leads to trend continuation"
+    },
+    {
+      "t": 3030.1,
+      "label": "Nasdaq Inside Day Example",
+      "why": "Inside day after price rejects highest close of the month, leads to violent down move"
+    },
+    {
+      "t": 3047.9,
+      "label": "First Red Day Confirmation",
+      "why": "Day two is first red day and inside day, confirming bearish trend"
+    },
+    {
+      "t": 3056.6,
+      "label": "Location of Inside Day",
+      "why": "Inside day below highest close of the month indicates continuation"
+    },
+    {
+      "t": 3087.7,
+      "label": "Monday Candle Sweep",
+      "why": "Sweep of monday candle and continuation down"
+    },
+    {
+      "t": 3105.6,
+      "label": "Five Minute SMA Setup",
+      "why": "Consolidation leading into New York open, 200 SMA as key level"
+    },
+    {
+      "t": 3123.1,
+      "label": "Break Below SMA",
+      "why": "Price breaks back below 200 and 20 SMA, creating entry opportunity"
+    },
+    {
+      "t": 3132.7,
+      "label": "Entry After London Sweep",
+      "why": "Opportunity to enter after sweep during London session"
+    },
+    {
+      "t": 3139.8,
+      "label": "Stop Loss Placement",
+      "why": "Stop loss placed below entry area"
+    },
+    {
+      "t": 3148.5,
+      "label": "Intraday Templates",
+      "why": "Five templates work across three sessions (Asia, London, New York)"
+    },
+    {
+      "t": 3167.3,
+      "label": "Session Breakdown",
+      "why": "Asia = session one (move), London = signal, New York = trade"
+    },
+    {
+      "t": 3172.2,
+      "label": "London Session Signal",
+      "why": "London closes red, cracking confidence"
+    },
+    {
+      "t": 3182.8,
+      "label": "New York Session Trade",
+      "why": "New York dumps as Longs panic"
+    },
+    {
+      "t": 3197.5,
+      "label": "SFP Pattern Across Sessions",
+      "why": "Asia breaks out, London extends, New York pushes beyond and fails"
+    },
+    {
+      "t": 3216.3,
+      "label": "Break and Retest Pattern",
+      "why": "Asia breaks out, London extends, New York pulls back"
+    },
+    {
+      "t": 3232.1,
+      "label": "Consolidation Across Sessions",
+      "why": "Asia creates low, London high, New York breaks out"
+    },
+    {
+      "t": 3247.7,
+      "label": "Inside Session Pattern",
+      "why": "London consolidates inside Asia session, New York explodes"
+    },
+    {
+      "t": 3263.3,
+      "label": "Daily vs Intraday Templates",
+      "why": "Daily templates give big opportunities, intraday give quick trades"
+    },
+    {
+      "t": 3278.8,
+      "label": "Session Trade vs Daily Trade",
+      "why": "Do not hold session trade into close if it doesn't align with daily trend"
+    },
+    {
+      "t": 3294.4,
+      "label": "Counter Trend Session",
+      "why": "One counter trend session inside strong daily trend"
+    },
+    {
+      "t": 3302.9,
+      "label": "Hero Traders",
+      "why": "Bottom pickers and top pickers trying to reverse trend"
+    },
+    {
+      "t": 3310.1,
+      "label": "Trend Resumes",
+      "why": "Trend crushes counter trend traders"
+    },
+    {
+      "t": 3324.9,
+      "label": "Chop Zone Confirmation",
+      "why": "Consolidation confirms continuation"
+    },
+    {
+      "t": 3338.3,
+      "label": "Bread and Butter Trade",
+      "why": "Best scenario: daily setup running, trade continuation in New York"
+    },
+    {
+      "t": 3353.3,
+      "label": "Consolidation Location",
+      "why": "Consolidation near high of day/week/month indicates short setup"
+    },
+    {
+      "t": 3368.3,
+      "label": "Short Setup at High",
+      "why": "Consolidation near top leads to short setup"
+    },
+    {
+      "t": 3375.2,
+      "label": "Long Setup at Low",
+      "why": "Consolidation near bottom leads to long setup"
+    },
+    {
+      "t": 3381.3,
+      "label": "Vulnerable Traders",
+      "why": "Setup tells who is trapped and when they will exit"
+    },
+    {
+      "t": 3409.6,
+      "label": "Decision Tree",
+      "why": "Simplified morning routine to answer key questions"
+    },
+    {
+      "t": 3416.8,
+      "label": "Monthly Bias",
+      "why": "Determine monthly bias (long/short/ranging)"
+    },
+    {
+      "t": 3424.4,
+      "label": "Day of the Week",
+      "why": "Identify day and signal from previous day"
+    },
+    {
+      "t": 3432.5,
+      "label": "Breakout Mode Check",
+      "why": "Check if anything is in breakout mode from last night"
+    },
+    {
+      "t": 3442.7,
+      "label": "Three-Day Cycle",
+      "why": "Determine if it's day two or three in cycle"
+    },
+    {
+      "t": 3449.7,
+      "label": "Template Identification",
+      "why": "Name the template before trading (first red day, inside day, etc.)"
+    },
+    {
+      "t": 3457.9,
+      "label": "Template Naming",
+      "why": "Cannot trade without naming the template"
+    },
+    {
+      "t": 3465.0,
+      "label": "Who is Trapped",
+      "why": "Naming template answers who is trapped and why they will exit"
+    },
+    {
+      "t": 3474.6,
+      "label": "Chop Zone Confirmation",
+      "why": "Check if chop zone is confirmed"
+    },
+    {
+      "t": 3481.9,
+      "label": "News Days",
+      "why": "One minute chart gives 60 decisions per hour, too much for brain"
+    },
+    {
+      "t": 3489.4,
+      "label": "Human Behavior Focus",
+      "why": "Focus on who is trapped and when they will exit"
+    },
+    {
+      "t": 3506.3,
+      "label": "News Psychology",
+      "why": "News days cause panic and euphoria simultaneously"
+    },
+    {
+      "t": 3515.9,
+      "label": "News Release Rule",
+      "why": "Never enter before news release"
+    },
+    {
+      "t": 3525.1,
+      "label": "News Spike",
+      "why": "First spike is emotional traders reacting on instinct"
+    },
+    {
+      "t": 3543.4,
+      "label": "Pullback Entry",
+      "why": "Wait 10-15 minutes after news, let pullback happen"
+    },
+    {
+      "t": 3551.6,
+      "label": "First Bounce Entry",
+      "why": "Pullback is first bounce entry"
+    },
+    {
+      "t": 3566.3,
+      "label": "One Minute Chart Use",
+      "why": "Can use one minute chart for news entry timing"
+    },
+    {
+      "t": 3573.8,
+      "label": "First Bounce Eliminates Risk",
+      "why": "Eliminates new spike risk"
+    },
+    {
+      "t": 3581.5,
+      "label": "Thesis Consistency",
+      "why": "Trade thesis does not change on news days"
+    },
+    {
+      "t": 3590.5,
+      "label": "Decision Tree Execution",
+      "why": "Once decision tree is done, know who is trapped and where stops are"
+    },
+    {
+      "t": 3607.1,
+      "label": "Chop Zone Break",
+      "why": "Chop zone consolidation starts to break in direction of trade"
+    },
+    {
+      "t": 3614.4,
+      "label": "Price close through SMA",
+      "why": "Instructor discusses a five-minute candle closing below the 20 simple moving average, indicating a directional signal on the chart."
+    },
+    {
+      "t": 3623.5,
+      "label": "Signal on higher timeframe",
+      "why": "Instructor refers to a 15-minute chart signaling trader commitment, suggesting a key visual confirmation on the screen."
+    },
+    {
+      "t": 3631.5,
+      "label": "Entry point setup",
+      "why": "Instructor introduces step three: entering the trade, which implies a visible entry point on the chart."
+    },
+    {
+      "t": 3638.8,
+      "label": "Stop placement",
+      "why": "Instructor mentions placing the stop loss on the other side of the consolidation chop zone, indicating a visible stop level."
+    },
+    {
+      "t": 3646.9,
+      "label": "Take profit target",
+      "why": "Instructor discusses setting a take profit target, which would be visible on the chart as a price level."
+    },
+    {
+      "t": 3712.5,
+      "label": "Target strategy",
+      "why": "Instructor explains holding into close and trailing stops, indicating a visual target or dynamic stop placement."
+    },
+    {
+      "t": 3726.5,
+      "label": "Measured move target",
+      "why": "Instructor describes measuring consolidation height to project a 100% or 200% move, which would be shown as a projected price level."
+    },
+    {
+      "t": 3735.4,
+      "label": "Fibonacci targets",
+      "why": "Instructor mentions using 2618, 423, and 686 Fibonacci levels as targets, which would be visible on the chart."
+    },
+    {
+      "t": 3745.5,
+      "label": "Monthly close targets",
+      "why": "Instructor refers to highest and lowest daily closes of the month, which would be marked on the chart."
+    },
+    {
+      "t": 3760.2,
+      "label": "Daily close targets",
+      "why": "Instructor clarifies that daily closes are used for targeting, which would be visible on the chart."
+    },
+    {
+      "t": 3777.1,
+      "label": "Break even stop",
+      "why": "Instructor discusses moving the stop loss to break even once target is hit, indicating a visible stop level."
+    },
+    {
+      "t": 3784.1,
+      "label": "Break even trigger",
+      "why": "Instructor explains moving stop to break even when trade hits target or high time frame level, which would be visible."
+    },
+    {
+      "t": 3820.5,
+      "label": "Break even placement",
+      "why": "Instructor reiterates moving stop to break even after trade moves in direction, indicating a visible adjustment."
+    },
+    {
+      "t": 3828.1,
+      "label": "Operating modes",
+      "why": "Instructor introduces two trade types: hold until close and quick trades, which would be visualized on the chart."
+    },
+    {
+      "t": 3844.3,
+      "label": "Hold until close setup",
+      "why": "Instructor describes setups for hold until close, including monthly and weekly extremes, which would be visible."
+    },
+    {
+      "t": 3851.4,
+      "label": "Three-session consolidation",
+      "why": "Instructor refers to three sessions of trap traders unwinding, which would be visible on the chart."
+    },
+    {
+      "t": 3859.0,
+      "label": "Higher timeframe templates",
+      "why": "Instructor mentions higher time frame templates qualifying for hold until close, which would be visible."
+    },
+    {
+      "t": 3866.4,
+      "label": "Session trades",
+      "why": "Instructor discusses session-based trades (Asia, London, New York), which would be visible on the chart."
+    },
+    {
+      "t": 3890.1,
+      "label": "Hunting for hold until close",
+      "why": "Instructor emphasizes hunting for hold until close setups, which would be visible on the chart."
+    },
+    {
+      "t": 3915.2,
+      "label": "Self-sabotaging behavior",
+      "why": "Instructor discusses trader psychology, which is tied to chart patterns and trade decisions."
+    },
+    {
+      "t": 3946.7,
+      "label": "Creating your own trap",
+      "why": "Instructor refers to creating a trade when no setup exists, which would be visible as an invalid entry."
+    },
+    {
+      "t": 3956.7,
+      "label": "Exiting for emotional reasons",
+      "why": "Instructor discusses closing a winner at 2R due to fear, which would be visible as an early exit."
+    },
+    {
+      "t": 3968.1,
+      "label": "Doubling down on losing trade",
+      "why": "Instructor describes re-entering after being stopped, which would be visible as a second entry."
+    },
+    {
+      "t": 4000.5,
+      "label": "Daily routine",
+      "why": "Instructor outlines the evening scan process for signal closes, which would be visible on the chart."
+    },
+    {
+      "t": 4017.1,
+      "label": "Three-day cycle analysis",
+      "why": "Instructor asks where we are in the three-day cycle, which would be visible on the chart."
+    },
+    {
+      "t": 4025.4,
+      "label": "Trapped traders",
+      "why": "Instructor discusses who got trapped and when they will be forced out, which would be visible on the chart."
+    },
+    {
+      "t": 4033.1,
+      "label": "Decision tree",
+      "why": "Instructor describes running a decision tree before trading, which would be visible as a checklist."
+    },
+    {
+      "t": 4039.9,
+      "label": "Naming the template",
+      "why": "Instructor says to name the template before touching the screen, which would be visible on the chart."
+    },
+    {
+      "t": 4055.5,
+      "label": "Not ready to trade",
+      "why": "Instructor says if you can't name the template, wait—indicating a visual filter."
+    },
+    {
+      "t": 4063.4,
+      "label": "Rotation time",
+      "why": "Instructor mentions waiting for rotation time to enter, which would be visible on the chart."
+    },
+    {
+      "t": 4070.4,
+      "label": "Break even move",
+      "why": "Instructor discusses moving to break even and walking away, indicating a visible stop adjustment."
+    },
+    {
+      "t": 4077.7,
+      "label": "Journaling",
+      "why": "Instructor mentions journaling trade details, which would be visible in a log or chart annotation."
+    },
+    {
+      "t": 4108.4,
+      "label": "Master one template",
+      "why": "Instructor advises mastering one template first, which would be visible on the chart."
+    },
+    {
+      "t": 4126.0,
+      "label": "No chop zone no trade",
+      "why": "Instructor emphasizes that without a consolidation, there is no trade—indicating a visible chop zone."
+    },
+    {
+      "t": 4135.2,
+      "label": "Chop zone concentration",
+      "why": "Instructor discusses trapped traders being concentrated at one price, which would be visible on the chart."
+    },
+    {
+      "t": 4153.4,
+      "label": "Eliminating losses",
+      "why": "Instructor states the chop zone rule eliminates 90% of losses, which would be visible on the chart."
+    },
+    {
+      "t": 4162.3,
+      "label": "One and done rule",
+      "why": "Instructor discusses closing the screen after first trade hits target, which would be visible as a trade exit."
+    },
+    {
+      "t": 4170.3,
+      "label": "Confidence spike",
+      "why": "Instructor describes confidence spikes after a winner, which would be visible as overtrading."
+    },
+    {
+      "t": 4179.5,
+      "label": "Vulnerable traders",
+      "why": "Instructor refers to confident traders being vulnerable, which would be visible on the chart."
+    },
+    {
+      "t": 4188.0,
+      "label": "One and done walk away",
+      "why": "Instructor reiterates walking away after first trade, which would be visible as a screen closure."
+    },
+    {
+      "t": 4197.4,
+      "label": "Monthly bias",
+      "why": "Instructor discusses monthly bias and cycle position, which would be visible on the chart."
+    },
+    {
+      "t": 4205.9,
+      "label": "Trapped traders",
+      "why": "Instructor asks who got trapped and when they will be forced out, which would be visible on the chart."
+    },
+    {
+      "t": 4215.6,
+      "label": "Template identification",
+      "why": "Instructor asks which of the five shapes is present, indicating a visible chart pattern."
+    },
+    {
+      "t": 4219.2,
+      "label": "Trapped trader group",
+      "why": "Instructor asks which group of traders is about to be forced out, which would be visible on the chart."
+    },
+    {
+      "t": 4223.7,
+      "label": "Quick session trade",
+      "why": "Instructor discusses a quick version of the trade, which would be visible on the chart."
+    },
+    {
+      "t": 4232.7,
+      "label": "Job zone",
+      "why": "Instructor mentions the job zone, which would be visible as a consolidation area."
+    },
+    {
+      "t": 4235.8,
+      "label": "Confirmed job zone",
+      "why": "Instructor asks if the job zone is confirmed, indicating a visual confirmation."
+    },
+    {
+      "t": 4240.3,
+      "label": "Concentration at one price",
+      "why": "Instructor discusses trapped traders being concentrated, which would be visible on the chart."
+    },
+    {
+      "t": 4258.1,
+      "label": "Market behavior",
+      "why": "Instructor discusses breakout and continue/reverse patterns, which would be visible on the chart."
+    },
+    {
+      "t": 4263.0,
+      "label": "Human behavior",
+      "why": "Instructor refers to confidence, greed, fear—visible in price action."
+    },
+    {
+      "t": 4270.8,
+      "label": "Forced exits",
+      "why": "Instructor discusses forced exits, which would be visible as sharp price moves."
+    },
+    {
+      "t": 4281.5,
+      "label": "Identifying trapped traders",
+      "why": "Instructor says the job is to identify where trapped traders will be forced out, which would be visible on the chart."
+    },
+    {
+      "t": 4296.4,
+      "label": "Three videos system",
+      "why": "Instructor outlines the three-video structure of the system, which would be visible as a roadmap."
+    },
+    {
+      "t": 4307.9,
+      "label": "Foundation video",
+      "why": "Instructor describes Video 1 as the foundation, which would be visible in a system diagram."
+    },
+    {
+      "t": 4318.3,
+      "label": "Radar video",
+      "why": "Instructor describes Video 2 as the radar, which would be visible on the chart."
+    },
+    {
+      "t": 4324.8,
+      "label": "Engine video",
+      "why": "Instructor describes Video 3 as the engine, which would be visible in a system flow."
+    },
+    {
+      "t": 4332.5,
+      "label": "People-driven market",
+      "why": "Instructor emphasizes that markets are driven by people, which would be visible in price action."
+    },
+    {
+      "t": 4355.5,
+      "label": "Human behavior repeats",
+      "why": "Instructor discusses fear and greed repeating, visible in chart patterns."
+    },
+    {
+      "t": 4375.7,
+      "label": "Evening scan",
+      "why": "Instructor says to open daily chart and scan instruments basket, which would be visible on the screen."
+    },
+    {
+      "t": 4384.9,
+      "label": "Who got trapped today",
+      "why": "Instructor asks who got trapped and when they will be forced out, which would be visible on the chart."
+    },
+    {
+      "t": 4390.8,
+      "label": "Name the template",
+      "why": "Instructor says to name the template before trading, which would be visible on the chart."
+    },
+    {
+      "t": 4398.1,
+      "label": "Execute one trade at a time",
+      "why": "Instructor emphasizes executing one trade at a time, which would be visible as a single entry."
+    }
+  ]
+}

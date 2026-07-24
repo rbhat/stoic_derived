@@ -1,0 +1,293 @@
+{
+  "source": "resources/live_trading_sessions/videos/LIVE Trading Session 3.5R on NQ - Stoic Trader Concepts · Stoic Traders.mp4",
+  "model": "qwen3-vl-30b-a3b-instruct-mlx",
+  "windows": 2,
+  "count": 57,
+  "moments": [
+    {
+      "t": 18.7,
+      "label": "Looking for longs on gold and shorts on NQ",
+      "why": "Instructor states his trading bias for the day, indicating price levels and market structure on chart"
+    },
+    {
+      "t": 28.1,
+      "label": "Shorting NQ and YM",
+      "why": "Instructor identifies a short opportunity on NQ with visible chart structure"
+    },
+    {
+      "t": 41.0,
+      "label": "Long on Bitcoin",
+      "why": "Instructor discusses entering a long trade on Bitcoin with buy stop order"
+    },
+    {
+      "t": 57.2,
+      "label": "NQ selling off",
+      "why": "Instructor comments on NQ's price action, indicating a visible downward move"
+    },
+    {
+      "t": 75.1,
+      "label": "Looking for shorts on NQ",
+      "why": "Instructor expresses intent to short NQ, referencing a visible price level"
+    },
+    {
+      "t": 93.1,
+      "label": "Close below 2200 SMA for short",
+      "why": "Instructor sets a condition based on price closing below 2200 SMA, visible on chart"
+    },
+    {
+      "t": 135.1,
+      "label": "Shorting NQ below 200 SMA",
+      "why": "Instructor specifies a price level (200 SMA) as trigger for short entry"
+    },
+    {
+      "t": 145.7,
+      "label": "Bitcoin bounce and adding long",
+      "why": "Instructor mentions buying more Bitcoin after a visible bounce"
+    },
+    {
+      "t": 157.3,
+      "label": "Stop loss placement",
+      "why": "Instructor discusses stop loss level below a candle, visible on chart"
+    },
+    {
+      "t": 178.8,
+      "label": "Adding more to buy stop",
+      "why": "Instructor decides to add position, referencing visible price action"
+    },
+    {
+      "t": 194.2,
+      "label": "Breakout from opening range",
+      "why": "Instructor identifies a breakout from monthly/weekly opening range on chart"
+    },
+    {
+      "t": 208.4,
+      "label": "Break and retest of opening range",
+      "why": "Instructor refers to a visible break and retest pattern"
+    },
+    {
+      "t": 230.6,
+      "label": "Stop loss confirmed",
+      "why": "Instructor confirms stop loss placement below a candle"
+    },
+    {
+      "t": 254.3,
+      "label": "Stop loss below engulfing candle",
+      "why": "Instructor sets stop loss below a visible engulfing candle"
+    },
+    {
+      "t": 279.0,
+      "label": "Q recovering and gold rising",
+      "why": "Instructor notes price movement of Q, Gold, and CL on chart"
+    },
+    {
+      "t": 296.7,
+      "label": "Reviewing Bitcoin trade",
+      "why": "Instructor refers to his existing Bitcoin trade, visible on chart"
+    },
+    {
+      "t": 307.2,
+      "label": "Trend-based targets",
+      "why": "Instructor discusses technical targets based on trend structure"
+    },
+    {
+      "t": 321.6,
+      "label": "Setting targets at previous weekly high",
+      "why": "Instructor identifies a visible price level as target"
+    },
+    {
+      "t": 340.5,
+      "label": "Shorting Q if NQ sells off",
+      "why": "Instructor sets condition for short entry based on price action"
+    },
+    {
+      "t": 358.8,
+      "label": "Shorting Q below PDL",
+      "why": "Instructor sets entry condition based on price level (PDL)"
+    },
+    {
+      "t": 392.2,
+      "label": "Volume profile break and retest",
+      "why": "Instructor refers to volume profile and a visible break/retest pattern"
+    },
+    {
+      "t": 401.7,
+      "label": "Break and retest failure",
+      "why": "Instructor discusses a failed break/retest pattern on chart"
+    },
+    {
+      "t": 421.0,
+      "label": "Breakout attempt on Bitcoin",
+      "why": "Instructor notes a visible breakout attempt"
+    },
+    {
+      "t": 424.6,
+      "label": "Stop loss at break even",
+      "why": "Instructor moves stop to breakeven, visible on chart"
+    },
+    {
+      "t": 437.9,
+      "label": "One contract sold",
+      "why": "Instructor confirms partial exit of trade, visible on chart"
+    },
+    {
+      "t": 442.8,
+      "label": "Shorting Q if price drops",
+      "why": "Instructor sets condition for short entry based on visible price drop"
+    },
+    {
+      "t": 454.6,
+      "label": "Shorting Q",
+      "why": "Instructor executes short trade on NQ, visible on chart"
+    },
+    {
+      "t": 464.2,
+      "label": "Closing Bitcoin trade",
+      "why": "Instructor decides to close a visible trade"
+    },
+    {
+      "t": 471.1,
+      "label": "Shorting Q",
+      "why": "Instructor confirms short entry on NQ"
+    },
+    {
+      "t": 534.3,
+      "label": "NQ selling off",
+      "why": "Instructor notes price action of NQ on chart"
+    },
+    {
+      "t": 540.0,
+      "label": "Closing Bitcoin at -0.4 R",
+      "why": "Instructor closes trade with visible loss, referencing risk level"
+    },
+    {
+      "t": 560.2,
+      "label": "SBS on NQ",
+      "why": "Instructor identifies a visible SBS pattern on chart"
+    },
+    {
+      "t": 572.2,
+      "label": "Monthly opening range",
+      "why": "Instructor refers to visible monthly opening range on chart"
+    },
+    {
+      "t": 578.1,
+      "label": "Weekly opening range",
+      "why": "Instructor identifies weekly opening range on chart"
+    },
+    {
+      "t": 601.8,
+      "label": "Bitcoin going down",
+      "why": "Instructor notes visible downward move in Bitcoin"
+    },
+    {
+      "t": 610.6,
+      "label": "Bounce failure and waterfall",
+      "why": "Instructor discusses potential price drop after failed bounce"
+    },
+    {
+      "t": 637.2,
+      "label": "FIB geometry from high to low",
+      "why": "Instructor identifies Fibonacci levels on chart"
+    },
+    {
+      "t": 651.4,
+      "label": "2618 Fibonacci level",
+      "why": "Instructor points to visible 2.618 Fibonacci extension"
+    },
+    {
+      "t": 659.2,
+      "label": "June Elcom target",
+      "why": "Instructor references a visible price level as potential target"
+    },
+    {
+      "t": 683.4,
+      "label": "Trend-based pip",
+      "why": "Instructor refers to visible trend line or price pattern"
+    },
+    {
+      "t": 701.1,
+      "label": "Fibonacci cluster",
+      "why": "Instructor points to visible Fibonacci cluster on chart"
+    },
+    {
+      "t": 710.7,
+      "label": "Break and retest of opening range",
+      "why": "Instructor refers to visible pattern on chart"
+    },
+    {
+      "t": 727.8,
+      "label": "Break even after rejection",
+      "why": "Instructor discusses break-even placement after visible rejection"
+    },
+    {
+      "t": 739.6,
+      "label": "SBS pattern confirmation",
+      "why": "Instructor identifies visible SBS pattern"
+    },
+    {
+      "t": 753.5,
+      "label": "Stop loss above SBS",
+      "why": "Instructor sets stop loss below visible SBS level"
+    },
+    {
+      "t": 772.9,
+      "label": "Volume profile liquidity pocket",
+      "why": "Instructor refers to visible volume profile and liquidity zone"
+    },
+    {
+      "t": 784.4,
+      "label": "Liquidity pocket for reversal",
+      "why": "Instructor identifies visible liquidity zone on chart"
+    },
+    {
+      "t": 805.9,
+      "label": "Spike into liquidity pocket",
+      "why": "Instructor discusses visible price action toward liquidity zone"
+    },
+    {
+      "t": 814.4,
+      "label": "Nice SBS pattern",
+      "why": "Instructor confirms visible SBS pattern"
+    },
+    {
+      "t": 819.9,
+      "label": "Stop loss placement",
+      "why": "Instructor sets stop below visible SBS level"
+    },
+    {
+      "t": 823.6,
+      "label": "No reason to go back up",
+      "why": "Instructor sets stop loss based on visible price structure"
+    },
+    {
+      "t": 828.4,
+      "label": "2618 as target",
+      "why": "Instructor references visible 2.618 Fibonacci level"
+    },
+    {
+      "t": 837.6,
+      "label": "Target at 423",
+      "why": "Instructor sets visible target level"
+    },
+    {
+      "t": 856.4,
+      "label": "Stop loss below highs",
+      "why": "Instructor sets stop loss based on visible price levels"
+    },
+    {
+      "t": 870.7,
+      "label": "Stop loss at 3500",
+      "why": "Instructor sets stop loss level based on visible price action"
+    },
+    {
+      "t": 883.6,
+      "label": "Trade complete",
+      "why": "Instructor concludes trade with visible profit/loss"
+    },
+    {
+      "t": 903.8,
+      "label": "Weekly P&L Summary",
+      "why": "Instructor discusses weekly profit and loss, indicating a chart or trading journal is visible showing the overall performance."
+    }
+  ]
+}

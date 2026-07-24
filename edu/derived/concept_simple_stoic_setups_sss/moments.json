@@ -1,0 +1,983 @@
+{
+  "source": "videos/Simple Stoic Setups SSS - Stoic Trader Concepts · Stoic Traders.mp4",
+  "model": "qwen3-vl-30b-a3b-instruct-mlx",
+  "windows": 5,
+  "count": 195,
+  "moments": [
+    {
+      "t": 112.1,
+      "label": "Breakout at Previous Daily High",
+      "why": "Price closes above previous daily high, indicating a breakout signal on the chart."
+    },
+    {
+      "t": 134.1,
+      "label": "High Time Frame Context",
+      "why": "Instructor emphasizes the importance of higher time frame context for breakout success, visible on chart."
+    },
+    {
+      "t": 150.1,
+      "label": "Monthly Reset and Close",
+      "why": "Explanation of monthly cycle start with new candle open, high, low, close; focus on closing price as key."
+    },
+    {
+      "t": 190.3,
+      "label": "Big Time Frames for Real Money",
+      "why": "Instructor highlights daily, weekly, and monthly closes as where real money is committed."
+    },
+    {
+      "t": 205.4,
+      "label": "First Half of Month: Range Expansion",
+      "why": "Instructor explains that first two weeks typically see range expansion and breakouts."
+    },
+    {
+      "t": 219.7,
+      "label": "Second Half of Month: Reversals",
+      "why": "Instructor notes that last two weeks often see reversals at extremes."
+    },
+    {
+      "t": 282.7,
+      "label": "Weekly Cycle: Opening Range",
+      "why": "Instructor describes first half of week (Mon-Tue-Wed) as setting opening range."
+    },
+    {
+      "t": 314.9,
+      "label": "Weekly Reversals: Wed-Fri",
+      "why": "Instructor states second half of week (Wed-Fri) is when reversals usually occur."
+    },
+    {
+      "t": 370.8,
+      "label": "Highest Daily Closing Price of Month",
+      "why": "Instructor identifies highest daily closing price as a key level for short setups."
+    },
+    {
+      "t": 388.5,
+      "label": "Lowest Daily Closing Price of Month",
+      "why": "Instructor identifies lowest daily closing price as a key level for long setups."
+    },
+    {
+      "t": 410.7,
+      "label": "Highest and Lowest Weekly Closing Prices",
+      "why": "Instructor applies same logic to weekly time frame for identifying key levels."
+    },
+    {
+      "t": 435.6,
+      "label": "Closes as Commitment",
+      "why": "Instructor emphasizes that daily closes represent real market commitment, not wicks or highs."
+    },
+    {
+      "t": 451.6,
+      "label": "Short Setup at Highest Monthly Close",
+      "why": "Rule: when market closes at highest monthly close, it's a short setup."
+    },
+    {
+      "t": 461.7,
+      "label": "Long Setup at Lowest Monthly Close",
+      "why": "Rule: when market closes at lowest monthly close, it's a long setup."
+    },
+    {
+      "t": 469.5,
+      "label": "Breakout Failure and Reversal",
+      "why": "Instructor explains that breakouts often fail at monthly extremes, leading to reversals."
+    },
+    {
+      "t": 521.6,
+      "label": "Daily Breakout Condition",
+      "why": "Instructor defines breakout as daily candle closing above previous daily high or below low."
+    },
+    {
+      "t": 545.1,
+      "label": "Multi-Time Frame Alignment",
+      "why": "Instructor discusses stacking weekly and monthly breakouts for stronger signals."
+    },
+    {
+      "t": 568.7,
+      "label": "Triple Alignment Signal",
+      "why": "Instructor identifies daily + weekly + monthly alignment as strongest setup for sizing up."
+    },
+    {
+      "t": 607.3,
+      "label": "Explosive Moves from Alignment",
+      "why": "Instructor states that aligned time frames lead to 10R-15R trades."
+    },
+    {
+      "t": 895.3,
+      "label": "Best Setup: Monday-Tuesday Push",
+      "why": "Instructor shows a specific setup where market pushes in one direction Monday-Tuesday."
+    },
+    {
+      "t": 903.8,
+      "label": "Daily chart showing monthly price action",
+      "why": "The instructor points to the daily chart representing a month of price action, highlighting key levels and structure."
+    },
+    {
+      "t": 941.5,
+      "label": "Setup at lowest closing price of the month",
+      "why": "The instructor identifies a specific setup point on the chart at the lowest closing price of the month."
+    },
+    {
+      "t": 956.4,
+      "label": "Breakout mode on daily chart",
+      "why": "The instructor describes the breakout mode, referencing price action and closing levels on the daily chart."
+    },
+    {
+      "t": 978.3,
+      "label": "Highest closing price of the week and month",
+      "why": "The instructor highlights the highest closing price of both the week and month, showing a key level on the chart."
+    },
+    {
+      "t": 984.9,
+      "label": "Triple breakout mode",
+      "why": "The instructor identifies the triple breakout mode at the highest closing price of the month, a key chart feature."
+    },
+    {
+      "t": 1003.2,
+      "label": "Consolidation through Asia and London sessions",
+      "why": "The instructor describes the market's consolidation phase across multiple time zones, visible on the chart."
+    },
+    {
+      "t": 1012.8,
+      "label": "Entry below moving averages",
+      "why": "The instructor discusses entering a trade below the 20 SMA, referencing its position on the chart."
+    },
+    {
+      "t": 1030.5,
+      "label": "Trailing stop at 20 SMA",
+      "why": "The instructor suggests trailing the stop near the 20 SMA, a visible line on the chart."
+    },
+    {
+      "t": 1042.8,
+      "label": "Best setup from system",
+      "why": "The instructor identifies the optimal trade setup, visible on the chart as a price action pattern."
+    },
+    {
+      "t": 1051.7,
+      "label": "Entry on sell stop of structure",
+      "why": "The instructor explains entering at the sell stop, referencing a specific price level on the chart."
+    },
+    {
+      "t": 1069.3,
+      "label": "Five-minute chart for consolidation",
+      "why": "The instructor switches to a five-minute chart, highlighting the consolidation pattern."
+    },
+    {
+      "t": 1086.9,
+      "label": "Consolidation leads to expansion",
+      "why": "The instructor explains the transition from consolidation to expansion, visible on the chart."
+    },
+    {
+      "t": 1103.5,
+      "label": "Previous daily high and close",
+      "why": "The instructor points to the previous daily high and close, key levels on the chart."
+    },
+    {
+      "t": 1109.9,
+      "label": "Price rejecting from previous daily close",
+      "why": "The instructor highlights price rejection at the previous daily close, a visible chart pattern."
+    },
+    {
+      "t": 1126.9,
+      "label": "Asymmetric risk to reward",
+      "why": "The instructor discusses the asymmetric risk-reward setup, visible in price action and levels."
+    },
+    {
+      "t": 1176.7,
+      "label": "Opportunity in liquidation event",
+      "why": "The instructor identifies the liquidation event as a key trade setup, visible on the chart."
+    },
+    {
+      "t": 1194.5,
+      "label": "Consolidation pattern",
+      "why": "The instructor highlights the consolidation phase, a visible chart structure."
+    },
+    {
+      "t": 1209.5,
+      "label": "Trapped longs and shorts",
+      "why": "The instructor describes trapped traders, visible in the chart's price action."
+    },
+    {
+      "t": 1230.8,
+      "label": "Wednesday close at highest/lowest of month",
+      "why": "The instructor asks about the Wednesday close, referencing a key level on the chart."
+    },
+    {
+      "t": 1245.7,
+      "label": "Watch list for Thursday",
+      "why": "The instructor explains the setup's direction, visible in the chart's structure."
+    },
+    {
+      "t": 1270.1,
+      "label": "Three consecutive higher closes",
+      "why": "The instructor describes three daily candle closes, visible on the chart."
+    },
+    {
+      "t": 1297.4,
+      "label": "Three higher closes",
+      "why": "The instructor highlights three consecutive higher daily closes, a visible pattern."
+    },
+    {
+      "t": 1305.5,
+      "label": "Highest closing price of the month",
+      "why": "The instructor identifies the highest close of the month, a key level on the chart."
+    },
+    {
+      "t": 1325.5,
+      "label": "First red day reversal",
+      "why": "The instructor points to the first red day, a visible candle on the chart."
+    },
+    {
+      "t": 1340.4,
+      "label": "Confirmation of buyer exhaustion",
+      "why": "The instructor identifies the first red day as confirmation, visible on the chart."
+    },
+    {
+      "t": 1355.9,
+      "label": "Entry after first red day",
+      "why": "The instructor explains entry on the second day after the first red day, visible in price action."
+    },
+    {
+      "t": 1368.9,
+      "label": "Consolidation on five-minute chart",
+      "why": "The instructor switches to a five-minute chart, highlighting consolidation."
+    },
+    {
+      "t": 1390.3,
+      "label": "Consolidation requirement",
+      "why": "The instructor emphasizes the need for consolidation, visible on the chart."
+    },
+    {
+      "t": 1408.1,
+      "label": "Monthly range on Nasdaq chart",
+      "why": "The instructor shows a monthly range, visible on the chart."
+    },
+    {
+      "t": 1425.4,
+      "label": "First daily close below",
+      "why": "The instructor points to the first daily close below, a key level on the chart."
+    },
+    {
+      "t": 1437.0,
+      "label": "Lowest close of the month and week",
+      "why": "The instructor identifies the lowest closing price, visible on the chart."
+    },
+    {
+      "t": 1455.4,
+      "label": "Breakout in London session",
+      "why": "The instructor highlights a breakout continuing into the London session, visible on the chart."
+    },
+    {
+      "t": 1462.4,
+      "label": "Three close reversal setup",
+      "why": "The instructor introduces the three close reversal, visible on the chart."
+    },
+    {
+      "t": 1477.3,
+      "label": "Previous daily close and low",
+      "why": "The instructor points to the previous daily close and low, key levels on the chart."
+    },
+    {
+      "t": 1482.1,
+      "label": "Stacked price levels",
+      "why": "The instructor notes stacked levels at the bottom, visible on the chart."
+    },
+    {
+      "t": 1487.4,
+      "label": "Consolidation at previous daily close",
+      "why": "The instructor highlights consolidation near the previous daily close, a visible pattern."
+    },
+    {
+      "t": 1509.3,
+      "label": "Best entry in consolidation",
+      "why": "The instructor identifies the optimal entry point within consolidation, visible on the chart."
+    },
+    {
+      "t": 1513.2,
+      "label": "Entry inside consolidation",
+      "why": "The instructor points to entry within the consolidation, a visible price action."
+    },
+    {
+      "t": 1528.1,
+      "label": "Stop loss below consolidation",
+      "why": "The instructor suggests a stop loss below the consolidation, visible on the chart."
+    },
+    {
+      "t": 1536.0,
+      "label": "Buy stop at structure",
+      "why": "The instructor explains entering with a buy stop, referencing the chart's structure."
+    },
+    {
+      "t": 1542.8,
+      "label": "Higher highs and higher lows",
+      "why": "The instructor points to the trend structure, visible on the chart."
+    },
+    {
+      "t": 1560.4,
+      "label": "Breakout continuation setup",
+      "why": "The instructor describes a breakout continuation pattern, visible on the chart."
+    },
+    {
+      "t": 1576.1,
+      "label": "Consolidation at breakout level",
+      "why": "The instructor highlights consolidation near the previous daily close, a visible pattern."
+    },
+    {
+      "t": 1604.6,
+      "label": "Counter trend move",
+      "why": "The instructor identifies a counter trend move, visible on the chart."
+    },
+    {
+      "t": 1625.8,
+      "label": "Consolidation at breakout level",
+      "why": "The instructor points to consolidation near the breakout level, a visible pattern."
+    },
+    {
+      "t": 1642.5,
+      "label": "Signal day for continuation",
+      "why": "The instructor identifies the signal day, visible on the chart."
+    },
+    {
+      "t": 1657.6,
+      "label": "Consolidation and continuation lower",
+      "why": "The instructor highlights consolidation leading to a downward move, visible on the chart."
+    },
+    {
+      "t": 1679.7,
+      "label": "Manipulation sweep",
+      "why": "The instructor points to a manipulation sweep, visible on the chart."
+    },
+    {
+      "t": 1701.8,
+      "label": "Consolidation at previous daily close and high",
+      "why": "The instructor highlights consolidation near key levels, visible on the chart."
+    },
+    {
+      "t": 1717.8,
+      "label": "First break of consolidation",
+      "why": "The instructor identifies the first breakout from consolidation, visible on the chart."
+    },
+    {
+      "t": 1726.1,
+      "label": "Stop loss placement",
+      "why": "The instructor suggests a stop loss below the consolidation, visible on the chart."
+    },
+    {
+      "t": 1734.1,
+      "label": "Beautiful 10R trade",
+      "why": "The instructor describes a high-probability trade, visible in the chart's price action."
+    },
+    {
+      "t": 1739.8,
+      "label": "Breakout continuation on crude oil",
+      "why": "The instructor shows a breakout continuation pattern, visible on the chart."
+    },
+    {
+      "t": 1749.3,
+      "label": "Range breakout",
+      "why": "The instructor points to a range breakout, visible on the chart."
+    },
+    {
+      "t": 1756.1,
+      "label": "Candle to trade",
+      "why": "The instructor identifies a specific candle for trading, visible on the chart."
+    },
+    {
+      "t": 1760.9,
+      "label": "Consolidation at breakout level",
+      "why": "The instructor highlights consolidation near the breakout level, a visible pattern."
+    },
+    {
+      "t": 1769.0,
+      "label": "Previous daily close consolidation",
+      "why": "The instructor points to consolidation near the previous daily close, visible on the chart."
+    },
+    {
+      "t": 1784.6,
+      "label": "Moving averages job zone",
+      "why": "The instructor identifies the area where price consolidates near moving averages, visible on the chart."
+    },
+    {
+      "t": 1810.1,
+      "label": "Price disrespecting moving averages",
+      "why": "The chart shows price moving sideways while disrespecting the moving averages, indicating a lack of clear direction."
+    },
+    {
+      "t": 1822.2,
+      "label": "SBS model consolidation",
+      "why": "A beautiful SBS (Swing Breakout Sequence) model is visible, showing consolidation at the breakout level."
+    },
+    {
+      "t": 1828.5,
+      "label": "Breakout and entry point",
+      "why": "The chart shows a breakout with an entry signal, stop loss placement, and potential for price to run."
+    },
+    {
+      "t": 1853.6,
+      "label": "Higher consolidation example",
+      "why": "The chart shows a higher-level consolidation with previous daily close price dipping into the breakout level."
+    },
+    {
+      "t": 1900.7,
+      "label": "Signal days concept",
+      "why": "The instructor introduces signal days as patterns that reveal market dynamics, with the chart illustrating a sequence of daily closes."
+    },
+    {
+      "t": 1909.0,
+      "label": "Three higher/lower closes",
+      "why": "The chart shows a sequence of three consecutive daily closes in the same direction, forming a signal pattern."
+    },
+    {
+      "t": 1924.1,
+      "label": "Three higher closes explanation",
+      "why": "The instructor explains the psychology behind three consecutive higher closes, with the chart showing a trend."
+    },
+    {
+      "t": 1966.5,
+      "label": "Institutional distribution",
+      "why": "The chart illustrates how institutions distribute positions into retail demand at the peak of three higher closes."
+    },
+    {
+      "t": 2036.6,
+      "label": "Consolidation into New York open",
+      "why": "The chart shows a consolidation pattern from Asia through London into the New York session, indicating a high-probability setup."
+    },
+    {
+      "t": 2069.4,
+      "label": "Signal candle and consolidation",
+      "why": "The chart shows a signal day (third daily close) followed by consolidation, which is necessary for trade entry."
+    },
+    {
+      "t": 2109.2,
+      "label": "First red day signal",
+      "why": "The chart shows the first daily close lower after an uptrend, marking a potential reversal signal."
+    },
+    {
+      "t": 2170.2,
+      "label": "First green day signal",
+      "why": "The chart shows the first daily close higher after a downtrend, signaling potential reversal."
+    },
+    {
+      "t": 2307.9,
+      "label": "Inside day pattern",
+      "why": "The chart shows an inside day where today's range is entirely within yesterday's range, indicating consolidation."
+    },
+    {
+      "t": 2340.7,
+      "label": "Inside day at exhaustion point",
+      "why": "The chart shows an inside day occurring after a signal day, indicating final consolidation before expansion."
+    },
+    {
+      "t": 2374.7,
+      "label": "Five-minute chart chop zone",
+      "why": "The five-minute chart shows tangled and converging moving averages, indicating a chop zone with energy building."
+    },
+    {
+      "t": 2410.4,
+      "label": "First red day and inside day example",
+      "why": "The chart shows a first red day followed by an inside day, leading to a downward expansion."
+    },
+    {
+      "t": 2561.0,
+      "label": "Signal day sequence",
+      "why": "The chart illustrates the full signal day sequence: three higher closes, first red day, inside day, and breakout."
+    },
+    {
+      "t": 2578.3,
+      "label": "Inside day consolidation",
+      "why": "The chart shows an inside day with moving averages flat and price disrespecting them, indicating consolidation."
+    },
+    {
+      "t": 2605.5,
+      "label": "Breakout at extreme levels",
+      "why": "The chart shows a breakout from the highest or lowest close of the month, leading to parabolic movement."
+    },
+    {
+      "t": 2655.7,
+      "label": "Five-minute chart entry setup",
+      "why": "The five-minute chart shows two moving averages (20 and 200 SMA) flat and tangled, indicating a chop zone ready for breakout."
+    },
+    {
+      "t": 2672.5,
+      "label": "Chop zone on five-minute chart",
+      "why": "The chart shows price in a tight range with moving averages flat, signaling consolidation and energy buildup."
+    },
+    {
+      "t": 2711.2,
+      "label": "No trade without job zone",
+      "why": "Instructor emphasizes the rule of not trading without a confirmed job zone on the chart."
+    },
+    {
+      "t": 2720.7,
+      "label": "Moving averages only useful with daily setup",
+      "why": "Instructor warns against using moving averages on random charts, highlighting their relevance only with a daily setup."
+    },
+    {
+      "t": 2736.0,
+      "label": "Daily chart gives signal, 5-minute gives entry",
+      "why": "Instructor explains the hierarchy of timeframes: daily for signal, 5-minute for entry."
+    },
+    {
+      "t": 2745.0,
+      "label": "Trading without setup leads to being chopped up",
+      "why": "Instructor warns that trading a chart without a daily setup results in noise and losses."
+    },
+    {
+      "t": 2753.2,
+      "label": "Four-hour rotations in market cycles",
+      "why": "Instructor introduces the concept of four-hour rotational patterns in markets."
+    },
+    {
+      "t": 2768.4,
+      "label": "Ma chop zone break aligns with time cycles",
+      "why": "Instructor links the move of moving average chop zones to specific market timing windows."
+    },
+    {
+      "t": 2786.5,
+      "label": "Three key time windows for trading",
+      "why": "Instructor lists the 6 a.m., 10 a.m., and 2 p.m. windows as critical for market activity."
+    },
+    {
+      "t": 2804.5,
+      "label": "Time windows for indexes and currencies",
+      "why": "Instructor specifies different time zones for index vs. currency markets."
+    },
+    {
+      "t": 2812.0,
+      "label": "Most familiar with 10 a.m. window",
+      "why": "Instructor shares personal experience focusing on the 10 a.m. time window for trading."
+    },
+    {
+      "t": 2841.1,
+      "label": "Backtesting and data collection",
+      "why": "Instructor encourages viewers to test the timing setups with their own data."
+    },
+    {
+      "t": 2850.2,
+      "label": "6 a.m. London crossover as max risk reference",
+      "why": "Instructor identifies 6 a.m. candle extreme as the day’s maximum risk level."
+    },
+    {
+      "t": 2870.8,
+      "label": "10 a.m. as the money window",
+      "why": "Instructor highlights 10 a.m. as the most important time for trade execution."
+    },
+    {
+      "t": 2893.3,
+      "label": "10 a.m. as breakout window",
+      "why": "Instructor explains that 10 a.m. is when chop zones typically break out after morning consolidation."
+    },
+    {
+      "t": 2903.1,
+      "label": "2 p.m. as deadline window",
+      "why": "Instructor identifies 2 p.m. as a critical deadline for trade success."
+    },
+    {
+      "t": 2910.8,
+      "label": "Trade not working by 2 p.m. should be abandoned",
+      "why": "Instructor advises against forcing trades after the 2 p.m. window."
+    },
+    {
+      "t": 2917.4,
+      "label": "Most days only need to watch money window",
+      "why": "Instructor suggests that traders can focus on the 10 a.m. window for most days."
+    },
+    {
+      "t": 2922.6,
+      "label": "Set watch list at night",
+      "why": "Instructor recommends preparing a watch list before market opens."
+    },
+    {
+      "t": 2932.0,
+      "label": "Schedule based on personal trading style",
+      "why": "Instructor encourages adapting the system to individual schedules and personalities."
+    },
+    {
+      "t": 2945.2,
+      "label": "Best setup: consolidation through Asia and London",
+      "why": "Instructor describes the ideal market structure with consolidation before New York opens."
+    },
+    {
+      "t": 2962.8,
+      "label": "Market consolidates through Asia and London",
+      "why": "Instructor explains the typical market behavior during Asian and European sessions."
+    },
+    {
+      "t": 2972.6,
+      "label": "Lungs at highest close of the month",
+      "why": "Instructor describes market psychology during consolidation periods."
+    },
+    {
+      "t": 2989.3,
+      "label": "Best setup: Thursday after Wednesday signal",
+      "why": "Instructor identifies the optimal trade setup with a three-session consolidation."
+    },
+    {
+      "t": 2998.4,
+      "label": "Two to five times a month best setups",
+      "why": "Instructor quantifies the frequency of high-quality trade opportunities."
+    },
+    {
+      "t": 3008.0,
+      "label": "Check daily charts every evening",
+      "why": "Instructor advises reviewing daily charts after market close to identify potential setups."
+    },
+    {
+      "t": 3016.0,
+      "label": "Check for daily high/low close",
+      "why": "Instructor explains how to identify extreme closes on the daily chart."
+    },
+    {
+      "t": 3024.2,
+      "label": "Check for weekly or monthly range breaks",
+      "why": "Instructor adds criteria to identify breakout potential on daily charts."
+    },
+    {
+      "t": 3042.8,
+      "label": "Check economic calendar for major news",
+      "why": "Instructor emphasizes checking for high-impact events like NFP, CPI, FOMC."
+    },
+    {
+      "t": 3050.8,
+      "label": "Do not enter before major news",
+      "why": "Instructor warns against entering trades before economic releases."
+    },
+    {
+      "t": 3062.2,
+      "label": "Pull up five-minute chart with 20 and 200 SMA",
+      "why": "Instructor instructs viewers to load the five-minute chart with moving averages."
+    },
+    {
+      "t": 3070.0,
+      "label": "Check for job zone building",
+      "why": "Instructor checks if price is consolidating in a tight range on the five-minute chart."
+    },
+    {
+      "t": 3078.1,
+      "label": "No chop zone means no trade",
+      "why": "Instructor emphasizes that without a job zone, there is no valid setup."
+    },
+    {
+      "t": 3087.7,
+      "label": "Sitting on hands is the hardest part",
+      "why": "Instructor highlights patience as a critical skill in trading."
+    },
+    {
+      "t": 3095.5,
+      "label": "Entry checklist: five conditions",
+      "why": "Instructor lists the five criteria required before entering a trade."
+    },
+    {
+      "t": 3102.5,
+      "label": "Breakout mode at daily/weekly/monthly extreme",
+      "why": "Instructor specifies that the setup must be at an extreme level on higher timeframes."
+    },
+    {
+      "t": 3110.6,
+      "label": "Direction must be clear",
+      "why": "Instructor emphasizes that the market direction should not be ambiguous."
+    },
+    {
+      "t": 3118.6,
+      "label": "Walk away if unsure of direction",
+      "why": "Instructor advises against trading when the market could go either way."
+    },
+    {
+      "t": 3127.8,
+      "label": "Scale in as job zone tightens",
+      "why": "Instructor explains the entry strategy of scaling into a trade as consolidation narrows."
+    },
+    {
+      "t": 3136.4,
+      "label": "Stop loss at opposing side of chop zone",
+      "why": "Instructor sets the stop-loss level outside the consolidation range."
+    },
+    {
+      "t": 3144.7,
+      "label": "Buy stop or sell stop at consolidation range",
+      "why": "Instructor describes using orders to enter on breakout from the chop zone."
+    },
+    {
+      "t": 3153.5,
+      "label": "Enter on breakout",
+      "why": "Instructor explains entering the trade when price breaks out of consolidation."
+    },
+    {
+      "t": 3161.1,
+      "label": "Move stop to break even after clearing daily level",
+      "why": "Instructor advises moving the stop-loss to breakeven once price moves past key levels."
+    },
+    {
+      "t": 3168.5,
+      "label": "Hold until close or take profits in last hour",
+      "why": "Instructor recommends holding through the day and taking profit near market close."
+    },
+    {
+      "t": 3177.5,
+      "label": "Check charts and trail structure",
+      "why": "Instructor advises monitoring the trade and trailing stops based on price structure."
+    },
+    {
+      "t": 3184.3,
+      "label": "Take profits after preparation and patience",
+      "why": "Instructor emphasizes that the effort in waiting justifies taking profits."
+    },
+    {
+      "t": 3191.0,
+      "label": "Ignore one-minute and five-minute sweeps",
+      "why": "Instructor stresses focusing only on the daily setup, not short-term noise."
+    },
+    {
+      "t": 3205.9,
+      "label": "Tight consolidation after signal day",
+      "why": "Instructor highlights the importance of tight consolidation following a signal."
+    },
+    {
+      "t": 3213.0,
+      "label": "Chop zone is narrow range",
+      "why": "Instructor describes the tight nature of the consolidation zone."
+    },
+    {
+      "t": 3223.1,
+      "label": "Risk to reward is ridiculous if stop too close",
+      "why": "Instructor warns against setting stops too tight, reducing risk-reward ratio."
+    },
+    {
+      "t": 3231.9,
+      "label": "Minimum risk-reward ratio of 5:1",
+      "why": "Instructor states that trades should have at least a 5-to-1 reward potential."
+    },
+    {
+      "t": 3240.7,
+      "label": "Best setups produce 15r or more",
+      "why": "Instructor shares that top trades can yield very high returns."
+    },
+    {
+      "t": 3249.0,
+      "label": "Backtesting reveals high-reward setups",
+      "why": "Instructor encourages viewers to verify the effectiveness of this strategy through backtesting."
+    },
+    {
+      "t": 3262.7,
+      "label": "Want absolute bangers, not every move",
+      "why": "Instructor expresses preference for high-impact trades over frequent small ones."
+    },
+    {
+      "t": 3276.4,
+      "label": "Don't waste time catching every move",
+      "why": "Instructor advises against chasing small trades on short timeframes."
+    },
+    {
+      "t": 3289.5,
+      "label": "Focus on developing your own system",
+      "why": "Instructor encourages viewers to build their own trading approach."
+    },
+    {
+      "t": 3295.9,
+      "label": "Avoid copy trading",
+      "why": "Instructor advises against copying others’ strategies."
+    },
+    {
+      "t": 3303.9,
+      "label": "Develop your own trading system",
+      "why": "Instructor emphasizes personal development over imitation."
+    },
+    {
+      "t": 3319.9,
+      "label": "Sharing tools for scalping and swing trading",
+      "why": "Instructor offers resources for different trading styles."
+    },
+    {
+      "t": 3327.9,
+      "label": "Investing: buy and hold or dollar cost average",
+      "why": "Instructor distinguishes investing from active trading."
+    },
+    {
+      "t": 3334.5,
+      "label": "Documenting journey from swing to scalping and back",
+      "why": "Instructor shares personal evolution in trading style."
+    },
+    {
+      "t": 3341.8,
+      "label": "Sharing aha moments and lessons learned",
+      "why": "Instructor aims to help others avoid his past mistakes."
+    },
+    {
+      "t": 3354.3,
+      "label": "Moving on to basket of instruments",
+      "why": "Instructor transitions to discussing the full instrument list for scanning."
+    },
+    {
+      "t": 3362.0,
+      "label": "Scan all instruments every night",
+      "why": "Instructor advises scanning the entire basket nightly to identify setups."
+    },
+    {
+      "t": 3371.3,
+      "label": "Trade only setting up instruments",
+      "why": "Instructor emphasizes not forcing trades when none are available."
+    },
+    {
+      "t": 3374.1,
+      "label": "Some weeks nothing sets up",
+      "why": "Instructor acknowledges that not every week will have trade opportunities."
+    },
+    {
+      "t": 3378.7,
+      "label": "Multiple instruments may set up at once",
+      "why": "Instructor notes that several assets can align in a given week."
+    },
+    {
+      "t": 3384.4,
+      "label": "Never force a trade",
+      "why": "Instructor reinforces the importance of waiting for valid setups."
+    },
+    {
+      "t": 3387.8,
+      "label": "If gold is dead, check oil",
+      "why": "Instructor suggests switching focus between instruments when one isn't active."
+    },
+    {
+      "t": 3390.6,
+      "label": "Check indexes if currency is flat",
+      "why": "Instructor advises shifting focus to other markets when one is inactive."
+    },
+    {
+      "t": 3393.1,
+      "label": "Don't trade currencies",
+      "why": "Instructor shares personal preference for not trading currencies."
+    },
+    {
+      "t": 3404.1,
+      "label": "Best trades on indexes: NASDAQ and Dow",
+      "why": "Instructor identifies the most volatile index markets."
+    },
+    {
+      "t": 3413.5,
+      "label": "S&P 500 less volatile",
+      "why": "Instructor notes that S&P is less volatile than NASDAQ and Dow."
+    },
+    {
+      "t": 3422.0,
+      "label": "Good for small accounts",
+      "why": "Instructor suggests S&P as suitable for smaller traders."
+    },
+    {
+      "t": 3430.8,
+      "label": "Best trades on metals: gold",
+      "why": "Instructor identifies gold as the top metal to trade."
+    },
+    {
+      "t": 3438.3,
+      "label": "Copper usually not worth trading",
+      "why": "Instructor advises against trading copper."
+    },
+    {
+      "t": 3446.5,
+      "label": "Energy: crude oil only",
+      "why": "Instructor identifies crude oil as the most important energy market."
+    },
+    {
+      "t": 3455.5,
+      "label": "Crude oil moves everything",
+      "why": "Instructor emphasizes crude oil's market-wide impact."
+    },
+    {
+      "t": 3461.4,
+      "label": "GBP crosses are heavy hitters",
+      "why": "Instructor identifies GBP pairs as having high move potential."
+    },
+    {
+      "t": 3471.8,
+      "label": "Massive moves on GBP crosses",
+      "why": "Instructor highlights the potential for large price movements in these pairs."
+    },
+    {
+      "t": 3479.7,
+      "label": "Worth keeping an eye on currencies",
+      "why": "Instructor suggests monitoring currency markets despite low personal use."
+    },
+    {
+      "t": 3483.7,
+      "label": "Usually don't trade currencies",
+      "why": "Instructor reiterates personal preference for other markets."
+    },
+    {
+      "t": 3490.0,
+      "label": "Euro New Zealand dollar for Asian session",
+      "why": "Instructor recommends backtesting this pair during the Asian session."
+    },
+    {
+      "t": 3495.3,
+      "label": "Backtest Euro NZD for Asian session",
+      "why": "Instructor suggests testing this pair during early market hours."
+    },
+    {
+      "t": 3503.5,
+      "label": "Crypto: only trade Ethereum and Bitcoin",
+      "why": "Instructor limits crypto trading to these two assets."
+    },
+    {
+      "t": 3510.6,
+      "label": "Trading every day will destroy you",
+      "why": "Instructor warns against forcing trades daily."
+    },
+    {
+      "t": 3518.0,
+      "label": "Some weeks nothing happens",
+      "why": "Instructor reinforces that inactivity is normal and expected."
+    },
+    {
+      "t": 3525.9,
+      "label": "Patience is the biggest skill",
+      "why": "Instructor emphasizes patience as a core trading competency."
+    },
+    {
+      "t": 3533.8,
+      "label": "20 and 200 SMA only for visual consolidation",
+      "why": "Instructor clarifies the purpose of moving averages on five-minute charts."
+    },
+    {
+      "t": 3541.4,
+      "label": "Moving averages show consolidation",
+      "why": "Instructor explains that moving averages help visualize price compression."
+    },
+    {
+      "t": 3548.8,
+      "label": "Can add multiple moving averages",
+      "why": "Instructor allows flexibility in choosing which MAs to use."
+    },
+    {
+      "t": 3555.6,
+      "label": "Moving averages are just average price",
+      "why": "Instructor reminds viewers that MAs are simple statistical tools."
+    },
+    {
+      "t": 3569.4,
+      "label": "Do not enter before news",
+      "why": "Instructor warns against violating the rule of waiting for economic releases."
+    },
+    {
+      "t": 3577.2,
+      "label": "Entering before NFP is your fault",
+      "why": "Instructor holds traders accountable for following their own rules."
+    },
+    {
+      "t": 3584.9,
+      "label": "Do not chase breakout after move",
+      "why": "Instructor advises against entering when the market has already moved significantly."
+    },
+    {
+      "t": 3592.8,
+      "label": "Let it go if already moved",
+      "why": "Instructor recommends abandoning trades that have already broken out."
+    },
+    {
+      "t": 3602.1,
+      "label": "Best positioning: inside consolidation",
+      "why": "Instructor identifies the optimal entry point during tight price action."
+    },
+    {
+      "t": 3610.0,
+      "label": "Least opportunity: catching continuation",
+      "why": "Instructor warns against trying to catch moves after the breakout."
+    }
+  ]
+}

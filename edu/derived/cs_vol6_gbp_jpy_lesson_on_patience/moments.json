@@ -1,0 +1,248 @@
+{
+  "source": "resources/case_studies/vol6/videos/GBP JPY Lesson on Patience - Stoic Trader Concepts · Stoic Traders.mp4",
+  "model": "qwen3-vl-30b-a3b-instruct-mlx",
+  "windows": 2,
+  "count": 48,
+  "moments": [
+    {
+      "t": 102.3,
+      "label": "Break and retest pattern",
+      "why": "Instructor points to a break and retest setup on the chart, indicating price action structure."
+    },
+    {
+      "t": 137.9,
+      "label": "Consolidation leads to expansion",
+      "why": "Instructor highlights a consolidation phase followed by an expansion move on the daily chart."
+    },
+    {
+      "t": 144.2,
+      "label": "Break and retest example",
+      "why": "Instructor identifies a break and retest pattern on the chart."
+    },
+    {
+      "t": 148.3,
+      "label": "Swing failure pattern",
+      "why": "Instructor points to a swing failure (sweep) pattern on the chart."
+    },
+    {
+      "t": 256.7,
+      "label": "First red day after highest close",
+      "why": "Instructor shows the first red day following the highest close of the month on the chart."
+    },
+    {
+      "t": 278.4,
+      "label": "Short bias from highest close",
+      "why": "Instructor identifies the short bias based on price rejecting the highest close of the month."
+    },
+    {
+      "t": 294.2,
+      "label": "Price sweeps previous daily low",
+      "why": "Instructor points to price sweeping the previous daily low, a key action in the trade setup."
+    },
+    {
+      "t": 315.7,
+      "label": "20 and 200 SMA alignment",
+      "why": "Instructor highlights the confluence of price below both 20 and 200 SMA, a key entry condition."
+    },
+    {
+      "t": 324.6,
+      "label": "Stop loss placement",
+      "why": "Instructor indicates where the stop loss should be placed above the swing high."
+    },
+    {
+      "t": 349.6,
+      "label": "Fake out on five-minute chart",
+      "why": "Instructor refers to a potential fake-out on the 5-minute timeframe, indicating price behavior."
+    },
+    {
+      "t": 362.3,
+      "label": "Price sweeps London session open",
+      "why": "Instructor points to price sweeping the London session open, a key structural level."
+    },
+    {
+      "t": 485.4,
+      "label": "First red day signal",
+      "why": "Instructor identifies the first red day signal on the chart, showing a key trade setup."
+    },
+    {
+      "t": 508.4,
+      "label": "Price moves into February HCOM",
+      "why": "Instructor shows price moving down to the February high close of month (HCOM) level."
+    },
+    {
+      "t": 517.1,
+      "label": "Rejection from HCOM",
+      "why": "Instructor highlights price rejection at the February HCOM, a key reversal point."
+    },
+    {
+      "t": 539.5,
+      "label": "Targets lining up at HCOM",
+      "why": "Instructor points to multiple targets aligning with the February HCOM level."
+    },
+    {
+      "t": 549.1,
+      "label": "Entry below 200 SMA",
+      "why": "Instructor identifies entry point below the 200 SMA, a key rule-based trigger."
+    },
+    {
+      "t": 556.3,
+      "label": "Stop loss above swing point",
+      "why": "Instructor indicates stop loss placement above the swing high."
+    },
+    {
+      "t": 617.3,
+      "label": "Price bounces at February HCOM",
+      "why": "Instructor shows price bouncing off the February HCOM, a reversal point."
+    },
+    {
+      "t": 625.6,
+      "label": "3 a.m. breakout",
+      "why": "Instructor identifies the 3 a.m. price breakout as a key signal."
+    },
+    {
+      "t": 630.6,
+      "label": "Final target at 423",
+      "why": "Instructor points to the final price target of 423 on the chart."
+    },
+    {
+      "t": 670.0,
+      "label": "First green day signal",
+      "why": "Instructor identifies the first green day as a key reversal signal."
+    },
+    {
+      "t": 679.2,
+      "label": "Support at February HCOM",
+      "why": "Instructor highlights the February HCOM acting as support for a reversal."
+    },
+    {
+      "t": 696.2,
+      "label": "Bias above PDC and 200 SMA",
+      "why": "Instructor identifies the bias as staying above previous daily close and 200 SMA."
+    },
+    {
+      "t": 702.6,
+      "label": "Entry after 20 SMA close",
+      "why": "Instructor points to entry triggered by a close above the 20 SMA."
+    },
+    {
+      "t": 709.9,
+      "label": "Stop loss below low",
+      "why": "Instructor indicates stop loss placement below the recent low."
+    },
+    {
+      "t": 753.4,
+      "label": "First green day signal",
+      "why": "Instructor identifies the first green day as a key trade setup."
+    },
+    {
+      "t": 802.5,
+      "label": "Bet-based trading mindset",
+      "why": "Instructor discusses the concept of taking bets, which is a mental model supported by chart behavior."
+    },
+    {
+      "t": 870.4,
+      "label": "Break and retest or swing failure",
+      "why": "Instructor summarizes the two core patterns, which are visually represented on the chart."
+    },
+    {
+      "t": 945.8,
+      "label": "Range low on chart",
+      "why": "Instructor points out a range low on the chart, indicating a key price level."
+    },
+    {
+      "t": 958.0,
+      "label": "Swing failure pattern target",
+      "why": "Instructor discusses targeting March HCOM from LCOM, referencing a specific price target on the chart."
+    },
+    {
+      "t": 963.6,
+      "label": "First green day",
+      "why": "Instructor highlights the first green day on the chart, marking a key price movement."
+    },
+    {
+      "t": 971.2,
+      "label": "Sweep of SBS",
+      "why": "Instructor points to the sweep of the SBS (Sweep Break Structure) on the chart."
+    },
+    {
+      "t": 974.7,
+      "label": "3 a.m. price action",
+      "why": "Instructor references 3 a.m. time and associated price movement on the chart."
+    },
+    {
+      "t": 980.5,
+      "label": "2200 SMA level",
+      "why": "Instructor indicates the 2200 SMA as a key price level for entry."
+    },
+    {
+      "t": 987.2,
+      "label": "London traders trade setup",
+      "why": "Instructor highlights a favorable trade for London traders, referencing price action on the chart."
+    },
+    {
+      "t": 1001.3,
+      "label": "Previous daily close to high trade",
+      "why": "Instructor points out a trade from previous daily close to high, showing price movement."
+    },
+    {
+      "t": 1012.7,
+      "label": "Support break and retest",
+      "why": "Instructor marks a support break and retest on the chart, indicating key structure."
+    },
+    {
+      "t": 1022.8,
+      "label": "SBS and SFP on five-minute chart",
+      "why": "Instructor refers to the SBS and SFP (Swing Failure Pattern) on a five-minute chart, showing structure."
+    },
+    {
+      "t": 1037.7,
+      "label": "Break and retest of SFP",
+      "why": "Instructor explains a break and retest based on the SFP, referencing chart structure."
+    },
+    {
+      "t": 1044.3,
+      "label": "Stop loss placement",
+      "why": "Instructor discusses stop loss below the slow, indicating a key risk level on chart."
+    },
+    {
+      "t": 1052.3,
+      "label": "Successful trade with stop loss",
+      "why": "Instructor describes a successful trade where the stop was hit but price reversed, showing chart outcome."
+    },
+    {
+      "t": 1095.9,
+      "label": "Trade on YM",
+      "why": "Instructor shows a trade taken on the YM (S&P 500 futures) chart."
+    },
+    {
+      "t": 1104.0,
+      "label": "Monday box as opening range",
+      "why": "Instructor marks the Monday box as a key weekly structure on the chart."
+    },
+    {
+      "t": 1123.5,
+      "label": "Sweeping the Monday box",
+      "why": "Instructor shows price sweeping the Monday box and trading back, indicating structure."
+    },
+    {
+      "t": 1136.7,
+      "label": "Short trade after 9:30",
+      "why": "Instructor describes taking a short trade after the 9:30 candle drop, referencing chart entry."
+    },
+    {
+      "t": 1147.0,
+      "label": "Stop loss placement for YM trade",
+      "why": "Instructor shows stop loss level placed below the price action on the chart."
+    },
+    {
+      "t": 1178.3,
+      "label": "Price below PDC and 2200 SMA",
+      "why": "Instructor points to price going below PDC and 2200 SMA, indicating trade confirmation."
+    },
+    {
+      "t": 1190.9,
+      "label": "Closing the trade at close",
+      "why": "Instructor shows closing the trade at the day's close, indicating exit point on chart."
+    }
+  ]
+}

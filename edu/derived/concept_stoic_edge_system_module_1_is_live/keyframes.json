@@ -1,0 +1,561 @@
+{
+  "source": "videos/Stoic Edge System Module 1 is Live · Stoic Traders.mp4",
+  "count": 55,
+  "by_source": {
+    "llm": 27,
+    "drift": 17,
+    "gap": 11
+  },
+  "keyframes": [
+    {
+      "index": 0,
+      "t": 0,
+      "hms": "00:00:00",
+      "file": "keyframes/0000_000000.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Before we open the chart, I want to explain how this course relates to the material that"
+    },
+    {
+      "index": 1,
+      "t": 6,
+      "hms": "00:00:06",
+      "file": "keyframes/0001_000006.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Before we open the chart, I want to explain how this course relates to the material that"
+    },
+    {
+      "index": 2,
+      "t": 12,
+      "hms": "00:00:12",
+      "file": "keyframes/0002_000012.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Before we open the chart, I want to explain how this course relates to the material that"
+    },
+    {
+      "index": 3,
+      "t": 18,
+      "hms": "00:00:18",
+      "file": "keyframes/0003_000018.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Before we open the chart, I want to explain how this course relates to the material that came before it. Over the years I have recorded patterns, market observations, lessons and changes in my own thinking as my understanding changed the lessons changed too that older material now lives in the legacy archive most of the ideas are still going to be relevant others were combined or removed because they added decisions without improving the read the legacy archive contains my full research treated as history and context you are not expected to collect the old concepts and combine them into another system the stoic edge system course is the current operating version it is my latest synthesis of that work and the framework i now"
+    },
+    {
+      "index": 4,
+      "t": 63,
+      "hms": "00:01:03",
+      "file": "keyframes/0004_000103.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "collect the old concepts and combine them into another system the stoic edge system course is the current operating version it is my latest synthesis of that work and the framework i now use to organize my own technical decisions if an older lesson conflicts with the rule taught here follow this course and the current rulebook my contribution here is the way i have organized familiar market behavior into one repeatable decision sequence trading research is part of"
+    },
+    {
+      "index": 5,
+      "t": 86,
+      "hms": "00:01:26",
+      "file": "keyframes/0005_000126.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "familiar market behavior into one repeatable decision sequence trading research is part of my work i still study the market i still review charts question my understanding record mistakes and remove ideas that do not improve the decision a trader's education does not end because a course was recorded chart patterns are one part of the work money management risk and honest review matter just as much this course keeps those decisions separate from the technical signal so the system stays clear my research will continue in the background but this course gives you a stable operating version the core technical rules are locked but i may sharpen an explanation replace a confusing example or expose a place where two serious traders see the chart"
+    },
+    {
+      "index": 6,
+      "t": 131,
+      "hms": "00:02:11",
+      "file": "keyframes/0006_000211.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "gives you a stable operating version the core technical rules are locked but i may sharpen an explanation replace a confusing example or expose a place where two serious traders see the chart differently so this first beta version of the course will be a real-time test of the teachings but the main rules are going to remain the same during this private beta we use fresh charts to test recognition and judgment across the same rules we compare what we marked explain why we marked it and identify where the teaching is still unclear that lets us test the course without adding a new setup every week. The more I studied, the more important it became to reduce the number"
+    },
+    {
+      "index": 7,
+      "t": 165,
+      "hms": "00:02:45",
+      "file": "keyframes/0007_000245.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "marked it and identify where the teaching is still unclear that lets us test the course without adding a new setup every week. The more I studied, the more important it became to reduce the number of decisions on the chart. A concept can be useful and still be unnecessary at the moment of entry or exit. I kept reducing the process until the technical decision could be expressed with just one selected chart, simple moving averages, and one repeated sequence in each direction. The rules fit on one slide, but applying them well still takes deliberate practice. Before I give you the exact sequence, I want you to see why we use simple moving averages, how the same visual language travels across chart timeframes, and where the pattern sits"
+    },
+    {
+      "index": 8,
+      "t": 210,
+      "hms": "00:03:30",
+      "file": "keyframes/0008_000330.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "how the same visual language travels across chart timeframes, and where the pattern sits inside the broad price cycle. That gives us one decision language we can recognize, execute, and review repeatedly. So why build the framework around moving averages? After working"
+    },
+    {
+      "index": 9,
+      "t": 221,
+      "hms": "00:03:41",
+      "file": "keyframes/0009_000341.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "inside the broad price cycle. That gives us one decision language we can recognize, execute, and review repeatedly. So why build the framework around moving averages? After working with many indicators and price patterns, I found that simple moving averages like 10, 20, 50,"
+    },
+    {
+      "index": 10,
+      "t": 232,
+      "hms": "00:03:52",
+      "file": "keyframes/0010_000352.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "with many indicators and price patterns, I found that simple moving averages like 10, 20, 50, and 200 simple moving averages give me enough structure without hiding price. They are calculated from price, they are widely available on common charting platforms and they recalculate for the chart time frame you select. Together they give me a simple visual reference for recent direction and momentum. They also make three conditions easier to see. Price can move through the recent trend structure, price can return towards that structure, price can become visibly extended from it. The moving averages do not predict the next candle. For me, their job is very simple. Organize"
+    },
+    {
+      "index": 11,
+      "t": 277,
+      "hms": "00:04:37",
+      "file": "keyframes/0011_000437.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "it. The moving averages do not predict the next candle. For me, their job is very simple. Organize what price is already doing. They keep my attention on the relationship between price, the recent trend, and the consolidation that is forming. The moving averages provide the visual"
+    },
+    {
+      "index": 12,
+      "t": 289,
+      "hms": "00:04:49",
+      "file": "keyframes/0012_000449.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "the recent trend, and the consolidation that is forming. The moving averages provide the visual trend area but the actual entry will come from a break in price structure which we will define after the cycle overview in my own process extra indicators added more decisions without improving the core read that is why the simple moving averages became the common visual language for this entire system the same framework can be practiced across different trading time frames"
+    },
+    {
+      "index": 13,
+      "t": 314,
+      "hms": "00:05:14",
+      "file": "keyframes/0013_000514.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "the core read that is why the simple moving averages became the common visual language for this entire system the same framework can be practiced across different trading time frames a short-term trader can read it on the intraday chart a swing trader can use a daily chart position trader can use a weekly chart an investor can use the structure as a technical timing and management lens alongside fundamental research the chart interval and the speed of the sequence changes but the operating sequence remains consistent choose the chart that matches the decision you are trying to make. Once the sequence begins, keep the chart, time frame, session and moving average settings fixed until the complete opposite sequence provides the final"
+    },
+    {
+      "index": 14,
+      "t": 359,
+      "hms": "00:05:59",
+      "file": "keyframes/0014_000559.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "session and moving average settings fixed until the complete opposite sequence provides the final technical exit. When I call this framework universal, I mean that the same analysis structure can travel across chart timeframes. It does not mean every chart contains a trade, every instrument is suitable or every valid pattern makes money, the pattern still requires meaningful, obvious structure, liquidity, spreads, volatility, account risk, and whether to take a valid signal belong to the separate trading decision. And sometimes the right trading decision is to pass even when the chart signal exists. Before we study the three system steps,"
+    },
+    {
+      "index": 15,
+      "t": 402,
+      "hms": "00:06:42",
+      "file": "keyframes/0015_000642.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "valid signal belong to the separate trading decision. And sometimes the right trading decision is to pass even when the chart signal exists. Before we study the three system steps, look at the broad consolidation to expansion path. Price often alternates between periods of consolidation and expansion. Stage 1 is consolidation after a decline. Stage 2 is expansion up. Stage three is consolidation after an advance. Stage four is expansion down. Then the process can begin again. I use the word consolidation or balance as per auction market theory. Instead of assuming that every lower base is accumulation or every upper base is distribution, balance is what we can see we can obviously see consolidation and price moves from consolidation"
+    },
+    {
+      "index": 16,
+      "t": 447,
+      "hms": "00:07:27",
+      "file": "keyframes/0016_000727.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "theory. Instead of assuming that every lower base is accumulation or every upper base is distribution, balance is what we can see we can obviously see consolidation and price moves from consolidation to expansion from balance to imbalance and back to the balance we cannot know the direction of the next expansion until price resolves the structure these stages have no fixed duration and they rarely look perfect. They give us a simple way to describe where price sits in the broad cycle. So let's say price is sitting in the stage 1, balance after decline."
+    },
+    {
+      "index": 17,
+      "t": 478,
+      "hms": "00:07:58",
+      "file": "keyframes/0017_000758.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "They give us a simple way to describe where price sits in the broad cycle. So let's say price is sitting in the stage 1, balance after decline. Is that enough to buy? The answer is no. The balance can break in either direction. A particular stage describes the market condition. It does not create, filter, confirm or exit a trade. Use the cycle stages to understand the broad map. Use the system steps to make the technical decision. Now we can place the operating system inside the broad market context."
+    },
+    {
+      "index": 18,
+      "t": 510,
+      "hms": "00:08:30",
+      "file": "keyframes/0018_000830.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "Use the system steps to make the technical decision. Now we can place the operating system inside the broad market context. Here's the main one slide framework."
+    },
+    {
+      "index": 19,
+      "t": 519,
+      "hms": "00:08:39",
+      "file": "keyframes/0019_000839.jpg",
+      "source": "llm",
+      "label": "Framework Overview",
+      "why": "Instructor displays the one-slide framework showing the three-step system with moving averages and price structure",
+      "narration": "Now we can place the operating system inside the broad market context. Here's the main one slide framework. You can pause the video, take a screenshot, study the price cycle. step one is a meaningful break and close beyond both moving averages 10 and 20 sma moving averages"
+    },
+    {
+      "index": 20,
+      "t": 527,
+      "hms": "00:08:47",
+      "file": "keyframes/0020_000847.jpg",
+      "source": "llm",
+      "label": "Step One Definition",
+      "why": "Instructor explains step one: meaningful break and close beyond 10 and 20 SMA",
+      "narration": "You can pause the video, take a screenshot, study the price cycle. step one is a meaningful break and close beyond both moving averages 10 and 20 sma moving averages step two is a visual return toward the moving average trend area followed by an obvious consolidation a lot of people call it a base step three is the break of the consolidation that we"
+    },
+    {
+      "index": 21,
+      "t": 543,
+      "hms": "00:09:03",
+      "file": "keyframes/0021_000903.jpg",
+      "source": "llm",
+      "label": "Step Two Definition",
+      "why": "Instructor describes step two: visual return toward trend area and obvious consolidation",
+      "narration": "step two is a visual return toward the moving average trend area followed by an obvious consolidation a lot of people call it a base step three is the break of the consolidation that we selected before the event in the direction established by step one the break creates the"
+    },
+    {
+      "index": 22,
+      "t": 550,
+      "hms": "00:09:10",
+      "file": "keyframes/0022_000910.jpg",
+      "source": "llm",
+      "label": "Step Three Definition",
+      "why": "Instructor defines step three: break of pre-selected consolidation in direction of step one",
+      "narration": "consolidation a lot of people call it a base step three is the break of the consolidation that we selected before the event in the direction established by step one the break creates the entry opportunity a meaningful close beyond the boundary confirms step three then we simply stay with the move until the complete opposite one two three pattern confirms that confirmed opposite step three is the final technical exit for the remaining position this is the complete operating sequence every chart comes back to three questions question number one did price break and"
+    },
+    {
+      "index": 23,
+      "t": 582,
+      "hms": "00:09:42",
+      "file": "keyframes/0023_000942.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "opposite step three is the final technical exit for the remaining position this is the complete operating sequence every chart comes back to three questions question number one did price break and close beyond both moving averages for a bullish sequence step one requires price to make a"
+    },
+    {
+      "index": 24,
+      "t": 591,
+      "hms": "00:09:51",
+      "file": "keyframes/0024_000951.jpg",
+      "source": "llm",
+      "label": "Step One Criteria",
+      "why": "Instructor details the requirement for a meaningful close above both 10 and 20 SMA",
+      "narration": "operating sequence every chart comes back to three questions question number one did price break and close beyond both moving averages for a bullish sequence step one requires price to make a meaningful visual break and close above both the 10 and 20 simple moving averages for a better sequence price must break and close below both a wick alone does not count a quick test through the averages that closes back inside does not complete step one i use the word meaningful on purpose a fixed percentage or minimum candle size would create precision that the chart does not provide price rarely gives us textbook price action the clothes should look clear on the chart if you have to argue with yourself about it pass and wait for something cleaner step one tells us"
+    },
+    {
+      "index": 25,
+      "t": 636,
+      "hms": "00:10:36",
+      "file": "keyframes/0025_001036.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "provide price rarely gives us textbook price action the clothes should look clear on the chart if you have to argue with yourself about it pass and wait for something cleaner step one tells us that a directional shift has become visible entry still waits for the retest the base and the break of that base after step one we wait for price to return toward the trend area represented by the 10"
+    },
+    {
+      "index": 26,
+      "t": 652,
+      "hms": "00:10:52",
+      "file": "keyframes/0026_001052.jpg",
+      "source": "llm",
+      "label": "Step Two Retest",
+      "why": "Instructor explains waiting for price to return toward 10 and 20 SMA trend area",
+      "narration": "that a directional shift has become visible entry still waits for the retest the base and the break of that base after step one we wait for price to return toward the trend area represented by the 10 and 20 simple moving average so the question we ask here did price return and form an obvious base an exact touch of one or both averages is optional the moving averages help us see the return within the developing trend they are visual guides not laser lines that price must obey to the tick during that return i want to see an obvious visual base with a boundary i can mark before the break clear support resistance or an obvious trend line can define that boundary other consolidation"
+    },
+    {
+      "index": 27,
+      "t": 694,
+      "hms": "00:11:34",
+      "file": "keyframes/0027_001134.jpg",
+      "source": "llm",
+      "label": "Base Selection",
+      "why": "Instructor discusses selecting a clear boundary for the base before break",
+      "narration": "during that return i want to see an obvious visual base with a boundary i can mark before the break clear support resistance or an obvious trend line can define that boundary other consolidation patterns shapes can qualify without creating another setup system the structure needs to be clear enough for us to choose the active boundary while the outcome is still hidden the visible base and the boundary selected before the break are what matter here you can see my clear resistance boundary displayed as horizontal dashed line i am choosing the active boundary while i still cannot"
+    },
+    {
+      "index": 28,
+      "t": 724,
+      "hms": "00:12:04",
+      "file": "keyframes/0028_001204.jpg",
+      "source": "llm",
+      "label": "Resistance Boundary",
+      "why": "Instructor shows a horizontal dashed line marking resistance boundary on chart",
+      "narration": "and the boundary selected before the break are what matter here you can see my clear resistance boundary displayed as horizontal dashed line i am choosing the active boundary while i still cannot see what happens next a perfect line discovered after price has moved is hindsight price can always go higher after you sell price can always go lower after you buy we never going to be perfect but keep in mind that when you're looking at the historical chart you're looking at the perfect examples and real trading decisions are going to be messier than the hindsight study mark the level before the move sometimes two possible bases will appear select the one that clearly controls the setup before the break if two boundaries look equally valid there is no clean step three yet"
+    },
+    {
+      "index": 29,
+      "t": 772,
+      "hms": "00:12:52",
+      "file": "keyframes/0029_001252.jpg",
+      "source": "llm",
+      "label": "Boundary Selection",
+      "why": "Instructor explains selecting the most controlling boundary before break",
+      "narration": "before the move sometimes two possible bases will appear select the one that clearly controls the setup before the break if two boundaries look equally valid there is no clean step three yet this is a perfect time to be patient and wait if price never breaks the base in the direction of step one the pattern remains incomplete a wrong way break a visibly destroyed base or a clear replacement structure cancels depending setup no step 3 means no entry now price trades through the boundary in the direction of step one this is where step 3 begins and the simple question here"
+    },
+    {
+      "index": 30,
+      "t": 806,
+      "hms": "00:13:26",
+      "file": "keyframes/0030_001326.jpg",
+      "source": "llm",
+      "label": "Step Three Break",
+      "why": "Instructor describes price breaking the pre-selected boundary in direction of step one",
+      "narration": "replacement structure cancels depending setup no step 3 means no entry now price trades through the boundary in the direction of step one this is where step 3 begins and the simple question here is did price break the pre-selected boundary in the direction of step one there are two execution"
+    },
+    {
+      "index": 31,
+      "t": 814,
+      "hms": "00:13:34",
+      "file": "keyframes/0031_001334.jpg",
+      "source": "llm",
+      "label": "Step Three Confirmation",
+      "why": "Instructor explains the need for a confirmed close beyond boundary to validate entry",
+      "narration": "the boundary in the direction of step one this is where step 3 begins and the simple question here is did price break the pre-selected boundary in the direction of step one there are two execution choices you can enter while the break is happening using discretion and accepting that the signal is not confirmed yet or you can wait for the candle to close beyond the boundary and evaluate the entry after confirmation whether to take the signal at all remains a separate trading decision"
+    },
+    {
+      "index": 32,
+      "t": 842,
+      "hms": "00:14:02",
+      "file": "keyframes/0032_001402.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "entry after confirmation whether to take the signal at all remains a separate trading decision at step 3 the trade through the selected boundary creates the discretionary entry opportunity while the meaningful close confirms that the base break held only a confirmed step 3 changes the chart's technical directional state an intra-bar break can permit an early entry but it does not make the system technically bullish or bearish before the meaningful close. A gap through the boundary still counts as a break. The location of the close determines whether it confirms."
+    },
+    {
+      "index": 33,
+      "t": 876,
+      "hms": "00:14:36",
+      "file": "keyframes/0033_001436.jpg",
+      "source": "llm",
+      "label": "Gap Through Boundary",
+      "why": "Instructor discusses gap through boundary counting as break",
+      "narration": "make the system technically bullish or bearish before the meaningful close. A gap through the boundary still counts as a break. The location of the close determines whether it confirms. If price trades or gaps through the boundary and closes back inside the consolidation,"
+    },
+    {
+      "index": 34,
+      "t": 883,
+      "hms": "00:14:43",
+      "file": "keyframes/0034_001443.jpg",
+      "source": "llm",
+      "label": "Close Determines Confirmation",
+      "why": "Instructor explains that close determines if step three confirms or fails",
+      "narration": "boundary still counts as a break. The location of the close determines whether it confirms. If price trades or gaps through the boundary and closes back inside the consolidation, step 3 did not confirm. The same base may remain pending while it is still visually intact. Otherwise, discard it and wait for a fresh consolidation. An early entry can fail, and the response to that position belongs to the separate risk plan. Do not rewrite the chart and call it a confirmed signal. Keep it simple. The break opens the entry opportunity, but only after a meaningful close the pattern is confirmed. Once bullish step 3 confirms, the system is technically bullish on this selected chart. Keep the selected chart unchanged through the sequence."
+    },
+    {
+      "index": 35,
+      "t": 928,
+      "hms": "00:15:28",
+      "file": "keyframes/0035_001528.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "Once bullish step 3 confirms, the system is technically bullish on this selected chart. Keep the selected chart unchanged through the sequence. Switching the time frame, session display or moving average settings midway would create a different chart decision. If you miss the initial step 3, leave the old break alone. While the original directional structure remains active, wait on the same chart for a fresh base and a new break of that base. On the continuation entries, a new step one is not required. We're simply trading continuation consolidations that retrace to moving averages. The 50 and 200 SMA climax conditions, additional entries, partial profits may appear as optional management context."
+    },
+    {
+      "index": 36,
+      "t": 969,
+      "hms": "00:16:09",
+      "file": "keyframes/0036_001609.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "We're simply trading continuation consolidations that retrace to moving averages. The 50 and 200 SMA climax conditions, additional entries, partial profits may appear as optional management context. A move running far away from the 10 simple moving average can be a visual climax clue and a reason to stop adding or consider a partial profit. These are management choices. They do not create a new signal or change the chart's technical state. The core signal remains the 1020 SMA and the three-step system. For this first module, keep the core chart clean. Use 1020 SMA and learn to see the complete pattern. The 50 SMA is green, the 200 SMA is red, and I have 10 and 20 SMA on the chart."
+    },
+    {
+      "index": 37,
+      "t": 1014,
+      "hms": "00:16:54",
+      "file": "keyframes/0037_001654.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "For this first module, keep the core chart clean. Use 1020 SMA and learn to see the complete pattern. The 50 SMA is green, the 200 SMA is red, and I have 10 and 20 SMA on the chart. So we can follow the sequence, step one, step two, step three, and simply we can hold until"
+    },
+    {
+      "index": 38,
+      "t": 1027,
+      "hms": "00:17:07",
+      "file": "keyframes/0038_001707.jpg",
+      "source": "llm",
+      "label": "Chart setup with SMA indicators",
+      "why": "Instructor shows the chart with 10 and 20 SMA lines, explaining their role in the three-step system.",
+      "narration": "The 50 SMA is green, the 200 SMA is red, and I have 10 and 20 SMA on the chart. So we can follow the sequence, step one, step two, step three, and simply we can hold until the new sequence appears to the bearish side, like over here. You can see price breaks below. Step two. Step three is the break of the base and we can hold"
+    },
+    {
+      "index": 39,
+      "t": 1043,
+      "hms": "00:17:23",
+      "file": "keyframes/0039_001723.jpg",
+      "source": "llm",
+      "label": "Bearish step three break",
+      "why": "Price breaks below the base, completing step three of a bearish sequence.",
+      "narration": "the new sequence appears to the bearish side, like over here. You can see price breaks below. Step two. Step three is the break of the base and we can hold it to the climax. You see how the price extends far away from the moving averages, especially"
+    },
+    {
+      "index": 40,
+      "t": 1051,
+      "hms": "00:17:31",
+      "file": "keyframes/0040_001731.jpg",
+      "source": "llm",
+      "label": "Price extending from moving averages",
+      "why": "Price moves far away from the 10 SMA, indicating a climax and potential partial profit opportunity.",
+      "narration": "You can see price breaks below. Step two. Step three is the break of the base and we can hold it to the climax. You see how the price extends far away from the moving averages, especially from the 10 SMA. This is a good idea to take partials. Depends on your trade management style. again keep it simple for now just study the relationship between price and moving averages and the three-step system so over here we have break this was a little retest and a base you can try to enter on this or you wait for the larger retest larger base you can see how the price"
+    },
+    {
+      "index": 41,
+      "t": 1082,
+      "hms": "00:18:02",
+      "file": "keyframes/0041_001802.jpg",
+      "source": "llm",
+      "label": "Retest of base and moving averages",
+      "why": "Price retests the 50 SMA without closing below the 10 SMA, showing a continuation pattern.",
+      "narration": "and the three-step system so over here we have break this was a little retest and a base you can try to enter on this or you wait for the larger retest larger base you can see how the price retested also 50 moving average you can see there is no closure below the 20 simple moving average and price continues higher over here we have a climax price breaks below moving averages retest a little consolidation if you want to wait a little longer there is a bigger consolidation but keep in mind that the best setups are going to be in the direction of the 50 and 200 simple moving average so when the price is staying above 50 you only want to take bullish setups when the"
+    },
+    {
+      "index": 42,
+      "t": 1127,
+      "hms": "00:18:47",
+      "file": "keyframes/0042_001847.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "moving average so when the price is staying above 50 you only want to take bullish setups when the price is staying below 50 you want to look for the bearish setups so there is an example of bearish set up over here price creates a lower high breaks below moving averages there is a little"
+    },
+    {
+      "index": 43,
+      "t": 1139,
+      "hms": "00:18:59",
+      "file": "keyframes/0043_001859.jpg",
+      "source": "llm",
+      "label": "Bearish setup example",
+      "why": "Price creates a lower high and breaks below moving averages, forming a bearish sequence.",
+      "narration": "price is staying below 50 you want to look for the bearish setups so there is an example of bearish set up over here price creates a lower high breaks below moving averages there is a little consolidation it goes down below but then comes back up trying to get back above moving averages right so technically this is now a bullish sequence appearing here but what have you noticed the step three have not been completed we have the step one break about moving averages we have"
+    },
+    {
+      "index": 44,
+      "t": 1162,
+      "hms": "00:19:22",
+      "file": "keyframes/0044_001922.jpg",
+      "source": "llm",
+      "label": "Incomplete step three",
+      "why": "Price has steps one and two but fails to complete step three with a breakout.",
+      "narration": "right so technically this is now a bullish sequence appearing here but what have you noticed the step three have not been completed we have the step one break about moving averages we have step two consolidation here right and the step three would be the breakout at least like this and continuation but we just barely swept that high as you can see it and continues lower yet again price tries to go back up above the moving averages and we are looking for the bullish setup here because the price is staying above 200 sma you don't see it here on the chart but the price has been staying about 200 sma so the overall trend the higher time frame trend is bullish"
+    },
+    {
+      "index": 45,
+      "t": 1204,
+      "hms": "00:20:04",
+      "file": "keyframes/0045_002004.jpg",
+      "source": "llm",
+      "label": "Higher timeframe trend direction",
+      "why": "Price is staying above the 200 SMA, indicating a bullish higher timeframe trend.",
+      "narration": "here because the price is staying above 200 sma you don't see it here on the chart but the price has been staying about 200 sma so the overall trend the higher time frame trend is bullish So we use 50 and 200 SMA for the higher timeframe trend. And we use 10 and 20 SMA for the three-step sequence. So finally, we get this breakout here, right? There is a little consolidation. Maybe you missed it."
+    },
+    {
+      "index": 46,
+      "t": 1229,
+      "hms": "00:20:29",
+      "file": "keyframes/0046_002029.jpg",
+      "source": "llm",
+      "label": "Obvious consolidation for entry",
+      "why": "Price forms a clear consolidation after breaking above the moving averages, signaling an entry opportunity.",
+      "narration": "So finally, we get this breakout here, right? There is a little consolidation. Maybe you missed it. You just wait for the obvious consolidation. There is your obvious consolidation. Price closes above. maybe you're not sure because it's way too close to the resistance fine next candle we have a gap"
+    },
+    {
+      "index": 47,
+      "t": 1238,
+      "hms": "00:20:38",
+      "file": "keyframes/0047_002038.jpg",
+      "source": "llm",
+      "label": "Breakout confirmation",
+      "why": "Price closes above the consolidation boundary, confirming step three and entry.",
+      "narration": "There is your obvious consolidation. Price closes above. maybe you're not sure because it's way too close to the resistance fine next candle we have a gap up an obvious break of the consolidation the entry could be over here or you can start entering over"
+    },
+    {
+      "index": 48,
+      "t": 1246,
+      "hms": "00:20:46",
+      "file": "keyframes/0048_002046.jpg",
+      "source": "llm",
+      "label": "Gap up breakout",
+      "why": "Price gaps above resistance, confirming a bullish break and entry point.",
+      "narration": "maybe you're not sure because it's way too close to the resistance fine next candle we have a gap up an obvious break of the consolidation the entry could be over here or you can start entering over here but the more you wait for the confirmation the worse your risk to reward will be so just keep that in mind but you can see how the price just keeps retesting going back about here's another sequence right we break about retest little consolidation and price continues higher"
+    },
+    {
+      "index": 49,
+      "t": 1269,
+      "hms": "00:21:09",
+      "file": "keyframes/0049_002109.jpg",
+      "source": "llm",
+      "label": "Second bullish sequence",
+      "why": "Price breaks above, retests, and continues higher, forming another valid setup.",
+      "narration": "keep that in mind but you can see how the price just keeps retesting going back about here's another sequence right we break about retest little consolidation and price continues higher and you can see how the price maintains about the 10 20 simple moving average until we have the break of the trend line and we have bigger retracement you now have the complete framework take it to"
+    },
+    {
+      "index": 50,
+      "t": 1285,
+      "hms": "00:21:25",
+      "file": "keyframes/0050_002125.jpg",
+      "source": "llm",
+      "label": "Break of trend line and retracement",
+      "why": "Price breaks a trend line with a larger retracement, completing the full framework.",
+      "narration": "and you can see how the price maintains about the 10 20 simple moving average until we have the break of the trend line and we have bigger retracement you now have the complete framework take it to markets and time frames you already understand go back through historical price use chart replay or your own back testing process or watch the pattern develop through paper trading in real time the purpose right now is to become familiar with what the sequence looks like the setups will look different one consolidation may be tight and obvious another may form around a trend line a retest may happen quickly or take more time some charts will be too messy to classify cleanly keep the sequence consistent while allowing price to look different from one example to the next"
+    },
+    {
+      "index": 51,
+      "t": 1332,
+      "hms": "00:22:12",
+      "file": "keyframes/0051_002212.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "keep the sequence consistent while allowing price to look different from one example to the next notice where the system fits with what you already understand about price action and how market moves it may print something you already recognize it may also show you where your current read is still fuzzy but if you have to force the sequence onto a chart leave the chart alone"
+    },
+    {
+      "index": 52,
+      "t": 1353,
+      "hms": "00:22:33",
+      "file": "keyframes/0052_002233.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "is still fuzzy but if you have to force the sequence onto a chart leave the chart alone work with this in whatever way helps you learn rewatch the lesson mark and save examples or simply observe how the pattern develops use the stoic traders community to your advantage post charts questions observations or suggest refinements explain what you saw and where you became uncertain use whatever format makes the chart easy to understand those discussions help us test the clarity of the teaching suggestions can improve the explanation and the examples while the current rulebook stays stable keep the operating sequence simple one selected chart with the 10 and 20 simple moving average step one is the meaningful break and close beyond both moving"
+    },
+    {
+      "index": 53,
+      "t": 1399,
+      "hms": "00:23:19",
+      "file": "keyframes/0053_002319.jpg",
+      "source": "llm",
+      "label": "Three-step system summary",
+      "why": "Instructor recaps the full sequence: step one (break), step two (base formation), step three (entry break).",
+      "narration": "while the current rulebook stays stable keep the operating sequence simple one selected chart with the 10 and 20 simple moving average step one is the meaningful break and close beyond both moving averages step two is the return towards the moving average area and the formation of an obvious base step three is the break of the boundary selected before the move the break creates the entry opportunity and a meaningful close confirms it the confirmed opposite step three is the final technical exit for the remaining position you can take partials before it but after the step"
+    },
+    {
+      "index": 54,
+      "t": 1429,
+      "hms": "00:23:49",
+      "file": "keyframes/0054_002349.jpg",
+      "source": "llm",
+      "label": "Opposite step three as exit signal",
+      "why": "The opposite direction's step three serves as the final technical exit for the position.",
+      "narration": "opportunity and a meaningful close confirms it the confirmed opposite step three is the final technical exit for the remaining position you can take partials before it but after the step three in the opposite direction is your sign to exit full position that is enough to begin open one of your charts and see what you notice"
+    }
+  ]
+}

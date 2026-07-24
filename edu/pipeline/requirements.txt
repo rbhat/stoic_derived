@@ -1,0 +1,9 @@
+# Python deps actually used by the pipeline (install into the repo .venv)
+mlx-whisper      # transcription on Apple Silicon (Metal)
+numpy            # frame-drift keyframe detection
+requests         # LM Studio HTTP calls (moments, captions, visual QA)
+
+# System requirements (not pip):
+#   ffmpeg / ffprobe   -> brew install ffmpeg
+#   LM Studio running at http://localhost:1234 with a vision model loaded
+#     default model: qwen3-vl-30b-a3b-instruct-mlx  (JIT-loaded on first call)

@@ -1,0 +1,1192 @@
+{
+  "source": "resources/case_studies/vol4/videos/How to stay out of choppy price action - Stoic Trader Concepts · Stoic Traders.mp4",
+  "language": "en",
+  "model": "mlx-community/whisper-large-v3-turbo",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 20.72,
+      "text": "hello stoic traders welcome back to another case study today i want to talk about the nasdaq and"
+    },
+    {
+      "start": 20.72,
+      "end": 29.6,
+      "text": "dow jones futures and what happened on friday usually nasdaq and dow jones move in tandem"
+    },
+    {
+      "start": 29.6,
+      "end": 35.68,
+      "text": "there is a correlation to them they move together sometimes that correlation breaks"
+    },
+    {
+      "start": 36.32,
+      "end": 43.84,
+      "text": "and that's what we had on friday this is going to be a great example of how to pick the best"
+    },
+    {
+      "start": 43.84,
+      "end": 52.32,
+      "text": "instrument to trade and how to stay out of the trades that are not there so as you can see"
+    },
+    {
+      "start": 52.32,
+      "end": 62.4,
+      "text": "here on the screen i have chart of ym and here chart of nq nq had a bullish day somewhat"
+    },
+    {
+      "start": 63.04,
+      "end": 72.24,
+      "text": "bullish day i would call it choppy i would call it consolidation hell noise something that is not"
+    },
+    {
+      "start": 72.24,
+      "end": 81.92,
+      "text": "worth touching and ym actually had a decent setup and this is the instrument i picked to trade on"
+    },
+    {
+      "start": 81.92,
+      "end": 92.64,
+      "text": "friday and the main reason is that we have been extending for past two weeks on dow jones and on"
+    },
+    {
+      "start": 92.64,
+      "end": 104.48,
+      "text": "nasdaq this was a third day reversal after multiple higher closes we have one two three higher closes"
+    },
+    {
+      "start": 105.04,
+      "end": 111.52,
+      "text": "so we know that the daily chart is extended and anybody who's trying to buy this are buying at"
+    },
+    {
+      "start": 111.52,
+      "end": 121.92,
+      "text": "the worst time right now the long traders are going to be trapped from these levels and right"
+    },
+    {
+      "start": 121.92,
+      "end": 130.4,
+      "text": "now we are at the highest close of the month so this is why i shorted based on the third day"
+    },
+    {
+      "start": 130.4,
+      "end": 138.4,
+      "text": "reversal this is based on the stoic edge system high time frame protocol first we need to identify"
+    },
+    {
+      "start": 138.4,
+      "end": 147.52,
+      "text": "the signal and the signal comes from the previous day close which happened to be the highest close"
+    },
+    {
+      "start": 147.52,
+      "end": 153.76,
+      "text": "of the month once we had that in place we opened the five minute chart the next day"
+    },
+    {
+      "start": 154.72,
+      "end": 163.44,
+      "text": "and the number one thing before you do anything you need to identify your timing window what"
+    },
+    {
+      "start": 163.44,
+      "end": 172.08,
+      "text": "session are you trading are you trading asia london or new york if you are trading london session"
+    },
+    {
+      "start": 172.08,
+      "end": 180.0,
+      "text": "you want to take trades after 3 a.m if you are trading new york session you want to take trades"
+    },
+    {
+      "start": 180.0,
+      "end": 189.2,
+      "text": "after 9 30 a.m and preferably wait for the 10 a.m rotation those are the key timings before you do"
+    },
+    {
+      "start": 189.2,
+      "end": 198.08,
+      "text": "anything else the moves happen either starting in asia and it's already too late and maybe you can"
+    },
+    {
+      "start": 198.08,
+      "end": 205.2,
+      "text": "trade continuation in london sometimes the main move will happen during london session and new"
+    },
+    {
+      "start": 205.2,
+      "end": 213.68,
+      "text": "york has a continuation of that move and sometimes new york session will be the move after asia london"
+    },
+    {
+      "start": 213.68,
+      "end": 221.92,
+      "text": "consolidates into the new york open and this is was consolidation throughout asia and london"
+    },
+    {
+      "start": 221.92,
+      "end": 231.32,
+      "text": "we had manipulation at the cpi 830 this was a cpi news release and you can see it spiked into the"
+    },
+    {
+      "start": 231.32,
+      "end": 238.2,
+      "text": "unmitigated move origin this is from the market structure teachings this is the unmitigated move"
+    },
+    {
+      "start": 238.2,
+      "end": 248.76,
+      "text": "origin with the sbs right and see how they left this number two untouched on this pullback and"
+    },
+    {
+      "start": 248.76,
+      "end": 258.92,
+      "text": "they come back at the cpi high and this is your manipulation into the umo with the sbs sweep"
+    },
+    {
+      "start": 258.92,
+      "end": 267.72,
+      "text": "beautiful but the main point is that we do not trade this because this is the cpi so if you are"
+    },
+    {
+      "start": 267.72,
+      "end": 275.72,
+      "text": "waiting for the cpi news which you should because if we have news on a day you want to trade after"
+    },
+    {
+      "start": 275.72,
+      "end": 281.64,
+      "text": "those news and when you have news during new york session but you are trading london session"
+    },
+    {
+      "start": 281.64,
+      "end": 289.12,
+      "text": "well maybe don't trade that session when you have new york news and trading is all about"
+    },
+    {
+      "start": 289.12,
+      "end": 298.4,
+      "text": "restricting yourself with the hard unambiguous rules the rule is to wait for the key timing"
+    },
+    {
+      "start": 298.96,
+      "end": 307.12,
+      "text": "after the news so on friday i was following my rules and i was looking at the instrument and"
+    },
+    {
+      "start": 307.12,
+      "end": 314.32,
+      "text": "which one is setting up i looked at the dow jones and it looked great we have this amazing"
+    },
+    {
+      "start": 314.32,
+      "end": 322.8,
+      "text": "consolidation and then after 8 30 we had the spike and i was waiting for the 9 30 and i wanted to see"
+    },
+    {
+      "start": 322.8,
+      "end": 332.0,
+      "text": "if we drop below the 20 and 200 sma can i take the trade and that's what i did i just waited for this"
+    },
+    {
+      "start": 332.0,
+      "end": 340.16,
+      "text": "candle to close five minute candle it closed over here and i entered the trade my stop loss was about"
+    },
+    {
+      "start": 340.16,
+      "end": 348.72,
+      "text": "here after the price retraced i entered again on the sweep of the number two because i realized it"
+    },
+    {
+      "start": 348.72,
+      "end": 359.12,
+      "text": "was an sbs but the price staying below 20 and 200 sma that's another rule that i have i only short"
+    },
+    {
+      "start": 359.84,
+      "end": 368.16,
+      "text": "below 20 and 200 sma so that's why i am not shorting here at the top i'm not trying to"
+    },
+    {
+      "start": 368.16,
+      "end": 376.24,
+      "text": "anticipate that this is going to be a rejection i am simply responding to the price that already"
+    },
+    {
+      "start": 376.24,
+      "end": 386.16,
+      "text": "happened and i'm looking to see is this price following my plan from the warm-up and i posted"
+    },
+    {
+      "start": 386.16,
+      "end": 395.2,
+      "text": "the same warm-up plan for both and q and ym for both instruments i was looking for a third day"
+    },
+    {
+      "start": 395.2,
+      "end": 407.28,
+      "text": "reversal so when i saw price action on ym and i looked at nq it looked different we don't have"
+    },
+    {
+      "start": 407.28,
+      "end": 415.56,
+      "text": "an obvious consolidation we have some kind of consolidation over here this is a big range you"
+    },
+    {
+      "start": 415.56,
+      "end": 423.48,
+      "text": "know you got this breakout over here and then there is the cpi news and the price is staying"
+    },
+    {
+      "start": 423.48,
+      "end": 432.14,
+      "text": "about 20 and 200 sma price is staying about highest close of the month price is staying"
+    },
+    {
+      "start": 432.14,
+      "end": 441.18,
+      "text": "about previous daily high and in the warm-up i say when you have the third day reversal i give a plan"
+    },
+    {
+      "start": 441.18,
+      "end": 450.54,
+      "text": "i say if the price staying about hcom if the price staying about previous daily close which is in"
+    },
+    {
+      "start": 450.54,
+      "end": 459.02,
+      "text": "this case previous daily close is the same as hcom and if price staying about 20 and 200 sma"
+    },
+    {
+      "start": 459.02,
+      "end": 468.38,
+      "text": "there is no trade because this trade does not line up with our plan this trade does not line"
+    },
+    {
+      "start": 468.38,
+      "end": 477.66,
+      "text": "up with warm up and if there is no plan there is no trade and this is how you could have stayed out"
+    },
+    {
+      "start": 477.66,
+      "end": 481.68,
+      "text": "of this garbage price action on NQ,"
+    },
+    {
+      "start": 482.44,
+      "end": 487.46,
+      "text": "I mean, you can see CPI 830, 930 spike, 1030 spike,"
+    },
+    {
+      "start": 487.46,
+      "end": 493.18,
+      "text": "and the price is still holding about 20 and 200 SMA."
+    },
+    {
+      "start": 493.82,
+      "end": 496.6,
+      "text": "So when I open the five-minute chart,"
+    },
+    {
+      "start": 496.94,
+      "end": 502.34,
+      "text": "I am not trying to identify is this is an SBS over here."
+    },
+    {
+      "start": 503.1,
+      "end": 505.44,
+      "text": "During the London session, maybe, yeah,"
+    },
+    {
+      "start": 505.52,
+      "end": 507.52,
+      "text": "you could have traded this,"
+    },
+    {
+      "start": 507.66,
+      "end": 511.42,
+      "text": "then you need to ask yourself, what are your rules?"
+    },
+    {
+      "start": 512.52,
+      "end": 516.66,
+      "text": "Are you a scalper and you allowing yourself to scalp this movement?"
+    },
+    {
+      "start": 517.66,
+      "end": 521.08,
+      "text": "Or are you more of a one and done trader?"
+    },
+    {
+      "start": 521.94,
+      "end": 524.2,
+      "text": "Like a more of a swing trader."
+    },
+    {
+      "start": 524.7,
+      "end": 529.62,
+      "text": "And I recommend to everybody to move on from the scalping"
+    },
+    {
+      "start": 529.62,
+      "end": 531.88,
+      "text": "into more higher time frame trading."
+    },
+    {
+      "start": 532.38,
+      "end": 534.3,
+      "text": "Because it will be more peaceful."
+    },
+    {
+      "start": 534.3,
+      "end": 539.94,
+      "text": "and i know some people still going to scalp some people need to find out the hard way"
+    },
+    {
+      "start": 539.94,
+      "end": 548.08,
+      "text": "and i also did find out the hard way myself that the scalping wasn't really for me but it is"
+    },
+    {
+      "start": 548.08,
+      "end": 555.6,
+      "text": "totally doable to scalp but when i come to the charts and i'm trying to identify what is that"
+    },
+    {
+      "start": 555.6,
+      "end": 564.46,
+      "text": "one and done trade for me today first of all i need to have a signal and the signal comes from"
+    },
+    {
+      "start": 564.46,
+      "end": 573.18,
+      "text": "the previous day so if the signal is the third day reversal i'm only looking for shorts and if"
+    },
+    {
+      "start": 573.18,
+      "end": 584.22,
+      "text": "the price is above hcom about pdh about pvc about 20 200 sma this means that there is no trade on"
+    },
+    {
+      "start": 584.22,
+      "end": 594.12,
+      "text": "this instrument the instrument price action does not agree with my plan so therefore there is no"
+    },
+    {
+      "start": 594.12,
+      "end": 604.5,
+      "text": "trade we are not trying to be right or wrong i'm not looking at this as a winning or losing signal"
+    },
+    {
+      "start": 604.5,
+      "end": 614.2,
+      "text": "i'm treating this as a plan i'm not trying to understand is this sbs model 2 in here that the"
+    },
+    {
+      "start": 614.2,
+      "end": 621.48,
+      "text": "one that taps into the move origin right you have the one two and then you sweep four five"
+    },
+    {
+      "start": 621.48,
+      "end": 629.26,
+      "text": "i am not trying to understand if this sbs is going to work out this is what you do when you"
+    },
+    {
+      "start": 629.26,
+      "end": 636.06,
+      "text": "sculpt patterns and again you can totally do it it's just not for everybody it's very stressful"
+    },
+    {
+      "start": 636.06,
+      "end": 642.82,
+      "text": "and it's easy to go on tilt if you want to do it just follow a simple strategy where you're"
+    },
+    {
+      "start": 642.82,
+      "end": 652.3,
+      "text": "following 20 and 200 SMA and you're scalping SBS either it's SBS model 2 or SBS model 1 there is"
+    },
+    {
+      "start": 652.3,
+      "end": 662.2,
+      "text": "an SBS model 1 on top of here right you got the sweep and this is your target you can scalp the"
+    },
+    {
+      "start": 662.2,
+      "end": 672.4,
+      "text": "SBS you can scalp this SBS also this is a SBS model 2 but understand that there is no concrete"
+    },
+    {
+      "start": 672.4,
+      "end": 677.88,
+      "text": "100% rule to tell if this SBS is going to work out."
+    },
+    {
+      "start": 678.76,
+      "end": 681.72,
+      "text": "It could have easily failed."
+    },
+    {
+      "start": 682.26,
+      "end": 685.78,
+      "text": "And it doesn't mean that you now need to find a reason"
+    },
+    {
+      "start": 685.78,
+      "end": 688.86,
+      "text": "why this SBS failed and it didn't go up."
+    },
+    {
+      "start": 689.82,
+      "end": 691.58,
+      "text": "There are trades that are going to work."
+    },
+    {
+      "start": 691.72,
+      "end": 693.54,
+      "text": "There are trades that are going to fail."
+    },
+    {
+      "start": 694.14,
+      "end": 696.76,
+      "text": "There are trades that look good and then they fail."
+    },
+    {
+      "start": 697.22,
+      "end": 699.42,
+      "text": "There are trades that look terrible."
+    },
+    {
+      "start": 699.42,
+      "end": 706.04,
+      "text": "there is no way it could go up and then it suddenly goes up just like it did here right"
+    },
+    {
+      "start": 706.04,
+      "end": 716.48,
+      "text": "it was down trending and then it spiked so the more time you give it for the pattern to play out"
+    },
+    {
+      "start": 716.48,
+      "end": 725.08,
+      "text": "the more confirmation and clues you're going to collect that it might work so let's say you just"
+    },
+    {
+      "start": 725.08,
+      "end": 734.32,
+      "text": "want to scalp this over here. So you just want to risk such a little amount and you're buying this"
+    },
+    {
+      "start": 734.32,
+      "end": 741.58,
+      "text": "five-minute candle because this was a SBS sweep and you think it is going to play out. That's all"
+    },
+    {
+      "start": 741.58,
+      "end": 750.1,
+      "text": "you can do. You can place a bet and then if you get stopped out, don't try to explain why you got"
+    },
+    {
+      "start": 750.1,
+      "end": 759.68,
+      "text": "stopped out your idea failed that's it just failed there is no explanation to it and the more you're"
+    },
+    {
+      "start": 759.68,
+      "end": 768.06,
+      "text": "trying to explain the more you're going to fall into that rabbit hole of price action trading"
+    },
+    {
+      "start": 768.06,
+      "end": 776.86,
+      "text": "and chasing patterns on the one minute chart on a 15 second chart i'm not saying it doesn't work"
+    },
+    {
+      "start": 777.52,
+      "end": 780.28,
+      "text": "I'm just saying there is an easier way."
+    },
+    {
+      "start": 780.28,
+      "end": 786.4,
+      "text": "There is a more peaceful way of trading where you don't care about the patterns,"
+    },
+    {
+      "start": 786.92,
+      "end": 792.14,
+      "text": "where you don't care about if this SBS is going to work out or not,"
+    },
+    {
+      "start": 792.6,
+      "end": 801.94,
+      "text": "and you letting the price play out based on your plan that comes from previous day close."
+    },
+    {
+      "start": 801.94,
+      "end": 811.0,
+      "text": "it's a different mindset and a different way of trading and it takes time for the paradigm shift"
+    },
+    {
+      "start": 811.0,
+      "end": 819.72,
+      "text": "to happen but i'm going to emphasize again when i'm opening nq chart and i have the bias from"
+    },
+    {
+      "start": 819.72,
+      "end": 828.68,
+      "text": "yesterday which is shorts i have a bearish bias because of third day reversal that's what i'm"
+    },
+    {
+      "start": 828.68,
+      "end": 838.08,
+      "text": "looking for i'm looking for the price to prove me that there is a bearish bias because a lot of"
+    },
+    {
+      "start": 838.08,
+      "end": 845.72,
+      "text": "people have this problem where they look at the chart and they see bullish as bs and bearish as bs"
+    },
+    {
+      "start": 845.72,
+      "end": 856.78,
+      "text": "and yes that's why price action is so seductive that's why price action feels like you can predict"
+    },
+    {
+      "start": 856.78,
+      "end": 863.72,
+      "text": "the next move. But when you realize there are the same patterns on the bearish and bullish side,"
+    },
+    {
+      "start": 863.72,
+      "end": 873.74,
+      "text": "you start to understand that it's a 50-50 trading environment and it's just not reliable."
+    },
+    {
+      "start": 874.36,
+      "end": 883.3,
+      "text": "It just leads to a lot of over trading and confusion and anxiety about price action and"
+    },
+    {
+      "start": 883.3,
+      "end": 890.6,
+      "text": "trading because you're trying to make a lot of decisions during a small period of time and when"
+    },
+    {
+      "start": 890.6,
+      "end": 898.44,
+      "text": "you do that your decision quality decreases and then on top of that you have trading which is"
+    },
+    {
+      "start": 898.44,
+      "end": 907.28,
+      "text": "not a guaranteed outcome and if you go into the losing streak or take a few bad trades it's very"
+    },
+    {
+      "start": 907.28,
+      "end": 914.06,
+      "text": "easy to go on tilt and that's why i'm trying to advise people to stay away from scalping"
+    },
+    {
+      "start": 914.06,
+      "end": 922.72,
+      "text": "stay away from price action trading from pattern trading because when you don't have a high time"
+    },
+    {
+      "start": 922.72,
+      "end": 930.84,
+      "text": "frame bias you're going to result in trying to trade every single move that you see on the one"
+    },
+    {
+      "start": 930.84,
+      "end": 937.52,
+      "text": "minute or in this case even on the five minute chart so yet again when i'm coming to the five"
+    },
+    {
+      "start": 937.52,
+      "end": 943.88,
+      "text": "minute chart i'm not looking at the price action pattern to trade i'm not trying to identify the"
+    },
+    {
+      "start": 943.88,
+      "end": 952.66,
+      "text": "next sbs to trade i am looking on the previous day and have it closed and i have my previous"
+    },
+    {
+      "start": 952.66,
+      "end": 960.82,
+      "text": "daily close previous daily high i have 20 and 200 sma and then i want to see the price behave"
+    },
+    {
+      "start": 960.82,
+      "end": 965.2,
+      "text": "the way that fits my plan from yesterday."
+    },
+    {
+      "start": 966.12,
+      "end": 968.98,
+      "text": "So on this chart on NASDAQ,"
+    },
+    {
+      "start": 969.24,
+      "end": 972.7,
+      "text": "obviously the price does not behave the way I want."
+    },
+    {
+      "start": 973.72,
+      "end": 977.72,
+      "text": "So when I look at the Dow Jones,"
+    },
+    {
+      "start": 977.72,
+      "end": 982.04,
+      "text": "this is the price action that actually behaves"
+    },
+    {
+      "start": 982.04,
+      "end": 984.16,
+      "text": "in the way that I want."
+    },
+    {
+      "start": 985.12,
+      "end": 988.42,
+      "text": "So one of the main things that I am looking for"
+    },
+    {
+      "start": 988.42,
+      "end": 996.04,
+      "text": "for these higher time frame setups is consolidation because consolidation leads to expansion."
+    },
+    {
+      "start": 996.96,
+      "end": 1005.98,
+      "text": "And then once all of the things are in place, only then I am looking for SBS. I am looking for the"
+    },
+    {
+      "start": 1005.98,
+      "end": 1014.12,
+      "text": "618 retracements. I'm looking for the FIB geometry. This is the first pullback. This is the second"
+    },
+    {
+      "start": 1014.12,
+      "end": 1022.52,
+      "text": "pullback prices below the 20 and 200 sma price rejected from highest close of the month after"
+    },
+    {
+      "start": 1022.52,
+      "end": 1033.82,
+      "text": "9 30 there is the 10 o'clock rotation and once i see this during asia london there is this sbs over"
+    },
+    {
+      "start": 1033.82,
+      "end": 1040.84,
+      "text": "here right one two actually number three is over here so you have this big sbs and i see this sweep"
+    },
+    {
+      "start": 1040.84,
+      "end": 1043.88,
+      "text": "at 8.30 into the UMO"
+    },
+    {
+      "start": 1043.88,
+      "end": 1048.54,
+      "text": "and then 9.30 collapses below 20 and 200 SMA."
+    },
+    {
+      "start": 1049.26,
+      "end": 1053.58,
+      "text": "This is all lining up for me to take the trade."
+    },
+    {
+      "start": 1053.58,
+      "end": 1056.6,
+      "text": "The bias from the previous day,"
+    },
+    {
+      "start": 1056.84,
+      "end": 1059.6,
+      "text": "consolidation during Asia, during London,"
+    },
+    {
+      "start": 1060.4,
+      "end": 1063.24,
+      "text": "price has a fake out at news."
+    },
+    {
+      "start": 1063.5,
+      "end": 1065.04,
+      "text": "So I'm waiting for the news."
+    },
+    {
+      "start": 1065.16,
+      "end": 1067.12,
+      "text": "I'm only trading after the news"
+    },
+    {
+      "start": 1067.12,
+      "end": 1070.54,
+      "text": "and then I'm only trading after the 9.30 open."
+    },
+    {
+      "start": 1070.84,
+      "end": 1073.44,
+      "text": "And then I take a trade."
+    },
+    {
+      "start": 1074.66,
+      "end": 1080.48,
+      "text": "So the patterns come after the signal is established,"
+    },
+    {
+      "start": 1080.8,
+      "end": 1084.78,
+      "text": "not before, not I'm just feeling like it"
+    },
+    {
+      "start": 1084.78,
+      "end": 1086.24,
+      "text": "and I'm going to trade this pattern."
+    },
+    {
+      "start": 1086.24,
+      "end": 1091.6,
+      "text": "There is a specific step-by-step process."
+    },
+    {
+      "start": 1092.14,
+      "end": 1095.2,
+      "text": "We're not just trading random levels."
+    },
+    {
+      "start": 1095.82,
+      "end": 1099.84,
+      "text": "We're trading specific highest close of the month,"
+    },
+    {
+      "start": 1099.84,
+      "end": 1106.98,
+      "text": "specific previous daily close previous daily high previous daily low and everything comes together"
+    },
+    {
+      "start": 1106.98,
+      "end": 1117.36,
+      "text": "to take a trade in one direction once we have the entry then we just hold the trade"
+    },
+    {
+      "start": 1117.36,
+      "end": 1126.56,
+      "text": "and we follow the 20 simple moving average and if price starts to close about 20 simple moving"
+    },
+    {
+      "start": 1126.56,
+      "end": 1134.38,
+      "text": "average you might give it one or two candles to see if maybe this was a fake out sometimes as you"
+    },
+    {
+      "start": 1134.38,
+      "end": 1142.8,
+      "text": "can see you have a close about the 20 sma and then it continues to drop so you want to let this trade"
+    },
+    {
+      "start": 1142.8,
+      "end": 1151.68,
+      "text": "play out at least go to one to one r and in this case the trade dropped to like two r and then i"
+    },
+    {
+      "start": 1151.68,
+      "end": 1160.64,
+      "text": "put my stop loss at 1R and I got stopped out at 1R somewhere over here. So I didn't really wait"
+    },
+    {
+      "start": 1160.64,
+      "end": 1169.08,
+      "text": "for the 20 SMA, but if I did, I would be stopped out at the same price here, somewhere over here"
+    },
+    {
+      "start": 1169.08,
+      "end": 1177.32,
+      "text": "or somewhere about this high for 1R. But the point is that even though this was a third day reversal"
+    },
+    {
+      "start": 1177.32,
+      "end": 1180.82,
+      "text": "and we're looking for all of this liquidation,"
+    },
+    {
+      "start": 1181.3,
+      "end": 1183.54,
+      "text": "it might not happen today."
+    },
+    {
+      "start": 1183.92,
+      "end": 1185.6,
+      "text": "It might not happen tomorrow."
+    },
+    {
+      "start": 1186.5,
+      "end": 1189.04,
+      "text": "Just because it didn't happen today"
+    },
+    {
+      "start": 1189.04,
+      "end": 1192.42,
+      "text": "doesn't mean that the trade was wrong."
+    },
+    {
+      "start": 1193.6,
+      "end": 1195.64,
+      "text": "We are here to make money."
+    },
+    {
+      "start": 1196.56,
+      "end": 1199.9,
+      "text": "The number one goal is to make money on the trade."
+    },
+    {
+      "start": 1200.58,
+      "end": 1203.0,
+      "text": "Once you have all the ducks in a row"
+    },
+    {
+      "start": 1203.0,
+      "end": 1205.1,
+      "text": "and you took your entry,"
+    },
+    {
+      "start": 1205.1,
+      "end": 1213.82,
+      "text": "follow your management rules just follow your management rules based on your style of trading"
+    },
+    {
+      "start": 1213.82,
+      "end": 1219.98,
+      "text": "so if you are holding into the close what is the rule that you get out of the trade"
+    },
+    {
+      "start": 1219.98,
+      "end": 1228.2,
+      "text": "the rule is 20 sma if price starts to go back about 20 sma you just close the trade"
+    },
+    {
+      "start": 1228.2,
+      "end": 1238.5,
+      "text": "and you don't hold and hope that it might go even lower because again it might not happen today"
+    },
+    {
+      "start": 1238.5,
+      "end": 1246.9,
+      "text": "that's the shift in the mindset that's the paradigm shift we are recognizing opportunity"
+    },
+    {
+      "start": 1246.9,
+      "end": 1254.08,
+      "text": "on the high time frame chart that's your signal day and then we are taking that opportunity"
+    },
+    {
+      "start": 1254.08,
+      "end": 1257.5,
+      "text": "after price lines up with our plan."
+    },
+    {
+      "start": 1258.16,
+      "end": 1262.52,
+      "text": "And then we let the opportunity play out or not."
+    },
+    {
+      "start": 1263.14,
+      "end": 1267.0,
+      "text": "So either price is going to stop you out"
+    },
+    {
+      "start": 1267.0,
+      "end": 1272.5,
+      "text": "or it's going to go into your direction for a little bit"
+    },
+    {
+      "start": 1272.5,
+      "end": 1276.16,
+      "text": "and then you have to trail it and you get stopped out in some profit"
+    },
+    {
+      "start": 1276.16,
+      "end": 1281.58,
+      "text": "or you actually get that absolute banger that extends into the close"
+    },
+    {
+      "start": 1281.58,
+      "end": 1284.52,
+      "text": "and even sometimes runs for two or three days."
+    },
+    {
+      "start": 1285.42,
+      "end": 1290.84,
+      "text": "But yet again, if price breaks above or below 20 SMA"
+    },
+    {
+      "start": 1290.84,
+      "end": 1293.96,
+      "text": "and you're trailing, that's it, your trade is done."
+    },
+    {
+      "start": 1295.18,
+      "end": 1299.44,
+      "text": "And this is the same process for every single trade."
+    },
+    {
+      "start": 1300.54,
+      "end": 1304.1,
+      "text": "And again, I'm not trying to trade this SBS."
+    },
+    {
+      "start": 1305.0,
+      "end": 1307.76,
+      "text": "I am trying to trade the signal,"
+    },
+    {
+      "start": 1307.76,
+      "end": 1311.52,
+      "text": "the bearish signal from the daily chart"
+    },
+    {
+      "start": 1311.52,
+      "end": 1315.94,
+      "text": "and I'm trying to get a piece of this move down"
+    },
+    {
+      "start": 1315.94,
+      "end": 1320.6,
+      "text": "I'm not trying to get an SBS trade"
+    },
+    {
+      "start": 1320.6,
+      "end": 1323.42,
+      "text": "I'm trying to get my money"
+    },
+    {
+      "start": 1323.42,
+      "end": 1326.74,
+      "text": "based on opportunity that's in front of me"
+    },
+    {
+      "start": 1326.74,
+      "end": 1331.0,
+      "text": "based on opportunity that's been setting up from yesterday"
+    },
+    {
+      "start": 1331.0,
+      "end": 1333.2,
+      "text": "and again"
+    },
+    {
+      "start": 1333.2,
+      "end": 1337.32,
+      "text": "this opportunity might not be the one that you"
+    },
+    {
+      "start": 1337.32,
+      "end": 1344.98,
+      "text": "really really want 10-hour trade that you really really want that's where all the problems in"
+    },
+    {
+      "start": 1344.98,
+      "end": 1352.24,
+      "text": "trading come from wrong expectations and if you have wrong expectations that's why you're going"
+    },
+    {
+      "start": 1352.24,
+      "end": 1360.66,
+      "text": "to be holding and hoping well this is the first red day and it must extend lower no it doesn't"
+    },
+    {
+      "start": 1360.66,
+      "end": 1362.84,
+      "text": "It can go up, down, sideways."
+    },
+    {
+      "start": 1363.24,
+      "end": 1365.68,
+      "text": "It can do whatever it wants to do."
+    },
+    {
+      "start": 1366.42,
+      "end": 1371.7,
+      "text": "And that's why we need to have concrete rule set for ourselves."
+    },
+    {
+      "start": 1372.18,
+      "end": 1373.78,
+      "text": "So we don't go tilt."
+    },
+    {
+      "start": 1374.24,
+      "end": 1381.04,
+      "text": "We just accept the fact that sometimes we're not going to get those 10 R bangers."
+    },
+    {
+      "start": 1381.6,
+      "end": 1387.12,
+      "text": "Sometimes it might look like the 10 R banger is coming, but you get stopped out at 1 R."
+    },
+    {
+      "start": 1388.12,
+      "end": 1389.32,
+      "text": "And that's it."
+    },
+    {
+      "start": 1389.42,
+      "end": 1390.6,
+      "text": "Just close the chart."
+    },
+    {
+      "start": 1390.66,
+      "end": 1392.7,
+      "text": "That was the opportunity for today."
+    },
+    {
+      "start": 1393.34,
+      "end": 1399.62,
+      "text": "And even if it drops lower, and even if it goes to 10 hours later that day,"
+    },
+    {
+      "start": 1400.22,
+      "end": 1400.96,
+      "text": "you are done."
+    },
+    {
+      "start": 1401.48,
+      "end": 1402.84,
+      "text": "You followed your rules."
+    },
+    {
+      "start": 1403.56,
+      "end": 1405.22,
+      "text": "You are done with the trade."
+    },
+    {
+      "start": 1406.14,
+      "end": 1409.32,
+      "text": "It really all comes down to following your rules."
+    },
+    {
+      "start": 1409.32,
+      "end": 1413.72,
+      "text": "And the hardest part is walking away from that chart."
+    },
+    {
+      "start": 1414.4,
+      "end": 1420.44,
+      "text": "And it's going to be way harder to walk away from scalping one-minute chart"
+    },
+    {
+      "start": 1420.44,
+      "end": 1425.14,
+      "text": "than trying to trade one trade per day,"
+    },
+    {
+      "start": 1425.86,
+      "end": 1430.12,
+      "text": "holding into close, one and done, and move on."
+    },
+    {
+      "start": 1430.82,
+      "end": 1432.46,
+      "text": "So pick your trading style."
+    },
+    {
+      "start": 1432.88,
+      "end": 1435.92,
+      "text": "Everything works, but just understand"
+    },
+    {
+      "start": 1435.92,
+      "end": 1438.46,
+      "text": "that it doesn't work all the time."
+    },
+    {
+      "start": 1439.42,
+      "end": 1443.4,
+      "text": "Everything works, but it doesn't work all the time."
+    },
+    {
+      "start": 1444.12,
+      "end": 1446.98,
+      "text": "So there is no answer for the question,"
+    },
+    {
+      "start": 1446.98,
+      "end": 1451.16,
+      "text": "how do we know if this trade pattern"
+    },
+    {
+      "start": 1451.16,
+      "end": 1452.98,
+      "text": "going to work out or not?"
+    },
+    {
+      "start": 1453.7,
+      "end": 1456.98,
+      "text": "How do we know if this is a valid pullback?"
+    },
+    {
+      "start": 1456.98,
+      "end": 1461.54,
+      "text": "Or how do we know if this high is the protected high?"
+    },
+    {
+      "start": 1462.26,
+      "end": 1463.86,
+      "text": "We don't know for sure."
+    },
+    {
+      "start": 1464.58,
+      "end": 1465.26,
+      "text": "We don't."
+    },
+    {
+      "start": 1465.9,
+      "end": 1467.02,
+      "text": "We never will."
+    },
+    {
+      "start": 1467.76,
+      "end": 1470.28,
+      "text": "Because trading is not science."
+    },
+    {
+      "start": 1471.02,
+      "end": 1473.62,
+      "text": "We are trading against people."
+    },
+    {
+      "start": 1473.86,
+      "end": 1474.96,
+      "text": "It's a big auction"
+    },
+    {
+      "start": 1474.96,
+      "end": 1477.12,
+      "text": "and everybody trying to make money."
+    },
+    {
+      "start": 1477.96,
+      "end": 1479.14,
+      "text": "So with that being said,"
+    },
+    {
+      "start": 1479.32,
+      "end": 1481.24,
+      "text": "this is going to be it for this case study"
+    },
+    {
+      "start": 1481.24,
+      "end": 1482.96,
+      "text": "and I will talk to you in the next one."
+    },
+    {
+      "start": 1483.14,
+      "end": 1483.44,
+      "text": "Take care."
+    }
+  ]
+}

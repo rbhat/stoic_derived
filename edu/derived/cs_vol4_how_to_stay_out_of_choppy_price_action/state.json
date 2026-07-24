@@ -1,0 +1,41 @@
+{
+  "source": "resources/case_studies/vol4/videos/How to stay out of choppy price action - Stoic Trader Concepts · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1784870069.727,
+      "pid": 38626,
+      "heartbeat": 1784870069.56022,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1784870070.763637,
+      "pid": 38626,
+      "heartbeat": 1784870069.729781,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1784870112.593436,
+      "pid": 38626,
+      "heartbeat": 1784870100.786808,
+      "attempts": 1
+    },
+    "moments": {
+      "status": "done",
+      "ts": 1784870216.2259111,
+      "pid": 38626,
+      "heartbeat": 1784870202.652747,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1784870237.373568,
+      "pid": 38626,
+      "heartbeat": 1784870231.2378502,
+      "attempts": 1
+    }
+  },
+  "signature": "55870525-1784848183"
+}

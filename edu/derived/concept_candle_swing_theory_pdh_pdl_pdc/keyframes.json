@@ -1,0 +1,1111 @@
+{
+  "source": "videos/Candle Swing Theory PDH PDL PDC - Stoic Trader Concepts · Stoic Traders.mp4",
+  "count": 110,
+  "by_source": {
+    "llm": 84,
+    "drift": 20,
+    "gap": 6
+  },
+  "keyframes": [
+    {
+      "index": 0,
+      "t": 0,
+      "hms": "00:00:00",
+      "file": "keyframes/0000_000000.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "hello story traders welcome to brand new year happy new year and in this video i'm going to"
+    },
+    {
+      "index": 1,
+      "t": 6,
+      "hms": "00:00:06",
+      "file": "keyframes/0001_000006.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "hello story traders welcome to brand new year happy new year and in this video i'm going to"
+    },
+    {
+      "index": 2,
+      "t": 12,
+      "hms": "00:00:12",
+      "file": "keyframes/0002_000012.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "hello story traders welcome to brand new year happy new year and in this video i'm going to"
+    },
+    {
+      "index": 3,
+      "t": 18,
+      "hms": "00:00:18",
+      "file": "keyframes/0003_000018.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "hello story traders welcome to brand new year happy new year and in this video i'm going to show you what we're going to do in 2026 i continue to refine to simplify the system And the core mission for the 2026 is to completely remove emotional decision making and have a nice mechanical system that you can execute without thinking. And instead of chasing every wiggle in price, we have a specific rule-based criteria that we follow every day, every week. And today is Sunday. Happy Sunday. Happy weekend, everybody. Today is the first day of our 90-day challenge. Do not underestimate these next 90 days because it only takes three months to change your life completely."
+    },
+    {
+      "index": 4,
+      "t": 63,
+      "hms": "00:01:03",
+      "file": "keyframes/0004_000103.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "Today is the first day of our 90-day challenge. Do not underestimate these next 90 days because it only takes three months to change your life completely. so in 2026 we're going to do things a bit differently instead of just having one big course with a lot of content i want to show you and document the process of implementing the stoic edge system in your day-to-day life and i want to lead by example so for the next week i'm going to be publishing a video recap of my trading day following the stoic edge system so you know what to do on Sunday, Monday, Tuesday, Wednesday, Thursday, Friday. If you want to participate in this challenge, please do because this is very important. And like I said, it can literally change your life in the next 90 days. So with that being said, let's get into candle swing"
+    },
+    {
+      "index": 5,
+      "t": 108,
+      "hms": "00:01:48",
+      "file": "keyframes/0005_000148.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "in this challenge, please do because this is very important. And like I said, it can literally change your life in the next 90 days. So with that being said, let's get into candle swing theory and identifying high probability POIs. So we have FIB geometry as the execution model, But what was really missing from the overall system is a mechanical way, a mechanical framework to identify high probability POIs. So instead of just chasing every structure on the lower timeframes, we're going to identify a specific set of POIs, which is only three levels. And we're only going to focus on those three levels. and like i said you can bring your own trading strategies trading models and integrate it into the stoic edge system but in this video series for the next 90 days i'm going to be documenting"
+    },
+    {
+      "index": 6,
+      "t": 153,
+      "hms": "00:02:33",
+      "file": "keyframes/0006_000233.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "and like i said you can bring your own trading strategies trading models and integrate it into the stoic edge system but in this video series for the next 90 days i'm going to be documenting my process of building a system from scratch which we have a lot of elements already like i said the fib geometry and candle swing theory is all we need in order to execute the stoic edge system So I'm going to show you, I'm going to put together the system and I'm going to execute it every day. But first, candle swing theory. So it's all about the POIs, the price levels that we are waiting for."
+    },
+    {
+      "index": 7,
+      "t": 182,
+      "hms": "00:03:02",
+      "file": "keyframes/0007_000302.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "So I'm going to show you, I'm going to put together the system and I'm going to execute it every day. But first, candle swing theory. So it's all about the POIs, the price levels that we are waiting for. So this gives us a great filter because most traders lose and go on tilt because they don't know when not to trade. and simply by having these POIs on your chart you are eliminating a lot of bad trades because if you study charts long enough you will notice that there are daily cycles there are weekly cycles in price and in this video I'm gonna pull the curtain a bit and show you some of these cycles but we will dive deeper into them in a future lessons so as far as the POIs All we need is the previous daily high, previous daily low, and previous daily close."
+    },
+    {
+      "index": 8,
+      "t": 229,
+      "hms": "00:03:49",
+      "file": "keyframes/0008_000349.jpg",
+      "source": "llm",
+      "label": "Identifying POI levels",
+      "why": "Instructor introduces the three key price levels: previous daily high, low, and close as the core POIs for trading.",
+      "narration": "of these cycles but we will dive deeper into them in a future lessons so as far as the POIs All we need is the previous daily high, previous daily low, and previous daily close. And like I said, we do not predict. We wait for the price to interact with these levels. This is very important. Doesn't matter what strategy you have, you have to have a way to stay away from the market. You have to know when not to trade. Because if you just keep trading every single day and every session and every wiggle of price, you're going to end up burned out, exhausted, mentally fatigued. And it's very important for us as traders to manage our time and energy properly so we can be the best operator we can be. And these levels are going to give us guardrails in order to stay out of the unfavorable market."
+    },
+    {
+      "index": 9,
+      "t": 274,
+      "hms": "00:04:34",
+      "file": "keyframes/0009_000434.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "And it's very important for us as traders to manage our time and energy properly so we can be the best operator we can be. And these levels are going to give us guardrails in order to stay out of the unfavorable market. And I'm focusing on the daily candles because daily candles are special. They have the cash open and cash close. So every day at 4 p.m. as market cash session closes, you have that price level on your chart. So that's the only close level of a candle that I'm willing to trade based off because other closes on other candles, they're not really real. It's not like the market stops trading when the 30-minute candle closes."
+    },
+    {
+      "index": 10,
+      "t": 319,
+      "hms": "00:05:19",
+      "file": "keyframes/0010_000519.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "So that's the only close level of a candle that I'm willing to trade based off because other closes on other candles, they're not really real. It's not like the market stops trading when the 30-minute candle closes. So we don't really look at the candle closes, but we only look at the daily candle close. And that's also going to be a weekly candle close. So we always have three levels on our chart, previous daily high, previous daily low, and the previous daily close."
+    },
+    {
+      "index": 11,
+      "t": 342,
+      "hms": "00:05:42",
+      "file": "keyframes/0011_000542.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "So we always have three levels on our chart, previous daily high, previous daily low, and the previous daily close. So the core of the candle swing theory is that we have previous candle, in this case, daily candle. in my system, the system that I'm building for these next 90 days, I'm going to be focusing only on the daily candle. And I'm only going to be trading based on previous daily low,"
+    },
+    {
+      "index": 12,
+      "t": 363,
+      "hms": "00:06:03",
+      "file": "keyframes/0012_000603.jpg",
+      "source": "llm",
+      "label": "Focusing on daily candles",
+      "why": "Instructor specifies that the system will focus only on daily candles for identifying setups.",
+      "narration": "in my system, the system that I'm building for these next 90 days, I'm going to be focusing only on the daily candle. And I'm only going to be trading based on previous daily low, previous daily high, and previous daily close. Every day we come in into the market and we mark out three levels. You got candle high, candle low, and the candle close. I didn't mark out here"
+    },
+    {
+      "index": 13,
+      "t": 375,
+      "hms": "00:06:15",
+      "file": "keyframes/0013_000615.jpg",
+      "source": "llm",
+      "label": "Marking three levels on chart",
+      "why": "Instructor explains marking out the previous daily high, low, and close on the chart as foundational elements.",
+      "narration": "previous daily high, and previous daily close. Every day we come in into the market and we mark out three levels. You got candle high, candle low, and the candle close. I didn't mark out here just for the sake of simplicity but the main premise is that we have two setups based on the previous daily candle one is the sweep which is the swing failure pattern the price failed to go"
+    },
+    {
+      "index": 14,
+      "t": 391,
+      "hms": "00:06:31",
+      "file": "keyframes/0014_000631.jpg",
+      "source": "llm",
+      "label": "Two setups: sweep and break retest",
+      "why": "Instructor introduces the two primary trading setups based on previous daily candle: swing failure (sweep) and break and retest.",
+      "narration": "just for the sake of simplicity but the main premise is that we have two setups based on the previous daily candle one is the sweep which is the swing failure pattern the price failed to go lower and reversed and then we have a second setup which is break and retest based on this previous daily high now you can also notice that on this day it was a break and retest off of this"
+    },
+    {
+      "index": 15,
+      "t": 406,
+      "hms": "00:06:46",
+      "file": "keyframes/0015_000646.jpg",
+      "source": "llm",
+      "label": "Break and retest pattern example",
+      "why": "Instructor points to a specific chart example showing break and retest off the previous daily high.",
+      "narration": "lower and reversed and then we have a second setup which is break and retest based on this previous daily high now you can also notice that on this day it was a break and retest off of this candle on this day also break and retest here break and retest here so you always going to be looking for two setups either is going to be a reversal swing failure pattern or a continuation break and retest same for the shorts you have the previous candle this is a swing failure pattern"
+    },
+    {
+      "index": 16,
+      "t": 428,
+      "hms": "00:07:08",
+      "file": "keyframes/0016_000708.jpg",
+      "source": "llm",
+      "label": "Continuation and reversal setups",
+      "why": "Instructor explains that both continuation (break and retest) and reversal (swing failure) patterns are valid setups.",
+      "narration": "looking for two setups either is going to be a reversal swing failure pattern or a continuation break and retest same for the shorts you have the previous candle this is a swing failure pattern very easy stuff very straightforward very simple and this is what's required for you to stay consistently profitable and execute consistently you want to keep your trading as simple as possible as repeatable as possible and also scalable because the more complicated setup you have it's going to be harder for you to scale and risk more money on those complicated setups. So this is the very basic premise of candle swing theory."
+    },
+    {
+      "index": 17,
+      "t": 467,
+      "hms": "00:07:47",
+      "file": "keyframes/0017_000747.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "So this is the very basic premise of candle swing theory. So the previous candle, I call it the anchor bar. It's just a previous high time frame candle."
+    },
+    {
+      "index": 18,
+      "t": 474,
+      "hms": "00:07:54",
+      "file": "keyframes/0018_000754.jpg",
+      "source": "llm",
+      "label": "Anchor bar concept",
+      "why": "Instructor defines the previous daily candle as the 'anchor bar' for all trading decisions.",
+      "narration": "So the previous candle, I call it the anchor bar. It's just a previous high time frame candle. And I'm using daily candles. And when you have inside candles, we want to treat them as noise. This is just consolidation. and a good setup on the inside bars like this on the inside days right is waiting for the sweep"
+    },
+    {
+      "index": 19,
+      "t": 486,
+      "hms": "00:08:06",
+      "file": "keyframes/0019_000806.jpg",
+      "source": "llm",
+      "label": "Inside bars as noise",
+      "why": "Instructor identifies inside candles as consolidation and advises treating them as market noise.",
+      "narration": "And when you have inside candles, we want to treat them as noise. This is just consolidation. and a good setup on the inside bars like this on the inside days right is waiting for the sweep and then explosive move up which is leads to expansion because like i said consolidation leads to expansion back to consolidation and then you have another expansion that leads back to consolidation it's the same cycle over and over and over and over again here's another schematic"
+    },
+    {
+      "index": 20,
+      "t": 512,
+      "hms": "00:08:32",
+      "file": "keyframes/0020_000832.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "leads to expansion back to consolidation and then you have another expansion that leads back to consolidation it's the same cycle over and over and over and over again here's another schematic same illustration for the swing failure pattern we only trade two setups swing failure pattern and break and retest here's another illustration where the price coming down into the move origin"
+    },
+    {
+      "index": 21,
+      "t": 523,
+      "hms": "00:08:43",
+      "file": "keyframes/0021_000843.jpg",
+      "source": "llm",
+      "label": "Illustrating swing failure pattern",
+      "why": "Instructor shows a schematic of the swing failure pattern, highlighting price sweeping and reversing.",
+      "narration": "same illustration for the swing failure pattern we only trade two setups swing failure pattern and break and retest here's another illustration where the price coming down into the move origin right and then you have price sweeping the previous daily low and starts trading higher right we have a break and retest on this breakout and important to notice is that"
+    },
+    {
+      "index": 22,
+      "t": 539,
+      "hms": "00:08:59",
+      "file": "keyframes/0022_000859.jpg",
+      "source": "llm",
+      "label": "Break and retest example",
+      "why": "Instructor points to a chart showing break and retest of previous daily low with price moving higher.",
+      "narration": "right and then you have price sweeping the previous daily low and starts trading higher right we have a break and retest on this breakout and important to notice is that i'm not waiting for the close of this candle i am trading this candle so we have the previous day and then as soon as the price breaks and retest on lower time frames i'm in this trade and i'm"
+    },
+    {
+      "index": 23,
+      "t": 553,
+      "hms": "00:09:13",
+      "file": "keyframes/0023_000913.jpg",
+      "source": "llm",
+      "label": "Trading the candle as it happens",
+      "why": "Instructor emphasizes entering trades immediately after price breaks and retests, without waiting for candle close.",
+      "narration": "i'm not waiting for the close of this candle i am trading this candle so we have the previous day and then as soon as the price breaks and retest on lower time frames i'm in this trade and i'm trying to get as much as i can so this is the candle swing theory very simple nothing complicated it's just a previous high time frame candle and i'm focusing on the daily candles you can focus on the hourly candles for the smaller moves, but let me show you why I'm focusing on the daily candles. There is a concept of environment that I taught in the Stoic Trader Protocol."
+    },
+    {
+      "index": 24,
+      "t": 581,
+      "hms": "00:09:41",
+      "file": "keyframes/0024_000941.jpg",
+      "source": "llm",
+      "label": "Introducing environment concept",
+      "why": "Instructor introduces the idea of market environment using a three-day cycle to determine context.",
+      "narration": "on the hourly candles for the smaller moves, but let me show you why I'm focusing on the daily candles. There is a concept of environment that I taught in the Stoic Trader Protocol. And inside of the Stoic Trader Protocol, I show you how you can use 20 and 200 simple moving averages in order to form a bias on any timeframe. It's a good framework. I'm still going to be using that framework but today i'm going to show you a three-day cycle so the environment in itself the purpose of this environment filter is that we want to know what is the context of today what is the context of the week what is the overall narrative on the higher time frames like weekly daily monthly what are we doing so one interesting mechanic about the markets is that it likes to push three"
+    },
+    {
+      "index": 25,
+      "t": 626,
+      "hms": "00:10:26",
+      "file": "keyframes/0025_001026.jpg",
+      "source": "gap",
+      "label": "",
+      "why": "",
+      "narration": "context of the week what is the overall narrative on the higher time frames like weekly daily monthly what are we doing so one interesting mechanic about the markets is that it likes to push three times which is three green days and then you can expect a reversal in most cases so based on the"
+    },
+    {
+      "index": 26,
+      "t": 632,
+      "hms": "00:10:32",
+      "file": "keyframes/0026_001032.jpg",
+      "source": "llm",
+      "label": "Three-day cycle explanation",
+      "why": "Instructor explains the market's tendency to push three times (three green or red days) before reversal.",
+      "narration": "what are we doing so one interesting mechanic about the markets is that it likes to push three times which is three green days and then you can expect a reversal in most cases so based on the three-day cycle we can profile a whole week so you have monday the first day tuesday the second day and Wednesday, the third day, that could be a reversal. Or you can have a reversal on the Thursday, which is the fourth day. But sometimes, instead of reversal, you have continuation. So it's a three-day cycle. Usually the first day expands, which is Monday. A lot of people believe that Monday is untradeable, but a lot of times you will notice that Monday trends, which is the opening range for the week, pretty much. then on tuesday it's usually a continuation of the trend and on wednesday is where we can expect"
+    },
+    {
+      "index": 27,
+      "t": 674,
+      "hms": "00:11:14",
+      "file": "keyframes/0027_001114.jpg",
+      "source": "llm",
+      "label": "Monday as expansion day",
+      "why": "Instructor describes Monday as typically a trend-expanding day, contrary to common belief.",
+      "narration": "but a lot of times you will notice that Monday trends, which is the opening range for the week, pretty much. then on tuesday it's usually a continuation of the trend and on wednesday is where we can expect a reversal or a big continuation on thursday yet again if the wednesday didn't have reversal we"
+    },
+    {
+      "index": 28,
+      "t": 684,
+      "hms": "00:11:24",
+      "file": "keyframes/0028_001124.jpg",
+      "source": "llm",
+      "label": "Wednesday as reversal or continuation day",
+      "why": "Instructor identifies Wednesday as a potential reversal point after three days of trend.",
+      "narration": "then on tuesday it's usually a continuation of the trend and on wednesday is where we can expect a reversal or a big continuation on thursday yet again if the wednesday didn't have reversal we expect reversal on thursday but if wednesday had a reversal we expect continuation on thursday And then on Friday, it could be a big reversal or continuation to dump lower. Usually, Wednesday and Friday are the biggest days of the week as far as the movements."
+    },
+    {
+      "index": 29,
+      "t": 705,
+      "hms": "00:11:45",
+      "file": "keyframes/0029_001145.jpg",
+      "source": "llm",
+      "label": "Friday as big movement day",
+      "why": "Instructor notes Friday often has significant price movements, either reversal or continuation.",
+      "narration": "And then on Friday, it could be a big reversal or continuation to dump lower. Usually, Wednesday and Friday are the biggest days of the week as far as the movements. We will see what 2026 brings us, but there are five distinctive daily profiles that you can kind of expect based on what day it is. We got three green days in a row that I just explained and the psychology behind them that traders are in a state of the formal fear of missing out. They try trend continuation, but the bias is short because the trend is exhausted."
+    },
+    {
+      "index": 30,
+      "t": 733,
+      "hms": "00:12:13",
+      "file": "keyframes/0030_001213.jpg",
+      "source": "llm",
+      "label": "Three green days leading to short bias",
+      "why": "Instructor explains that after three consecutive green days, the market is likely exhausted and bias shifts to short.",
+      "narration": "We got three green days in a row that I just explained and the psychology behind them that traders are in a state of the formal fear of missing out. They try trend continuation, but the bias is short because the trend is exhausted. This is where on your moving averages, you will see where the 20 SMA is far, far away from 200 SMA. So we short back to the 200 SMA."
+    },
+    {
+      "index": 31,
+      "t": 746,
+      "hms": "00:12:26",
+      "file": "keyframes/0031_001226.jpg",
+      "source": "llm",
+      "label": "Shorting back to 200 SMA",
+      "why": "Instructor describes the strategy of shorting back to the 200 SMA after three green days.",
+      "narration": "This is where on your moving averages, you will see where the 20 SMA is far, far away from 200 SMA. So we short back to the 200 SMA. Same day for the three red days. Traders panic, traders sell everything, and then the bias is long because we got three red days in a row and usually the fourth day is a reversal. we also have the inside day this is the indecision we don't really want to trade inside days but if"
+    },
+    {
+      "index": 32,
+      "t": 763,
+      "hms": "00:12:43",
+      "file": "keyframes/0032_001243.jpg",
+      "source": "llm",
+      "label": "Inside day as indecision",
+      "why": "Instructor identifies inside days as periods of market indecision.",
+      "narration": "Same day for the three red days. Traders panic, traders sell everything, and then the bias is long because we got three red days in a row and usually the fourth day is a reversal. we also have the inside day this is the indecision we don't really want to trade inside days but if they sweep the range that pre-market range then we can trade those inside days for a nice breakout and expansion i'll show you how it looks like in just a bit but then we have first red or green day So after the three green days or after three red days, you have the first reversal day."
+    },
+    {
+      "index": 33,
+      "t": 789,
+      "hms": "00:13:09",
+      "file": "keyframes/0033_001309.jpg",
+      "source": "llm",
+      "label": "First reversal day after three green/red days",
+      "why": "Instructor explains that the first day following three green or red days signals a trend shift.",
+      "narration": "and expansion i'll show you how it looks like in just a bit but then we have first red or green day So after the three green days or after three red days, you have the first reversal day. Psychologically, that's signaling the trend shift and you just want to play continuation. And then also, like I said, the day two and three, it could be a trend continuation. So on the days like Tuesday, which is the second day of the week, we got counter traders getting trapped and the bias is a simple continuation of the first day. Very important rule, trade the environment in front of you, not the one you want."
+    },
+    {
+      "index": 34,
+      "t": 817,
+      "hms": "00:13:37",
+      "file": "keyframes/0034_001337.jpg",
+      "source": "llm",
+      "label": "Trading the environment",
+      "why": "Instructor emphasizes trading based on current market structure, not desired outcome.",
+      "narration": "So on the days like Tuesday, which is the second day of the week, we got counter traders getting trapped and the bias is a simple continuation of the first day. Very important rule, trade the environment in front of you, not the one you want. So if the chart is setting up in a specific way, trade that chart. Don't try to predict what price is going to do. We don't care if it's going to the moon or if it's bear market. We're trading previous candle. That's all we're doing."
+    },
+    {
+      "index": 35,
+      "t": 836,
+      "hms": "00:13:56",
+      "file": "keyframes/0035_001356.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "We don't care if it's going to the moon or if it's bear market. We're trading previous candle. That's all we're doing. So this is roughly how it looks like. You got day one, day two, day three. This could be Monday, Tuesday, Wednesday."
+    },
+    {
+      "index": 36,
+      "t": 842,
+      "hms": "00:14:02",
+      "file": "keyframes/0036_001402.jpg",
+      "source": "llm",
+      "label": "Three-day trend profile",
+      "why": "Instructor shows a schematic of the three-day cycle with bullish days and potential reversal.",
+      "narration": "So this is roughly how it looks like. You got day one, day two, day three. This could be Monday, Tuesday, Wednesday. or it could be Wednesday, Thursday, Friday. Because Wednesday is a day three and day one. We only have five trading days in a week, but the market likes to trade within three-day cycles. So what you will notice on the three-day trend, you will have first bullish day, second bullish day breakout. You can trade continuation in here, right? You got the second day, third day breaks out,"
+    },
+    {
+      "index": 37,
+      "t": 869,
+      "hms": "00:14:29",
+      "file": "keyframes/0037_001429.jpg",
+      "source": "llm",
+      "label": "Continuation trade setup",
+      "why": "Instructor points to a chart showing continuation of trend on second day.",
+      "narration": "You can trade continuation in here, right? You got the second day, third day breaks out, sweeps the second day, and usually around the new york session 9 30 this is where we can find the setup to trade this nice explosive move and target previous days levels so the confirmation for this this is not required but it's a big confirmation if we have previous weekly high previous weekly low swap so let's say there"
+    },
+    {
+      "index": 38,
+      "t": 894,
+      "hms": "00:14:54",
+      "file": "keyframes/0038_001454.jpg",
+      "source": "llm",
+      "label": "Previous weekly high/low as confirmation",
+      "why": "Instructor explains that sweeping previous weekly highs or lows adds confirmation to a trade setup.",
+      "narration": "explosive move and target previous days levels so the confirmation for this this is not required but it's a big confirmation if we have previous weekly high previous weekly low swap so let's say there is a previous weekly high here and we also sweeping previous weekly high that's a good thing for us high time frame trend confluence is a good thing for us when the market is bearish"
+    },
+    {
+      "index": 39,
+      "t": 907,
+      "hms": "00:15:07",
+      "file": "keyframes/0039_001507.jpg",
+      "source": "llm",
+      "label": "High time frame trend confluence",
+      "why": "Instructor discusses high time frame trend favoring bearish continuation, visible on chart as a downward trend line or structure.",
+      "narration": "is a previous weekly high here and we also sweeping previous weekly high that's a good thing for us high time frame trend confluence is a good thing for us when the market is bearish and it bounces this is a retracement and continuation down lower so the high time frame is in our favor and also you can call this as a pump and dump manipulation pattern whatever where you have the pre-market usually London pushes into the New York and then New York"
+    },
+    {
+      "index": 40,
+      "t": 926,
+      "hms": "00:15:26",
+      "file": "keyframes/0040_001526.jpg",
+      "source": "llm",
+      "label": "Pump and dump manipulation pattern",
+      "why": "Instructor describes a fake-out reversal after London push into New York, visible as price spike and reversal on chart.",
+      "narration": "is in our favor and also you can call this as a pump and dump manipulation pattern whatever where you have the pre-market usually London pushes into the New York and then New York reverses and continues lower so it's a fake out manipulation and continuation lower swing failure pattern this is what it is it's a simple structural break it can look like this it can also look like"
+    },
+    {
+      "index": 41,
+      "t": 942,
+      "hms": "00:15:42",
+      "file": "keyframes/0041_001542.jpg",
+      "source": "llm",
+      "label": "Structural break pattern",
+      "why": "Instructor illustrates a simple structural break with price breaking lower after a bounce, visible as a breakdown below key level.",
+      "narration": "reverses and continues lower so it's a fake out manipulation and continuation lower swing failure pattern this is what it is it's a simple structural break it can look like this it can also look like a lot of consolidation then sweep and continuation lower it can hover on top of this high and then"
+    },
+    {
+      "index": 42,
+      "t": 949,
+      "hms": "00:15:49",
+      "file": "keyframes/0042_001549.jpg",
+      "source": "llm",
+      "label": "Consolidation and sweep continuation",
+      "why": "Instructor describes consolidation followed by a sweep lower, visible as price hovering above high then breaking down.",
+      "narration": "pattern this is what it is it's a simple structural break it can look like this it can also look like a lot of consolidation then sweep and continuation lower it can hover on top of this high and then during the new york open it could sweep and go long lower and i will be posting examples"
+    },
+    {
+      "index": 43,
+      "t": 958,
+      "hms": "00:15:58",
+      "file": "keyframes/0043_001558.jpg",
+      "source": "llm",
+      "label": "New York open sweep lower",
+      "why": "Instructor explains price sweeping down during New York session, visible as sharp downward move on chart.",
+      "narration": "a lot of consolidation then sweep and continuation lower it can hover on top of this high and then during the new york open it could sweep and go long lower and i will be posting examples during the week as i'm trading it as i'm watching the charts but the psychology of this pattern is that late longs are chasing right we have people trying to keep buying on the third day so we are looking for the shorts and expecting exhaustion or first red day so this over here"
+    },
+    {
+      "index": 44,
+      "t": 978,
+      "hms": "00:16:18",
+      "file": "keyframes/0044_001618.jpg",
+      "source": "llm",
+      "label": "First red day expectation",
+      "why": "Instructor identifies the first red day as a key signal for short entries, visible on chart as potential reversal after bullish move.",
+      "narration": "that late longs are chasing right we have people trying to keep buying on the third day so we are looking for the shorts and expecting exhaustion or first red day so this over here could be the first red day the same logic for the longs you just flip it moving on to the day two"
+    },
+    {
+      "index": 45,
+      "t": 985,
+      "hms": "00:16:25",
+      "file": "keyframes/0045_001625.jpg",
+      "source": "llm",
+      "label": "First red day example",
+      "why": "Instructor points to a potential first red day on chart, indicating short bias.",
+      "narration": "so we are looking for the shorts and expecting exhaustion or first red day so this over here could be the first red day the same logic for the longs you just flip it moving on to the day two three trend continuation so we have day one day two usually continuation and day three could be the continuation also and you simply mark out previous daily high and you look for"
+    },
+    {
+      "index": 46,
+      "t": 1000,
+      "hms": "00:16:40",
+      "file": "keyframes/0046_001640.jpg",
+      "source": "llm",
+      "label": "Day one to day three trend continuation",
+      "why": "Instructor explains the pattern of daily price action from day one to three, visible as continuation on chart.",
+      "narration": "three trend continuation so we have day one day two usually continuation and day three could be the continuation also and you simply mark out previous daily high and you look for the trade in here around the new york open around the new york am session you can find break and"
+    },
+    {
+      "index": 47,
+      "t": 1008,
+      "hms": "00:16:48",
+      "file": "keyframes/0047_001648.jpg",
+      "source": "llm",
+      "label": "Break and retest at New York open",
+      "why": "Instructor identifies break and retest setup around New York AM session, visible as price breaking level then returning.",
+      "narration": "could be the continuation also and you simply mark out previous daily high and you look for the trade in here around the new york open around the new york am session you can find break and retest also over here same thing break and retest break and retest on the second day boundaries and"
+    },
+    {
+      "index": 48,
+      "t": 1016,
+      "hms": "00:16:56",
+      "file": "keyframes/0048_001656.jpg",
+      "source": "llm",
+      "label": "Break and retest on second day",
+      "why": "Instructor points to a break and retest pattern on the second day, visible as price breaking level then retracing.",
+      "narration": "the trade in here around the new york open around the new york am session you can find break and retest also over here same thing break and retest break and retest on the second day boundaries and And here on these schematics, I don't have the daily close, but daily close works the same way. So you have another level here, which is daily close."
+    },
+    {
+      "index": 49,
+      "t": 1032,
+      "hms": "00:17:12",
+      "file": "keyframes/0049_001712.jpg",
+      "source": "llm",
+      "label": "Daily close level",
+      "why": "Instructor introduces daily close as a key price level, visible on chart as horizontal line.",
+      "narration": "And here on these schematics, I don't have the daily close, but daily close works the same way. So you have another level here, which is daily close. Price is about daily close. This is bullish, right? You have daily close over here that's lining up with previous day high. But daily close over here, we can also look break and retest on that daily close."
+    },
+    {
+      "index": 50,
+      "t": 1045,
+      "hms": "00:17:25",
+      "file": "keyframes/0050_001725.jpg",
+      "source": "llm",
+      "label": "Break and retest on daily close",
+      "why": "Instructor identifies break and retest at the daily close level, visible as price breaking then returning to that level.",
+      "narration": "You have daily close over here that's lining up with previous day high. But daily close over here, we can also look break and retest on that daily close. the same thing if we already swept the previous weekly low that's a good sign that high time frame trend is bullish that's a good sign the main setup is break and retest also the trend line bounce"
+    },
+    {
+      "index": 51,
+      "t": 1058,
+      "hms": "00:17:38",
+      "file": "keyframes/0051_001738.jpg",
+      "source": "llm",
+      "label": "Sweep of previous weekly low",
+      "why": "Instructor notes sweep of prior weekly low as bullish confluence, visible on chart as price breaking below previous low.",
+      "narration": "the same thing if we already swept the previous weekly low that's a good sign that high time frame trend is bullish that's a good sign the main setup is break and retest also the trend line bounce right we can have the trend line and in the previous example the trend line is over here"
+    },
+    {
+      "index": 52,
+      "t": 1067,
+      "hms": "00:17:47",
+      "file": "keyframes/0052_001747.jpg",
+      "source": "llm",
+      "label": "Trend line bounce",
+      "why": "Instructor shows trend line with price bouncing off it, visible as price touching and reversing from a diagonal support.",
+      "narration": "trend is bullish that's a good sign the main setup is break and retest also the trend line bounce right we can have the trend line and in the previous example the trend line is over here so we're breaking the trend line this is how continuation looks like the psychology is that early sellers are trapped we got people that trying to trade the sweeps trying to trade here"
+    },
+    {
+      "index": 53,
+      "t": 1079,
+      "hms": "00:17:59",
+      "file": "keyframes/0053_001759.jpg",
+      "source": "llm",
+      "label": "Early sellers trapped",
+      "why": "Instructor describes psychology of early sellers being trapped, visible as price breaking trend line and continuing lower.",
+      "narration": "so we're breaking the trend line this is how continuation looks like the psychology is that early sellers are trapped we got people that trying to trade the sweeps trying to trade here but they are trapped so the bias is just waiting for the break and retest and continuation in the direction of the trend another daily profile is inside day reversal which you have the inside day"
+    },
+    {
+      "index": 54,
+      "t": 1092,
+      "hms": "00:18:12",
+      "file": "keyframes/0054_001812.jpg",
+      "source": "llm",
+      "label": "Inside day reversal",
+      "why": "Instructor introduces inside day reversal pattern, visible as a small candle within prior day's range.",
+      "narration": "but they are trapped so the bias is just waiting for the break and retest and continuation in the direction of the trend another daily profile is inside day reversal which you have the inside day and ideally we always want to trade the third day because that's the highest probability signal"
+    },
+    {
+      "index": 55,
+      "t": 1100,
+      "hms": "00:18:20",
+      "file": "keyframes/0055_001820.jpg",
+      "source": "llm",
+      "label": "Inside day reversal setup",
+      "why": "Instructor explains trading the third day after inside day, visible as price sweeping high/low on day three.",
+      "narration": "direction of the trend another daily profile is inside day reversal which you have the inside day and ideally we always want to trade the third day because that's the highest probability signal in a way because day one is indecisive that's monday we can still trade day one based on the previous week levels previous week friday or previous weekly low previous weekly high you can trade the day one but then you have the day two this is the day we don't really trade because the price is not at our levels it's just chopping around here at the market close right these are not great opportunities on the inside day the best opportunities when we sweep the high or the low or we contain you based on the high or the low so you got the inside day you do nothing"
+    },
+    {
+      "index": 56,
+      "t": 1141,
+      "hms": "00:19:01",
+      "file": "keyframes/0056_001901.jpg",
+      "source": "llm",
+      "label": "Sweep of inside day high/low",
+      "why": "Instructor identifies sweep of inside day range as key for reversal setup, visible on chart.",
+      "narration": "these are not great opportunities on the inside day the best opportunities when we sweep the high or the low or we contain you based on the high or the low so you got the inside day you do nothing and on the third day you're watching the reversal so you want to see the sweep of the inside days You want to see a sweep of the day one and there is your swing failure pattern, also break and retest."
+    },
+    {
+      "index": 57,
+      "t": 1157,
+      "hms": "00:19:17",
+      "file": "keyframes/0057_001917.jpg",
+      "source": "llm",
+      "label": "Swing failure pattern",
+      "why": "Instructor describes swing failure after sweep, visible as price breaking and reversing from inside day range.",
+      "narration": "and on the third day you're watching the reversal so you want to see the sweep of the inside days You want to see a sweep of the day one and there is your swing failure pattern, also break and retest. Now there's different scenarios how the day three trades and you can have the sweep or you can have just simple continuation of the day two. The same thing, previous weekly high, previous weekly low."
+    },
+    {
+      "index": 58,
+      "t": 1176,
+      "hms": "00:19:36",
+      "file": "keyframes/0058_001936.jpg",
+      "source": "llm",
+      "label": "Sweep direction and high time frame",
+      "why": "Instructor explains trading in direction of sweep, visible as price breaking and continuing in one direction.",
+      "narration": "Now there's different scenarios how the day three trades and you can have the sweep or you can have just simple continuation of the day two. The same thing, previous weekly high, previous weekly low. We want to trade in the direction of the sweep. so if we have some kind of sweep to the left we want to trade in a direction of the high time frame sweep we want to see tight consolidation in here and psychology is the indecision and the energy is building right we have the inside day where back and forth that's your energy is building"
+    },
+    {
+      "index": 59,
+      "t": 1196,
+      "hms": "00:19:56",
+      "file": "keyframes/0059_001956.jpg",
+      "source": "llm",
+      "label": "Energy building in inside day",
+      "why": "Instructor describes indecision and energy buildup during inside day, visible as price consolidating.",
+      "narration": "sweep we want to see tight consolidation in here and psychology is the indecision and the energy is building right we have the inside day where back and forth that's your energy is building and then you got the fake out pump and dump and the last profile here is the first red day or"
+    },
+    {
+      "index": 60,
+      "t": 1204,
+      "hms": "00:20:04",
+      "file": "keyframes/0060_002004.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "is building right we have the inside day where back and forth that's your energy is building and then you got the fake out pump and dump and the last profile here is the first red day or first green day again for the bullish just reverse it you have the first day but on the second day"
+    },
+    {
+      "index": 61,
+      "t": 1210,
+      "hms": "00:20:10",
+      "file": "keyframes/0061_002010.jpg",
+      "source": "llm",
+      "label": "First red day as resistance",
+      "why": "Instructor explains first red day turning into resistance, visible as price failing to break above prior close.",
+      "narration": "and then you got the fake out pump and dump and the last profile here is the first red day or first green day again for the bullish just reverse it you have the first day but on the second day it comes down and it closes below the day one close so this is becoming important level and if it opens like this we want to watch the day one level this is your level of resistance that turns"
+    },
+    {
+      "index": 62,
+      "t": 1226,
+      "hms": "00:20:26",
+      "file": "keyframes/0062_002026.jpg",
+      "source": "llm",
+      "label": "Day one level as resistance",
+      "why": "Instructor identifies day one close as key resistance, visible on chart as horizontal level.",
+      "narration": "it comes down and it closes below the day one close so this is becoming important level and if it opens like this we want to watch the day one level this is your level of resistance that turns support and now it's back to resistance and we want to look for our setups in here this is where we can look for the fib geometry we can also have like a break and retest over here if you missed"
+    },
+    {
+      "index": 63,
+      "t": 1242,
+      "hms": "00:20:42",
+      "file": "keyframes/0063_002042.jpg",
+      "source": "llm",
+      "label": "Fib geometry setup",
+      "why": "Instructor mentions fib geometry at key level, visible as Fibonacci retracement lines on chart.",
+      "narration": "support and now it's back to resistance and we want to look for our setups in here this is where we can look for the fib geometry we can also have like a break and retest over here if you missed this you can try to catch this and continuation lower with expectations that now this is a new"
+    },
+    {
+      "index": 64,
+      "t": 1248,
+      "hms": "00:20:48",
+      "file": "keyframes/0064_002048.jpg",
+      "source": "llm",
+      "label": "Break and retest continuation lower",
+      "why": "Instructor describes break and retest setup continuing lower, visible as price breaking level then returning.",
+      "narration": "we can look for the fib geometry we can also have like a break and retest over here if you missed this you can try to catch this and continuation lower with expectations that now this is a new trend the same thing previous weekly high previous weekly low previous monthly high previous monthly low they're also important right the higher time frame is the most important thing so if you have"
+    },
+    {
+      "index": 65,
+      "t": 1262,
+      "hms": "00:21:02",
+      "file": "keyframes/0065_002102.jpg",
+      "source": "llm",
+      "label": "Higher time frame levels",
+      "why": "Instructor emphasizes importance of weekly and monthly levels, visible as horizontal lines on chart.",
+      "narration": "trend the same thing previous weekly high previous weekly low previous monthly high previous monthly low they're also important right the higher time frame is the most important thing so if you have high time frame level also swept that's a plus this usually happens on day one or day three so this could be monday wednesday or friday the psychology that the trend has shifted so the"
+    },
+    {
+      "index": 66,
+      "t": 1275,
+      "hms": "00:21:15",
+      "file": "keyframes/0066_002115.jpg",
+      "source": "llm",
+      "label": "Sweep on day one or three",
+      "why": "Instructor notes sweeps often occur on day one or three, visible as price breaking key level.",
+      "narration": "high time frame level also swept that's a plus this usually happens on day one or day three so this could be monday wednesday or friday the psychology that the trend has shifted so the buyers we are following the new color if yesterday was the first red day after a pump look for continuation shorts so if this is the first red day we're looking for the continuation shorts"
+    },
+    {
+      "index": 67,
+      "t": 1288,
+      "hms": "00:21:28",
+      "file": "keyframes/0067_002128.jpg",
+      "source": "llm",
+      "label": "First red day continuation shorts",
+      "why": "Instructor identifies first red day as signal for short entries, visible on chart as price breaking down.",
+      "narration": "buyers we are following the new color if yesterday was the first red day after a pump look for continuation shorts so if this is the first red day we're looking for the continuation shorts very simple stuff we got four profiles we got bullish and bearish three-day trend reversal"
+    },
+    {
+      "index": 68,
+      "t": 1299,
+      "hms": "00:21:39",
+      "file": "keyframes/0068_002139.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "very simple stuff we got four profiles we got bullish and bearish three-day trend reversal day two three trend continuation inside day reversal and first red day or first green day"
+    },
+    {
+      "index": 69,
+      "t": 1305,
+      "hms": "00:21:45",
+      "file": "keyframes/0069_002145.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "day two three trend continuation inside day reversal and first red day or first green day This is all we are trading. And every day we come into the market looking at these types of setups,"
+    },
+    {
+      "index": 70,
+      "t": 1311,
+      "hms": "00:21:51",
+      "file": "keyframes/0070_002151.jpg",
+      "source": "llm",
+      "label": "Daily checklist levels",
+      "why": "Instructor lists daily high/low/close as key levels, visible on chart as horizontal lines.",
+      "narration": "day two three trend continuation inside day reversal and first red day or first green day This is all we are trading. And every day we come into the market looking at these types of setups, looking for the chart to be set up in a specific way, and we simply ignore the rest."
+    },
+    {
+      "index": 71,
+      "t": 1322,
+      "hms": "00:22:02",
+      "file": "keyframes/0071_002202.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "looking for the chart to be set up in a specific way, and we simply ignore the rest. So the daily checklist, very simple. Am I interacting with previous daily high, previous daily low,"
+    },
+    {
+      "index": 72,
+      "t": 1328,
+      "hms": "00:22:08",
+      "file": "keyframes/0072_002208.jpg",
+      "source": "llm",
+      "label": "Daily level interaction",
+      "why": "Instructor emphasizes interacting with daily levels, visible as price approaching key horizontal lines.",
+      "narration": "So the daily checklist, very simple. Am I interacting with previous daily high, previous daily low, previous daily close? That's your daily level. They don't change. Environment. does the three-day cycle support my bias so what is that daily profile that we are looking for the setup there is only two setups and we are trading these setups based on these levels and only based"
+    },
+    {
+      "index": 73,
+      "t": 1346,
+      "hms": "00:22:26",
+      "file": "keyframes/0073_002226.jpg",
+      "source": "llm",
+      "label": "Three-day cycle bias",
+      "why": "Instructor explains how three-day pattern supports bias, visible as price action over multiple days.",
+      "narration": "does the three-day cycle support my bias so what is that daily profile that we are looking for the setup there is only two setups and we are trading these setups based on these levels and only based on these levels we do not trade these setups in the middle of previous daily high and previous"
+    },
+    {
+      "index": 74,
+      "t": 1353,
+      "hms": "00:22:33",
+      "file": "keyframes/0074_002233.jpg",
+      "source": "llm",
+      "label": "Trading only at levels",
+      "why": "Instructor states trading only when price reaches key levels, visible as price approaching daily high/low.",
+      "narration": "setup there is only two setups and we are trading these setups based on these levels and only based on these levels we do not trade these setups in the middle of previous daily high and previous daily low we only trade these setups when we have price traded to our pois number four the model this could be the fib geometry this could be the golden sbs this could be whatever you want"
+    },
+    {
+      "index": 75,
+      "t": 1371,
+      "hms": "00:22:51",
+      "file": "keyframes/0075_002251.jpg",
+      "source": "llm",
+      "label": "Fib geometry example",
+      "why": "Instructor references fib geometry as part of setup, visible as Fibonacci retracement lines on chart.",
+      "narration": "daily low we only trade these setups when we have price traded to our pois number four the model this could be the fib geometry this could be the golden sbs this could be whatever you want the main point is identifying the right daily profile and the right high time frame narrative and of course the risk you want to risk one to two percent max so this is the full strategy the full framework and now i'm going to show you how to set up the trading view so you can easily see"
+    },
+    {
+      "index": 76,
+      "t": 1392,
+      "hms": "00:23:12",
+      "file": "keyframes/0076_002312.jpg",
+      "source": "llm",
+      "label": "Trading view template setup",
+      "why": "Instructor begins showing how to set up indicators on TradingView, visible as chart with levels.",
+      "narration": "and of course the risk you want to risk one to two percent max so this is the full strategy the full framework and now i'm going to show you how to set up the trading view so you can easily see these levels and i'm going to publish this trading view template so you can just copy and paste it into your trading view you can have all of the chart colors and all of the indicators but if you how to make the indicators i would appreciate if you can put everything that i show in this video into one indicator for stoic traders let me guys know if anyone can do it it would be very helpful for our community but here's the previous week on nasdaq this is the hourly chart here i have"
+    },
+    {
+      "index": 77,
+      "t": 1426,
+      "hms": "00:23:46",
+      "file": "keyframes/0077_002346.jpg",
+      "source": "llm",
+      "label": "Previous week on Nasdaq hourly chart",
+      "why": "Instructor shows hourly chart with previous weekly levels, visible as orange dotted lines.",
+      "narration": "into one indicator for stoic traders let me guys know if anyone can do it it would be very helpful for our community but here's the previous week on nasdaq this is the hourly chart here i have these orange dotted lines this is the daily low this is the daily high and this actually there's"
+    },
+    {
+      "index": 78,
+      "t": 1434,
+      "hms": "00:23:54",
+      "file": "keyframes/0078_002354.jpg",
+      "source": "llm",
+      "label": "Daily high and low on hourly chart",
+      "why": "Instructor points to daily high/low levels on hourly chart, visible as horizontal lines.",
+      "narration": "for our community but here's the previous week on nasdaq this is the hourly chart here i have these orange dotted lines this is the daily low this is the daily high and this actually there's to the left is the daily close there was the friday close over there and you can see how the monday opens up and drives lower and price stays below the friday close so if i look to the left this"
+    },
+    {
+      "index": 79,
+      "t": 1452,
+      "hms": "00:24:12",
+      "file": "keyframes/0079_002412.jpg",
+      "source": "llm",
+      "label": "Break and retest of Friday low",
+      "why": "Instructor identifies break and retest at previous daily low, visible as price breaking then returning.",
+      "narration": "to the left is the daily close there was the friday close over there and you can see how the monday opens up and drives lower and price stays below the friday close so if i look to the left this was also a break and retest of this friday low right we have break retest continuation lower"
+    },
+    {
+      "index": 80,
+      "t": 1460,
+      "hms": "00:24:20",
+      "file": "keyframes/0080_002420.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "opens up and drives lower and price stays below the friday close so if i look to the left this was also a break and retest of this friday low right we have break retest continuation lower"
+    },
+    {
+      "index": 81,
+      "t": 1466,
+      "hms": "00:24:26",
+      "file": "keyframes/0081_002426.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "was also a break and retest of this friday low right we have break retest continuation lower and this is the hourly chart on the lower time frames we gonna be looking for this setup we have tuesday inside day nothing really going on on tuesday these red dots on the chart they are"
+    },
+    {
+      "index": 82,
+      "t": 1477,
+      "hms": "00:24:37",
+      "file": "keyframes/0082_002437.jpg",
+      "source": "llm",
+      "label": "Tuesday inside day",
+      "why": "Instructor shows inside day on Tuesday with no action, visible as small candle within prior range.",
+      "narration": "and this is the hourly chart on the lower time frames we gonna be looking for this setup we have tuesday inside day nothing really going on on tuesday these red dots on the chart they are closing level of monday so you monday closed over here and you can see those dotted lines"
+    },
+    {
+      "index": 83,
+      "t": 1486,
+      "hms": "00:24:46",
+      "file": "keyframes/0083_002446.jpg",
+      "source": "llm",
+      "label": "Monday close level",
+      "why": "Instructor points to Monday's closing price as key level, visible on chart.",
+      "narration": "tuesday inside day nothing really going on on tuesday these red dots on the chart they are closing level of monday so you monday closed over here and you can see those dotted lines all of these are plotted by indicators so when you copy the template you will get these indicators as well you can play around with them change the colors or whatnot but i simply just need something that's going to show me previous daily high previous daily low and the close and that's what"
+    },
+    {
+      "index": 84,
+      "t": 1506,
+      "hms": "00:25:06",
+      "file": "keyframes/0084_002506.jpg",
+      "source": "llm",
+      "label": "Previous daily high/low/close indicator",
+      "why": "Instructor shows indicator plotting previous day's key levels, visible as horizontal lines.",
+      "narration": "as well you can play around with them change the colors or whatnot but i simply just need something that's going to show me previous daily high previous daily low and the close and that's what this indicator is showing me we get the previous day high previous day low and we get previous day close there is wednesday wednesday is a big day usually a lot of times it's a reversal or a big continuation so what happened on wednesday we had the break and retest right the same thing we have"
+    },
+    {
+      "index": 85,
+      "t": 1528,
+      "hms": "00:25:28",
+      "file": "keyframes/0085_002528.jpg",
+      "source": "llm",
+      "label": "Wednesday break and retest",
+      "why": "Instructor identifies break and retest on Wednesday, visible as price breaking level then returning.",
+      "narration": "close there is wednesday wednesday is a big day usually a lot of times it's a reversal or a big continuation so what happened on wednesday we had the break and retest right the same thing we have the previous daily low we have the previous daily close so this area is where we interacting with"
+    },
+    {
+      "index": 86,
+      "t": 1534,
+      "hms": "00:25:34",
+      "file": "keyframes/0086_002534.jpg",
+      "source": "llm",
+      "label": "Previous daily low and close interaction",
+      "why": "Instructor points to price interacting with prior day's high/low/close, visible as horizontal levels.",
+      "narration": "continuation so what happened on wednesday we had the break and retest right the same thing we have the previous daily low we have the previous daily close so this area is where we interacting with price price comes up sweeps at 9 30 open and continues lower this was also a retest of this"
+    },
+    {
+      "index": 87,
+      "t": 1543,
+      "hms": "00:25:43",
+      "file": "keyframes/0087_002543.jpg",
+      "source": "llm",
+      "label": "Price sweeping at 9:30 open",
+      "why": "Instructor describes price sweep at New York open, visible as sharp move on chart.",
+      "narration": "the previous daily low we have the previous daily close so this area is where we interacting with price price comes up sweeps at 9 30 open and continues lower this was also a retest of this candle this is the hourly candles right so we can apply the same concepts to the hourly candles and"
+    },
+    {
+      "index": 88,
+      "t": 1553,
+      "hms": "00:25:53",
+      "file": "keyframes/0088_002553.jpg",
+      "source": "llm",
+      "label": "Retest of candle on hourly chart",
+      "why": "Instructor identifies retest of prior candle, visible as price returning to previous high/low.",
+      "narration": "price price comes up sweeps at 9 30 open and continues lower this was also a retest of this candle this is the hourly candles right so we can apply the same concepts to the hourly candles and Look at this. Candle 1, candle 2, candle 3, reversal."
+    },
+    {
+      "index": 89,
+      "t": 1565,
+      "hms": "00:26:05",
+      "file": "keyframes/0089_002605.jpg",
+      "source": "llm",
+      "label": "Three candle cycle reversal",
+      "why": "Instructor shows three-candle pattern leading to reversal, visible as price action over three candles.",
+      "narration": "Look at this. Candle 1, candle 2, candle 3, reversal. Now, it doesn't work all the time, right? Because we have candle 1, candle 2, candle 3, candle 4."
+    },
+    {
+      "index": 90,
+      "t": 1573,
+      "hms": "00:26:13",
+      "file": "keyframes/0090_002613.jpg",
+      "source": "llm",
+      "label": "Four candle cycle",
+      "why": "Instructor contrasts three-candle success with four-candle failure, visible as price action over multiple candles.",
+      "narration": "Now, it doesn't work all the time, right? Because we have candle 1, candle 2, candle 3, candle 4. But the key about these three candle cycles is that the higher the time frame, the more likely it will work. Just like with anything in trading. So this was over here a beautiful break and retest on Wednesday and then market reverses, sweeps the previous day high and this was Friday because we had Thursday, New Year's Day."
+    },
+    {
+      "index": 91,
+      "t": 1587,
+      "hms": "00:26:27",
+      "file": "keyframes/0091_002627.jpg",
+      "source": "llm",
+      "label": "Higher time frame success rate",
+      "why": "Instructor explains higher time frames increase pattern reliability, visible as larger candles or longer trends.",
+      "narration": "But the key about these three candle cycles is that the higher the time frame, the more likely it will work. Just like with anything in trading. So this was over here a beautiful break and retest on Wednesday and then market reverses, sweeps the previous day high and this was Friday because we had Thursday, New Year's Day. the market was closed so but we still treating friday as the big day reversal or continuation"
+    },
+    {
+      "index": 92,
+      "t": 1606,
+      "hms": "00:26:46",
+      "file": "keyframes/0092_002646.jpg",
+      "source": "llm",
+      "label": "Friday big day reversal/continuation",
+      "why": "Instructor identifies Friday as key day for moves, visible on chart with large price action.",
+      "narration": "So this was over here a beautiful break and retest on Wednesday and then market reverses, sweeps the previous day high and this was Friday because we had Thursday, New Year's Day. the market was closed so but we still treating friday as the big day reversal or continuation or something we expect big moves on monday wednesday and friday it's just statistically how the market moves and when the big moves happen if you don't believe me go back test and you will be surprised how predictable the market can be not all the time but sometimes"
+    },
+    {
+      "index": 93,
+      "t": 1627,
+      "hms": "00:27:07",
+      "file": "keyframes/0093_002707.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "how the market moves and when the big moves happen if you don't believe me go back test and you will be surprised how predictable the market can be not all the time but sometimes it's very surprising how predictable it can be but this was a beautiful swing failure pattern this was also a sweep also at the 9 30 beautiful a lot of times we can mark out the eight o'clock"
+    },
+    {
+      "index": 94,
+      "t": 1643,
+      "hms": "00:27:23",
+      "file": "keyframes/0094_002723.jpg",
+      "source": "llm",
+      "label": "Swing failure pattern",
+      "why": "Instructor shows swing failure after sweep, visible as price breaking and reversing.",
+      "narration": "it's very surprising how predictable it can be but this was a beautiful swing failure pattern this was also a sweep also at the 9 30 beautiful a lot of times we can mark out the eight o'clock candle which is also we have this consolidation right we have the sweep and explosive move"
+    },
+    {
+      "index": 95,
+      "t": 1653,
+      "hms": "00:27:33",
+      "file": "keyframes/0095_002733.jpg",
+      "source": "llm",
+      "label": "Consolidation and explosive move lower",
+      "why": "Instructor describes consolidation followed by sharp downward move, visible as price range then breakout.",
+      "narration": "this was also a sweep also at the 9 30 beautiful a lot of times we can mark out the eight o'clock candle which is also we have this consolidation right we have the sweep and explosive move lower beautiful setup previous daily high swept swing failure pattern reversal and also the trend"
+    },
+    {
+      "index": 96,
+      "t": 1667,
+      "hms": "00:27:47",
+      "file": "keyframes/0096_002747.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "lower beautiful setup previous daily high swept swing failure pattern reversal and also the trend is bearish right we have bearish trend on the high time frame and when everybody trying to buy this breakout we still continue lower because the trend is bearish so now coming in into the new week"
+    },
+    {
+      "index": 97,
+      "t": 1678,
+      "hms": "00:27:58",
+      "file": "keyframes/0097_002758.jpg",
+      "source": "llm",
+      "label": "Bearish trend continuation",
+      "why": "Instructor explains bearish trend continuing despite breakout attempts, visible as lower highs and lows.",
+      "narration": "is bearish right we have bearish trend on the high time frame and when everybody trying to buy this breakout we still continue lower because the trend is bearish so now coming in into the new week we want to plan what we're going to do so on sunday today what you want to do is you want"
+    },
+    {
+      "index": 98,
+      "t": 1687,
+      "hms": "00:28:07",
+      "file": "keyframes/0098_002807.jpg",
+      "source": "llm",
+      "label": "Weekly planning and level marking",
+      "why": "Instructor begins marking previous week levels, visible as horizontal lines on chart.",
+      "narration": "breakout we still continue lower because the trend is bearish so now coming in into the new week we want to plan what we're going to do so on sunday today what you want to do is you want to come in into the market and you want to simply mark out previous week levels so i'm just going to"
+    },
+    {
+      "index": 99,
+      "t": 1695,
+      "hms": "00:28:15",
+      "file": "keyframes/0099_002815.jpg",
+      "source": "llm",
+      "label": "Marking previous daily high/low/close",
+      "why": "Instructor marks key levels on chart, visible as horizontal lines.",
+      "narration": "we want to plan what we're going to do so on sunday today what you want to do is you want to come in into the market and you want to simply mark out previous week levels so i'm just going to mark out previous daily high previous daily low and the closing price my weekly analysis"
+    },
+    {
+      "index": 100,
+      "t": 1701,
+      "hms": "00:28:21",
+      "file": "keyframes/0100_002821.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "to come in into the market and you want to simply mark out previous week levels so i'm just going to mark out previous daily high previous daily low and the closing price my weekly analysis almost done because one thing i gotta do is just zoom out and see where the weekly is"
+    },
+    {
+      "index": 101,
+      "t": 1712,
+      "hms": "00:28:32",
+      "file": "keyframes/0101_002832.jpg",
+      "source": "llm",
+      "label": "Weekly analysis with previous weekly high/low",
+      "why": "Instructor marks weekly levels, visible as horizontal lines on chart.",
+      "narration": "mark out previous daily high previous daily low and the closing price my weekly analysis almost done because one thing i gotta do is just zoom out and see where the weekly is previous weekly low over here and the previous weekly high over here also not bad to mark out"
+    },
+    {
+      "index": 102,
+      "t": 1719,
+      "hms": "00:28:39",
+      "file": "keyframes/0102_002839.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "almost done because one thing i gotta do is just zoom out and see where the weekly is previous weekly low over here and the previous weekly high over here also not bad to mark out this level over here because this is like a range on the weekly i'm also gonna mark out this low"
+    },
+    {
+      "index": 103,
+      "t": 1729,
+      "hms": "00:28:49",
+      "file": "keyframes/0103_002849.jpg",
+      "source": "llm",
+      "label": "Weekly range marking",
+      "why": "Instructor marks weekly price range, visible as horizontal lines on chart.",
+      "narration": "previous weekly low over here and the previous weekly high over here also not bad to mark out this level over here because this is like a range on the weekly i'm also gonna mark out this low down here we still trading based on the daily levels but when some of these weekly levels getting swept that's additional confluence to our setup let me see the monthly the monthly we got"
+    },
+    {
+      "index": 104,
+      "t": 1742,
+      "hms": "00:29:02",
+      "file": "keyframes/0104_002902.jpg",
+      "source": "llm",
+      "label": "Weekly levels as confluence",
+      "why": "Instructor explains weekly levels adding confluence, visible on chart.",
+      "narration": "down here we still trading based on the daily levels but when some of these weekly levels getting swept that's additional confluence to our setup let me see the monthly the monthly we got the new month now as you can see we had a inside month on nasdaq here so what could happen is that"
+    },
+    {
+      "index": 105,
+      "t": 1750,
+      "hms": "00:29:10",
+      "file": "keyframes/0105_002910.jpg",
+      "source": "llm",
+      "label": "Inside month on Nasdaq",
+      "why": "Instructor shows inside month pattern, visible as price consolidating within prior monthly range.",
+      "narration": "getting swept that's additional confluence to our setup let me see the monthly the monthly we got the new month now as you can see we had a inside month on nasdaq here so what could happen is that we might sweep and continue lower or sweep from here and continue higher this is as far as the"
+    },
+    {
+      "index": 106,
+      "t": 1757,
+      "hms": "00:29:17",
+      "file": "keyframes/0106_002917.jpg",
+      "source": "llm",
+      "label": "Sweep and continuation lower",
+      "why": "Instructor describes sweep and continuation from inside month, visible as price breaking out.",
+      "narration": "the new month now as you can see we had a inside month on nasdaq here so what could happen is that we might sweep and continue lower or sweep from here and continue higher this is as far as the monthly chart but really i am done marking out let's go back to daily there is the daily with"
+    },
+    {
+      "index": 107,
+      "t": 1764,
+      "hms": "00:29:24",
+      "file": "keyframes/0107_002924.jpg",
+      "source": "drift",
+      "label": "",
+      "why": "",
+      "narration": "we might sweep and continue lower or sweep from here and continue higher this is as far as the monthly chart but really i am done marking out let's go back to daily there is the daily with the levels actually the previous weekly low is over here all right so i think i've got everything"
+    },
+    {
+      "index": 108,
+      "t": 1771,
+      "hms": "00:29:31",
+      "file": "keyframes/0108_002931.jpg",
+      "source": "llm",
+      "label": "Daily levels with previous weekly low",
+      "why": "Instructor shows daily chart with weekly level, visible as horizontal line.",
+      "narration": "monthly chart but really i am done marking out let's go back to daily there is the daily with the levels actually the previous weekly low is over here all right so i think i've got everything marked out on the weekly monthly daily and going back to the hourly these are the three levels that I'm looking for tomorrow on Monday"
+    },
+    {
+      "index": 109,
+      "t": 1787,
+      "hms": "00:29:47",
+      "file": "keyframes/0109_002947.jpg",
+      "source": "llm",
+      "label": "Three levels for Monday",
+      "why": "Instructor identifies three key levels to watch on Monday, visible as horizontal lines.",
+      "narration": "marked out on the weekly monthly daily and going back to the hourly these are the three levels that I'm looking for tomorrow on Monday"
+    }
+  ]
+}

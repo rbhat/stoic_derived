@@ -1,0 +1,41 @@
+{
+  "source": "videos/Stoic Edge System Module 1 is Live · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1784874168.61034,
+      "pid": 38626,
+      "heartbeat": 1784874168.4245172,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1784874169.748713,
+      "pid": 38626,
+      "heartbeat": 1784874168.610846,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1784874209.309616,
+      "pid": 38626,
+      "heartbeat": 1784874199.771855,
+      "attempts": 1
+    },
+    "moments": {
+      "status": "done",
+      "ts": 1784874251.780879,
+      "pid": 38626,
+      "heartbeat": 1784874239.361102,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1784874270.550257,
+      "pid": 38626,
+      "heartbeat": 1784874266.791682,
+      "attempts": 1
+    }
+  },
+  "signature": "48245311-1784724828"
+}

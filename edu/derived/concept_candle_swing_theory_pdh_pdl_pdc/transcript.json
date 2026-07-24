@@ -1,0 +1,1347 @@
+{
+  "source": "videos/Candle Swing Theory PDH PDL PDC - Stoic Trader Concepts · Stoic Traders.mp4",
+  "language": "en",
+  "model": "mlx-community/whisper-large-v3-turbo",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 18.96,
+      "text": "hello story traders welcome to brand new year happy new year and in this video i'm going to"
+    },
+    {
+      "start": 18.96,
+      "end": 26.0,
+      "text": "show you what we're going to do in 2026 i continue to refine to simplify the system"
+    },
+    {
+      "start": 26.0,
+      "end": 38.94,
+      "text": "And the core mission for the 2026 is to completely remove emotional decision making and have a nice mechanical system that you can execute without thinking."
+    },
+    {
+      "start": 38.94,
+      "end": 48.92,
+      "text": "And instead of chasing every wiggle in price, we have a specific rule-based criteria that we follow every day, every week."
+    },
+    {
+      "start": 49.4,
+      "end": 53.32,
+      "text": "And today is Sunday. Happy Sunday. Happy weekend, everybody."
+    },
+    {
+      "start": 53.94,
+      "end": 58.3,
+      "text": "Today is the first day of our 90-day challenge."
+    },
+    {
+      "start": 58.84,
+      "end": 64.98,
+      "text": "Do not underestimate these next 90 days because it only takes three months to change your life completely."
+    },
+    {
+      "start": 64.98,
+      "end": 72.32,
+      "text": "so in 2026 we're going to do things a bit differently instead of just having one big"
+    },
+    {
+      "start": 72.32,
+      "end": 80.4,
+      "text": "course with a lot of content i want to show you and document the process of implementing the stoic"
+    },
+    {
+      "start": 80.4,
+      "end": 87.4,
+      "text": "edge system in your day-to-day life and i want to lead by example so for the next week i'm going to"
+    },
+    {
+      "start": 87.4,
+      "end": 94.6,
+      "text": "be publishing a video recap of my trading day following the stoic edge system so you know what"
+    },
+    {
+      "start": 94.6,
+      "end": 99.72,
+      "text": "to do on Sunday, Monday, Tuesday, Wednesday, Thursday, Friday. If you want to participate"
+    },
+    {
+      "start": 99.72,
+      "end": 105.72,
+      "text": "in this challenge, please do because this is very important. And like I said, it can literally"
+    },
+    {
+      "start": 105.72,
+      "end": 112.02,
+      "text": "change your life in the next 90 days. So with that being said, let's get into candle swing"
+    },
+    {
+      "start": 112.02,
+      "end": 119.14,
+      "text": "theory and identifying high probability POIs. So we have FIB geometry as the execution model,"
+    },
+    {
+      "start": 119.14,
+      "end": 130.3,
+      "text": "But what was really missing from the overall system is a mechanical way, a mechanical framework to identify high probability POIs."
+    },
+    {
+      "start": 130.58,
+      "end": 142.04,
+      "text": "So instead of just chasing every structure on the lower timeframes, we're going to identify a specific set of POIs, which is only three levels."
+    },
+    {
+      "start": 142.04,
+      "end": 145.4,
+      "text": "And we're only going to focus on those three levels."
+    },
+    {
+      "start": 145.4,
+      "end": 151.78,
+      "text": "and like i said you can bring your own trading strategies trading models and integrate it into"
+    },
+    {
+      "start": 151.78,
+      "end": 158.96,
+      "text": "the stoic edge system but in this video series for the next 90 days i'm going to be documenting"
+    },
+    {
+      "start": 158.96,
+      "end": 166.76,
+      "text": "my process of building a system from scratch which we have a lot of elements already like i said the"
+    },
+    {
+      "start": 166.76,
+      "end": 173.68,
+      "text": "fib geometry and candle swing theory is all we need in order to execute the stoic edge system"
+    },
+    {
+      "start": 173.68,
+      "end": 178.86,
+      "text": "So I'm going to show you, I'm going to put together the system and I'm going to execute it every day."
+    },
+    {
+      "start": 179.36,
+      "end": 181.72,
+      "text": "But first, candle swing theory."
+    },
+    {
+      "start": 181.98,
+      "end": 187.3,
+      "text": "So it's all about the POIs, the price levels that we are waiting for."
+    },
+    {
+      "start": 187.76,
+      "end": 198.12,
+      "text": "So this gives us a great filter because most traders lose and go on tilt because they don't know when not to trade."
+    },
+    {
+      "start": 198.12,
+      "end": 204.82,
+      "text": "and simply by having these POIs on your chart you are eliminating a lot of bad trades"
+    },
+    {
+      "start": 204.82,
+      "end": 212.16,
+      "text": "because if you study charts long enough you will notice that there are daily cycles there are"
+    },
+    {
+      "start": 212.16,
+      "end": 218.46,
+      "text": "weekly cycles in price and in this video I'm gonna pull the curtain a bit and show you some"
+    },
+    {
+      "start": 218.46,
+      "end": 225.74,
+      "text": "of these cycles but we will dive deeper into them in a future lessons so as far as the POIs"
+    },
+    {
+      "start": 225.74,
+      "end": 232.2,
+      "text": "All we need is the previous daily high, previous daily low, and previous daily close."
+    },
+    {
+      "start": 232.96,
+      "end": 234.84,
+      "text": "And like I said, we do not predict."
+    },
+    {
+      "start": 235.18,
+      "end": 238.24,
+      "text": "We wait for the price to interact with these levels."
+    },
+    {
+      "start": 238.64,
+      "end": 239.96,
+      "text": "This is very important."
+    },
+    {
+      "start": 240.38,
+      "end": 247.7,
+      "text": "Doesn't matter what strategy you have, you have to have a way to stay away from the market."
+    },
+    {
+      "start": 248.24,
+      "end": 251.6,
+      "text": "You have to know when not to trade."
+    },
+    {
+      "start": 251.6,
+      "end": 265.08,
+      "text": "Because if you just keep trading every single day and every session and every wiggle of price, you're going to end up burned out, exhausted, mentally fatigued."
+    },
+    {
+      "start": 265.26,
+      "end": 273.94,
+      "text": "And it's very important for us as traders to manage our time and energy properly so we can be the best operator we can be."
+    },
+    {
+      "start": 273.94,
+      "end": 282.7,
+      "text": "And these levels are going to give us guardrails in order to stay out of the unfavorable market."
+    },
+    {
+      "start": 283.06,
+      "end": 289.3,
+      "text": "And I'm focusing on the daily candles because daily candles are special."
+    },
+    {
+      "start": 289.88,
+      "end": 294.04,
+      "text": "They have the cash open and cash close."
+    },
+    {
+      "start": 294.54,
+      "end": 303.32,
+      "text": "So every day at 4 p.m. as market cash session closes, you have that price level on your chart."
+    },
+    {
+      "start": 303.32,
+      "end": 314.66,
+      "text": "So that's the only close level of a candle that I'm willing to trade based off because other closes on other candles, they're not really real."
+    },
+    {
+      "start": 315.02,
+      "end": 319.9,
+      "text": "It's not like the market stops trading when the 30-minute candle closes."
+    },
+    {
+      "start": 320.46,
+      "end": 327.9,
+      "text": "So we don't really look at the candle closes, but we only look at the daily candle close."
+    },
+    {
+      "start": 328.04,
+      "end": 331.98,
+      "text": "And that's also going to be a weekly candle close."
+    },
+    {
+      "start": 331.98,
+      "end": 342.06,
+      "text": "So we always have three levels on our chart, previous daily high, previous daily low, and the previous daily close."
+    },
+    {
+      "start": 342.28,
+      "end": 353.24,
+      "text": "So the core of the candle swing theory is that we have previous candle, in this case, daily candle."
+    },
+    {
+      "start": 353.24,
+      "end": 360.08,
+      "text": "in my system, the system that I'm building for these next 90 days, I'm going to be focusing"
+    },
+    {
+      "start": 360.08,
+      "end": 366.72,
+      "text": "only on the daily candle. And I'm only going to be trading based on previous daily low,"
+    },
+    {
+      "start": 366.92,
+      "end": 372.14,
+      "text": "previous daily high, and previous daily close. Every day we come in into the market and we mark"
+    },
+    {
+      "start": 372.14,
+      "end": 379.8,
+      "text": "out three levels. You got candle high, candle low, and the candle close. I didn't mark out here"
+    },
+    {
+      "start": 379.8,
+      "end": 387.56,
+      "text": "just for the sake of simplicity but the main premise is that we have two setups based on the"
+    },
+    {
+      "start": 387.56,
+      "end": 395.96,
+      "text": "previous daily candle one is the sweep which is the swing failure pattern the price failed to go"
+    },
+    {
+      "start": 395.96,
+      "end": 402.84,
+      "text": "lower and reversed and then we have a second setup which is break and retest based on this"
+    },
+    {
+      "start": 402.84,
+      "end": 411.66,
+      "text": "previous daily high now you can also notice that on this day it was a break and retest off of this"
+    },
+    {
+      "start": 411.66,
+      "end": 418.56,
+      "text": "candle on this day also break and retest here break and retest here so you always going to be"
+    },
+    {
+      "start": 418.56,
+      "end": 424.74,
+      "text": "looking for two setups either is going to be a reversal swing failure pattern or a continuation"
+    },
+    {
+      "start": 424.74,
+      "end": 430.66,
+      "text": "break and retest same for the shorts you have the previous candle this is a swing failure pattern"
+    },
+    {
+      "start": 430.66,
+      "end": 438.16,
+      "text": "very easy stuff very straightforward very simple and this is what's required for you to stay"
+    },
+    {
+      "start": 438.16,
+      "end": 446.58,
+      "text": "consistently profitable and execute consistently you want to keep your trading as simple as possible"
+    },
+    {
+      "start": 446.58,
+      "end": 455.06,
+      "text": "as repeatable as possible and also scalable because the more complicated setup you have"
+    },
+    {
+      "start": 455.06,
+      "end": 461.5,
+      "text": "it's going to be harder for you to scale and risk more money on those complicated setups."
+    },
+    {
+      "start": 462.06,
+      "end": 466.92,
+      "text": "So this is the very basic premise of candle swing theory."
+    },
+    {
+      "start": 467.4,
+      "end": 470.94,
+      "text": "So the previous candle, I call it the anchor bar."
+    },
+    {
+      "start": 471.34,
+      "end": 474.34,
+      "text": "It's just a previous high time frame candle."
+    },
+    {
+      "start": 474.66,
+      "end": 476.72,
+      "text": "And I'm using daily candles."
+    },
+    {
+      "start": 477.26,
+      "end": 482.82,
+      "text": "And when you have inside candles, we want to treat them as noise."
+    },
+    {
+      "start": 482.82,
+      "end": 484.48,
+      "text": "This is just consolidation."
+    },
+    {
+      "start": 485.06,
+      "end": 492.82,
+      "text": "and a good setup on the inside bars like this on the inside days right is waiting for the sweep"
+    },
+    {
+      "start": 493.46,
+      "end": 500.58,
+      "text": "and then explosive move up which is leads to expansion because like i said consolidation"
+    },
+    {
+      "start": 501.14,
+      "end": 507.62,
+      "text": "leads to expansion back to consolidation and then you have another expansion that leads back to"
+    },
+    {
+      "start": 507.62,
+      "end": 514.26,
+      "text": "consolidation it's the same cycle over and over and over and over again here's another schematic"
+    },
+    {
+      "start": 514.26,
+      "end": 520.1,
+      "text": "same illustration for the swing failure pattern we only trade two setups swing failure pattern"
+    },
+    {
+      "start": 520.1,
+      "end": 529.46,
+      "text": "and break and retest here's another illustration where the price coming down into the move origin"
+    },
+    {
+      "start": 529.46,
+      "end": 536.02,
+      "text": "right and then you have price sweeping the previous daily low and starts trading higher"
+    },
+    {
+      "start": 536.02,
+      "end": 541.78,
+      "text": "right we have a break and retest on this breakout and important to notice is that"
+    },
+    {
+      "start": 541.78,
+      "end": 549.7,
+      "text": "i'm not waiting for the close of this candle i am trading this candle so we have the previous day"
+    },
+    {
+      "start": 549.7,
+      "end": 556.18,
+      "text": "and then as soon as the price breaks and retest on lower time frames i'm in this trade and i'm"
+    },
+    {
+      "start": 556.18,
+      "end": 564.1,
+      "text": "trying to get as much as i can so this is the candle swing theory very simple nothing complicated"
+    },
+    {
+      "start": 564.1,
+      "end": 569.86,
+      "text": "it's just a previous high time frame candle and i'm focusing on the daily candles you can focus"
+    },
+    {
+      "start": 569.86,
+      "end": 577.7,
+      "text": "on the hourly candles for the smaller moves, but let me show you why I'm focusing on the daily"
+    },
+    {
+      "start": 577.7,
+      "end": 583.2,
+      "text": "candles. There is a concept of environment that I taught in the Stoic Trader Protocol."
+    },
+    {
+      "start": 584.02,
+      "end": 590.36,
+      "text": "And inside of the Stoic Trader Protocol, I show you how you can use 20 and 200 simple moving"
+    },
+    {
+      "start": 590.36,
+      "end": 597.0,
+      "text": "averages in order to form a bias on any timeframe. It's a good framework. I'm still going to be using"
+    },
+    {
+      "start": 597.0,
+      "end": 605.02,
+      "text": "that framework but today i'm going to show you a three-day cycle so the environment in itself the"
+    },
+    {
+      "start": 605.02,
+      "end": 613.46,
+      "text": "purpose of this environment filter is that we want to know what is the context of today what is the"
+    },
+    {
+      "start": 613.46,
+      "end": 621.04,
+      "text": "context of the week what is the overall narrative on the higher time frames like weekly daily monthly"
+    },
+    {
+      "start": 621.04,
+      "end": 628.98,
+      "text": "what are we doing so one interesting mechanic about the markets is that it likes to push three"
+    },
+    {
+      "start": 628.98,
+      "end": 638.08,
+      "text": "times which is three green days and then you can expect a reversal in most cases so based on the"
+    },
+    {
+      "start": 638.08,
+      "end": 645.74,
+      "text": "three-day cycle we can profile a whole week so you have monday the first day tuesday the second day"
+    },
+    {
+      "start": 645.74,
+      "end": 650.5,
+      "text": "and Wednesday, the third day, that could be a reversal."
+    },
+    {
+      "start": 650.96,
+      "end": 654.68,
+      "text": "Or you can have a reversal on the Thursday, which is the fourth day."
+    },
+    {
+      "start": 655.12,
+      "end": 659.22,
+      "text": "But sometimes, instead of reversal, you have continuation."
+    },
+    {
+      "start": 659.78,
+      "end": 661.38,
+      "text": "So it's a three-day cycle."
+    },
+    {
+      "start": 661.74,
+      "end": 664.02,
+      "text": "Usually the first day expands, which is Monday."
+    },
+    {
+      "start": 664.18,
+      "end": 666.88,
+      "text": "A lot of people believe that Monday is untradeable,"
+    },
+    {
+      "start": 666.88,
+      "end": 669.96,
+      "text": "but a lot of times you will notice that Monday trends,"
+    },
+    {
+      "start": 670.5,
+      "end": 673.16,
+      "text": "which is the opening range for the week, pretty much."
+    },
+    {
+      "start": 673.16,
+      "end": 680.88,
+      "text": "then on tuesday it's usually a continuation of the trend and on wednesday is where we can expect"
+    },
+    {
+      "start": 680.88,
+      "end": 688.34,
+      "text": "a reversal or a big continuation on thursday yet again if the wednesday didn't have reversal we"
+    },
+    {
+      "start": 688.34,
+      "end": 694.0,
+      "text": "expect reversal on thursday but if wednesday had a reversal we expect continuation on thursday"
+    },
+    {
+      "start": 694.0,
+      "end": 701.34,
+      "text": "And then on Friday, it could be a big reversal or continuation to dump lower."
+    },
+    {
+      "start": 701.6,
+      "end": 707.98,
+      "text": "Usually, Wednesday and Friday are the biggest days of the week as far as the movements."
+    },
+    {
+      "start": 708.56,
+      "end": 718.78,
+      "text": "We will see what 2026 brings us, but there are five distinctive daily profiles that you can kind of expect based on what day it is."
+    },
+    {
+      "start": 718.78,
+      "end": 729.92,
+      "text": "We got three green days in a row that I just explained and the psychology behind them that traders are in a state of the formal fear of missing out."
+    },
+    {
+      "start": 730.42,
+      "end": 735.62,
+      "text": "They try trend continuation, but the bias is short because the trend is exhausted."
+    },
+    {
+      "start": 735.86,
+      "end": 742.84,
+      "text": "This is where on your moving averages, you will see where the 20 SMA is far, far away from 200 SMA."
+    },
+    {
+      "start": 742.84,
+      "end": 746.4,
+      "text": "So we short back to the 200 SMA."
+    },
+    {
+      "start": 746.4,
+      "end": 760.18,
+      "text": "Same day for the three red days. Traders panic, traders sell everything, and then the bias is long because we got three red days in a row and usually the fourth day is a reversal."
+    },
+    {
+      "start": 760.18,
+      "end": 768.22,
+      "text": "we also have the inside day this is the indecision we don't really want to trade inside days but if"
+    },
+    {
+      "start": 768.22,
+      "end": 777.88,
+      "text": "they sweep the range that pre-market range then we can trade those inside days for a nice breakout"
+    },
+    {
+      "start": 777.88,
+      "end": 785.64,
+      "text": "and expansion i'll show you how it looks like in just a bit but then we have first red or green day"
+    },
+    {
+      "start": 785.64,
+      "end": 791.7,
+      "text": "So after the three green days or after three red days, you have the first reversal day."
+    },
+    {
+      "start": 792.48,
+      "end": 797.42,
+      "text": "Psychologically, that's signaling the trend shift and you just want to play continuation."
+    },
+    {
+      "start": 798.26,
+      "end": 803.04,
+      "text": "And then also, like I said, the day two and three, it could be a trend continuation."
+    },
+    {
+      "start": 803.48,
+      "end": 813.24,
+      "text": "So on the days like Tuesday, which is the second day of the week, we got counter traders getting trapped and the bias is a simple continuation of the first day."
+    },
+    {
+      "start": 813.92,
+      "end": 819.14,
+      "text": "Very important rule, trade the environment in front of you, not the one you want."
+    },
+    {
+      "start": 819.54,
+      "end": 824.78,
+      "text": "So if the chart is setting up in a specific way, trade that chart."
+    },
+    {
+      "start": 825.02,
+      "end": 828.06,
+      "text": "Don't try to predict what price is going to do."
+    },
+    {
+      "start": 828.16,
+      "end": 831.52,
+      "text": "We don't care if it's going to the moon or if it's bear market."
+    },
+    {
+      "start": 831.92,
+      "end": 834.28,
+      "text": "We're trading previous candle."
+    },
+    {
+      "start": 834.64,
+      "end": 835.6,
+      "text": "That's all we're doing."
+    },
+    {
+      "start": 836.16,
+      "end": 838.86,
+      "text": "So this is roughly how it looks like."
+    },
+    {
+      "start": 838.96,
+      "end": 840.44,
+      "text": "You got day one, day two, day three."
+    },
+    {
+      "start": 840.58,
+      "end": 842.34,
+      "text": "This could be Monday, Tuesday, Wednesday."
+    },
+    {
+      "start": 842.34,
+      "end": 844.48,
+      "text": "or it could be Wednesday, Thursday, Friday."
+    },
+    {
+      "start": 844.86,
+      "end": 847.88,
+      "text": "Because Wednesday is a day three and day one."
+    },
+    {
+      "start": 848.28,
+      "end": 850.4,
+      "text": "We only have five trading days in a week,"
+    },
+    {
+      "start": 850.46,
+      "end": 855.12,
+      "text": "but the market likes to trade within three-day cycles."
+    },
+    {
+      "start": 855.92,
+      "end": 859.06,
+      "text": "So what you will notice on the three-day trend,"
+    },
+    {
+      "start": 859.32,
+      "end": 862.72,
+      "text": "you will have first bullish day, second bullish day breakout."
+    },
+    {
+      "start": 862.96,
+      "end": 865.42,
+      "text": "You can trade continuation in here, right?"
+    },
+    {
+      "start": 865.9,
+      "end": 869.32,
+      "text": "You got the second day, third day breaks out,"
+    },
+    {
+      "start": 870.04,
+      "end": 871.62,
+      "text": "sweeps the second day,"
+    },
+    {
+      "start": 871.62,
+      "end": 880.82,
+      "text": "and usually around the new york session 9 30 this is where we can find the setup to trade this nice"
+    },
+    {
+      "start": 880.82,
+      "end": 890.94,
+      "text": "explosive move and target previous days levels so the confirmation for this this is not required but"
+    },
+    {
+      "start": 890.94,
+      "end": 897.74,
+      "text": "it's a big confirmation if we have previous weekly high previous weekly low swap so let's say there"
+    },
+    {
+      "start": 897.74,
+      "end": 903.74,
+      "text": "is a previous weekly high here and we also sweeping previous weekly high that's a good thing"
+    },
+    {
+      "start": 903.74,
+      "end": 909.88,
+      "text": "for us high time frame trend confluence is a good thing for us when the market is bearish"
+    },
+    {
+      "start": 909.88,
+      "end": 916.82,
+      "text": "and it bounces this is a retracement and continuation down lower so the high time frame"
+    },
+    {
+      "start": 916.82,
+      "end": 923.34,
+      "text": "is in our favor and also you can call this as a pump and dump manipulation pattern whatever"
+    },
+    {
+      "start": 923.34,
+      "end": 930.12,
+      "text": "where you have the pre-market usually London pushes into the New York and then New York"
+    },
+    {
+      "start": 930.12,
+      "end": 938.52,
+      "text": "reverses and continues lower so it's a fake out manipulation and continuation lower swing failure"
+    },
+    {
+      "start": 938.52,
+      "end": 945.9,
+      "text": "pattern this is what it is it's a simple structural break it can look like this it can also look like"
+    },
+    {
+      "start": 945.9,
+      "end": 954.76,
+      "text": "a lot of consolidation then sweep and continuation lower it can hover on top of this high and then"
+    },
+    {
+      "start": 954.76,
+      "end": 961.16,
+      "text": "during the new york open it could sweep and go long lower and i will be posting examples"
+    },
+    {
+      "start": 961.16,
+      "end": 967.76,
+      "text": "during the week as i'm trading it as i'm watching the charts but the psychology of this pattern is"
+    },
+    {
+      "start": 967.76,
+      "end": 974.52,
+      "text": "that late longs are chasing right we have people trying to keep buying on the third day"
+    },
+    {
+      "start": 974.52,
+      "end": 981.98,
+      "text": "so we are looking for the shorts and expecting exhaustion or first red day so this over here"
+    },
+    {
+      "start": 981.98,
+      "end": 988.3,
+      "text": "could be the first red day the same logic for the longs you just flip it moving on to the day two"
+    },
+    {
+      "start": 988.3,
+      "end": 996.46,
+      "text": "three trend continuation so we have day one day two usually continuation and day three"
+    },
+    {
+      "start": 996.46,
+      "end": 1005.24,
+      "text": "could be the continuation also and you simply mark out previous daily high and you look for"
+    },
+    {
+      "start": 1005.24,
+      "end": 1012.74,
+      "text": "the trade in here around the new york open around the new york am session you can find break and"
+    },
+    {
+      "start": 1012.74,
+      "end": 1022.4,
+      "text": "retest also over here same thing break and retest break and retest on the second day boundaries and"
+    },
+    {
+      "start": 1022.4,
+      "end": 1028.36,
+      "text": "And here on these schematics, I don't have the daily close, but daily close works the same way."
+    },
+    {
+      "start": 1028.7,
+      "end": 1031.78,
+      "text": "So you have another level here, which is daily close."
+    },
+    {
+      "start": 1032.16,
+      "end": 1034.0,
+      "text": "Price is about daily close."
+    },
+    {
+      "start": 1034.68,
+      "end": 1036.78,
+      "text": "This is bullish, right?"
+    },
+    {
+      "start": 1037.02,
+      "end": 1042.42,
+      "text": "You have daily close over here that's lining up with previous day high."
+    },
+    {
+      "start": 1042.42,
+      "end": 1047.68,
+      "text": "But daily close over here, we can also look break and retest on that daily close."
+    },
+    {
+      "start": 1047.68,
+      "end": 1055.04,
+      "text": "the same thing if we already swept the previous weekly low that's a good sign that high time frame"
+    },
+    {
+      "start": 1055.04,
+      "end": 1063.58,
+      "text": "trend is bullish that's a good sign the main setup is break and retest also the trend line bounce"
+    },
+    {
+      "start": 1063.58,
+      "end": 1070.44,
+      "text": "right we can have the trend line and in the previous example the trend line is over here"
+    },
+    {
+      "start": 1070.44,
+      "end": 1076.18,
+      "text": "so we're breaking the trend line this is how continuation looks like the psychology is that"
+    },
+    {
+      "start": 1076.18,
+      "end": 1082.58,
+      "text": "early sellers are trapped we got people that trying to trade the sweeps trying to trade here"
+    },
+    {
+      "start": 1082.58,
+      "end": 1089.28,
+      "text": "but they are trapped so the bias is just waiting for the break and retest and continuation in the"
+    },
+    {
+      "start": 1089.28,
+      "end": 1096.66,
+      "text": "direction of the trend another daily profile is inside day reversal which you have the inside day"
+    },
+    {
+      "start": 1096.66,
+      "end": 1104.18,
+      "text": "and ideally we always want to trade the third day because that's the highest probability signal"
+    },
+    {
+      "start": 1104.18,
+      "end": 1111.5,
+      "text": "in a way because day one is indecisive that's monday we can still trade day one based on the"
+    },
+    {
+      "start": 1111.5,
+      "end": 1117.74,
+      "text": "previous week levels previous week friday or previous weekly low previous weekly high"
+    },
+    {
+      "start": 1117.74,
+      "end": 1124.12,
+      "text": "you can trade the day one but then you have the day two this is the day we don't really trade"
+    },
+    {
+      "start": 1124.12,
+      "end": 1130.7,
+      "text": "because the price is not at our levels it's just chopping around here at the market close right"
+    },
+    {
+      "start": 1130.7,
+      "end": 1137.66,
+      "text": "these are not great opportunities on the inside day the best opportunities when we sweep the high"
+    },
+    {
+      "start": 1137.66,
+      "end": 1147.02,
+      "text": "or the low or we contain you based on the high or the low so you got the inside day you do nothing"
+    },
+    {
+      "start": 1147.02,
+      "end": 1154.04,
+      "text": "and on the third day you're watching the reversal so you want to see the sweep of the inside days"
+    },
+    {
+      "start": 1154.04,
+      "end": 1162.62,
+      "text": "You want to see a sweep of the day one and there is your swing failure pattern, also break and retest."
+    },
+    {
+      "start": 1162.74,
+      "end": 1172.5,
+      "text": "Now there's different scenarios how the day three trades and you can have the sweep or you can have just simple continuation of the day two."
+    },
+    {
+      "start": 1172.98,
+      "end": 1176.16,
+      "text": "The same thing, previous weekly high, previous weekly low."
+    },
+    {
+      "start": 1176.16,
+      "end": 1179.9,
+      "text": "We want to trade in the direction of the sweep."
+    },
+    {
+      "start": 1179.9,
+      "end": 1186.46,
+      "text": "so if we have some kind of sweep to the left we want to trade in a direction of the high time frame"
+    },
+    {
+      "start": 1186.46,
+      "end": 1193.5,
+      "text": "sweep we want to see tight consolidation in here and psychology is the indecision and the energy"
+    },
+    {
+      "start": 1193.5,
+      "end": 1199.74,
+      "text": "is building right we have the inside day where back and forth that's your energy is building"
+    },
+    {
+      "start": 1199.74,
+      "end": 1206.94,
+      "text": "and then you got the fake out pump and dump and the last profile here is the first red day or"
+    },
+    {
+      "start": 1206.94,
+      "end": 1213.42,
+      "text": "first green day again for the bullish just reverse it you have the first day but on the second day"
+    },
+    {
+      "start": 1213.42,
+      "end": 1222.62,
+      "text": "it comes down and it closes below the day one close so this is becoming important level and if"
+    },
+    {
+      "start": 1222.62,
+      "end": 1231.9,
+      "text": "it opens like this we want to watch the day one level this is your level of resistance that turns"
+    },
+    {
+      "start": 1231.9,
+      "end": 1239.48,
+      "text": "support and now it's back to resistance and we want to look for our setups in here this is where"
+    },
+    {
+      "start": 1239.48,
+      "end": 1245.44,
+      "text": "we can look for the fib geometry we can also have like a break and retest over here if you missed"
+    },
+    {
+      "start": 1245.44,
+      "end": 1252.62,
+      "text": "this you can try to catch this and continuation lower with expectations that now this is a new"
+    },
+    {
+      "start": 1252.62,
+      "end": 1258.84,
+      "text": "trend the same thing previous weekly high previous weekly low previous monthly high previous monthly"
+    },
+    {
+      "start": 1258.84,
+      "end": 1264.44,
+      "text": "low they're also important right the higher time frame is the most important thing so if you have"
+    },
+    {
+      "start": 1264.44,
+      "end": 1271.64,
+      "text": "high time frame level also swept that's a plus this usually happens on day one or day three so"
+    },
+    {
+      "start": 1271.64,
+      "end": 1278.36,
+      "text": "this could be monday wednesday or friday the psychology that the trend has shifted so the"
+    },
+    {
+      "start": 1278.36,
+      "end": 1285.0,
+      "text": "buyers we are following the new color if yesterday was the first red day after a pump look for"
+    },
+    {
+      "start": 1285.0,
+      "end": 1291.72,
+      "text": "continuation shorts so if this is the first red day we're looking for the continuation shorts"
+    },
+    {
+      "start": 1292.44,
+      "end": 1299.88,
+      "text": "very simple stuff we got four profiles we got bullish and bearish three-day trend reversal"
+    },
+    {
+      "start": 1300.84,
+      "end": 1307.88,
+      "text": "day two three trend continuation inside day reversal and first red day or first green day"
+    },
+    {
+      "start": 1307.88,
+      "end": 1309.62,
+      "text": "This is all we are trading."
+    },
+    {
+      "start": 1310.02,
+      "end": 1315.98,
+      "text": "And every day we come into the market looking at these types of setups,"
+    },
+    {
+      "start": 1316.46,
+      "end": 1319.84,
+      "text": "looking for the chart to be set up in a specific way,"
+    },
+    {
+      "start": 1320.04,
+      "end": 1322.48,
+      "text": "and we simply ignore the rest."
+    },
+    {
+      "start": 1323.08,
+      "end": 1325.32,
+      "text": "So the daily checklist, very simple."
+    },
+    {
+      "start": 1325.32,
+      "end": 1329.32,
+      "text": "Am I interacting with previous daily high, previous daily low,"
+    },
+    {
+      "start": 1329.5,
+      "end": 1330.88,
+      "text": "previous daily close?"
+    },
+    {
+      "start": 1331.32,
+      "end": 1332.88,
+      "text": "That's your daily level."
+    },
+    {
+      "start": 1333.0,
+      "end": 1333.98,
+      "text": "They don't change."
+    },
+    {
+      "start": 1334.5,
+      "end": 1335.06,
+      "text": "Environment."
+    },
+    {
+      "start": 1335.06,
+      "end": 1342.52,
+      "text": "does the three-day cycle support my bias so what is that daily profile that we are looking for the"
+    },
+    {
+      "start": 1342.52,
+      "end": 1350.24,
+      "text": "setup there is only two setups and we are trading these setups based on these levels and only based"
+    },
+    {
+      "start": 1350.24,
+      "end": 1355.9,
+      "text": "on these levels we do not trade these setups in the middle of previous daily high and previous"
+    },
+    {
+      "start": 1355.9,
+      "end": 1367.18,
+      "text": "daily low we only trade these setups when we have price traded to our pois number four the model"
+    },
+    {
+      "start": 1367.82,
+      "end": 1373.5,
+      "text": "this could be the fib geometry this could be the golden sbs this could be whatever you want"
+    },
+    {
+      "start": 1373.5,
+      "end": 1381.1,
+      "text": "the main point is identifying the right daily profile and the right high time frame narrative"
+    },
+    {
+      "start": 1381.1,
+      "end": 1389.02,
+      "text": "and of course the risk you want to risk one to two percent max so this is the full strategy the"
+    },
+    {
+      "start": 1389.02,
+      "end": 1394.34,
+      "text": "full framework and now i'm going to show you how to set up the trading view so you can easily see"
+    },
+    {
+      "start": 1394.34,
+      "end": 1401.72,
+      "text": "these levels and i'm going to publish this trading view template so you can just copy and paste it"
+    },
+    {
+      "start": 1401.72,
+      "end": 1408.24,
+      "text": "into your trading view you can have all of the chart colors and all of the indicators but if you"
+    },
+    {
+      "start": 1408.24,
+      "end": 1415.52,
+      "text": "how to make the indicators i would appreciate if you can put everything that i show in this video"
+    },
+    {
+      "start": 1415.52,
+      "end": 1422.88,
+      "text": "into one indicator for stoic traders let me guys know if anyone can do it it would be very helpful"
+    },
+    {
+      "start": 1422.88,
+      "end": 1430.32,
+      "text": "for our community but here's the previous week on nasdaq this is the hourly chart here i have"
+    },
+    {
+      "start": 1430.96,
+      "end": 1440.32,
+      "text": "these orange dotted lines this is the daily low this is the daily high and this actually there's"
+    },
+    {
+      "start": 1441.04,
+      "end": 1448.88,
+      "text": "to the left is the daily close there was the friday close over there and you can see how the monday"
+    },
+    {
+      "start": 1448.88,
+      "end": 1457.76,
+      "text": "opens up and drives lower and price stays below the friday close so if i look to the left this"
+    },
+    {
+      "start": 1457.76,
+      "end": 1466.4,
+      "text": "was also a break and retest of this friday low right we have break retest continuation lower"
+    },
+    {
+      "start": 1466.96,
+      "end": 1474.24,
+      "text": "and this is the hourly chart on the lower time frames we gonna be looking for this setup we have"
+    },
+    {
+      "start": 1474.24,
+      "end": 1482.72,
+      "text": "tuesday inside day nothing really going on on tuesday these red dots on the chart they are"
+    },
+    {
+      "start": 1482.72,
+      "end": 1489.28,
+      "text": "closing level of monday so you monday closed over here and you can see those dotted lines"
+    },
+    {
+      "start": 1489.28,
+      "end": 1495.76,
+      "text": "all of these are plotted by indicators so when you copy the template you will get these indicators"
+    },
+    {
+      "start": 1495.76,
+      "end": 1502.64,
+      "text": "as well you can play around with them change the colors or whatnot but i simply just need something"
+    },
+    {
+      "start": 1502.64,
+      "end": 1508.96,
+      "text": "that's going to show me previous daily high previous daily low and the close and that's what"
+    },
+    {
+      "start": 1508.96,
+      "end": 1515.52,
+      "text": "this indicator is showing me we get the previous day high previous day low and we get previous day"
+    },
+    {
+      "start": 1515.52,
+      "end": 1524.72,
+      "text": "close there is wednesday wednesday is a big day usually a lot of times it's a reversal or a big"
+    },
+    {
+      "start": 1524.72,
+      "end": 1531.52,
+      "text": "continuation so what happened on wednesday we had the break and retest right the same thing we have"
+    },
+    {
+      "start": 1531.52,
+      "end": 1540.16,
+      "text": "the previous daily low we have the previous daily close so this area is where we interacting with"
+    },
+    {
+      "start": 1540.16,
+      "end": 1550.32,
+      "text": "price price comes up sweeps at 9 30 open and continues lower this was also a retest of this"
+    },
+    {
+      "start": 1550.32,
+      "end": 1559.68,
+      "text": "candle this is the hourly candles right so we can apply the same concepts to the hourly candles and"
+    },
+    {
+      "start": 1559.68,
+      "end": 1560.4,
+      "text": "Look at this."
+    },
+    {
+      "start": 1562.22,
+      "end": 1567.5,
+      "text": "Candle 1, candle 2, candle 3, reversal."
+    },
+    {
+      "start": 1568.22,
+      "end": 1570.3,
+      "text": "Now, it doesn't work all the time, right?"
+    },
+    {
+      "start": 1570.36,
+      "end": 1573.9,
+      "text": "Because we have candle 1, candle 2, candle 3, candle 4."
+    },
+    {
+      "start": 1573.9,
+      "end": 1584.04,
+      "text": "But the key about these three candle cycles is that the higher the time frame, the more likely it will work."
+    },
+    {
+      "start": 1584.14,
+      "end": 1586.0,
+      "text": "Just like with anything in trading."
+    },
+    {
+      "start": 1586.0,
+      "end": 1602.68,
+      "text": "So this was over here a beautiful break and retest on Wednesday and then market reverses, sweeps the previous day high and this was Friday because we had Thursday, New Year's Day."
+    },
+    {
+      "start": 1602.68,
+      "end": 1610.82,
+      "text": "the market was closed so but we still treating friday as the big day reversal or continuation"
+    },
+    {
+      "start": 1610.82,
+      "end": 1617.78,
+      "text": "or something we expect big moves on monday wednesday and friday it's just statistically"
+    },
+    {
+      "start": 1617.78,
+      "end": 1624.52,
+      "text": "how the market moves and when the big moves happen if you don't believe me go back test"
+    },
+    {
+      "start": 1624.52,
+      "end": 1632.52,
+      "text": "and you will be surprised how predictable the market can be not all the time but sometimes"
+    },
+    {
+      "start": 1632.52,
+      "end": 1639.58,
+      "text": "it's very surprising how predictable it can be but this was a beautiful swing failure pattern"
+    },
+    {
+      "start": 1639.58,
+      "end": 1650.14,
+      "text": "this was also a sweep also at the 9 30 beautiful a lot of times we can mark out the eight o'clock"
+    },
+    {
+      "start": 1650.14,
+      "end": 1658.68,
+      "text": "candle which is also we have this consolidation right we have the sweep and explosive move"
+    },
+    {
+      "start": 1658.68,
+      "end": 1667.02,
+      "text": "lower beautiful setup previous daily high swept swing failure pattern reversal and also the trend"
+    },
+    {
+      "start": 1667.02,
+      "end": 1674.76,
+      "text": "is bearish right we have bearish trend on the high time frame and when everybody trying to buy this"
+    },
+    {
+      "start": 1674.76,
+      "end": 1683.4,
+      "text": "breakout we still continue lower because the trend is bearish so now coming in into the new week"
+    },
+    {
+      "start": 1684.44,
+      "end": 1692.04,
+      "text": "we want to plan what we're going to do so on sunday today what you want to do is you want"
+    },
+    {
+      "start": 1692.04,
+      "end": 1699.56,
+      "text": "to come in into the market and you want to simply mark out previous week levels so i'm just going to"
+    },
+    {
+      "start": 1699.56,
+      "end": 1708.44,
+      "text": "mark out previous daily high previous daily low and the closing price my weekly analysis"
+    },
+    {
+      "start": 1709.08,
+      "end": 1717.0,
+      "text": "almost done because one thing i gotta do is just zoom out and see where the weekly is"
+    },
+    {
+      "start": 1717.64,
+      "end": 1725.8,
+      "text": "previous weekly low over here and the previous weekly high over here also not bad to mark out"
+    },
+    {
+      "start": 1725.8,
+      "end": 1732.68,
+      "text": "this level over here because this is like a range on the weekly i'm also gonna mark out this low"
+    },
+    {
+      "start": 1732.68,
+      "end": 1739.08,
+      "text": "down here we still trading based on the daily levels but when some of these weekly levels"
+    },
+    {
+      "start": 1739.08,
+      "end": 1746.76,
+      "text": "getting swept that's additional confluence to our setup let me see the monthly the monthly we got"
+    },
+    {
+      "start": 1746.76,
+      "end": 1754.2,
+      "text": "the new month now as you can see we had a inside month on nasdaq here so what could happen is that"
+    },
+    {
+      "start": 1754.2,
+      "end": 1761.48,
+      "text": "we might sweep and continue lower or sweep from here and continue higher this is as far as the"
+    },
+    {
+      "start": 1761.48,
+      "end": 1767.64,
+      "text": "monthly chart but really i am done marking out let's go back to daily there is the daily with"
+    },
+    {
+      "start": 1767.64,
+      "end": 1776.28,
+      "text": "the levels actually the previous weekly low is over here all right so i think i've got everything"
+    },
+    {
+      "start": 1776.28,
+      "end": 1783.96,
+      "text": "marked out on the weekly monthly daily and going back to the hourly these are the three levels"
+    },
+    {
+      "start": 1784.2,
+      "end": 1788.18,
+      "text": "that I'm looking for tomorrow on Monday"
+    }
+  ]
+}

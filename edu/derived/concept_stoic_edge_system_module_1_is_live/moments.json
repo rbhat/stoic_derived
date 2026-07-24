@@ -1,0 +1,143 @@
+{
+  "source": "videos/Stoic Edge System Module 1 is Live · Stoic Traders.mp4",
+  "model": "qwen3-vl-30b-a3b-instruct-mlx",
+  "windows": 2,
+  "count": 27,
+  "moments": [
+    {
+      "t": 516.3,
+      "label": "Framework Overview",
+      "why": "Instructor displays the one-slide framework showing the three-step system with moving averages and price structure"
+    },
+    {
+      "t": 523.7,
+      "label": "Step One Definition",
+      "why": "Instructor explains step one: meaningful break and close beyond 10 and 20 SMA"
+    },
+    {
+      "t": 539.6,
+      "label": "Step Two Definition",
+      "why": "Instructor describes step two: visual return toward trend area and obvious consolidation"
+    },
+    {
+      "t": 547.5,
+      "label": "Step Three Definition",
+      "why": "Instructor defines step three: break of pre-selected consolidation in direction of step one"
+    },
+    {
+      "t": 587.9,
+      "label": "Step One Criteria",
+      "why": "Instructor details the requirement for a meaningful close above both 10 and 20 SMA"
+    },
+    {
+      "t": 649.3,
+      "label": "Step Two Retest",
+      "why": "Instructor explains waiting for price to return toward 10 and 20 SMA trend area"
+    },
+    {
+      "t": 691.1,
+      "label": "Base Selection",
+      "why": "Instructor discusses selecting a clear boundary for the base before break"
+    },
+    {
+      "t": 721.3,
+      "label": "Resistance Boundary",
+      "why": "Instructor shows a horizontal dashed line marking resistance boundary on chart"
+    },
+    {
+      "t": 769.4,
+      "label": "Boundary Selection",
+      "why": "Instructor explains selecting the most controlling boundary before break"
+    },
+    {
+      "t": 802.9,
+      "label": "Step Three Break",
+      "why": "Instructor describes price breaking the pre-selected boundary in direction of step one"
+    },
+    {
+      "t": 810.8,
+      "label": "Step Three Confirmation",
+      "why": "Instructor explains the need for a confirmed close beyond boundary to validate entry"
+    },
+    {
+      "t": 872.8,
+      "label": "Gap Through Boundary",
+      "why": "Instructor discusses gap through boundary counting as break"
+    },
+    {
+      "t": 880.3,
+      "label": "Close Determines Confirmation",
+      "why": "Instructor explains that close determines if step three confirms or fails"
+    },
+    {
+      "t": 1024.3,
+      "label": "Chart setup with SMA indicators",
+      "why": "Instructor shows the chart with 10 and 20 SMA lines, explaining their role in the three-step system."
+    },
+    {
+      "t": 1039.7,
+      "label": "Bearish step three break",
+      "why": "Price breaks below the base, completing step three of a bearish sequence."
+    },
+    {
+      "t": 1048.1,
+      "label": "Price extending from moving averages",
+      "why": "Price moves far away from the 10 SMA, indicating a climax and potential partial profit opportunity."
+    },
+    {
+      "t": 1079.4,
+      "label": "Retest of base and moving averages",
+      "why": "Price retests the 50 SMA without closing below the 10 SMA, showing a continuation pattern."
+    },
+    {
+      "t": 1135.7,
+      "label": "Bearish setup example",
+      "why": "Price creates a lower high and breaks below moving averages, forming a bearish sequence."
+    },
+    {
+      "t": 1158.9,
+      "label": "Incomplete step three",
+      "why": "Price has steps one and two but fails to complete step three with a breakout."
+    },
+    {
+      "t": 1201.4,
+      "label": "Higher timeframe trend direction",
+      "why": "Price is staying above the 200 SMA, indicating a bullish higher timeframe trend."
+    },
+    {
+      "t": 1226.1,
+      "label": "Obvious consolidation for entry",
+      "why": "Price forms a clear consolidation after breaking above the moving averages, signaling an entry opportunity."
+    },
+    {
+      "t": 1235.4,
+      "label": "Breakout confirmation",
+      "why": "Price closes above the consolidation boundary, confirming step three and entry."
+    },
+    {
+      "t": 1243.4,
+      "label": "Gap up breakout",
+      "why": "Price gaps above resistance, confirming a bullish break and entry point."
+    },
+    {
+      "t": 1265.7,
+      "label": "Second bullish sequence",
+      "why": "Price breaks above, retests, and continues higher, forming another valid setup."
+    },
+    {
+      "t": 1281.7,
+      "label": "Break of trend line and retracement",
+      "why": "Price breaks a trend line with a larger retracement, completing the full framework."
+    },
+    {
+      "t": 1395.8,
+      "label": "Three-step system summary",
+      "why": "Instructor recaps the full sequence: step one (break), step two (base formation), step three (entry break)."
+    },
+    {
+      "t": 1426.4,
+      "label": "Opposite step three as exit signal",
+      "why": "The opposite direction's step three serves as the final technical exit for the position."
+    }
+  ]
+}

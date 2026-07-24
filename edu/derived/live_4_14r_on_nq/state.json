@@ -1,0 +1,41 @@
+{
+  "source": "resources/live_trading_sessions/videos/LIVE Trading Session 4.14R on NQ - Stoic Trader Concepts · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1784870717.327809,
+      "pid": 38626,
+      "heartbeat": 1784870716.75699,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1784870719.1578612,
+      "pid": 38626,
+      "heartbeat": 1784870717.32923,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1784870777.729939,
+      "pid": 38626,
+      "heartbeat": 1784870764.174995,
+      "attempts": 1
+    },
+    "moments": {
+      "status": "done",
+      "ts": 1784871180.755106,
+      "pid": 38626,
+      "heartbeat": 1784871167.892765,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1784871215.4380958,
+      "pid": 38626,
+      "heartbeat": 1784871210.7661061,
+      "attempts": 1
+    }
+  },
+  "signature": "139577922-1784848614"
+}

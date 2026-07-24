@@ -1,0 +1,4 @@
+faster-whisper
+opencv-python
+requests
+scenedetect
