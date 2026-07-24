@@ -12,6 +12,7 @@ dependencies = [
   "cryptography>=46.0.5",
   "databento>=0.82,<0.83",
   "faster-whisper",
+  "google-auth>=2.40",
   "opencv-python",
   "PyYAML>=6.0.3",
   "requests",
@@ -21,6 +22,7 @@ dependencies = [
 [project.scripts]
 stoic-data = "stoic_derived.market_data.cli:main"
 stoic-backtest = "stoic_derived.backtest.cli:main"
+stoic-ledger = "stoic_derived.ledger.cli:main"
 stoic-rulebook = "stoic_derived.strategy.cli:main"
 stoic-signal = "stoic_derived.signal_engine.cli:main"
 
