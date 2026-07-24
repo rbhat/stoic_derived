@@ -316,7 +316,7 @@ def plan_merge_budget(
                 f". WARNING: this plan only fits by counting swap -- resident RAM alone "
                 f"offers {format_bytes(gpu_cap + ram_only_cap)} against "
                 f"{format_bytes(needed)} needed. Swap thrash on an undersized WSL budget "
-                "is what hung this box before. Confirm /mnt/c/Users/rajee/.wslconfig "
+                "is what hung this box before. Confirm %UserProfile%\\.wslconfig "
                 "grants a large memory+swap budget and that `wsl --shutdown` has been "
                 "run since it was last edited."
             )
@@ -327,7 +327,7 @@ def plan_merge_budget(
             f"cpu_cap={format_bytes(cpu_cap)} is short of needed={format_bytes(needed)} "
             f"(required {format_bytes(required_bytes)} x {overhead:g} overhead) by "
             f"{format_bytes(shortfall)}. Raise the WSL memory/swap budget in "
-            "/mnt/c/Users/rajee/.wslconfig and run `wsl --shutdown` from PowerShell, "
+            "%UserProfile%\\.wslconfig and run `wsl --shutdown` from PowerShell, "
             "and close other VRAM consumers (e.g. eject any model loaded in LM "
             "Studio) before retrying. Do not attempt disk offload: peft cannot merge "
             "disk-offloaded modules."

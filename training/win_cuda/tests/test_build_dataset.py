@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import re
+from pathlib import Path
 
 from stoic_training import build_dataset
 
@@ -271,3 +272,15 @@ def test_manifest_counts_match_files(tmp_path):
     eval_examples = read_jsonl(out_dir / "eval.jsonl")
     assert manifest["counts"]["train"] == build_dataset.task_counts(train_examples)
     assert manifest["counts"]["eval"] == build_dataset.task_counts(eval_examples)
+
+
+def test_default_out_dir_matches_config_train_home(monkeypatch):
+    # build_dataset inlines the artifact root to stay stdlib-only; this pins
+    # it to config.default_train_home() so the two can never silently diverge.
+    from stoic_training.config import default_train_home
+
+    monkeypatch.delenv("STOIC_TRAIN_HOME", raising=False)
+    assert build_dataset.default_out_dir() == default_train_home() / "datasets" / "v1"
+
+    monkeypatch.setenv("STOIC_TRAIN_HOME", "/tmp/elsewhere")
+    assert build_dataset.default_out_dir() == Path("/tmp/elsewhere") / "datasets" / "v1"
