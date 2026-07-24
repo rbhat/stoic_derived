@@ -101,6 +101,37 @@ last command must report `status: blocked`, zero signals, zero trades,
 `execution: false`, and `orders_placed: 0`. That is the correct production
 safety result, not a reason to load the draft rulebook or a private fixture.
 
+## SP5 dashboard verification on Windows/WSL
+
+SP5 remains portable deterministic software. Its production UI is a compiled
+React 19/Vite static SPA; FastAPI is only the same-origin typed JSON/control
+API. Windows verification does not start SLM training, load a private release,
+or grant dashboard users Google Drive scopes.
+
+From the repository root:
+
+```bash
+uv sync --frozen
+uv run pytest -q
+uv run ruff format --check src tests
+uv run ruff check src tests
+uv run mypy src
+uv lock --check
+uv run stoic-dashboard readiness
+uv build
+npm --prefix web ci
+npm --prefix web run typecheck
+npm --prefix web run test
+npm --prefix web run build
+npm --prefix web exec playwright install chromium
+npm --prefix web run e2e
+```
+
+The readiness command must remain blocked with zero observations until the
+real signed SP0 release boundary passes. Realistic dashboard records are
+test-only. The Vite build under `web/dist/` is the static artifact that SP6
+will deploy on GCP; FastAPI must not serve application HTML.
+
 ## Governing references
 
 - [`VISION.md`](VISION.md), **“What the SLM does vs what generates signals”**

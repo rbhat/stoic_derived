@@ -6,6 +6,9 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
+htmlcov/
+/dist/
 
 # Scratch / temp working files
 .scratch/
@@ -41,3 +44,11 @@ token*.json
 
 # Video archive — kept in Google Drive, restored via ./unzip_videos.sh
 videos.zip
+
+# SP5 static SPA dependencies and generated verification output
+web/node_modules/
+web/dist/
+web/coverage/
+web/playwright-report/
+web/test-results/
+web/*.tsbuildinfo
