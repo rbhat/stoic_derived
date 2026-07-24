@@ -13,6 +13,10 @@ htmlcov/
 # Scratch / temp working files
 .scratch/
 
+# Training run artifacts (HF cache, datasets, checkpoints, exports, logs)
+# — default $STOIC_TRAIN_HOME, see training/win_cuda/README.md
+.artifacts/
+
 # Large media — kept in Google Drive, not git
 *.mp4
 *.mov

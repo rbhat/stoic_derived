@@ -1,0 +1,84 @@
+# QLoRA training config for the offline research-assistant SLM.
+#
+# Purpose guardrail: this configures training for an OFFLINE research
+# assistant that proposes cited rule candidates for human review; its
+# output never touches any live trading path.
+#
+# Conservative defaults for a single RTX 5070 Ti (16 GB VRAM, Blackwell
+# sm_120, bf16 compute). model.revision is pinned to the commit recorded
+# in MODEL_CARD.md. train.py refuses to run a non-smoke run if it is null.
+
+model:
+  repo_id: "Qwen/Qwen3-8B"
+  revision: "b968826d9c46dd6066d109eabc6255188de91218"
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_compute_dtype: "bfloat16"
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+training:
+  max_seq_len: 1024
+  per_device_train_batch_size: 1
+  # the transformers default of 8 spikes VRAM at seq 1024
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 16
+  gradient_checkpointing: true
+  optim: "paged_adamw_8bit"
+  learning_rate: 0.0002
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.03
+  num_train_epochs: 2
+  seed: 20260724
+  logging_steps: 10
+  # crash resilience: checkpoint often enough that a WSL/WDDM hang never
+  # costs more than a few minutes of training
+  save_steps: 50
+  save_total_limit: 2
+  eval_steps: 200
+  attn_implementation: "sdpa"
+  bf16: true
+
+paths:
+  # Both expand ${STOIC_TRAIN_HOME}; config.py defaults it to
+  # <repo>/.artifacts/training when the environment variable is unset, so run
+  # artifacts stay next to the work instead of on another drive (.artifacts/
+  # is git-ignored). Set STOIC_TRAIN_HOME to relocate them.
+  dataset_dir: "${STOIC_TRAIN_HOME}/datasets/v1"
+  run_dir: "${STOIC_TRAIN_HOME}/runs"
+
+# Overrides applied only when train.py is invoked with --smoke: a bounded,
+# tiny-step run to prove the training loop works end-to-end. Never a real
+# fine-tune.
+smoke:
+  max_steps: 10
+  max_seq_len: 512
+
+# Memory/VRAM budget knobs. A merge once hung the whole box: it loaded the
+# full bf16 8B with max_memory={0:"13GiB","cpu":"10GiB"}; the 13 GiB GPU cap
+# plus the desktop's ~2 GB on this 16 GB card pushed Windows WDDM into
+# shared-memory paging while the CPU side saturated WSL's default RAM/swap.
+# These caps replace those hardcoded numbers so export.py can compute a
+# budget that actually fits this host and REFUSE rather than thrash when it
+# does not.
+resources:
+  min_free_vram_gib: 10.0
+  export_gpu_cap_gib: 12.0
+  export_vram_headroom_gib: 2.0
+  export_cpu_reserve_gib: 4.0
+  dataloader_num_workers: 0
+  dataloader_pin_memory: false
