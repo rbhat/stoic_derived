@@ -80,6 +80,27 @@ The SLM and its fine-tuning artifacts remain offline research inputs. They are
 never loaded by the live signal engine, ledger, or flatten watchdog. Simulated
 or model-proposed actions are observations and proposals only.
 
+## SP3 portable verification on Windows/WSL
+
+SP3 is ordinary deterministic Python and may be verified on the Windows
+machine from the repository root in WSL. It does not use CUDA and it does not
+start or depend on SLM training.
+
+```bash
+uv sync --frozen
+uv run pytest -q
+uv run ruff format --check src tests
+uv run ruff check src tests
+uv run mypy src
+uv lock --check
+uv run stoic-backtest readiness
+```
+
+Until a human-approved, semantically complete, signed SP0 release exists, the
+last command must report `status: blocked`, zero signals, zero trades,
+`execution: false`, and `orders_placed: 0`. That is the correct production
+safety result, not a reason to load the draft rulebook or a private fixture.
+
 ## Governing references
 
 - [`VISION.md`](VISION.md), **“What the SLM does vs what generates signals”**
