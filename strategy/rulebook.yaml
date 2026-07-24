@@ -1,0 +1,373 @@
+schema_version: '1.0'
+rulebook_version: '0.1.0-candidate'
+scope:
+  instruments:
+    - NQ
+    - ES
+  timeframe_maps:
+    Scalp:
+      htf: '15m'
+      setup: '5m'
+      execute: '1m'
+      manage: '5m'
+    Day:
+      htf: '60m'
+      setup: '5m'
+      execute: '1m'
+      manage: '5m'
+    Swing:
+      htf: '1d'
+      setup: '60m'
+      execute: '15m'
+      manage: '60m'
+    Position:
+      htf: '1w'
+      setup: '1d'
+      execute: '60m'
+      manage: '1d'
+glossary:
+  - term: 'PDH'
+    meaning: 'Previous daily high.'
+    evidence_ids:
+      - 'ev-pdh-pdl-pdc'
+  - term: 'PDL'
+    meaning: 'Previous daily low.'
+    evidence_ids:
+      - 'ev-pdh-pdl-pdc'
+  - term: 'PDC'
+    meaning: 'Previous daily cash close.'
+    evidence_ids:
+      - 'ev-pdh-pdl-pdc'
+  - term: 'HCOM'
+    meaning: 'Highest daily close of the month.'
+    evidence_ids:
+      - 'ev-hcom-lcom'
+  - term: 'LCOM'
+    meaning: 'Lowest daily close of the month.'
+    evidence_ids:
+      - 'ev-hcom-lcom'
+  - term: 'B&R'
+    meaning: 'Break and retest; the continuation setup archetype.'
+    evidence_ids:
+      - 'ev-setup-taxonomy'
+  - term: 'SFP'
+    meaning: 'Swing failure pattern; the sweep or failure reversal setup archetype.'
+    evidence_ids:
+      - 'ev-setup-taxonomy'
+  - term: 'SBS'
+    meaning: 'Swing breakout sequence; an entry sequence with two described models.'
+    evidence_ids:
+      - 'ev-sbs-entry-model'
+  - term: 'Fib geometry'
+    meaning: 'A tool used in the cited process for measuring pullbacks, targets, and asymmetry.'
+    evidence_ids:
+      - 'ev-fib-target-context'
+  - term: '20/200 SMA'
+    meaning: 'Five-minute simple-moving-average context used to read session bias; not a standalone signal.'
+    evidence_ids:
+      - 'ev-sma-session-context'
+  - term: 'Chop zone'
+    meaning: 'Tight sideways consolidation around moving averages used as timing context.'
+    evidence_ids:
+      - 'ev-chop-zone'
+evidence:
+  - id: 'ev-pdh-pdl-pdc'
+    source_kind: media
+    asset_path: 'edu/videos/Candle Swing Theory PDH PDL PDC - Stoic Trader Concepts · Stoic Traders.mp4'
+    transcript_path: 'edu/derived/concept_candle_swing_theory_pdh_pdl_pdc/transcript.json'
+    locator:
+      start: '00:03:45'
+      end: '00:04:08'
+    claim: 'The three points of interest are the previous daily high, previous daily low, and previous daily close; price is waited for at those levels.'
+    asset_sha256: '4543ed2b26a82a8fbc1f6f023691b57cf6c9f3a41c163466b9944ceaaa76bee4'
+    transcript_sha256: 'f48c0585ba2f5dce503b8b1ac41d3a2bb16dfee9b6af20ab5b35648adb250a64'
+  - id: 'ev-setup-taxonomy'
+    source_kind: media
+    asset_path: 'edu/videos/Candle Swing Theory PDH PDL PDC - Stoic Trader Concepts · Stoic Traders.mp4'
+    transcript_path: 'edu/derived/concept_candle_swing_theory_pdh_pdl_pdc/transcript.json'
+    locator:
+      start: '00:06:27'
+      end: '00:07:11'
+    claim: 'The two setups are a reversal swing failure pattern and a continuation break and retest.'
+    asset_sha256: '4543ed2b26a82a8fbc1f6f023691b57cf6c9f3a41c163466b9944ceaaa76bee4'
+    transcript_sha256: 'f48c0585ba2f5dce503b8b1ac41d3a2bb16dfee9b6af20ab5b35648adb250a64'
+  - id: 'ev-poi-not-middle-range'
+    source_kind: media
+    asset_path: 'edu/videos/Candle Swing Theory PDH PDL PDC - Stoic Trader Concepts · Stoic Traders.mp4'
+    transcript_path: 'edu/derived/concept_candle_swing_theory_pdh_pdl_pdc/transcript.json'
+    locator:
+      start: '00:22:30'
+      end: '00:22:44'
+    claim: 'The taught setups are considered at previous-day levels rather than in the middle of the prior-day range.'
+    asset_sha256: '4543ed2b26a82a8fbc1f6f023691b57cf6c9f3a41c163466b9944ceaaa76bee4'
+    transcript_sha256: 'f48c0585ba2f5dce503b8b1ac41d3a2bb16dfee9b6af20ab5b35648adb250a64'
+  - id: 'ev-hcom-lcom'
+    source_kind: media
+    asset_path: 'edu/start_here/The-Only-Trading-Video-That-You-Will-Ever_Need_1080p.mp4'
+    transcript_path: 'edu/derived/concept_the_only_trading_video_that_you_will_ever_need/transcript.json'
+    locator:
+      start: '00:27:49'
+      end: '00:28:00'
+    claim: 'HCOM is the highest daily close of the month and LCOM is the lowest daily close of the month.'
+    asset_sha256: '48e4cf57745ba70422c27afe9605f067b5ed0b0a98f3ca581cf97eb2efe2bb25'
+    transcript_sha256: '29706bd24e101962dc2ede1316f36e208058f5ef3a6d5e645ccd4322e9a60632'
+  - id: 'ev-context-ordering'
+    source_kind: media
+    asset_path: 'edu/start_here/The-Only-Trading-Video-That-You-Will-Ever_Need_1080p.mp4'
+    transcript_path: 'edu/derived/concept_the_only_trading_video_that_you_will_ever_need/transcript.json'
+    locator:
+      start: '00:36:35'
+      end: '00:37:05'
+    claim: 'HCOM and LCOM provide the higher-timeframe map, prior-day levels frame the day, and the moving averages provide session context.'
+    asset_sha256: '48e4cf57745ba70422c27afe9605f067b5ed0b0a98f3ca581cf97eb2efe2bb25'
+    transcript_sha256: '29706bd24e101962dc2ede1316f36e208058f5ef3a6d5e645ccd4322e9a60632'
+  - id: 'ev-trapped-trader-context'
+    source_kind: media
+    asset_path: 'edu/videos/HTF Stoic Trader Protocol - Stoic Trader Concepts · Stoic Traders.mp4'
+    transcript_path: 'edu/derived/concept_htf_stoic_trader_protocol/transcript.json'
+    locator:
+      start: '00:04:15'
+      end: '00:04:41'
+    claim: 'The context questions are who is trapped, where their stops are, and when they may be forced to exit.'
+    asset_sha256: 'fa82d43b6674052ae3bfe6afde3fb87e11e081abf4a238560361e5f2ed840ddc'
+    transcript_sha256: '7ab259a56cdc3bbad239051c226430ee47bf732fc5a530176006b369fe938c4e'
+  - id: 'ev-sbs-entry-model'
+    source_kind: media
+    asset_path: 'edu/start_here/The-Only-Trading-Video-That-You-Will-Ever_Need_1080p.mp4'
+    transcript_path: 'edu/derived/concept_the_only_trading_video_that_you_will_ever_need/transcript.json'
+    locator:
+      start: '00:46:55'
+      end: '00:50:58'
+    claim: 'SBS is a swing breakout sequence with two described models and is used as an entry model, not as a third setup type.'
+    asset_sha256: '48e4cf57745ba70422c27afe9605f067b5ed0b0a98f3ca581cf97eb2efe2bb25'
+    transcript_sha256: '29706bd24e101962dc2ede1316f36e208058f5ef3a6d5e645ccd4322e9a60632'
+  - id: 'ev-fib-target-context'
+    source_kind: media
+    asset_path: 'edu/start_here/The-Only-Trading-Video-That-You-Will-Ever_Need_1080p.mp4'
+    transcript_path: 'edu/derived/concept_the_only_trading_video_that_you_will_ever_need/transcript.json'
+    locator:
+      start: '00:51:19'
+      end: '00:52:15'
+    claim: 'Fib geometry is used to measure targets and pullbacks.'
+    asset_sha256: '48e4cf57745ba70422c27afe9605f067b5ed0b0a98f3ca581cf97eb2efe2bb25'
+    transcript_sha256: '29706bd24e101962dc2ede1316f36e208058f5ef3a6d5e645ccd4322e9a60632'
+  - id: 'ev-sma-session-context'
+    source_kind: media
+    asset_path: 'edu/start_here/The-Only-Trading-Video-That-You-Will-Ever_Need_1080p.mp4'
+    transcript_path: 'edu/derived/concept_the_only_trading_video_that_you_will_ever_need/transcript.json'
+    locator:
+      start: '00:44:34'
+      end: '00:45:44'
+    claim: 'The 20 and 200 simple moving averages help with session bias, are read with the existing higher-timeframe territory, and do not constitute a trade by themselves.'
+    asset_sha256: '48e4cf57745ba70422c27afe9605f067b5ed0b0a98f3ca581cf97eb2efe2bb25'
+    transcript_sha256: '29706bd24e101962dc2ede1316f36e208058f5ef3a6d5e645ccd4322e9a60632'
+  - id: 'ev-chop-zone'
+    source_kind: media
+    asset_path: 'edu/videos/Simple Stoic Setups SSS - Stoic Trader Concepts · Stoic Traders.mp4'
+    transcript_path: 'edu/derived/concept_simple_stoic_setups_sss/transcript.json'
+    locator:
+      start: '00:44:32'
+      end: '00:45:11'
+    claim: 'The chop zone is tight sideways consolidation around moving averages; higher-timeframe context supplies direction and the chop zone supplies timing.'
+    asset_sha256: '52add00969e6217b132d8e5e1e62123a30c79a7c33abc5f90163c3522f32fcf9'
+    transcript_sha256: 'b460c364caafeef8c428ee63dda17bc0223bc029d8f18ea03ee74f8c6ac6c94e'
+  - id: 'ev-alternate-sma-profile'
+    source_kind: media
+    asset_path: 'edu/videos/Stoic Edge System Module 1 is Live · Stoic Traders.mp4'
+    transcript_path: 'edu/derived/concept_stoic_edge_system_module_1_is_live/transcript.json'
+    locator:
+      start: '00:16:08'
+      end: '00:20:15'
+    claim: 'An alternate module describes 10 and 20 SMA for its sequence and 50 and 200 SMA for higher-timeframe trend.'
+    asset_sha256: 'd15392660ba74ae4185dc8f35dd34ba7a8a0641a9efa1b87339ea9916cc9cb93'
+    transcript_sha256: 'fd4204f0ccd2d8fc7cc85b4a6b64bb3ae6347c2fa0ed4ee5237b9bea3c01349a'
+examples:
+  - id: 'ex-nq-consolidation-expansion'
+    evidence_role: 'illustrative_only'
+    asset_path: 'edu/resources/case_studies/vol2/Vol 2 A  Setups NQ.pdf'
+    page: 2
+    asset_sha256: '2036b6c2bcb87f92b431a99303c5c62689d816bdbadcd2527b575c900079feb4'
+    label: 'NQ Feb 3rd: Consolidation to Expansion'
+    claim: 'The NQ case-study chart visually labels February HCOM, February LCOM, consolidation-to-expansion, and Fib annotations.'
+    non_executable_statement: 'This chart is illustrative only; its annotations do not establish executable entries, stops, targets, session times, or numerical thresholds.'
+  - id: 'ex-es-monthly-close-map'
+    evidence_role: 'illustrative_only'
+    asset_path: 'edu/resources/case_studies/vol7/Vol 7 A  Setups.pdf'
+    page: 4
+    asset_sha256: 'cfdccab21b4bb686692079d044215b05f374256897677648f55f242ad3082c18'
+    label: 'ES: S&P 500, 2026 monthly-close map'
+    claim: 'The ES case-study chart visually labels monthly HCOM and LCOM levels.'
+    non_executable_statement: 'This chart is illustrative only; its annotations do not establish executable entries, stops, targets, session times, or numerical thresholds.'
+  - id: 'ex-nq-opening-range'
+    evidence_role: 'illustrative_only'
+    asset_path: 'edu/resources/Vol 8 A Setups .pdf'
+    page: 3
+    asset_sha256: '465c08c695537c9699b5fe4016c941bfb8c3e65668b2a3444b5d73303945f27f'
+    label: 'NQ May 4th: opening-range case study'
+    claim: 'The NQ case-study chart visually labels a monthly opening range, HCOM, LCOM, SBS, SFP, and session annotations.'
+    non_executable_statement: 'This chart is illustrative only; its annotations do not establish executable entries, stops, targets, session times, or numerical thresholds.'
+rules:
+  - id: 'daily-points-of-interest'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'daily_level_context'
+    evidence_ids:
+      - 'ev-pdh-pdl-pdc'
+    claim: 'PDH, PDL, and PDC are the previous daily high, previous daily low, and previous daily close; they are daily points of interest.'
+  - id: 'setup-taxonomy'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'setup_classification'
+    evidence_ids:
+      - 'ev-setup-taxonomy'
+    claim: 'break_and_retest is the continuation archetype and swing_failure_pattern is the sweep or failure reversal archetype; these are the two setup types.'
+  - id: 'point-of-interest-location'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'location_filter'
+    evidence_ids:
+      - 'ev-poi-not-middle-range'
+    claim: 'A setup is considered at a mapped point of interest, not automatically in the middle of the prior-day range.'
+  - id: 'monthly-close-extremes'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'higher_timeframe_context'
+    evidence_ids:
+      - 'ev-hcom-lcom'
+    claim: 'HCOM and LCOM are respectively the highest and lowest daily close of the month.'
+  - id: 'context-ordering'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'context_sequence'
+    evidence_ids:
+      - 'ev-context-ordering'
+      - 'ev-sma-session-context'
+      - 'ev-sbs-entry-model'
+    claim: 'Context is considered in this order: higher-timeframe map, prior-day level, session environment, setup, then entry model.'
+  - id: 'trapped-trader-context'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'trapped_trader_context'
+    evidence_ids:
+      - 'ev-trapped-trader-context'
+    claim: 'Trapped-trader context asks which side is trapped, where stops may be, and when forced exits may occur.'
+  - id: 'sbs-entry-model'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'entry_model_selection'
+    evidence_ids:
+      - 'ev-sbs-entry-model'
+      - 'ev-setup-taxonomy'
+    claim: 'SBS is an entry sequence with model 1 and model 2 descriptions, not a third setup type.'
+  - id: 'fib-geometry-context'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'target_context'
+    evidence_ids:
+      - 'ev-fib-target-context'
+    claim: 'In the cited process, Fib geometry is used to measure pullbacks, targets, and asymmetry.'
+  - id: 'sma-session-context'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'moving_average_context'
+    evidence_ids:
+      - 'ev-sma-session-context'
+    claim: 'The 20 and 200 SMA are a five-minute session-context tool, not a standalone signal.'
+  - id: 'chop-zone-required'
+    kind: qualitative_claim
+    status: candidate
+    capability: 'chop_zone_context'
+    evidence_ids:
+      - 'ev-chop-zone'
+    claim: 'The taught execution process requires a chop or consolidation zone before considering an entry.'
+  - id: 'break-and-retest-contract'
+    kind: executable_rule
+    status: unknown
+    capability: 'break_and_retest_predicate'
+    evidence_ids:
+      - 'ev-setup-taxonomy'
+    claim: 'No deterministic contract is validated for break definition, retest tolerance, hold condition, expiry, or reset.'
+  - id: 'swing-failure-contract'
+    kind: executable_rule
+    status: unknown
+    capability: 'swing_failure_pattern_predicate'
+    evidence_ids:
+      - 'ev-setup-taxonomy'
+    claim: 'No deterministic contract is validated for sweep depth, wick or close behavior, confirmation, expiry, or reset.'
+  - id: 'signal-construction'
+    kind: executable_rule
+    status: unknown
+    capability: 'entry_stop_target_r_confidence'
+    evidence_ids:
+      - 'ev-sbs-entry-model'
+      - 'ev-fib-target-context'
+      - 'ev-chop-zone'
+    claim: 'No executable entry, stop, target, R-multiple, management, or deterministic confluence-score contract is validated.'
+unresolved_decisions:
+  - id: 'session-calendar'
+    question: 'What are the exact session boundaries, anchor-bar calendar, and timezone policy for deterministic evaluation?'
+    evidence_ids:
+      - 'ev-context-ordering'
+      - 'ev-chop-zone'
+  - id: 'pivot-detection'
+    question: 'What closed-bar pivot or swing-detection method and lookback bounds define a swing?'
+    evidence_ids:
+      - 'ev-setup-taxonomy'
+      - 'ev-sbs-entry-model'
+  - id: 'break-and-retest-parameters'
+    question: 'What tick-aware break, retest, hold, expiry, and reset parameters define break_and_retest?'
+    evidence_ids:
+      - 'ev-setup-taxonomy'
+  - id: 'sfp-parameters'
+    question: 'What tick-aware sweep depth, wick or close behavior, confirmation, expiry, and reset parameters define swing_failure_pattern?'
+    evidence_ids:
+      - 'ev-setup-taxonomy'
+  - id: 'chop-zone-parameters'
+    question: 'What bounded width, duration, slope, and moving-average-tangle measures define the chop zone?'
+    evidence_ids:
+      - 'ev-chop-zone'
+  - id: 'trapped-side-inference'
+    question: 'What deterministic observations infer the trapped side, stop location, and forced-exit condition?'
+    evidence_ids:
+      - 'ev-trapped-trader-context'
+  - id: 'sbs-pivots-and-origin'
+    question: 'What pivots and move-origin boundaries distinguish SBS model 1 from SBS model 2?'
+    evidence_ids:
+      - 'ev-sbs-entry-model'
+  - id: 'fib-anchors-and-target-order'
+    question: 'What anchors and target-selection hierarchy make Fib geometry deterministic?'
+    evidence_ids:
+      - 'ev-fib-target-context'
+  - id: 'entry-model-selection'
+    question: 'Which entry model is selected for each qualifying setup and context?'
+    evidence_ids:
+      - 'ev-sbs-entry-model'
+  - id: 'risk-and-management'
+    question: 'What stop placement, tick buffer, target policy, management, and R-multiple calculation apply to each direction?'
+    evidence_ids:
+      - 'ev-fib-target-context'
+      - 'ev-chop-zone'
+  - id: 'confluence-score'
+    question: 'What deterministic features, weights, range, and signal threshold define confidence?'
+    evidence_ids:
+      - 'ev-context-ordering'
+      - 'ev-trapped-trader-context'
+  - id: 'primary-evidence-review'
+    question: 'Which cited media ranges have a human reviewer checked before any candidate becomes validated?'
+    evidence_ids:
+      - 'ev-pdh-pdl-pdc'
+      - 'ev-setup-taxonomy'
+      - 'ev-hcom-lcom'
+      - 'ev-context-ordering'
+      - 'ev-trapped-trader-context'
+      - 'ev-sbs-entry-model'
+      - 'ev-fib-target-context'
+      - 'ev-sma-session-context'
+      - 'ev-chop-zone'
+conflicts:
+  - id: 'sma-profile-conflict'
+    description: 'The alternate module teaches a 10 and 20 sequence with 50 and 200 higher-timeframe context, whereas the v1 scope pins a 20 and 200 SMA profile.'
+    evidence_ids:
+      - 'ev-alternate-sma-profile'
+      - 'ev-sma-session-context'
+    resolution: 'Preserve the alternate material as unresolved; do not merge it into the v1 executable profile.'
