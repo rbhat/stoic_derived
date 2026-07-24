@@ -23,8 +23,6 @@ VISION disagree, VISION wins.
 - **Do not change the strategy.** The edge is Stoic Traders' strategy; the code
   executes it consistently. No "optimizing" the strategy or the education.
 - **Scope v1: NQ and ES only.** GC/CL/BTC/FX come later.
-- **Prove before real capital.** Backtest → walk-forward → paper before any
-  signal is traded with real money (see §4, the validation gate).
 
 ---
 
@@ -49,7 +47,7 @@ VISION disagree, VISION wins.
 | **SP0** | **Strategy Spec / Rulebook** | The one distilled, plain-language source-of-truth doc encoding the rules: B&R, SFP, SBS, PDH/PDL/PDC, HCOM/LCOM, Fib geometry, 20+200 SMA, HTF/trapped-trader context, and the deterministic **confluence score**. Rulebook state is *hybrid* — named setups known; exact entry/stop/target/confluence must be **mined from the videos (SLM-assisted) and human-validated**. | edu pipeline (done); SLM (research aid) |
 | **SP1** | **Market Data Layer** | Databento DBN historical loader (NQ/ES) + live feed adapter; aggregation into the 6 timeframes (1m/5m/15m/60m/D/W). One bar interface consumed by engine + backtest. | — |
 | **SP2** | **Signal Engine** | Deterministic rules over bars → full **signal records** (schema below), across the 4 Types and their HTF→LTF→exec maps. **No LLM.** The hard core; everything else consumes it. | SP0, SP1 |
-| **SP3** | **Backtest / Walk-forward / Paper** | Run SP2 over historical NQ/ES → expectancy, win rate, avg R, max drawdown **per timeframe and per instrument**. The validation gate. | SP1, SP2 |
+| **SP3** | **Backtest / Walk-forward / Paper** | Run SP2 over historical NQ/ES → expectancy, win rate, avg R, max drawdown **per timeframe and per instrument**. Validation track — measures whether the edge holds; not a blocker on the live-signals milestone. | SP1, SP2 |
 | **SP4** | **Trade Ledger + Lifecycle** | One ledger per Type (Scalp/Day/Swing/Position). Append-only / per-source, reconciled — **never one shared live-edited file**. Drive as source of truth. Tracks each signal to close (TP/SL). **1:58pm Pacific flatten watchdog** with heartbeat that fires even if a process died. | SP2 |
 | **SP5** | **Dashboard** | Web UI (simple, UX-led). Ledger (open vs closed, P/L, time held, charts), operational status, system management (key rotation, connection tests, Drive sync), user management, **Google auth (invite-only whitelist)**. Primary admin `rajeevmbhat@gmail.com` is immutable. | SP4 |
 | **SP6** | **Deployment / Infra** | Cross-machine portability, secrets & API-key rotation, GCP deployment, GitHub + Drive sync. Cross-cutting. | — |
@@ -83,10 +81,10 @@ all other Types flatten at **1:58pm Pacific**.
 ## 4. Build order & phasing
 
 **v1 milestone (chosen):** *Live signals + dashboard* — watch the engine
-produce signals in real time. Because v1 is **signals-only/observational**,
-this does **not** violate VISION's "prove on history first": nothing risks
-capital. The backtest runs as a **parallel track** off the same engine and is a
-**hard gate before trading signals with real money.**
+produce signals in real time. v1 is **signals-only/observational** (no
+execution), so there is no live-capital gate. The backtest (SP3) runs as a
+**parallel validation track** off the same engine — it measures whether the
+edge holds, but does **not** block the live-signals milestone.
 
 Key insight: **SP2 (signal engine) is the shared core.** Once it exists, both
 the backtest (SP3) and the live dashboard (SP4+SP5) are thin consumers — so
@@ -98,8 +96,7 @@ Phase A  (critical path, sequential)
 
 Phase B  (two parallel tracks off SP2)
   Track B1 (milestone):  live feed → SP2 → thin SP4 ledger + flatten watchdog → SP5 dashboard + Google auth
-  Track B2 (trust gate): SP2 over historical NQ/ES → SP3 backtest / walk-forward
-                          └─ GATE: real-capital trading waits on B2 passing
+  Track B2 (validation): SP2 over historical NQ/ES → SP3 backtest / walk-forward
 
 Phase C  (harden & operationalize)
   SP4-full  Drive-backed, concurrency-safe, no-loss ledger
