@@ -122,6 +122,34 @@ Prints the run dir, a formatted snapshot of `progress.json` (phase, step,
 loss, rate, ETA, staleness), and a `tail -f` reminder. Exits 1 with a clear
 message (no traceback) if nothing has run yet.
 
+### Watcher discipline (don't self-match, don't wait forever)
+
+Two hard rules for anything (human, agent, or script) that watches a
+detached run:
+
+1. **The pgrep self-match trap.** `pgrep -f stoic_training.train` matches
+   the watcher's *own shell* whenever the pattern appears in its command
+   line, so a `while pgrep ...; do sleep ...; done` loop never exits (this
+   cost a real run 2.5 idle hours). Always break self-matching with a
+   character class: `pgrep -f "[s]toic_training.train"`.
+2. **Liveness is not progress.** Pair every process check with stall
+   detection (log mtime / progress.json age) and a crash scan (traceback in
+   the newest bootstrap log). "No news" must resolve to RUNNING, STALLED,
+   CRASHED, or DONE — never to "keep waiting".
+
+Both rules are packaged in `scripts/health.sh`:
+
+```bash
+scripts/health.sh                  # one-shot: status of train/evaluate/export
+scripts/health.sh export           # one-shot, single phase
+scripts/health.sh --wait export    # block until exit/crash/stall
+                                   # exit 0=clean exit, 1=crash, 2=stalled
+```
+
+Use `--wait` as the canonical wake-on-event watcher for detached launches
+(including from agents): it returns the moment there is something to act
+on, with the reason in its last output lines.
+
 ### Same pattern for export and evaluate
 
 ```bash
