@@ -560,12 +560,16 @@ def generate_predictions(
     max_new_tokens: int = DEFAULT_MAX_NEW_TOKENS,
     enable_thinking: bool = infer_mod.DEFAULT_ENABLE_THINKING,
     prompt_variant: str | None = None,
+    predictions_path: str | Path | None = None,
     progress_cb: Callable[[int, int], None] | None = None,
 ) -> list[dict[str, Any]]:
     """Generate predictions over eval_jsonl (imports torch lazily).
 
     checkpoint=None routes to the baseline (un-fine-tuned) path in
     infer.run_batch / infer.load_model_and_tokenizer.
+
+    `predictions_path` streams rows to disk as they are generated and resumes from
+    whatever a previous interrupted run already wrote.
     """
     from stoic_training import infer  # heavy import deferred to call time
 
@@ -578,6 +582,7 @@ def generate_predictions(
         max_new_tokens=max_new_tokens,
         enable_thinking=enable_thinking,
         prompt_variant=prompt_variant,
+        predictions_path=predictions_path,
         progress_cb=progress_cb,
     )
 
@@ -1007,6 +1012,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             hypothesis=args.hypothesis,
         )
         manifest_mod.write_manifest(base_manifest, run_dir)
+        # Resolved BEFORE generation so rows stream to it and an interrupted run
+        # resumes instead of starting over.
+        predictions_output_path = run_dir / "evaluation" / "predictions.jsonl"
+        predictions_output_path.parent.mkdir(parents=True, exist_ok=True)
         predictions = generate_predictions(
             None,
             args.eval_jsonl,
@@ -1015,11 +1024,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             max_new_tokens=args.max_new_tokens,
             enable_thinking=args.enable_thinking,
             prompt_variant=args.prompt_variant,
+            predictions_path=predictions_output_path,
             progress_cb=progress_cb,
         )
-        predictions_output_path = run_dir / "evaluation" / "predictions.jsonl"
-        predictions_output_path.parent.mkdir(parents=True, exist_ok=True)
-        infer_mod.write_predictions_jsonl(predictions, predictions_output_path)
         default_output_base = args.eval_jsonl
     elif args.predictions is not None:
         if writer is not None:
@@ -1041,6 +1048,10 @@ def main(argv: Sequence[str] | None = None) -> int:
                 f"prediction source: generation from checkpoint {args.checkpoint} "
                 f"over {args.eval_jsonl}"
             )
+        if run_dir is not None:
+            # See the baseline branch: resolved before generation so rows stream.
+            predictions_output_path = run_dir / "evaluation" / "predictions.jsonl"
+            predictions_output_path.parent.mkdir(parents=True, exist_ok=True)
         predictions = generate_predictions(
             args.checkpoint,
             args.eval_jsonl,
@@ -1049,13 +1060,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             max_new_tokens=args.max_new_tokens,
             enable_thinking=args.enable_thinking,
             prompt_variant=args.prompt_variant,
+            predictions_path=predictions_output_path,
             progress_cb=progress_cb,
         )
         default_output_base = args.eval_jsonl
-        if run_dir is not None:
-            predictions_output_path = run_dir / "evaluation" / "predictions.jsonl"
-            predictions_output_path.parent.mkdir(parents=True, exist_ok=True)
-            infer_mod.write_predictions_jsonl(predictions, predictions_output_path)
 
     if writer is not None:
         writer.log("scoring started")

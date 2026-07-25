@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from pathlib import Path
 from typing import Any
@@ -185,6 +186,8 @@ def run_batch(
     max_new_tokens: int = DEFAULT_MAX_NEW_TOKENS,
     enable_thinking: bool = DEFAULT_ENABLE_THINKING,
     prompt_variant: str | None = None,
+    predictions_path: str | Path | None = None,
+    resume: bool = True,
     progress_cb: Callable[[int, int], None] | None = None,
 ) -> list[dict[str, Any]]:
     """Run deterministic generation over a batch of {"task","meta","messages"} records.
@@ -209,6 +212,13 @@ def run_batch(
     separately -- an empty answer means the run measured nothing, and that must be
     visible in the artifact rather than inferred from a suspicious bucket split.
 
+    `predictions_path`, when given, streams each row to that JSONL as it is
+    produced (flushed and fsynced per row) instead of holding the whole run in
+    memory until the end. With `resume` (the default) an existing file at that path
+    is treated as completed work and only the missing examples are generated. This
+    exists because a 2.6 GPU-hour eval that writes nothing until its final line
+    loses everything to any interruption -- which is exactly what happened once.
+
     `progress_cb`, when given, is called after each record with
     (completed_count, total_count) so a caller (e.g. evaluate.py) can drive
     a tailable progress line during a long generation run. `records` is
@@ -222,13 +232,122 @@ def run_batch(
     from stoic_training.evaluate import example_id_for_record, prompt_from_messages
 
     variant = prompts_mod.resolve_variant(prompt_variant)
+    record_list = list(records)
+    total = len(record_list)
+    ids_in_order = [example_id_for_record(record) for record in record_list]
+
+    done: dict[str, dict[str, Any]] = {}
+    path = None if predictions_path is None else Path(predictions_path)
+    if path is not None and resume and path.is_file():
+        done = _load_resumable_predictions(path, expected_ids=set(ids_in_order))
+
+    pending = [
+        (example_id, record)
+        for example_id, record in zip(ids_in_order, record_list, strict=True)
+        if example_id not in done
+    ]
+    if done:
+        print(
+            f"resuming from {path}: {len(done)} of {total} example(s) already generated, "
+            f"{len(pending)} to go",
+            flush=True,
+        )
+        if progress_cb is not None:
+            progress_cb(len(done), total)
+    if not pending and path is not None:
+        return [done[example_id] for example_id in ids_in_order]
+
+    # The model load costs minutes, so it happens only once there is work to do.
     model, tokenizer = load_model_and_tokenizer(
         checkpoint, base_repo_id=base_repo_id, base_revision=base_revision
     )
-    record_list = list(records)
-    total = len(record_list)
+    handle = None
+    if path is not None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        handle = path.open("a" if done else "w", encoding="utf-8")
+
     predictions: list[dict[str, Any]] = []
-    for completed, record in enumerate(record_list, start=1):
+    try:
+        predictions = _generate_rows(
+            pending,
+            model=model,
+            tokenizer=tokenizer,
+            variant=variant,
+            max_new_tokens=max_new_tokens,
+            enable_thinking=enable_thinking,
+            handle=handle,
+            completed_offset=len(done),
+            total=total,
+            progress_cb=progress_cb,
+            prompts_mod=prompts_mod,
+            prompt_from_messages=prompt_from_messages,
+        )
+    finally:
+        if handle is not None:
+            handle.close()
+
+    if path is None:
+        return predictions
+
+    for row in predictions:
+        done[row["example_id"]] = row
+    return [done[example_id] for example_id in ids_in_order]
+
+
+def _load_resumable_predictions(
+    path: Path, *, expected_ids: set[str]
+) -> dict[str, dict[str, Any]]:
+    """Read an interrupted run's predictions, tolerating a half-written last line.
+
+    A process killed mid-write leaves a truncated final line; that one row is
+    dropped and regenerated. Rows whose example_id is not in the current eval set
+    mean the file belongs to a DIFFERENT eval set or prompt variant, and silently
+    mixing those would produce a scores.json that never corresponded to any single
+    run -- so that refuses loudly instead.
+    """
+    rows: dict[str, dict[str, Any]] = {}
+    lines = path.read_text(encoding="utf-8").splitlines()
+    for index, line in enumerate(lines):
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            if index == len(lines) - 1:
+                break  # truncated tail of an interrupted write
+            raise InferenceError(
+                f"{path}: malformed JSON on line {index + 1} (not the final line), "
+                "so this file is not a cleanly interrupted run -- move it aside to regenerate"
+            ) from None
+        example_id = row.get("example_id")
+        if example_id not in expected_ids:
+            raise InferenceError(
+                f"{path}: contains example_id {example_id!r} that is not in the eval set being "
+                "generated -- it belongs to a different eval set or prompt variant. Move it "
+                "aside rather than resuming into it."
+            )
+        rows[example_id] = row
+    return rows
+
+
+def _generate_rows(
+    pending: list[tuple[str, Mapping[str, Any]]],
+    *,
+    model: Any,
+    tokenizer: Any,
+    variant: str,
+    max_new_tokens: int,
+    enable_thinking: bool,
+    handle: Any,
+    completed_offset: int,
+    total: int,
+    progress_cb: Callable[[int, int], None] | None,
+    prompts_mod: Any,
+    prompt_from_messages: Callable[[Any], str],
+) -> list[dict[str, Any]]:
+    """The generation loop, split out so run_batch's resume bookkeeping stays readable."""
+    predictions: list[dict[str, Any]] = []
+    for offset, (example_id, record) in enumerate(pending, start=1):
         messages = record.get("messages")
         if not messages:
             raise InferenceError("record missing messages")
@@ -242,7 +361,7 @@ def run_batch(
         )
         answer, reasoning = prompts_mod.split_reasoning(completion)
         row = {
-            "example_id": example_id_for_record(record),
+            "example_id": example_id,
             "meta": record.get("meta", {}),
             "task": record.get("task"),
             "prompt": prompt_from_messages(varied_messages),
@@ -252,8 +371,15 @@ def run_batch(
             row["prediction_raw"] = completion
             row["reasoning"] = reasoning
         predictions.append(row)
+        if handle is not None:
+            handle.write(json.dumps(row, ensure_ascii=True, sort_keys=True) + "\n")
+            # flush + fsync per row: the failure this guards against is the whole
+            # machine going away, which a buffer in userspace does not survive. At
+            # seconds per generation the syscall is free by comparison.
+            handle.flush()
+            os.fsync(handle.fileno())
         if progress_cb is not None:
-            progress_cb(completed, total)
+            progress_cb(completed_offset + offset, total)
     return predictions
 
 

@@ -258,6 +258,133 @@ def test_run_batch_strips_reasoning_but_preserves_the_raw_completion(monkeypatch
     assert row["prediction_raw"].startswith("<think>")
 
 
+def _records(count: int) -> list[dict]:
+    return [
+        {
+            "task": "cited_qa",
+            "meta": {"video_id": f"v{index}", "hms": "00:00:01"},
+            "messages": [{"role": "user", "content": f"question {index}"}],
+        }
+        for index in range(count)
+    ]
+
+
+def _stub_model(monkeypatch, generated: list | None = None):
+    monkeypatch.setattr(
+        infer,
+        "load_model_and_tokenizer",
+        lambda checkpoint, *, base_repo_id=None, base_revision=None: (object(), object()),
+    )
+
+    def _fake_generate_one(
+        model, tokenizer, messages, *, max_new_tokens=256, enable_thinking=False
+    ):
+        if generated is not None:
+            generated.append(messages[0]["content"])
+        return "body\nCitation: v1 00:00:01"
+
+    monkeypatch.setattr(infer, "generate_one", _fake_generate_one)
+
+
+def test_run_batch_streams_each_row_as_it_is_generated(monkeypatch, tmp_path):
+    """A run that writes nothing until its last line loses 2.6 GPU-hours to any
+    interruption. Rows must be on disk as they are produced."""
+    written: list[int] = []
+    path = tmp_path / "predictions.jsonl"
+
+    monkeypatch.setattr(
+        infer,
+        "load_model_and_tokenizer",
+        lambda checkpoint, *, base_repo_id=None, base_revision=None: (object(), object()),
+    )
+
+    def _counting_generate_one(
+        model, tokenizer, messages, *, max_new_tokens=256, enable_thinking=False
+    ):
+        # Line count BEFORE this row is written, sampled from disk mid-run.
+        written.append(len(path.read_text().splitlines()) if path.is_file() else 0)
+        return "body\nCitation: v1 00:00:01"
+
+    monkeypatch.setattr(infer, "generate_one", _counting_generate_one)
+
+    infer.run_batch(None, _records(3), base_repo_id="Qwen/Qwen3-8B", predictions_path=path)
+
+    assert written == [0, 1, 2]
+    assert len(path.read_text().splitlines()) == 3
+
+
+def test_run_batch_resumes_from_an_interrupted_run(monkeypatch, tmp_path):
+    path = tmp_path / "predictions.jsonl"
+    records = _records(3)
+
+    generated: list[str] = []
+    _stub_model(monkeypatch, generated)
+    infer.run_batch(None, records[:1], base_repo_id="Qwen/Qwen3-8B", predictions_path=path)
+    assert generated == ["question 0"]
+
+    generated.clear()
+    rows = infer.run_batch(None, records, base_repo_id="Qwen/Qwen3-8B", predictions_path=path)
+
+    # Only the missing two are regenerated, and the result covers all three in
+    # eval order regardless of which pass produced them.
+    assert generated == ["question 1", "question 2"]
+    assert [row["prompt"] for row in rows] == ["question 0", "question 1", "question 2"]
+    assert len(path.read_text().splitlines()) == 3
+
+
+def test_run_batch_tolerates_a_half_written_final_line(monkeypatch, tmp_path):
+    """A process killed mid-write leaves a truncated tail; that row is regenerated
+    rather than making the whole file unusable."""
+    path = tmp_path / "predictions.jsonl"
+    records = _records(2)
+
+    generated: list[str] = []
+    _stub_model(monkeypatch, generated)
+    infer.run_batch(None, records[:1], base_repo_id="Qwen/Qwen3-8B", predictions_path=path)
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write('{"example_id": "abc", "predi')
+
+    generated.clear()
+    rows = infer.run_batch(None, records, base_repo_id="Qwen/Qwen3-8B", predictions_path=path)
+
+    assert generated == ["question 1"]
+    assert len(rows) == 2
+
+
+def test_run_batch_refuses_to_resume_into_a_foreign_predictions_file(monkeypatch, tmp_path):
+    """Resuming into another eval set's or variant's file would yield a scores.json
+    that never corresponded to any single run."""
+    path = tmp_path / "predictions.jsonl"
+    _stub_model(monkeypatch)
+    infer.run_batch(None, _records(1), base_repo_id="Qwen/Qwen3-8B", predictions_path=path)
+
+    other = [
+        {
+            "task": "cited_qa",
+            "meta": {"video_id": "other", "hms": "00:09:09"},
+            "messages": [{"role": "user", "content": "a different eval set"}],
+        }
+    ]
+    with pytest.raises(infer.InferenceError, match="different eval set or prompt variant"):
+        infer.run_batch(None, other, base_repo_id="Qwen/Qwen3-8B", predictions_path=path)
+
+
+def test_run_batch_skips_loading_the_model_when_the_run_already_finished(monkeypatch, tmp_path):
+    """Re-running a completed eval should not pay minutes of model load to generate
+    nothing."""
+    path = tmp_path / "predictions.jsonl"
+    records = _records(2)
+    _stub_model(monkeypatch)
+    infer.run_batch(None, records, base_repo_id="Qwen/Qwen3-8B", predictions_path=path)
+
+    def _explode(*args, **kwargs):
+        raise AssertionError("model must not be loaded when there is nothing to generate")
+
+    monkeypatch.setattr(infer, "load_model_and_tokenizer", _explode)
+    rows = infer.run_batch(None, records, base_repo_id="Qwen/Qwen3-8B", predictions_path=path)
+    assert len(rows) == 2
+
+
 def test_example_id_survives_the_generation_to_scoring_round_trip(monkeypatch, tmp_path):
     """The invariant paired comparison rests on (design doc section 4.1/4.3).
 
