@@ -8,6 +8,23 @@ torch/datasets imports -- so this runs anywhere, not just on the GPU box.
 The split file (splits/split-v1.json) is generated once and then treated
 as immutable: if it already exists, its corpus_sha256 must match the
 current corpus or the build fails loudly rather than silently drifting.
+
+Two split versions are supported, auto-detected from the `--split` file:
+
+  * **v1** (`splits/split-v1.json`) -> `datasets/v1/` with `train.jsonl` +
+    `eval.jsonl`. Byte-for-byte unchanged from before v2 existed.
+  * **v2** (`splits/split-v2.json`) -> `datasets/v2/` with the SAME
+    `train.jsonl`, plus `eval_dev.jsonl` and `eval_holdout.jsonl` --
+    v1's eval set subdivided into a dev tier we read every run and a
+    sealed holdout tier (design doc section 5.2, see `splits.py`). The
+    v2 `dataset_manifest.json` records a per-file sha256 and role
+    (`train`/`dev`/`holdout`); that role+digest pair is what
+    `evaluate.py` matches on to refuse an un-`--unseal`ed holdout run.
+
+New-video quarantine (design doc section 5.2): split files are immutable,
+so the builder is the enforcement point. A corpus video named by neither
+tier is routed into the HOLDOUT pool, never into train or dev, and never
+silently dropped -- see `_apply_quarantine`.
 """
 
 from __future__ import annotations
@@ -19,6 +36,8 @@ import os
 import random
 import sys
 from pathlib import Path
+
+from stoic_training import splits as splits_mod
 
 BUILDER_VERSION = "1"
 SPLIT_VERSION = "v1"
@@ -41,15 +60,17 @@ class SplitMismatchError(RuntimeError):
     pass
 
 
-def default_out_dir() -> Path:
-    """`$STOIC_TRAIN_HOME/datasets/v1`, defaulting under `<repo>/.artifacts/`.
+def default_out_dir(version: str = SPLIT_VERSION) -> Path:
+    """`$STOIC_TRAIN_HOME/datasets/<version>`, defaulting under `<repo>/.artifacts/`.
 
     Kept in lockstep with config.default_train_home(); the default is
     inlined here rather than imported so this builder stays stdlib-only.
+    The dataset dir is named after the SPLIT version it was built from, so
+    two split versions can never overwrite each other's outputs.
     """
     env = os.environ.get("STOIC_TRAIN_HOME")
     home = Path(env).expanduser() if env else REPO_ROOT / ".artifacts" / "training"
-    return home / "datasets" / "v1"
+    return home / "datasets" / version
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -344,26 +365,180 @@ def print_summary(split, train_examples, eval_examples, out_dir: Path) -> None:
     print(f"{'total':<18}{len(train_examples):>8}{len(eval_examples):>8}")
 
 
-def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(description="Build SFT dataset from the course corpus")
-    parser.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
-    parser.add_argument("--out", type=Path, default=None)
-    parser.add_argument("--split", type=Path, default=DEFAULT_SPLIT_PATH)
-    args = parser.parse_args(argv)
+V2_FILE_ROLES = (
+    ("train.jsonl", splits_mod.ROLE_TRAIN),
+    ("eval_dev.jsonl", splits_mod.ROLE_DEV),
+    ("eval_holdout.jsonl", splits_mod.ROLE_HOLDOUT),
+)
 
-    out_dir = args.out if args.out is not None else default_out_dir()
 
-    if not args.corpus.exists():
-        print(f"error: corpus not found: {args.corpus}", file=sys.stderr)
-        return 1
+def _apply_quarantine(
+    records, split: splits_mod.SplitV2, on_new_videos: str
+) -> tuple[list[str], list[str]]:
+    """Route corpus videos that no split tier names into the holdout pool.
 
-    records, corpus_sha256 = load_corpus(args.corpus)
+    Returns `(holdout_videos, quarantined)`. `on_new_videos="fail"` raises
+    `SplitMismatchError` instead of quarantining, for callers who would
+    rather stop and cut a new split version than grow the holdout.
 
-    try:
-        split = load_or_create_split(records, args.split, corpus_sha256)
-    except SplitMismatchError as exc:
-        print(f"error: {exc}", file=sys.stderr)
-        return 1
+    The one option that does not exist is silence: a newly mined video is
+    the truly-unseen future (design doc section 5.2), so letting it drift
+    into train would burn it, and letting it drift into dev would burn it
+    more slowly. Dropping it silently is just as bad -- the eval set would
+    shrink relative to the corpus with nothing in the output saying so,
+    which is why the quarantine list is echoed to stdout AND recorded in
+    dataset_manifest.json.
+    """
+    corpus_video_ids = {r["video_id"] for r in records}
+    quarantined = splits_mod.quarantine_new_videos(corpus_video_ids, split)
+    if not quarantined:
+        return list(split.holdout_videos), []
+    if on_new_videos == "fail":
+        raise SplitMismatchError(
+            f"corpus contains {len(quarantined)} video(s) absent from "
+            f"{split.version}: {', '.join(quarantined)}. With --on-new-videos=fail "
+            "the build stops here; the default (quarantine) routes them into the "
+            "holdout pool, which is where newly mined videos belong."
+        )
+    return sorted(set(split.holdout_videos) | set(quarantined)), quarantined
+
+
+def build_examples_v2(records, split: splits_mod.SplitV2, holdout_videos):
+    """Build train / dev / holdout example sets with the v1 builder logic.
+
+    `build_examples` is called twice with the SAME train set and a
+    different eval set, so `train.jsonl` is byte-identical to v1's (a v2
+    build must not change what the model trains on -- that is the whole
+    point of subdividing the eval set rather than re-splitting).
+
+    A consequence worth stating: a conflict_check pair whose two videos
+    straddle dev and holdout is dropped from both, exactly as v1 drops
+    train/eval-straddling pairs. Keeping it would put holdout narration
+    into the dev eval set, i.e. unseal the holdout by accident.
+    """
+    train_examples, dev_examples = build_examples(records, split.train_videos, split.dev_videos)
+    _, holdout_examples = build_examples(records, split.train_videos, holdout_videos)
+    return train_examples, dev_examples, holdout_examples
+
+
+def build_manifest_v2(
+    corpus_sha256: str,
+    split: splits_mod.SplitV2,
+    out_dir: Path,
+    counts: dict,
+    holdout_videos,
+    quarantined,
+    corpus_drift: bool,
+) -> dict:
+    """v2 dataset manifest: per-file sha256 + role, plus split provenance.
+
+    The `files` map is the contract `evaluate.py` reads to decide whether an
+    eval file is the sealed holdout (`splits.detect_holdout`): matching on
+    the recorded sha256 makes the seal survive a rename, which matching on
+    the filename alone would not.
+    """
+    files = {}
+    for name, role in V2_FILE_ROLES:
+        path = out_dir / name
+        files[name] = {"role": role, "sha256": splits_mod.sha256_file(path)}
+    return {
+        "corpus_sha256": corpus_sha256,
+        "split_version": split.version,
+        "parent_split_version": split.parent_version,
+        "split_seed": split.seed,
+        "counts": counts,
+        "files": files,
+        "videos": {
+            splits_mod.ROLE_TRAIN: list(split.train_videos),
+            splits_mod.ROLE_DEV: list(split.dev_videos),
+            splits_mod.ROLE_HOLDOUT: sorted(holdout_videos),
+        },
+        "quarantined_videos": list(quarantined),
+        "corpus_drift": corpus_drift,
+        "builder_version": BUILDER_VERSION,
+    }
+
+
+def print_summary_v2(split, holdout_videos, quarantined, counts, out_dir: Path) -> None:
+    tasks = sorted({task for per_role in counts.values() for task in per_role})
+    print(f"split: {split.version} (parent {split.parent_version}) seed={split.seed}")
+    print(f"train videos ({len(split.train_videos)}): {', '.join(split.train_videos)}")
+    print(f"dev videos ({len(split.dev_videos)}): {', '.join(split.dev_videos)}")
+    print(f"holdout videos ({len(holdout_videos)}): {', '.join(holdout_videos)}  [SEALED]")
+    if quarantined:
+        print(
+            f"quarantined into holdout ({len(quarantined)} new video(s) not named by "
+            f"the split): {', '.join(quarantined)}"
+        )
+    print(f"output: {out_dir}")
+    print(f"{'task':<18}{'train':>8}{'dev':>8}{'holdout':>10}")
+    for task in tasks:
+        print(
+            f"{task:<18}{counts['train'].get(task, 0):>8}"
+            f"{counts['dev'].get(task, 0):>8}{counts['holdout'].get(task, 0):>10}"
+        )
+    totals = {role: sum(per_role.values()) for role, per_role in counts.items()}
+    print(f"{'total':<18}{totals['train']:>8}{totals['dev']:>8}{totals['holdout']:>10}")
+
+
+def _build_v2(args, records, corpus_sha256: str, out_dir: Path) -> int:
+    split = splits_mod.load_split_v2(args.split)
+
+    if split.corpus_sha256 != corpus_sha256:
+        if not args.allow_corpus_drift:
+            raise SplitMismatchError(
+                f"corpus_sha256 mismatch for {args.split}: split was frozen against "
+                f"{split.corpus_sha256}, current corpus is {corpus_sha256}. Split "
+                "files are immutable. If the corpus grew by newly mined videos, "
+                "re-run with --allow-corpus-drift to acknowledge the drift; the new "
+                "videos are then quarantined into the holdout pool."
+            )
+        corpus_video_ids = {r["video_id"] for r in records}
+        missing = sorted(
+            video_id
+            for video_id in (*split.train_videos, *split.dev_videos, *split.holdout_videos)
+            if video_id not in corpus_video_ids
+        )
+        if missing:
+            raise SplitMismatchError(
+                f"--allow-corpus-drift allows the corpus to GROW, not to lose split "
+                f"videos; missing from the corpus: {', '.join(missing)}"
+            )
+
+    holdout_videos, quarantined = _apply_quarantine(records, split, args.on_new_videos)
+    train_examples, dev_examples, holdout_examples = build_examples_v2(
+        records, split, holdout_videos
+    )
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    write_jsonl(out_dir / "train.jsonl", train_examples)
+    write_jsonl(out_dir / "eval_dev.jsonl", dev_examples)
+    write_jsonl(out_dir / "eval_holdout.jsonl", holdout_examples)
+
+    counts = {
+        "train": task_counts(train_examples),
+        "dev": task_counts(dev_examples),
+        "holdout": task_counts(holdout_examples),
+    }
+    manifest = build_manifest_v2(
+        corpus_sha256,
+        split,
+        out_dir,
+        counts,
+        holdout_videos,
+        quarantined,
+        corpus_drift=split.corpus_sha256 != corpus_sha256,
+    )
+    (out_dir / "dataset_manifest.json").write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+
+    print_summary_v2(split, holdout_videos, quarantined, counts, out_dir)
+    return 0
+
+
+def _build_v1(args, records, corpus_sha256: str, out_dir: Path) -> int:
+    split = load_or_create_split(records, args.split, corpus_sha256)
 
     train_examples, eval_examples = build_examples(
         records, split["train_videos"], split["eval_videos"]
@@ -380,6 +555,57 @@ def main(argv=None) -> int:
 
     print_summary(split, train_examples, eval_examples, out_dir)
     return 0
+
+
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(description="Build SFT dataset from the course corpus")
+    parser.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+    parser.add_argument("--out", type=Path, default=None)
+    parser.add_argument(
+        "--split",
+        type=Path,
+        default=DEFAULT_SPLIT_PATH,
+        help="Split file; v1 vs v2 layout is auto-detected from its contents",
+    )
+    parser.add_argument(
+        "--on-new-videos",
+        choices=("quarantine", "fail"),
+        default="quarantine",
+        help="v2 only: corpus videos absent from the split go to the holdout pool "
+        "(default) or stop the build. They are never routed into train or dev.",
+    )
+    parser.add_argument(
+        "--allow-corpus-drift",
+        action="store_true",
+        help="v2 only: permit the corpus digest to differ from the split's, provided "
+        "every split video is still present (i.e. the corpus only grew)",
+    )
+    args = parser.parse_args(argv)
+
+    if not args.corpus.exists():
+        print(f"error: corpus not found: {args.corpus}", file=sys.stderr)
+        return 1
+
+    records, corpus_sha256 = load_corpus(args.corpus)
+
+    try:
+        is_v2 = args.split.is_file() and splits_mod.is_split_v2(
+            splits_mod.read_split_payload(args.split)
+        )
+    except splits_mod.SplitError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    version = splits_mod.SPLIT_V2_VERSION if is_v2 else SPLIT_VERSION
+    out_dir = args.out if args.out is not None else default_out_dir(version)
+
+    try:
+        if is_v2:
+            return _build_v2(args, records, corpus_sha256, out_dir)
+        return _build_v1(args, records, corpus_sha256, out_dir)
+    except (SplitMismatchError, splits_mod.SplitError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":

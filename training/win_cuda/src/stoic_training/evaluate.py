@@ -58,6 +58,16 @@ informative than the headline pass rate (design doc section 2).
 `SCORING_VERSION` is stamped into every `scores.json` and manifest
 `evaluation` section together with the scoring params. Comparisons across
 different `scoring_version`s are refused by `stoic_training.compare`.
+
+Holdout seal (design doc section 5.2, mechanism in `splits.py`): scoring a
+split-v2 **holdout** eval set is refused (exit 2) unless
+`--unseal "<reason>"` is given, in which case the run id, ISO date, eval
+set and reason are appended to the committed `splits/unseal-ledger.md`.
+Detection is by content sha256 against the `role: "holdout"` entry of the
+`dataset_manifest.json` sitting next to the eval file -- so renaming the
+file does not bypass the seal -- with the `eval_holdout` filename as a
+second, manifest-free backstop. Files that are neither stay
+friction-free: no manifest, no holdout name, no refusal.
 """
 
 from __future__ import annotations
@@ -65,6 +75,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from collections import defaultdict
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
@@ -76,8 +87,11 @@ from typing import Any
 
 from stoic_training import manifest as manifest_mod
 from stoic_training import progress
+from stoic_training import splits as splits_mod
 
 SCORING_VERSION = "1"
+# Exit code for a refusal (as opposed to 1 = IO/usage), matching compare.py.
+EXIT_REFUSED = 2
 DEFAULT_OVERLAP_THRESHOLD = 0.3
 DEFAULT_MAX_NEW_TOKENS = 256
 CONFLICT_TASK = "conflict_check"
@@ -714,6 +728,40 @@ def _write_evaluation_manifest_and_index(
     runs_index.append_entry(runs_root, entry)
 
 
+def detect_sealed_holdout(args: argparse.Namespace) -> splits_mod.HoldoutDetection | None:
+    """First sealed-holdout hit among the eval-set inputs of this invocation.
+
+    Both `--eval-jsonl` and `--predictions` are checked: the eval file is
+    the usual route, but a predictions file generated over the holdout and
+    then scored later is the same disclosure, and `--predictions
+    .../eval_holdout.jsonl`-shaped paths must not slip through. Checking
+    both costs one sha256 of a small file.
+    """
+    for candidate in (getattr(args, "eval_jsonl", None), getattr(args, "predictions", None)):
+        detection = splits_mod.detect_holdout(candidate)
+        if detection is not None:
+            return detection
+    return None
+
+
+def _unseal_run_id(run_id: str | None, run_dir: Path | None) -> str:
+    """Best available run identity for the ledger row.
+
+    Falls back through manifest run_id -> run-dir name -> a literal
+    "(no run dir)" rather than failing: a ledger row with a weak id is far
+    better than an unsealing that went unrecorded because the id lookup
+    raised.
+    """
+    if run_id:
+        return run_id
+    if run_dir is not None:
+        try:
+            return str(manifest_mod.read_manifest(run_dir).get("run_id") or run_dir.name)
+        except (OSError, json.JSONDecodeError, manifest_mod.ManifestError):
+            return run_dir.name
+    return "(no run dir)"
+
+
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Score predictions, or generate then score, against the source corpus."
@@ -774,6 +822,20 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="Pre-registered prediction for this run; kept as-is (with a warning) if the "
         "run-dir manifest already has a different one",
     )
+    parser.add_argument(
+        "--unseal",
+        default=None,
+        metavar="REASON",
+        help="Deliberately score a SEALED holdout eval set. Requires a non-empty reason, "
+        "which is appended with the run id and date to splits/unseal-ledger.md. "
+        "Budget: single-digit unsealings per split version.",
+    )
+    parser.add_argument(
+        "--unseal-ledger",
+        type=Path,
+        default=splits_mod.DEFAULT_UNSEAL_LEDGER_PATH,
+        help="Path of the committed unseal ledger (default: the package's splits/ dir)",
+    )
     return parser.parse_args(argv)
 
 
@@ -793,6 +855,20 @@ def main(argv: Sequence[str] | None = None) -> int:
             raise SystemExit("--baseline requires --eval-jsonl and --base-repo-id")
     elif args.predictions is None and (args.checkpoint is None or args.eval_jsonl is None):
         raise SystemExit("generation mode requires --checkpoint and --eval-jsonl")
+
+    # Seal check first: refuse BEFORE loading a corpus or (worse) a model, so
+    # an accidental holdout run costs a second rather than GPU-hours.
+    sealed = detect_sealed_holdout(args)
+    unseal_reason = (args.unseal or "").strip()
+    if sealed is not None and not unseal_reason:
+        print(f"error: {splits_mod.seal_message(sealed)}", file=sys.stderr)
+        return EXIT_REFUSED
+    if sealed is None and unseal_reason:
+        print(
+            "warning: --unseal was given but no sealed holdout eval set was detected; "
+            "nothing will be written to the unseal ledger.",
+            flush=True,
+        )
 
     corpus = load_corpus(args.corpus)
     corpus_sha256 = manifest_mod.sha256_file(args.corpus)
@@ -934,6 +1010,26 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     _write_report(report, output)
     print(json.dumps(report, indent=2, sort_keys=True))
+
+    if sealed is not None and unseal_reason:
+        # Logged only once the holdout has actually been scored -- a run that
+        # died before producing a score never disclosed anything, and a ledger
+        # inflated by crashed attempts would make the budget meaningless.
+        ledger_path = splits_mod.append_unseal_entry(
+            run_id=_unseal_run_id(run_id, run_dir),
+            reason=unseal_reason,
+            eval_set=str(Path(sealed.path).resolve()),
+            date=generated_utc,
+            ledger_path=args.unseal_ledger,
+        )
+        line = (
+            f"HOLDOUT UNSEALED: {sealed.path} -- reason {unseal_reason!r} logged to "
+            f"{ledger_path} ({splits_mod.count_unseal_entries(ledger_path)} unsealing(s) "
+            "recorded; budget is single-digit per split version)"
+        )
+        print(line, flush=True)
+        if writer is not None:
+            writer.log(line)
 
     if run_dir is not None:
         _write_evaluation_manifest_and_index(

@@ -67,6 +67,7 @@ uv run python -m stoic_training.build_dataset   # dataset.jsonl -> SFT pairs + d
 uv run python -m stoic_training.train           # QLoRA SFT, seeded, resumable
 uv run python -m stoic_training.evaluate        # citation fidelity + failure buckets + conflict surfacing
 uv run python -m stoic_training.compare A B     # run-over-run deltas, paired flips, McNemar p
+uv run python -m stoic_training.calibrate ...   # human calibration audit of the Tier-1 proxy
 uv run python -m stoic_training.infer           # offline inference against a local checkpoint
 uv run python -m stoic_training.export          # merge LoRA -> safetensors -> GGUF (LM Studio)
 ```
@@ -202,6 +203,178 @@ that already landed.
 ```bash
 tail -3 ../../.artifacts/training/runs/index.jsonl | python3 -m json.tool --json-lines
 ```
+
+## Split protocol v2: dev, sealed holdout, quarantine
+
+Runs are blind to eval data — but *we* are not. Reading a score and picking
+the next change because it raised that score leaks information about the
+fixed eval sample through our choices (design §5.1). After ~20 such
+iterations against ±3% noise you can "gain" 5–10% that generalizes to
+nothing. The countermeasure is two eval tiers.
+
+### The split files
+
+`splits/split-v1.json` is immutable and unchanged: 13 train videos, 3 eval
+videos (seed 20260724, one per category). `splits/split-v2.json` **does not
+re-split anything** — it names v1 as its parent and only subdivides v1's
+eval videos:
+
+| tier | videos | use |
+|---|---|---|
+| train | v1's 13, read from the parent file at build time | training |
+| dev | `cs_vol3_gold_futures_study`, `live_4_14r_on_nq` | read every run, iterate freely |
+| holdout | `concept_simple_stoic_setups_sss` | **sealed** — release candidates only |
+
+The 2 dev / 1 holdout assignment is seeded-deterministic (seed 20260725):
+sort the parent's eval videos, shuffle with `random.Random(f"{seed}:v2")`,
+take the first `round(n/3)` (min 1, cap n−1) as holdout. The procedure is
+written into the file itself and reproducible via
+`splits.partition_eval_videos`; a test asserts the committed file still
+matches it. Tooling refuses any v2 whose dev+holdout is not *exactly* the
+parent's eval set, so a v2 can never promote an eval video into training.
+
+**Known coarseness, accepted (design §5.3):** with one eval video per
+category a 2/1 partition cannot be stratified — dev here covers case_study +
+live_session and holdout covers concept only, so dev-vs-holdout differences
+confound "sealed vs not" with "concept vs the rest". One holdout video also
+means wide error bars. Use the holdout as a release-candidate sanity check,
+never as a precise number. The fix is more mined videos, not a cleverer
+partition of three. Within-video splits remain banned outright.
+
+### Building `datasets/v2/`
+
+The split version is auto-detected from the `--split` file's contents, and
+the dataset dir is named after it, so v1 and v2 can never overwrite each
+other:
+
+```bash
+uv run python -m stoic_training.build_dataset --split splits/split-v2.json
+# -> $STOIC_TRAIN_HOME/datasets/v2/{train.jsonl,eval_dev.jsonl,eval_holdout.jsonl,dataset_manifest.json}
+```
+
+`train.jsonl` is **byte-identical to v1's** — subdividing the eval set must
+not change what the model trains on. The v2 `dataset_manifest.json` records
+a per-file `sha256` and `role` (`train`/`dev`/`holdout`); that digest+role
+pair is what the unseal guard matches on. (A conflict_check pair straddling
+dev and holdout is dropped from both, exactly as v1 drops train/eval-
+straddling pairs — keeping it would put holdout narration into the dev set.)
+
+### The holdout seal and the unseal ledger
+
+`evaluate.py` **refuses (exit 2)** to score a holdout eval set:
+
+```
+error: refusing to score a SEALED HOLDOUT eval set: .../datasets/v2/eval_holdout.jsonl
+```
+
+Two independent detectors, either of which seals a file:
+
+1. **content sha256** — the file's digest matches a `role: "holdout"` entry
+   in the `dataset_manifest.json` sitting next to it. Renaming the file
+   changes nothing; the bytes are the same.
+2. **filename backstop** — the stem is `eval_holdout`, even with no manifest
+   beside it. This catches copying the file somewhere else and leaving the
+   manifest behind.
+
+Neither fires for an ad-hoc file, so hand-made eval/predictions files score
+with no friction. To proceed deliberately:
+
+```bash
+uv run python -m stoic_training.evaluate --run-dir <run_dir> \
+    --checkpoint <checkpoint> \
+    --eval-jsonl ../../.artifacts/training/datasets/v2/eval_holdout.jsonl \
+    --unseal "scoring release candidate rc1 before rulebook handoff"
+```
+
+That appends one row — run id, ISO date, eval-set path, reason — to the
+committed `splits/unseal-ledger.md`, **after** the holdout has actually been
+scored (a crashed attempt disclosed nothing and must not consume budget).
+The ledger is append-only. **Budget: single-digit unsealings per split
+version.** If the count approaches ten the holdout is consumed: retire it
+and cut a new split version rather than pretending the number generalizes.
+
+### New-video quarantine
+
+Newly mined videos are the truly-unseen future, so they are **quarantined
+into the holdout pool** (design §5.2) — never silently into train or dev,
+and never silently dropped. Split files are immutable, so the enforcement
+point is the builder:
+
+```bash
+# a corpus that gained videos no longer matches the split's corpus_sha256:
+uv run python -m stoic_training.build_dataset --split splits/split-v2.json
+# error: corpus_sha256 mismatch ... re-run with --allow-corpus-drift
+
+uv run python -m stoic_training.build_dataset --split splits/split-v2.json --allow-corpus-drift
+# quarantined into holdout (1 new video(s) not named by the split): <video_id>
+
+uv run python -m stoic_training.build_dataset --split splits/split-v2.json \
+    --allow-corpus-drift --on-new-videos fail    # stop instead of quarantining
+```
+
+`--allow-corpus-drift` permits the corpus to **grow** only: if a split video
+went missing, the build still fails. Quarantined videos are listed in the
+build summary and recorded in `dataset_manifest.json`
+(`quarantined_videos`, `corpus_drift`).
+
+## Calibration: the metric's measured error bar
+
+Tier 1 scores claim-vs-narration support by token overlap at a fixed
+threshold. It is a *biased* proxy — it fails some genuinely-supported
+paraphrases and passes some coincidental overlaps. That is tolerable only
+because the bias is stable across runs **and quantified** (design §2). The
+`calibrate` module quantifies it, turning "the metric is subjective" into
+"the metric has a measured 12% false-fail rate".
+
+```bash
+# 1. draw a seeded, pass/fail-stratified sample from a scored run
+uv run python -m stoic_training.calibrate sample --run-dir <run_dir> --size 50
+
+# 2. label human_label ("supported" / "not_supported" / "unsure") in the
+#    sheet JSONL, reading the .md companion beside it
+
+# 3. score the filled sheet into the committed calibration record
+uv run python -m stoic_training.calibrate ingest --sheet <sheet>.jsonl
+```
+
+`sample` reads `<run_dir>/evaluation/{predictions.jsonl,scores.json}` and
+writes `<run_dir>/evaluation/calibration/sheet-<scoring_version>.{jsonl,md}`.
+Half the sample is `pass`; the other half is spread **evenly across the
+failure buckets that occurred**, not proportionally — a proportional sample
+of a 20%-pass run would be nearly all `weak_overlap` and would tell us
+nothing about whether the hallucination bucket is correctly identified.
+Selection is deterministic for a fixed seed (strata are sorted by
+`example_id` before the seeded shuffle).
+
+Each row carries the prediction, the `(video_id, hms)` it cited, and *that
+record's* narration/why from the corpus, so support can be judged without
+hunting through the corpus. The eval set's gold answer is deliberately **not
+included** — it would anchor the judgement it is supposed to be independent
+of.
+
+`ingest` treats human `supported` as ground truth and the Tier-1 *pass*
+verdict as the prediction under test:
+
+| metric | formula | reading |
+|---|---|---|
+| `precision` | TP/(TP+FP) | of what Tier-1 passed, how much the human agrees is supported |
+| `recall` | TP/(TP+FN) | of what is genuinely supported, how much Tier-1 passed |
+| `false_fail_rate` | FN/(TP+FN) | = 1 − recall; the headline error bar of §2 |
+| `false_pass_rate` | FP/(FP+TN) | of what is genuinely unsupported, how much Tier-1 let through |
+| `agreement` | (TP+TN)/labeled | overall |
+
+`unsure` rows are excluded from every denominator and reported separately —
+folding them in either direction would invent a judgement the labeler
+explicitly declined to make. Rates with an empty denominator are `null`, not
+`0.0`. Per-bucket label counts are recorded too.
+
+The record lands in `evaluation/calibration/<scoring_version>.json`
+(committed) with `run_id`, date, sheet path + sha256, sample size, and the
+agreement block. `ingest` **refuses to overwrite** an existing record for the
+same `scoring_version` without `--force`: that record is the committed error
+bar for that metric lineage. If agreement degrades, revise the metric and
+bump `SCORING_VERSION` — which starts a new lineage rather than rewriting
+the old one.
 
 ## Long runs: launch, tail, status
 
