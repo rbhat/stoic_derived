@@ -20,13 +20,19 @@ POLL_S="${POLL_S:-300}"
 
 alive() { pgrep -f "[s]toic_training.$1" >/dev/null 2>&1; }
 newest_log() { ls -t "$LOGS/$1"-*.log 2>/dev/null | head -1; }
+# Stall detection must key on *activity*, not just the bootstrap log: a
+# bootstrap log can be off-convention (e.g. baseline-*.log) or long quiet
+# while the run dir's <phase>.log / progress.json are still ticking.
+newest_activity() {
+    ls -t "$LOGS/$1"-*.log "$RUNS"/*/"$1".log "$RUNS"/*/progress.json 2>/dev/null | head -1
+}
 log_age_min() { echo $(( ( $(date +%s) - $(stat -c %Y "$1") ) / 60 )); }
 crashed() { [ -n "$1" ] && tr '\r' '\n' <"$1" | grep -q "Traceback (most recent call last)"; }
 
 # Prints one status line; returns 0=running/done, 1=crashed, 2=stalled.
 check_phase() {
     local phase=$1 log age
-    log=$(newest_log "$phase")
+    log=$(newest_activity "$phase")
     if alive "$phase"; then
         if [ -n "$log" ]; then
             age=$(log_age_min "$log")
@@ -40,6 +46,9 @@ check_phase() {
         fi
         return 0
     fi
+    # Crash scan reads the bootstrap log: tracebacks land on the detached
+    # process's stdout/stderr, never in progress.json.
+    log=$(newest_log "$phase")
     if crashed "$log"; then
         echo "$phase: CRASHED — traceback in $log"
         return 1
@@ -62,7 +71,7 @@ snapshot() {
 if [ "${1:-}" = "--wait" ]; then
     phase="${2:?usage: health.sh --wait <phase>}"
     while alive "$phase"; do
-        log=$(newest_log "$phase")
+        log=$(newest_activity "$phase")
         if [ -n "$log" ] && [ "$(log_age_min "$log")" -ge "$STALE_MIN" ]; then
             check_phase "$phase"
             exit 2
