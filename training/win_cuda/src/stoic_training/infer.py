@@ -89,21 +89,35 @@ def generate_one(
     prompt_messages = [message for message in messages if message.get("role") != "assistant"]
     if not prompt_messages:
         raise InferenceError("messages must contain at least one non-assistant turn")
-    input_ids = tokenizer.apply_chat_template(
+    encoded = tokenizer.apply_chat_template(
         prompt_messages, add_generation_prompt=True, return_tensors="pt"
-    ).to(model.device)
+    )
+    # transformers 5.x returns a BatchEncoding (Mapping) from apply_chat_template
+    # when return_tensors is set, not a bare tensor; normalize both shapes so
+    # model.generate() always receives a real tensor via the input_ids kwarg.
+    if isinstance(encoded, Mapping):
+        input_ids = encoded["input_ids"]
+        attention_mask = encoded.get("attention_mask")
+    else:
+        input_ids = encoded
+        attention_mask = None
+    input_ids = input_ids.to(model.device)
+    if attention_mask is not None:
+        attention_mask = attention_mask.to(model.device)
+    generate_kwargs: dict[str, Any] = dict(
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+        temperature=None,
+        top_p=None,
+        top_k=None,
+        pad_token_id=tokenizer.pad_token_id
+        if tokenizer.pad_token_id is not None
+        else tokenizer.eos_token_id,
+    )
+    if attention_mask is not None:
+        generate_kwargs["attention_mask"] = attention_mask
     with torch.no_grad():
-        output_ids = model.generate(
-            input_ids,
-            max_new_tokens=max_new_tokens,
-            do_sample=False,
-            temperature=None,
-            top_p=None,
-            top_k=None,
-            pad_token_id=tokenizer.pad_token_id
-            if tokenizer.pad_token_id is not None
-            else tokenizer.eos_token_id,
-        )
+        output_ids = model.generate(input_ids=input_ids, **generate_kwargs)
     completion_ids = output_ids[0, input_ids.shape[-1] :]
     return tokenizer.decode(completion_ids, skip_special_tokens=True).strip()
 
