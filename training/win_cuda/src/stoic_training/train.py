@@ -191,6 +191,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Skip the VRAM preflight refusal (only when you know what else is using the GPU).",
     )
+    parser.add_argument(
+        "--hypothesis",
+        default=None,
+        help="Pre-registered prediction for this run, written before launch "
+        "(e.g. '1 epoch instead of 2 will cut hallucinated citations').",
+    )
     return parser.parse_args(argv)
 
 
@@ -211,17 +217,23 @@ def require_pinned_revision(config: QloraConfig, *, smoke: bool) -> None:
     )
 
 
-def build_manifest(config: QloraConfig, *, smoke: bool) -> dict:
+def build_manifest(config: QloraConfig, *, smoke: bool, hypothesis: str | None = None) -> dict:
     dataset_ref = manifest_mod.load_dataset_ref(config.paths.dataset_dir)
     code_rev = manifest_mod.git_rev(REPO_ROOT)
     resolved = config.resolved_dict(smoke=smoke)
     base_model = {"repo_id": config.model.repo_id, "revision": config.model.revision}
-    return manifest_mod.build_run_manifest(
+    manifest = manifest_mod.build_run_manifest(
         dataset_ref=dataset_ref,
         config_resolved=resolved,
         code_rev=code_rev,
         base_model=base_model,
+        hypothesis=hypothesis,
     )
+    # NON-identity field (added after build_run_manifest, so run_id is
+    # unchanged): gives stoic_training.runs_index.diff_configs something to
+    # read for the next run's knob_diff (design doc section 4.4).
+    manifest["config_resolved"] = resolved
+    return manifest
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -237,7 +249,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     config = load_config(args.config)
     require_pinned_revision(config, smoke=args.smoke)
 
-    run_manifest = build_manifest(config, smoke=args.smoke)
+    run_manifest = build_manifest(config, smoke=args.smoke, hypothesis=args.hypothesis)
     run_dir = config.paths.run_dir / run_manifest["run_id"]
     manifest_mod.write_manifest(run_manifest, run_dir)
 

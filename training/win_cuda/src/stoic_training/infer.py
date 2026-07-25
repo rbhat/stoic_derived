@@ -33,15 +33,58 @@ def is_adapter_dir(path: str | Path) -> bool:
     return (Path(path) / "adapter_config.json").is_file()
 
 
+def build_quantization_config():
+    """The single source of truth for the 4-bit nf4 load used by BOTH the
+    adapter path and the baseline path (an 8B bf16 model does not fit the
+    16 GB shared VRAM budget)."""
+    import torch
+    from transformers import BitsAndBytesConfig
+
+    return BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_compute_dtype=torch.bfloat16,
+        bnb_4bit_use_double_quant=True,
+    )
+
+
+def load_base_model_and_tokenizer(base_repo_id: str | None, *, base_revision: str | None = None):
+    """Load the pinned base model 4-bit, NO adapter. Raises InferenceError
+    without base_repo_id."""
+    if not base_repo_id:
+        raise InferenceError("base_repo_id is required to load the baseline (un-fine-tuned) model")
+
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+
+    quant_config = build_quantization_config()
+    model = AutoModelForCausalLM.from_pretrained(
+        base_repo_id,
+        revision=base_revision,
+        quantization_config=quant_config,
+        dtype=torch.bfloat16,
+        attn_implementation="sdpa",
+    )
+    tokenizer = AutoTokenizer.from_pretrained(base_repo_id, revision=base_revision)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    model.eval()
+    return model, tokenizer
+
+
 def load_model_and_tokenizer(
-    checkpoint: str | Path,
+    checkpoint: str | Path | None = None,
     *,
     base_repo_id: str | None = None,
     base_revision: str | None = None,
 ):
-    """Load a merged model, or a base model with a LoRA adapter attached."""
+    """Load a merged model, a base model with a LoRA adapter attached, or
+    (checkpoint=None) the baseline (un-fine-tuned) base model."""
+    if checkpoint is None:
+        return load_base_model_and_tokenizer(base_repo_id, base_revision=base_revision)
+
     import torch
-    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
     checkpoint = Path(checkpoint)
     if is_adapter_dir(checkpoint):
@@ -49,12 +92,7 @@ def load_model_and_tokenizer(
 
         if not base_repo_id:
             raise InferenceError("base_repo_id is required to load a LoRA adapter checkpoint")
-        quant_config = BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_quant_type="nf4",
-            bnb_4bit_compute_dtype=torch.bfloat16,
-            bnb_4bit_use_double_quant=True,
-        )
+        quant_config = build_quantization_config()
         base_model = AutoModelForCausalLM.from_pretrained(
             base_repo_id,
             revision=base_revision,
@@ -123,7 +161,7 @@ def generate_one(
 
 
 def run_batch(
-    checkpoint: str | Path,
+    checkpoint: str | Path | None,
     records: Iterable[Mapping[str, Any]],
     *,
     base_repo_id: str | None = None,
@@ -133,12 +171,23 @@ def run_batch(
 ) -> list[dict[str, Any]]:
     """Run deterministic generation over a batch of {"task","meta","messages"} records.
 
+    checkpoint=None routes to the baseline (un-fine-tuned) path via
+    load_model_and_tokenizer. Each output row carries a stable `example_id`
+    and the resolved `prompt` text (see stoic_training.evaluate.
+    example_id_for_record / prompt_from_messages) so scores.json `details`
+    entries can be paired back to the exact generation that produced them.
+
     `progress_cb`, when given, is called after each record with
     (completed_count, total_count) so a caller (e.g. evaluate.py) can drive
     a tailable progress line during a long generation run. `records` is
     materialized into a list first so a total is available up front;
     default None reproduces today's exact behaviour.
     """
+    # Deferred: evaluate.py itself only imports infer lazily (inside
+    # generate_predictions), so this mirrors that and avoids a module-level
+    # import cycle between the two.
+    from stoic_training.evaluate import example_id_for_record, prompt_from_messages
+
     model, tokenizer = load_model_and_tokenizer(
         checkpoint, base_repo_id=base_repo_id, base_revision=base_revision
     )
@@ -152,8 +201,10 @@ def run_batch(
         prediction = generate_one(model, tokenizer, messages, max_new_tokens=max_new_tokens)
         predictions.append(
             {
+                "example_id": example_id_for_record(record),
                 "meta": record.get("meta", {}),
                 "task": record.get("task"),
+                "prompt": prompt_from_messages(messages),
                 "prediction": prediction,
             }
         )
@@ -182,8 +233,22 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Offline single-prompt or JSONL-batch inference against a local checkpoint."
     )
-    parser.add_argument("--checkpoint", type=Path, required=True, help="Merged model dir, or a LoRA adapter dir")
-    parser.add_argument("--base-repo-id", default=None, help="Required if --checkpoint is a LoRA adapter dir")
+    parser.add_argument(
+        "--checkpoint",
+        type=Path,
+        default=None,
+        help="Merged model dir, or a LoRA adapter dir (omit with --baseline)",
+    )
+    parser.add_argument(
+        "--baseline",
+        action="store_true",
+        help="Load the pinned base model with no adapter; mutually exclusive with --checkpoint",
+    )
+    parser.add_argument(
+        "--base-repo-id",
+        default=None,
+        help="Required if --checkpoint is a LoRA adapter dir, or with --baseline",
+    )
     parser.add_argument("--base-revision", default=None)
     parser.add_argument("--input-jsonl", type=Path, default=None, help="Batch mode: JSONL of {task, meta, messages}")
     parser.add_argument("--prompt", default=None, help="Single-prompt mode: a user message string")
@@ -201,6 +266,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     ensure_hf_home()
     args = parse_args(argv)
 
+    if args.baseline and args.checkpoint is not None:
+        raise SystemExit("--baseline cannot be combined with --checkpoint")
+    if not args.baseline and args.checkpoint is None:
+        raise SystemExit("--checkpoint is required unless --baseline is given")
+
     if args.input_jsonl is not None:
         records = _load_jsonl_records(args.input_jsonl)
     elif args.prompt is not None:
@@ -215,7 +285,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         raise SystemExit("one of --input-jsonl or --prompt is required")
 
     predictions = run_batch(
-        args.checkpoint,
+        None if args.baseline else args.checkpoint,
         records,
         base_repo_id=args.base_repo_id,
         base_revision=args.base_revision,

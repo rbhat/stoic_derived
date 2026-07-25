@@ -65,13 +65,143 @@ without re-running `tests/test_gpu_smoke.py` on the GPU box.
 ```bash
 uv run python -m stoic_training.build_dataset   # dataset.jsonl -> SFT pairs + digest (frozen split in splits/)
 uv run python -m stoic_training.train           # QLoRA SFT, seeded, resumable
-uv run python -m stoic_training.evaluate        # citation fidelity + held-out + conflict surfacing
+uv run python -m stoic_training.evaluate        # citation fidelity + failure buckets + conflict surfacing
+uv run python -m stoic_training.compare A B     # run-over-run deltas, paired flips, McNemar p
 uv run python -m stoic_training.infer           # offline inference against a local checkpoint
 uv run python -m stoic_training.export          # merge LoRA -> safetensors -> GGUF (LM Studio)
 ```
 
 Every run writes a content-addressed manifest (dataset digest, code rev,
 config hash, base-model revision, outputs) under `$STOIC_TRAIN_HOME/runs/`.
+
+## Evaluation, comparison, and the runs index
+
+See `docs/superpowers/specs/2026-07-24-eval-comparison-design.md` for the
+rationale. The short version: a score is only meaningful next to another
+score computed the same way, so every evaluation records exactly what it was
+computed against.
+
+### Per-run evaluation artifacts
+
+With `--run-dir <run_dir>`, evaluation artifacts land **inside the run**:
+
+```
+$STOIC_TRAIN_HOME/runs/<run_id>/
+  manifest.json           # gains an "evaluation" section (below)
+  evaluation/
+    predictions.jsonl     # one row per eval example, with a stable example_id
+    scores.json           # metrics + failure buckets + scoring provenance
+```
+
+They used to land in `datasets/v1/` and were clobbered by every run — that
+bug is what this layout fixes. Without `--run-dir`, ad-hoc scoring still
+writes `scores.json` next to the predictions file as before.
+
+The manifest's `evaluation` section records the scores/predictions paths and
+sha256s, headline metrics + bucket counts, `scoring_version`, the scoring
+params, the corpus digest, and the eval-set digest. **`run_id` never changes**
+— it derives only from the identity fields fixed when the manifest was
+created.
+
+### Metrics: headline rates plus failure buckets
+
+`scores.json` reports `citation_fidelity` and `conflict_handling` overall,
+per-task, and per-category, and additionally classifies every prediction into
+exactly one failure bucket. For citation-scored tasks (`rule_candidate`,
+`cited_qa`), checked schema-first:
+
+| bucket | meaning |
+|---|---|
+| `schema_violation` | Tier-0 structure missing (rule_candidate's labelled lines; an empty body) |
+| `no_citation` | no well-formed trailing `Citation: <video_id> HH:MM:SS` line |
+| `citation_not_in_corpus` | cited record does not exist — the hallucination bucket |
+| `weak_overlap` | citation is real but the body does not support it at the threshold |
+| `pass` | — |
+
+`conflict_check` has its own namespace: `insufficient_citations`,
+`no_conflict_marker`, `pass`. A run that improves the headline while growing
+`citation_not_in_corpus` is a regression by definition (design §7).
+
+`scoring_version` (currently `"1"`) is stamped into every `scores.json`
+alongside the params. Changing how scoring works means bumping it, which
+starts a new comparison lineage — `compare` refuses across versions rather
+than silently comparing incomparable numbers.
+
+### Stable example ids
+
+Every prediction row and every `scores.json` details entry carries
+`example_id = sha256("task=…\x1fvideo_id=…\x1fhms=…\x1fprompt=…")[:16]`
+(`\x1f` = ASCII unit separator, which cannot occur in those fields). This is
+what makes *paired* comparison possible: the same eval example is
+identifiable across runs even though the generated text differs.
+
+### Pre-registering a hypothesis
+
+```bash
+uv run python -m stoic_training.train --hypothesis "1 epoch instead of 2 will cut hallucinated citations"
+```
+
+Written into the manifest **before launch**. A run whose gain wasn't
+predicted is a lead, not a result. `evaluate.py` also accepts `--hypothesis`
+(for evaluation-only runs such as baselines); if the manifest already has a
+different one it keeps the original and warns — pre-registration you can
+rewrite afterwards is worthless.
+
+### Baseline: the zero point
+
+Without the un-fine-tuned base model's score we cannot claim the fine-tune
+helps at all. Baseline mode loads the pinned base model with the **same
+4-bit nf4 quantization** as the adapter path (an 8B bf16 model does not fit
+this box's 16 GB shared VRAM) and no adapter:
+
+```bash
+cd /mnt/f/dev/stoic_derived/training/win_cuda
+nohup uv run python -m stoic_training.evaluate --baseline \
+    --base-repo-id Qwen/Qwen3-8B \
+    --base-revision b968826d9c46dd6066d109eabc6255188de91218 \
+    --eval-jsonl ../../.artifacts/training/datasets/v1/eval.jsonl \
+    --hypothesis "base model cites almost nothing verifiable" \
+  >> ../../.artifacts/training/logs/baseline-$(date +%Y%m%dT%H%M%S).log 2>&1 &
+```
+
+It creates its own run dir `runs/baseline-<digest>/`, where the digest is
+derived from the eval-set digest + `scoring_version` + base-model revision —
+so re-running the same baseline is idempotent, and a changed eval set or
+scoring version gets a new baseline rather than overwriting the old one.
+Manifest fields that do not apply (training config, dataset ref,
+checkpoints) are explicitly null with a `notes` field explaining why.
+
+### Comparing two runs
+
+```bash
+uv run python -m stoic_training.compare <run_a> <run_b>          # run ids under $STOIC_TRAIN_HOME/runs
+uv run python -m stoic_training.compare <run_dir_a> <run_dir_b>  # or paths
+uv run python -m stoic_training.compare A B --json               # machine-readable
+```
+
+Prints headline deltas, per-task deltas, per-bucket count/rate deltas, and
+the **paired flips**: how many examples went fail→pass (`fixed`), pass→fail
+(`broke`), and a McNemar exact p-value — because on 699 examples an
+aggregate +3% is noise, while "fixed 41, broke 6" is signal. The flipped
+example ids are listed both ways so regressions are inspectable one by one.
+
+`compare` **refuses** (exit 2) unless the corpus digest, eval-set digest, and
+`scoring_version` all match. Exit 1 covers IO/usage problems, 0 on success.
+Pure stdlib — it runs off the GPU box with nothing loaded.
+
+### Runs index
+
+`$STOIC_TRAIN_HOME/runs/index.jsonl` is the experiment history: one
+append-only JSON line per completed evaluation, written by the `--run-dir`
+path. Each line carries `run_id`, `date`, `config_sha256`, `knob_diff` (the
+resolved-config keys that changed since the previous line), `hypothesis`,
+`metrics` (headline + bucket counts), `scoring_version`, `eval_set_sha256`,
+and `corpus_sha256`. It is never rewritten, so a crash can't corrupt history
+that already landed.
+
+```bash
+tail -3 ../../.artifacts/training/runs/index.jsonl | python3 -m json.tool --json-lines
+```
 
 ## Long runs: launch, tail, status
 
@@ -164,8 +294,11 @@ nohup uv run python -m stoic_training.evaluate --run-dir <run_dir> \
 tail -f <run_dir>/evaluate.log
 ```
 
-`evaluate.py`'s progress log/`progress.json` are opt-in via `--run-dir`; the
-default scoring-only invocation (no `--run-dir`) is unchanged.
+`evaluate.py`'s progress log/`progress.json` are opt-in via `--run-dir`, as
+are the run-dir evaluation artifacts and the runs-index line (see
+"Evaluation, comparison, and the runs index" above); the default scoring-only
+invocation (no `--run-dir`) still writes `scores.json` next to the
+predictions file.
 
 ### Memory guardrails on this box
 

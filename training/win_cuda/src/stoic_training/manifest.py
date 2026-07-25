@@ -185,9 +185,16 @@ def build_run_manifest(
     code_rev: CodeRev,
     base_model: Mapping[str, Any],
     versions: Mapping[str, str] | None = None,
+    hypothesis: str | None = None,
     now: datetime | None = None,
 ) -> dict[str, Any]:
-    """Build a full run manifest dict, with run_id derived from identity fields."""
+    """Build a full run manifest dict, with run_id derived from identity fields.
+
+    `hypothesis` (when a non-empty string) is stamped in as a top-level,
+    NON-identity field -- it is added after run_id is already derived, so
+    pre-registering (or later editing, see update_manifest_evaluation's
+    caller in evaluate.py) a hypothesis never changes run_id.
+    """
     resolved_versions = dict(versions) if versions is not None else library_versions()
     identity = _identity_payload(
         dataset_ref=dataset_ref,
@@ -202,7 +209,56 @@ def build_run_manifest(
     manifest["run_id"] = run_id
     manifest["created_utc"] = created_utc
     manifest["outputs"] = {"checkpoints": []}
+    if hypothesis:
+        manifest["hypothesis"] = hypothesis
     return manifest
+
+
+def build_baseline_manifest(
+    *,
+    run_id: str,
+    base_model: Mapping[str, Any],
+    eval_set_sha256: str,
+    corpus_sha256: str,
+    scoring_version: str,
+    code_rev: CodeRev,
+    versions: Mapping[str, str] | None = None,
+    hypothesis: str | None = None,
+    now: datetime | None = None,
+) -> dict[str, Any]:
+    """Build a manifest for a baseline evaluation of the un-fine-tuned base model.
+
+    Unlike build_run_manifest, run_id is NOT derived here -- it is passed in
+    already computed (see evaluate.baseline_run_id), from the eval-set
+    digest + scoring_version + base model revision (design doc section 4.2),
+    not from a training identity payload. Fields that do not apply to a
+    baseline (no training config, no dataset ref, no checkpoints yet) are
+    explicitly recorded as null, with `notes` explaining why.
+    """
+    resolved_versions = dict(versions) if versions is not None else library_versions()
+    built: dict[str, Any] = {
+        "run_id": run_id,
+        "kind": "baseline",
+        "created_utc": (now or datetime.now(UTC)).isoformat(),
+        "base_model": {"repo_id": base_model["repo_id"], "revision": base_model.get("revision")},
+        "code_git_rev": code_rev.canonical_dict(),
+        "versions": resolved_versions,
+        "config_sha256": None,
+        "dataset": None,
+        "outputs": {"checkpoints": []},
+        "eval_set_sha256": eval_set_sha256,
+        "corpus_sha256": corpus_sha256,
+        "scoring_version": scoring_version,
+        "notes": (
+            "Baseline evaluation of the un-fine-tuned pinned base model: no "
+            "training config, no dataset ref, no checkpoints. run_id is derived "
+            "from eval-set digest + scoring_version + base model revision "
+            "(design 4.2), not from the training identity payload."
+        ),
+    }
+    if hypothesis:
+        built["hypothesis"] = hypothesis
+    return built
 
 
 def write_manifest(manifest: Mapping[str, Any], run_dir: str | Path) -> Path:
@@ -236,10 +292,26 @@ def update_manifest_outputs(
     return manifest
 
 
+def update_manifest_evaluation(
+    run_dir: str | Path, evaluation: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Merge an `evaluation` section into manifest.json and stamp updated_utc.
+
+    run_id is unaffected: it derives only from the identity fields fixed at
+    manifest-creation time (same invariant as update_manifest_outputs).
+    """
+    manifest = read_manifest(run_dir)
+    manifest["evaluation"] = dict(evaluation)
+    manifest["updated_utc"] = datetime.now(UTC).isoformat()
+    write_manifest(manifest, run_dir)
+    return manifest
+
+
 __all__ = [
     "CodeRev",
     "DatasetRef",
     "ManifestError",
+    "build_baseline_manifest",
     "build_run_manifest",
     "canonical_json_bytes",
     "git_rev",
@@ -249,6 +321,7 @@ __all__ = [
     "sha256_dir",
     "sha256_file",
     "sha256_hex",
+    "update_manifest_evaluation",
     "update_manifest_outputs",
     "write_manifest",
 ]

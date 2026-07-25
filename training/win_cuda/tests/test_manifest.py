@@ -112,7 +112,7 @@ def test_git_rev_raises_outside_a_repo(tmp_path):
         manifest.git_rev(not_a_repo)
 
 
-def _build(tmp_path, *, config_resolved=None, corpus_sha256="a" * 64, now=None):
+def _build(tmp_path, *, config_resolved=None, corpus_sha256="a" * 64, hypothesis=None, now=None):
     call_dir = Path(tempfile.mkdtemp(dir=tmp_path))
     dataset_dir = write_dataset_dir(call_dir, corpus_sha256=corpus_sha256)
     repo_dir = tmp_path / "repo"
@@ -126,6 +126,7 @@ def _build(tmp_path, *, config_resolved=None, corpus_sha256="a" * 64, now=None):
         code_rev=code_rev,
         base_model=BASE_MODEL,
         versions=VERSIONS,
+        hypothesis=hypothesis,
         now=now,
     )
 
@@ -210,3 +211,111 @@ def test_library_versions_returns_known_libraries():
     versions = manifest.library_versions()
     assert set(versions) == {"torch", "transformers", "peft", "trl", "bitsandbytes"}
     assert all(isinstance(value, str) and value for value in versions.values())
+
+
+# --- C7: update_manifest_evaluation ------------------------------------------
+
+
+def test_update_manifest_evaluation_preserves_run_id_and_merges_section(tmp_path):
+    built = _build(tmp_path)
+    run_dir = tmp_path / "runs" / built["run_id"]
+    manifest.write_manifest(built, run_dir)
+
+    evaluation = {"scoring_version": "1", "metrics": {"count": 3}}
+    updated = manifest.update_manifest_evaluation(run_dir, evaluation)
+
+    assert updated["run_id"] == built["run_id"]
+    assert updated["evaluation"] == evaluation
+    assert "updated_utc" in updated
+
+    reread = manifest.read_manifest(run_dir)
+    assert reread["run_id"] == built["run_id"]
+    assert reread["evaluation"] == evaluation
+
+
+def test_update_manifest_evaluation_overwrites_a_prior_section(tmp_path):
+    built = _build(tmp_path)
+    run_dir = tmp_path / "runs" / built["run_id"]
+    manifest.write_manifest(built, run_dir)
+
+    manifest.update_manifest_evaluation(run_dir, {"scoring_version": "1", "metrics": {"count": 1}})
+    updated = manifest.update_manifest_evaluation(
+        run_dir, {"scoring_version": "1", "metrics": {"count": 2}}
+    )
+    assert updated["evaluation"]["metrics"]["count"] == 2
+    assert updated["run_id"] == built["run_id"]
+
+
+# --- C8: hypothesis is a non-identity field ----------------------------------
+
+
+def test_build_run_manifest_hypothesis_does_not_change_run_id(tmp_path):
+    without_hypothesis = _build(tmp_path)
+    with_hypothesis = _build(tmp_path, hypothesis="fewer epochs cuts hallucinations")
+
+    assert without_hypothesis["run_id"] == with_hypothesis["run_id"]
+    assert "hypothesis" not in without_hypothesis
+    assert with_hypothesis["hypothesis"] == "fewer epochs cuts hallucinations"
+
+
+def test_build_run_manifest_omits_hypothesis_when_blank():
+    dataset_ref = manifest.DatasetRef(
+        corpus_sha256="a" * 64,
+        dataset_manifest_sha256="b" * 64,
+        train_sha256="c" * 64,
+        eval_sha256="d" * 64,
+    )
+    code_rev = manifest.CodeRev(sha="e" * 40, dirty=False)
+    built = manifest.build_run_manifest(
+        dataset_ref=dataset_ref,
+        config_resolved=CONFIG_RESOLVED,
+        code_rev=code_rev,
+        base_model=BASE_MODEL,
+        versions=VERSIONS,
+        hypothesis="",
+    )
+    assert "hypothesis" not in built
+
+
+# --- C10: build_baseline_manifest shape --------------------------------------
+
+
+def test_build_baseline_manifest_shape():
+    code_rev = manifest.CodeRev(sha="e" * 40, dirty=False)
+    built = manifest.build_baseline_manifest(
+        run_id="baseline-deadbeefdeadbeef",
+        base_model={"repo_id": "Qwen/Qwen3-8B", "revision": "deadbeef"},
+        eval_set_sha256="a" * 64,
+        corpus_sha256="b" * 64,
+        scoring_version="1",
+        code_rev=code_rev,
+        versions=VERSIONS,
+    )
+    assert built["run_id"] == "baseline-deadbeefdeadbeef"
+    assert built["kind"] == "baseline"
+    assert built["config_sha256"] is None
+    assert built["dataset"] is None
+    assert built["outputs"] == {"checkpoints": []}
+    assert built["base_model"] == {"repo_id": "Qwen/Qwen3-8B", "revision": "deadbeef"}
+    assert built["eval_set_sha256"] == "a" * 64
+    assert built["corpus_sha256"] == "b" * 64
+    assert built["scoring_version"] == "1"
+    assert "code_git_rev" in built and "versions" in built and "created_utc" in built
+    assert "baseline" in built["notes"].lower()
+    assert "hypothesis" not in built
+
+
+def test_build_baseline_manifest_includes_hypothesis_when_given():
+    code_rev = manifest.CodeRev(sha="e" * 40, dirty=False)
+    built = manifest.build_baseline_manifest(
+        run_id="baseline-deadbeefdeadbeef",
+        base_model={"repo_id": "Qwen/Qwen3-8B", "revision": None},
+        eval_set_sha256="a" * 64,
+        corpus_sha256="b" * 64,
+        scoring_version="1",
+        code_rev=code_rev,
+        versions=VERSIONS,
+        hypothesis="zero point for the fine-tune",
+    )
+    assert built["hypothesis"] == "zero point for the fine-tune"
+    assert built["base_model"]["revision"] is None
