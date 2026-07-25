@@ -43,9 +43,20 @@ Rules:
   `scoring_version`s are refused by tooling. Changing the metric is allowed —
   it just starts a new comparison lineage.
 - **Failure-mode buckets are first-class metrics**, not just one pass rate:
-  (a) no citation, (b) citation not in corpus (hallucinated), (c) citation in
+  (a) no citation, (b) citation not in corpus, (c) citation in
   corpus but weak overlap, (d) schema violation. Run-over-run movement of the
   hallucination bucket is more informative than the headline rate.
+
+  **Correction (2026-07-25, empirical):** bucket (b) was named and reasoned
+  about as "hallucinated". It is not. In run `adb3c96ab6020c23` all 224
+  members cited a **real** corpus `video_id`; none was invented. The bucket
+  conflates *invented identifier* with *real identifier, wrong record* —
+  opposite failures with opposite fixes. Splitting it requires a
+  `scoring_version` bump (WP7). Until then, every use of this bucket carries
+  the correction. Note also that Tier 0 above specifies "timestamp within ±
+  tolerance"; the shipped scorer does an **exact `(video_id, hms)` lookup**
+  with no tolerance, so near-miss timestamps fall into (b) as well. See
+  ADR-0021.
 - **Human calibration audit**: per `scoring_version`, sample ~50 scored
   examples (stratified pass/fail), human-label "supported / not supported",
   record Tier-1 agreement (precision/recall vs human) in
@@ -185,6 +196,30 @@ fixed finite sample.
 | WP4 | split v2: dev/holdout partition, unseal ledger + tooling refusal without `--unseal`, new-video quarantine rule | S |
 | WP5 | calibration audit tooling + first 50-example human audit; failure-bucket metrics in `scores.json` | M |
 | WP6 (later) | Tier-2 advisory judge; k-fold runner | M |
+| WP7 | `audit` command implementing the mechanical checks of ADR-0021 (per-stratum re-derivation, n<20 flagging, degenerate-distribution detection, raw-sample dump per bucket); split bucket (b) into `citation_id_invented` / `citation_record_not_found` under `scoring_version` "2" | M |
+| WP8 | decoding probe on the 109 `no_citation` example_ids of `adb3c96ab6020c23` (details below) | S + GPU (~15 min) |
+
+### WP8 — decoding probe (approved 2026-07-25, run AFTER the chain completes)
+
+`no_citation` (109 rows) is truncation: median 1123 chars vs 262 for passing
+rows, and 105 of 109 end mid-word. The trailing `Citation:` line is last in the
+format, so hitting the cap deletes exactly it. But the long outputs are
+degenerate repetition loops under `do_sample=False` greedy decoding with no
+`repetition_penalty` and no `no_repeat_ngram_size`, so raising the budget alone
+may only buy a longer loop.
+
+The probe re-runs **only those 109 example_ids** in three arms — (i) 1024
+tokens, decoding unchanged; (ii) 256 tokens + `repetition_penalty`;
+(iii) 1024 tokens + `repetition_penalty` — and reports how many emit a trailing
+citation in each. This separates "needed room" from "loops forever" for ~15 GPU
+minutes instead of a 2-hour full pass.
+
+Constraints: it is a **diagnostic, not a run of record**. Generation config is
+hashed into `baseline_run_id`, so changing it mid-chain would fork the
+comparison lineage; probe output lands under `runs/<id>/evaluation/probes/` and
+never overwrites `scores.json`. Do not change the main chain's decoding config
+on the strength of the probe without a fresh full run under a stated
+hypothesis.
 
 Order: WP1 → WP2 → WP3 (WP4/WP5 parallel). Execution per VISION: Sonnet
 subagents implement, Opus audits, top-level closes the loop. All artifacts
@@ -201,3 +236,6 @@ test** (lesson from the `apply_chat_template` BatchEncoding crash of
 - No within-video splits, whatever they'd do for the numbers.
 - No metric chasing: a run that improves the headline but grows the
   hallucinated-citation bucket is a regression by definition.
+- No reporting a derived number without the ADR-0021 audit, and no
+  "the fine-tune helps" claim that does not name which of
+  format / grounding / selection it refers to.
