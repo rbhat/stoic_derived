@@ -159,7 +159,9 @@ def test_run_batch_rows_carry_example_id_and_prompt(monkeypatch):
         assert checkpoint is None  # baseline path
         return object(), object()
 
-    def _fake_generate_one(model, tokenizer, messages, *, max_new_tokens=256):
+    def _fake_generate_one(
+        model, tokenizer, messages, *, max_new_tokens=256, enable_thinking=False
+    ):
         return "generated text"
 
     monkeypatch.setattr(infer, "load_model_and_tokenizer", _fake_load_model_and_tokenizer)
@@ -182,6 +184,80 @@ def test_run_batch_rows_carry_example_id_and_prompt(monkeypatch):
     assert row["example_id"] == evaluate.example_id_for_record(records[0])
 
 
+def test_run_batch_applies_the_prompt_variant_but_keeps_example_ids_stable(monkeypatch):
+    """The format-instructed baseline must pair example-for-example against the
+    stock one in compare.py, so the id stays derived from the ORIGINAL record even
+    though the model saw a modified system turn."""
+    from stoic_training import evaluate
+
+    seen: list = []
+    monkeypatch.setattr(
+        infer,
+        "load_model_and_tokenizer",
+        lambda checkpoint, *, base_repo_id=None, base_revision=None: (object(), object()),
+    )
+
+    def _fake_generate_one(
+        model, tokenizer, messages, *, max_new_tokens=256, enable_thinking=False
+    ):
+        seen.append(messages)
+        return "body\nCitation: v1 00:00:01"
+
+    monkeypatch.setattr(infer, "generate_one", _fake_generate_one)
+
+    records = [
+        {
+            "task": "cited_qa",
+            "meta": {"video_id": "v1", "hms": "00:00:01"},
+            "messages": [
+                {"role": "system", "content": "You are an offline research assistant."},
+                {"role": "user", "content": "hello"},
+            ],
+        }
+    ]
+
+    stock = infer.run_batch(None, records, base_repo_id="Qwen/Qwen3-8B")
+    instructed = infer.run_batch(
+        None, records, base_repo_id="Qwen/Qwen3-8B", prompt_variant="format_instructed"
+    )
+
+    assert "Citation: <video_id> <HH:MM:SS>" in seen[1][0]["content"]
+    assert "Citation: <video_id> <HH:MM:SS>" not in seen[0][0]["content"]
+    assert instructed[0]["example_id"] == stock[0]["example_id"]
+    assert instructed[0]["example_id"] == evaluate.example_id_for_record(records[0])
+
+
+def test_run_batch_strips_reasoning_but_preserves_the_raw_completion(monkeypatch):
+    monkeypatch.setattr(
+        infer,
+        "load_model_and_tokenizer",
+        lambda checkpoint, *, base_repo_id=None, base_revision=None: (object(), object()),
+    )
+    monkeypatch.setattr(
+        infer,
+        "generate_one",
+        lambda model, tokenizer, messages, *, max_new_tokens=256, enable_thinking=False: (
+            "<think>deliberating</think>\nbody\nCitation: v1 00:00:01"
+        ),
+    )
+
+    row = infer.run_batch(
+        None,
+        [
+            {
+                "task": "cited_qa",
+                "meta": {"video_id": "v1", "hms": "00:00:01"},
+                "messages": [{"role": "user", "content": "hello"}],
+            }
+        ],
+        base_repo_id="Qwen/Qwen3-8B",
+    )[0]
+
+    assert row["prediction"] == "body\nCitation: v1 00:00:01"
+    assert "deliberating" in row["reasoning"]
+    assert row["prediction_raw"].startswith("<think>")
+
+
 def test_example_id_survives_the_generation_to_scoring_round_trip(monkeypatch, tmp_path):
     """The invariant paired comparison rests on (design doc section 4.1/4.3).
 
@@ -200,7 +276,9 @@ def test_example_id_survives_the_generation_to_scoring_round_trip(monkeypatch, t
         lambda checkpoint, *, base_repo_id=None, base_revision=None: (object(), object()),
     )
     monkeypatch.setattr(
-        infer, "generate_one", lambda model, tokenizer, messages, *, max_new_tokens=256: "text"
+        infer,
+        "generate_one",
+        lambda model, tokenizer, messages, *, max_new_tokens=256, enable_thinking=False: "text",
     )
 
     eval_rows = [

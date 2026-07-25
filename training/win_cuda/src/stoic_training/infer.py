@@ -23,6 +23,10 @@ from pathlib import Path
 from typing import Any
 
 DEFAULT_MAX_NEW_TOKENS = 256
+#: Thinking-capable chat templates (Qwen3) default this ON, which silently spends
+#: the entire generation budget on reasoning prose. See prompts.split_reasoning and
+#: docs/superpowers/specs/2026-07-25-baseline-redo-decision.md.
+DEFAULT_ENABLE_THINKING = False
 
 
 class InferenceError(ValueError):
@@ -120,15 +124,27 @@ def generate_one(
     messages: Sequence[Mapping[str, str]],
     *,
     max_new_tokens: int = DEFAULT_MAX_NEW_TOKENS,
+    enable_thinking: bool = DEFAULT_ENABLE_THINKING,
 ) -> str:
-    """Deterministic single-prompt generation: do_sample=False, no sampling temperature."""
+    """Deterministic single-prompt generation: do_sample=False, no sampling temperature.
+
+    `enable_thinking` defaults to False: on a thinking-capable template (Qwen3) the
+    default-on behaviour spends the whole max_new_tokens budget on reasoning prose
+    and emits no answer, which is exactly how baseline-211b3f1a05efed81 scored 0.00
+    on 699 examples. Off also matches the fine-tuning targets, so a baseline and a
+    fine-tuned run differ in the checkpoint alone. Templates that do not understand
+    the flag ignore it.
+    """
     import torch
 
     prompt_messages = [message for message in messages if message.get("role") != "assistant"]
     if not prompt_messages:
         raise InferenceError("messages must contain at least one non-assistant turn")
     encoded = tokenizer.apply_chat_template(
-        prompt_messages, add_generation_prompt=True, return_tensors="pt"
+        prompt_messages,
+        add_generation_prompt=True,
+        return_tensors="pt",
+        enable_thinking=enable_thinking,
     )
     # transformers 5.x returns a BatchEncoding (Mapping) from apply_chat_template
     # when return_tensors is set, not a bare tensor; normalize both shapes so
@@ -167,6 +183,8 @@ def run_batch(
     base_repo_id: str | None = None,
     base_revision: str | None = None,
     max_new_tokens: int = DEFAULT_MAX_NEW_TOKENS,
+    enable_thinking: bool = DEFAULT_ENABLE_THINKING,
+    prompt_variant: str | None = None,
     progress_cb: Callable[[int, int], None] | None = None,
 ) -> list[dict[str, Any]]:
     """Run deterministic generation over a batch of {"task","meta","messages"} records.
@@ -177,6 +195,20 @@ def run_batch(
     example_id_for_record / prompt_from_messages) so scores.json `details`
     entries can be paired back to the exact generation that produced them.
 
+    `prompt_variant` selects a prompt variant from `stoic_training.prompts` and is
+    applied to each record's messages before generation; the `example_id` is
+    deliberately still computed from the ORIGINAL record, so the same example pairs
+    across variants in compare.py. The resolved `prompt` text is the varied one,
+    since that is what the model actually saw.
+
+    `prediction` holds the answer with any reasoning block removed. When the model
+    emitted one, the untouched completion is preserved as `prediction_raw` and the
+    reasoning as `reasoning`. A truncated, never-closed block yields an EMPTY
+    `prediction`: scoring still buckets that as a schema violation (bucket rules are
+    frozen under scoring_version "1"), so evaluate.py reports the truncation count
+    separately -- an empty answer means the run measured nothing, and that must be
+    visible in the artifact rather than inferred from a suspicious bucket split.
+
     `progress_cb`, when given, is called after each record with
     (completed_count, total_count) so a caller (e.g. evaluate.py) can drive
     a tailable progress line during a long generation run. `records` is
@@ -186,8 +218,10 @@ def run_batch(
     # Deferred: evaluate.py itself only imports infer lazily (inside
     # generate_predictions), so this mirrors that and avoids a module-level
     # import cycle between the two.
+    from stoic_training import prompts as prompts_mod
     from stoic_training.evaluate import example_id_for_record, prompt_from_messages
 
+    variant = prompts_mod.resolve_variant(prompt_variant)
     model, tokenizer = load_model_and_tokenizer(
         checkpoint, base_repo_id=base_repo_id, base_revision=base_revision
     )
@@ -198,16 +232,26 @@ def run_batch(
         messages = record.get("messages")
         if not messages:
             raise InferenceError("record missing messages")
-        prediction = generate_one(model, tokenizer, messages, max_new_tokens=max_new_tokens)
-        predictions.append(
-            {
-                "example_id": example_id_for_record(record),
-                "meta": record.get("meta", {}),
-                "task": record.get("task"),
-                "prompt": prompt_from_messages(messages),
-                "prediction": prediction,
-            }
+        varied_messages = prompts_mod.apply_prompt_variant(messages, variant)
+        completion = generate_one(
+            model,
+            tokenizer,
+            varied_messages,
+            max_new_tokens=max_new_tokens,
+            enable_thinking=enable_thinking,
         )
+        answer, reasoning = prompts_mod.split_reasoning(completion)
+        row = {
+            "example_id": example_id_for_record(record),
+            "meta": record.get("meta", {}),
+            "task": record.get("task"),
+            "prompt": prompt_from_messages(varied_messages),
+            "prediction": answer,
+        }
+        if reasoning:
+            row["prediction_raw"] = completion
+            row["reasoning"] = reasoning
+        predictions.append(row)
         if progress_cb is not None:
             progress_cb(completed, total)
     return predictions

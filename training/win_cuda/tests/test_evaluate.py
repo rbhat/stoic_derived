@@ -584,3 +584,46 @@ def test_baseline_run_id_sensitive_to_revision_eval_digest_and_scoring_version()
     assert evaluate.baseline_run_id(**{**base_kwargs, "base_revision": "cafefeed"}) != baseline
     assert evaluate.baseline_run_id(**{**base_kwargs, "eval_set_sha256": "b" * 64}) != baseline
     assert evaluate.baseline_run_id(**{**base_kwargs, "scoring_version": "2"}) != baseline
+
+
+def test_baseline_run_id_separates_runs_whose_predictions_can_differ():
+    """Two baselines that differ only in generation config or prompt variant must
+    not land in the same run dir and overwrite each other's artifacts -- the
+    collision that the naive and format-instructed baselines would otherwise hit.
+    See docs/superpowers/specs/2026-07-25-baseline-redo-decision.md section 5.
+    """
+    base_kwargs = {
+        "base_repo_id": "Qwen/Qwen3-8B",
+        "base_revision": "deadbeef",
+        "eval_set_sha256": "a" * 64,
+        "scoring_version": "1",
+    }
+    baseline = evaluate.baseline_run_id(**base_kwargs)
+
+    assert evaluate.baseline_run_id(**{**base_kwargs, "max_new_tokens": 2048}) != baseline
+    assert evaluate.baseline_run_id(**{**base_kwargs, "enable_thinking": True}) != baseline
+    assert (
+        evaluate.baseline_run_id(**{**base_kwargs, "prompt_variant": "format_instructed"})
+        != baseline
+    )
+
+
+def test_baseline_run_id_defaults_to_thinking_off_and_the_stock_prompt():
+    """Pins the defaults into the id, so the flags cannot be quietly re-defaulted
+    without every baseline id changing and making the switch visible."""
+    explicit = evaluate.baseline_run_id(
+        base_repo_id="Qwen/Qwen3-8B",
+        base_revision="deadbeef",
+        eval_set_sha256="a" * 64,
+        scoring_version="1",
+        max_new_tokens=evaluate.DEFAULT_MAX_NEW_TOKENS,
+        enable_thinking=False,
+        prompt_variant="stock",
+    )
+    implicit = evaluate.baseline_run_id(
+        base_repo_id="Qwen/Qwen3-8B",
+        base_revision="deadbeef",
+        eval_set_sha256="a" * 64,
+        scoring_version="1",
+    )
+    assert explicit == implicit

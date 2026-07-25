@@ -85,8 +85,14 @@ from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
+# infer's module level is deliberately light (its torch/transformers imports are
+# deferred into functions), so importing it here for generation-config constants
+# costs nothing and does not require a GPU. Generation itself still goes through
+# the lazy import inside generate_predictions.
+from stoic_training import infer as infer_mod
 from stoic_training import manifest as manifest_mod
 from stoic_training import progress
+from stoic_training import prompts as prompts_mod
 from stoic_training import splits as splits_mod
 
 SCORING_VERSION = "1"
@@ -552,6 +558,8 @@ def generate_predictions(
     base_repo_id: str | None = None,
     base_revision: str | None = None,
     max_new_tokens: int = DEFAULT_MAX_NEW_TOKENS,
+    enable_thinking: bool = infer_mod.DEFAULT_ENABLE_THINKING,
+    prompt_variant: str | None = None,
     progress_cb: Callable[[int, int], None] | None = None,
 ) -> list[dict[str, Any]]:
     """Generate predictions over eval_jsonl (imports torch lazily).
@@ -568,8 +576,39 @@ def generate_predictions(
         base_repo_id=base_repo_id,
         base_revision=base_revision,
         max_new_tokens=max_new_tokens,
+        enable_thinking=enable_thinking,
+        prompt_variant=prompt_variant,
         progress_cb=progress_cb,
     )
+
+
+def generation_health(predictions: Sequence[Mapping[str, Any]]) -> dict[str, int]:
+    """Count generation pathologies that make a score meaningless rather than low.
+
+    Bucket rules are frozen under scoring_version "1", so a prediction truncated
+    inside a reasoning block still scores as a schema violation. That is how
+    baseline-211b3f1a05efed81 reported a confident 0.00 over 699 examples while
+    having measured nothing at all. These counts sit beside the score so the
+    failure is visible in the artifact instead of having to be inferred from a
+    suspiciously exact bucket split.
+    """
+    reasoning_blocks = 0
+    truncated_reasoning = 0
+    empty_predictions = 0
+    for row in predictions:
+        text = row.get("prediction")
+        if isinstance(text, str) and not text.strip():
+            empty_predictions += 1
+        raw = row.get("prediction_raw")
+        if row.get("reasoning"):
+            reasoning_blocks += 1
+            if isinstance(raw, str) and "<think>" in raw and "</think>" not in raw:
+                truncated_reasoning += 1
+    return {
+        "reasoning_blocks": reasoning_blocks,
+        "truncated_reasoning": truncated_reasoning,
+        "empty_predictions": empty_predictions,
+    }
 
 
 def _write_report(report: Mapping[str, Any], output: Path) -> None:
@@ -578,7 +617,14 @@ def _write_report(report: Mapping[str, Any], output: Path) -> None:
 
 
 def baseline_run_id(
-    *, base_repo_id: str, base_revision: str | None, eval_set_sha256: str, scoring_version: str
+    *,
+    base_repo_id: str,
+    base_revision: str | None,
+    eval_set_sha256: str,
+    scoring_version: str,
+    max_new_tokens: int = DEFAULT_MAX_NEW_TOKENS,
+    enable_thinking: bool = infer_mod.DEFAULT_ENABLE_THINKING,
+    prompt_variant: str | None = None,
 ) -> str:
     """'baseline-' + first 16 hex chars of the sha256 of the canonical identity payload.
 
@@ -586,11 +632,24 @@ def baseline_run_id(
     revision (design doc section 4.2), not from a training identity
     payload, so the same base model scored against the same eval set and
     scoring rules always lands in the same baseline run dir.
+
+    Generation config and prompt variant are part of that identity too: they
+    change the predictions, so two baselines that differ in either MUST NOT share
+    a run dir. Omitting them is why the naive and format-instructed baselines
+    would otherwise collide and silently overwrite each other -- see decision doc
+    section 5. Adding them changes existing baseline ids by design; the invalid
+    `baseline-211b3f1a05efed81` keeps its dir as a record.
     """
     payload = {
         "base_model": {"repo_id": base_repo_id, "revision": base_revision},
         "eval_set_sha256": eval_set_sha256,
         "scoring_version": scoring_version,
+        "generation": {
+            "max_new_tokens": max_new_tokens,
+            "enable_thinking": enable_thinking,
+            "do_sample": False,
+        },
+        "prompt_variant": prompts_mod.prompt_variant_identity(prompt_variant),
     }
     return "baseline-" + manifest_mod.sha256_hex(payload)[:16]
 
@@ -797,6 +856,22 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--overlap-threshold", type=float, default=DEFAULT_OVERLAP_THRESHOLD)
     parser.add_argument("--max-new-tokens", type=int, default=DEFAULT_MAX_NEW_TOKENS)
     parser.add_argument(
+        "--enable-thinking",
+        action="store_true",
+        help="Let a thinking-capable chat template (Qwen3) emit a <think> block. OFF by "
+        "default: on, it spends the whole --max-new-tokens budget on reasoning and emits "
+        "no answer at 256 tokens. Part of the baseline run id.",
+    )
+    parser.add_argument(
+        "--prompt-variant",
+        default=prompts_mod.DEFAULT_PROMPT_VARIANT,
+        choices=sorted(prompts_mod.PROMPT_VARIANTS),
+        help="System-prompt variant for generation. 'stock' leaves the eval set's own "
+        "prompt alone; 'format_instructed' appends the output contract that scoring "
+        "enforces, separating citation selection from citation formatting. Part of the "
+        "baseline run id.",
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         default=None,
@@ -883,6 +958,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             base_revision=args.base_revision,
             eval_set_sha256=eval_set_sha256,
             scoring_version=SCORING_VERSION,
+            max_new_tokens=args.max_new_tokens,
+            enable_thinking=args.enable_thinking,
+            prompt_variant=args.prompt_variant,
         )
         run_dir = args.run_dir if args.run_dir is not None else runs_root / run_id
     else:
@@ -935,12 +1013,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             base_repo_id=args.base_repo_id,
             base_revision=args.base_revision,
             max_new_tokens=args.max_new_tokens,
+            enable_thinking=args.enable_thinking,
+            prompt_variant=args.prompt_variant,
             progress_cb=progress_cb,
         )
         predictions_output_path = run_dir / "evaluation" / "predictions.jsonl"
         predictions_output_path.parent.mkdir(parents=True, exist_ok=True)
-        from stoic_training import infer as infer_mod
-
         infer_mod.write_predictions_jsonl(predictions, predictions_output_path)
         default_output_base = args.eval_jsonl
     elif args.predictions is not None:
@@ -969,14 +1047,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             base_repo_id=args.base_repo_id,
             base_revision=args.base_revision,
             max_new_tokens=args.max_new_tokens,
+            enable_thinking=args.enable_thinking,
+            prompt_variant=args.prompt_variant,
             progress_cb=progress_cb,
         )
         default_output_base = args.eval_jsonl
         if run_dir is not None:
             predictions_output_path = run_dir / "evaluation" / "predictions.jsonl"
             predictions_output_path.parent.mkdir(parents=True, exist_ok=True)
-            from stoic_training import infer as infer_mod
-
             infer_mod.write_predictions_jsonl(predictions, predictions_output_path)
 
     if writer is not None:
@@ -984,15 +1062,35 @@ def main(argv: Sequence[str] | None = None) -> int:
     eval_scores = score_predictions(predictions, corpus, overlap_threshold=args.overlap_threshold)
 
     generated_utc = datetime.now(UTC).isoformat()
+    health = generation_health(predictions)
     report: dict[str, Any] = {
         "eval": eval_scores,
         "scoring_version": SCORING_VERSION,
         "params": {"overlap_threshold": args.overlap_threshold},
+        "generation": {
+            "max_new_tokens": args.max_new_tokens,
+            "enable_thinking": args.enable_thinking,
+            "prompt_variant": prompts_mod.prompt_variant_identity(args.prompt_variant),
+            "health": health,
+        },
         "corpus_sha256": corpus_sha256,
         "eval_set_sha256": eval_set_sha256,
         "eval_set_source": eval_set_source,
         "generated_utc": generated_utc,
     }
+    if health["truncated_reasoning"] or health["empty_predictions"]:
+        # Loud, because the failure mode it names is indistinguishable from a
+        # genuine low score in the metrics alone.
+        warning = (
+            f"GENERATION WARNING: {health['truncated_reasoning']} prediction(s) truncated "
+            f"inside a reasoning block and {health['empty_predictions']} empty of "
+            f"{eval_scores.get('count')} -- those examples produced no answer to score, so "
+            "the reported rates understate the model rather than measuring it. Re-run with "
+            "a larger --max-new-tokens or without --enable-thinking."
+        )
+        print(warning, flush=True)
+        if writer is not None:
+            writer.log(warning)
     if args.train_predictions is not None:
         train_predictions = load_predictions(args.train_predictions)
         train_scores = score_predictions(

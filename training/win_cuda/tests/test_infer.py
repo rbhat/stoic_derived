@@ -28,7 +28,14 @@ class _StubTokenizer:
         self.pad_token_id = 0
         self.eos_token_id = 1
 
-    def apply_chat_template(self, messages, add_generation_prompt=True, return_tensors="pt"):
+    def apply_chat_template(
+        self, messages, add_generation_prompt=True, return_tensors="pt", **kwargs
+    ):
+        # Real tokenizers pass unknown kwargs (e.g. enable_thinking) through to the
+        # Jinja template rather than rejecting them; the stub must do the same or it
+        # fails on template flags that production handles fine.
+        self.template_kwargs = kwargs
+        self.template_messages = messages
         return self._encoded
 
     def decode(self, ids, skip_special_tokens=True):
@@ -82,3 +89,17 @@ def test_generate_one_accepts_bare_tensor_from_apply_chat_template():
     assert result == "decoded"
     assert torch.equal(model.received_kwargs["input_ids"], input_ids)
     assert "attention_mask" not in model.received_kwargs
+
+
+def test_generate_one_disables_thinking_by_default():
+    """Qwen3's template defaults thinking ON, which at 256 tokens produces
+    reasoning prose and no answer -- how baseline-211b3f1a05efed81 scored 0.00
+    across all 699 examples. The flag must reach apply_chat_template.
+    """
+    tokenizer = _StubTokenizer(torch.tensor([[5, 6, 7]]))
+
+    infer.generate_one(_StubModel(), tokenizer, _messages())
+    assert tokenizer.template_kwargs["enable_thinking"] is False
+
+    infer.generate_one(_StubModel(), tokenizer, _messages(), enable_thinking=True)
+    assert tokenizer.template_kwargs["enable_thinking"] is True

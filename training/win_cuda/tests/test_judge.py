@@ -37,7 +37,14 @@ class _StubTokenizer:
         self.pad_token_id = 0
         self.eos_token_id = 1
 
-    def apply_chat_template(self, messages, add_generation_prompt=True, return_tensors="pt"):
+    def apply_chat_template(
+        self, messages, add_generation_prompt=True, return_tensors="pt", **kwargs
+    ):
+        # Real tokenizers pass unknown kwargs (e.g. enable_thinking) through to the
+        # Jinja template rather than rejecting them; the stub must do the same or it
+        # fails on template flags that production handles fine.
+        self.template_kwargs = kwargs
+        self.template_messages = messages
         return self._encoded
 
     def decode(self, ids, skip_special_tokens=True):
