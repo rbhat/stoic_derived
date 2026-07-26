@@ -131,7 +131,14 @@ Documented exception — the red day itself is sometimes traded, and is explicit
 
 ### The canonical fixture (verified against our bars)
 
-The example on screen at the slide is Jan 26–30, and our daily bars reproduce it:
+The Jan 26–30 example is on screen in the **preceding** state, not on the slide itself — corrected
+2026-07-26 against the WP-V harvest keyframes. `sss#0031` (00:35:05–00:37:00) is the text-only
+"First Red/Green Day" slide; the daily chart running Dec 26 → Feb, annotated *"Highest Close of the
+Monthly + Weekly + Daily / TRIPLE BREAKOUT MODE"* with a Thursday-the-29th intraday panel, is
+`sss#0030` (00:33:56–00:35:04), titled "Wednesday → Thursday Reversal A+ Setup". The state *after*
+the slide, `sss#0032` ("Three Closes Reversal"), shows a **December** example — do not read it as
+this fixture. The fixture below is unaffected: it was verified against our own bars, not read off
+the chart.
 
 | | date | open | close | candle | |
 |---|---|---|---|---|---|

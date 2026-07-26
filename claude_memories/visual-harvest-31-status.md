@@ -1,12 +1,14 @@
 ---
 name: visual-harvest-31-status
-description: "WP-V §3.1 is built and audited — 10,120 visual states from 16 videos; dHash alone under-splits and needed a second fine-grained criterion; A2 is the one open audit check and the check itself is wrong"
+description: "WP-V §3.1 is built and audited — 10,120 visual states from 16 videos, all six HARD checks green, every count re-derived; dHash alone under-splits and needed a second fine-grained criterion"
 metadata:
   type: project
 ---
 
-**§3.1 (deterministic 1 fps harvest + dedupe) is done and audited as of 2026-07-26.** §3.2 (VLM)
-and §4 (retraining) are **not started**; §4 needs the user's sign-off on the audit counts.
+**§3.1 (deterministic 1 fps harvest + dedupe) is done and audited as of 2026-07-26, with all six
+HARD checks green** (`overall_hard_pass: true`). **§3.2 (VLM) is the next thing to build and it runs
+on the Mac** — see `docs/notes/2026-07-26-slm-retrain-plan.md` and [[slm-model-artifacts]]; the
+retrain downstream of it is decided.
 
 Full write-up, counts, and the ordered resume point:
 `docs/notes/2026-07-26-wpv-visual-harvest-progress.md`. Read that before touching WP-V.
@@ -22,13 +24,20 @@ Full write-up, counts, and the ordered resume point:
   strategy parameter.
 - The asymmetry that drives every threshold here: **under-splitting loses content the VLM never
   sees and is unrecoverable; over-splitting only costs VLM wall time.**
-- **A2 is the only open audit check, and the check is wrong, not the harvest.** Its `argmin` over
-  `rep_t ± 2` is decided by tie-breaking whenever content is held. Re-measured properly, `rep_t` is
-  among the best-matching frames for 93 % of states held ≥ 10 s. Restate the check before gating.
+- **A2 was fixed by restating the check, not by changing the harvest.** Its old `argmin` over
+  `rep_t ± 2` was decided by tie-breaking whenever content is held. It now asks whether `rep_t` is
+  *among* the min-Hamming candidates **and** whether the distance at `rep_t` is ≤ 8, gated at ≥ 90 %
+  on states held ≥ 10 s only (94.9 % / 100 % measured); shorter buckets are reported, not gated,
+  because a ±1 s ambiguity on a 1-second state is video motion, not a defect. The membership test
+  alone passes a deliberately wrong frame 64 % of the time — that is why the absolute bound is
+  paired with it, and why the fix ships with a negative control that makes the gate fail.
+- **The VLM budget is ≈ 16.9 h at 6 s/state, not the ~12 h in the older notes** — 12 h came from
+  the calibration's 5-video extrapolation (7,249 states); the measured corpus is 10,120.
 
 **Correction:** the First Red/Green Day slide is held **2105–2220 s (00:35:05–00:37:00, 115 s)**,
 not the 45 s that the plan and older notes claim — that figure came from two sparse keyframes inside
 a longer hold. Verified by eye and recovered as one state,
-`concept_simple_stoic_setups_sss#0031`.
+`concept_simple_stoic_setups_sss#0031`. That slide is **text-only**: the Jan 26–30 chart sits in the
+adjacent `#0030`, and `#0032` shows a *December* example — see [[red-day-definition]].
 
 See [[slide-text-not-in-transcripts]], [[red-day-definition]], [[audit-derived-numbers]].

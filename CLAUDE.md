@@ -6,8 +6,10 @@ Read these in order before doing anything. This file is a pointer, not a duplica
    that is relevant to the task. **Read `signal-fidelity-over-edge-revalidation.md` first, always.**
 2. **`VISION.md`** — the product and its constraints. **Never modify it**; suggest changes to the
    user instead. Agent behaviour rules live at the bottom of it.
-3. **`docs/notes/2026-07-25-case-study-fixture-track.md`** — current work, findings, and the
-   resume point. **Start here for what to do next.**
+3. **`docs/notes/2026-07-26-slm-retrain-plan.md`** — **the active track. Start here for what to do
+   next.** WP-V §3.2 extraction (Mac) → dataset rebuild → retrain (WSL). Its upstream state is
+   `docs/notes/2026-07-26-wpv-visual-harvest-progress.md`; the fixture work it feeds is
+   `docs/notes/2026-07-25-case-study-fixture-track.md`.
 4. **`coding_rules.md`** — bullet-point rules distilled from real failures here. Read before
    writing code; append new recurring errors to it.
 5. **`docs/architecture/adr/`** — binding decisions. ADR-0011 (backtests are observational and

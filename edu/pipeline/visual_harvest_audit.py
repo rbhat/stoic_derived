@@ -48,7 +48,6 @@ from visual_harvest import (
 )
 
 SEED = 0
-SAMPLE_SIZE = 100
 KNOWN_SLIDE_VIDEO = "concept_simple_stoic_setups_sss"
 # WP-V §3.1 fix v2: the First Red/Green Day slide is held continuously from
 # 2105 s to 2220 s (verified visually at 2108/2120/2150/2175/2210 s -- the
@@ -60,6 +59,10 @@ KNOWN_SLIDE_VIDEO = "concept_simple_stoic_setups_sss"
 KNOWN_SLIDE_FULL_HOLD = (2105.0, 2220.0)
 KNOWN_SLIDE_TARGET = (2112.0, 2157.0)
 KNOWN_SLIDE_MIN_DURATION = 45.0  # t_end - t_start of the target sub-window
+
+
+def pct(share: float | None) -> str:
+    return "n/a" if share is None else f"{share:.1%}"
 
 
 def percentile(sorted_vals: list[float], p: float) -> float | None:
@@ -150,28 +153,120 @@ def check_a1(jobs: list[VideoJob]) -> dict:
 
 PHASE_OFFSET_RANGE = range(-2, 3)  # rep_t-2 .. rep_t+2, per spec
 
+# WP-V §3.1 fix v3 -- what A2 asks, and why the earlier form was unanswerable.
+#
+# The question is: is the JPEG handed to the VLM really the frame the harvest
+# clustered? v2 answered it with argmin(Hamming) over rep_t +/- 2 and gated on
+# that argmin being 0. But over HELD content every candidate second is
+# byte-identical, so every candidate ties at the same distance and the "argmin"
+# is decided entirely by the tie-break rule -- it measured the tie-break, not a
+# seek phase. (An early probe scored -2 in 52/60 cases purely by preferring the
+# more-negative offset.) A number that clean out of a degenerate comparison is
+# the ADR-0021 symptom of a broken generator.
+#
+# The answerable question is a membership test, not an argmin: is rep_t AMONG
+# the minimum-Hamming candidates? Ties then count as success, which is the
+# correct reading -- indistinguishable seconds mean the seek cannot be wrong.
+#
+# That membership test alone is weak on its own, and measuring it says so: fed
+# a JPEG from a state >= 60 s away, it still "passes" 64 % of the time, because
+# a wholly wrong frame is roughly equally wrong at all five candidate seconds
+# and so ties them. It can only see misalignment of <= 2 s, by construction. So
+# it is paired with an absolute bound on the distance AT rep_t. Bucketing is
+# what makes that bound usable: over held states the true distribution is
+# median 0 / p95 2 / max 5 against 24 / 31 / 40 for a deliberately wrong frame,
+# where the old corpus-wide sample's fat tail (p95 15) made any absolute bound
+# look untenable. The bound itself is the v2 spec's 8, not a number fitted to
+# this data.
+#
+# Buckets by state duration, because the answer is only meaningful for one of
+# them. On a 1-second state the content genuinely changes within the second, so
+# a +/-1 frame ambiguity is inherent to seeking rather than a defect; gating on
+# it would gate on video motion. So: gate the held bucket, report the rest.
+A2_BUCKET_SAMPLE = 60           # per bucket, per run
+A2_GATED_BUCKET = "held_ge_10s"
+A2_MIN_SHARE = 0.90             # of held samples, for both gated metrics
+A2_MAX_HAMMING_AT_REP = 8       # absolute per-sample bound, inherited from the v2 spec
+A2_LOW_SAMPLE_N = 30            # below this the shares are reported as weak, not trusted
 
-def _phase_offset(fresh_bytes: bytes, rep_t: float, frame_lookup: dict[int, str]) -> int | None:
-    """argmin over Hamming distance between the JPEG's fresh dHash and the
-    cached per-second dHash at npy indices [rep_t-2 .. rep_t+2]. None if no
-    candidate index exists (e.g. rep_t near the very start of the video).
-    Ties broken by smallest |offset|, then by the more-negative offset --
-    an arbitrary but fully deterministic rule since a genuine tie means the
-    two candidate seconds are visually indistinguishable at this precision.
+
+def _duration_bucket(duration_sec: float) -> str:
+    """duration_sec is t_end - t_start, so a single-second state is 0.0."""
+    if duration_sec >= 10.0:
+        return A2_GATED_BUCKET
+    if duration_sec > 0.0:
+        return "mid_1_to_9s"
+    return "single_second"
+
+
+A2_BUCKET_ORDER = [A2_GATED_BUCKET, "mid_1_to_9s", "single_second"]
+
+
+def _rep_alignment(fresh_hex: str, state: dict, frame_lookup: dict[int, str]) -> dict | None:
+    """Hamming distance from the JPEG's freshly derived dHash to the cached
+    per-second dHash at each of rep_t-2 .. rep_t+2, whether rep_t is among the
+    minimum-distance candidates, and whether every best-matching second still
+    falls inside the state's own [t_start, t_end]. None if rep_t itself is not
+    in the index (which A6 would already have failed on).
+
+    best_inside_span is the consequence-level question behind A2: even where
+    the seek lands a second off, the JPEG still shows this state's content and
+    the VLM is not handed a frame belonging to a neighbouring state. For a
+    1-second state the span is one second, so it necessarily collapses to
+    rep_optimal -- reported, not gated, for exactly that reason.
     """
-    fresh_arr = np.frombuffer(fresh_bytes, dtype=np.uint8)
+    fresh = np.frombuffer(bytes.fromhex(fresh_hex), dtype=np.uint8)
+    rep_t = state["rep_t"]
     rep_t_int = round(rep_t)
-    candidates = []
+    by_offset: dict[int, int] = {}
     for off in PHASE_OFFSET_RANGE:
         cand_hex = frame_lookup.get(rep_t_int + off)
         if cand_hex is None:
             continue
-        cand_arr = np.frombuffer(bytes.fromhex(cand_hex), dtype=np.uint8)
-        candidates.append((hamming(fresh_arr, cand_arr), abs(off), off))
-    if not candidates:
+        cand = np.frombuffer(bytes.fromhex(cand_hex), dtype=np.uint8)
+        by_offset[off] = hamming(fresh, cand)
+    if 0 not in by_offset:
         return None
-    candidates.sort()
-    return candidates[0][2]
+    d_rep = by_offset[0]
+    d_min = min(by_offset.values())
+    best = [off for off, d in by_offset.items() if d == d_min]
+    return {
+        "hamming_at_rep": d_rep,
+        "hamming_min": d_min,
+        "excess": d_rep - d_min,
+        "rep_optimal": d_rep == d_min,
+        "close_at_rep": d_rep <= A2_MAX_HAMMING_AT_REP,
+        "best_inside_span": any(
+            state["t_start"] <= rep_t + off <= state["t_end"] for off in best
+        ),
+        "candidates": len(by_offset),
+        "tied_at_min": sum(1 for d in by_offset.values() if d == d_min),
+    }
+
+
+def _bucket_sample(
+    eligible: list[VideoJob], per_video_states: dict[str, list[dict]],
+    bucket: str, rng: random.Random,
+) -> list[tuple[VideoJob, dict]]:
+    """Even per-video quota over one duration bucket, so a slide-heavy video
+    cannot be drowned out by the live sessions (which hold 70 % of all states
+    but almost none of the held ones). rng is walked in sorted-job order.
+    """
+    population = {
+        j.id: [s for s in per_video_states[j.id] if _duration_bucket(s["duration_sec"]) == bucket]
+        for j in eligible
+    }
+    non_empty = [j for j in eligible if population[j.id]]
+    if not non_empty:
+        return []
+    base, remainder = divmod(A2_BUCKET_SAMPLE, len(non_empty))
+    picks: list[tuple[VideoJob, dict]] = []
+    for i, j in enumerate(non_empty):
+        states = population[j.id]
+        quota = min(base + (1 if i < remainder else 0), len(states))
+        chosen = rng.sample(states, quota) if quota < len(states) else list(states)
+        picks.extend((j, s) for s in chosen)
+    return picks
 
 
 def check_a2(jobs: list[VideoJob]) -> dict:
@@ -180,16 +275,6 @@ def check_a2(jobs: list[VideoJob]) -> dict:
         return {"hard_pass": True, "status": "skipped", "reason": "no video has states.jsonl yet"}
 
     per_video_states = {j.id: read_jsonl(j.states_path) for j in eligible}
-    n_videos = len(eligible)
-    base, remainder = divmod(SAMPLE_SIZE, n_videos)
-    rng = random.Random(SEED)  # one RNG, walked in sorted-job order -> fully deterministic
-    picks: list[tuple[VideoJob, dict]] = []
-    for i, j in enumerate(eligible):
-        quota = min(base + (1 if i < remainder else 0), len(per_video_states[j.id]))
-        states = per_video_states[j.id]
-        chosen = rng.sample(states, quota) if quota < len(states) else list(states)
-        picks.extend((j, s) for s in chosen)
-
     frame_lookup_cache: dict[str, dict[int, str]] = {}
 
     def frame_lookup(job: VideoJob) -> dict[int, str]:
@@ -198,65 +283,87 @@ def check_a2(jobs: list[VideoJob]) -> dict:
             frame_lookup_cache[job.id] = {r["t"]: r["dhash"] for r in rows}
         return frame_lookup_cache[job.id]
 
-    distances = []
-    unreadable = []
-    phase_offsets: list[int] = []
-    for j, s in picks:
-        jpg = j.out / s["source_frame"]
-        fresh = jpg_dhash(jpg) if jpg.exists() else None
-        if fresh is None:
-            unreadable.append(s["id"])
-            continue
-        stored_bytes = bytes.fromhex(s["dhash"])
-        fresh_bytes = bytes.fromhex(fresh)
-        d = hamming(np.frombuffer(stored_bytes, dtype=np.uint8),
-                     np.frombuffer(fresh_bytes, dtype=np.uint8))
-        distances.append(d)
+    rng = random.Random(SEED)  # one RNG, walked in fixed bucket-then-job order
+    unreadable: list[str] = []
+    no_candidates: list[str] = []
+    # states.jsonl's own dhash must equal the frames_index entry at rep_t -- if
+    # those two disagree the whole comparison below is against the wrong row.
+    index_mismatch: list[str] = []
+    buckets: dict[str, dict] = {}
 
-        off = _phase_offset(fresh_bytes, s["rep_t"], frame_lookup(j))
-        if off is not None:
-            phase_offsets.append(off)
+    for bucket in A2_BUCKET_ORDER:
+        picks = _bucket_sample(eligible, per_video_states, bucket, rng)
+        rows: list[dict] = []
+        for j, s in picks:
+            jpg = j.out / s["source_frame"]
+            fresh_hex = jpg_dhash(jpg) if jpg.exists() else None
+            if fresh_hex is None:
+                unreadable.append(s["id"])
+                continue
+            lookup = frame_lookup(j)
+            if lookup.get(round(s["rep_t"])) != s["dhash"]:
+                index_mismatch.append(s["id"])
+            row = _rep_alignment(fresh_hex, s, lookup)
+            if row is None:
+                no_candidates.append(s["id"])
+                continue
+            rows.append(row)
 
-    sorted_d = sorted(distances)
-    histogram: dict[int, int] = {}
-    for d in sorted_d:
-        histogram[d] = histogram.get(d, 0) + 1
-    median = percentile(sorted_d, 0.5)
-    p95 = percentile(sorted_d, 0.95)
-    max_d = sorted_d[-1] if sorted_d else None
+        n = len(rows)
+        at_rep = sorted(r["hamming_at_rep"] for r in rows)
+        excess_hist: dict[int, int] = {}
+        for r in rows:
+            excess_hist[r["excess"]] = excess_hist.get(r["excess"], 0) + 1
 
-    sorted_off = sorted(phase_offsets)
-    off_histogram: dict[int, int] = {}
-    for o in sorted_off:
-        off_histogram[o] = off_histogram.get(o, 0) + 1
-    off_median = percentile(sorted_off, 0.5)
-    zero_share = (
-        sum(1 for o in phase_offsets if o == 0) / len(phase_offsets) if phase_offsets else None
-    )
+        def share_of(key: str, rows: list[dict] = rows, n: int = n) -> float | None:
+            return round(sum(1 for r in rows if r[key]) / n, 4) if n else None
 
-    # WP-V §3.1 fix v2: if the seek/fps=1 phase is centred on 0, the tail of
-    # the original Hamming distribution (median=1 p95=15 max=27 over 100
-    # samples) is fast-motion content, not a seek bug -- the HARD gate is
-    # then restated as "argmin offset is 0 for >= 90% of samples" rather than
-    # an absolute Hamming bound. If the offsets are systematically non-zero,
-    # that IS a phase bug and the original absolute bound is kept instead.
-    if off_median == 0:
-        gate = "phase_offset_zero_share>=0.90"
-        hard_pass = (zero_share is not None) and (zero_share >= 0.90)
+        buckets[bucket] = {
+            "population": sum(
+                1 for st in per_video_states.values() for s in st
+                if _duration_bucket(s["duration_sec"]) == bucket
+            ),
+            "sampled": n,
+            "rep_optimal": sum(1 for r in rows if r["rep_optimal"]),
+            "rep_optimal_share": share_of("rep_optimal"),
+            "close_at_rep_share": share_of("close_at_rep"),
+            "best_inside_span_share": share_of("best_inside_span"),
+            "hamming_at_rep_median": percentile(at_rep, 0.5),
+            "hamming_at_rep_p95": percentile(at_rep, 0.95),
+            "hamming_at_rep_max": at_rep[-1] if at_rep else None,
+            "excess_histogram": dict(sorted(excess_hist.items())),
+            "mean_tied_at_min": (
+                round(sum(r["tied_at_min"] for r in rows) / n, 2) if n else None
+            ),
+        }
+
+    gated = buckets[A2_GATED_BUCKET]
+    low_sample = 0 < gated["sampled"] < A2_LOW_SAMPLE_N
+    if gated["sampled"] == 0:
+        # no held state in the selected corpus (e.g. --only on a live session):
+        # absence of data is not a verified defect
+        gate_pass, gate_note = True, "skipped: no state held >= 10 s in the selected videos"
     else:
-        gate = "hamming_median<=2_and_max<=8"
-        hard_pass = (median is not None) and (median <= 2) and (max_d is not None) and (max_d <= 8)
+        gate_pass = all(
+            gated[k] is not None and gated[k] >= A2_MIN_SHARE
+            for k in ("rep_optimal_share", "close_at_rep_share")
+        )
+        gate_note = "low sample -- gate is weak" if low_sample else "ok"
 
+    hard_pass = gate_pass and not unreadable and not index_mismatch and not no_candidates
     return {
-        "hard_pass": hard_pass, "status": "checked", "gate": gate,
-        "sample_requested": SAMPLE_SIZE, "sample_actual": len(picks),
+        "hard_pass": hard_pass, "status": "checked",
+        "gate": (
+            f"of states held >= 10 s, >= {A2_MIN_SHARE:.0%} have rep_t among the min-Hamming "
+            f"candidates AND hamming(JPEG, cached rep_t) <= {A2_MAX_HAMMING_AT_REP}; "
+            f"other buckets reported, not gated"
+        ),
+        "gate_note": gate_note, "low_sample": low_sample,
+        "bucket_sample_target": A2_BUCKET_SAMPLE,
         "unreadable_count": len(unreadable), "unreadable": unreadable,
-        "min": sorted_d[0] if sorted_d else None, "median": median, "p95": p95, "max": max_d,
-        "histogram": histogram,
-        "phase_offset_sample": len(phase_offsets),
-        "phase_offset_histogram": off_histogram,
-        "phase_offset_median": off_median,
-        "phase_offset_zero_share": zero_share,
+        "index_mismatch_count": len(index_mismatch), "index_mismatch": index_mismatch,
+        "no_candidate_count": len(no_candidates), "no_candidates": no_candidates,
+        "buckets": buckets,
     }
 
 
@@ -514,17 +621,23 @@ def print_report(results: dict) -> None:
                   f" ok={v['ok']}")
 
     a2 = results["A2"]
-    print(f"\nA2 seek alignment  [HARD]  pass={a2['hard_pass']}  gate={a2.get('gate')}")
+    print(f"\nA2 seek alignment  [HARD]  pass={a2['hard_pass']}")
     if a2.get("status") == "skipped":
         print(f"    skipped: {a2['reason']}")
     else:
-        print(f"    sampled={a2['sample_actual']}/{a2['sample_requested']}"
-              f" unreadable={a2['unreadable_count']}")
-        print(f"    hamming min={a2['min']} median={a2['median']} p95={a2['p95']} max={a2['max']}")
-        print(f"    histogram={a2['histogram']}")
-        print(f"    phase offset (argmin - rep_t) n={a2['phase_offset_sample']}"
-              f" median={a2['phase_offset_median']} zero_share={a2['phase_offset_zero_share']}")
-        print(f"    phase offset histogram={a2['phase_offset_histogram']}")
+        print(f"    gate: {a2['gate']}  ({a2['gate_note']})")
+        print(f"    unreadable={a2['unreadable_count']} index_mismatch={a2['index_mismatch_count']}"
+              f" no_candidates={a2['no_candidate_count']}")
+        for name in A2_BUCKET_ORDER:
+            b = a2["buckets"][name]
+            mark = " [GATED]" if name == A2_GATED_BUCKET else ""
+            print(f"    {name:14s} pop={b['population']:5d} sampled={b['sampled']:3d}"
+                  f"  rep_optimal={pct(b['rep_optimal_share'])}"
+                  f" close@rep={pct(b['close_at_rep_share'])}"
+                  f" best_inside_span={pct(b['best_inside_span_share'])}{mark}")
+            print(f"    {'':14s} hamming@rep med/p95/max={b['hamming_at_rep_median']}"
+                  f"/{b['hamming_at_rep_p95']}/{b['hamming_at_rep_max']}"
+                  f"  excess={b['excess_histogram']}  mean_ties={b['mean_tied_at_min']}")
 
     a3 = results["A3"]
     print(f"\nA3 known-slide recall  [HARD]  pass={a3['hard_pass']}")

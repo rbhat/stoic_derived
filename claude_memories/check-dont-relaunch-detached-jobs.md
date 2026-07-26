@@ -17,6 +17,12 @@ whether it is already running** — do not launch, re-arm, or re-create blindly.
 completed all three runs and the GPU is free — see [[eval-comparison-wp-progress]].
 Re-verify rather than trusting this line; it ages.
 
+**Jobs launched via `scripts/launch_bg.sh` are self-describing** — hand a fresh session just the
+pid and run `scripts/job_status.sh <pid>`. It resolves the pid to its job dir under
+`.artifacts/jobs/<name>/`, and returns **0** running/clean · **1** crashed · **2** stalled.
+`scripts/launch_bg.sh --list` shows every job. The launcher refuses to start a job whose previous
+pid is still alive, which is the same trap this memory exists for.
+
 Check with, in order:
 - `tail` the newest `.artifacts/training/logs/chain*-*.log` (what the watcher is waiting on / what it launched)
 - `pgrep -af "stoic_training|chain_"` (is it alive) — but note this pattern also matches YOUR OWN

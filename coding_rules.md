@@ -37,8 +37,22 @@ subagent reports a new recurring error. Bullets only — no explanations, no his
 - Lint with `uvx ruff check --fix`, never a bare `ruff check`. Line length 100.
 - No new dependencies without asking.
 
+## Checks and gates
+
+- Every gate needs a **negative control**: inject the fault it exists to catch and confirm it fails.
+  A check never observed failing is not evidence of anything.
+- `min()` over `(distance, tiebreak, …)` tuples resolves ties by the later fields — do not report
+  that as an argmin. Where ties are expected, ask a membership question ("is x among the minima?"),
+  not a positional one.
+- A relative comparison inside a small window cannot see a gross error; pair it with an absolute
+  bound.
+- Stratify before gating. One threshold over a mixed population either gates on the wrong subgroup
+  or has to be loosened until it gates on nothing.
+
 ## Reporting
 
 - Paste verbatim command output; never summarise a number you were asked to verify.
 - State deviations from a spec explicitly; do not silently choose.
+- Never quote an **extrapolated** number where a **measured** one now exists, and label which is
+  which at the point of use — estimates outlive the moment they were needed.
 - Report the top 3 recurring errors hit during a task so they can be added to this file.
