@@ -10,9 +10,12 @@ metadata:
 
 **Read [[signal-fidelity-over-edge-revalidation]] first — it is the rule this probe violated.**
 
-Committed on branch **`research/edge-measurement-probe`**, not merged to main. Full record and the
-direction correction: **`docs/notes/2026-07-26-edge-measurement-first-probe.md` §0** (§0 supersedes
-§1 and the §8 ordering). `research/README.md` has reproduction steps.
+**On `main`** — the probe code (`research/bnr_backtest.py`, `build_bars.py`, `exit_policies.py`,
+`test_fill_model.py`) is committed there. The old `research/edge-measurement-probe` branch was
+deleted 2026-07-25 once confirmed to hold no unique commits; earlier revisions of this memory said
+"not merged to main", which was wrong. Full record and the direction correction:
+**`docs/notes/2026-07-26-edge-measurement-first-probe.md` §0** (§0 supersedes §1 and the §8
+ordering). `research/README.md` has reproduction steps.
 
 ## What it was, and what it actually measured
 

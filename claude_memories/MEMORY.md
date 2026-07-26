@@ -6,7 +6,7 @@ which has been retired for this project. See `CLAUDE.md` for the contract.
 
 - [Signal fidelity, not edge revalidation](signal-fidelity-over-edge-revalidation.md) — **START HERE.** User directive: Stoic's method is a proven given; learn it from the education, build a signal generator, measure fidelity — never re-litigate the edge or conclude from small samples
 - [Case-study fixture track](case-study-fixture-track.md) — **active work.** Vol 1-7 PDFs have a text layer (25 in-scope NQ sessions, all inside data coverage); our bars reproduce the instructor's HCOM/LCOM exactly; page-title dates are TRADE days, not signal days
-- [Edge measurement: first probe](edge-measurement-first-probe.md) — the 2026-07-26 NQ probe: measured a thin proxy, conclusion retired, infrastructure worth reusing. Branch `research/edge-measurement-probe`
+- [Edge measurement: first probe](edge-measurement-first-probe.md) — the 2026-07-26 NQ probe: measured a thin proxy, conclusion retired, infrastructure worth reusing. Code is on `main` under `research/`
 - [Eval-comparison WP progress](eval-comparison-wp-progress.md) — WP1-WP8 state, GPU chain COMPLETE, fine-tune verdict; its objective is now specification extraction, not benchmark scores
 - [SLM model artifacts](slm-model-artifacts.md) — where the fine-tuned Qwen3-8B lives, which file to move to the Mac, and the standing decision **not** to retrain it
 - [Audit every derived number](audit-derived-numbers.md) — user directive: adversarially audit any number that comes out of a test before reporting it (ADR-0021)
