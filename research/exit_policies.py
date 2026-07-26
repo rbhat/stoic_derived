@@ -166,8 +166,13 @@ def main() -> int:
             continue
         real.append(
             walk(
-                t.entry, t.stop, t.direction == "long", minutes, start,
-                flatten_ns_for(t.trading_date, idx), p,
+                t.entry,
+                t.stop,
+                t.direction == "long",
+                minutes,
+                start,
+                flatten_ns_for(t.trading_date, idx),
+                p,
             )
         )
 
@@ -207,12 +212,16 @@ def main() -> int:
         return xs[min(int(f * len(xs)), len(xs) - 1)]
 
     print("=== TEST 1: CEILING -- best excursion reachable before the stop ===")
-    print(f"{'':10s} {'n':>6s} {'mean':>8s} {'p50':>8s} {'p75':>8s} {'p90':>8s} {'>=1R':>7s} {'>=2R':>7s}")
+    print(
+        f"{'':10s} {'n':>6s} {'mean':>8s} {'p50':>8s} "
+        f"{'p75':>8s} {'p90':>8s} {'>=1R':>7s} {'>=2R':>7s}"
+    )
     for name, xs in (("real", rm), ("null", nm)):
         print(
             f"{name:10s} {len(xs):6d} {statistics.fmean(xs):8.3f} {q(xs, 0.50):8.3f} "
             f"{q(xs, 0.75):8.3f} {q(xs, 0.90):8.3f} "
-            f"{sum(1 for x in xs if x >= 1.0) / len(xs):6.1%} {sum(1 for x in xs if x >= 2.0) / len(xs):6.1%}"
+            f"{sum(1 for x in xs if x >= 1.0) / len(xs):6.1%} "
+            f"{sum(1 for x in xs if x >= 2.0) / len(xs):6.1%}"
         )
     print(
         "\nIf real is not above null here, NO exit policy -- fixed, trailing,\n"
@@ -221,7 +230,10 @@ def main() -> int:
     )
 
     print("\n=== TEST 2: POLICY SWEEP (real vs null under identical treatment) ===")
-    print(f"{'policy':22s} {'real E[R]':>10s} {'null E[R]':>10s} {'null p05':>9s} {'null p95':>9s} {'p':>7s}")
+    print(
+        f"{'policy':22s} {'real E[R]':>10s} {'null E[R]':>10s} "
+        f"{'null p05':>9s} {'null p95':>9s} {'p':>7s}"
+    )
     for pol in POLICIES:
         vals = [v for x in real if (v := apply_policy(x, pol, p)) is not None]
         obs = statistics.fmean(vals)
