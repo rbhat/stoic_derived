@@ -1,0 +1,10 @@
+{
+  "coverage_end": "2026-06-07",
+  "coverage_start": "2026-01-01",
+  "overrides": [],
+  "schema_version": "cme-equity-index-calendar/v1",
+  "source_urls": [
+    "https://www.cmegroup.com/trading-hours.html"
+  ],
+  "version": "cme-equity-index-2026-h1-research-v1"
+}
