@@ -16,6 +16,7 @@ dependencies = [
   "faster-whisper",
   "google-auth>=2.40",
   "opencv-python",
+  "pymupdf>=1.28,<2",
   "python-multipart>=0.0.22,<0.1",
   "PyYAML>=6.0.3",
   "requests",
