@@ -11,7 +11,92 @@ SLM side).
 
 ---
 
+## 0. DIRECTION CORRECTION — supersedes §1 and the §8 ordering
+
+Added 2026-07-26 after user review. **The numbers in §5 are real; keep them.
+The question they were asked to answer was not this project's question.**
+
+### The premise, restated
+
+The Stoic method is proven in live trading across timeframes and futures
+instruments. It is a **given, not a hypothesis.** This project is not
+revalidating it. The job is: learn the method from the educational material,
+turn it into a deterministic signal-generation system, and measure whether
+**our signals** reproduce and execute that method faithfully.
+
+### Three errors in the framing below
+
+1. **The object measured was not the method.** `bnr_backtest.py` fixes one
+   invented parameterization of break-and-retest. It has no HTF map, no
+   HCOM/LCOM, no point-of-interest location filter, no chop-zone requirement,
+   no SFP, no SBS entry model, no confluence score, and no trade management —
+   a fixed 2R bracket instead. All twelve `unresolved_decisions` were guessed.
+   §4 says honestly that it is a proxy; §1 then reads a result on the proxy as
+   a result on the strategy. A null on that proxy is evidence about that proxy
+   and nothing else.
+2. **The reference class removed the edge by construction.** The random-entry
+   null holds **day, direction and risk fixed** and randomizes only the entry
+   minute. In this method the *selection is the edge*: which days qualify (HTF
+   map), which side is trapped (direction), which location is valid (PDH/PDL/
+   PDC, explicitly *not* mid-range) — then management. Conditioning the null on
+   day + direction + risk hands it three of the four edge components and asks
+   only "does the entry minute matter under a fixed 2R bracket." A genuinely
+   profitable system can fail that test. `p=0.2475` was never evidence against
+   the method. §6.3 stays true — *a* reference class is needed; **this** one is
+   not it.
+3. **It was used as a gate, which ADR-0011 and VISION both forbid.** §1 calls
+   expectancy "the claim that decides whether the end goal is reachable."
+   ADR-0011: backtests are observational and non-gating. VISION: validation
+   "runs in parallel and does NOT gate going live with signals/dashboard,"
+   because v1 risks no capital. Steering the project off n=46, one instrument,
+   five months is precisely the selection bias the user named — small samples
+   and profit-chasing kill paths before they are specified well enough to be
+   worth measuring.
+
+§1's claim that the SLM side "cannot move that claim at its theoretical best"
+is also wrong, and inverted the value of that work: **the specification is the
+bottleneck**, and extracting specification from the education is exactly what
+the SLM / annotation path is for.
+
+### Corrected ordering
+
+1. **Specify.** Resolve `unresolved_decisions` from the educational material
+   with evidence citations (ADR-0004 source authority) — not from a parameter
+   grid. Where the material genuinely underdetermines a number, the human
+   decides and it is recorded as a strategy decision, not chosen by a script.
+2. **Generate.** Build the signal generator as the full taught stack: HTF map →
+   prior-day level / POI → session environment → setup (B&R, SFP) → entry model
+   (SBS) → risk and management. A partial stack is not the rule and must not be
+   measured as if it were.
+3. **Validate against the labeled material first.** `edu/derived/` holds
+   annotated case studies (`cs_vol1..7`) and live trades (`live_3_5r_on_nq`,
+   `live_4_14r_on_nq`, `live_4_2r_on_nq`, `live_4_3r_on_cl`). The first test of
+   a signal generator is whether it finds *those* setups on *those* dates with
+   comparable entry, stop and target. Divergence is a **specification bug**,
+   not strategy failure. This is the outcome measurement the probe was missing.
+4. **Then measure outcomes as the ledger defines them** — per signal, tracked
+   to close, taught management applied, flatten rule honoured, disaggregated by
+   Type / instrument / timeframe, over the widest data available. Counts when n
+   is small; never verdicts.
+
+### What survives, and what is retired
+
+**Survives — reuse it.** `build_bars.py` (trades → bars through the production
+SP1 path), the ADR-0012 fill model with its 7 passing invariant tests, the
+research calendar, R accounting, funnel-first diagnostics (§6.2), n<20 means
+counts not rates (§6.4), tick parameters restated as ATR fractions (§6.5), and
+the user's 5m-stop-alignment correction (§8.5). ADR-0021 governs every number.
+
+**Retired.** "No edge demonstrated" as a project-level conclusion; pooled
+mean-R vs random-entry as a gate; and the §8 ordering, which optimizes a proxy
+instead of building the specification.
+
+---
+
 ## 1. Why this exists — the finding that motivated it
+
+> **Superseded by §0.** Kept as the record of what was done and why it was
+> framed that way. Read §0 first.
 
 The project's end goal is trading signals from a deterministic Python codebase,
 built with the SLM's help, off a live Databento feed.
@@ -322,6 +407,12 @@ arithmetic constraint to plan around, not a defect to fix.
   P/L until an approved contract economics manifest exists.
 
 ## 8. Next actions, in order
+
+> **Ordering superseded by §0.** These items are not wrong in themselves, but
+> they sequence *tuning a proxy* ahead of *building the specification*. Items
+> 1 (widen to ES + NQ over ~9 months), 5 (keep the stop 5m-aligned), 6 (sizing)
+> and 7 (ATR fractions) remain useful and carry over. Items 2–4, 8 and 9 are
+> measurements of the proxy and wait until §0 steps 1–3 are done.
 
 1. **Widen the sample before touching the rule.** `data/historical/
    GLBX.MDP3__ES-NQ__2025-09-01__2026-06-06.trades.dbn.zst` (2.5 GB) carries
