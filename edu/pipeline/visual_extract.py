@@ -122,6 +122,17 @@ LEVEL_MATCH_TICKS = 1      # a proposal within this many ticks of a daily OHLC i
 COOL_EVERY = float(os.environ.get("STOIC_COOL_EVERY", 300))   # seconds of work
 COOL_FOR = float(os.environ.get("STOIC_COOL_FOR", 90))        # seconds of idle
 
+# Second, longer tier. The 90 s pause keeps a burst from spiking, but it is far
+# too short to shed heat soaked into the chassis over a multi-day run, and this
+# job now measures in days rather than the original 17 hours. Every REST_EVERY
+# seconds of work the run stops for REST_FOR and lets the machine return to
+# something near ambient. Costs ~17 % on top of the short cycle; the alternative
+# is sustained high junction temperature for days, which is what actually
+# damages hardware. Same rules as the short pause: taken between states, and
+# left inside the throughput measurement so the ETA stays honest.
+REST_EVERY = float(os.environ.get("STOIC_REST_EVERY", 7200))   # seconds of work
+REST_FOR = float(os.environ.get("STOIC_REST_FOR", 1200))       # seconds of idle
+
 SCHEMA_VERSION = "wpv-visual-record/v1"
 PROGRESS_EVERY = 25        # states between progress log lines
 # A "running" stage whose heartbeat is older than this is dead -> redo. The
@@ -414,6 +425,23 @@ def discover_jobs() -> list[VideoJob]:
 
 
 # ------------------------------------------------------------------------ state engine
+
+def _idle(seconds: float, state: VideoState) -> None:
+    """Sleep for a thermal pause, beating the heartbeat as it goes.
+
+    The 20-minute rest is long enough that a single beat at the start would
+    leave a gap another process could read as a dead stage, so the sleep is
+    broken up. Beating during an idle is honest: the process is alive and
+    intends to continue -- which is exactly what the heartbeat claims.
+    """
+    deadline = time.time() + seconds
+    while True:
+        remaining = deadline - time.time()
+        if remaining <= 0:
+            return
+        state.beat("extract")
+        time.sleep(min(60.0, remaining))
+
 
 def _pid_alive(pid: int) -> bool:
     """Is this pid running? Signal 0 checks without delivering anything.
@@ -831,6 +859,7 @@ def stage_extract(
     # increment since the last one, never the running total again
     reported, reported_wall = 0, 0.0
     last_cool = time.time()
+    last_rest = time.time()
 
     if not todo:
         log(f"    extract: nothing to do (skipped {skipped} already done, {total} total)")
@@ -892,10 +921,17 @@ def stage_extract(
         # Thermal pause, taken between states so it never interrupts a request
         # in flight. Skipped after the final state -- there is nothing left to
         # cool down for.
-        if COOL_FOR > 0 and i < len(todo) and time.time() - last_cool >= COOL_EVERY:
+        if REST_FOR > 0 and i < len(todo) and time.time() - last_rest >= REST_EVERY:
+            worked = int(time.time() - last_rest)
+            log(f"    resting {int(REST_FOR / 60)}m (after {worked // 60}m of work)")
+            _idle(REST_FOR, state)
+            # A long rest cools the machine at least as well as the short pause
+            # would have, so the short cycle restarts from here rather than
+            # firing again the moment work resumes.
+            last_rest = last_cool = time.time()
+        elif COOL_FOR > 0 and i < len(todo) and time.time() - last_cool >= COOL_EVERY:
             log(f"    cooling {int(COOL_FOR)}s (after {int(time.time() - last_cool)}s of work)")
-            state.beat("extract")
-            time.sleep(COOL_FOR)
+            _idle(COOL_FOR, state)
             last_cool = time.time()
 
         if i % PROGRESS_EVERY == 0 or i == len(todo):
@@ -1538,7 +1574,7 @@ def print_dry_run(jobs: list[VideoJob]) -> None:
 def main() -> int:
     # declared before first use: --cool-every/--cool-for read these as their
     # argparse defaults and then write them back
-    global COOL_EVERY, COOL_FOR
+    global COOL_EVERY, COOL_FOR, REST_EVERY, REST_FOR
 
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -1574,8 +1610,17 @@ def main() -> int:
         "--cool-for", type=float, default=COOL_FOR, metavar="SEC",
         help=f"seconds to idle at each thermal pause, 0 disables (default {COOL_FOR:.0f})",
     )
+    ap.add_argument(
+        "--rest-every", type=float, default=REST_EVERY, metavar="SEC",
+        help=f"seconds of work between long rests (default {REST_EVERY:.0f})",
+    )
+    ap.add_argument(
+        "--rest-for", type=float, default=REST_FOR, metavar="SEC",
+        help=f"seconds to idle at each long rest, 0 disables (default {REST_FOR:.0f})",
+    )
     args = ap.parse_args()
     COOL_EVERY, COOL_FOR = args.cool_every, args.cool_for
+    REST_EVERY, REST_FOR = args.rest_every, args.rest_for
 
     if args.print_context_length:
         # Answered before any discovery so the supervisor can ask it on a bare
@@ -1641,7 +1686,8 @@ def main() -> int:
     else:
         log(f"starting fresh: {tracker.total_states} states to extract")
     log(f"prompt {PROMPT_SHA} | model {VLM_MODEL} | "
-        f"cooling {int(COOL_FOR)}s every {int(COOL_EVERY)}s")
+        f"cooling {int(COOL_FOR)}s every {int(COOL_EVERY)}s, "
+        f"resting {int(REST_FOR / 60)}m every {int(REST_EVERY / 3600)}h")
     write_progress(all_jobs, tracker)
 
     ok = failed = 0
