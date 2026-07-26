@@ -52,11 +52,12 @@ outright (`cs_vol3` and `concept_candle_swing_theory_pdh_pdl_pdc` transcripts):
 So the flip day is **D-1** and the page date **D** is when you trade. Guessing the naive reading
 would have mislabelled every one of these fixtures.
 
-Open, deliberately **not** resolved by fitting: the same passage defines red as closing "below the
-day one close" (close-vs-prev-close), while candle color is close-vs-open. Over the 7 labelled
-NQ red/green pages **both definitions score 5/7 with the identical two misses** (2026-03-05:
-D-1 not a flip at all; 2026-03-09: D-2 also red so D-1 isn't *first*). n=7 does not discriminate —
-resolve by **reading vol2 p06 and p08**, which arrow the intended candle. Do not try more variants.
+**RESOLVED 2026-07-26 — see [[red-day-definition]].** The old "5/7 with two misses" scoring here was
+an artifact of two wrong assumptions and is withdrawn: the arrows mark the **trade day**, not the
+flip candle, and the title parenthetical is a **cycle-context label**, not a per-date candle
+classification. The flip is therefore *not* always D-1. Red is now a recorded human decision
+(`close < open`); the data cannot discriminate the two candidate definitions — they agree on all 7
+labelled dates under both scorings.
 
 ## Conventions chosen
 
@@ -73,16 +74,20 @@ resolve by **reading vol2 p06 and p08**, which arrow the intended candle. Do not
 
 ## Resume point (next actions, in order)
 
-1. **Read `.scratch/case_study_pages/vol2_p06.png` and `vol2_p08.png`** — they arrow the intended
-   candle and settle the red/green definition above. Regenerate renders with the snippet in
-   §Conventions if `.scratch/` is empty (it is gitignored and does not travel).
-2. Chart-extraction pass over the 25 in-scope pages → per-fixture proposals for human review.
+1. ~~Read vol2_p06/p08 to settle the red definition.~~ **DONE** — [[red-day-definition]].
+2. **WP-V exhaustive visual extraction** — now the blocking prerequisite, because rule definitions
+   live on slides no transcript contains ([[slide-text-not-in-transcripts]]). Plan:
+   `docs/notes/2026-07-26-exhaustive-visual-extraction-plan.md`.
+3. Chart-extraction pass over the 25 in-scope pages → per-fixture proposals for human review.
    Derive levels from `.artifacts/research/bars/` where possible; use the chart only for
    chart-exclusive facts.
-3. Feed confirmed numbers into the 12 `unresolved_decisions`. vol2 p03 alone bears on
+4. Feed confirmed numbers into the 12 `unresolved_decisions`. vol2 p03 alone bears on
    `fib-anchors-and-target-order` (ladder 1 / 1.618 / 2 / 2.618 / 4.236), `sbs-pivots-and-origin`
    (pivots are numbered 1-5 on the chart), and `risk-and-management`.
 
-**Regenerating bars is NOT needed** — `.artifacts/research/bars/NQ_{1m,5m,15m,60m,D}.jsonl` already
-cover 2026-01-02..06-05, which contains every in-scope fixture date. But `.artifacts/` is gitignored
-and does not travel to the Mac; rebuild there with `research/build_bars.py` (~37 min single-core).
+**Bars are rebuilt on the Mac as of 2026-07-26** — `.artifacts/research/bars/NQ_{1m,5m,15m,60m,D}.jsonl`
+cover 2026-01-02..06-05 (111 daily bars), which contains every in-scope fixture date. `.artifacts/`
+is gitignored and does not travel; rebuild with `research/build_bars.py` (~31 min, 41.2M events).
+Sessions `2026-03-20` and `2026-06-05` come out `quality != complete`.
+See [[bars-match-education-not-tradingview]] for the series-choice finding and the
+don't-read-a-file-mid-build trap.

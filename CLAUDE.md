@@ -23,8 +23,9 @@ travels between the Windows box and the Mac. Read the index at the start of ever
 empty, something is wrong — stop and tell the user rather than proceeding without context or
 rebuilding it from scratch. `git log -- claude_memories/` will show what should be there.
 
-Expected contents (12 files as of 2026-07-25): `MEMORY.md` plus
-`signal-fidelity-over-edge-revalidation`, `case-study-fixture-track`, `slm-model-artifacts`,
+Expected contents (15 files as of 2026-07-26): `MEMORY.md` plus
+`signal-fidelity-over-edge-revalidation`, `case-study-fixture-track`, `red-day-definition`,
+`slide-text-not-in-transcripts`, `bars-match-education-not-tradingview`, `slm-model-artifacts`,
 `edge-measurement-first-probe`, `eval-comparison-wp-progress`, `audit-derived-numbers`,
 `check-dont-relaunch-detached-jobs`, `win-cuda-training-package`, `artifact-locality`,
 `ruff-always-fix`, `opus-expanded-role`.
