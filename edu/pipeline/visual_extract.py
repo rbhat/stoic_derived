@@ -43,6 +43,7 @@ import hashlib
 import json
 import os
 import re
+import socket
 import statistics
 import sys
 import time
@@ -72,8 +73,39 @@ BARS_DIR = REPO_ROOT / ".artifacts" / "research" / "bars"
 
 LMSTUDIO_URL = os.environ.get("LMSTUDIO_URL", "http://localhost:1234/v1")
 VLM_MODEL = os.environ.get("STOIC_VLM_MODEL", "qwen3-vl-30b-a3b-instruct-mlx")
-VLM_TIMEOUT = 300          # cold model load measured at 74 s; warm calls ~5 s
-VLM_MAX_TOKENS = 1600
+VLM_TIMEOUT = 600          # cold model load measured at 74 s; warm calls ~5 s
+# A dual-chart frame carries two full price-axis ladders (~60 five-decimal
+# prices) plus two time axes. At 1600 the model ran out of budget mid-string on
+# exactly those frames, and because the response_format is a strict json_schema
+# a truncated response is unparseable -- the state was lost, not merely verbose.
+# _strip_axis_ladders cannot help: it is a post-parse filter, so it never sees a
+# response that died before parsing.
+#
+# This is a ceiling, not a target. A compliant frame still returns a few hundred
+# tokens; the headroom only exists so a non-compliant one degrades into a slow
+# record that the filter then cleans, instead of into an error.
+#
+# It is bounded by LM Studio's *loaded* context, not the model's 262144 maximum.
+# Measured: prompt + one 1920x1080 keyframe = 895 tokens. The model was loaded
+# at 4096, which left ~3.2k and is what made 1600 look like a safe cap. Load it
+# with room for this value or the truncation simply returns at a higher number.
+# scripts/wpv32_run.sh reloads the model at VLM_CONTEXT_LENGTH if it finds it
+# loaded smaller, so this holds without anyone remembering to do it by hand.
+#
+# Sized against wall-clock, not tokens -- the model is local, so tokens are
+# free, but time is not. Measured output rate on this machine is ~16.6 tok/s,
+# and 5,139 chart states are still ahead, so an unbounded ceiling would let one
+# pathological frame idle the run for a quarter of an hour. 6000 is ~20x the
+# largest legitimate output seen (~300 tokens) and comfortably clears a full
+# dual-axis transcription (~1,500), while still being reachable inside
+# VLM_TIMEOUT: 6000 / 16.6 = 361 s.
+#
+# These three move together. VLM_TIMEOUT must exceed
+# VLM_MAX_TOKENS / observed-rate, or the cap is unreachable and the real
+# failure becomes a read timeout. STALL_SECONDS must in turn exceed
+# VLM_RETRIES * VLM_TIMEOUT + COOL_FOR, or a slow-but-healthy state looks dead.
+VLM_MAX_TOKENS = 6000
+VLM_CONTEXT_LENGTH = 32768  # what the supervisor loads LM Studio with
 VLM_RETRIES = 3            # per state, within one run
 MAX_STATE_ATTEMPTS = 3     # across runs, before a state is recorded as a permanent error
 CONSECUTIVE_FAILURE_ABORT = 10
@@ -94,11 +126,16 @@ SCHEMA_VERSION = "wpv-visual-record/v1"
 PROGRESS_EVERY = 25        # states between progress log lines
 # A "running" stage whose heartbeat is older than this is dead -> redo. The
 # heartbeat is beaten after every single state (not every PROGRESS_EVERY), so
-# the largest legitimate gap is one state -- a dense dual-chart frame measured
-# at 75 s -- plus one COOL_FOR pause. 900 s therefore cannot false-positive on
-# live work, while still letting a killed run be recovered in 15 minutes
-# instead of an hour.
-STALL_SECONDS = 900
+# the largest legitimate gap is one state plus one COOL_FOR pause.
+#
+# The old 900 was sized against a healthy dense frame (75 s measured). That was
+# the wrong bound: a state is only given up on after VLM_RETRIES calls, so the
+# real worst case is VLM_RETRIES * VLM_TIMEOUT + COOL_FOR = 3*600 + 90 = 1890 s,
+# and at 900 a state that merely timed out twice would have been declared dead
+# while it was still working. 2400 restores the margin. The cost is that a
+# genuinely killed run now takes 40 minutes to be reclaimed rather than 15 --
+# paid only on the recovery path, never on the happy one.
+STALL_SECONDS = 2400
 MAX_ATTEMPTS = 3           # per-video stage attempts before giving up (mirrors visual_harvest.py)
 STAGE_NAMES = ["extract", "crosscheck", "report"]
 
@@ -378,6 +415,22 @@ def discover_jobs() -> list[VideoJob]:
 
 # ------------------------------------------------------------------------ state engine
 
+def _pid_alive(pid: int) -> bool:
+    """Is this pid running? Signal 0 checks without delivering anything.
+
+    EPERM counts as alive: the process exists, it just is not ours. Erring
+    towards "alive" is the safe direction -- a wrong "dead" would let a second
+    process open a records file the first is still appending to.
+    """
+    try:
+        os.kill(int(pid), 0)
+    except ProcessLookupError:
+        return False
+    except (PermissionError, OSError, TypeError, ValueError):
+        return True
+    return True
+
+
 class VideoState:
     """Per-video stage tracker: status/attempts/heartbeat, one entry per stage.
 
@@ -404,6 +457,35 @@ class VideoState:
             return "pending"
         if e.get("status") != "running":
             return e.get("status", "pending")
+
+        # Liveness beats the timer. A "running" marker means one of two very
+        # different things -- a process really is working on this stage, or a
+        # killed one never got to clear it -- and the heartbeat age cannot tell
+        # them apart. The owning pid can: if it is gone, the stage is free now,
+        # with no waiting. That matters because the user kills this job whenever
+        # the laptop runs hot, and without this an immediate restart skips every
+        # video the previous run had open until STALL_SECONDS expires.
+        #
+        # Guarded by host, because a pid from another machine says nothing about
+        # this one -- .artifacts/ does not travel, but the state file is small
+        # enough to be copied by hand, and a false "dead" would let two
+        # processes write one records file.
+        owner, host = e.get("pid"), e.get("host")
+        if owner and host == socket.gethostname():
+            # Authoritative in both directions. Falling through to the timer
+            # when the owner is alive would reintroduce exactly the false
+            # positive this replaces: a state legitimately sitting in a long
+            # VLM call would be declared dead while it was still working.
+            if _pid_alive(owner):
+                return "running"
+            log(f"    ! recovering stalled stage '{stage}' (owner pid {owner} is gone)")
+            e["status"] = "pending"
+            self._flush()
+            return "pending"
+
+        # Fallback for the cases liveness cannot answer: no pid recorded (a
+        # state file written by an older build), or a run that died on another
+        # host. Only here does the heartbeat age decide anything.
         if (time.time() - e.get("heartbeat", 0)) < STALL_SECONDS:
             return "running"
         log(f"    ! recovering stalled stage '{stage}' (heartbeat stale)")
@@ -416,7 +498,10 @@ class VideoState:
 
     def start(self, stage: str) -> None:
         e = self.data["stages"].setdefault(stage, {})
-        e.update(status="running", heartbeat=time.time(), attempts=e.get("attempts", 0) + 1)
+        e.update(
+            status="running", heartbeat=time.time(), attempts=e.get("attempts", 0) + 1,
+            pid=os.getpid(), host=socket.gethostname(),
+        )
         self._flush()
 
     def beat(self, stage: str) -> None:
@@ -503,6 +588,20 @@ def call_vlm(image_path: Path, timeout: float = VLM_TIMEOUT) -> dict:
     content = choices[0].get("message", {}).get("content", "")
     parsed = _parse_model_json(content)
     if parsed is None:
+        # Under a strict json_schema the only routine way to get unparseable
+        # output is to run out of budget mid-string, and "did not parse" sent
+        # three hours of diagnosis down the wrong path. Name the real cause,
+        # and report both numbers, because the binding limit may be LM Studio's
+        # loaded context rather than max_tokens.
+        if choices[0].get("finish_reason") == "length":
+            used = body.get("usage", {})
+            raise LMStudioError(
+                f"truncated at max_tokens={VLM_MAX_TOKENS} "
+                f"(prompt {used.get('prompt_tokens', '?')} + completion "
+                f"{used.get('completion_tokens', '?')} tokens); "
+                f"raise VLM_MAX_TOKENS, and VLM_CONTEXT_LENGTH if that is the "
+                f"binding limit: {content[:120]}"
+            )
         raise LMStudioError(f"response did not parse as the required schema: {content[:200]}")
     return parsed
 
@@ -1118,7 +1217,8 @@ def process_video(
         if status == "done":
             continue
         if status == "running":
-            log(f"    {name}: already running (heartbeat fresh), skipping video")
+            owner = state.entry(name).get("pid", "?")
+            log(f"    {name}: already running (owner pid {owner} alive), skipping video")
             return False
         if status == "failed" and state.attempts(name) >= MAX_ATTEMPTS:
             log(f"    {name}: failed {state.attempts(name)}x, giving up on this video")
@@ -1459,6 +1559,10 @@ def main() -> int:
         help="print just the number of states still to extract, then exit (for scripts)",
     )
     ap.add_argument(
+        "--print-context-length", action="store_true",
+        help="print the LM Studio context length this run needs, then exit (for scripts)",
+    )
+    ap.add_argument(
         "--dry-run", action="store_true",
         help="report what would be extracted and exit without calling the model",
     )
@@ -1472,6 +1576,12 @@ def main() -> int:
     )
     args = ap.parse_args()
     COOL_EVERY, COOL_FOR = args.cool_every, args.cool_for
+
+    if args.print_context_length:
+        # Answered before any discovery so the supervisor can ask it on a bare
+        # checkout, with no artifacts on disk and LM Studio not yet up.
+        print(VLM_CONTEXT_LENGTH)
+        return 0
 
     VISUAL_HOME.mkdir(parents=True, exist_ok=True)
     all_jobs = discover_jobs()

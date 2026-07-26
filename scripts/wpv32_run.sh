@@ -33,6 +33,7 @@ PY="$REPO/.venv/bin/python"
 EXTRACT=("$PY" "$REPO/edu/pipeline/visual_extract.py")
 LMSTUDIO_URL="${LMSTUDIO_URL:-http://localhost:1234/v1}"
 MODEL="${STOIC_VLM_MODEL:-qwen3-vl-30b-a3b-instruct-mlx}"
+LMS="${LMS_BIN:-$HOME/.lmstudio/bin/lms}"   # not on PATH under nohup
 
 WAIT_SERVER_SLEEP=60      # between polls while LM Studio is absent
 RETRY_SLEEP=60            # between extractor attempts
@@ -42,6 +43,49 @@ log() { printf '[%s] supervisor: %s\n' "$(date '+%H:%M:%S')" "$*"; }
 
 remaining() { "${EXTRACT[@]}" --remaining 2>/dev/null || echo "-1"; }
 
+ensure_context() {
+    # LM Studio remembers whatever context the model was last loaded with, and
+    # its default is far below what this job needs: a dual-chart frame that
+    # transcribes both price-axis ladders overruns a small context, and under a
+    # strict json_schema the truncated response is unparseable, so the state is
+    # lost rather than merely verbose. Checking here means the guarantee holds
+    # after a machine restart or a manual model load, not just when someone
+    # remembers the flag.
+    #
+    # Non-fatal throughout: a smaller context still extracts the great majority
+    # of frames, so a missing CLI or a failed reload is worth a loud line in the
+    # log and nothing more. Never let this stop the run.
+    local want cur
+    want="$("${EXTRACT[@]}" --print-context-length 2>/dev/null)" || return 0
+    [ -n "$want" ] || return 0
+    [ -x "$LMS" ] || { log "note: no lms CLI -- cannot verify context is >= $want"; return 0; }
+
+    # `lms ps --json`, not the table: the human table colours its output and
+    # pads "33.53 GB" and "1h / 1h" into a variable number of awk fields, so
+    # column-counting reads the wrong one.
+    cur="$("$LMS" ps --json 2>/dev/null | "$PY" -c '
+import json, sys
+try:
+    loaded = json.load(sys.stdin)
+except Exception:
+    sys.exit(1)
+for m in loaded:
+    if sys.argv[1] in (m.get("identifier"), m.get("modelKey")):
+        print(m.get("contextLength", ""))
+        break
+' "$MODEL" 2>/dev/null)"
+    case "$cur" in ''|*[!0-9]*) log "note: could not read loaded context length"; return 0 ;; esac
+    [ "$cur" -ge "$want" ] && return 0
+
+    log "context is $cur, need $want -- reloading $MODEL"
+    "$LMS" unload "$MODEL" >/dev/null 2>&1
+    if "$LMS" load "$MODEL" --context-length "$want" --parallel 1 --yes >/dev/null 2>&1; then
+        log "reloaded $MODEL at context $want"
+    else
+        log "WARNING: reload at context $want failed; continuing at $cur"
+    fi
+}
+
 wait_for_server() {
     # Blocks until LM Studio lists the model. After a power cut the machine can
     # be up long before LM Studio is, and failing in that window would waste the
@@ -50,6 +94,7 @@ wait_for_server() {
     while true; do
         if curl -sf --max-time 10 "$LMSTUDIO_URL/models" 2>/dev/null | grep -q "$MODEL"; then
             [ "$announced" -eq 1 ] && log "LM Studio is back with $MODEL"
+            ensure_context
             return 0
         fi
         if [ "$announced" -eq 0 ]; then
