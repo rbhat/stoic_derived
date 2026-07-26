@@ -160,28 +160,20 @@ reference class exists to catch.
    sample: 120 → +0.483 (n=18), 200 → **−0.043** (n=27), 400 → +0.203 (n=46),
    800 → +0.092 (n=49).
 
-### Can a different profit target rescue it? No — ceiling test says no.
+### Would a different profit target help? Open, with a specific lead
 
-`research/exit_policies.py`. The question cannot be answered by trying targets
-until one looks good (that is optimising, at n=46, on noise). It is answered by
-asking whether the entries carry information **any** exit policy could
-monetise, always comparing real vs the random-entry null under identical
-treatment.
+`research/exit_policies.py`. Not answered by trying targets until one looks
+good (optimising on n=46 noise), but by asking whether the entries carry
+information an exit policy could monetise — always real vs the random-entry
+null under identical treatment.
 
-**Test 1 — the ceiling.** Maximum favourable excursion reachable *before the
-stop is hit*: the best price any exit rule could ever have taken.
+**Test 1 — the ceiling.** Max favourable excursion reachable *before the stop
+is hit*: the best price any exit rule could ever take. Real mean **1.761** vs
+null **1.740**, oracle p=**0.475**. So **no policy that monetises _average_
+excursion can help.** That is the bound this test establishes — and it is the
+only one it establishes.
 
-| | n | mean | p50 | p75 | p90 | ≥1R | ≥2R |
-|---|---|---|---|---|---|---|---|
-| real | 46 | **1.761** | 1.287 | 2.680 | 3.768 | 56.5% | 39.1% |
-| null | 9200 | **1.740** | 0.926 | 2.321 | 4.247 | 47.8% | 28.7% |
-
-The mean ceilings are the same, and the null is *better* at p90. Price after a
-break-and-retest does not go anywhere price after a random entry does not also
-go, so **no target — fixed, trailing, structural, Fib, or partial — can create
-an edge here.**
-
-**Test 2 — policy sweep**, real vs null, p one-sided:
+**Test 2 — policy sweep**, real vs null, one-sided p:
 
 | policy | real E[R] | null E[R] | p |
 |---|---|---|---|
@@ -190,18 +182,43 @@ an edge here.**
 | fixed 2.0R | 0.206 | 0.094 | 0.260 |
 | fixed 3.0R | 0.163 | 0.101 | 0.365 |
 | runner (no target, flatten) | **−0.061** | 0.153 | 0.785 |
-| breakeven at 1R | 0.343 | 0.148 | 0.130 |
+| breakeven at 1R | **0.343** | 0.148 | 0.130 |
 | half at 1R, rest 2R | 0.242 | 0.130 | 0.240 |
-| **ceiling oracle** | 1.756 | 1.734 | **0.475** |
+| ceiling oracle | 1.756 | 1.734 | 0.475 |
 
-Every policy fails to clear its null. `breakeven_at_1R` is nominally best at
-p=0.13, but it is the best of eight policies tried — that is exactly what
-multiple comparisons produce by chance, and it is still not significant. The
-oracle at **p=0.475** is the decisive row: even with perfect foresight about
-where to exit, real entries are indistinguishable from random ones.
+No policy clears its null. `runner_flatten` is *negative* and worse than its
+own null — letting these run to the session flatten is actively harmful.
 
-Note `runner_flatten` is *negative* and worse than its own null — letting these
-trades run to the session flatten is actively harmful.
+**Test 3 — shape. This is the open lead.** Equal means can hide differences
+that cancel, and here they do. Each feature of the real MFE distribution
+against the null's per-iteration distribution of the same feature:
+
+| feature | real | null mean | null p05 | null p95 | p(null ≥ real) |
+|---|---|---|---|---|---|
+| mean | 1.761 | 1.740 | 1.317 | 2.208 | 0.475 |
+| **median** | **1.287** | 0.977 | 0.645 | 1.346 | **0.075** |
+| p90 | 3.768 | 4.428 | 3.082 | 6.524 | 0.760 |
+| **≥1R** | **56.5%** | 47.8% | 37.0% | 58.7% | **0.105** |
+| **≥2R** | **39.1%** | 28.7% | 19.6% | 39.1% | **0.060** |
+| ≥3R | 21.7% | 18.4% | 10.9% | 28.3% | 0.315 |
+
+**Real entries reach the 1R–2R band more reliably; the null owns the fatter
+extreme tail.** Those offset exactly, which is why the means match and why
+"no exit policy can help" would overstate test 1.
+
+Nothing here is significant at n=46 — the strongest is ≥2R at p=0.060, and
+with six features examined that is what chance produces. But the direction is
+consistent across median, ≥1R and ≥2R, and it is coherent with `breakeven_at_1R`
+being the best real policy in test 2 (0.343): a policy that protects once 1R is
+reached is precisely what exploits reliability in that band rather than tail
+capture.
+
+**Treat this as a hypothesis to retest, not a finding.** It is exactly the
+shape of thing that either sharpens or dissolves at 4× the sample (next action
+1). The concrete question for a future session: *do real entries reach the
+1R–2R band more reliably than random, and does a reliability-harvesting exit
+(breakeven, partial scale-out, trail-after-1R) beat its null once n supports
+it?* Reproduce with `.venv/bin/python research/exit_policies.py`, test 3.
 
 ### Verdict
 
@@ -334,9 +351,14 @@ arithmetic constraint to plan around, not a defect to fix.
    at a given account size.
 7. **Restate every tick parameter as a fraction of ATR** so parameters survive
    a change in price level.
-8. **Do not spend more time on exit/target design for this rule.** The ceiling
-   test (§5) already shows no exit policy can beat the null. Revisit only if
-   the ENTRY changes (HTF filter, level definition), which changes the paths.
+8. **Retest the exit-shape lead once n supports it** (§5, test 3). Real entries
+   reach the 1R–2R band more reliably than random (median p=0.075, ≥2R p=0.060)
+   while the null owns the fatter tail; the two cancel in the mean, so the
+   ceiling test bounds only *average*-excursion policies. Concrete question:
+   does a reliability-harvesting exit — breakeven-at-1R, partial scale-out,
+   trail-after-1R — beat its null at 4× sample? `research/exit_policies.py`
+   test 3 is the harness; add trailing variants there. Do this AFTER action 1,
+   never before: at n=46 it would be fitting noise.
 9. **Only then** decide whether break-and-retest is worth keeping, and whether
    the SLM's batch-annotation path (see the SLM note) is worth resuming to
    scale from one setup to several.

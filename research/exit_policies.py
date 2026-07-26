@@ -5,19 +5,22 @@ targets until one looks good -- that is optimisation, which ADR-0011 forbids,
 and with n=46 it would fit noise. It is answered by asking whether the setup's
 entries carry information that ANY exit policy could monetise.
 
-Two tests, both comparing real entries against the random-entry null under
+Three tests, all comparing real entries against the random-entry null under
 IDENTICAL treatment (ADR-0021 sec E9). Testing a policy only on real trades
 measures the policy, not the setup.
 
 1. CEILING (oracle). For each trade, walk forward from the fill and record the
-   maximum favourable excursion reached BEFORE the stop is hit. That is the
-   best price any exit rule could ever have taken. If the real ceiling is not
-   above the null ceiling, no target -- fixed, trailing, structural, partial --
-   can create an edge here, because the price never goes anywhere the null's
-   price does not also go.
+   maximum favourable excursion reached BEFORE the stop is hit -- the best price
+   any exit rule could ever have taken. If the real ceiling is not above the
+   null ceiling, no policy monetising AVERAGE excursion can help. It does NOT
+   rule out policies exploiting distribution SHAPE; see test 3.
 
 2. POLICY SWEEP. Pre-declared exit policies, each run on real and null entries.
    Reported in full; no policy is selected.
+
+3. SHAPE. Mean parity can hide differences that cancel. Each shape feature of
+   the real MFE distribution is compared against the null's per-iteration
+   distribution of the same feature. This is where the open lead lives.
 
 Run: .venv/bin/python research/exit_policies.py
 """
@@ -181,6 +184,7 @@ def main() -> int:
     ITERS = 200
     null_by_policy: dict[str, list[float]] = {k: [] for k in POLICIES}
     null_mfe: list[float] = []
+    null_feats: list[dict[str, float]] = []
     for _ in range(ITERS):
         paths = []
         for t in res.trades:
@@ -197,6 +201,17 @@ def main() -> int:
                 walk(entry, stop, long, minutes, i, flatten_ns_for(t.trading_date, idx), p)
             )
         null_mfe.extend(x["mfe_r"] for x in paths)
+        _v = sorted(x["mfe_r"] for x in paths)
+        null_feats.append(
+            {
+                "mean": statistics.fmean(_v),
+                "p50": _v[len(_v) // 2],
+                "p90": _v[int(0.9 * len(_v))],
+                "ge1": sum(1 for x in _v if x >= 1.0) / len(_v),
+                "ge2": sum(1 for x in _v if x >= 2.0) / len(_v),
+                "ge3": sum(1 for x in _v if x >= 3.0) / len(_v),
+            }
+        )
         for pol in POLICIES:
             vals = [v for x in paths if (v := apply_policy(x, pol, p)) is not None]
             if vals:
@@ -224,9 +239,47 @@ def main() -> int:
             f"{sum(1 for x in xs if x >= 2.0) / len(xs):6.1%}"
         )
     print(
-        "\nIf real is not above null here, NO exit policy -- fixed, trailing,\n"
-        "structural, or partial -- can create an edge: the price simply does not\n"
-        "go anywhere the null's price does not also go."
+        "\nThe MEAN ceiling bounds any policy that monetises AVERAGE excursion.\n"
+        "It does not bound policies that exploit distribution SHAPE -- see test 3."
+    )
+
+    # --- TEST 3: shape, not just mean -------------------------------------
+    # The mean can match while the distributions differ in opposite directions
+    # that cancel. Compare each shape feature against the null's per-iteration
+    # distribution of that same feature (matched n).
+    feats = ("mean", "p50", "p90", "ge1", "ge2", "ge3")
+
+    def features(xs: list[float]) -> dict[str, float]:
+        s = sorted(xs)
+        return {
+            "mean": statistics.fmean(s),
+            "p50": q(s, 0.50),
+            "p90": q(s, 0.90),
+            "ge1": sum(1 for x in s if x >= 1.0) / len(s),
+            "ge2": sum(1 for x in s if x >= 2.0) / len(s),
+            "ge3": sum(1 for x in s if x >= 3.0) / len(s),
+        }
+
+    obs = features(rm)
+    print("\n=== TEST 3: CEILING SHAPE (mean parity can hide offsetting differences) ===")
+    print(
+        f"{'feature':8s} {'real':>8s} {'null mean':>10s} "
+        f"{'p05':>8s} {'p95':>8s} {'p(null>=real)':>14s}"
+    )
+    for k in feats:
+        nd = sorted(f[k] for f in null_feats)
+        pv = sum(1 for x in nd if x >= obs[k]) / len(nd)
+        star = " *" if pv < 0.05 else ""
+        print(
+            f"{k:8s} {obs[k]:8.3f} {statistics.fmean(nd):10.3f} "
+            f"{q(nd, 0.05):8.3f} {q(nd, 0.95):8.3f} {pv:14.3f}{star}"
+        )
+    print(
+        "\n* = real outside the null's upper 5%. NOTHING here is significant at\n"
+        "n=46, but the direction is consistent: real reaches the 1R-2R band more\n"
+        "reliably while the null has the fatter extreme tail. That is a LEAD to\n"
+        "retest at larger n, not a result -- and it is why 'no exit policy can\n"
+        "help' would be an overstatement of test 1."
     )
 
     print("\n=== TEST 2: POLICY SWEEP (real vs null under identical treatment) ===")
