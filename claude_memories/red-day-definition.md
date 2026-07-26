@@ -11,8 +11,10 @@ it from data — across all 7 labelled NQ red/green case-study pages, `close<ope
 `close<prior_close` agree on **every single date**, under both D-0 and D-1 scoring. The data cannot
 discriminate. Green day is the mirror.
 
-**The sequence** is verbatim on a slide in `concept_simple_stoic_setups_sss`, held **00:35:12 →
-00:35:57** (this is on-screen text, not spoken — it is in no transcript):
+**The sequence** is verbatim on a slide in `concept_simple_stoic_setups_sss`, held **00:35:05 →
+00:37:00** (115 s; corrected 2026-07-26 by the WP-V harvest — the earlier "00:35:12 → 00:35:57" was
+two sparse keyframes inside a longer hold). This is on-screen text, not spoken — it is in no
+transcript:
 
 > Day 1 / Day 2 / Day 3: Highest Close of the Month · **Day 4: First Red Day = CONFIRMATION**
 

@@ -10,7 +10,9 @@ metadata:
 in any searchable field.
 
 Found the hard way on 2026-07-26: the First Red/Green Day definition is on a slide in
-`concept_simple_stoic_setups_sss` held **00:35:12 → 00:35:57**, and is **never spoken**. Two
+`concept_simple_stoic_setups_sss` held **00:35:05 → 00:37:00** (2105–2220 s, 115 s — the
+"00:35:12 → 00:35:57" once recorded here was two sparse keyframes inside a longer hold), and is
+**never spoken**. Two
 sessions of chart-pixel measurement and transcript inference went into circling a question one OCR
 pass answers outright. See [[red-day-definition]].
 
@@ -32,5 +34,7 @@ Corpus-wide: 2,233 keyframes, 1,526 with an LLM label, **zero** carrying transcr
 - `edu/derived/*/transcript.json` has `segments[]` with `start`/`end` — use it for exact video
   citations rather than asking a model to recall a timestamp.
 
-Fix is planned as WP-V: `docs/notes/2026-07-26-exhaustive-visual-extraction-plan.md`.
+Fix is WP-V: `docs/notes/2026-07-26-exhaustive-visual-extraction-plan.md`. §3.1 has landed — see
+[[visual-harvest-31-status]]; the VLM pass that replaces these labels has **not** run yet, so the
+"treat every label as unverified" rule still stands.
 See [[case-study-fixture-track]], [[slm-model-artifacts]].

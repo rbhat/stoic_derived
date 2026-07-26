@@ -121,6 +121,12 @@ Before anything downstream consumes this:
 
 Record the audit result in this note before proceeding to §4.
 
+> **Status 2026-07-26:** §3.1 has landed and been audited — counts, the two-criterion clustering
+> that replaced plain dHash, and the resume point are in
+> `docs/notes/2026-07-26-wpv-visual-harvest-progress.md`. §3.2 has **not** started. Note also that
+> the "held 00:35:12 → 00:35:57" figure used in §0 above is wrong: the slide is held 00:35:05 →
+> 00:37:00 (115 s).
+
 ## 4. Retraining (conditional, user-directed)
 
 The standing decision had been **not** to retrain (see

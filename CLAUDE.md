@@ -8,7 +8,9 @@ Read these in order before doing anything. This file is a pointer, not a duplica
    user instead. Agent behaviour rules live at the bottom of it.
 3. **`docs/notes/2026-07-25-case-study-fixture-track.md`** — current work, findings, and the
    resume point. **Start here for what to do next.**
-4. **`docs/architecture/adr/`** — binding decisions. ADR-0011 (backtests are observational and
+4. **`coding_rules.md`** — bullet-point rules distilled from real failures here. Read before
+   writing code; append new recurring errors to it.
+5. **`docs/architecture/adr/`** — binding decisions. ADR-0011 (backtests are observational and
    non-gating), ADR-0021 (every derived number is presumed invalid until adversarially audited),
    ADR-0004 (parameters come from the education with evidence, never from a grid search).
 
