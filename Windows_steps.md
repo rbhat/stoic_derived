@@ -1,181 +1,86 @@
-# Windows Steps
+# Windows Steps — SLM retrain (Stage C)
 
-Use WSL 2 with Ubuntu for the portable Windows work. Keep the repository inside
-the WSL filesystem (for example `~/dev/stoic_derived`), not under `/mnt/c`, for
-faster file operations.
+WSL, GPU box, RTX 5070 Ti / 16 GB. Plan: `docs/notes/2026-07-26-slm-retrain-plan.md`.
 
-## 1. One-time WSL setup
+This box runs **only** the training chain. WP-V §3.2 (the VLM extraction) runs on the Mac — the 30B
+VL extractor needs ~17 GB and does not fit this card. Do not swap in a smaller VL model to work
+around that; ask first.
 
-If WSL is not installed, open PowerShell as Administrator:
+## 1. Preconditions — check these before anything else
 
-```powershell
-wsl --install
-```
-
-Restart Windows when prompted, open Ubuntu, and finish the initial user setup.
-Then install Git, `curl`, and `uv` from the Ubuntu shell:
+**Stage A must have landed on the Mac and been pushed.** `.artifacts/` is gitignored, so the
+extraction's own records never travel. The one artifact that does is `edu/derived/dataset.jsonl`,
+rebuilt from them.
 
 ```bash
-sudo apt update
-sudo apt install -y git curl
-curl -LsSf https://astral.sh/uv/install.sh | sh
-source "$HOME/.local/bin/env"
-uv --version
-```
-
-## 2. Get the repository
-
-For a new checkout:
-
-```bash
-mkdir -p ~/dev
-cd ~/dev
-git clone git@github.com:rbhat/stoic_derived.git
-cd stoic_derived
-```
-
-For an existing checkout:
-
-```bash
-cd ~/dev/stoic_derived
-git checkout main
 git pull --ff-only origin main
+git log --oneline -1 -- edu/derived/dataset.jsonl   # must NOT be 9cbfb26
+wc -l < edu/derived/dataset.jsonl                   # baseline is 2233; expect ~10k
 ```
 
-Confirm that the SP0 milestone (`0cbfeab`) or a newer commit is present:
+- `9cbfb26` (Initial commit) means **Stage A has not landed**. Stop — there is nothing new to train
+  on. The old 2,233 rows are the drift-sampled keyframe labels this work exists to replace, and one
+  of them is a known hallucinated caption.
+- Also confirm the §3.3 audit result is recorded in
+  `docs/notes/2026-07-26-exhaustive-visual-extraction-plan.md`. If OCR failed its gate, the fix is
+  the extractor, not a text retrain on bad text.
+
+**Nothing may already be on the GPU.** Two 8B models on one card is OOM and hours lost.
 
 ```bash
-git log -1 --oneline
-git status --short --branch
+pgrep -af "venv/bin/python3 -m stoic_training"   # bare "stoic_training" matches your own shell
+scripts/launch_bg.sh --list
+nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader
 ```
 
-## 3. Install the locked environment
+## 2. Build the chain
 
-`uv` installs the pinned Python version and locked dependencies:
+Write `training/win_cuda/scripts/chain_retrain.sh`, following the style of
+`training/win_cuda/scripts/health.sh`. Resumable, one stage at a time, rc checked between stages:
+
+1. **Eval delta** on the rebuilt corpus against the existing fine-tune `adb3c96ab6020c23` and the
+   instructed base — `cited_qa` and `rule_candidate`. Counts, not verdicts.
+2. **QLoRA retrain**. `training/win_cuda/config/qlora.yaml`, same LoRA geometry as
+   `adb3c96ab6020c23` (r=16 / α=32 / dropout 0.05, all seven attn+MLP projections) unless there is a
+   stated reason to change it. **Non-thinking targets** — thinking stays OFF at inference or the
+   eval will not reproduce.
+3. **Eval the new run**, then compare all three. Disaggregate by task; ADR-0021 applies to every
+   number.
+
+Per the user's call: **measure, then train regardless.** The delta is the record of what changed,
+not a gate — nothing waits overnight.
+
+### Venv traps — non-negotiable
+
+- `export UV_PROJECT_ENVIRONMENT=<repo>/.artifacts/training/venv` before any `uv run`.
+- `uv run` must have cwd `training/win_cuda`. The root `pyproject.toml` is 3.14 and destroys the
+  3.12 CUDA venv.
+- `uv run` must never run while a GPU job is live — it resyncs the venv. Prefer
+  `.artifacts/training/venv/bin/python3 -m stoic_training.<cmd>` directly.
+- `uvx ruff check --fix`, never a bare `ruff check`. Line length 100.
+
+## 3. Launch and hand off
 
 ```bash
-uv sync --group dev
+scripts/launch_bg.sh slm-retrain -- training/win_cuda/scripts/chain_retrain.sh
 ```
 
-Do not copy `.env`, approval private keys, Databento credentials, or other
-secrets into the repository.
+Detaches, holds the machine awake for exactly the job's lifetime (Windows-side
+`SetThreadExecutionState` keeper, no admin, released when the job exits), refuses to launch over a
+job that is already alive, and prints a pid.
 
-## 4. Run the portable SP0 checks
+**Report that pid.** It is all a later session needs:
 
 ```bash
-uv run pytest -q
-uv run ruff format --check src tests
-uv run ruff check src tests
-uv run mypy src
-uv lock --check
-uv run stoic-rulebook validate strategy/rulebook.yaml --skip-source-verification
-uv run stoic-rulebook render strategy/rulebook.yaml --check strategy/RULEBOOK.md
+scripts/job_status.sh <pid>
 ```
 
-Expected result:
+Returns **0** running or clean · **1** crashed · **2** stalled. Stalled — alive but nothing written
+for 25 min — is the one that matters; a wedged CUDA job stays "alive" indefinitely. Diagnose a
+stall, never launch a second copy over it.
 
-- all tests pass (the suite grows as roadmap milestones land);
-- formatting, lint, typing, lock, and dossier drift checks pass;
-- rulebook validation says `valid` and `readiness: BLOCKED`;
-- blockers are expected because exact strategy rules and human approval are not
-  yet complete.
+## 4. What would make this the wrong call
 
-`--skip-source-verification` is appropriate when the large education files have
-not been synced to Windows. If the complete `edu/` source corpus is available,
-also run strict source verification:
-
-```bash
-uv run stoic-rulebook validate strategy/rulebook.yaml
-```
-
-## 5. Report the result
-
-Capture the verification output without changing tracked files:
-
-```bash
-mkdir -p .scratch/windows
-uv run pytest -q 2>&1 | tee .scratch/windows/sp0-pytest.txt
-uv run stoic-rulebook validate strategy/rulebook.yaml --skip-source-verification \
-  2>&1 | tee .scratch/windows/sp0-rulebook.txt
-git status --short --branch
-```
-
-The CUDA fine-tuning package is a later, offline research task. It is not part
-of this SP0 verification and does not gate deterministic live signals.
-
-## 6. Run the portable SP1 checks
-
-After the SP1 milestone is announced and pushed:
-
-```bash
-cd ~/dev/stoic_derived
-git checkout main
-git pull --ff-only origin main
-uv sync --group dev
-uv run pytest -q
-uv run ruff format --check src tests
-uv run ruff check src tests
-uv run mypy src
-uv lock --check
-```
-
-These checks use fakes and require neither a Databento key nor local DBN files.
-Expected result: every command passes.
-
-If the small NQ tail DBN has also been copied into `data/historical/`, run:
-
-```bash
-mkdir -p .scratch/windows
-TAIL_FILE='data/historical/GLBX.MDP3__NQ__2026-06-06__2026-06-10T16:45:00.trades.dbn.zst'
-CALENDAR='config/market_data/calendars/cme-equity-index-2026-06-tail-v1.json'
-
-uv run stoic-data inspect "$TAIL_FILE"
-uv run stoic-data sample "$TAIL_FILE" \
-  --records 10000 \
-  --calendar-manifest "$CALENDAR" \
-  > .scratch/windows/sp1-sample.json
-```
-
-The sample should report 10,000 events, all six timeframes, no issues, and six
-degraded final bars because the bounded sample intentionally ends inside open
-intervals. Do not copy a Databento API key into the repository.
-
-## 7. Run the portable SP2 checks
-
-After the SP2 milestone is announced and pushed:
-
-```bash
-cd ~/dev/stoic_derived
-git checkout main
-git pull --ff-only origin main
-uv sync --group dev
-
-uv run pytest -q tests/signal_engine
-uv run pytest -q
-uv run ruff format --check src tests
-uv run ruff check src tests
-uv run mypy src
-uv lock --check
-```
-
-Inspect the production readiness boundary:
-
-```bash
-mkdir -p .scratch/windows
-uv run stoic-signal readiness \
-  --candidate strategy/rulebook.yaml \
-  | tee .scratch/windows/sp2-readiness.json
-```
-
-Expected result:
-
-- all checks pass without network, Databento, model, broker, or CUDA access;
-- readiness reports `"status": "blocked"` and
-  `"signal_engine_ready": false`;
-- the blockers list the still-unvalidated strategy profiles, unresolved
-  decisions, source conflict, and missing human approval.
-
-That blocked state is correct: SP2 may produce live signals only from a pinned,
-signed, semantically complete SP0 release. The strategy-neutral signal tests
-exercise engine mechanics and are not trading rules. Do not create or copy an
-approval private key into the repository.
+- The §3.3 audit shows OCR is unreliable → fix the extractor, not the text model.
+- The rebuilt dataset is barely different from the 2,233-row baseline → there is nothing new to
+  learn. Say so rather than spending GPU hours.
