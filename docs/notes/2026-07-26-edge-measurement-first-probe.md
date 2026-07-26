@@ -176,15 +176,53 @@ it is not a verdict on break-and-retest generally (n=46 can only detect a large
 effect). It **is** a verdict on the idea that a first probe would obviously
 print money.
 
-### The design finding worth more than the P/L
+### The stop is correctly placed — checked, and it is not the problem
 
-Median risk of **55.6 NQ points ≈ $1,112 per contract** on an intraday setup
-says the stop design is wrong for the timeframe. The stop sits beyond the full
-range of the retest bar, and a sweep-and-reclaim 5m bar is by construction one
-of the widest bars in the session. Targets at 2R are then ~111 points, which is
-swing distance — one trade in the sample was held 08:41→15:41. Any next
-iteration should place the stop from **1m structure inside the retest bar**,
-not from the 5m bar's extreme.
+An earlier draft of this note claimed the wide stop was a design defect and
+proposed tightening it using 1m structure. **That was wrong on both counts**
+and is retracted here.
+
+**Timeframe alignment.** A stop derived from a lower timeframe than the signal
+gets hit by noise before the higher-timeframe thesis can play out. A 5m setup
+must carry a 5m-aligned stop and target; the 1m timeframe's job is entry
+precision, which is exactly what it does here (ADR-0012 range-touch fills).
+The implemented stop already sits beyond the **5m** retest bar's extreme, so it
+was 5m-aligned all along — the proposed "fix" would have been a regression into
+precisely the noise-stop failure mode.
+
+**And the evidence says the geometry is fine:**
+
+| | |
+|---|---|
+| stopped trades, median MFE | **+0.51 R** (max +1.92 R) |
+| stopped trades reaching ≥1.0 R first | 7 of 27 |
+| stopped trades, median hold | **10 minutes** |
+| target trades, median hold | 42 minutes |
+| 2R distance vs median daily range | **25%** — reachable, and reached 18 of 46 times |
+
+Short holds with *low* MFE is clean, fast invalidation. Noise-stopping would
+look like short holds with *high* MFE. It does not.
+
+**R-multiple sweep, stop held fixed** — the decisive one:
+
+| R | n | win% | E[R] | 95% CI |
+|---|---|---|---|---|
+| 1.00 | 46 | 56.5% | +0.123 | [−0.182, +0.428] |
+| 1.50 | 46 | 47.8% | +0.188 | [−0.193, +0.569] |
+| 2.00 | 46 | 41.3% | +0.203 | [−0.225, +0.624] |
+| 3.00 | 46 | 32.6% | +0.159 | [−0.315, +0.670] |
+
+Expectancy is flat and win rate decays exactly as pure geometry predicts. A
+setup carrying directional information would show some R multiple pulling
+ahead. **This strengthens the negative result**: mis-specified stop/target
+design is eliminated as an explanation for it.
+
+**What the wide stop does cost is position sizing, not expectancy.** R
+normalisation means stop size cannot move E[R]. But 222 ticks ≈ 55.6 NQ points
+≈ **$1,112 per NQ contract** per trade. Risking 1% of a $50k account is $500 —
+less than a single NQ contract on this setup. Trading it at that account size
+means **MNQ micros** (~$111/trade), or a larger account. That is an account
+arithmetic constraint to plan around, not a defect to fix.
 
 ## 6. Methodology findings (these outlive the numbers)
 
@@ -239,13 +277,20 @@ not from the 5m bar's extreme.
    mis-modeling in the probe.
 4. **Add the 60m HTF context filter** so the `Day` rule is actually the `Day`
    rule, then re-measure. Only after 1–3, so the sample can support it.
-5. **Fix the stop design** — place the stop from 1m structure inside the retest
-   bar rather than beyond the 5m bar's extreme. Median risk of 55.6 NQ points
-   on an intraday trade is the single most obviously wrong number in the
-   output, and it changes both R and how many setups clear the risk band.
-6. **Restate every tick parameter as a fraction of ATR** so parameters survive
+5. **Keep the stop 5m-aligned; do not tighten it with 1m structure.** A stop
+   below the signal timeframe is hit by noise before the 5m thesis resolves.
+   1m is for entry precision only. Verified not to be the problem (§5): fast,
+   clean invalidation and a flat R sweep. If stop *placement* is ever revisited,
+   the open question is which **5m** structure defines invalidation — the retest
+   bar's extreme (current) vs the reclaimed level itself — and that is the
+   `risk-and-management` entry in `unresolved_decisions`, a strategy decision
+   for the human, testable as a variant.
+6. **Plan sizing around ~$1,112/contract risk**, or trade MNQ. This is account
+   arithmetic, not a rule change, but it decides whether the setup is tradeable
+   at a given account size.
+7. **Restate every tick parameter as a fraction of ATR** so parameters survive
    a change in price level.
-7. **Only then** decide whether break-and-retest is worth keeping, and whether
+8. **Only then** decide whether break-and-retest is worth keeping, and whether
    the SLM's batch-annotation path (see the SLM note) is worth resuming to
    scale from one setup to several.
 
