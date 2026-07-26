@@ -4,8 +4,16 @@
 # awake for the duration, and leaves one directory an agent can be pointed at
 # later with nothing but the pid.
 #
+#   scripts/launch_bg.sh                      the default job: report it if it
+#                                             is already running, else start it
+#   scripts/launch_bg.sh --status             where the default job is up to
 #   scripts/launch_bg.sh <job-name> -- <command...>
 #   scripts/launch_bg.sh --list
+#
+# Bare and --status are conveniences for the one long job this machine runs
+# (WP-V §3.2). They forward to scripts/extract.sh, which owns that job's
+# definition -- so there is one place where "the default job" is decided, not
+# two that can drift. Everything else still takes an explicit <job-name>.
 #
 # On exit it prints the pid. That pid is the only thing you need to hand back:
 #   scripts/job_status.sh <pid>
@@ -22,7 +30,22 @@ set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 JOBS="$REPO/.artifacts/jobs"
 
-usage() { sed -n '2,20p' "$0" | sed 's/^# \?//'; exit "${1:-1}"; }
+# Two plain expressions, not 's/^# \?//': BSD sed has no \? in a basic regex,
+# so on macOS that pattern silently matched nothing and printed the comment
+# markers verbatim.
+usage() { sed -n '2,27p' "$0" | sed -e 's/^#//' -e 's/^ //'; exit "${1:-1}"; }
+
+# The default job. extract.sh is the owner: bare, it reports a live job's pid
+# and log or starts one, and --status reports progress. Forwarding rather than
+# reimplementing keeps the already-running check in one place.
+#
+# No recursion risk: extract.sh comes back here with an explicit
+# "<job-name> -- <command>", which never re-enters this branch.
+DEFAULT_ENTRY="$REPO/scripts/extract.sh"
+
+if [ $# -eq 0 ] || [ "${1:-}" = "--status" ]; then
+    exec "$DEFAULT_ENTRY" "$@"
+fi
 
 if [ "${1:-}" = "--list" ]; then
     printf '%-28s %-8s %-9s %s\n' JOB PID STATE STARTED
