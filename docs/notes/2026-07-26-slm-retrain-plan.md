@@ -28,7 +28,7 @@ by whether it serves those two.
 
 | stage | machine | why | wall time |
 |---|---|---|---|
-| **A** §3.2 VLM extraction, 10,120 states | **Mac** | `qwen3-vl-30b-a3b-instruct-mlx` needs ~17 GB even at 4-bit | ≈ 16.9 h @ 6 s/state |
+| **A** §3.2 VLM extraction, 10,120 states | **Mac** | `qwen3-vl-30b-a3b-instruct-mlx` needs ~17 GB even at 4-bit | ≈ 50–75 h **measured**, see §2 |
 | **B** §3.3 audit gate + rebuild `edu/derived/dataset.jsonl` | Mac | cheap, deterministic | minutes |
 | **C** eval delta → QLoRA retrain → eval | **WSL / RTX 5070 Ti** | CUDA, and the training package already lives there | hours |
 
@@ -57,17 +57,50 @@ Build `edu/pipeline/visual_extract.py`. Spec is `2026-07-26-exhaustive-visual-ex
 - **Resumable per state**, elapsed/ETA per video, same three-stage pattern as `visual_harvest.py`.
   Restarting must re-do only what is missing.
 
-Launch:
+`scripts/extract.sh` is the single entry point — re-run it to resume after anything (a kill for
+heat, a power cut, an LM Studio restart):
 
 ```bash
-scripts/launch_bg.sh wpv-32-extract -- .venv/bin/python edu/pipeline/visual_extract.py
+scripts/extract.sh            # start, or report the pid + log if already running
+scripts/extract.sh --status   # where it is up to (safe while live)
+scripts/extract.sh --stop     # stop it
 ```
 
-That detaches it, holds `caffeinate` for exactly as long as the job lives, and prints the pid.
+It detaches via `launch_bg.sh`, holds `caffeinate` for exactly as long as the job lives, prints the
+pid, and supervises through LM Studio restarts. Resume is per state, so re-running is always safe
+and only redoes what is genuinely missing.
 
-**Budget ≈ 16.9 h**, not the ~12 h older notes quote — that figure came from the calibration's
-*extrapolated* 7,249 states; the measured corpus is 10,120. The 5,139 live-session states are 8.6 h
-of it and are the lever if that needs cutting.
+### Budget — MEASURED 2026-07-26, superseding the 16.9 h estimate
+
+The 16.9 h figure was `10,120 × 6 s/state`, and the 6 s was never measured. Measured on the
+53-state `concept_simple_stoic_setups_sss` run:
+
+| frame kind | n | s/state |
+|---|---|---|
+| slide | 38 | 9.8 |
+| chart | 15 | 23.2 |
+
+Chart frames cost 2–3× because output tokens dominate, and the live sessions are 5,139 near-all-chart
+states. Realistic total **including the +30 % thermal duty cycle** (90 s idle per 300 s of work,
+added at the user's request): **≈ 50–75 h for the full corpus.**
+
+**Scope decision, user's call 2026-07-26: extract everything, live sessions included** — "make sure
+all the info is covered including live sessions". §2's suggestion of cutting the 5,139 live states
+as a time lever is therefore **withdrawn**. Processing order remains `concept_* → cs_* → live_*` so
+the rule-dense material lands first, but the pass is not complete until all 16 videos are.
+
+### The axis-furniture deviation (user's decision, 2026-07-26)
+
+Chart frames were transcribing every price-axis and time-axis tick — 113 lines / 75 s on one dual
+chart, ~94 % of it furniture that answers no rulebook question. The user chose to **exclude
+repeating axis ladders from `ocr_text`**, keeping titles, rule statements, chart headers, drawn
+labels and called-out prices. This is a deliberate departure from §3.2's literal "every text
+element, verbatim", recorded as a decision, not a measurement. It is enforced twice — in the prompt
+and by a deterministic post-filter — because measured model compliance was only ~50 %; when the
+filter fires the record retains `ocr_text_raw` and `axis_lines_stripped`, so nothing is lost.
+
+Every record carries a `prompt_sha`. Two shas in one corpus means two different definitions of
+`ocr_text`; `--status` and the reports flag it rather than silently blending them.
 
 ## 3. Stage B — audit gate, then the dataset
 
