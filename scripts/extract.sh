@@ -36,8 +36,33 @@ running_pid() {
     printf '%s' "$pid"
 }
 
+# started_utc is stamped by launch_bg.sh. Report it in Pacific and as an
+# elapsed duration, because "2026-07-26T23:03:08Z" answers neither question
+# actually being asked: when did I start this, and how long has it been going.
+# The elapsed figure is wall time since launch, so it includes the thermal
+# pauses -- that is the honest number to compare against the ETA, which also
+# includes them.
+runtime_line() {
+    local started
+    started="$(cat "$JOB_DIR/started_utc" 2>/dev/null)" || return 0
+    [ -n "$started" ] || return 0
+    "$PY" - "$started" <<'PYEOF' 2>/dev/null || true
+import sys
+from datetime import UTC, datetime
+from zoneinfo import ZoneInfo
+
+started = datetime.strptime(sys.argv[1], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=UTC)
+elapsed = int((datetime.now(UTC) - started).total_seconds())
+h, m = divmod(elapsed // 60, 60)
+local = started.astimezone(ZoneInfo("America/Los_Angeles"))
+print(f"  started {local:%a %d %b %Y %H:%M:%S %Z}")
+print(f"  running {h}h{m:02d}m")
+PYEOF
+}
+
 case "${1:-}" in
     --status)
+        runtime_line
         exec "$PY" "$EXTRACT_PY" --status
         ;;
 
@@ -66,7 +91,7 @@ case "${1:-}" in
             echo "$JOB is ALREADY RUNNING"
             echo "  pid     $pid"
             echo "  log     $(readlink "$LOG_LINK" 2>/dev/null || echo "$LOG_LINK")"
-            echo "  started $(cat "$JOB_DIR/started_utc" 2>/dev/null || echo '-')"
+            runtime_line
             echo
             echo "  tail -f $LOG_LINK"
             echo "  scripts/extract.sh --status     where it is up to"
