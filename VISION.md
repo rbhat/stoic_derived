@@ -73,6 +73,8 @@ Use .scratch/ folder to create and execute temporary files and scripts. DO NOT A
 
 Evidence: Before calling anything an error, check it against ground truth - the source artifact (frame, PDF, bars), not the system's own other output. Model-vs-itself, or
 run-vs-run, measures disagreement, not error. State which artifact you opened.
+Docs: Do not add changelog into documents that are not changelog driven.
+
 
 Scope: Check whether a field is already ruled out of scope before measuring it. Do not build audit machinery for something already decided advisory or untrained-on.
 Never generalize from examples pulled off an anomaly, outlier or unmatched list - that list is selected for weirdness. Measure the population.
