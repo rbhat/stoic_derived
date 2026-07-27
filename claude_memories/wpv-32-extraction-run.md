@@ -407,3 +407,12 @@ Not a gate — counts, per [[signal-fidelity-over-edge-revalidation]] and ADR-00
 
 Next after extraction: §3.3 audit gate, then rebuild `edu/derived/dataset.jsonl`, then Stage C on
 WSL. Full chain in `docs/notes/2026-07-26-slm-retrain-plan.md`.
+
+## The §3.3 gate has been built and run once — see [[wpv-33-ocr-gate]]
+
+`edu/pipeline/ocr_gate.py`, first pass 2026-07-27 on 1,138 records. It confirms the "`ocr_text` is
+the signal and it is healthy" line above with ground truth, and adds three measured caveats: level
+**labels** are not error-free either (`HCOW` → `HCOM` on 12 of 32 frames of one chart), **printed**
+prices are misread too (`4,689.9` for a printed `4,680.9` on 30 of 71 frames), and diagram labels
+(`SFP`, `B&R`, the `DAY` row) drop off some template slides while the rule text never does. Re-run
+it with `sample --force` when the corpus finishes.
