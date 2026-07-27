@@ -14,8 +14,9 @@ scripts/extract.sh              # start or resume — always safe, resumes per s
 scripts/extract.sh --stop       # e.g. the laptop is hot
 ```
 
-- ~2,500 / 10,120 states, **0 errors**, one `prompt_sha` (`3eccf9049745`), unreadable-line rate 0.0000.
-- Concept videos (5) complete. `cs_vol1` in progress. `cs_vol2-7` and 4 `live_*` not started.
+- 2,476 / 10,120 states (24.5 %), **0 errors**, one `prompt_sha` (`3eccf9049745`), unreadable-line
+  rate 0.0000.
+- Concept videos (5) complete. `cs_vol1` at 353/439. `cs_vol2-7` and 4 `live_*` not started.
 - Measured wall rate **33.5 s/state** (work 21.4 s + the designed thermal duty cycle).
   **~29 h to end of `cs_vol7`, ~77 h to full corpus** — inside the recorded 20–47 h / 45–105 h bracket.
 - `--status` prints an ETA built only from states done *this run*; it is not a corpus ETA.
@@ -66,11 +67,10 @@ A persistent monitor watches the extraction and reports video completions, error
 Use the command, not a hand-written index: an index file is a copy, and copies drift. Same reason
 `docs/CONSTRAINTS.md` points instead of paraphrasing.
 
-## Structural debt
+## What does not belong in this file
 
-- ~~`claude_memories/wpv-32-extraction-run.md` is 422 lines doing six jobs.~~ **Split 2026-07-27**
-  into `wpv-32-extraction-ops.md` (how to run it: commands, durability, thermal, the four constants,
-  the sanity check) and `wpv-32-extraction-findings.md` (what the output says: the STOP directive
-  first, `ocr_text` healthy, levels advisory, Stage B). The STOP AUDITING `drawn_levels` directive
-  opens the findings file and is repeated as a banner at the top of the ops file. Stale status
-  snapshots were dropped — `docs/STATE.md` owns status.
+Completed work. This file says what is true now; `git log` says what happened. An item is deleted
+when it is done, not struck through, and never annotated with what it used to say. The same holds
+for `docs/CONSTRAINTS.md` and the memories: history earns its place only when it stops a repeat —
+"two checks were built against `drawn_levels` and retired" is worth keeping, "this file was split"
+is not. Dated notes under `docs/notes/` are the exception; they are records and keep their history.

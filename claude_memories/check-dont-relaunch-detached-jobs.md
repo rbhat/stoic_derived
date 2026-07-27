@@ -1,11 +1,8 @@
 ---
 name: check-dont-relaunch-detached-jobs
 description: "User directive — detached GPU jobs and watcher shells are already running; check them, never re-launch"
-metadata: 
-  node_type: memory
+metadata:
   type: feedback
-  originSessionId: f8c47e52-d8d8-4a54-a18d-91b7e1a72f62
-  modified: 2026-07-26T02:59:17.192Z
 ---
 
 Long-running detached shells (GPU eval/train jobs, and the chained watcher
@@ -13,9 +10,9 @@ script that auto-launches the next job) survive context clears, so a fresh
 session has no record of them. **Before launching anything on the GPU, CHECK
 whether it is already running** — do not launch, re-arm, or re-create blindly.
 
-**Current state (verified 2026-07-26): nothing is running.** The v3 chain
-completed all three runs and the GPU is free — see [[eval-comparison-wp-progress]].
-Re-verify rather than trusting this line; it ages.
+**Never record what is running here — this file ages and a stale "nothing is running" is worse
+than no line at all.** `docs/STATE.md` owns that, and the job itself is authoritative over both:
+`scripts/launch_bg.sh --list`, or `scripts/extract.sh --status` for the §3.2 extraction.
 
 **Jobs launched via `scripts/launch_bg.sh` are self-describing** — hand a fresh session just the
 pid and run `scripts/job_status.sh <pid>`. It resolves the pid to its job dir under

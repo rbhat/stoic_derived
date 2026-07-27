@@ -1,11 +1,8 @@
 ---
 name: case-study-fixture-track
 description: "The Vol 1-7 case-study PDFs are machine-readable fixture ground truth — text layer gives instrument/date/day-label, our bars reproduce the instructor's HCOM/LCOM exactly, and page-title dates are TRADE days not signal days"
-metadata: 
-  node_type: memory
+metadata:
   type: project
-  originSessionId: 55875ae9-8877-4cbf-92fe-1c4e67ee40a4
-  modified: 2026-07-26T03:45:21.441Z
 ---
 
 Started 2026-07-25 under [[signal-fidelity-over-edge-revalidation]]. User chose: start fixtures
@@ -49,15 +46,14 @@ outright (`cs_vol3` and `concept_candle_swing_theory_pdh_pdl_pdc` transcripts):
 > "printed first red day and **this was the trade day right after the first red day**"
 > "**if yesterday was the first red day after a pump** look for continuation shorts"
 
-So the flip day is **D-1** and the page date **D** is when you trade. Guessing the naive reading
-would have mislabelled every one of these fixtures.
+The page date **D** is when you trade, and the arrows on the chart mark that trade day, not the flip
+candle. Reading the title as a per-date candle classification would mislabel every one of these
+fixtures.
 
-**RESOLVED 2026-07-26 — see [[red-day-definition]].** The old "5/7 with two misses" scoring here was
-an artifact of two wrong assumptions and is withdrawn: the arrows mark the **trade day**, not the
-flip candle, and the title parenthetical is a **cycle-context label**, not a per-date candle
-classification. The flip is therefore *not* always D-1. Red is now a recorded human decision
-(`close < open`); the data cannot discriminate the two candidate definitions — they agree on all 7
-labelled dates under both scorings.
+**The parenthetical is a cycle-context label, not a per-date claim**, so the flip is *not* always
+D-1 — do not build a fixed D-1 offset into anything. Red itself is a recorded human decision
+(`close < open`); the data cannot discriminate the two candidate definitions, since they agree on
+all 7 labelled dates. See [[red-day-definition]].
 
 ## Conventions chosen
 
@@ -74,14 +70,13 @@ labelled dates under both scorings.
 
 ## Resume point (next actions, in order)
 
-1. ~~Read vol2_p06/p08 to settle the red definition.~~ **DONE** — [[red-day-definition]].
-2. **WP-V exhaustive visual extraction** — now the blocking prerequisite, because rule definitions
+1. **WP-V exhaustive visual extraction** — the blocking prerequisite, because rule definitions
    live on slides no transcript contains ([[slide-text-not-in-transcripts]]). Plan:
    `docs/notes/2026-07-26-exhaustive-visual-extraction-plan.md`.
-3. Chart-extraction pass over the 25 in-scope pages → per-fixture proposals for human review.
+2. Chart-extraction pass over the 25 in-scope pages → per-fixture proposals for human review.
    Derive levels from `.artifacts/research/bars/` where possible; use the chart only for
    chart-exclusive facts.
-4. Feed confirmed numbers into the 12 `unresolved_decisions`. vol2 p03 alone bears on
+3. Feed confirmed numbers into the 12 `unresolved_decisions`. vol2 p03 alone bears on
    `fib-anchors-and-target-order` (ladder 1 / 1.618 / 2 / 2.618 / 4.236), `sbs-pivots-and-origin`
    (pivots are numbered 1-5 on the chart), and `risk-and-management`.
 

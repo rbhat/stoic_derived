@@ -1,11 +1,8 @@
 ---
 name: win-cuda-training-package
 description: DONE — the Windows/WSL QLoRA training package, its environment traps, and the residual audit warts (kept for the traps, not as an active task)
-metadata: 
-  node_type: memory
+metadata:
   type: project
-  originSessionId: 9f026b50-4df5-449e-948a-302bd74a696e
-  modified: 2026-07-26T02:59:09.391Z
 ---
 
 **Status: COMPLETE, not an active task.** Package committed and pushed 2026-07-24

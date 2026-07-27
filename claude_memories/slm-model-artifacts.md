@@ -1,11 +1,8 @@
 ---
 name: slm-model-artifacts
 description: "Where the fine-tuned SLM lives on the Windows box, which file to move to the Mac, and the 2026-07-26 decision to retrain it after the visual extraction"
-metadata: 
-  node_type: memory
+metadata:
   type: reference
-  originSessionId: 55875ae9-8877-4cbf-92fe-1c4e67ee40a4
-  modified: 2026-07-26T03:45:38.089Z
 ---
 
 Fine-tuned run **`adb3c96ab6020c23`** — Qwen3-8B (`Qwen/Qwen3-8B` @ `b968826d9c46dd6066`), LoRA

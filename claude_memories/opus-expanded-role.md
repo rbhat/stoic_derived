@@ -1,11 +1,8 @@
 ---
 name: opus-expanded-role
 description: "User wants Opus subagents given broad responsibilities (orchestrate + audit + verify), not just final audits"
-metadata: 
-  node_type: memory
+metadata:
   type: feedback
-  originSessionId: 6ffef739-fb7c-4962-aca7-e774e35a8ec1
-  modified: 2026-07-25T04:59:18.382Z
 ---
 
 User directive (2026-07-24, during the QLoRA run): "give opus 5 more

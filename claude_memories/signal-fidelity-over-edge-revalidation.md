@@ -1,11 +1,8 @@
 ---
 name: signal-fidelity-over-edge-revalidation
 description: "User directive — Stoic's method is a proven given, not a hypothesis; build a signal generator from the education and measure fidelity, never re-litigate the edge or gate on small-sample profit tests"
-metadata: 
-  node_type: memory
+metadata:
   type: feedback
-  originSessionId: 1d8f168f-98ba-445f-bd52-251e530880d6
-  modified: 2026-07-26T02:30:21.991Z
 ---
 
 The Stoic method is proven in live trading across timeframes and futures instruments. It is a

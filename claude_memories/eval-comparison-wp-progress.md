@@ -2,10 +2,7 @@
 name: eval-comparison-wp-progress
 description: WP1-WP8 execution state for the eval-comparison work (resume point after context reset)
 metadata:
-  node_type: memory
   type: project
-  originSessionId: 018c805a-3b25-4f21-8ef3-54ce567a23ba
-  modified: 2026-07-26T03:45:43.883Z
 ---
 
 Executing `docs/superpowers/specs/2026-07-24-eval-comparison-design.md` (started 2026-07-25).

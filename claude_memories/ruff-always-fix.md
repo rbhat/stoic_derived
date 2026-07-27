@@ -1,11 +1,8 @@
 ---
 name: ruff-always-fix
 description: "User directive: always run ruff with --fix, never bare `ruff check`"
-metadata: 
-  node_type: memory
+metadata:
   type: feedback
-  originSessionId: 0ad49c37-6721-49a5-a623-de107f0caade
-  modified: 2026-07-26T02:59:55.309Z
 ---
 
 User directive (2026-07-25): always run ruff with the `--fix` option.

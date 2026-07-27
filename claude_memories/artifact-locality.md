@@ -1,11 +1,8 @@
 ---
 name: artifact-locality
 description: "User directive — all run artifacts stay under the repo working directory, never in ~ or other drives"
-metadata: 
-  node_type: memory
+metadata:
   type: feedback
-  originSessionId: 9f026b50-4df5-449e-948a-302bd74a696e
-  modified: 2026-07-26T02:59:15.267Z
 ---
 
 On 2026-07-24 the user directed that everything a run writes (logs,

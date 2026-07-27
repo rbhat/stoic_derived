@@ -2,10 +2,7 @@
 name: edge-measurement-first-probe
 description: The 2026-07-26 NQ probe — what it actually measured (a thin proxy, not the method), why its conclusion was retired, and which infrastructure survives for reuse
 metadata:
-  node_type: memory
   type: project
-  originSessionId: fa4306b2-7119-44b7-a21f-4a3d03cca357
-  modified: 2026-07-26T02:31:14.538Z
 ---
 
 **Read [[signal-fidelity-over-edge-revalidation]] first — it is the rule this probe violated.**

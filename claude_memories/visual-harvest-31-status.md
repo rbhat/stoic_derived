@@ -31,8 +31,10 @@ Full write-up, counts, and the ordered resume point:
   because a ±1 s ambiguity on a 1-second state is video motion, not a defect. The membership test
   alone passes a deliberately wrong frame 64 % of the time — that is why the absolute bound is
   paired with it, and why the fix ships with a negative control that makes the gate fail.
-- **The VLM budget is ≈ 16.9 h at 6 s/state, not the ~12 h in the older notes** — 12 h came from
-  the calibration's 5-video extrapolation (7,249 states); the measured corpus is 10,120.
+- **Every VLM budget derived here was an estimate and all of them are superseded.** The plan's
+  6 s/state (≈16.9 h) and the calibration's ~12 h both predate measurement; the measured rate
+  bracket is in [[wpv-32-extraction-ops]] § Measured rates. What survives from this file is the
+  **corpus size: 10,120 states**, against the calibration's 5-video extrapolation of 7,249.
 
 **Correction:** the First Red/Green Day slide is held **2105–2220 s (00:35:05–00:37:00, 115 s)**,
 not the 45 s that the plan and older notes claim — that figure came from two sparse keyframes inside

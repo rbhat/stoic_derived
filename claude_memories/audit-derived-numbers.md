@@ -1,11 +1,8 @@
 ---
 name: audit-derived-numbers
 description: User directive — adversarially audit every number derived from a test before reporting it
-metadata: 
-  node_type: memory
+metadata:
   type: feedback
-  originSessionId: 4613a0db-2e0a-46b8-b05a-e589c1fc3875
-  modified: 2026-07-25T23:48:01.048Z
 ---
 
 Every number that comes out of a test or eval run is presumed invalid until it has survived an
