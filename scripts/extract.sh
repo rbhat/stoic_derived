@@ -42,21 +42,63 @@ running_pid() {
 # The elapsed figure is wall time since launch, so it includes the thermal
 # pauses -- that is the honest number to compare against the ETA, which also
 # includes them.
+#
+# It must also answer "is it still going", and for a while it did not: this
+# printed "running 0h40m" off started_utc alone, so a stopped job reported a
+# timer that kept climbing every time it was asked. That is the single most
+# dangerous thing this script could get wrong -- --status is what gets checked
+# before deciding whether to relaunch, and a job that looks alive is a job
+# nobody restarts. The counts underneath were right the whole time, which is
+# what made it convincing. Liveness now comes from running_pid(), the same
+# check --stop and the launcher use.
+#
+# When it is dead, the useful number is not "now minus started" but how long it
+# actually ran, so the end is taken from the last write to the log. That is the
+# supervisor's own heartbeat -- it logs a cooling line every few minutes -- and
+# once the process is gone nothing else touches the file.
 runtime_line() {
-    local started
+    local started logp
     started="$(cat "$JOB_DIR/started_utc" 2>/dev/null)" || return 0
     [ -n "$started" ] || return 0
-    "$PY" - "$started" <<'PYEOF' 2>/dev/null || true
+    logp="$(readlink "$LOG_LINK" 2>/dev/null || echo "$LOG_LINK")"
+    local alive=0 pid
+    if pid="$(running_pid)"; then alive=1; else pid=""; fi
+    "$PY" - "$started" "$alive" "$logp" "$pid" <<'PYEOF' 2>/dev/null || true
 import sys
 from datetime import UTC, datetime
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
-started = datetime.strptime(sys.argv[1], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=UTC)
-elapsed = int((datetime.now(UTC) - started).total_seconds())
-h, m = divmod(elapsed // 60, 60)
-local = started.astimezone(ZoneInfo("America/Los_Angeles"))
-print(f"  started {local:%a %d %b %Y %H:%M:%S %Z}")
-print(f"  running {h}h{m:02d}m")
+started_s, alive_s, logp, pid = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+PT = ZoneInfo("America/Los_Angeles")
+started = datetime.strptime(started_s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=UTC)
+now = datetime.now(UTC)
+
+
+def hm(seconds: float) -> str:
+    h, m = divmod(max(0, int(seconds)) // 60, 60)
+    return f"{h}h{m:02d}m"
+
+
+print(f"  started {started.astimezone(PT):%a %d %b %Y %H:%M:%S %Z}")
+
+if alive_s == "1":
+    print(f"  running {hm((now - started).total_seconds())}  (pid {pid})")
+    sys.exit(0)
+
+# Dead. Prefer the log's last write as the end of the run; fall back to saying
+# so rather than quietly reporting wall time as if it were runtime.
+end = None
+try:
+    end = datetime.fromtimestamp(Path(logp).stat().st_mtime, UTC)
+except OSError:
+    pass
+if end is None or end < started:
+    print("  STOPPED  (not running; no log activity to date the end of the run)")
+else:
+    print(f"  STOPPED  ran {hm((end - started).total_seconds())}, "
+          f"last activity {end.astimezone(PT):%H:%M:%S %Z} "
+          f"({hm((now - end).total_seconds())} ago)")
 PYEOF
 }
 
