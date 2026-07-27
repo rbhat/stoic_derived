@@ -71,14 +71,31 @@ KNOWN_METHOD_TERMS = {
     "HOW",                          # highest of week
     "PHCOM", "PLCOM", "PHOW",       # the previous-period forms
     "PMHC", "PMLC",                 # previous month high close / low close
+    "PMH", "PML",                   # previous month high / low -- settled from the
+                                    # corpus, not the pixels: the Multi-Timeframe
+                                    # Breakout slide (`concept_simple_stoic_setups_sss`
+                                    # #0018, class `slide`, conf `high`) prints
+                                    # "Daily: Close above PDH / below PDL", "Weekly:
+                                    # ... PWH / ... PWL", "Monthly: Close above PMH /
+                                    # below PML". A different video from the 38 frames
+                                    # that flagged. `PMC` is NOT added: the parallel
+                                    # predicts it, the corpus does not attest it, and
+                                    # an unattested entry silently absorbs a real
+                                    # misreading.
     "SFP", "B&R", "SBS", "POI",
     "HTF", "LTF",                   # higher / lower time frame, used as a pair
     "SSS",                          # Simple Stoic Setups -- a video title, not a typo for SBS
 }
 
-# Attested corpus noise -- tickers, exchanges, chart furniture and ordinary
-# words that happen to fall within one edit of a term above (`LOW` is one
-# insertion from `LCOW`). Excluded from both the suspect list and --oov.
+# Exempt, and NOT a match target -- the difference from KNOWN_METHOD_TERMS.
+# Two kinds of entry:
+#   1. Attested corpus noise -- tickers, exchanges, chart furniture and ordinary
+#      words that happen to fall within one edit of a term above (`LOW` is one
+#      insertion from `LCOW`).
+#   2. Tokens confirmed verbatim against the pixels that are too short to serve
+#      as a match target. A 2-character target makes every other 2-character
+#      token a suspect, which is noise, not signal.
+# Excluded from both the suspect list and --oov.
 NOT_METHOD_TERMS = {
     "USD", "AUD", "BTC", "NQ", "CL", "YM", "GC", "MNQ", "ES",
     "CME", "CBOT", "COMEX", "NYMEX", "OANDA", "NASDAQ", "BLL",
@@ -88,6 +105,12 @@ NOT_METHOD_TERMS = {
     "THE", "IS", "WHO", "AND", "OR", "OF", "TO", "IN", "ON", "AT", "NO",
     "RED", "GREEN", "FIRST", "TREND", "NOISE", "MODE", "ANCHOR",
     "TRIPLE", "THREE", "INSIDE", "FOMO", "TRAPPED", "ZONE", "RANGE", "TF",
+    # Kind 2. The THREE DAY TREND REVERSAL slide prints "Enough space to run to
+    # PWL, PWC, WL" -- read at native 1920x1080 on
+    # `concept_candle_swing_theory_pdh_pdl_pdc#0092`, a clean template render
+    # with whitespace either side and no occluded `P`. All 80 flagged frames
+    # are that one line. Verbatim, so not a suspect; 2 chars, so not a target.
+    "WL",
 }
 
 

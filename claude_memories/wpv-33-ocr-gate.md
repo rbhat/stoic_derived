@@ -58,6 +58,26 @@ Bias lines are stable on all 199 frames.** Low impact — the concept survives i
 so **do not build a repair pass**. When the dataset build picks one frame per slide, prefer the one
 with the most lines.
 
+## Overlapping price labels — a third corruption mechanism, and the `methodterm` vocabulary
+
+**Two TradingView labels at nearly the same level overlap, and the model reads the composite as one
+token.** Read at native resolution on `concept_candle_swing_theory_pdh_pdl_pdc#0562`: `BWH` is two
+`PWH` labels (25,935.25 / 25,893.75) whose `P` stems superimpose into a `B` — the same occlusion §5
+saw, now with its cause visible — and `PWM` is `PWL` overlapping a bare `M` at the identical price
+24,887.75, which the corpus corroborates (13 `PWL` readings vs 6 `PWM`, plus one `M`, all at that
+price). Disposition is §5's: **within a chart group the correct reading is the majority.**
+
+Curating `KNOWN_METHOD_TERMS` cut the suspect list from 20 tokens / 236 frames to **14 / 119**
+(`docs/notes/2026-07-27-wpv-33-ocr-gate.md` §8b). Two things generalise:
+
+- **Settle from the corpus before opening pixels.** `PMH`/`PML` (38 frames) closed on a printed rule
+  slide in *another* video — "Monthly: Close above PMH / below PML", completing the Day/Week/Month
+  parallel. Only `WL` (80 frames, one line, one slide) needed the JPEG; it prints `WL` verbatim.
+- **The two vocabularies are not interchangeable.** `KNOWN_METHOD_TERMS` entries are also *match
+  targets*, so a 2-character entry manufactures suspects; `NOT_METHOD_TERMS` is exempt-only. And an
+  unattested term (`PMC`, which the parallel predicts) silently absorbs real misreadings — leave it
+  out until the corpus attests it.
+
 ## Capped frames — the dataset rebuild must not read `ocr_text` alone
 
 Measured 2026-07-27 at 2,143 records (all five concept videos done): the capped rate is climbing
