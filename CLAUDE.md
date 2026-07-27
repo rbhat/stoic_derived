@@ -38,12 +38,11 @@ travels between the Windows box and the Mac. Read the index at the start of ever
 empty, something is wrong — stop and tell the user rather than proceeding without context or
 rebuilding it from scratch. `git log -- claude_memories/` will show what should be there.
 
-Expected contents (15 files as of 2026-07-26): `MEMORY.md` plus
-`signal-fidelity-over-edge-revalidation`, `case-study-fixture-track`, `red-day-definition`,
-`slide-text-not-in-transcripts`, `bars-match-education-not-tradingview`, `slm-model-artifacts`,
-`edge-measurement-first-probe`, `eval-comparison-wp-progress`, `audit-derived-numbers`,
-`check-dont-relaunch-detached-jobs`, `win-cuda-training-package`, `artifact-locality`,
-`ruff-always-fix`, `opus-expanded-role`.
+**Do not enumerate the files here.** This paragraph used to hold a hand-typed list; by 2026-07-27 it
+claimed 15 files against an actual 21 and was itself the thing most likely to be trusted over the
+directory. It was the same failure as the pointer rule above, one section later. `ls
+claude_memories/` is the list, `claude_memories/MEMORY.md` is the index, and
+`git log -- claude_memories/` is the history — all three are generated, and none of them drifts.
 
 - **Write new memories to `claude_memories/`**, not to any per-machine location such as
   `~/.claude/projects/<slug>/memory/`. That external directory has been retired for this project;
