@@ -19,9 +19,11 @@ Stack: Qwen3-8B rev b968826d, torch 2.11.0+cu128, bnb 0.49.2. Plan doc:
 
 ## The 16 GB ceiling — what this box cannot do
 
-**RTX 5070 Ti, 16 GB VRAM.** That rules out running the WP-V §3.2 extractor here:
-`qwen3-vl-30b-a3b-instruct-mlx` needs ~17 GB even at 4-bit. The visual pass therefore runs on the
-Mac and only the training chain runs here — see [[slm-model-artifacts]] and
+**RTX 5070 Ti, 16 GB VRAM.** That rules out running the WP-V §3.2 extractor here: the loaded model
+is `Qwen3-VL-30B-A3B-Instruct-MLX-**8bit**`, ~31 GB (confirmed via `lms ps --json`:
+`quantization.bits: 8`, `sizeBytes: 33534044022`) — not 4-bit/~17 GB as earlier notes said. The
+visual pass therefore runs on the Mac and only the training chain runs here — see
+[[slm-model-artifacts]] and
 `docs/notes/2026-07-26-slm-retrain-plan.md`. Do not "solve" this by swapping in a smaller VL model
 without asking; the extraction quality is the whole point of that work package.
 

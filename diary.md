@@ -26,9 +26,10 @@ Decision: retrain the SLM using the newly extracted visual material. The trainin
 
 **Why retrain now:** The prior "do not retrain" verdict was measured against a corpus that lacked this visual signal entirely. That corpus is now outdated. The new material answers open questions in the rulebook (`unresolved_decisions` in `strategy/rulebook.yaml`) and will produce fixtures that a signal generator can be validated against.
 
-**The pipeline spans two machines** (forced by hardware, not preference):
-- **Mac (stage A):** VLM extraction of 10,120 visual states using `qwen3-vl-30b-a3b-instruct-mlx` at 4-bit precision. Model needs ~17 GB unified memory; the Windows RTX 5070 Ti has only 16 GB VRAM and cannot run the full model. Measured cost: 50–75 hours wall time (chart frames cost 2–3× more than slides due to token volume; includes 30% thermal duty cycle).
-- **WSL (stage B):** QLoRA retrain on the rebuilt training corpus. Starts after stage A completes and is pushed.
+**The pipeline spans two machines across three stages** (forced by hardware, not preference):
+- **Mac (stage A):** VLM extraction of 10,120 visual states using `qwen3-vl-30b-a3b-instruct-mlx` (`Qwen3-VL-30B-A3B-Instruct-MLX-8bit`). Model needs ~31 GB unified memory; the Windows RTX 5070 Ti has only 16 GB VRAM and cannot run it. Measured cost: ~48 hours wall time, from 805 states of the actual run (chart frames cost 2–3× more than slides due to token volume; includes both thermal-rest tiers). Currently stopped at 805/10,120 (8.0%, 0 errors) — laptop ran hot; resumable via `scripts/extract.sh`.
+- **Mac (stage B):** §3.3 audit gate, then rebuild `edu/derived/dataset.jsonl`. Cheap, deterministic — minutes, not hours.
+- **WSL (stage C):** Measure the eval delta, then QLoRA retrain, then eval. Cannot start until stage B is pushed.
 
 **Extraction rules** (verbatim, not paraphrased):
 - OCR text is exact. Unreadable lines marked `unreadable`, never guessed.
@@ -59,11 +60,13 @@ Extracted 25 in-scope NQ trading sessions from Stoic Traders Vol 1–7 PDFs (whi
 **Red day definition (settled)**  
 Formally defined: Red = close < open. The signal cascade is Day1–3 establish new highs (HCOM) → Day4 closes red → Day5 is the actionable signal day to trade. This pattern repeats and is the focus of fixture validation work.
 
-**Training infrastructure (WP1–WP6, 2026-07-24 completed)**  
-- **WP1–WP2:** Built run-dir artifact structure, failure buckets, and eval comparison tooling. Eval streams predictions to disk for resumable runs.
-- **WP3–WP5:** Implemented deterministic dev/holdout split by video, ledger unsealing for label access during development, and calibration tooling for accuracy/coverage trade-off tuning.
-- **WP6:** Added Tier-2 advisory judge and k-fold-by-video runner for cross-validation.
-- **WP (CUDA):** Built reproducible Windows QLoRA training package for Qwen3-8B fine-tuning; validated in WSL with all config, venv, and dependency traps documented.
+**Training infrastructure (WP1–WP8, GPU chain completed 2026-07-25)**  
+- **WP1–WP2:** Built run-dir artifact structure, failure buckets, and eval comparison tooling (`compare.py`, paired flips, McNemar). Eval streams predictions to disk for resumable runs.
+- **WP3:** Baseline scoring run of the pinned base model (GPU pass) — part of the three-run GPU chain (fine-tuned + 2 baselines) that finished 2026-07-25.
+- **WP4:** Deterministic dev/holdout split by video, ledger unsealing for label access during development.
+- **WP5 (partial):** Calibration audit tooling built; the 50-example human calibration audit itself has not been run yet — open item.
+- **WP6 (not started):** Tier-2 advisory judge and k-fold-by-video runner are planned, not built — no matching code in `research/` yet.
+- **WP (CUDA):** Built reproducible Windows QLoRA training package for Qwen3-8B fine-tuning; validated in WSL with all config, venv, and dependency traps documented. (2026-07-24)
 
 **Eval and model analysis (2026-07-25)**  
 Recorded why the first baseline run was invalid (incorrect corpus), designed honest eval comparisons, and finalized generation settings (thinking-off, fixed random seeds, prompt variants). Current objective: use SLM as a specification-extraction tool, not a benchmark scorer.

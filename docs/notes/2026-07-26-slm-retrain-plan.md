@@ -28,7 +28,7 @@ by whether it serves those two.
 
 | stage | machine | why | wall time |
 |---|---|---|---|
-| **A** §3.2 VLM extraction, 10,120 states | **Mac** | `qwen3-vl-30b-a3b-instruct-mlx` needs ~17 GB even at 4-bit | ≈ 50–75 h **measured**, see §2 |
+| **A** §3.2 VLM extraction, 10,120 states | **Mac** | `Qwen3-VL-30B-A3B-Instruct-MLX-8bit` needs ~31 GB | ≈ 48 h **measured over 805 states**, see §2 |
 | **B** §3.3 audit gate + rebuild `edu/derived/dataset.jsonl` | Mac | cheap, deterministic | minutes |
 | **C** eval delta → QLoRA retrain → eval | **WSL / RTX 5070 Ti** | CUDA, and the training package already lives there | hours |
 
@@ -48,8 +48,9 @@ Build `edu/pipeline/visual_extract.py`. Spec is `2026-07-26-exhaustive-visual-ex
 - Input: `.artifacts/research/visual/<video>/states.jsonl` + `keyframes_v2/*.jpg` (both audited).
 - Output: `.artifacts/research/visual/<video>/visual_records.jsonl`, one record per state, schema in
   the plan §3.2.
-- Model: `qwen3-vl-30b-a3b-instruct-mlx` via LM Studio at `http://localhost:1234/v1`.
-  **Confirm it is loaded before launching** — 17 h is a long time to discover a connection refusal.
+- Model: `qwen3-vl-30b-a3b-instruct-mlx` (`Qwen3-VL-30B-A3B-Instruct-MLX-8bit`, ~31 GB) via LM
+  Studio at `http://localhost:1234/v1`. **Confirm it is loaded before launching** — a multi-day
+  run is a long time to discover a connection refusal.
 - **`ocr_text` is verbatim.** No paraphrase, no completion. Unreadable lines are marked
   `unreadable`, never guessed. Interpretation goes in separate fields.
 - Chart numbers are **proposals**, checked against `.artifacts/research/bars/`, never ground truth.
@@ -82,7 +83,10 @@ The 16.9 h figure was `10,120 × 6 s/state`, and the 6 s was never measured. Mea
 
 Chart frames cost 2–3× because output tokens dominate, and the live sessions are 5,139 near-all-chart
 states. Realistic total **including the +30 % thermal duty cycle** (90 s idle per 300 s of work,
-added at the user's request): **≈ 50–75 h for the full corpus.**
+added at the user's request): **≈ 50–75 h for the full corpus.** This 53-state calibration figure
+was itself superseded the same day by a direct measurement over 805 states from the actual run
+(chart median 13.3 s, not 23.2 s) plus the second thermal tier added later — see
+`claude_memories/wpv-32-extraction-run.md`, ETA **≈ 48 h**. Use that figure, not this one.
 
 **Scope decision, user's call 2026-07-26: extract everything, live sessions included** — "make sure
 all the info is covered including live sessions". §2's suggestion of cutting the 5,139 live states

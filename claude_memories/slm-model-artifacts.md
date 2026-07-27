@@ -50,10 +50,12 @@ it; the open questions are execution, not whether.
 **Explicit plan: `docs/notes/2026-07-26-slm-retrain-plan.md`.** Read it before starting anything.
 
 **The chain spans two machines and the split is forced, not a preference.** The Windows box is a
-**16 GB RTX 5070 Ti**; `qwen3-vl-30b-a3b-instruct-mlx` needs ~17 GB even at 4-bit and **cannot run
-there**. So:
+**16 GB RTX 5070 Ti**; the loaded extraction model is `Qwen3-VL-30B-A3B-Instruct-MLX-8bit`, ~31 GB
+(confirmed via `lms ps --json`: `quantization.bits: 8`, `sizeBytes: 33534044022` — earlier notes
+said 4-bit/~17 GB, wrong) and **cannot run there**. So:
 
-- **Mac** — WP-V §3.2 VLM extraction of the 10,120 states (≈16.9 h), §3.3 audit, rebuild
+- **Mac** — WP-V §3.2 VLM extraction of the 10,120 states (≈48 h measured over 805 states, not
+  the earlier ≈16.9 h estimate — see [[wpv-32-extraction-run]]), §3.3 audit, rebuild
   `edu/derived/dataset.jsonl`. Then push.
 - **WSL** — eval delta → QLoRA retrain → eval. **Cannot start until the Mac stage is pushed.**
 
