@@ -58,6 +58,32 @@ Bias lines are stable on all 199 frames.** Low impact — the concept survives i
 so **do not build a repair pass**. When the dataset build picks one frame per slide, prefer the one
 with the most lines.
 
+## Capped frames — the dataset rebuild must not read `ocr_text` alone
+
+Measured 2026-07-27 at 2,143 records (all five concept videos done): the capped rate is climbing
+with chart density — **3.2 % at 1,138 → 8.0 % at 2,143**, and `concept_the_only_trading_video` ran
+**16.1 %**. Not degradation: still 0 errors, one `prompt_sha`, unreadable-line rate 0.0000.
+
+The worst case in the corpus, `concept_the_only_trading_video#0680`, kept **2 of ~20 content lines**
+in `ocr_text` and lost `February HCOM`, `February LCOM` ×2, the second panel header, the wave
+numbers, the Fib labels and both watermarks. `ocr_text_raw` shows why — a price ladder extrapolated
+from 26,500 down to **12,000**, about 12,000 points below the bottom of the image.
+
+**But `chart.drawn_levels[].label` and `chart.annotations` recovered all of it** — `February HCOM`,
+`February LCOM`, the wave count, `Friday`, `9:30`, `3:00`. The labels survive in the field
+[[#stage-b--what-the-slm-should-be-trained-on]] already nominated; only the values are wrong, and
+those were never going to be trained on.
+
+**So: the rebuild of `edu/derived/dataset.jsonl` must read the `chart` block, not just `ocr_text`.**
+Reading `ocr_text` alone silently drops the method-term labels on every capped record — 172 as of
+2,143 and climbing, concentrated in the densest and most instructive dual-chart frames.
+
+This is also why the cap stays: without it the frame enters an unbounded decode loop, blows through
+`VLM_MAX_TOKENS` after ~361 s, fails to parse under the strict `json_schema`, and the state is
+**lost entirely** at ~18 min. Capped-with-labels beats lost. Cropping the axis out of the image
+first would attack the real cause but changes what the model sees **without changing `prompt_sha`** —
+an invisible corpus split, worse than a visible one. Not mid-run.
+
 ## Two rules this pass re-confirmed
 
 - **Open the JPEG.** `BLL` on the CL charts and `PHCOM` on the YM chart both looked like misreads
