@@ -280,6 +280,70 @@ concept videos reached `MAX_ATTEMPTS` (3) purely from repeated restarts, not fro
 one of those stages ever ends in status `failed`, the driver logs "giving up on this video" and
 skips it permanently. No stage is `failed` today.
 
+## State as of 2026-07-27 ~04:30Z (21:30 PDT) — sanity check #1 after the maxLength fix
+
+Run alive, pid 26128 since 20:49 PDT. **862 records, 862 ok / 0 err**, one `prompt_sha`
+(`3eccf9049745`), `unreadable_lines` 0 across the 57 states since restart, LM Studio confirmed at
+`contextLength` 32768. All seven sanity-check items green.
+
+**The rate is the news, and it is content, not degradation.** Per-video mean `elapsed_sec`:
+
+| video | n | median | mean | capped |
+|---|---|---|---|---|
+| `concept_candle_swing_theory_pdh_pdl_pdc` (done) | 599 | 11.9 s | 12.9 s | 0 |
+| `concept_htf_stoic_trader_protocol` (in progress) | 237 | 13.5 s | 18.3 s | 28 |
+| `concept_simple_stoic_setups_sss` | 19 | 8.6 s | 8.7 s | 0 |
+| `concept_stoic_edge_system_module_1_is_live` | 7 | 8.1 s | 8.3 s | 0 |
+
+The 57 states since restart are all in `htf_stoic_trader_protocol`'s dual-chart section and run
+**40.7 s/state wall** — **28 of 57 (49 %) hit `ocr_text_capped`**, capped median 43.9 s against
+uncapped 26.6 s, and 50 of 57 stripped axis lines. That is the grammar cap working as designed on
+the densest material in the corpus, not the model degrading. Idle was 18 % of wall in that window.
+
+**Do not read `--status`'s ETA as a corpus ETA.** It is built only from states extracted *this run*
+(correct — already-done work is in neither numerator nor denominator), so with 57 states all drawn
+from the corpus's worst stretch it printed **108 h**. Bracketed against measured rates instead:
+
+| rate basis | to end of `cs_vol7` (4,119 states) | full corpus (9,258 states) |
+|---|---|---|
+| current dense stretch, 40.7 s | 46.6 h | 104.7 h |
+| corpus mean + designed 1:6+1:6 duty, 21.7 s | 24.8 h | 55.8 h |
+| corpus mean + observed 18 % idle, 17.4 s | 19.9 h | 44.7 h |
+
+**The earlier "~37 h revised / ~16.5 h to cs_vol7" figures are not supported by measured rates.**
+The honest statement is a range, because the remaining mix (831 states of
+`the_only_trading_video`, 2,858 of `cs_vol1-7`, 5,139 of `live_*`) has no measured rate yet. The
+48 h corpus figure above still sits inside the bracket; the checkpoint is **20–47 h out, not 16.5**.
+
+### Gold Fib spot-check — the axis-estimation failure, third instrument
+
+State `#236` / `0236_003353.jpg` (`GC Jan 29th, 2026`, dual 1D + 5m) read against the JPEG:
+
+- **`ocr_text` is right.** Title, both chart headers, `DAY1/DAY2/DAY3`, `Thursday`, `9:30`,
+  `61.8%`, `50%`, `1.618`, `2`, `2.618`, `StoicEdge.com` — all verbatim. Wave numbers 1-5 are not
+  in `ocr_text` but are in `annotations` ("numbered wave count from 1 to 5"), as documented.
+- **`drawn_levels` values are wrong by 28–82 points, every one.** Chart reads 1.618 ≈ 5,380 /
+  2 ≈ 5,352 / 2.618 ≈ 5,258 / 61.8 % ≈ 5,580 / 50 % ≈ 5,560; the model returned 5,420 / 5,380 /
+  5,340 / 5,531 / 5,520. **None of these has a printed price on the chart.** Same finding as the
+  Gold `#0025` transposition and the AUD/USD PDH/PDL spread — the rule holds on a third instrument.
+- **It binds printed numbers to the wrong label.** `9:30` — a *time* label at the top of the chart —
+  came back with value `5,531.0`, which is the current-price tag printed on the right axis.
+- **Adjacent-state disagreement, again.** `#235` and `#236` are the same chart: 1.618 = 5,436 vs
+  5,420, 2 = 5,386 vs 5,380, 50 % = 5,524 vs 5,520. Values that must be identical are not.
+- **Panel selection is ambiguous on dual charts** — `#235` reported `timeframe: "1D"` and `#236`
+  `"5"` for the same two-panel frame. Add this to the "frame classification is loose at the edges"
+  caveat above.
+- Every label here (`1.618`, `2`, `2.618`, `61.8%`, `50%`, `9:30`) is in the **non-method-term**
+  bucket, which the levels audit already measured at 5.7 % `ohlc_match` — indistinguishable from
+  chance. Consistent, not new evidence against the method-term bucket.
+
+Two leftovers, neither costing data: `_strip_axis_ladders` missed two time-axis rows that the model
+emitted as *single lines carrying many clock times* (the filter matches runs of ≥4 consecutive
+lines), and the TradingView logo glyph came back as `T7`.
+
+**Nothing here changes the Stage B decision** — it is the third independent confirmation of it.
+Train on level semantics; derive prices in Python from our own bars.
+
 ## The 2–3 hour sanity check
 
 Not a gate — counts, per [[signal-fidelity-over-edge-revalidation]] and ADR-0021. Look for:
