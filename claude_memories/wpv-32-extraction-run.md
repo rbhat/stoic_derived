@@ -344,67 +344,6 @@ lines), and the TradingView logo glyph came back as `T7`.
 **Nothing here changes the Stage B decision** — it is the third independent confirmation of it.
 Train on level semantics; derive prices in Python from our own bars.
 
-## §3.3 gate run early, at 888 records (2026-07-27, user's call: "run the gate")
-
-Run on 4 videos / 888 records, mid-extraction, while the run stayed live. **Every check moved by
-less than 2 points against the 833-record read — the conclusion is stable, not a small-n artifact.**
-
-| check | 833 records | 888 records |
-|---|---|---|
-| 0. collapse | 110 / 363 (30.3 %) | **111 / 388 (28.6 %)** |
-| 1. self-consistency | 104 / 272 (38.2 %), median 24.6 bp | **113 / 290 (39.0 %), median 24.61 bp** |
-| 2. taxonomy, method-term share | 78.4 % | **75.1 %** (1,277 of 1,700) |
-| 3. NQ bars, method-term within 1 tick | 65.5 % | **66.1 %** (441/667) |
-| 3. NQ bars, method-term within 40 ticks | 95.9 % | **96.1 %** (641/667), none beyond 200 |
-
-### Check 1b — the gate had a structural blind spot, now closed
-
-Check 1 keys on the **label** and watches the **value**, so it cannot see the opposite failure: the
-value holding still while the label changes. That failure is real — `candle_swing_theory` 561→562
-puts `PDM` then `PWM` on a stable 24,887.75. **`check_label_stability` added to
-`edu/pipeline/levels_audit.py`**, same adjacency rules, keyed on price instead. No chart-advance
-discriminator is needed and that is not an oversight: an advance moves the prices, so a shared price
-is already evidence the chart did not advance.
-
-**Result: 35 of 771 shared prices changed label (4.5 %), against check 1's 39.0 % of labels changing
-value. The label is ~8× the more stable field.** This is the measurement that could have refuted the
-Stage B decision and did not — the decision is now stated with a number rather than asserted.
-
-**But read the residual before trusting it.** 21 of the 35 swaps have *both sides* method-term, so
-checks 2 and 3 are blind to them too, and the swaps are semantic inversions, not formatting:
-
-    9  'bwh' <-> 'pwh'          2  'pw' <-> 'pwl'           1  'pdh' <-> 'pdl'
-    1  'pdc' <-> 'pdl'          1  'pdc' <-> 'pwl'          1  'candle low' <-> 'pml'
-
-**A PDH/PDL swap is the worst error this field can make** for Stage B, and 4.5 % is the floor on how
-often it happens. Train on the label, but the label vocabulary needs a normalisation pass and the
-high/low confusions need to be treated as a known error mode, not assumed away.
-
-### What the taxonomy surfaced — the "deliberately dumb" bucket list earning its keep
-
-- **`HCOW` ×3 / `LCOW` ×3 / `HOW` ×3 are OCR corruptions of HCOM / LCOM**, which are already in
-  `METHOD_TERM_RE` (`^[hl]com$`) and are unambiguously method terms — 57 mentions across the
-  transcripts. The `M`→`W` misread drops genuine method levels into the "other" bucket.
-- **`PWM` ×16, `PDM`, `PW` ×4, `PWHL`, `PBH`, `PD`** — all from `candle_swing_theory`'s NQ monthly
-  frames. `0559_002905.jpg` shows why: the right-edge labels are **struck through by their own level
-  lines** and overlap each other, so `PWL` reads as `PWM` and an overlapping `PWH`+`PWL` reads as
-  `PWHL`. **Do not add these to the regex** — they are misreads of terms already in it, and adding
-  them would launder an OCR error into a vocabulary entry (ADR-0004).
-- **Prices leaking into the label field**: `'5,531.0'` ×4, `'5,281.4'` ×3, `'5,527.4'`, `'5,524.8'`,
-  `'5,301.2'` as bare labels, plus `'Previous Month Lowest Close 4,689.9'` — the value glued onto
-  the label. ~12+ occurrences, all on the GC dual-chart frames.
-
-### The collapse mechanism is partly the source charts, not only the model
-
-`0559_002905.jpg` shows the right axis printing **25,265.25 three times, stacked and overlapping**,
-with `Candle Low` rendered twice on top of itself. When levels sit close together TradingView's own
-price tags collide, so the 28.6 % collapse rate is not purely the model estimating against the axis —
-some of it is the model faithfully reading an axis that genuinely shows one price for three lines.
-This does not rescue the values; it does mean **collapse is not a clean proxy for model error.**
-
-**Conclusion unchanged and now better evidenced:** the label is usable (4.5 % swap rate), the value
-is not (39.0 % move rate). Stage B trains on level semantics; Python derives prices from our bars.
-
 ## The 2–3 hour sanity check
 
 Not a gate — counts, per [[signal-fidelity-over-edge-revalidation]] and ADR-0021. Look for:

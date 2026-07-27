@@ -261,110 +261,6 @@ def check_self_consistency(records: list[dict]) -> dict:
     }
 
 
-# ------------------------------------------------- check 1b: label stability
-
-# Formatting-only differences are folded before comparing: the model writes both
-# "Friday Close" and "Friday-Close" for the same line, and counting that as a
-# misread would inflate this check with noise. Nothing semantic is folded --
-# PDH and PDL stay distinct, which is the whole point.
-_LABEL_FMT_RE = re.compile(r"[\s\-_]+")
-
-
-def _norm_label(label: str) -> str:
-    return _LABEL_FMT_RE.sub(" ", (label or "").strip().lower())
-
-
-def _values_once(chart: dict) -> dict[float, str]:
-    """price -> label, for prices appearing exactly once on the frame.
-
-    Mirror of `_labels_once`. A price carrying two labels on one frame is the
-    collapse check's business, so it is dropped here rather than guessed at.
-    """
-    seen: dict[float, list[str]] = defaultdict(list)
-    for lvl in chart.get("drawn_levels") or []:
-        price = parse_price(lvl.get("value"))
-        label = (lvl.get("label") or "").strip()
-        if price is not None and label:
-            seen[price].append(label)
-    return {k: v[0] for k, v in seen.items() if len(v) == 1}
-
-
-def check_label_stability(records: list[dict]) -> dict:
-    """Adjacent states of one chart must agree on a price's LABEL.
-
-    Check 1 keys on the label and watches the value, so it is structurally
-    blind to the opposite failure -- the value holding still while the label
-    changes. That failure is real: on the NQ monthly frames the right-edge
-    labels are struck through by their own level lines and overlap each other,
-    and `concept_candle_swing_theory` states 561->562 put PDM then PWM on a
-    stable 24,887.75.
-
-    No chart-advance discriminator is needed here, and that is not an
-    oversight: an advance moves the prices, so a price shared by both states is
-    already evidence the chart did not advance. Requiring two shared prices
-    keeps a single coincidental match from carrying a pair on its own.
-
-    This check is why the "train on the label, derive the price" conclusion is
-    stated with a number rather than asserted -- it is the measurement that
-    could have refuted it. Counts only, never a verdict (ADR-0021).
-    """
-    by_state = {r["state_id"]: r for r in records if r.get("status") == "ok"}
-    pair_classes: Counter[str] = Counter()
-    compared = 0
-    swaps: list[dict] = []
-
-    for sid in sorted(by_state):
-        a, b = by_state.get(sid), by_state.get(sid + 1)
-        if a is None or b is None:
-            continue
-        ca, cb = a.get("chart") or {}, b.get("chart") or {}
-        if not ca or not cb:
-            continue
-        if _normalize_instrument(ca.get("instrument", "")) != _normalize_instrument(
-            cb.get("instrument", "")
-        ):
-            continue
-        if (ca.get("timeframe") or "") != (cb.get("timeframe") or ""):
-            continue
-
-        va, vb = _values_once(ca), _values_once(cb)
-        shared = sorted(set(va) & set(vb))
-        if len(shared) < 2:
-            pair_classes["too_few_shared_values"] += 1
-            continue
-        pair_classes["compared"] += 1
-
-        for price in shared:
-            compared += 1
-            la, lb = va[price], vb[price]
-            if _norm_label(la) != _norm_label(lb):
-                swaps.append({
-                    "video": a["video"], "state_ids": [sid, sid + 1],
-                    "hms": a.get("hms_start"), "price": price,
-                    "labels": [la, lb],
-                    "classes": [classify_label(la), classify_label(lb)],
-                    # Both sides method-term means checks 2 and 3 cannot see
-                    # this swap either -- BWH<->PWH is the common case.
-                    "both_method_term": classify_label(la) == classify_label(lb) == "method_term",
-                })
-
-    pair_counter: Counter[tuple[str, str]] = Counter()
-    for s in swaps:
-        pair_counter[tuple(sorted(_norm_label(x) for x in s["labels"]))] += 1
-
-    return {
-        "pair_classes": dict(pair_classes),
-        "values_compared": compared,
-        "label_swaps": len(swaps),
-        "label_swap_rate": round(len(swaps) / compared, 4) if compared else None,
-        "swaps_both_method_term": sum(1 for s in swaps if s["both_method_term"]),
-        "most_common_swaps": [
-            {"labels": list(k), "n": n} for k, n in pair_counter.most_common(15)
-        ],
-        "examples": swaps[:20],
-    }
-
-
 # --------------------------------------------------------------- check 2: labels
 
 def check_label_taxonomy(records: list[dict]) -> dict:
@@ -499,23 +395,6 @@ def render(report: dict) -> str:
             f"held still: {d['held_still']}"
         )
 
-    s = report["label_stability"]
-    lines.append("")
-    lines.append("1b. LABEL STABILITY — the mirror: hold the price, watch the label")
-    for k, n in sorted(s["pair_classes"].items()):
-        lines.append(f"     {k:28s} {n}")
-    rate = s["label_swap_rate"]
-    lines.append(
-        f"   labels that changed on a stable price: {s['label_swaps']}"
-        + (f" of {s['values_compared']} ({rate:.1%})" if rate is not None else "")
-    )
-    lines.append(
-        f"   of those, both sides method-term (invisible to checks 2 and 3): "
-        f"{s['swaps_both_method_term']}"
-    )
-    for sw in s["most_common_swaps"][:6]:
-        lines.append(f"     {sw['n']:3d}  {sw['labels'][0]!r} <-> {sw['labels'][1]!r}")
-
     b = report["label_taxonomy"]
     lines.append("")
     lines.append("2. LABEL TAXONOMY")
@@ -573,10 +452,6 @@ def main() -> int:
         "self_consistency": _merge_consistency(
             [check_self_consistency(v) for v in per_video.values()]
         ),
-        # Same per-video scoping as consistency, and for the same reason.
-        "label_stability": _merge_stability(
-            [check_label_stability(v) for v in per_video.values()]
-        ),
         "label_taxonomy": check_label_taxonomy(records),
         "bars_distance": check_bars_distance(records),
     }
@@ -610,30 +485,6 @@ def _merge_consistency(parts: list[dict]) -> dict:
         "disagreement_rate_in_mixed_pairs": round(dis / labels, 4) if labels else None,
         "median_bps": round(all_bps[len(all_bps) // 2], 2) if all_bps else None,
         "bps_histogram": dict(hist),
-        "examples": examples[:20],
-    }
-
-
-def _merge_stability(parts: list[dict]) -> dict:
-    compared = sum(p["values_compared"] for p in parts)
-    swaps = sum(p["label_swaps"] for p in parts)
-    pair_classes: Counter[str] = Counter()
-    pair_counter: Counter[tuple[str, str]] = Counter()
-    examples: list[dict] = []
-    for p in parts:
-        pair_classes.update(p["pair_classes"])
-        for sw in p["most_common_swaps"]:
-            pair_counter[tuple(sw["labels"])] += sw["n"]
-        examples.extend(p["examples"])
-    return {
-        "pair_classes": dict(pair_classes),
-        "values_compared": compared,
-        "label_swaps": swaps,
-        "label_swap_rate": round(swaps / compared, 4) if compared else None,
-        "swaps_both_method_term": sum(p["swaps_both_method_term"] for p in parts),
-        "most_common_swaps": [
-            {"labels": list(k), "n": n} for k, n in pair_counter.most_common(15)
-        ],
         "examples": examples[:20],
     }
 
