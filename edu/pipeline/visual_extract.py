@@ -104,7 +104,13 @@ VLM_TIMEOUT = 600          # cold model load measured at 74 s; warm calls ~5 s
 # VLM_MAX_TOKENS / observed-rate, or the cap is unreachable and the real
 # failure becomes a read timeout. STALL_SECONDS must in turn exceed
 # VLM_RETRIES * VLM_TIMEOUT + COOL_FOR, or a slow-but-healthy state looks dead.
-VLM_MAX_TOKENS = 6000
+# 8000, not 6000: with every field bounded below, the schema now has a
+# computable worst case (~7900 tokens if every cap is hit at once), and the
+# ceiling has to sit above it or the structural guarantee is not one -- a
+# truncation would still be reachable, which is the whole thing being fixed.
+# It stays inside VLM_TIMEOUT: 8000 / 16.6 tok/s = 482 s < 600. Nothing healthy
+# goes near it; a normal frame stops at a few hundred tokens.
+VLM_MAX_TOKENS = 8000
 VLM_CONTEXT_LENGTH = 32768  # what the supervisor loads LM Studio with
 
 # The ceiling above is necessary but NOT sufficient, and 6000 was measured
@@ -126,13 +132,35 @@ VLM_CONTEXT_LENGTH = 32768  # what the supervisor loads LM Studio with
 # finish_reason "stop", record parses, chart block recovered. A lost state
 # becomes a recorded one.
 #
-# 3000 is ~5x the largest legitimate ocr_text measured (574 chars over the first
-# 805 records), and verified non-binding: re-running a healthy chart frame with
-# the cap in place reproduced its stored record byte for byte. Being generous is
-# deliberate -- a genuinely text-dense slide must never be clipped to make a
-# pathological chart cheaper. When the cap does bind the record says so
-# (ocr_text_capped), so it is auditable and never a silent truncation.
-OCR_TEXT_MAX_CHARS = 3000
+# Capping ocr_text alone was not enough, and the reason is worth keeping: with
+# ocr_text closed, state 186 ran the SAME ladder out through chart.annotations
+# instead. Bounding one field just relocates a decode loop into the next
+# unbounded one, so every field the model can repeat in is bounded below.
+# maxItems is enforced by the same grammar as maxLength -- verified directly, by
+# clamping annotations to 2 / concepts to 1 / drawn_levels to 1 on a frame that
+# normally returns several of each and getting back exactly those counts.
+#
+# Sizes are 2-3x the largest value measured over the first 811 records, listed
+# next to each cap below. They exist to make a runaway structurally impossible,
+# not to trim legitimate output, and every one of them flags the record when it
+# binds rather than clipping in silence.
+#
+# ocr_text is the tightest of them relative to headroom because it is also by
+# far the most expensive: a ladder tokenises at roughly one token per character,
+# so the original 3000 spent ~2900 of the 6000-token budget on text that is
+# discarded by _strip_axis_ladders anyway -- which is precisely what left no room
+# for the fields after it. 1500 is still 2.6x the largest real transcription.
+OCR_TEXT_MAX_CHARS = 1500      # largest measured: 574
+LEVELS_MAX_ITEMS = 48          # largest measured: 23
+LEVEL_LABEL_MAX_CHARS = 120    # largest measured: 38
+LEVEL_VALUE_MAX_CHARS = 32     # largest measured: 9
+ANNOTATIONS_MAX_ITEMS = 24     # largest measured: 11
+ANNOTATION_MAX_CHARS = 300     # largest measured: 139
+SUMMARY_MAX_CHARS = 800        # largest measured: 434 (the prompt asks for <=200)
+CONCEPTS_MAX_ITEMS = 12        # largest measured: 6
+CONCEPT_MAX_CHARS = 80         # largest measured: 33
+INSTRUMENT_MAX_CHARS = 80      # largest measured: 25
+TIMEFRAME_MAX_CHARS = 24       # largest measured: 2
 VLM_RETRIES = 3            # per state, within one run
 MAX_STATE_ATTEMPTS = 3     # across runs, before a state is recorded as a permanent error
 CONSECUTIVE_FAILURE_ABORT = 10
@@ -284,19 +312,26 @@ RECORD_SCHEMA = {
         "chart": {
             "type": "object",
             "properties": {
-                "instrument": {"type": "string"},
-                "timeframe": {"type": "string"},
-                "drawn_levels": {"type": "array", "items": {
+                "instrument": {"type": "string", "maxLength": INSTRUMENT_MAX_CHARS},
+                "timeframe": {"type": "string", "maxLength": TIMEFRAME_MAX_CHARS},
+                "drawn_levels": {"type": "array", "maxItems": LEVELS_MAX_ITEMS, "items": {
                     "type": "object",
-                    "properties": {"label": {"type": "string"}, "value": {"type": "string"}},
+                    "properties": {
+                        "label": {"type": "string", "maxLength": LEVEL_LABEL_MAX_CHARS},
+                        "value": {"type": "string", "maxLength": LEVEL_VALUE_MAX_CHARS},
+                    },
                     "required": ["label", "value"], "additionalProperties": False}},
-                "annotations": {"type": "array", "items": {"type": "string"}},
+                "annotations": {
+                    "type": "array", "maxItems": ANNOTATIONS_MAX_ITEMS,
+                    "items": {"type": "string", "maxLength": ANNOTATION_MAX_CHARS}},
             },
             "required": ["instrument", "timeframe", "drawn_levels", "annotations"],
             "additionalProperties": False,
         },
-        "summary": {"type": "string"},
-        "concepts": {"type": "array", "items": {"type": "string"}},
+        "summary": {"type": "string", "maxLength": SUMMARY_MAX_CHARS},
+        "concepts": {
+            "type": "array", "maxItems": CONCEPTS_MAX_ITEMS,
+            "items": {"type": "string", "maxLength": CONCEPT_MAX_CHARS}},
     },
     "required": ["frame_class", "ocr_text", "ocr_confidence", "chart", "summary", "concepts"],
     "additionalProperties": False,
@@ -606,11 +641,20 @@ class LMStudioError(RuntimeError):
 class TruncatedResponse(LMStudioError):
     """The model ran out of token budget mid-response.
 
-    Split out from LMStudioError because it is the one failure that must NOT
-    be retried: the call is made at temperature 0, so a second and third
-    attempt regenerate the same tokens and hit the same wall, turning one
-    361 s loss into 18 minutes of it. A transport error is worth retrying; a
-    deterministic overrun is not.
+    Split out from LMStudioError because it is retried differently -- once,
+    not VLM_RETRIES times.
+
+    This was briefly coded as "never retry", on the reasoning that temperature 0
+    makes the regeneration identical. **That reasoning is wrong**, and the
+    counter-example is on record: state 186 truncated at 5999 tokens inside the
+    run, and the same frame with the same schema, temperature and cap came back
+    complete at 3316 tokens when re-run by hand a few minutes later. Greedy
+    decoding through this server is not reproducible enough to assume a repeat
+    fails -- so a retry is worth having.
+
+    One retry, not three, because it is the most expensive failure there is: a
+    truncation by definition burns the entire token budget before it reports,
+    and three of those is most of a lost half-hour on a single state.
     """
 
 
@@ -770,6 +814,31 @@ def _chart_block(model_json: dict) -> dict | None:
     }
 
 
+def _caps_bound(model_json: dict) -> list[str]:
+    """Which schema caps did this response reach? See OCR_TEXT_MAX_CHARS.
+
+    ocr_text is deliberately excluded -- it has its own flag and carries
+    ocr_text_raw alongside it.
+    """
+    chart = model_json.get("chart") or {}
+    levels = chart.get("drawn_levels") or []
+    annotations = chart.get("annotations") or []
+    concepts = model_json.get("concepts") or []
+    checks = [
+        ("drawn_levels", len(levels) >= LEVELS_MAX_ITEMS),
+        ("level_label", any(len(x.get("label") or "") >= LEVEL_LABEL_MAX_CHARS for x in levels)),
+        ("level_value", any(len(x.get("value") or "") >= LEVEL_VALUE_MAX_CHARS for x in levels)),
+        ("annotations", len(annotations) >= ANNOTATIONS_MAX_ITEMS),
+        ("annotation_text", any(len(a) >= ANNOTATION_MAX_CHARS for a in annotations)),
+        ("summary", len(model_json.get("summary") or "") >= SUMMARY_MAX_CHARS),
+        ("concepts", len(concepts) >= CONCEPTS_MAX_ITEMS),
+        ("concept_text", any(len(c) >= CONCEPT_MAX_CHARS for c in concepts)),
+        ("instrument", len(chart.get("instrument") or "") >= INSTRUMENT_MAX_CHARS),
+        ("timeframe", len(chart.get("timeframe") or "") >= TIMEFRAME_MAX_CHARS),
+    ]
+    return [name for name, bound in checks if bound]
+
+
 def _build_ok_record(s: dict, model_json: dict, elapsed: float, attempts: int) -> dict:
     raw_ocr = model_json["ocr_text"]
     ocr_text, axis_stripped = _strip_axis_ladders(raw_ocr)
@@ -805,6 +874,13 @@ def _build_ok_record(s: dict, model_json: dict, elapsed: float, attempts: int) -
         # the two apart by inspection instead of the difference going unseen.
         record["ocr_text_capped"] = True
         record["ocr_text_raw"] = raw_ocr
+    # Same rule for every other bound: a cap that fires is a record the audit
+    # has to look at, never a quiet clip. Reaching a cap does not prove content
+    # was lost -- a frame may legitimately have exactly LEVELS_MAX_ITEMS levels
+    # -- so this names what to go and check, and asserts nothing more.
+    caps = _caps_bound(model_json)
+    if caps:
+        record["schema_caps_bound"] = caps
     chart = _chart_block(model_json)
     if chart is not None:
         record["chart"] = chart
@@ -941,15 +1017,18 @@ def stage_extract(
 
         last_err = ""
         model_json = None
+        truncations = 0
         call_start = time.time()
         for attempt in range(1, VLM_RETRIES + 1):
             try:
                 model_json = call_vlm(img_path)
                 break
             except TruncatedResponse as exc:
-                # Deterministic at temperature 0 -- see TruncatedResponse.
+                # Retried once, not VLM_RETRIES times -- see TruncatedResponse.
                 last_err = f"{type(exc).__name__}: {exc}"
-                break
+                truncations += 1
+                if truncations >= 2:
+                    break
             except Exception as exc:
                 last_err = f"{type(exc).__name__}: {exc}"
                 if attempt < VLM_RETRIES:
