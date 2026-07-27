@@ -193,11 +193,20 @@ The 19:44 restart re-ran the AUD/USD frames and **states 180–183 errored again
 truncation — that run predates the `maxLength` fix. Those 4 error records were deleted, so the
 counts above are all-ok.
 
-**Still unverified:** AUD/USD states 180–184 of `concept_htf_stoic_trader_protocol` have never been
-extracted successfully. They are the first test of the `OCR_TEXT_MAX_CHARS` fix — **check them
-first.** Expect them to come back `ok` with `ocr_text_capped: true`, a large
-`axis_lines_stripped`, an `ocr_text` of only the title and chart header, and a populated `chart`
-block. Anything else means the grammar cap is not doing what the probe showed.
+**Resolved 2026-07-26 20:40 PDT.** The five AUD/USD states 180–184 that had failed since the
+beginning came back **5/5 `ok`, `attempts: 1`**, each `ocr_text_capped: true`,
+`axis_lines_stripped` 368, `ocr_text` the title and chart header only, `chart` block populated —
+exactly what the probe predicted. **~77 s each, against the ~18 min per state they were burning**
+(3 × 361 s of identical retries). Run restarted at 20:27 PDT, 810/10120, 0 errors.
+
+**But audit their `chart.drawn_levels` before using them.** Across five consecutive frames of the
+*same* chart, PDH came back 0.71840 / 0.71940 / 0.71920 / 0.71840 / 0.71940 and PDL
+0.71180 / 0.71180 / 0.71120 / 0.71180 / 0.70340 — levels that must be identical are not, and none
+of them has a price printed beside it on the chart, so the model is estimating against the axis
+rather than reading a number. Same finding as the Gold `#0025` transposition above; the frames are
+new, the weakness is not. Levels stay advisory. Note the real call-outs did survive on `#183`, but
+in `annotations` (`2 @ 0.71255`, `2 @ 0.70835`) — prose, not verbatim, and `Monday Low` came back
+0.70520 where the chart reads 0.69560.
 
 **Latent issue, do not fix without asking:** the video-stage `attempts` counter on the first three
 concept videos reached `MAX_ATTEMPTS` (3) purely from repeated restarts, not from real failures. If
