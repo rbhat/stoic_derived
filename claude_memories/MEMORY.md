@@ -1,5 +1,9 @@
 # Memory Index
 
+**Before this index, read `docs/STATE.md` (what is running) and `docs/CONSTRAINTS.md` (what binds
+the next step, indexed by when it bites). This file is the third stop, not the first.**
+
+
 This directory is the single source of truth for this project's agent memory, version-controlled so
 it travels between machines. Write new memories here — not to `~/.claude/projects/<slug>/memory/`,
 which has been retired for this project. See `CLAUDE.md` for the contract.

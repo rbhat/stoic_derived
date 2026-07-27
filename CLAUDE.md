@@ -1,20 +1,31 @@
 # stoic_derived — agent entry point
 
-Read these in order before doing anything. This file is a pointer, not a duplicate.
+## Read these four, always. They are 4 pages total.
 
-1. **`claude_memories/MEMORY.md`** — the memory index. Read it, then read any entry it points to
-   that is relevant to the task. **Read `signal-fidelity-over-edge-revalidation.md` first, always.**
-2. **`VISION.md`** — the product and its constraints. **Never modify it**; suggest changes to the
-   user instead. Agent behaviour rules live at the bottom of it.
-3. **`docs/notes/2026-07-26-slm-retrain-plan.md`** — **the active track. Start here for what to do
-   next.** WP-V §3.2 extraction (Mac) → dataset rebuild → retrain (WSL). Its upstream state is
-   `docs/notes/2026-07-26-wpv-visual-harvest-progress.md`; the fixture work it feeds is
-   `docs/notes/2026-07-25-case-study-fixture-track.md`.
-4. **`coding_rules.md`** — bullet-point rules distilled from real failures here. Read before
-   writing code; append new recurring errors to it.
-5. **`docs/architecture/adr/`** — binding decisions. ADR-0011 (backtests are observational and
-   non-gating), ADR-0021 (every derived number is presumed invalid until adversarially audited),
-   ADR-0004 (parameters come from the education with evidence, never from a grid search).
+1. **`docs/STATE.md`** — what is running right now, what is next, what is open. Start here.
+2. **`docs/CONSTRAINTS.md`** — what binds the next step, indexed by *when it bites*. Rows are
+   triggers pointing at sources; **the row is never the rule**.
+3. **`claude_memories/MEMORY.md`** — the memory index. Read
+   `signal-fidelity-over-edge-revalidation.md` first, always, then whatever the task touches.
+4. **`VISION.md`** — the product and its constraints. **Never modify it**; suggest changes to the
+   user instead. Agent behaviour rules live at the bottom.
+
+Then open, when the work calls for it: `coding_rules.md` before writing code,
+`docs/notes/2026-07-26-slm-retrain-plan.md` for the active track, `docs/architecture/adr/` for
+binding decisions.
+
+## The pointer rule — this file has broken it before
+
+**A pointer says WHEN to open a document. It never says WHAT the document says.**
+
+Every binding document here is short — the 21 ADRs average 39 lines, ADR-0004 is 27. There is
+nothing to save by paraphrasing them, and something real to lose: this file used to gloss ADR-0004
+as *"parameters come from the education with evidence, never from a grid search"*, which conflated
+two different rules and was acted on without anyone opening the ADR. It is actually about **evidence
+authority** — primary media/PDF is normative, model-derived artifacts cannot be the sole normative
+source. The no-grid-search rule is a separate standing directive, stated below.
+
+So: open the ADR. Open the memory. `docs/CONSTRAINTS.md` tells you which one and when.
 
 ## Memory lives in this repo — `claude_memories/`
 
