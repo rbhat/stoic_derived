@@ -204,20 +204,46 @@ but the run is not finished until all 16 videos are done.
   the label separates them deterministically, the same way `_strip_axis_ladders` separates furniture
   from content.
 
-### What to do about levels — decided actions, not yet done
+### The levels audit — BUILT 2026-07-26, `edu/pipeline/levels_audit.py`
 
-1. **Nothing to the extraction run.** Records are immutable and every check here is derivable after
-   the fact. Do not restart for this.
-2. **Add a levels audit to the §3.3 gate**, which currently checks OCR only. Two deterministic
-   checks, no model calls: the label split above run corpus-wide, and a **bars-free self-consistency
-   check** — the same label on adjacent states of the same chart must give the same value. The
-   AUD/USD PDH disagreement is that check passing by hand; it is the only one that works on the
-   instruments with no bars (AUD/USD, GBP/JPY), which is most of the corpus.
-3. **Then the binding call for Stage B (the user's):** do not feed raw `drawn_levels` into
-   `edu/derived/dataset.jsonl`. Either drop the field or keep only method-term labels. Training on
-   axis-estimated prices teaches the SLM to emit precise-sounding numbers it cannot read, which is a
-   worse failure than omitting them — and per ADR-0021 they would be entering training un-audited.
-   `ocr_text` is unaffected and is where the rulebook values live.
+Read-only, deterministic, safe against a live extraction, counts only. **Bars are secondary by
+construction** (user's direction: if there are no bars we should not depend on them) — we hold daily
+bars for NQ alone and the corpus is mostly AUD/USD, gold, GBP/JPY, RTY and BTC. Results on the first
+833 records:
+
+| check | needs bars | result |
+|---|---|---|
+| **0. collapse** — distinct method-term levels on one frame sharing a price | no | **110 / 363 frames (30.3 %)** |
+| **1. self-consistency** — adjacent states, chart advances excluded | no | **104 / 272 labels (38.2 %)** moved while a neighbour held still, median **24.6 bp** |
+| **2. label taxonomy** | no | 78.4 % method-term; the rest is `M` ×157, `Y` ×52, `Swing Failure Pattern SFP` |
+| **3. nearest daily OHLC** | NQ only | method-term: 65.5 % within 1 tick, **95.9 % within 40 ticks, none beyond 200** |
+
+**The naive version of check 1 was wrong** and its first run reported 23.2 % on evidence that proved
+nothing: in a video teaching PDH/PDL the instructor steps the chart forward a day, so
+`Previous Day High` genuinely changes between adjacent states. The discriminator is whether labels
+move **together** — an advance moves all of them, a misread moves one and leaves its neighbour
+alone. Deltas are in **basis points, not ticks**, because a tick is not the same thing on AUD/USD as
+on NQ.
+
+**Checks 0 and 3 look contradictory and are not.** Against bars the values are *near* misses — the
+right neighbourhood, wrong by a few ticks. Against itself the model puts three different levels on
+one price 30 % of the time. Both are what "estimating against the axis" predicts: it finds the
+region and cannot resolve which line it is. **That makes the label usable and the value not.**
+
+### Stage B — what the SLM should be trained on
+
+The guide is the user's: the SLM exists so we can **derive a mathematical model for the Python
+code**. Under that test `drawn_levels` values are worthless and the labels are valuable:
+
+- **Do not train on the OCR'd price.** If a level is labelled `Previous Day High` and the frame's
+  date is known, the value is **computable exactly from our own bars** — it never needed reading.
+  Training on axis-estimated numbers teaches the SLM to emit precise-sounding prices it cannot read,
+  and per ADR-0021 they would enter training un-audited.
+- **Train on the semantics**: which levels the method draws, what they are called, which one a setup
+  keys off. That is the specification Python turns into a rulebook, and it survives every failure
+  above — 95.9 % within 40 ticks means the model reliably identifies *which line*, and identification
+  is all the label needs to be right about.
+- `ocr_text` is unaffected and remains where rule statements live.
 - **Frame classification is loose at the edges** — intro animation frames come back
   `chart_annotated` with `ocr_confidence: high` over scattered glyphs. The OCR is faithful to what
   is on screen; the label and the confidence are not.
