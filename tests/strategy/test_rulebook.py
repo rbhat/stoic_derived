@@ -22,6 +22,8 @@ from stoic_derived.strategy.rulebook import (
     publish,
     readiness,
     render_dossier,
+    review_message,
+    unreviewed_cited_evidence,
 )
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
@@ -179,19 +181,100 @@ def complete_rulebook(tmp_path: Path) -> Path:
     )
 
 
+PLACEHOLDER_SIGNATURE = b64encode(bytes(64)).decode("ascii")
+
+
+def attach_review(
+    evidence: dict[str, Any],
+    *,
+    verdict: str = "claim_supported",
+    private_key: Ed25519PrivateKey | None = None,
+) -> dict[str, Any]:
+    """Give an evidence record the ADR-0004 human attestation decision 12 defines.
+
+    Without a key the signature is a well-formed placeholder: structural validation
+    accepts it, `publish` does not. That split is deliberate — it lets the loader
+    tests stay key-free while the publication tests still prove the crypto binds.
+    """
+    fingerprint = (
+        hashlib.sha256(public_key_bytes(private_key)).hexdigest()
+        if private_key is not None
+        else hashlib.sha256(b"placeholder").hexdigest()
+    )
+    review = {
+        "reviewer_email": "human@example.com",
+        "reviewed_at": "2026-07-24T00:00:00Z",
+        "verdict": verdict,
+        "observed": "Watched the cited range; the claim is stated on screen.",
+        "asset_sha256": evidence["asset_sha256"],
+        **(
+            {"transcript_sha256": evidence["transcript_sha256"]}
+            if "transcript_sha256" in evidence
+            else {}
+        ),
+        "public_key_fingerprint": fingerprint,
+        "signature_base64": PLACEHOLDER_SIGNATURE,
+    }
+    if private_key is not None:
+        review["signature_base64"] = b64encode(
+            private_key.sign(
+                review_message(
+                    evidence_id=evidence["id"],
+                    asset_sha256=evidence["asset_sha256"],
+                    transcript_sha256=evidence.get("transcript_sha256"),
+                    locator=evidence["locator"],
+                    claim=evidence["claim"],
+                    verdict=verdict,
+                    reviewer_email=review["reviewer_email"],
+                    reviewed_at=review["reviewed_at"],
+                    public_key_fingerprint=fingerprint,
+                )
+            )
+        ).decode("ascii")
+    evidence["review"] = review
+    return evidence
+
+
 def write_rulebook(path: Path, payload: dict[str, Any]) -> Path:
     import yaml
 
     for rule in payload.get("rules", []):
         rule.setdefault("kind", "executable_rule")
+    # Every fixture that validates a rule needs its cited evidence reviewed, or the
+    # ADR-0004 gate refuses to load it. Fixtures that set a review keep theirs.
+    validated = {
+        reference
+        for rule in payload.get("rules", [])
+        if rule.get("status") == "validated"
+        for reference in rule.get("evidence_ids", [])
+    }
+    for evidence in payload.get("evidence", []):
+        if evidence.get("id") in validated and "review" not in evidence:
+            attach_review(evidence)
     path.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
     return path
+
+
+def sign_reviews(path: Path, key: Ed25519PrivateKey) -> None:
+    """Replace placeholder review signatures with real ones from the pinned key.
+
+    Reviews are authoring data, so this moves the candidate digest — call it before
+    capturing any digest baseline, exactly as a real reviewer signs before approval.
+    """
+    import yaml
+
+    payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+    for evidence in payload.get("evidence", []):
+        if evidence.get("review", {}).get("signature_base64") == PLACEHOLDER_SIGNATURE:
+            attach_review(evidence, verdict=evidence["review"]["verdict"], private_key=key)
+    write_rulebook(path, payload)
 
 
 def approve(path: Path, private_key: Ed25519PrivateKey | None = None) -> Ed25519PrivateKey:
     import yaml
 
     key = private_key or Ed25519PrivateKey.generate()
+    sign_reviews(path, key)
     payload = yaml.safe_load(path.read_text(encoding="utf-8"))
     candidate = candidate_digest(load_rulebook(path))
     public_key_fingerprint = hashlib.sha256(public_key_bytes(key)).hexdigest()
@@ -217,8 +300,12 @@ def approve(path: Path, private_key: Ed25519PrivateKey | None = None) -> Ed25519
 
 def test_candidate_digest_excludes_only_approval_envelope(tmp_path: Path) -> None:
     rulebook = complete_rulebook(tmp_path)
+    key = Ed25519PrivateKey.generate()
+    # Evidence reviews are authoring data and stay inside the digest, so the approval
+    # signature covers who reviewed which range. Only the envelope itself is excluded.
+    sign_reviews(rulebook, key)
     original = candidate_digest(load_rulebook(rulebook))
-    approve(rulebook)
+    approve(rulebook, key)
     assert candidate_digest(load_rulebook(rulebook)) == original
 
     import yaml
@@ -792,3 +879,148 @@ def test_stale_and_current_approval_readiness_are_truthful(tmp_path: Path) -> No
     stale = load_rulebook(rulebook)
     assert "human approval envelope has a stale candidate digest" in readiness(stale).blockers
     assert "**Publication readiness: BLOCKED**" in render_dossier(stale)
+
+
+# --- ADR-0004 primary-evidence review gate (unresolved decision 12) -----------------
+
+
+def test_validated_rule_requires_a_supported_human_review_of_every_cited_range(
+    tmp_path: Path,
+) -> None:
+    import yaml
+
+    rulebook = complete_rulebook(tmp_path)
+    payload = yaml.safe_load(rulebook.read_text(encoding="utf-8"))
+    del payload["evidence"][0]["review"]
+    # write_rulebook re-attaches reviews for validated rules, so write raw here.
+    rulebook.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+    with pytest.raises(RulebookError, match="cannot be validated: no supported human review"):
+        load_rulebook(rulebook)
+
+
+def test_a_not_supported_verdict_does_not_validate(tmp_path: Path) -> None:
+    import yaml
+
+    rulebook = complete_rulebook(tmp_path)
+    payload = yaml.safe_load(rulebook.read_text(encoding="utf-8"))
+    payload["evidence"][0]["review"]["verdict"] = "claim_not_supported"
+    rulebook.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+    with pytest.raises(RulebookError, match="cannot be validated: no supported human review"):
+        load_rulebook(rulebook)
+
+
+def test_unreviewed_cited_evidence_is_a_readiness_blocker(tmp_path: Path) -> None:
+    import yaml
+
+    rulebook = complete_rulebook(tmp_path)
+    payload = yaml.safe_load(rulebook.read_text(encoding="utf-8"))
+    # Downgrade the rules so the loader accepts the unreviewed record, then confirm
+    # readiness still names the missing review rather than staying silent about it.
+    for rule in payload["rules"]:
+        rule["status"] = "candidate"
+    del payload["evidence"][0]["review"]
+    rulebook.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+    blockers = readiness(load_rulebook(rulebook)).blockers
+    assert "cited evidence has no supported human review: primary-1" in blockers
+    assert unreviewed_cited_evidence(load_rulebook(rulebook)) == ("primary-1",)
+
+
+def test_review_is_bound_to_the_bytes_and_the_claim_it_attests(tmp_path: Path) -> None:
+    import yaml
+
+    rulebook = complete_rulebook(tmp_path)
+    payload = yaml.safe_load(rulebook.read_text(encoding="utf-8"))
+    payload["evidence"][0]["review"]["asset_sha256"] = "0" * 64
+    rulebook.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+    with pytest.raises(RulebookError, match="does not match the evidence record it reviews"):
+        load_rulebook(rulebook)
+
+
+def test_publish_rejects_a_review_the_pinned_key_did_not_sign(tmp_path: Path) -> None:
+    import yaml
+
+    rulebook = complete_rulebook(tmp_path)
+    private_key = approve(rulebook)
+    # An agent can write a structurally perfect review and even sign it with some key
+    # it holds; it cannot sign with the pinned one. That is what makes this an
+    # ADR-0004 gate rather than a checkbox.
+    payload = yaml.safe_load(rulebook.read_text(encoding="utf-8"))
+    attach_review(payload["evidence"][0], private_key=Ed25519PrivateKey.generate())
+    payload["evidence"][0]["review"]["public_key_fingerprint"] = hashlib.sha256(
+        public_key_bytes(private_key)
+    ).hexdigest()
+    write_rulebook(rulebook, payload)
+    approve(rulebook, private_key)
+    with pytest.raises(PublicationError, match="review signature verification failed"):
+        publish(rulebook, tmp_path / "releases", public_key_bytes(private_key))
+
+
+def test_editing_a_claim_after_review_invalidates_the_signature(tmp_path: Path) -> None:
+    import yaml
+
+    rulebook = complete_rulebook(tmp_path)
+    private_key = approve(rulebook)
+    payload = yaml.safe_load(rulebook.read_text(encoding="utf-8"))
+    # Reviewing a weak claim then strengthening it is the attack this closes.
+    payload["evidence"][0]["claim"] = "A far stronger claim nobody reviewed."
+    write_rulebook(rulebook, payload)
+    approve(rulebook, private_key)
+    with pytest.raises(PublicationError, match="review signature verification failed"):
+        publish(rulebook, tmp_path / "releases", public_key_bytes(private_key))
+
+
+def test_published_release_carries_the_review_and_revalidates_it(tmp_path: Path) -> None:
+    rulebook = complete_rulebook(tmp_path)
+    private_key = approve(rulebook)
+    public_key = public_key_bytes(private_key)
+    release_path = publish(rulebook, tmp_path / "releases", public_key)
+    release = json.loads(release_path.read_text(encoding="utf-8"))
+    review = release["source_snapshot_digests"]["primary-1"]["review"]
+    assert review["verdict"] == "claim_supported"
+    assert review["reviewer_email"] == "human@example.com"
+    load_published_release(
+        release_path, hashlib.sha256(release_path.read_bytes()).hexdigest(), public_key
+    )
+
+
+def test_review_queue_cli_lists_what_a_reviewer_must_open(tmp_path: Path, capsys) -> None:
+    import yaml
+
+    rulebook = complete_rulebook(tmp_path)
+    payload = yaml.safe_load(rulebook.read_text(encoding="utf-8"))
+    for rule in payload["rules"]:
+        rule["status"] = "candidate"
+    del payload["evidence"][0]["review"]
+    rulebook.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+    assert cli_main(["review-queue", str(rulebook)]) == 0
+    out = capsys.readouterr().out
+    assert "primary-1" in out
+    assert "A validated source claim." in out
+    assert "reviewed NO" in out
+
+    attach_review(payload["evidence"][0])
+    rulebook.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
+    assert cli_main(["review-queue", str(rulebook)]) == 0
+    assert "review queue is empty" in capsys.readouterr().out
+
+
+def test_review_message_cli_is_deterministic_and_binds_the_locator(tmp_path: Path, capsys) -> None:
+    rulebook = complete_rulebook(tmp_path)
+    args = [
+        "review-message",
+        str(rulebook),
+        "--evidence-id",
+        "primary-1",
+        "--reviewer-email",
+        "human@example.com",
+        "--reviewed-at",
+        "2026-07-24T00:00:00Z",
+        "--public-key-fingerprint",
+        "0" * 64,
+    ]
+    assert cli_main(args) == 0
+    first = capsys.readouterr().out
+    assert cli_main(args) == 0
+    assert capsys.readouterr().out == first
+    assert "evidence-review" in first
+    assert "A validated source claim." in first

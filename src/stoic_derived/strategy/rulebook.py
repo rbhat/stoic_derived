@@ -96,6 +96,8 @@ ALLOWED_CONFLUENCE_FEATURES = frozenset(
 )
 ALLOWED_ENTRY_MODELS = frozenset({"sbs_model_1", "sbs_model_2"})
 APPROVAL_DOMAIN = "stoic-derived/rulebook-approval/v1"
+REVIEW_DOMAIN = "stoic-derived/evidence-review/v1"
+ALLOWED_REVIEW_VERDICTS = frozenset({"claim_supported", "claim_not_supported"})
 
 
 class RulebookError(ValueError):
@@ -319,6 +321,146 @@ def _validate_approval(
     return approval
 
 
+def _review_message_fields(evidence: Mapping[str, Any], review: Mapping[str, Any]) -> bytes:
+    """Bytes a reviewer's key signs to attest one cited media range.
+
+    Everything the reviewer actually checked is bound in: the claim they read, the
+    locator they opened, and the digests of the bytes they opened it from. Editing
+    any of them after the fact invalidates the signature rather than silently
+    inheriting the attestation.
+    """
+    return (
+        REVIEW_DOMAIN.encode("ascii")
+        + b"\0"
+        + _canonical_json(
+            {
+                "asset_sha256": evidence["asset_sha256"],
+                "claim": evidence["claim"],
+                "evidence_id": evidence["id"],
+                "locator": dict(evidence["locator"]),
+                "public_key_fingerprint": review["public_key_fingerprint"],
+                "reviewed_at": review["reviewed_at"],
+                "reviewer_email": review["reviewer_email"],
+                "transcript_sha256": evidence.get("transcript_sha256"),
+                "verdict": review["verdict"],
+            }
+        )
+    )
+
+
+def _validate_review(value: Any, evidence: Mapping[str, Any], name: str) -> dict[str, Any]:
+    review = _expect_mapping(value, name)
+    _reject_unknown_keys(
+        review,
+        frozenset(
+            {
+                "reviewer_email",
+                "reviewed_at",
+                "verdict",
+                "observed",
+                "asset_sha256",
+                "transcript_sha256",
+                "public_key_fingerprint",
+                "signature_base64",
+            }
+        ),
+        name,
+    )
+    reviewer_email = _expect_string(review.get("reviewer_email"), f"{name}.reviewer_email")
+    if not EMAIL_RE.fullmatch(reviewer_email):
+        _fail(f"{name}.reviewer_email must be a valid email address")
+    reviewed_at = _expect_string(review.get("reviewed_at"), f"{name}.reviewed_at")
+    if not RFC3339_UTC_RE.fullmatch(reviewed_at):
+        _fail(f"{name}.reviewed_at must be an RFC3339 UTC timestamp ending in Z")
+    try:
+        datetime.fromisoformat(reviewed_at)
+    except ValueError as exc:
+        raise RulebookError(f"{name}.reviewed_at must be a valid RFC3339 UTC timestamp") from exc
+    if review.get("verdict") not in ALLOWED_REVIEW_VERDICTS:
+        _fail(f"{name}.verdict must be claim_supported or claim_not_supported")
+    observed = _expect_string(review.get("observed"), f"{name}.observed")
+    if not observed.strip():
+        _fail(f"{name}.observed must record what the reviewer saw or heard in the cited range")
+    # The review is bound to the bytes it was made against: a re-encoded asset or a
+    # re-cut transcript leaves the record's digest and the review's digest disagreeing,
+    # and the attestation goes stale instead of silently carrying over.
+    if _validate_sha256_digest(review.get("asset_sha256"), f"{name}.asset_sha256") != evidence.get(
+        "asset_sha256"
+    ):
+        _fail(f"{name}.asset_sha256 does not match the evidence record it reviews")
+    record_transcript = evidence.get("transcript_sha256")
+    review_transcript = review.get("transcript_sha256")
+    if (record_transcript is None) != (review_transcript is None):
+        _fail(f"{name}.transcript_sha256 must be present exactly when the record has one")
+    if (
+        review_transcript is not None
+        and _validate_sha256_digest(review_transcript, f"{name}.transcript_sha256")
+        != record_transcript
+    ):
+        _fail(f"{name}.transcript_sha256 does not match the evidence record it reviews")
+    _validate_sha256_digest(review.get("public_key_fingerprint"), f"{name}.public_key_fingerprint")
+    signature_text = _expect_string(review.get("signature_base64"), f"{name}.signature_base64")
+    try:
+        decoded_signature = b64decode(signature_text, validate=True)
+    except ValueError as exc:
+        raise RulebookError(f"{name}.signature_base64 must be valid base64") from exc
+    if len(decoded_signature) != 64:
+        _fail(f"{name}.signature_base64 must contain an Ed25519 signature")
+    return review
+
+
+def review_message(
+    *,
+    evidence_id: str,
+    asset_sha256: str,
+    transcript_sha256: str | None,
+    locator: Mapping[str, Any],
+    claim: str,
+    verdict: str,
+    reviewer_email: str,
+    reviewed_at: str,
+    public_key_fingerprint: str,
+) -> bytes:
+    """Build the domain-separated bytes a human reviewer's key must sign."""
+    if verdict not in ALLOWED_REVIEW_VERDICTS:
+        _fail("verdict must be claim_supported or claim_not_supported")
+    return _review_message_fields(
+        {
+            "id": evidence_id,
+            "asset_sha256": asset_sha256,
+            "claim": claim,
+            "locator": dict(locator),
+            **({} if transcript_sha256 is None else {"transcript_sha256": transcript_sha256}),
+        },
+        {
+            "public_key_fingerprint": public_key_fingerprint,
+            "reviewed_at": reviewed_at,
+            "reviewer_email": reviewer_email,
+            "verdict": verdict,
+        },
+    )
+
+
+def _verify_review(
+    evidence: Mapping[str, Any], public_key_value: Ed25519PublicKey | bytes | None
+) -> None:
+    review = evidence["review"]
+    public_key = _coerce_public_key(public_key_value)
+    if review["public_key_fingerprint"] != _public_key_fingerprint(public_key):
+        raise PublicationError(
+            f"evidence {evidence['id']}: review was signed by a key other than the pinned one"
+        )
+    try:
+        public_key.verify(
+            b64decode(review["signature_base64"], validate=True),
+            _review_message_fields(evidence, review),
+        )
+    except InvalidSignature as exc:
+        raise PublicationError(
+            f"evidence {evidence['id']}: review signature verification failed"
+        ) from exc
+
+
 def _coerce_public_key(value: Ed25519PublicKey | bytes | None) -> Ed25519PublicKey:
     if value is None:
         raise PublicationError("a separately pinned Ed25519 public key is required")
@@ -370,9 +512,11 @@ def approval_message(
     return _approval_message_fields(approval)
 
 
-def _validate_evidence(value: Any, rulebook_path: Path, *, verify_sources: bool) -> set[str]:
+def _validate_evidence(
+    value: Any, rulebook_path: Path, *, verify_sources: bool
+) -> dict[str, dict[str, Any]]:
     evidence = _expect_list(value, "evidence")
-    ids: set[str] = set()
+    ids: dict[str, dict[str, Any]] = {}
     for index, record_value in enumerate(evidence):
         record = _expect_mapping(record_value, f"evidence[{index}]")
         _reject_unknown_keys(
@@ -387,6 +531,7 @@ def _validate_evidence(value: Any, rulebook_path: Path, *, verify_sources: bool)
                     "transcript_sha256",
                     "locator",
                     "claim",
+                    "review",
                 }
             ),
             f"evidence[{index}]",
@@ -394,7 +539,7 @@ def _validate_evidence(value: Any, rulebook_path: Path, *, verify_sources: bool)
         evidence_id = _expect_string(record.get("id"), f"evidence[{index}].id")
         if evidence_id in ids:
             _fail(f"duplicate evidence id: {evidence_id}")
-        ids.add(evidence_id)
+        ids[evidence_id] = record
         if record.get("source_kind") not in ALLOWED_SOURCE_KINDS:
             _fail(f"evidence[{index}].source_kind must be media or pdf")
         asset = _safe_local_path(
@@ -456,7 +601,29 @@ def _validate_evidence(value: Any, rulebook_path: Path, *, verify_sources: bool)
                 _expect_string(transcript_digest, f"evidence[{index}].transcript_sha256"),
             ):
                 _fail(f"evidence[{index}].transcript_sha256 must be a lower-case SHA-256 digest")
+        if "review" in record:
+            _validate_review(record["review"], record, f"evidence[{index}].review")
     return ids
+
+
+def is_reviewed(evidence: Mapping[str, Any]) -> bool:
+    """True when a human has attested this cited range supports its claim (ADR-0004)."""
+    review = evidence.get("review")
+    return isinstance(review, Mapping) and review.get("verdict") == "claim_supported"
+
+
+def unreviewed_cited_evidence(rulebook: Rulebook) -> tuple[str, ...]:
+    """Cited evidence ids with no supported human review, in id order."""
+    cited: set[str] = set()
+    for rule in rulebook.data.get("rules", []):
+        cited.update(rule.get("evidence_ids", []))
+    return tuple(
+        sorted(
+            record["id"]
+            for record in rulebook.data.get("evidence", [])
+            if record["id"] in cited and not is_reviewed(record)
+        )
+    )
 
 
 def _validate_operand(value: Any, name: str) -> None:
@@ -630,7 +797,8 @@ def _validate_signal(value: Any, name: str, direction: str) -> None:
             _fail(f"{name} short profile must satisfy stop > entry > target")
 
 
-def _validate_rules(value: Any, evidence_ids: set[str]) -> list[dict[str, Any]]:
+def _validate_rules(value: Any, evidence: Mapping[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    evidence_ids = set(evidence)
     rules = _expect_list(value, "rules")
     rule_ids: set[str] = set()
     validated_rules: list[dict[str, Any]] = []
@@ -710,6 +878,19 @@ def _validate_rules(value: Any, evidence_ids: set[str]) -> list[dict[str, Any]]:
                 f"rules[{index}].signal",
                 _expect_string(direction, f"rules[{index}].direction"),
             )
+        # ADR-0004 gate (unresolved decision 12, primary-evidence-review): a candidate
+        # becomes validated only once a human has opened every cited range in the
+        # primary asset and attested that it says what the record claims. Model-derived
+        # discovery may propose the record; it may never be what validates it.
+        if rule["status"] == "validated":
+            unreviewed = sorted(
+                reference for reference in references if not is_reviewed(evidence[reference])
+            )
+            if unreviewed:
+                _fail(
+                    f"rules[{index}] cannot be validated: no supported human review for "
+                    + ", ".join(unreviewed)
+                )
         validated_rules.append(rule)
     return validated_rules
 
@@ -852,10 +1033,11 @@ def _validate_rulebook(data: dict[str, Any], path: Path, *, verify_sources: bool
     _validate_schema_version(data.get("schema_version"))
     _validate_semver(data.get("rulebook_version"), "rulebook_version", allow_prerelease=True)
     _validate_scope(data.get("scope"))
-    evidence_ids = _validate_evidence(data.get("evidence"), path, verify_sources=verify_sources)
+    evidence = _validate_evidence(data.get("evidence"), path, verify_sources=verify_sources)
+    evidence_ids = set(evidence)
     _validate_glossary(data.get("glossary", []), evidence_ids)
     _validate_examples(data.get("examples", []), path, verify_sources=verify_sources)
-    _validate_rules(data.get("rules"), evidence_ids)
+    _validate_rules(data.get("rules"), evidence)
     _validate_research_items(
         data.get("unresolved_decisions", []), "unresolved_decisions", "question", evidence_ids
     )
@@ -904,6 +1086,8 @@ def readiness(rulebook: Rulebook, *, check_approval: bool = True) -> Readiness:
     for rule in executable_rules:
         if rule["status"] != "validated":
             blockers.append(f"rule {rule['id']} is {rule['status']}")
+    for evidence_id in unreviewed_cited_evidence(rulebook):
+        blockers.append(f"cited evidence has no supported human review: {evidence_id}")
     for decision in rulebook.data.get("unresolved_decisions", []):
         blockers.append(f"unresolved decision: {decision['id']}")
     for conflict in rulebook.data.get("conflicts", []):
@@ -959,12 +1143,19 @@ def render_dossier(rulebook: Rulebook) -> str:
             "## Evidence Matrix",
             "",
             "| ID | Kind | Asset | Asset SHA-256 | Transcript | Transcript SHA-256 | "
-            "Locator | Claim |",
-            "|---|---|---|---|---|---|---|---|",
+            "Locator | Human review | Claim |",
+            "|---|---|---|---|---|---|---|---|---|",
         ]
     )
     for evidence in sorted(rulebook.data["evidence"], key=lambda item: item["id"]):
         locator = ", ".join(f"{key}={value}" for key, value in sorted(evidence["locator"].items()))
+        review = evidence.get("review")
+        if review is None:
+            review_cell = "**not reviewed**"
+        else:
+            review_cell = (
+                f"{review['verdict']} · {review['reviewer_email']} · {review['reviewed_at']}"
+            )
         evidence_cells = (
             evidence["id"],
             evidence["source_kind"],
@@ -973,6 +1164,7 @@ def render_dossier(rulebook: Rulebook) -> str:
             evidence.get("transcript_path", "—"),
             evidence.get("transcript_sha256", "—"),
             locator,
+            review_cell,
             _markdown_escape(evidence["claim"]),
         )
         lines.append("| " + " | ".join(str(cell) for cell in evidence_cells) + " |")
@@ -1081,6 +1273,7 @@ def _release_payload(rulebook: Rulebook) -> dict[str, Any]:
                     if "transcript_sha256" in evidence
                     else {}
                 ),
+                **({"review": evidence["review"]} if "review" in evidence else {}),
             }
             for evidence in sorted(rulebook.data["evidence"], key=lambda item: item["id"])
         },
@@ -1105,6 +1298,15 @@ def publish(
         if isinstance(exc, PublicationError):
             raise
         raise PublicationError(str(exc)) from exc
+    # Structural validation proves a review block exists and is bound to the right
+    # bytes; only the pinned key proves a human made it. Nothing an agent can write
+    # reaches the live path without passing here.
+    cited: set[str] = set()
+    for rule in rulebook.data["rules"]:
+        cited.update(rule["evidence_ids"])
+    for record in sorted(rulebook.data["evidence"], key=lambda item: item["id"]):
+        if record["id"] in cited and "review" in record:
+            _verify_review(record, public_key)
     state = readiness(rulebook)
     if not state.ready:
         raise PublicationError("rulebook is not live-ready: " + "; ".join(state.blockers))
@@ -1126,17 +1328,17 @@ def publish(
     return output
 
 
-def _validate_source_snapshot_digests(value: Any) -> set[str]:
+def _validate_source_snapshot_digests(value: Any) -> dict[str, dict[str, Any]]:
     snapshots = _expect_mapping(value, "source_snapshot_digests")
     if not snapshots:
         _fail("source_snapshot_digests must contain nonempty provenance snapshots")
-    evidence_ids: set[str] = set()
+    evidence_ids: dict[str, dict[str, Any]] = {}
     for evidence_id, snapshot_value in snapshots.items():
         _expect_string(evidence_id, "source_snapshot_digests key")
         snapshot = _expect_mapping(snapshot_value, f"source_snapshot_digests.{evidence_id}")
         _reject_unknown_keys(
             snapshot,
-            frozenset({"asset_sha256", "transcript_sha256"}),
+            frozenset({"asset_sha256", "transcript_sha256", "review"}),
             f"source_snapshot_digests.{evidence_id}",
         )
         _validate_sha256_digest(
@@ -1147,7 +1349,23 @@ def _validate_source_snapshot_digests(value: Any) -> set[str]:
                 snapshot["transcript_sha256"],
                 f"source_snapshot_digests.{evidence_id}.transcript_sha256",
             )
-        evidence_ids.add(evidence_id)
+        if "review" in snapshot:
+            # The published release carries the attestation, not just the digests, so a
+            # consumer can check who reviewed the range without the authoring YAML.
+            _validate_review(
+                snapshot["review"],
+                {
+                    "id": evidence_id,
+                    "asset_sha256": snapshot["asset_sha256"],
+                    **(
+                        {"transcript_sha256": snapshot["transcript_sha256"]}
+                        if "transcript_sha256" in snapshot
+                        else {}
+                    ),
+                },
+                f"source_snapshot_digests.{evidence_id}.review",
+            )
+        evidence_ids[evidence_id] = dict(snapshot)
     return evidence_ids
 
 
@@ -1186,10 +1404,12 @@ def _validate_published_release(
         release.get("candidate_sha256"), "release.candidate_sha256"
     )
     _validate_scope(release.get("scope"))
-    evidence_ids = _validate_source_snapshot_digests(release.get("source_snapshot_digests"))
-    _validate_glossary(release.get("glossary", []), evidence_ids)
+    snapshots = _validate_source_snapshot_digests(release.get("source_snapshot_digests"))
+    _validate_glossary(release.get("glossary", []), set(snapshots))
     _verify_approval(release.get("approval"), candidate_sha256, public_key)
-    rules = _validate_rules(release.get("rules"), evidence_ids)
+    # The release carries its reviews, so a consumer re-checks the ADR-0004 gate from
+    # the release alone — a published rule cannot cite an unreviewed range.
+    rules = _validate_rules(release.get("rules"), snapshots)
     release_rulebook = Rulebook(
         path=Path("<published-release>"),
         data={

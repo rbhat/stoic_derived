@@ -26,8 +26,11 @@ scripts/extract.sh --stop       # e.g. the laptop is hot
 
 ## Next, in order
 
-1. **Resolve unresolved decision 12, `primary-evidence-review`.** It is the ADR-0004 gate the other
-   eleven decisions pass through — see `docs/CONSTRAINTS.md`.
+1. **Decision 12, `primary-evidence-review` — needs the user, ~10 minutes.** The gate is built and
+   enforced (ADR-0022, status *Proposed*); what is missing is the reviews themselves. Run
+   `stoic-rulebook review-queue strategy/rulebook.yaml`: **10 cited ranges, 9m16s of video.** Watch
+   each, confirm the claim, sign. Until then no candidate can become `validated`, so this still
+   gates the other eleven decisions.
 2. Re-run the §3.3 OCR gate on the full corpus — design in
    `docs/notes/2026-07-27-wpv-33-ocr-gate.md` §8. Needs a small `--videos` filter on `sample`.
 3. Re-run the spec-coverage probe — `docs/notes/2026-07-27-spec-coverage-probe.md`. Its tier-3

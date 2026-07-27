@@ -9,6 +9,7 @@ it travels between machines. Write new memories here — not to `~/.claude/proje
 which has been retired for this project. See `CLAUDE.md` for the contract.
 
 - [Signal fidelity, not edge revalidation](signal-fidelity-over-edge-revalidation.md) — **START HERE.** User directive: Stoic's method is a proven given; learn it from the education, build a signal generator, measure fidelity — never re-litigate the edge or conclude from small samples
+- [Primary-evidence review gate](primary-evidence-review-gate.md) — **the ADR-0004 gate, decision 12.** A rule reaches `validated` only when every cited range carries a *signed* human review; an agent structurally cannot write one. Mechanism built, reviews outstanding (10 ranges, 9m16s)
 - [Case-study fixture track](case-study-fixture-track.md) — **active work.** Vol 1-7 PDFs have a text layer (25 in-scope NQ sessions, all inside data coverage); our bars reproduce the instructor's HCOM/LCOM exactly; page-title dates are TRADE days, not signal days
 - [Red day definition](red-day-definition.md) — **strategy decision.** Red = `close < open`; Day1-3 new HCOM → Day4 red = signal → trade Day 5; canonical fixture is 2026-01-26..30. Do not re-derive from data
 - [WP-V §3.1 visual harvest status](visual-harvest-31-status.md) — **active work.** 10,120 visual states harvested; all six HARD audit checks green and every count re-derived; dHash alone under-splits, so the split rule needs more than a 64-bit hash
