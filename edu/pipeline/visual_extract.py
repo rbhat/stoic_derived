@@ -106,6 +106,33 @@ VLM_TIMEOUT = 600          # cold model load measured at 74 s; warm calls ~5 s
 # VLM_RETRIES * VLM_TIMEOUT + COOL_FOR, or a slow-but-healthy state looks dead.
 VLM_MAX_TOKENS = 6000
 VLM_CONTEXT_LENGTH = 32768  # what the supervisor loads LM Studio with
+
+# The ceiling above is necessary but NOT sufficient, and 6000 was measured
+# failing on the same AUD/USD dual chart that broke 1600. The failure is not
+# verbosity: on that frame the model transcribes the visible ladder
+# (0.71940 down to 0.69520) and then keeps extrapolating the arithmetic
+# sequence *past the bottom of the image* -- 0.66, 0.62, ... 0.57460 -- numbers
+# that are nowhere on the chart. It is a decode loop, so it does not terminate,
+# and no value of VLM_MAX_TOKENS bounds it; raising the cap only moves the wall
+# and costs 361 s to hit it. Prompt RULE 1 already forbids exactly this and the
+# model ignores it here, so the prompt is not the lever either.
+#
+# maxLength on the ocr_text string IS the lever, because LM Studio enforces it
+# in the structured-output grammar rather than asking the model to cooperate:
+# the string is force-closed at the cap and generation continues into the
+# remaining fields. That matters more than it sounds -- chart.drawn_levels and
+# chart.annotations come after ocr_text, and they are where this frame's real
+# content lives (PDH / PDC / PDL / "Monday Close"). Verified on 0180_002503.jpg:
+# finish_reason "stop", record parses, chart block recovered. A lost state
+# becomes a recorded one.
+#
+# 3000 is ~5x the largest legitimate ocr_text measured (574 chars over the first
+# 805 records), and verified non-binding: re-running a healthy chart frame with
+# the cap in place reproduced its stored record byte for byte. Being generous is
+# deliberate -- a genuinely text-dense slide must never be clipped to make a
+# pathological chart cheaper. When the cap does bind the record says so
+# (ocr_text_capped), so it is auditable and never a silent truncation.
+OCR_TEXT_MAX_CHARS = 3000
 VLM_RETRIES = 3            # per state, within one run
 MAX_STATE_ATTEMPTS = 3     # across runs, before a state is recorded as a permanent error
 CONSECUTIVE_FAILURE_ABORT = 10
@@ -247,7 +274,12 @@ RECORD_SCHEMA = {
     "properties": {
         "frame_class": {"type": "string", "enum": [
             "slide", "chart", "chart_annotated", "mixed", "talking_head", "other"]},
-        "ocr_text": {"type": "string"},
+        # maxLength is a grammar-enforced circuit breaker on the axis-ladder
+        # decode loop, not a statement about how long a transcription may be.
+        # See OCR_TEXT_MAX_CHARS. It does not change what ocr_text means, and it
+        # is non-binding on every record extracted so far, so it does not split
+        # the corpus -- prompt_sha, which is what defines ocr_text, is untouched.
+        "ocr_text": {"type": "string", "maxLength": OCR_TEXT_MAX_CHARS},
         "ocr_confidence": {"type": "string", "enum": ["high", "partial", "unreadable"]},
         "chart": {
             "type": "object",
@@ -571,6 +603,17 @@ class LMStudioError(RuntimeError):
     pass
 
 
+class TruncatedResponse(LMStudioError):
+    """The model ran out of token budget mid-response.
+
+    Split out from LMStudioError because it is the one failure that must NOT
+    be retried: the call is made at temperature 0, so a second and third
+    attempt regenerate the same tokens and hit the same wall, turning one
+    361 s loss into 18 minutes of it. A transport error is worth retrying; a
+    deterministic overrun is not.
+    """
+
+
 def _parse_model_json(content: str) -> dict | None:
     try:
         obj = json.loads(content)
@@ -628,12 +671,12 @@ def call_vlm(image_path: Path, timeout: float = VLM_TIMEOUT) -> dict:
         # loaded context rather than max_tokens.
         if choices[0].get("finish_reason") == "length":
             used = body.get("usage", {})
-            raise LMStudioError(
+            raise TruncatedResponse(
                 f"truncated at max_tokens={VLM_MAX_TOKENS} "
                 f"(prompt {used.get('prompt_tokens', '?')} + completion "
-                f"{used.get('completion_tokens', '?')} tokens); "
-                f"raise VLM_MAX_TOKENS, and VLM_CONTEXT_LENGTH if that is the "
-                f"binding limit: {content[:120]}"
+                f"{used.get('completion_tokens', '?')} tokens) despite the "
+                f"ocr_text maxLength={OCR_TEXT_MAX_CHARS} grammar cap -- the "
+                f"overrun is in some other field: {content[:120]}"
             )
         raise LMStudioError(f"response did not parse as the required schema: {content[:200]}")
     return parsed
@@ -752,6 +795,15 @@ def _build_ok_record(s: dict, model_json: dict, elapsed: float, attempts: int) -
         # Only carried when the filter actually fired, so the audit can diff
         # cleaned against raw on exactly the frames where it matters.
         record["axis_lines_stripped"] = axis_stripped
+        record["ocr_text_raw"] = raw_ocr
+    if len(raw_ocr) >= OCR_TEXT_MAX_CHARS:
+        # The grammar closed the string rather than the model finishing it, so
+        # this transcription is incomplete by construction. Usually it is the
+        # axis decode loop being cut off, which is the cap working as intended
+        # and costs nothing real -- but a text-dense slide could land here too,
+        # and that would be a genuine loss. Flagged either way so §3.3 can tell
+        # the two apart by inspection instead of the difference going unseen.
+        record["ocr_text_capped"] = True
         record["ocr_text_raw"] = raw_ocr
     chart = _chart_block(model_json)
     if chart is not None:
@@ -893,6 +945,10 @@ def stage_extract(
         for attempt in range(1, VLM_RETRIES + 1):
             try:
                 model_json = call_vlm(img_path)
+                break
+            except TruncatedResponse as exc:
+                # Deterministic at temperature 0 -- see TruncatedResponse.
+                last_err = f"{type(exc).__name__}: {exc}"
                 break
             except Exception as exc:
                 last_err = f"{type(exc).__name__}: {exc}"

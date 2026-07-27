@@ -90,11 +90,47 @@ against a 262144 maximum**, and prompt + one 1920×1080 keyframe measures **895 
 ~3.2k. Raising the cap alone would have moved the truncation, not removed it. Always check
 `~/.lmstudio/bin/lms ps --json` → `contextLength` before believing a token number.
 
+### It came back at 6000, and the cap was never the fix (2026-07-26, later)
+
+Raising the ceiling to 6000 did **not** fix those frames — states 180–183 errored again with
+`prompt 895 + completion 5999`. Probing the frame showed why: the model transcribes the *visible*
+ladder (0.71940 down to 0.69520) and then **keeps extrapolating the arithmetic sequence past the
+bottom of the image** — 0.66, 0.62, … 0.57460, numbers that are nowhere on the chart. It is a
+**decode loop, so it does not terminate**; no `VLM_MAX_TOKENS` bounds it, and each attempt burns
+361 s to hit the wall. Prompt RULE 1 already forbids exactly this in as many words and the model
+ignores it here, so the prompt is not the lever either.
+
+**The lever is `maxLength` on the `ocr_text` string in `RECORD_SCHEMA`** (`OCR_TEXT_MAX_CHARS`,
+3000). LM Studio enforces it **in the structured-output grammar**, not by asking the model to
+cooperate: the string is force-closed at the cap and generation continues into the remaining
+fields. That is the whole point — `chart.drawn_levels` and `chart.annotations` come *after*
+`ocr_text`, and on these frames they are where the real content is (PDH / PDC / PDL /
+"Monday Close"). Verified on `0180_002503.jpg`: `finish_reason` `stop`, record parses, chart block
+recovered. A lost state becomes a recorded one.
+
+- **3000 is ~5× the largest legitimate `ocr_text` measured** (574 chars over 805 records), and
+  verified non-binding: re-running healthy frame `#0051` with the cap reproduced its stored record
+  byte for byte.
+- **It does not split the corpus.** `prompt_sha` hashes the prompt text, which is untouched
+  (`3eccf9049745`), and the cap cannot bind on anything already extracted.
+- **When it binds, the record says so** — `ocr_text_capped: true` plus `ocr_text_raw`. Usually that
+  is the decode loop being cut off and costs nothing, but a genuinely text-dense slide could land
+  there too, and §3.3 must be able to tell them apart by inspection.
+- **A truncation is never retried.** `TruncatedResponse` breaks out of the retry loop, because at
+  `temperature: 0` attempts 2 and 3 regenerate the same tokens and hit the same wall — that is what
+  turned one 361 s loss into ~18 min per state.
+
+What this does **not** recover is `ocr_text` itself on a looping frame: the ladder is emitted before
+the model reaches the drawn labels, so the cleaned text keeps only the title and chart header. The
+labels survive as `annotations`, which are descriptive, not verbatim. Treat those frames as
+partially transcribed.
+
 Current constants, sized against wall-clock rather than tokens (the model is local, so tokens are
 free, but time is not):
 
 | constant | value | why |
 |---|---|---|
+| `OCR_TEXT_MAX_CHARS` | 3000 | grammar-enforced circuit breaker on the decode loop; ~5× the largest legitimate `ocr_text` (574 chars) |
 | `VLM_MAX_TOKENS` | 6000 | ~20× the largest legitimate output (~300 tok); reachable in 361 s at the measured 16.6 tok/s |
 | `VLM_CONTEXT_LENGTH` | 32768 | supervisor reloads LM Studio to this |
 | `VLM_TIMEOUT` | 600 | must exceed `VLM_MAX_TOKENS` / rate, or the cap is unreachable and the real failure becomes a read timeout |
@@ -145,15 +181,23 @@ but the run is not finished until all 16 videos are done.
   `chart_annotated` with `ocr_confidence: high` over scattered glyphs. The OCR is faithful to what
   is on screen; the label and the confidence are not.
 
-## State as of 2026-07-26 ~19:00 PDT
+## State as of 2026-07-26 ~20:30 PDT
 
-805/10120 (8.0 %), **805 ok / 0 errors**, one `prompt_sha`, `unreadable_line_rate` 0.0000,
-`axis_lines_stripped` 30. `concept_candle_swing_theory_pdh_pdl_pdc` complete (599/599). Run is
-**stopped** (user needed the laptop); max `state_id` on disk for `concept_htf_stoic_trader_protocol`
-is 179.
+805/10120 (8.0 %), **805 ok / 0 errors**, one `prompt_sha` (`3eccf9049745`),
+`unreadable_line_rate` 0.0000, `axis_lines_stripped` 30 records / 616 lines (max 39 on one frame —
+bounded, and every one kept its levels, so the ok corpus shows no sign of the decode loop).
+`concept_candle_swing_theory_pdh_pdl_pdc` complete (599/599). Run is **stopped**; max `state_id` on
+disk for `concept_htf_stoic_trader_protocol` is 179.
 
-**Still unverified:** the five deleted AUD/USD states 180–184 of `concept_htf_stoic_trader_protocol`
-have not been re-extracted. They are the first test of the truncation fix — check them.
+The 19:44 restart re-ran the AUD/USD frames and **states 180–183 errored again** on the same
+truncation — that run predates the `maxLength` fix. Those 4 error records were deleted, so the
+counts above are all-ok.
+
+**Still unverified:** AUD/USD states 180–184 of `concept_htf_stoic_trader_protocol` have never been
+extracted successfully. They are the first test of the `OCR_TEXT_MAX_CHARS` fix — **check them
+first.** Expect them to come back `ok` with `ocr_text_capped: true`, a large
+`axis_lines_stripped`, an `ocr_text` of only the title and chart header, and a populated `chart`
+block. Anything else means the grammar cap is not doing what the probe showed.
 
 **Latent issue, do not fix without asking:** the video-stage `attempts` counter on the first three
 concept videos reached `MAX_ATTEMPTS` (3) purely from repeated restarts, not from real failures. If
