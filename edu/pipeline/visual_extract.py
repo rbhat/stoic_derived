@@ -130,8 +130,13 @@ COOL_FOR = float(os.environ.get("STOIC_COOL_FOR", 90))        # seconds of idle
 # is sustained high junction temperature for days, which is what actually
 # damages hardware. Same rules as the short pause: taken between states, and
 # left inside the throughput measurement so the ETA stays honest.
-REST_EVERY = float(os.environ.get("STOIC_REST_EVERY", 7200))   # seconds of work
-REST_FOR = float(os.environ.get("STOIC_REST_FOR", 1200))       # seconds of idle
+#
+# 15 min every 90 min rather than the first cut of 20 min every 2 h: the machine
+# was still reported hot. Note the duty ratio is identical (1:6 either way) --
+# what changes is how long heat is allowed to accumulate before it is shed, and
+# the shorter soak is the thermally kinder of the two at the same cost.
+REST_EVERY = float(os.environ.get("STOIC_REST_EVERY", 5400))   # seconds of work
+REST_FOR = float(os.environ.get("STOIC_REST_FOR", 900))        # seconds of idle
 
 SCHEMA_VERSION = "wpv-visual-record/v1"
 PROGRESS_EVERY = 25        # states between progress log lines
@@ -1687,7 +1692,7 @@ def main() -> int:
         log(f"starting fresh: {tracker.total_states} states to extract")
     log(f"prompt {PROMPT_SHA} | model {VLM_MODEL} | "
         f"cooling {int(COOL_FOR)}s every {int(COOL_EVERY)}s, "
-        f"resting {int(REST_FOR / 60)}m every {int(REST_EVERY / 3600)}h")
+        f"resting {int(REST_FOR / 60)}m every {int(REST_EVERY / 60)}m")
     write_progress(all_jobs, tracker)
 
     ok = failed = 0
