@@ -36,9 +36,14 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 import pathlib
 import re
 import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+
+from visual_extract import _count_ocr_lines, _strip_axis_ladders
 
 REPO = pathlib.Path(__file__).resolve().parents[2]
 VISUAL = REPO / ".artifacts" / "research" / "visual"
@@ -123,15 +128,129 @@ def apply_to_record(rec: dict, wrong: str, right: str) -> tuple[dict, dict | Non
     return rec, {"id": rec["id"], "substitutions": hits, "before": before}
 
 
+def restrip_record(rec: dict) -> tuple[dict, dict | None]:
+    """Re-derive `ocr_text` by running the CURRENT `_strip_axis_ladders` over
+    the model's original output.
+
+    Unlike the token repairs above this asserts nothing about the pixels -- it
+    only re-applies deterministic code that has since been fixed, so it needs
+    no JPEG evidence. The source is always `ocr_text_raw` when present (the
+    untouched model output), never the already-stripped `ocr_text`; that is
+    what makes a second pass a no-op and what lets the count come out as the
+    total removed rather than the amount removed this time.
+
+    Because raw is untouched it still carries any token an earlier repair
+    rewrote, so the token table is re-applied on top of the freshly stripped
+    text. Without that, re-stripping `cs_vol1` would put `RHOW` back on 19
+    records and delete the `PHOW` that the repair recovered on `#0369`.
+    `ocr_text` is therefore defined as strip(raw) + the token table, and the
+    two compose in either order.
+    """
+    raw = rec.get("ocr_text_raw") or rec.get("ocr_text")
+    if not raw:
+        return rec, None
+
+    cleaned, removed = _strip_axis_ladders(raw)
+    for rep in REPAIRS:
+        if rec.get("video") == rep["scope"]:
+            cleaned = token_re(rep["wrong"]).sub(rep["right"], cleaned)
+    if cleaned == rec.get("ocr_text"):
+        return rec, None
+
+    before = {"ocr_text": rec.get("ocr_text", ""),
+              "axis_lines_stripped": rec.get("axis_lines_stripped", 0),
+              "ocr_line_count": rec.get("ocr_line_count")}
+    newly = removed - rec.get("axis_lines_stripped", 0)
+
+    unreadable, line_count = _count_ocr_lines(cleaned)
+    rec["ocr_text"] = cleaned
+    rec["unreadable_lines"] = unreadable
+    rec["ocr_line_count"] = line_count
+    if removed:
+        # Same invariant as _build_ok_record: both keys are carried only when
+        # the filter actually fired.
+        rec["axis_lines_stripped"] = removed
+        rec["ocr_text_raw"] = raw
+    return rec, {"id": rec["id"], "lines_removed": newly, "before": before}
+
+
+def write_atomic(path: pathlib.Path, text: str) -> None:
+    """Never leave a partially written `visual_records.jsonl` behind -- it
+    costs 45-105 h to regenerate and there is no second copy."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    with open(tmp, "w") as fh:
+        fh.write(text)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp, path)
+
+
+def run_restrip(apply: bool, stamp: str) -> int:
+    """Re-strip every video whose extraction is complete."""
+    total = 0
+    for d in sorted(VISUAL.iterdir()):
+        f = d / "visual_records.jsonl"
+        if not d.is_dir() or not f.exists():
+            continue
+        print(f"\n=== restrip: {d.name}")
+        ok, why = video_complete(d.name)
+        if not ok:
+            print(f"  SKIPPED -- extraction not complete ({why}).")
+            continue
+        print(f"  extraction complete: {why}")
+
+        out, changes = [], []
+        for ln in f.read_text().splitlines():
+            if not ln.strip():
+                out.append(ln)
+                continue
+            rec, ch = restrip_record(json.loads(ln))
+            if ch:
+                changes.append(ch)
+            out.append(json.dumps(rec, ensure_ascii=False))
+
+        print(f"  records affected  {len(changes)}")
+        print(f"  lines removed     {sum(c['lines_removed'] for c in changes)}")
+        if not changes:
+            print("  nothing to do (already re-stripped, or no axis survived)")
+            continue
+        if not apply:
+            print("  DRY RUN -- pass --apply to write.")
+            continue
+
+        write_atomic(f, "\n".join(out) + "\n")
+        LOG.parent.mkdir(parents=True, exist_ok=True)
+        with LOG.open("a") as fh:
+            fh.write(json.dumps({"applied_utc": stamp,
+                                 "repair": {"id": "restrip-axis-ladders",
+                                            "evidence": "deterministic re-run of "
+                                            "_strip_axis_ladders; no pixel claim"},
+                                 "video": d.name, "changes": changes},
+                                ensure_ascii=False) + "\n")
+        total += len(changes)
+        print(f"  APPLIED. Logged to {LOG.relative_to(REPO)}.")
+    return total
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--apply", action="store_true",
                     help="write the changes (default is a dry run)")
     ap.add_argument("--only", help="run just this repair id")
+    ap.add_argument("--restrip", action="store_true",
+                    help="re-derive ocr_text through the current "
+                         "_strip_axis_ladders instead of running the token table")
     args = ap.parse_args()
 
     stamp = dt.datetime.now(dt.UTC).isoformat()
+
+    if args.restrip:
+        total = run_restrip(args.apply, stamp)
+        if args.apply:
+            print(f"\n{total} records re-stripped.")
+        return 0
+
     total = 0
     for rep in REPAIRS:
         if args.only and rep["id"] != args.only:
@@ -171,7 +290,7 @@ def main() -> int:
             print("  DRY RUN -- pass --apply to write.")
             continue
 
-        f.write_text("\n".join(out) + "\n")
+        write_atomic(f, "\n".join(out) + "\n")
         LOG.parent.mkdir(parents=True, exist_ok=True)
         with LOG.open("a") as fh:
             fh.write(json.dumps({"applied_utc": stamp, "repair": rep,

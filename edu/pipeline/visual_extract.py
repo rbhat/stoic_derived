@@ -753,6 +753,38 @@ _AXIS_PRICE_RE = re.compile(r"^\$?\d{1,3}(?:,\d{3})*(?:\.\d+)?$|^\d+(?:\.\d+)?$"
 _AXIS_TIME_RE = re.compile(r"^\d{1,2}:\d{2}(?::\d{2})?(?:\s*[AP]M)?$", re.IGNORECASE)
 AXIS_RUN_MIN = 4  # consecutive ladder lines before a run is treated as an axis
 
+# A date axis is sometimes returned as one long line rather than one line per
+# tick, which no run rule can see. Its tokens are month and weekday
+# abbreviations, two- or four-digit years (`'25`), and bare day numbers.
+_AXIS_DATE_TOKEN_RE = re.compile(
+    r"^(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec"
+    r"|Mon|Tue|Tues|Wed|Thu|Thur|Thurs|Fri|Sat|Sun|'\d{2})$",
+    re.IGNORECASE,
+)
+# Measured against the 3,069 records on disk: at this width every matching line
+# is an axis, and the content that would be lost one token lower is real --
+# `1 2 3 4 5` is a diagram DAY row and `Mon 29 Dec '25` is a crosshair readout
+# the OHLC join reads. Do not lower it without re-measuring.
+AXIS_INLINE_MIN = 7
+
+
+def _is_inline_axis(line: str) -> bool:
+    """Is this single line a whole chart axis run together?
+
+    True when the line carries at least AXIS_INLINE_MIN tokens and every one of
+    them is axis furniture -- a month or weekday abbreviation, a year, a bare
+    day number, a price, or a clock time. One non-furniture token is enough to
+    keep the line, which is what protects the OHLC header ("O ... H ... L ...
+    C ...") despite it being mostly digits.
+    """
+    tokens = line.split()
+    if len(tokens) < AXIS_INLINE_MIN:
+        return False
+    return all(
+        _AXIS_DATE_TOKEN_RE.match(t) or _AXIS_PRICE_RE.match(t) or _AXIS_TIME_RE.match(t)
+        for t in tokens
+    )
+
 
 def _strip_axis_ladders(ocr_text: str) -> tuple[str, int]:
     """Remove chart-axis ladders from ocr_text, deterministically.
@@ -768,11 +800,15 @@ def _strip_axis_ladders(ocr_text: str) -> tuple[str, int]:
     "PDC" and "Thursday" -- from being mistaken for axis furniture, since a
     called-out number never arrives in a block of four.
 
+    An axis is also removed when the model returns the whole of it on a single
+    line -- see _is_inline_axis, which is the same judgement made across tokens
+    instead of across lines.
+
     Returns (cleaned_text, lines_removed). The caller keeps the original as
     ocr_text_raw whenever this removes anything, so nothing is ever lost.
     """
     lines = ocr_text.split("\n")
-    keep = [True] * len(lines)
+    keep = [not _is_inline_axis(ln) for ln in lines]
     i = 0
     while i < len(lines):
         for pattern in (_AXIS_PRICE_RE, _AXIS_TIME_RE):

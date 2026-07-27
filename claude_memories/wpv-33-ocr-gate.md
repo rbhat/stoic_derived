@@ -94,10 +94,28 @@ an invisible corpus split, worse than a visible one. Not mid-run.
   across frames, not hand-drawn levels on a live chart that the instructor is actively editing.
   Confirmed by opening five of the groups. Do not generalise it back to `drawn_levels`.
 
-## Two mechanical leftovers, neither costing content
+## `ocr_text_raw` is PRE-REPAIR — do not re-derive from it blindly
 
-- `_strip_axis_ladders` matches runs of ≥4 consecutive lines, so a date axis emitted as **one long
-  line** slips through (3 lines in the 30-frame sample).
+`ocr_text_raw` is the model's untouched output, kept whenever `_strip_axis_ladders` fired. Token
+repairs (`repair_records.py`) rewrite **`ocr_text` only**, so raw still carries the wrong token.
+Re-deriving `ocr_text` from raw therefore *reverts* every repair: re-stripping `cs_vol1` put `RHOW`
+back on 19 of 20 records and on `#0369` would have deleted the `PHOW` the repair recovered — undoing
+a fix backed by 20 read JPEGs while reporting only "lines removed".
+
+**`ocr_text` ≡ strip(raw) + the token table.** `--restrip` re-applies the table, so the two compose
+in either order. Anything else reading `ocr_text_raw`, **including the Stage B rebuild**, inherits
+this: raw has never been repaired.
+
+The tell was arithmetic — the dry run reported *154 records affected, 141 lines removed*. More
+records changed than lines removed is impossible for a line filter. Check that invariant.
+
+## One mechanical leftover, and one fixed
+
+- **Fixed 2026-07-27.** `_strip_axis_ladders` now also strips a single line that is entirely axis
+  furniture (`AXIS_INLINE_MIN = 7` tokens). The threshold is measured over 3,069 records: at 5–6 it
+  eats a diagram `1 2 3 4 5` DAY row and a `Mon 29 Dec '25` crosshair readout. Applied to stored
+  records with `repair_records.py --restrip`, which is idempotent — **run it once at 10120/10120**,
+  not per video. Tests: `tests/edu_pipeline/`.
 - **`frame_class` flips on slides that get drawn on** — the same INSIDE DAY REVERSAL slide came back
   `slide` on one frame and `chart_annotated` on another, and intro animations land in either instead
   of `other`. All 4 of the 30 class disagreements are this. **If the dataset rebuild filters on

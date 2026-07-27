@@ -53,9 +53,10 @@ Applied so far: `RHOW` → `PHOW` in `cs_vol1` (20 records, 39 substitutions).
 
 ## Known open items
 
-- `_strip_axis_ladders` misses a date axis emitted as **one long line** (it matches runs of ≥4
-  lines). Cosmetic. **Now has a mechanism** — fix the filter, then re-apply offline via
-  `repair_records.py`. Not fixed.
+- `_strip_axis_ladders`' one-line blind spot is **fixed** (`AXIS_INLINE_MIN = 7`), and
+  `repair_records.py --restrip` re-derives stored `ocr_text` through it. **Not yet applied** — by
+  decision it runs once at `10120/10120`, since 9 videos are still unextracted and the pass is
+  idempotent. Dry run over the 6 complete videos: 226 records, 227 lines, 0 emptied.
 - `ocr_confidence` has no enum value for "no text present", so blank frames report `unreadable`.
   Affects ~7 records. Not worth a corpus split.
 - `frame_class` flips between `slide` and `chart_annotated` on slides the instructor drew over.
@@ -65,8 +66,11 @@ Applied so far: `RHOW` → `PHOW` in `cs_vol1` (20 records, 39 substitutions).
 
 A monitor polls `scripts/extract.sh --status` and emits an event on: a video completing, an error
 record appearing, a `prompt_sha` split, the extractor going down or coming back, and the corpus
-finishing. **It is session-scoped and dies with the session — re-arm it at the start of each one.**
-Nothing depends on it; it only saves polling.
+finishing. Re-arm it at the start of each session. Nothing depends on it; it only saves polling.
+
+**They do not reliably die with the session.** On 2026-07-27 two monitors from earlier sessions were
+still alive and reported the same `cs_vol2` completion three times. Before arming, list tasks and
+`TaskStop` any leftovers — otherwise every event arrives once per stale session.
 
 §8 of the OCR-gate note names the milestones worth a real look. Milestone 1 (`cs_vol1`) is **done**.
 **Milestone 2 is `cs_vol3_gold_futures_study`** — the gold study, where `HCOM`/`HCOW`/`LCOM`/`LCOW`
