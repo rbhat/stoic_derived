@@ -22,7 +22,7 @@ Three subcommands, matching the three items of the gate in
 
 What this deliberately does NOT do: anything with `chart.drawn_levels`. That
 field is advisory by decision and is not trained on, and two checks against it
-have already been built and retired -- see `claude_memories/wpv-32-extraction-run.md`,
+have already been built and retired -- see `claude_memories/wpv-32-extraction-findings.md`,
 "STOP AUDITING drawn_levels". The gate is about `ocr_text` against the pixels.
 """
 

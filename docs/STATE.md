@@ -56,7 +56,8 @@ A persistent monitor watches the extraction and reports video completions, error
 | you want | read |
 |---|---|
 | what binds the next step | `docs/CONSTRAINTS.md` |
-| the extraction: how to run, resume, what breaks | `claude_memories/wpv-32-extraction-run.md` |
+| the extraction: how to run, resume, what breaks | `claude_memories/wpv-32-extraction-ops.md` |
+| what the extraction output says, and what not to re-audit | `claude_memories/wpv-32-extraction-findings.md` |
 | whether the OCR is trustworthy, and where it is not | `claude_memories/wpv-33-ocr-gate.md` |
 | whether the material can answer the 12 open decisions | `docs/notes/2026-07-27-spec-coverage-probe.md` |
 | the whole retrain chain across two machines | `docs/notes/2026-07-26-slm-retrain-plan.md` |
@@ -67,9 +68,9 @@ Use the command, not a hand-written index: an index file is a copy, and copies d
 
 ## Structural debt
 
-- **`claude_memories/wpv-32-extraction-run.md` is 422 lines doing six jobs** — how to run the job,
-  the durability contract, the thermal cycle, the token/context trap, the findings, and the
-  "STOP AUDITING `drawn_levels`" directive. It is 31 % of all memory, and it is where a fact that
-  was already recorded got missed on 2026-07-27 because nothing surfaced it at the point of need.
-  Split into an ops memory and a findings memory. Not done — it needs care, and the STOP directive
-  must stay prominent in both.
+- ~~`claude_memories/wpv-32-extraction-run.md` is 422 lines doing six jobs.~~ **Split 2026-07-27**
+  into `wpv-32-extraction-ops.md` (how to run it: commands, durability, thermal, the four constants,
+  the sanity check) and `wpv-32-extraction-findings.md` (what the output says: the STOP directive
+  first, `ocr_text` healthy, levels advisory, Stage B). The STOP AUDITING `drawn_levels` directive
+  opens the findings file and is repeated as a banner at the top of the ops file. Stale status
+  snapshots were dropped — `docs/STATE.md` owns status.

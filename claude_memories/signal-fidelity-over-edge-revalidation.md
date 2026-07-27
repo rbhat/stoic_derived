@@ -38,9 +38,12 @@ thing ("I am NOT inventing a new strategy"; validation "does NOT gate"), and so 
   management applied, flatten rule honoured, disaggregated by Type / instrument / timeframe.
 - **Never conclude from small n.** Widen the data (ES + NQ, all available history) before drawing
   any inference. When n is small, report counts, not verdicts — and not project direction.
-- **No parameter grid searches for "the best cell."** Parameters come from the education with
-  evidence (ADR-0004); where the material genuinely underdetermines a number, the human decides
-  and it is recorded as a strategy decision.
+- **No parameter grid searches for "the best cell."** Where the material genuinely underdetermines
+  a number, the human decides and it is recorded as a strategy decision. **This is the user's
+  standing directive, not ADR-0004** — do not cite the ADR for it. ADR-0004 is a separate and
+  stricter constraint about *evidence authority*: primary media/PDF is normative, model-derived
+  artifacts cannot be the sole normative source. Conflating the two cost a full work cycle on
+  2026-07-27 (`docs/notes/2026-07-27-spec-coverage-probe.md` §3).
 
 Rigor is not relaxed by this rule — [[audit-derived-numbers]] (ADR-0021) still governs every
 number. What changes is *what is being tested*: our fidelity to the method, not the method.

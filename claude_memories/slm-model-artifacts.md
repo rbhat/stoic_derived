@@ -55,7 +55,7 @@ it; the open questions are execution, not whether.
 said 4-bit/~17 GB, wrong) and **cannot run there**. So:
 
 - **Mac** — WP-V §3.2 VLM extraction of the 10,120 states (≈48 h measured over 805 states, not
-  the earlier ≈16.9 h estimate — see [[wpv-32-extraction-run]]), §3.3 audit, rebuild
+  the earlier ≈16.9 h estimate — see [[wpv-32-extraction-ops]]), §3.3 audit, rebuild
   `edu/derived/dataset.jsonl`. Then push.
 - **WSL** — eval delta → QLoRA retrain → eval. **Cannot start until the Mac stage is pushed.**
 

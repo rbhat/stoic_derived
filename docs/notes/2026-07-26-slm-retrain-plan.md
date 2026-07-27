@@ -86,7 +86,7 @@ states. Realistic total **including the +30 % thermal duty cycle** (90 s idle pe
 added at the user's request): **≈ 50–75 h for the full corpus.** This 53-state calibration figure
 was itself superseded the same day by a direct measurement over 805 states from the actual run
 (chart median 13.3 s, not 23.2 s) plus the second thermal tier added later — see
-`claude_memories/wpv-32-extraction-run.md`, ETA **≈ 48 h**. Use that figure, not this one.
+`claude_memories/wpv-32-extraction-ops.md`, ETA **≈ 48 h**. Use that figure, not this one.
 
 **Scope decision, user's call 2026-07-26: extract everything, live sessions included** — "make sure
 all the info is covered including live sessions". §2's suggestion of cutting the 5,139 live states

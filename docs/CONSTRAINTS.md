@@ -34,9 +34,9 @@ have been a rule that existed, was written down, and was not surfaced at the mom
 
 | obligation | source |
 |---|---|
-| **Do not build another check against `chart.drawn_levels`.** Two have been built and retired; the disagreements are the instructor editing a live chart, not model error. | `claude_memories/wpv-32-extraction-run.md` § "STOP AUDITING `drawn_levels`" |
+| **Do not build another check against `chart.drawn_levels`.** Two have been built and retired; the disagreements are the instructor editing a live chart, not model error. | `claude_memories/wpv-32-extraction-findings.md` § "STOP AUDITING `drawn_levels`" |
 | **Open the JPEG before claiming anything is wrong**, and crop at full resolution before asserting a single character or digit is misread. `BLL`, `PHCOM` and `HCOW` all looked like errors and were verbatim correct. | `claude_memories/wpv-33-ocr-gate.md` |
-| `prompt_sha` defines what `ocr_text` means. Two shas in one corpus is a mixed corpus — never blend them, re-extract instead. | `claude_memories/wpv-32-extraction-run.md` |
+| `prompt_sha` defines what `ocr_text` means. Two shas in one corpus is a mixed corpus — never blend them, re-extract instead. | `claude_memories/wpv-32-extraction-ops.md` |
 
 ## When you rebuild `edu/derived/dataset.jsonl` (Stage B)
 
@@ -44,7 +44,7 @@ have been a rule that existed, was written down, and was not surfaced at the mom
 |---|---|
 | Read `chart.drawn_levels[].label` and `chart.annotations`, **not `ocr_text` alone**. Capped records (8 % and rising) lose most of `ocr_text` but keep their method-term labels in the chart block. | `claude_memories/wpv-33-ocr-gate.md` § capped frames |
 | **Do not filter on `frame_class`.** It flips on slides the instructor drew over, so rule-bearing slides land in the chart bucket. Filter on content. | same |
-| Do not train on any OCR'd price. Level **labels** are the signal; values are derived in Python from our own bars. | `claude_memories/wpv-32-extraction-run.md` § Stage B |
+| Do not train on any OCR'd price. Level **labels** are the signal; values are derived in Python from our own bars. | `claude_memories/wpv-32-extraction-findings.md` § Stage B |
 | When picking one frame per repeated slide, prefer the one with the most lines — diagram labels (`SFP`, `B&R`, the `DAY` row) drop off some frames while rule text never does. | `claude_memories/wpv-33-ocr-gate.md` |
 
 ## When you join a frame to market data
@@ -60,7 +60,7 @@ have been a rule that existed, was written down, and was not surfaced at the mom
 | obligation | source |
 |---|---|
 | Check before launching. Never start a second copy of a detached job. | `claude_memories/check-dont-relaunch-detached-jobs.md` |
-| The user kills the extraction when the laptop runs hot. That is expected and safe; re-running resumes it. No LaunchAgent — nothing auto-starts on this machine. | `claude_memories/wpv-32-extraction-run.md` |
+| The user kills the extraction when the laptop runs hot. That is expected and safe; re-running resumes it. No LaunchAgent — nothing auto-starts on this machine. | `claude_memories/wpv-32-extraction-ops.md` |
 
 ## Environment (bites constantly)
 

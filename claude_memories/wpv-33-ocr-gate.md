@@ -39,7 +39,7 @@ labels. The rule text is verbatim in all four, including the Day 1–4 definitio
 frames confirm the chart reads `HCOW`. Highest Close of the **Week** ≠ Highest Close of the
 **Month** — these are different levels in the method. This is the first measured case of a level
 label being **replaced by a plausible neighbouring method term** rather than merely dropped, and
-labels are exactly what Stage B trains on (`wpv-32-extraction-run.md` → "train on the semantics").
+labels are exactly what Stage B trains on (`wpv-32-extraction-findings.md` → "train on the semantics").
 Treat method-term labels as high-quality but not error-free.
 
 **2. Printed prices are misread too.** The Gold chart prints `4,680.9`; across 71 frames the model
@@ -88,7 +88,7 @@ an invisible corpus split, worse than a visible one. Not mid-run.
 
 - **Open the JPEG.** `BLL` on the CL charts and `PHCOM` on the YM chart both looked like misreads
   and are verbatim correct, and `HCOW` — which looks like a typo for `HCOM` — is the *right*
-  reading. Three near-misses in one pass. Same rule as `wpv-32-extraction-run.md` "STOP AUDITING
+  reading. Three near-misses in one pass. Same rule as `wpv-32-extraction-findings.md` "STOP AUDITING
   `drawn_levels`". Crop at full resolution before asserting a single character is wrong.
 - **`slidevar` is legitimate where the retired checks were not.** It compares a *static render*
   across frames, not hand-drawn levels on a live chart that the instructor is actively editing.
@@ -104,5 +104,5 @@ an invisible corpus split, worse than a visible one. Not mid-run.
   `frame_class` it will drop rule-bearing slides into the chart bucket** — filter on content instead.
 
 Re-run the whole gate at the end of extraction (`sample --force`) before rebuilding
-`edu/derived/dataset.jsonl`. See [[wpv-32-extraction-run]] and
+`edu/derived/dataset.jsonl`. See [[wpv-32-extraction-findings]] and
 [[signal-fidelity-over-edge-revalidation]] — counts, not verdicts, and no threshold is set here.
