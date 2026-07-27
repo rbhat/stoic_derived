@@ -71,6 +71,17 @@ Tell implementation subagents to give upto top 3 common errors and lets this to 
 Always use ruff --fix, not bare ruff. 
 Use .scratch/ folder to create and execute temporary files and scripts. DO NOT ASK PERMISSIONS IN THIS REPO FOR BASH COMMANDS - YOU ARE AUTHORIZED.
 
+Evidence: Before calling anything an error, check it against ground truth - the source artifact (frame, PDF, bars), not the system's own other output. Model-vs-itself, or
+run-vs-run, measures disagreement, not error. State which artifact you opened.
+
+Scope: Check whether a field is already ruled out of scope before measuring it. Do not build audit machinery for something already decided advisory or untrained-on.
+Never generalize from examples pulled off an anomaly, outlier or unmatched list - that list is selected for weirdness. Measure the population.
+When a check was retired for a reason, test any replacement for the same flaw inverted before trusting it. Two checks here died to the same mistake in mirror form.
+Our corpora are recordings of a human working - live drawing, typing, dragging, cursors. Transient states in them are data, not defects. Separate source artifact from model error.
+Derived numbers from a narrow window get a bracket and its basis, never a point estimate.
+Detail and the worked examples are in claude_memories/wpv-32-extraction-run.md under "STOP AUDITING drawn_levels".
+
+
 Claude: Top level agent will think, deisgn, plan, architect and close the loop. Top level agent will use Opus 5.0 subagent to orchestrate, coordinate and audit the completed tasks. Opus 5.0 will use Sonnet subagents to exceute the tasks.  Minimize expensive token usage, use SendMessage as needed.
 Codex: Top level agent will run autonomously, it will think, deisgn, plan, architect, alignment and close the loop. Use Terra subagents for focused implementation, testing, and bounded research tasks, independent quality and audit. 
 
