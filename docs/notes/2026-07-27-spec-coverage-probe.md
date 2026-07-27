@@ -99,27 +99,55 @@ are well narrated (207 / 573 / 117) and appear on slides, but no datable chart i
 - **Nothing here has been read against a JPEG** except `#0385`. The tier-3 zeros in particular are
   unaudited.
 
-## 3. The ADR-0004 question this raises — needs the user's decision
+## 3. ADR-0004 already answers this, and the question was posed wrongly
 
-If we measure break depth / retest depth / hold time across ~148 instructor-labelled B&R instances
-and take the distribution, **is that "parameters from the education with evidence", or a grid
-search?**
+The first draft of this note asked whether measuring retest depth across ~148 instructor-labelled
+instances counts as "parameters from the education" or as a grid search, and offered it to the user
+as a judgement call. **That was the wrong question, argued from CLAUDE.md's one-line gloss instead of
+from the ADR.** ADR-0004 is `0004-strategy-source-authority.md`, *Keep Primary Stoic Material as
+Normative Evidence*, and it says nothing about grid searches. Its Context names this hazard exactly:
 
-The argument that it is the former: a grid search optimises a parameter against a *performance*
-metric, choosing the cell that backtests best. This measures what the instructor's own labelled
-examples actually did, with bars as the measuring instrument and his label as the evidence. No
-outcome is consulted. It is closer to reading the education than to searching it.
+> Transcription, VLM captioning, SLM mining, and dataset labels accelerate research but can omit,
+> paraphrase, or hallucinate details.
 
-But it is a judgement call on a binding ADR, and per `signal-fidelity-over-edge-revalidation` the
-human decides where the material underdetermines. **No number derived this way should enter
-`strategy/rulebook.yaml` without explicit sign-off.**
+Its decision and compliance clauses:
+
+> Stoic media and PDFs are primary evidence. … **Model-derived artifacts may aid discovery but
+> cannot be the sole normative source.**
+>
+> The validator requires a primary media/PDF record for every executable rule, checks asset digests
+> and locators, and **rejects model-only evidence**.
+
+**So the proposal fails, for a different and stricter reason than the one debated.** The
+break-and-retest *identification* comes from `chart.drawn_levels` and `ocr_text` — VLM output, which
+is model-only evidence and is explicitly rejected. Whether the derivation resembles a grid search is
+irrelevant; the evidence is the wrong kind. (The no-grid-search rule is real, but it is the user's
+directive in CLAUDE.md and `signal-fidelity-over-edge-revalidation`, not ADR-0004. The two got
+conflated.)
+
+It remains permitted, explicitly, as **discovery** — "Mining remains useful without entering the
+live path." That is what this probe is, and everything in §1 is a candidate, not a finding.
+
+### The compliant path, which is mostly already built
+
+Every visual record cites `video`, `t_start`, `hms_start` and `source_frame` — the locator the
+validator asks for. The missing piece is the human verification step, and that is **unresolved
+decision 12, `primary-evidence-review`**: *"Which cited media ranges have a human reviewer checked
+before any candidate becomes validated?"*
+
+**That reframes decision 12.** It is not one of twelve peer decisions — it is the ADR-0004 gate every
+other decision must pass through. No parameter mined from the SLM or the VLM becomes a rule until 12
+is defined. It should be resolved first, not last.
 
 ## 4. Next
 
-1. Re-run this probe when extraction completes — the answer for tier 3 will likely change.
-2. Resolve the other 147 B&R join keys and report how many land on a completed bar. That converts
-   "148 candidates" into a fixture count.
-3. Decide the §3 question above before deriving any parameter.
+1. **Resolve decision 12 first.** It gates the other eleven under ADR-0004.
+2. Re-run this probe when extraction completes — the answer for tier 3 will likely change.
+3. Resolve the other 147 B&R join keys and report how many land on a completed bar. That converts
+   "148 candidates" into a candidate-fixture count — still candidates, per §3.
+4. Suggest to the user that CLAUDE.md's ADR-0004 gloss ("parameters come from the education with
+   evidence, never from a grid search") be split: the evidence-authority half is ADR-0004, the
+   no-grid-search half is a separate standing directive. Conflating them cost a full cycle here.
 
 ```bash
 .venv/bin/python edu/pipeline/spec_coverage.py
