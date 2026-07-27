@@ -172,11 +172,52 @@ but the run is not finished until all 16 videos are done.
 - **`ocr_text` is good.** The First Red/Green Day slide (`concept_simple_stoic_setups_sss#0031`)
   and the THREE-DAY CYCLE slide (`concept_htf_stoic_trader_protocol#0018`) both came back verbatim
   against their JPEGs. This is the objective — see [[slide-text-not-in-transcripts]].
-- **`drawn_levels` is not.** Zero tick-exact matches on an early NQ batch, and on the Gold frame
-  `#0025` the Previous Month Lowest Close came back `4,689.9` where the chart reads **4,680.9** — a
-  digit transposition, while every other field on that frame was exact. Treat levels as advisory;
-  the rulebook value is in `ocr_text`. Consistent with [[bars-match-education-not-tradingview]] and
-  [[audit-derived-numbers]].
+- **`drawn_levels` is mixed, and the "zero tick-exact matches" line was wrong.** That came from a
+  small early batch. Measured over the **962 levels of the completed video** (all NQ, the one
+  instrument with bars): **460 `ohlc_match` / 498 `in_range_no_match` / 4 `out_of_range`** — a
+  47.8 % match rate. Against a coincidence baseline it is real signal, not noise: drawing prices
+  uniformly over the span the levels themselves occupy hits some daily OHLC within 1 tick only
+  **4.2 %** of the time (2.8 % over the full bars range), so 47.8 % is ~11× the null.
+  `ohlc_match` still is not "correct" — a level may legitimately sit on a 15-minute swing the daily
+  bars never touch, which is what `in_range_no_match` is for — but the field is carrying
+  information and should not be written off.
+- **Where it fails is levels with no printed price.** The Gold frame `#0025` transposed the
+  Previous Month Lowest Close to `4,689.9` against a chart reading **4,680.9**, every other field
+  exact. On the AUD/USD frames the PDH/PDC/PDL lines carry *no printed number at all*, and across
+  five consecutive frames of the same chart the model returned three different values for PDH and
+  three for PDL — it is estimating against the axis. **The rule is: a level whose price is printed
+  is a reading; a level whose price is not printed is a guess.** The prompt already says to leave
+  the latter out, and it does not obey. Levels stay advisory; the rulebook value is in `ocr_text`.
+  Consistent with [[bars-match-education-not-tradingview]] and [[audit-derived-numbers]].
+- **The label sorts the good from the junk, and it does it cleanly.** Splitting those same 962
+  levels by what they are labelled:
+
+  | label | n | `ohlc_match` | vs 4.2 % null |
+  |---|---|---|---|
+  | method term (`Previous Day High`, `Friday Close`, `PDC`, `PWL`, …) | 627 | **68.4 %** | 16× |
+  | anything else (`M` 157, `Y` 52, `BWH`, `Swing Failure Pattern SFP`) | 281 | **5.7 %** | ~1× |
+  | unlabelled | 54 | 27.8 % | 7× |
+
+  The "other" bucket is indistinguishable from chance because most of it **is not a level at all** —
+  `M` and `Y` are chart furniture, and `Swing Failure Pattern SFP` / `Break & Retest` are concepts
+  misfiled into `drawn_levels`. So the field is not uniformly unreliable; it is two populations, and
+  the label separates them deterministically, the same way `_strip_axis_ladders` separates furniture
+  from content.
+
+### What to do about levels — decided actions, not yet done
+
+1. **Nothing to the extraction run.** Records are immutable and every check here is derivable after
+   the fact. Do not restart for this.
+2. **Add a levels audit to the §3.3 gate**, which currently checks OCR only. Two deterministic
+   checks, no model calls: the label split above run corpus-wide, and a **bars-free self-consistency
+   check** — the same label on adjacent states of the same chart must give the same value. The
+   AUD/USD PDH disagreement is that check passing by hand; it is the only one that works on the
+   instruments with no bars (AUD/USD, GBP/JPY), which is most of the corpus.
+3. **Then the binding call for Stage B (the user's):** do not feed raw `drawn_levels` into
+   `edu/derived/dataset.jsonl`. Either drop the field or keep only method-term labels. Training on
+   axis-estimated prices teaches the SLM to emit precise-sounding numbers it cannot read, which is a
+   worse failure than omitting them — and per ADR-0021 they would be entering training un-audited.
+   `ocr_text` is unaffected and is where the rulebook values live.
 - **Frame classification is loose at the edges** — intro animation frames come back
   `chart_annotated` with `ocr_confidence: high` over scattered glyphs. The OCR is faithful to what
   is on screen; the label and the confidence are not.
