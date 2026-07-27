@@ -344,6 +344,49 @@ lines), and the TradingView logo glyph came back as `T7`.
 **Nothing here changes the Stage B decision** — it is the third independent confirmation of it.
 Train on level semantics; derive prices in Python from our own bars.
 
+## STOP AUDITING `drawn_levels`. The disagreements are the instructor, not the model.
+
+**User's call, 2026-07-27, after two agents in a row built machinery to measure this field.** Read
+this before writing any new check against `chart.drawn_levels`.
+
+These are **screen recordings of a person live-drawing on TradingView**. The corpus therefore
+contains transient UI states, and every "the model misread the level" finding so far has turned out
+to be the model reading the transient state **correctly**:
+
+- **`candle_swing_theory` #523 → #524** — the "PDH ↔ PDL swap" at 25,265.25. Open the JPEGs: the
+  instructor has TradingView's **Horizontal Ray text dialog open and is typing the label.** #523's
+  textbox reads `PDH` and the chart reads `PDH`; #524's reads `PDL` and the chart reads `PDL`. He
+  typed it wrong and fixed it. **Both frames were read perfectly.**
+- **`candle_swing_theory` #388 → #389** — `Previous Day High` "moving" 25,394.5 → 25,749.25. The
+  line labelled `Previous Day High` sits at ~25,725. **25,749.25 is the mouse cursor's price tag**
+  on the right axis. The model bound a real printed number to the nearest label. Not an axis
+  estimate — a cursor.
+
+**So the gate's own headline numbers are not clean model-error rates.** Check 1's 39 % and check 0's
+26.6 % both fold in instructor edits, dragged lines, cursor tags and half-typed labels. They are
+still worth *looking at*, but they must never be quoted as "the VLM's level error rate", and no
+threshold should ever be set against them.
+
+**A check that compares the model against itself cannot tell you the model is wrong** — it tells you
+two frames differ, and in this corpus the frames genuinely do differ. Establishing model error needs
+ground truth: open the JPEG. That is what both retired checks skipped.
+
+Two checks have now been built on this mistake and retired:
+
+1. the naive check 1 (23.2 % on chart advances, retired 2026-07-26), and
+2. `check_label_stability` / "check 1b" (4.5 % "label swap", built and reverted 2026-07-27,
+   commits `a5a03f1` → `d95090c`). Its 4.5 % was the instructor renaming his own lines.
+
+**Do not build a third.** `drawn_levels` values were already ruled advisory and are explicitly not
+trained on — see [[#stage-b--what-the-slm-should-be-trained-on]]. Measuring a field we have already
+decided not to use is the overcomplication, not the fix.
+
+**What §3.2 is actually for: capturing the concepts.** The method's specification lives in
+`ocr_text` (rule statements, slide text), `concepts`, `annotations` and the level **labels** — which
+is what Stage B trains on. `ocr_text` has been verbatim-correct on every frame spot-checked against
+its JPEG, across slides, NQ, Gold and AUD/USD. **That is the signal, and it is healthy.**
+Perfect per-frame capture is not achievable from a live screen recording and is not the goal.
+
 ## The 2–3 hour sanity check
 
 Not a gate — counts, per [[signal-fidelity-over-edge-revalidation]] and ADR-0021. Look for:
