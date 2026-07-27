@@ -40,6 +40,21 @@ Decision: retrain the SLM using the newly extracted visual material. The trainin
 
 **Entry point:** `scripts/extract.sh` (start/resume/status/stop). Runs detached with `caffeinate` holding the Mac awake for exactly as long as the job lives.
 
+**How the counts were reached** — this was measured, not chosen:
+- **Transcripts:** all 16 education videos, exhaustive, no sampling. Rule definitions live only on
+  screen — transcripts never contain them — so a partial corpus can't teach what it never showed.
+  Live-session videos were floated as a time-saving cut and rejected by the user: "make sure all the
+  info is covered including live sessions."
+- **Screenshots:** 1 fps decode of all 16 videos gave 37,211 candidate frames. Deduping on dHash
+  alone (the original plan) under-split badly — one video buried 208 real content changes inside a
+  single 5-minute "state" the VLM would never have seen. Fixed with a second criterion (fraction of
+  720 fine-grained cells that changed vs. the run's anchor frame), threshold `FINE_FRAC` chosen by
+  sweeping 5 videos and picking the tightest value that still passed every video's under-split gate
+  (≤5%) — biased deliberately toward over-splitting, since losing content is unrecoverable but extra
+  VLM time is cheap. Result: 10,120 distinct visual states, one keyframe each, verified by six hard
+  audit checks (coverage, seek alignment, known-slide recall, determinism, artifact integrity,
+  residual under-split) before VLM extraction started.
+
 ---
 
 ## Prior work
