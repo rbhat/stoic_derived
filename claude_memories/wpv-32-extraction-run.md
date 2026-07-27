@@ -275,10 +275,14 @@ new, the weakness is not. Levels stay advisory. Note the real call-outs did surv
 in `annotations` (`2 @ 0.71255`, `2 @ 0.70835`) — prose, not verbatim, and `Monday Low` came back
 0.70520 where the chart reads 0.69560.
 
-**Latent issue, do not fix without asking:** the video-stage `attempts` counter on the first three
-concept videos reached `MAX_ATTEMPTS` (3) purely from repeated restarts, not from real failures. If
-one of those stages ever ends in status `failed`, the driver logs "giving up on this video" and
-skips it permanently. No stage is `failed` today.
+**~~Latent issue~~ — RESOLVED 2026-07-27, it was never a live risk.** The concern was that the
+video-stage `attempts` counter reached `MAX_ATTEMPTS` (3) on the first concept videos purely from
+repeated restarts. It does not bite: the give-up branch (`visual_extract.py:1399`) requires status
+`failed` **and** attempts >= 3, and a killed run leaves the stage `running` (reclaimed immediately by
+pid liveness) or `done` — never `failed`, which is set only on an exception. Demonstrated in
+practice: `concept_htf_stoic_trader_protocol` finished 530/530 with `attempts: 6`. All four concept
+videos are now `done` with 0 errors. It would take **three genuine exceptions on one stage** to skip
+a video.
 
 ## State as of 2026-07-27 ~04:30Z (21:30 PDT) — sanity check #1 after the maxLength fix
 
