@@ -139,12 +139,85 @@ before any candidate becomes validated?"*
 other decision must pass through. No parameter mined from the SLM or the VLM becomes a rule until 12
 is defined. It should be resolved first, not last.
 
+## 3a. The join keys, resolved — §4 item 3, done 2026-07-27
+
+**Tool:** `edu/pipeline/ohlc_join.py` (read-only; `--audit` runs the controls). Run at 2,519
+records. **Counts, not verdicts, and every number below survived the ADR-0021 controls in §3b.**
+
+`DATED` in §1 counts join keys. Resolving them against `.artifacts/research/bars/NQ_*.jsonl` gives:
+
+| | |
+|---|---|
+| frames carrying a parseable OHLC header | 232 — all NQ, no unjoinable instrument |
+| legs that are not a whole tick | 0 |
+| **distinct quadruples** | **44** |
+| resolve to exactly one completed bar | **7** |
+| match more than one bar | **0** |
+| match no bar | 37 |
+
+### The number that matters is 44, not 232 — and it corrects §1
+
+**§1's `via ohlc` column counts frames, and frames are inflated by repetition — the same inflation
+§1 warns about for `printed_chart` and then does not apply to `DATED`.** A chart held on screen for
+40 states prints its header 40 times. 232 frames carry only **44 distinct quadruples**, so
+`break_and_retest`'s 148 `via ohlc` is at most ~44 distinct chart states, not 148 worked examples.
+The tier-1 claim that its parameters are "measurable from our own data" across ~148 instances
+**rests on a 5× overcount.** Seven resolve today.
+
+All 7 land on **2026-01-02** — 6 of that trading date's 23 hourly bars, plus its daily bar. That is
+not a reporting artifact (`trading_date` spans all 111 dates), and it is what walking through a
+single session on a 60m chart looks like. It also means the resolved set is **one day**, not seven
+independent examples.
+
+### 4-of-4 was not as useless as §0 implies
+
+**4 of the 7 match on all four legs; only 3 needed the 3-of-4 relaxation.** §0 says "a naive 4-tuple
+equality returns zero matches" — true of frame `#0385`, which is the frame it was written about, but
+not of the corpus: 4-of-4 alone resolves 4 of 44. The relaxation is still right, and §3b shows it
+costs nothing in precision, but it buys +3, not +7.
+
+### Why the other 37 did not resolve — mostly unknown, and that is the honest answer
+
+| | |
+|---|---|
+| price outside our bars' envelope | 1 |
+| H-L wider than any timeframe we built (needs weekly/monthly) | 2 — `#0544`, `#0563` |
+| **not explained** | **34** |
+
+The missing-timeframe hypothesis was the attractive one — the method is full of weekly levels
+(`HCOW`, `LCOW`) and we built only `1m/5m/15m/60m/D`. **It accounts for 2 of 37.** Do not build a
+weekly aggregation expecting it to unlock this.
+
+Two candidates remain, **neither tested, and neither should be reported as the cause**: two or more
+legs misread by OCR (the OCR-gate note §5 measures single-leg misreads and finds them common), and a
+chart whose date falls outside the Jan–Jun 2026 window we built. **The price-envelope check cannot
+rule the second one out** — NQ traded through 25,600 on many days, so an instructor charting a date
+we never built looks identical to one we did. The envelope can only rule a quadruple *out*.
+
+## 3b. The controls that make §3a reportable
+
+A 3-of-4 rule is weaker than 4-of-4, so under ADR-0021 it has to survive an attempt to break it. A
+rule loose enough to match everything resolves nothing.
+
+| control | result | reading |
+|---|---|---|
+| **perturbed** — every leg shifted +1 tick, so the quadruple is on no chart by construction | **0 of 44 match anything** | the join is not matching noise. Had this landed near 15.9 %, §3a would be worthless. |
+| **2-of-4** — the same join relaxed by one leg | 11 unique but **9 ambiguous** (median 2 bars) | ambiguity appears immediately outside the rule. 3-of-4 is the floor, not a convenience. |
+
+3-of-4 produced **zero ambiguous matches** on the real data. The rule identifies a bar or nothing.
+
+```bash
+.venv/bin/python edu/pipeline/ohlc_join.py --audit
+.venv/bin/python edu/pipeline/ohlc_join.py --audit --videos cs_ live_
+```
+
 ## 4. Next
 
 1. **Resolve decision 12 first.** It gates the other eleven under ADR-0004.
 2. Re-run this probe when extraction completes — the answer for tier 3 will likely change.
-3. Resolve the other 147 B&R join keys and report how many land on a completed bar. That converts
-   "148 candidates" into a candidate-fixture count — still candidates, per §3.
+3. ~~Resolve the other 147 B&R join keys.~~ **Done — §3a.** 44 distinct quadruples, 7 resolved, all
+   on one trading date. Re-run `ohlc_join.py --audit` when the corpus completes; the `cs_*` and
+   `live_*` material has not been seen by it at all.
 4. Suggest to the user that CLAUDE.md's ADR-0004 gloss ("parameters come from the education with
    evidence, never from a grid search") be split: the evidence-authority half is ADR-0004, the
    no-grid-search half is a separate standing directive. Conflating them cost a full cycle here.

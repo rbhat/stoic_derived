@@ -37,7 +37,10 @@ scripts/extract.sh --stop       # e.g. the laptop is hot
    waits for `10120/10120`. `methodterm`'s first run left 17 tokens to open — the table is in §8.
 3. Re-run the spec-coverage probe — `docs/notes/2026-07-27-spec-coverage-probe.md`. Its tier-3
    zeros are a statement about the concept videos only; the case studies and live sessions are the
-   worked-example material and are still absent.
+   worked-example material and are still absent. Re-run `edu/pipeline/ohlc_join.py --audit` with it.
+   **Its §1 `DATED` column counts frames and is inflated ~5× by repetition** — 232 OHLC frames are
+   44 distinct quadruples, of which 7 resolve, all to one trading date (§3a). Read §3a before
+   quoting any tier-1 count.
 4. Rebuild `edu/derived/dataset.jsonl` — read the constraints for Stage B first, they are specific
    and easy to violate.
 5. Stage C on WSL: eval delta → QLoRA retrain → eval. Cannot start until Stage A is pushed.
