@@ -325,9 +325,13 @@ def _review_message_fields(evidence: Mapping[str, Any], review: Mapping[str, Any
     """Bytes a reviewer's key signs to attest one cited media range.
 
     Everything the reviewer actually checked is bound in: the claim they read, the
-    locator they opened, and the digests of the bytes they opened it from. Editing
-    any of them after the fact invalidates the signature rather than silently
-    inheriting the attestation.
+    locator they opened, the digests of the bytes they opened it from, and the words
+    they wrote about what they saw. Editing any of them after the fact invalidates
+    the signature rather than silently inheriting the attestation.
+
+    `observed` is in here as of the 2026-07-27 amendment to ADR-0022. It was
+    originally left out, which made the one field a future reader uses to judge a
+    review without re-watching the one field an agent could rewrite undetected.
     """
     return (
         REVIEW_DOMAIN.encode("ascii")
@@ -338,6 +342,7 @@ def _review_message_fields(evidence: Mapping[str, Any], review: Mapping[str, Any
                 "claim": evidence["claim"],
                 "evidence_id": evidence["id"],
                 "locator": dict(evidence["locator"]),
+                "observed": review["observed"],
                 "public_key_fingerprint": review["public_key_fingerprint"],
                 "reviewed_at": review["reviewed_at"],
                 "reviewer_email": review["reviewer_email"],
@@ -417,6 +422,7 @@ def review_message(
     locator: Mapping[str, Any],
     claim: str,
     verdict: str,
+    observed: str,
     reviewer_email: str,
     reviewed_at: str,
     public_key_fingerprint: str,
@@ -424,6 +430,8 @@ def review_message(
     """Build the domain-separated bytes a human reviewer's key must sign."""
     if verdict not in ALLOWED_REVIEW_VERDICTS:
         _fail("verdict must be claim_supported or claim_not_supported")
+    if not observed.strip():
+        _fail("observed must record what the reviewer saw or heard in the cited range")
     return _review_message_fields(
         {
             "id": evidence_id,
@@ -433,6 +441,7 @@ def review_message(
             **({} if transcript_sha256 is None else {"transcript_sha256": transcript_sha256}),
         },
         {
+            "observed": observed,
             "public_key_fingerprint": public_key_fingerprint,
             "reviewed_at": reviewed_at,
             "reviewer_email": reviewer_email,

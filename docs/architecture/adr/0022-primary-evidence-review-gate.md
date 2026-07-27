@@ -1,6 +1,6 @@
 # ADR-0022: A Cited Range Becomes Normative Only Once a Human Has Watched It
 
-- Status: Proposed — the mechanism is built and enforced; the user ratifies the policy
+- Status: Accepted — ratified 2026-07-27 by signing the ten cited ranges
 - Date: 2026-07-27
 
 ## Context
@@ -65,14 +65,25 @@ review:
 ```
 
 The signed message is domain-separated under `stoic-derived/evidence-review/v1` and binds
-`evidence_id`, `asset_sha256`, `transcript_sha256`, `locator`, `claim`, `verdict`,
+`evidence_id`, `asset_sha256`, `transcript_sha256`, `locator`, `claim`, `verdict`, `observed`,
 `reviewer_email`, `reviewed_at` and `public_key_fingerprint`.
+
+**Amended 2026-07-27: `observed` is signed.** It was not, in the version of this ADR the first ten
+reviews were made under. That left the field this ADR describes as the reviewer's own account of
+what they saw — the thing a future reader uses to judge a review *without* re-watching — as the one
+part of a review an agent could rewrite with the signature still verifying. Every other field was
+attested; the human's words were not. The gap surfaced in practice on `ev-pdh-pdl-pdc`, whose
+`observed` described the wrong claim and would have been silently correctable. Adding it invalidated
+the ten signatures made before the amendment, and they were re-signed.
 
 **What the binding buys, and why each field is in it:**
 
 - **`claim` is signed**, so reviewing a weak claim and then strengthening it invalidates the
   signature rather than inheriting the attestation. This is the attack that matters most: it is
   the one an honest person commits by accident while editing.
+- **`observed` is signed**, so the reviewer's account cannot be edited into one they never wrote.
+  Without this the gate attests *that* a human reviewed a range but not *what they said about it*,
+  which is the half a later reader actually reads.
 - **`locator` is signed**, so moving the range invalidates the review.
 - **`asset_sha256` and `transcript_sha256` are signed and must also equal the record's**, so
   re-encoding the video or re-cutting the transcript makes the review go stale instead of
@@ -102,9 +113,10 @@ generator, which is the useful half.
 
 ## Consequences
 
-- **Decision 12 is answerable but not yet answered.** The mechanism exists; the reviews do not.
-  `primary-evidence-review` stays in `unresolved_decisions` until the user has reviewed the ten
-  ranges and ratified this policy.
+- **Decision 12 is answered, 2026-07-27.** All ten cited ranges were watched and signed by the
+  repository owner under one key (fingerprint `25054c7b…`); `primary-evidence-review` has been
+  removed from `unresolved_decisions`. The gate is now live rather than pending: it no longer
+  blocks, and it will block again the moment a claim, locator, `observed` or asset changes.
 - **`validate` is now the review to-do list.** Unreviewed cited evidence is a readiness blocker
   named per record, and the dossier's Evidence Matrix carries a **Human review** column that
   reads `**not reviewed**` until it does not.
@@ -131,5 +143,6 @@ generator, which is the useful half.
 - `stoic-rulebook review-queue <rulebook>` prints what to open, the exact range, an `ffplay`
   command, and the claim to check. `stoic-rulebook review-message` emits the bytes to sign.
 - Tests: `tests/strategy/test_rulebook.py`, the block under
-  "ADR-0004 primary-evidence review gate", including that editing a claim after review and
-  signing with an unpinned key both fail closed.
+  "ADR-0004 primary-evidence review gate", including that editing a claim after review, editing
+  `observed` after review, and signing with an unpinned key all fail closed. Each was observed
+  failing against the unfixed code before being kept.

@@ -225,6 +225,7 @@ def attach_review(
                     locator=evidence["locator"],
                     claim=evidence["claim"],
                     verdict=verdict,
+                    observed=review["observed"],
                     reviewer_email=review["reviewer_email"],
                     reviewed_at=review["reviewed_at"],
                     public_key_fingerprint=fingerprint,
@@ -969,6 +970,25 @@ def test_editing_a_claim_after_review_invalidates_the_signature(tmp_path: Path) 
         publish(rulebook, tmp_path / "releases", public_key_bytes(private_key))
 
 
+def test_editing_observed_after_review_invalidates_the_signature(tmp_path: Path) -> None:
+    """ADR-0022 as amended 2026-07-27: the reviewer's own words are attested too.
+
+    Before the amendment `observed` sat outside the signed message, so the one field
+    a future reader uses to judge a review without re-watching was the one field an
+    agent could rewrite undetected.
+    """
+    import yaml
+
+    rulebook = complete_rulebook(tmp_path)
+    private_key = approve(rulebook)
+    payload = yaml.safe_load(rulebook.read_text(encoding="utf-8"))
+    payload["evidence"][0]["review"]["observed"] = "Words the reviewer never wrote."
+    write_rulebook(rulebook, payload)
+    approve(rulebook, private_key)
+    with pytest.raises(PublicationError, match="review signature verification failed"):
+        publish(rulebook, tmp_path / "releases", public_key_bytes(private_key))
+
+
 def test_published_release_carries_the_review_and_revalidates_it(tmp_path: Path) -> None:
     rulebook = complete_rulebook(tmp_path)
     private_key = approve(rulebook)
@@ -1015,6 +1035,8 @@ def test_review_message_cli_is_deterministic_and_binds_the_locator(tmp_path: Pat
         "human@example.com",
         "--reviewed-at",
         "2026-07-24T00:00:00Z",
+        "--observed",
+        "Watched the cited range; the claim is stated on screen.",
         "--public-key-fingerprint",
         "0" * 64,
     ]

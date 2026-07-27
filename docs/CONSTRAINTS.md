@@ -18,8 +18,9 @@ have been a rule that existed, was written down, and was not surfaced at the mom
 | obligation | source |
 |---|---|
 | Primary Stoic media/PDF is the normative evidence. Model-derived artifacts (VLM, SLM, transcripts, dataset labels) may aid **discovery** but cannot be the sole normative source; the validator rejects model-only evidence and requires a primary record with digests and locators. | `docs/architecture/adr/0004-strategy-source-authority.md` |
-| The human-review gate ADR-0004 requires is **unresolved decision 12, `primary-evidence-review`**. The mechanism now exists and is enforced; the reviews do not exist yet, so nothing mined becomes a validated rule. | `docs/architecture/adr/0022-primary-evidence-review-gate.md` |
-| A rule reaches `validated` only when every evidence record it cites carries a **signed** human review of the cited range. An agent can never write one — that is the point. Run `stoic-rulebook review-queue` to see what is outstanding. | same |
+| A rule reaches `validated` only when every evidence record it cites carries a **signed** human review of the cited range. An agent can never write one — that is the point. The first ten were signed 2026-07-27 (decision 12 closed, ADR-0022 *Accepted*); **any new cited range needs its own review.** `stoic-rulebook review-queue` shows what is outstanding. | `docs/architecture/adr/0022-primary-evidence-review-gate.md` |
+| Editing a `claim`, `locator`, `observed` or asset **invalidates the review** and drops the record back to unreviewed. Rewrite first, then review — never the reverse. | same |
+| `review-queue` and `validate` check review *structure*, not signatures; only `publish` verifies against the pinned key. A rulebook can report "every cited range carries a supported human review" while none of them verify. | same, § Compliance |
 | No parameter grid searches for "the best cell". Where the material genuinely underdetermines a number, **the human decides** and it is recorded as a strategy decision. **This is a standing directive, NOT ADR-0004** — do not cite the ADR for it. | `CLAUDE.md`, `claude_memories/signal-fidelity-over-edge-revalidation.md` |
 
 ## When you report any derived number

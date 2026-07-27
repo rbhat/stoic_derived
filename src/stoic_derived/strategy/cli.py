@@ -62,6 +62,11 @@ def _parser() -> argparse.ArgumentParser:
     )
     message.add_argument("rulebook", type=Path)
     message.add_argument("--evidence-id", required=True)
+    message.add_argument(
+        "--observed",
+        required=True,
+        help="what you saw or heard in the cited range -- signed, per ADR-0022 as amended",
+    )
     message.add_argument("--reviewer-email", required=True)
     message.add_argument("--reviewed-at", required=True)
     message.add_argument("--public-key-fingerprint", required=True)
@@ -145,6 +150,7 @@ def main(argv: list[str] | None = None) -> int:
                     locator=record["locator"],
                     claim=record["claim"],
                     verdict=args.verdict,
+                    observed=args.observed,
                     reviewer_email=args.reviewer_email,
                     reviewed_at=args.reviewed_at,
                     public_key_fingerprint=args.public_key_fingerprint,

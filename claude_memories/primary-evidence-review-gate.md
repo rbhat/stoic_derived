@@ -26,9 +26,22 @@ editing a claim after review invalidates the signature rather than inheriting th
 **Do not confuse it with `approval`.** That is one signature over the whole candidate digest at
 `publish`. This is per-record and bites at `validated`. They compose; neither replaces the other.
 
-**Status: the mechanism exists, the reviews do not.** Decision 12 stays in `unresolved_decisions`,
-and ADR-0022 stays *Proposed*, until the user has watched the **10 cited ranges — 9m16s total** and
-signed. Do not mark it resolved on the user's behalf, and do not propose an unsigned shortcut.
+**Status: CLEARED 2026-07-27.** The user watched all **10 cited ranges (9m16s)** and signed them
+under one key (fingerprint `25054c7b…`, private key at `~/.stoic/evidence-review.ed25519` — outside
+the repo, and losing it means redoing all ten). Decision 12 is out of `unresolved_decisions`;
+ADR-0022 is *Accepted*. Readiness blockers went 31 → 21.
+
+`scripts/sign_reviews.py` does everything around the signature — key handling, message
+construction, YAML insertion, verification — and **the user runs it, never an agent** (`--apply`,
+`--force` to re-sign). That division is the gate: an agent that generates the key and invokes the
+signer has satisfied ADR-0022 in form only.
+
+**`observed` was not in the signed message until 2026-07-27**, so the reviewer's own account — the
+part a later reader uses instead of re-watching — was the one field an agent could rewrite
+undetected. Amended; `test_editing_observed_after_review_invalidates_the_signature` was observed
+failing against the unfixed code before being kept. If any review is ever re-made, note that
+`review-queue` and `validate` check *structure*, not signatures — only `publish` verifies. A
+rulebook can read "every cited range carries a supported human review" while none of them verify.
 
 **Mining never becomes evidence.** The VLM/SLM path proposes a *review candidate* (locator + draft
 claim) that a human confirms — ADR-0004's "mining remains useful without entering the live path".
