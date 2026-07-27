@@ -32,7 +32,9 @@ scripts/extract.sh --stop       # e.g. the laptop is hot
    each, confirm the claim, sign. Until then no candidate can become `validated`, so this still
    gates the other eleven decisions.
 2. Re-run the §3.3 OCR gate on the full corpus — design in
-   `docs/notes/2026-07-27-wpv-33-ocr-gate.md` §8. Needs a small `--videos` filter on `sample`.
+   `docs/notes/2026-07-27-wpv-33-ocr-gate.md` §8. **The tooling is built** (`--videos` prefix filter,
+   the capped stratum, `methodterm`); what remains is grading 60 frames against their JPEGs, which
+   waits for `10120/10120`. `methodterm`'s first run left 17 tokens to open — the table is in §8.
 3. Re-run the spec-coverage probe — `docs/notes/2026-07-27-spec-coverage-probe.md`. Its tier-3
    zeros are a statement about the concept videos only; the case studies and live sessions are the
    worked-example material and are still absent.

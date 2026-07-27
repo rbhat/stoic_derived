@@ -20,6 +20,10 @@ Three subcommands, matching the three items of the gate in
                      rate, cap/strip rates. Counts, not verdicts.
   score            -- fold a filled-in verdicts file back into counts.
 
+  methodterm       -- flag `ocr_text` tokens one edit from a known method term
+                     that are not themselves one. Emits FRAMES TO OPEN, never a
+                     rate. See `docs/notes/2026-07-27-wpv-33-ocr-gate.md` §8.
+
 What this deliberately does NOT do: anything with `chart.drawn_levels`. That
 field is advisory by decision and is not trained on, and two checks against it
 have already been built and retired -- see `claude_memories/wpv-32-extraction-findings.md`,
@@ -31,6 +35,7 @@ from __future__ import annotations
 import argparse
 import json
 import pathlib
+import re
 import sys
 from collections import Counter, defaultdict
 
@@ -50,15 +55,55 @@ KNOWN_SLIDES_SPEC = [
 # much of the corpus is byte-clean rather than merely faithful.
 VERDICTS = ("exact", "minor", "omission", "error", "hallucination")
 
+# The method-term vocabulary for `methodterm`. CURATED AND HUMAN-EDITABLE --
+# every entry below is attested in the corpus at volume (the uppercase-token
+# census run 2026-07-27 over 2,514 records) or named as a method term in
+# `docs/notes/2026-07-27-wpv-33-ocr-gate.md` §5. Deciding whether a borderline
+# token is a real term or a misreading is a human call, not the agent's, so
+# borderline ones are deliberately LEFT OUT: they then surface as suspects with
+# frames to open, which is the outcome we want. `ocr_gate.py methodterm --oov`
+# lists the out-of-vocabulary tokens by frequency for exactly that curation.
+KNOWN_METHOD_TERMS = {
+    "PDH", "PDL", "PDC",            # previous day high / low / close
+    "PWH", "PWL", "PWC",            # previous week high / low / close
+    "HCOM", "LCOM",                 # highest / lowest close of month
+    "HCOW", "LCOW",                 # highest / lowest close of week
+    "HOW",                          # highest of week
+    "PHCOM", "PLCOM", "PHOW",       # the previous-period forms
+    "PMHC", "PMLC",                 # previous month high close / low close
+    "SFP", "B&R", "SBS", "POI",
+    "HTF", "LTF",                   # higher / lower time frame, used as a pair
+    "SSS",                          # Simple Stoic Setups -- a video title, not a typo for SBS
+}
+
+# Attested corpus noise -- tickers, exchanges, chart furniture and ordinary
+# words that happen to fall within one edit of a term above (`LOW` is one
+# insertion from `LCOW`). Excluded from both the suspect list and --oov.
+NOT_METHOD_TERMS = {
+    "USD", "AUD", "BTC", "NQ", "CL", "YM", "GC", "MNQ", "ES",
+    "CME", "CBOT", "COMEX", "NYMEX", "OANDA", "NASDAQ", "BLL",
+    "AM", "PM", "CST", "EST", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN",
+    "SMA", "MA", "EMA", "VWAP",
+    "LOW", "HIGH", "OPEN", "CLOSE", "DAY", "BAR", "MAX", "MIN",
+    "THE", "IS", "WHO", "AND", "OR", "OF", "TO", "IN", "ON", "AT", "NO",
+    "RED", "GREEN", "FIRST", "TREND", "NOISE", "MODE", "ANCHOR",
+    "TRIPLE", "THREE", "INSIDE", "FOMO", "TRAPPED", "ZONE", "RANGE", "TF",
+}
+
 
 def load_records(videos: list[str] | None = None) -> list[dict]:
     """Every `ok` record on disk, in a stable order. Errors are excluded --
-    they carry no `ocr_text` to grade."""
+    they carry no `ocr_text` to grade.
+
+    `videos` are matched as **prefixes**, the same convention as
+    `spec_coverage.py --videos`, so `--videos cs_ live_` selects the whole
+    case-study and live-session half of the corpus. A full video name is a
+    prefix of itself, so exact selection still works."""
     out: list[dict] = []
     for vid_dir in sorted(VISUAL.iterdir()):
         if not vid_dir.is_dir():
             continue
-        if videos and vid_dir.name not in videos:
+        if videos and not any(vid_dir.name.startswith(p) for p in videos):
             continue
         f = vid_dir / "visual_records.jsonl"
         if not f.exists():
@@ -113,6 +158,15 @@ def stride_pick(items: list[dict], k: int) -> list[dict]:
     return [items[round(i * (len(items) - 1) / max(k - 1, 1))] for i in range(k)]
 
 
+def stratum(rec: dict) -> str:
+    """The sampling cell. `frame_class` alone is not enough: `ocr_text_capped`
+    is the dominant content-loss mode (3.2 % of records at 1,138 -> 8.0 % at
+    2,143, and 16.1 % on the chart-densest video), and at that rate a
+    class-only draw samples it by luck. Splitting it out makes it an explicit
+    stratum with its own floor -- `docs/notes/2026-07-27-wpv-33-ocr-gate.md` §8."""
+    return rec["frame_class"] + ("+capped" if rec.get("ocr_text_capped") else "")
+
+
 def worksheet_row(rec: dict) -> dict:
     """One frame's worth of what a grader needs, and nothing that would bias
     the reading -- `summary` and `concepts` are the model's interpretation and
@@ -142,14 +196,15 @@ def cmd_sample(args: argparse.Namespace) -> int:
         print("Pass --force to redraw (this invalidates any grading done against it).")
         return 0
 
-    recs = load_records()
+    recs = load_records(args.videos)
     if not recs:
-        print("no records on disk yet", file=sys.stderr)
+        print("no records on disk yet" if not args.videos else
+              f"no records for videos matching {args.videos}", file=sys.stderr)
         return 1
 
     by_class: dict[str, list[dict]] = defaultdict(list)
     for r in recs:
-        by_class[r["frame_class"]].append(r)
+        by_class[stratum(r)].append(r)
     sizes = {c: len(v) for c, v in by_class.items()}
     alloc = allocate(sizes, args.n, args.floor)
 
@@ -161,11 +216,13 @@ def cmd_sample(args: argparse.Namespace) -> int:
     payload = {
         "gate": "wpv-3.3-ocr-groundtruth",
         "drawn_from_records": len(recs),
+        "video_filter": args.videos,
         "videos_covered": sorted({r["video"] for r in recs}),
-        "class_sizes": sizes,
+        "stratum_sizes": sizes,
         "allocation": alloc,
-        "method": "per-class floor then largest-remainder proportional; "
-                  "systematic stride within each class over (video, state_id)",
+        "method": "strata are frame_class x ocr_text_capped; per-stratum floor then "
+                  "largest-remainder proportional; systematic stride within each "
+                  "stratum over (video, state_id)",
         "prompt_shas": sorted({r.get("prompt_sha") for r in recs if r.get("prompt_sha")}),
         "frames": rows,
     }
@@ -197,7 +254,10 @@ def cmd_slides(args: argparse.Namespace) -> int:
 
 def cmd_counts(args: argparse.Namespace) -> int:
     """Item 3. Counts, not verdicts."""
-    recs = load_records()
+    recs = load_records(args.videos)
+    if not recs:
+        print("no records on disk yet", file=sys.stderr)
+        return 1
     by_class = Counter(r["frame_class"] for r in recs)
     by_conf = Counter(r["ocr_confidence"] for r in recs)
     conf_by_class: dict[str, Counter] = defaultdict(Counter)
@@ -209,6 +269,8 @@ def cmd_counts(args: argparse.Namespace) -> int:
     stripped = sum(1 for r in recs if r.get("axis_lines_stripped"))
     empty = sum(1 for r in recs if not r.get("ocr_text", "").strip())
 
+    if args.videos:
+        print(f"video filter            {args.videos}")
     print(f"records (ok)            {len(recs)}")
     print(f"prompt_sha              {sorted({r.get('prompt_sha') for r in recs})}")
     print(f"videos                  {len(sorted({r['video'] for r in recs}))}")
@@ -237,7 +299,7 @@ def cmd_slidevar(args: argparse.Namespace) -> int:
     compared hand-drawn levels on a live TradingView chart, where the frames
     genuinely differ because the instructor is editing them. Here the pixels
     under comparison are a static render."""
-    recs = [r for r in load_records()
+    recs = [r for r in load_records(args.videos)
             if r["frame_class"] in ("slide", "chart_annotated", "mixed")]
     groups: dict[str, list[dict]] = defaultdict(list)
     for r in recs:
@@ -274,6 +336,100 @@ def cmd_slidevar(args: argparse.Namespace) -> int:
             print(f"    {present:3d}/{n}  {v[:88]!r}")
         if len(varying) > args.show:
             print(f"    ... {len(varying) - args.show} more")
+    return 0
+
+
+def osa_distance_le1(a: str, b: str) -> bool:
+    """Optimal string alignment distance <= 1, i.e. one substitution, insertion,
+    deletion, or **transposition of two adjacent characters**.
+
+    Plain Levenshtein is not enough here. The measured corruption `HCOW` ->
+    `HOCW` is an adjacent swap, which Levenshtein scores 2 and would miss --
+    and it is one of the two examples §8 names."""
+    if a == b:
+        return True
+    la, lb = len(a), len(b)
+    if abs(la - lb) > 1:
+        return False
+    if la == lb:
+        diff = [i for i in range(la) if a[i] != b[i]]
+        if len(diff) == 1:
+            return True
+        return (len(diff) == 2 and diff[1] == diff[0] + 1
+                and a[diff[0]] == b[diff[1]] and a[diff[1]] == b[diff[0]])
+    # one insertion/deletion: the longer string with one char removed equals
+    # the shorter one
+    lo, hi = (a, b) if la < lb else (b, a)
+    return any(hi[:i] + hi[i + 1:] == lo for i in range(len(hi)))
+
+
+def cmd_methodterm(args: argparse.Namespace) -> int:
+    """Flag `ocr_text` tokens one edit from a known method term that are not
+    themselves one -- the `BWH`-for-`PWH`, `HOCW`-for-`HCOW` shape.
+
+    THE GUARDRAIL (`docs/notes/2026-07-27-wpv-33-ocr-gate.md` §8): this emits
+    **frames to open, never a rate**. It needs no cross-frame comparison at
+    all, which is precisely why it is allowed where the two retired
+    `drawn_levels` self-consistency checks were not -- those compared readings
+    of a live chart across frames and kept re-discovering the instructor
+    editing it. Do not extend this into a rate, a threshold, or a comparison.
+
+    Note what this deliberately does NOT catch: `HCOM` for `HCOW`. Both are
+    real method terms, so neither is out-of-vocabulary. That substitution is a
+    known finding handled elsewhere (§5) -- it is not this check's job, and
+    making it this check's job would require exactly the cross-frame
+    comparison the guardrail forbids."""
+    recs = load_records(args.videos)
+    if not recs:
+        print("no records on disk yet", file=sys.stderr)
+        return 1
+
+    known = {t.upper() for t in KNOWN_METHOD_TERMS}
+    tok_re = re.compile(r"(?<![A-Za-z0-9])[A-Z][A-Z&]{1,6}(?![A-Za-z0-9])")
+
+    # token -> {frame id -> where it was seen}
+    seen: dict[str, dict[str, str]] = defaultdict(dict)
+    for r in recs:
+        fields = {"ocr_text": r.get("ocr_text", "")}
+        ch = r.get("chart") or {}
+        fields["drawn_levels"] = " ".join(
+            lv.get("label", "") for lv in (ch.get("drawn_levels") or []))
+        fields["annotations"] = " ".join(ch.get("annotations") or [])
+        for field, text in fields.items():
+            for tok in tok_re.findall(text or ""):
+                seen[tok].setdefault(r["id"], field)
+
+    suspects = []
+    for tok, frames in seen.items():
+        if tok in known or tok in NOT_METHOD_TERMS:
+            continue
+        near = sorted(k for k in known if osa_distance_le1(tok, k))
+        if near:
+            suspects.append((tok, near, frames))
+    suspects.sort(key=lambda s: (-len(s[2]), s[0]))
+
+    print(f"{len(recs)} ok records, {len(seen)} distinct uppercase tokens, "
+          f"{len(known)} known method terms\n")
+    if not suspects:
+        print("no out-of-vocabulary tokens within one edit of a method term.")
+    for tok, near, frames in suspects:
+        print(f"{tok!r}  one edit from {', '.join(near)}  -- {len(frames)} frame(s) "
+              f"to open:")
+        for fid, field in sorted(frames.items())[:args.show]:
+            print(f"    {fid:56s} in {field}")
+        if len(frames) > args.show:
+            print(f"    ... {len(frames) - args.show} more")
+    print("\nFrames to open, not a rate. Crop at full resolution before asserting any "
+          "\nsingle character is wrong -- that rule reversed three findings in pass 1.")
+
+    if args.oov:
+        others = sorted(((t, len(f)) for t, f in seen.items()
+                         if t not in known and t not in NOT_METHOD_TERMS),
+                        key=lambda x: -x[1])
+        print("\nout-of-vocabulary uppercase tokens by frequency (for curating "
+              "KNOWN_METHOD_TERMS -- a human call, not the agent's):")
+        for t, n in others[:args.oov]:
+            print(f"  {n:6d}  {t}")
     return 0
 
 
@@ -326,11 +482,17 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
 
+    def videos_arg(p: argparse.ArgumentParser) -> None:
+        p.add_argument("--videos", nargs="*", default=None,
+                       help="video name PREFIXES to restrict to, e.g. --videos cs_ live_")
+
     p = sub.add_parser("sample", help="item 1: draw the stratified worksheet")
     p.add_argument("-n", type=int, default=30)
-    p.add_argument("--floor", type=int, default=3, help="minimum frames per class present")
+    p.add_argument("--floor", type=int, default=3,
+                   help="minimum frames per stratum present")
     p.add_argument("--out", default="sample_30.json")
     p.add_argument("--force", action="store_true")
+    videos_arg(p)
     p.set_defaults(func=cmd_sample)
 
     p = sub.add_parser("slides", help="item 2: dump stored ocr_text for known slides")
@@ -340,12 +502,23 @@ def main() -> int:
     p.set_defaults(func=cmd_slides)
 
     p = sub.add_parser("counts", help="item 3: corpus counts")
+    videos_arg(p)
     p.set_defaults(func=cmd_counts)
 
     p = sub.add_parser("slidevar", help="slide text that varies between frames of one slide")
     p.add_argument("--min-group", type=int, default=3)
     p.add_argument("--show", type=int, default=8)
+    videos_arg(p)
     p.set_defaults(func=cmd_slidevar)
+
+    p = sub.add_parser("methodterm",
+                       help="tokens one edit from a method term: FRAMES TO OPEN, never a rate")
+    p.add_argument("--show", type=int, default=6, help="frame ids to print per token")
+    p.add_argument("--oov", type=int, default=0, metavar="N",
+                   help="also list the top N out-of-vocabulary tokens, for curating "
+                        "KNOWN_METHOD_TERMS (a human call)")
+    videos_arg(p)
+    p.set_defaults(func=cmd_methodterm)
 
     p = sub.add_parser("score", help="fold graded verdicts into counts")
     p.add_argument("--sample", default="sample_30.json")
