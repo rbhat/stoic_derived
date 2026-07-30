@@ -32,6 +32,10 @@ edu/derived/**/keyframes/
 # Market data — kept in Google Drive, not git
 data/historical/*.dbn
 data/historical/*.dbn.zst
+# Canonical bars — regenerable by scripts/normalize_historical_bars.py, which also
+# documents how to restore its OHLCV spine input from commit 6e06f71.
+data/historical/*.parquet
+data/historical/needs_normalization/
 
 # Secrets / credentials
 .env

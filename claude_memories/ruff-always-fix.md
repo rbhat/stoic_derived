@@ -1,0 +1,23 @@
+---
+name: ruff-always-fix
+description: "User directive: always run ruff with --fix, never bare `ruff check`"
+metadata:
+  type: feedback
+---
+
+User directive (2026-07-25): always run ruff with the `--fix` option.
+
+**Why:** A bare `ruff check` just reports and leaves the work undone; the user
+wants the auto-fixable subset applied in the same pass rather than reported
+back for a second round trip.
+
+**How to apply:** Use `ruff check --fix <paths>` (in this repo:
+`uvx ruff check --fix ...`, since ruff is not a declared dev dependency; the
+second historical reason — `uv run` from the wrong cwd destroying the CUDA
+training venv, see [[eval-comparison-wp-progress]] — no longer applies on
+`main`, where that venv and `training/` are gone, but `uvx` remains the rule). The repo carries a standing backlog of
+pre-existing ruff errors in older files (66 at the 2026-07-26 check, up from 46
+the day before — the count drifts, so measure it, don't quote this). **Scope
+`--fix` to the files being worked on** unless the user asks for the backlog
+itself; a repo-wide `--fix` would bury a real change in unrelated churn.
+Line-length is 100.
