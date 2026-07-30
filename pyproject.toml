@@ -1,53 +1,28 @@
-[build-system]
-requires = ["hatchling>=1.27"]
-build-backend = "hatchling.build"
-
 [project]
 name = "stoic-derived"
 version = "0.1.0"
-description = "Deterministic strategy-rulebook tooling for Stoic Derived"
+description = "Stoic-derived: transcribe and read the source material, use it to build an SLM that helps derive the rulebook."
 readme = "VISION.md"
 requires-python = ">=3.14"
 dependencies = [
-  "cachecontrol>=0.14,<0.15",
-  "cryptography>=46.0.5",
-  "databento>=0.82,<0.83",
-  "fastapi>=0.136,<0.137",
   "faster-whisper",
-  "google-auth>=2.40",
   "opencv-python",
   "pymupdf>=1.28,<2",
-  "python-multipart>=0.0.22,<0.1",
   "PyYAML>=6.0.3",
   "requests",
   "scenedetect",
-  "uvicorn[standard]>=0.41,<0.42",
 ]
 
-[project.scripts]
-stoic-data = "stoic_derived.market_data.cli:main"
-stoic-backtest = "stoic_derived.backtest.cli:main"
-stoic-dashboard = "stoic_derived.dashboard.cli:main"
-stoic-ledger = "stoic_derived.ledger.cli:main"
-stoic-rulebook = "stoic_derived.strategy.cli:main"
-stoic-signal = "stoic_derived.signal_engine.cli:main"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/stoic_derived"]
+[tool.uv]
+package = false
 
 [dependency-groups]
 dev = [
-  "httpx>=0.28,<0.29",
   "mypy>=1.19.0",
   "pytest>=9.0.2",
   "ruff>=0.15.0",
   "types-PyYAML>=6.0.12.20250915",
 ]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = "--import-mode=importlib --strict-markers --strict-config"
-xfail_strict = true
 
 [tool.ruff]
 target-version = "py314"
@@ -55,8 +30,3 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
-
-[tool.mypy]
-python_version = "3.14"
-strict = true
-files = ["src"]

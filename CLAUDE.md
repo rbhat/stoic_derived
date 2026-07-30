@@ -5,27 +5,28 @@
 1. **`docs/STATE.md`** — what is running right now, what is next, what is open. Start here.
 2. **`docs/CONSTRAINTS.md`** — what binds the next step, indexed by *when it bites*. Rows are
    triggers pointing at sources; **the row is never the rule**.
-3. **`claude_memories/MEMORY.md`** — the memory index. Read
-   `signal-fidelity-over-edge-revalidation.md` first, always, then whatever the task touches.
+3. **`claude_memories/MEMORY.md`** — the memory index. Read it, then whatever the task touches.
 4. **`VISION.md`** — the product and its constraints. **Never modify it**; suggest changes to the
    user instead. Agent behaviour rules live at the bottom.
 
-Then open, when the work calls for it: `coding_rules.md` before writing code,
-`docs/notes/2026-07-26-slm-retrain-plan.md` for the active track, `docs/architecture/adr/` for
-binding decisions.
+Then open, when the work calls for it: `coding_rules.md` before writing code.
+
+**2026-07-29: the prior build (signal engine, backtest, ledger, dashboard, 22 ADRs, all planning
+notes) was archived to the `stoic_legacy` branch and removed from `main` to start a simpler stoic
+strategy from scratch.** `docs/architecture/`, `docs/superpowers/`, and `docs/notes/` no longer
+exist on `main` — check `git show stoic_legacy:<path>` if you need to see what they said. Do not
+recreate them speculatively; the new plan is intentionally minimal until there's a rulebook to bind.
 
 ## The pointer rule — this file has broken it before
 
 **A pointer says WHEN to open a document. It never says WHAT the document says.**
 
-Every binding document here is short — the 21 ADRs average 39 lines, ADR-0004 is 27. There is
-nothing to save by paraphrasing them, and something real to lose: this file used to gloss ADR-0004
-as *"parameters come from the education with evidence, never from a grid search"*, which conflated
-two different rules and was acted on without anyone opening the ADR. It is actually about **evidence
-authority** — primary media/PDF is normative, model-derived artifacts cannot be the sole normative
-source. The no-grid-search rule is a separate standing directive, stated below.
+There is nothing to save by paraphrasing a binding document, and something real to lose: this file
+used to gloss ADR-0004 (now archived) as *"parameters come from the education with evidence, never
+from a grid search"*, which conflated two different rules and was acted on without anyone opening
+the ADR. The no-grid-search rule is a separate standing directive, stated below.
 
-So: open the ADR. Open the memory. `docs/CONSTRAINTS.md` tells you which one and when.
+So: open the source. Open the memory. `docs/CONSTRAINTS.md` tells you which one and when.
 
 ## Memory lives in this repo — `claude_memories/`
 
@@ -68,16 +69,11 @@ signal generator → measure whether **our signals** reproduce the method faithf
 - **No parameter grid searches for "the best cell."** Where the material genuinely underdetermines
   a number, the human decides and it is recorded as a strategy decision.
 
-`docs/notes/2026-07-26-edge-measurement-first-probe.md` §0 records what happens when this is
-violated.
-
 ## Environment
 
-- **`.venv`** (Python 3.14) for all market-data, research and repo work — `uv sync` to build it.
-- `.artifacts/training/venv` is a separate 3.12 CUDA venv for the SLM only. `uv run` for training
-  **must** have cwd `training/win_cuda`, or it destroys that venv.
+- **`.venv`** (Python 3.14) for all repo work — `uv sync` to build it.
 - `.artifacts/` (run artifacts) and `.scratch/` (temp work) are gitignored and do not travel
-  between machines. See the resume note §7 for what to restore and how.
+  between machines.
 - Lint with **`uvx ruff check --fix`** — never a bare `ruff check`. Line length 100.
 - Deterministic signal code **must not** call an LLM/SLM. The SLM is an offline research tool that
   helps build the rulebook; the rulebook — plain code — makes the calls.
