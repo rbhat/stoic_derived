@@ -22,15 +22,13 @@ sequence**. `edu/` was culled to the material that teaches it; the rest was remo
 **3 of the 5 `edu/123sequence/` videos have no transcript yet** — Universal 1-2-3 Sequence, Stoic
 Traders Marker Study, Scalping Example. They are the newest and most on-scope material.
 
-## Next, in order
+## Next
 
-1. Rebuild a transcription/keyframe pipeline, aimed at the 1-2-3 sequence rather than the broad
-   course. The old one is gone from the tree — `git show main:edu/pipeline/` if it is useful as
-   reference. Its dependencies are still in `pyproject.toml`.
-2. Transcribe the 3 untranscribed videos.
-3. Read the material and build the SLM that helps derive the rulebook.
-4. Turn the rulebook into a deterministic signal generator — plain code, no LLM/SLM in the live
-   path. See `CLAUDE.md`, "The one rule that governs everything".
+**`docs/PLAN.md` is the plan, end to end — ten phases, plus the register of decisions the material
+leaves open.** Read it there; this file does not restate it.
+
+Position right now: **nothing started.** Phase 0 (bar spine and session clock) and Phase 1 (finish
+transcribing the corpus) are independent and both ready to begin.
 
 No architecture, ADRs, or parameter decisions carry over.
 
