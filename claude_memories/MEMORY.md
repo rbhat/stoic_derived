@@ -7,6 +7,7 @@ the next step, indexed by when it bites). This file is the third stop, not the f
 This directory is the single source of truth for this project's agent memory, version-controlled so
 it travels between machines. Write new memories here — not to `~/.claude/projects/<slug>/memory/`,
 which has been retired for this project. See `CLAUDE.md` for the contract.
+- [Scope: the 1-2-3 sequence](scope-123-sequence.md) — 2026-07-31 restart; which edu/ material is main, supporting, and validation-only
 - [Artifact locality](artifact-locality.md) — user directive: all run artifacts under <repo>/.artifacts/, never ~ or other drives
 - [Always ruff --fix](ruff-always-fix.md) — user directive: never bare `ruff check`; use `uvx ruff check --fix`
 - [Opus expanded role](opus-expanded-role.md) — user directive: Opus subagents orchestrate+verify+audit whole phases, not just final audits

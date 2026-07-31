@@ -5,8 +5,17 @@
 #   https://drive.google.com/drive/u/0/folders/1h1YzLhJd_YppYG5d6UMpG8yZN69pcY3r
 # Download it to the repo root, then run this script.
 #
-# Paths inside the archive are relative to the repo root, so extraction
-# recreates edu/videos/, edu/resources/**/videos/, edu/start_here/ as-is.
+# Paths inside the archive are relative to the repo root and reflect the
+# pre-2026-07-31 layout, so extraction recreates edu/videos/,
+# edu/resources/**/videos/ and edu/start_here/ as they were then. Two of those
+# have since moved under edu/123sequence/ — extracting recreates them at their
+# OLD paths as duplicates. Delete the strays afterwards, or extract selectively:
+#
+#   unzip videos.zip 'edu/resources/*' -d .
+#
+# The archive also predates the three newest videos in edu/123sequence/videos/,
+# which it does NOT contain. Rebuild it before relying on it as a backup.
+#
 # Safe to re-run: existing files are kept unless --force is passed.
 #
 #   ./unzip_videos.sh            # extract, skip files already present

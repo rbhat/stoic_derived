@@ -11,11 +11,18 @@
 
 Then open, when the work calls for it: `coding_rules.md` before writing code.
 
-**2026-07-29: the prior build (signal engine, backtest, ledger, dashboard, 22 ADRs, all planning
-notes) was archived to the `stoic_legacy` branch and removed from `main` to start a simpler stoic
-strategy from scratch.** `docs/architecture/`, `docs/superpowers/`, and `docs/notes/` no longer
-exist on `main` — check `git show stoic_legacy:<path>` if you need to see what they said. Do not
-recreate them speculatively; the new plan is intentionally minimal until there's a rulebook to bind.
+**Two restarts have already happened. Do not reconstruct what either one removed.**
+
+- **2026-07-29:** the prior build (signal engine, backtest, ledger, dashboard, 22 ADRs, all
+  planning notes) was archived to the `stoic_legacy` branch and removed from `main`.
+  `docs/architecture/`, `docs/superpowers/`, and `docs/notes/` no longer exist — see
+  `git show stoic_legacy:<path>`.
+- **2026-07-31:** branch `123seq` narrowed the scope to the **1-2-3 sequence** and culled `edu/` to
+  the material that teaches it. The extraction pipeline and most transcripts went with it — see
+  `git show main:<path>`, and `docs/STATE.md` for the full removal table.
+
+The plan is intentionally minimal until there's a rulebook to bind. Do not recreate any of the
+above speculatively.
 
 ## The pointer rule — this file has broken it before
 
