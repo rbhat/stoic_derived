@@ -1,0 +1,34 @@
+{
+  "source": "123sequence/videos/Scalping Example - Live Trading Session - Stoic Edge System · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1785553952.6123788,
+      "pid": 60295,
+      "heartbeat": 1785553952.57879,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1785553954.0705678,
+      "pid": 60295,
+      "heartbeat": 1785553952.6266801,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1785554395.762669,
+      "pid": 60733,
+      "heartbeat": 1785554387.266693,
+      "attempts": 3
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1785554427.564615,
+      "pid": 60733,
+      "heartbeat": 1785554425.784956,
+      "attempts": 1
+    }
+  },
+  "signature": "181821787-1785202254"
+}

@@ -5,8 +5,11 @@ description = "Stoic-derived: transcribe and read the source material, use it to
 readme = "VISION.md"
 requires-python = ">=3.14"
 dependencies = [
+  "databento>=0.82",
   "faster-whisper",
   "opencv-python",
+  "pandas>=3,<4",
+  "pyarrow>=25",
   "pymupdf>=1.28,<2",
   "PyYAML>=6.0.3",
   "requests",
@@ -30,3 +33,7 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

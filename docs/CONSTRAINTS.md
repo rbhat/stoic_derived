@@ -10,8 +10,9 @@ open the source. A row that starts to look like a paraphrase has become a bug.
 | Write anything that decides a trade | `CLAUDE.md` — "The one rule that governs everything"; `VISION.md` — "What the SLM does vs what generates signals" |
 | Pick a number the material does not pin | `docs/PLAN.md` — decision register; `CLAUDE.md` — no grid searches |
 | Report how well the engine reproduces the method | `CLAUDE.md` — never conclude from small n; `VISION.md` — Evidence |
-| Resample or aggregate bars | `claude_memories/databento-ohlcv-buckets-by-ts-recv.md` |
-| Touch a timestamp, a session boundary, or the flatten cutoff | `VISION.md` — Timestamps |
+| Resample or aggregate bars | `claude_memories/databento-ohlcv-buckets-by-ts-recv.md`; `stoic/bars.py` docstring |
+| Touch a timestamp, a session boundary, or the flatten cutoff | `VISION.md` — Timestamps; `stoic/sessions.py` docstring; `claude_memories/tz-aware-day-arithmetic.md` |
+| Read bars for a date near 2025-11-28 | `claude_memories/historical-bars-2025-11-28-outage.md` |
 | Emit a signal record | `VISION.md` — "What a signal actually is" |
 | Write to the ledger | `VISION.md` — Trade ledger |
 | Decide where a run artifact goes | `claude_memories/artifact-locality.md` |

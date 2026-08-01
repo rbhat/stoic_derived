@@ -1,0 +1,34 @@
+{
+  "source": "123sequence/videos/Stoic Traders Marker Study.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1785554427.633168,
+      "pid": 60733,
+      "heartbeat": 1785554427.577462,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1785554427.937946,
+      "pid": 60733,
+      "heartbeat": 1785554427.642277,
+      "attempts": 1
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1785554507.005013,
+      "pid": 60733,
+      "heartbeat": 1785554500.4581199,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1785554735.2101078,
+      "pid": 62545,
+      "heartbeat": 1785554720.942667,
+      "attempts": 2
+    }
+  },
+  "signature": "47013445-1785528965"
+}

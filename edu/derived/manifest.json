@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-07-31 20:25:35",
+  "pipeline": "build_corpus",
+  "videos": [
+    {
+      "id": "concept_candle_swing_theory_pdh_pdl_pdc",
+      "source": "videos/Candle Swing Theory PDH PDL PDC - Stoic Trader Concepts · Stoic Traders.mp4",
+      "title": "Candle Swing Theory PDH PDL PDC",
+      "duration_sec": 1788.502313,
+      "status": "done",
+      "stages": {
+        "probe": "done",
+        "audio": "done",
+        "transcribe": "done",
+        "keyframes": "done"
+      },
+      "transcript_segments": 268,
+      "keyframes": 110
+    },
+    {
+      "id": "concept_htf_stoic_trader_protocol",
+      "source": "videos/HTF Stoic Trader Protocol - Stoic Trader Concepts · Stoic Traders.mp4",
+      "title": "HTF Stoic Trader Protocol",
+      "duration_sec": 4422.044,
+      "status": "done",
+      "stages": {
+        "probe": "done",
+        "audio": "done",
+        "transcribe": "done",
+        "keyframes": "done"
+      },
+      "transcript_segments": 639,
+      "keyframes": 234
+    },
+    {
+      "id": "concept_scalping_example_live_trading_session",
+      "source": "123sequence/videos/Scalping Example - Live Trading Session - Stoic Edge System · Stoic Traders.mp4",
+      "title": "Scalping Example - Live Trading Session",
+      "duration_sec": 2001.476,
+      "status": "done",
+      "stages": {
+        "probe": "done",
+        "audio": "done",
+        "transcribe": "done",
+        "keyframes": "done"
+      },
+      "transcript_segments": 223,
+      "keyframes": 221
+    },
+    {
+      "id": "concept_simple_stoic_setups_sss",
+      "source": "videos/Simple Stoic Setups SSS - Stoic Trader Concepts · Stoic Traders.mp4",
+      "title": "Simple Stoic Setups SSS",
+      "duration_sec": 4083.927313,
+      "status": "done",
+      "stages": {
+        "probe": "done",
+        "audio": "done",
+        "transcribe": "done",
+        "keyframes": "done"
+      },
+      "transcript_segments": 548,
+      "keyframes": 229
+    },
+    {
+      "id": "concept_stoic_edge_system_module_1_is_live",
+      "source": "123sequence/videos/Stoic Edge System Module 1 is Live · Stoic Traders.mp4",
+      "title": "Stoic Edge System Module 1 is Live",
+      "duration_sec": 1444.276,
+      "status": "done",
+      "stages": {
+        "probe": "done",
+        "audio": "done",
+        "transcribe": "done",
+        "keyframes": "done"
+      },
+      "transcript_segments": 202,
+      "keyframes": 55
+    },
+    {
+      "id": "concept_stoic_traders_marker_study",
+      "source": "123sequence/videos/Stoic Traders Marker Study.mp4",
+      "title": "Stoic Traders Marker Study",
+      "duration_sec": 365.276,
+      "status": "done",
+      "stages": {
+        "probe": "done",
+        "audio": "done",
+        "transcribe": "done",
+        "keyframes": "done"
+      },
+      "transcript_segments": 46,
+      "keyframes": 54
+    },
+    {
+      "id": "concept_the_only_trading_video_that_you_will_ever_need",
+      "source": "123sequence/start_here/The-Only-Trading-Video-That-You-Will-Ever_Need_1080p.mp4",
+      "title": "The Only Trading Video That You Will Ever Need",
+      "duration_sec": 5314.46712,
+      "status": "done",
+      "stages": {
+        "probe": "done",
+        "audio": "done",
+        "transcribe": "done",
+        "keyframes": "done"
+      },
+      "transcript_segments": 822,
+      "keyframes": 232
+    }
+  ]
+}

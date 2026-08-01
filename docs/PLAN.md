@@ -197,18 +197,18 @@ These are places the material genuinely underdetermines a number or a choice. Pe
 are settled by the human and recorded as strategy decisions, never by searching for the best cell.
 Phase 2 closes them; each one that closes gets a row in `docs/CONSTRAINTS.md`.
 
-| # | Open question | Where the tension is |
-|---|---|---|
-| 1 | Which moving averages define the sequence | `price_cycle.jpg` and the step diagrams label **10 and 20 SMA**; `only_trading_video.md` teaches **20 and 200 SMA** on the 5m for session bias. The live-trade chart appears to show both pairs. Are 10/20 the sequence and 200 the directional filter? |
-| 2 | What makes a break and a close "meaningful" | Body vs wick, distance beyond the MA, number of consecutive closes |
-| 3 | What makes a base "obvious" | Bar count, range compression, proximity to the MA trend area |
-| 4 | How the "selected boundary" of the base is selected | Undefined in the material; it is the entry trigger, so it must be pinned |
-| 5 | What "visibly extended from the MA structure" means for climax | Needs a distance measure, likely normalised |
-| 6 | Which target governs, and partial sizing | Entry doc says first target is Step 3 High/Low with partials and stop to break-even; the video teaches fib extensions at 2.618 / 4.23 / 6.86 |
-| 7 | The MA pair per timeframe | The diagrams are 5m; the sequence is claimed fractal, so each Type's execute timeframe needs its pair pinned |
-| 8 | HCOM/LCOM lookback | Current month only, or prior months retained as standing levels |
-| 9 | Mechanical definition of the no-edge zone | Taught as a list of situations, not a condition |
-| 10 | Minimum R for a setup to "deserve risk" | Taught as a principle with no number |
+| # | Open question | Where the tension is | User Answer |
+|---|---|---| -- |
+| 1 | Which moving averages define the sequence | `price_cycle.jpg` and the step diagrams label **10 and 20 SMA**; `only_trading_video.md` teaches **20 and 200 SMA** on the 5m for session bias. The live-trade chart appears to show both pairs. Are 10/20 the sequence and 200 the directional filter? | 10 and 20 sma are guide for direction and wait for PTB approaching them. Explained in video and other material. 20/200 are potential targets if the price is between the 10/20 and 20/200 or could be a strong confluence if all the indicators are trending the same way. Lets derive from material.|
+| 2 | What makes a break and a close "meaningful" | Body vs wick, distance beyond the MA, number of consecutive closes | Body, stronger the surge, the better. | 
+| 3 | What makes a base "obvious" | Bar count, range compression, proximity to the MA trend area | Range compression, proximity to MA with no obvious breakouts.|
+| 4 | How the "selected boundary" of the base is selected | Undefined in the material; it is the entry trigger, so it must be pinned | Entry trigger is the PTB - added a 'PTB Questions.md'|
+| 5 | What "visibly extended from the MA structure" means for climax | Needs a distance measure, likely normalised | Will have to define, keep it till we get more info, maybe backtest?|
+| 6 | Which target governs, and partial sizing | Entry doc says first target is Step 3 High/Low with partials and stop to break-even; the video teaches fib extensions at 2.618 / 4.23 / 6.86 | Lets follow TP1 as Step 3 H/L and 2.618 as next TP.|
+| 7 | The MA pair per timeframe | The diagrams are 5m; the sequence is claimed fractal, so each Type's execute timeframe needs its pair pinned | 5m follows the 5m MA, but to enter a trade, we can check 1m and see if we get pullbacks to enter. SL and TP still on 5m timeframes.|
+| 8 | HCOM/LCOM lookback | Current month only, or prior months retained as standing levels | Stoic inddicator gives 3 months of info |
+| 9 | Mechanical definition of the no-edge zone | Taught as a list of situations, not a condition | Where there is no entry, let SLM decide.|
+| 10 | Minimum R for a setup to "deserve risk" | Taught as a principle with no number | SL is explained in 'PTB Questions.md' |
 
 ## Risks worth naming now
 
