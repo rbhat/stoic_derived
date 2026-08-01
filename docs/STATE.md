@@ -4,8 +4,14 @@
 
 ## Running now
 
-Nothing. **Phase 0 and Phase 1 are complete**; their gates passed with the evidence pasted into the
-commit. Next is **Phase 2 — the rulebook spec**, which is the pivotal one.
+Nothing. **Phases 0 and 1 are complete.** **Phase 2 has a deliverable — `docs/RULEBOOK.md` — and its
+gate is not yet met.** The spec is written and every rule cites the material (101 timestamp
+citations, all verified against the transcripts). What is missing is agreement on the terms the
+material leaves open: `docs/RULEBOOK.md` §12 lists 12 of them, **8 blocking**. Phase 5 must not start
+until those close — that is the failure `docs/PLAN.md` is shaped to avoid.
+
+**The decision register has moved.** `docs/RULEBOOK.md` §11 holds the closed decisions and §12 the
+open ones. The table in `docs/PLAN.md` was the intake form and is now historical.
 
 ## The material
 
@@ -26,12 +32,17 @@ So Phase 1 produced **2** new transcript sets, not the 3 its exit gate named.
 
 ## Next
 
-**`docs/PLAN.md` is the plan, end to end.** Position: Phases 0 and 1 closed, **Phase 2 open**.
+**`docs/PLAN.md` is the plan, end to end.** Position: Phases 0 and 1 closed, **Phase 2 open on its
+gate, not on its deliverable**.
 
-The user has answered all 10 rows of the decision register in `docs/PLAN.md` — those answers are
-the input to Phase 2, along with `edu/123sequence/discussion/discussions.md` (a mechanical bearish
-sequence definition and a reset rule) and `edu/123sequence/concepts/PTB Questions.md` (which
-answers register rows 4 and 10). Read them there; this file does not restate them.
+Close the 8 blocking rows in `docs/RULEBOOK.md` §12. They are the human's to settle, per the standing
+directive in `CLAUDE.md` — not a grid search. Then Phase 3 (labelled reference set) can start against
+a spec that says the same thing twice.
+
+`docs/RULEBOOK.md` §13 records a scope boundary worth knowing before opening any transcript: the
+corpus contains a **second system** (Simple Stoic Setups / HTF Protocol / Candle Swing Theory / the
+war map) built on daily closes, a three-day cycle and an MA chop zone. It is not the 1-2-3 sequence
+and none of its rules are imported.
 
 ## What Phase 0 and Phase 1 built
 

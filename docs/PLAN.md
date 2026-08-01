@@ -193,9 +193,12 @@ execution of the method, not whether the method works. No parameter grid searche
 
 ## Decision register — open, and the human decides
 
+**Superseded 2026-08-01. The live register is `docs/RULEBOOK.md` §11 (closed) and §12 (open).** The
+table below is the intake form that fed Phase 2 and is kept for provenance; do not add to it or
+read a current decision out of it.
+
 These are places the material genuinely underdetermines a number or a choice. Per `CLAUDE.md` they
 are settled by the human and recorded as strategy decisions, never by searching for the best cell.
-Phase 2 closes them; each one that closes gets a row in `docs/CONSTRAINTS.md`.
 
 | # | Open question | Where the tension is | User Answer |
 |---|---|---| -- |
