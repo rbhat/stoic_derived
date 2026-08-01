@@ -5,9 +5,9 @@
 ## Running now
 
 Nothing. **Phases 0 and 1 are complete.** **Phase 2 has a deliverable — `docs/RULEBOOK.md` — and its
-gate is not yet met.** The spec is written and every rule cites the material (101 timestamp
+gate is not yet met.** The spec is written and every rule cites the material (102 timestamp
 citations, all verified against the transcripts). What is missing is agreement on the terms the
-material leaves open: `docs/RULEBOOK.md` §12 lists 12 of them, **8 blocking**. Phase 5 must not start
+material leaves open: `docs/RULEBOOK.md` §12 lists 11 still open, **8 blocking**. Phase 5 must not start
 until those close — that is the failure `docs/PLAN.md` is shaped to avoid.
 
 **The decision register has moved.** `docs/RULEBOOK.md` §11 holds the closed decisions and §12 the
@@ -39,10 +39,9 @@ Close the 8 blocking rows in `docs/RULEBOOK.md` §12. They are the human's to se
 directive in `CLAUDE.md` — not a grid search. Then Phase 3 (labelled reference set) can start against
 a spec that says the same thing twice.
 
-`docs/RULEBOOK.md` §13 records a scope boundary worth knowing before opening any transcript: the
-corpus contains a **second system** (Simple Stoic Setups / HTF Protocol / Candle Swing Theory / the
-war map) built on daily closes, a three-day cycle and an MA chop zone. It is not the 1-2-3 sequence
-and none of its rules are imported.
+`docs/RULEBOOK.md` §13 records how the rest of the corpus is used. Simple Stoic Setups / HTF Protocol
+/ Candle Swing Theory / the war map are the **complementary layer the 1-2-3 was distilled from** —
+context and targets, never a step of the sequence, and they yield on conflict.
 
 ## What Phase 0 and Phase 1 built
 

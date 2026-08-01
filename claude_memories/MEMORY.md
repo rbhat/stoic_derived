@@ -8,7 +8,7 @@ This directory is the single source of truth for this project's agent memory, ve
 it travels between machines. Write new memories here — not to `~/.claude/projects/<slug>/memory/`,
 which has been retired for this project. See `CLAUDE.md` for the contract.
 - [Scope: the 1-2-3 sequence](scope-123-sequence.md) — 2026-07-31 restart; which edu/ material is main, supporting, and validation-only
-- [Two systems in the corpus](two-systems-in-the-corpus.md) — edu/ teaches the 1-2-3 *and* a separate daily-close system that shares its vocabulary; check which one a transcript belongs to before citing it
+- [Two systems in the corpus](two-systems-in-the-corpus.md) — the 1-2-3 and the daily-close layer it was distilled from — complementary, but the 1-2-3 wins on conflict
 - [Artifact locality](artifact-locality.md) — user directive: all run artifacts under <repo>/.artifacts/, never ~ or other drives
 - [Always ruff --fix](ruff-always-fix.md) — user directive: never bare `ruff check`; use `uvx ruff check --fix`
 - [Opus expanded role](opus-expanded-role.md) — user directive: Opus subagents orchestrate+verify+audit whole phases, not just final audits

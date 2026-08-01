@@ -50,12 +50,14 @@ A citation is checkable: `grep '00:09:07' edu/derived/concept_stoic_edge_system_
 
 ### Precedence when sources disagree
 
-1. **`M1` and `PC` govern the sequence.** `M1 @ 01:06` calls the Stoic Edge System course *"the
-   current operating version"* and *"if an older lesson conflicts with the rule taught here, follow
-   this course and the current rulebook."* `PC` is that course's one-slide framework (`M1 @ 08:36`).
+1. **`M1` and `PC` govern the sequence.** `M1 @ 00:59` calls the Stoic Edge System course *"the
+   current operating version"*, and `M1 @ 01:06` adds *"if an older lesson conflicts with the rule
+   taught here, follow this course and the current rulebook."* `PC` is that course's one-slide
+   framework (`M1 @ 08:36`).
 2. **`ET` + `PTBQ` govern the entry**, which `M1`/`PC` leave at *"Step 3 Break"* (see §5.1).
 3. `OTV`, `SCALP`, `MAS` illustrate and add context. They never override 1 or 2.
-4. `SSS`, `HTF`, `CST`, `WM` are a **different system** — see §13. They are context only.
+4. `SSS`, `HTF`, `CST`, `WM` are the **complementary layer the 1-2-3 was distilled from** — see §13.
+   They supply context and targets, never a step of the sequence, and they yield on conflict.
 
 ---
 
@@ -210,6 +212,12 @@ opportunity — but the engine's entry order is placed off the PTB.
 structure, and the executed entries are labelled *"Step 3 Pullbck Entry"* and *"Pullback Entry"* —
 both below Step 3, not at the boundary break.
 
+**Both entries in `LT` are valid, and they are the same rule applied twice.** The second exists
+because the first can be missed; it is not a scale-in and not a lesser signal. This is §2.5 in
+practice — `M1 @ 15:40`'s *"leave the old break alone"* and *"wait on the same chart for a fresh
+base and a new break of that base."* The engine emits one signal per PTB activation, and a sequence
+in a sustained directional state can produce several. See decision **D-13**, §11.
+
 ### 5.2 The pullback and the PTB
 
 | # | Rule | Status | Source |
@@ -217,6 +225,7 @@ both below Step 3, not at the boundary break.
 | 5.2.1 | The chain is: **Confirmed Step 3 → Step 3 High → Pullback → PTB → Entry.** | M | `ET` |
 | 5.2.2 | **PTB (Pullback Trigger Bar)** = *"simply the last candle in that pullback."* | M | `ET`, `HOW` |
 | 5.2.3 | Bullish: place a **buy stop above the PTB high**; entry triggers when price trades above it. Bearish: the last candle of the **bounce** is the PTB; place a **sell stop below its low**. | M | `ET` |
+| 5.2.3a | The order is a **stop market at the PTB extreme** — the PTB high for a long, the PTB low for a short. No buffer beyond the extreme. | M | decision **D-12**, §11 |
 | 5.2.4 | In `DIA-L` the Entry line sits exactly at the PTB bar's **high**, and the next bar trades through it. Mirror in `DIA-S` at the PTB **low**. | M | `DIA-L`, `DIA-S` |
 | 5.2.5 | The pullback **need not reach the moving averages or retest the old base.** *"A shallow pullback can qualify."* | M | `PTBQ` §3 |
 | 5.2.6 | The PTB pullback has **no MA-touch and no base-touch requirement** — this is what distinguishes it from Step 2, which does require the visual retest of the 10/20 area. | M | `PTBQ` §3 |
@@ -295,8 +304,14 @@ The sequence produces a signal. These decide whether it deserves risk.
 | 7.1.3 | The 200 SMA carries the higher-timeframe trend: *"we are looking for the bullish setup here because the price is staying above 200 SMA … the higher time frame trend is bullish."* | M | `M1 @ 19:54` |
 | 7.1.4 | Do not take a trade **into** the 200 SMA on fast charts: *"on one minute chart, five minute chart, do not long into the 200 SMA."* | M | `SCALP @ 23:02` |
 | 7.1.5 | The MAs act as **staged destinations**: *"you can long from 10 20 back to 50, from 50 to 200, and then eventually it flips."* | — | `SCALP @ 22:45` |
+| 7.1.6 | **MA target rule.** When an MA is used as a destination, take the **next MA beyond entry in the trade direction**, from the set on the chart (10, 20, 50, 200). Which SMA that is falls out of the geometry — it is not a choice between pairs. | M | decision **D-14**, §11 |
 
 **"Staying above/below"** in 7.1.2 has no bar count or tolerance — see §12 row **O-8**.
+
+**7.1.6 separates two roles that look like one.** *Gating* (7.1.2) must be one fixed pair or the
+engine is non-deterministic — `M1 @ 20:09` fixes it at 50/200. *Targeting* (7.1.5) needs no pair at
+all: whichever MA is next in the direction of travel is the next destination, so 20/200 and 50/200
+stop competing. See **D-14**.
 
 ### 7.2 The 20/200 session bias (the free-training layer)
 
@@ -461,12 +476,14 @@ this file is now their durable home.
 | **D-9** | Mechanical no-edge zone | **Deferred**; where there is no entry, the offline SLM proposes candidates for human confirmation. Never in the live path (`VISION.md`). | §7.4 |
 | **D-10** | Stop placement / minimum R | **Stop = PTB low/high**, per `PTBQ` §2. Minimum R left open — see **O-10**. | §5.4.1 |
 | **D-11** | Anticipatory inside-bar entry | **Out of scope for v1 signal emission.** Recorded for Phase 3 labelling only. | §5.5 |
+| **D-12** | Entry order type and level | **Stop market at the PTB extreme** — PTB high for a long, PTB low for a short. No buffer. | §5.2.3a |
+| **D-13** | Two entries on one move | **Both are valid.** The second exists because the first can be missed. Not a scale-in, not a lesser signal — one signal per PTB activation. | §5.1, §2.5 |
+| **D-14** | 20/200 vs 50/200 as destinations | **Both work; the choice is subjective and depends on which is closer when trading to it.** Resolved by separating the roles: **gating stays fixed at 50/200** (`M1 @ 20:09`), **targeting takes the next MA beyond entry in the trade direction** from {10, 20, 50, 200}. Closes O-11. | §7.1.2, §7.1.6 |
 
-**D-1 carries a discrepancy that needs the human.** The register answer also said *"20/200 are
-potential targets … or could be a strong confluence."* The corpus says **50/200** in that role
-(`SCALP @ 22:45`: *"from 10 20 back to 50, from 50 to 200"*; `M1 @ 20:09`), while the **20/200** pair
-belongs to the older free-training session-bias layer (`OTV @ 44:39`, §7.2). Written here as 50/200
-per *"derive from material"*. Confirm or correct — see §12 row **O-11**.
+**On D-14.** 20/200 is the pair from the original course (`OTV @ 44:39`) and 50/200 the pair Module 1
+teaches with the sequence. Treating "which pair" as the question forces a false choice; treating the
+MA as a destination makes the geometry answer it. Gating is the one place a pair must be pinned,
+because a switchable filter is a non-deterministic filter.
 
 ---
 
@@ -478,7 +495,7 @@ without it.
 | ID | Open question | Where it bites | Blocking? |
 |---|---|---|---|
 | **O-1** | The **"three-bar window"** in `PTBQ` §1 is named but never defined. Is the pullback capped at 3 bars? Is the window measured from the Step 3 High? | §5.3.3 — decides which bar's extreme is the trigger | **Yes** for L3 |
-| **O-2** | **Entry buffers, gap handling, fill rules** — the source says these *"are not yet locked."* | §5.3 — decides fill price in replay | **Yes** for L3 and Phase 6 |
+| **O-2** | **Gap handling and fill rules** — the source says these *"are not yet locked."* Order type and level are now settled by **D-12**; what remains is what a replay fills at when a bar **gaps through** the PTB extreme instead of trading through it. | §5.3 — decides fill price in replay | **Yes** for L3 and Phase 6 |
 | **O-3** | The **reset rule** (§2.4.3) says "the moving averages" without naming the pair. `DISC` §1 mentions 10, 20, 50 and 200 in one breath; `SCALP @ 26:26` narrates the reset against the 10/20 while using the 50 for context. | §2.4 — decides when a count dies | **Yes** for L2 |
 | **O-4** | When is the **Step 3 High/Low final** in live time? The diagrams fix it in hindsight; no source gives a live rule. | §3, §5.4.4, §6.1 | **Yes** for L2/L3 |
 | **O-5** | **"Sufficient room must remain to the Step 3 High/Low"** — condition stated, no number. | §5.4.4 — gates entry | **Yes** for L4 |
@@ -487,7 +504,7 @@ without it.
 | **O-8** | **"Staying above/below the 50"** — no bar count, no tolerance, no rule for price straddling it. | §7.1.2 — the primary gate | **Yes** for L4 |
 | **O-9** | The **no-edge zone** is a list of situations, not a condition. §7.4.4 mechanises three of them; the rest are open. | §7.4 | No — the rest are filters, not signals |
 | **O-10** | **Minimum R** for a setup to deserve risk. Taught as a principle with no number (`CMD` §4). Observed values (§7.5.3) are expectations, not thresholds. | §7.5 | No — record R, do not gate on it |
-| **O-11** | **D-1 discrepancy**: 20/200 vs 50/200 in the "MAs as staged targets / confluence" role. | §7.1.5, §11 | No — the sequence pair is settled |
+| ~~**O-11**~~ | ~~20/200 vs 50/200 as staged targets~~ | **Closed 2026-08-01 by D-14.** | — |
 | **O-12** | Whether a **continuation entry** (§2.5) needs its own Step 3 High before its PTB, or reuses the original. | §2.5, §3 | **Yes** for the continuation signal class |
 
 **O-1 through O-6, O-8 and O-12 must close before Phase 5 writes L2/L3/L4.** They are the reason
@@ -495,29 +512,43 @@ Phase 2 exists.
 
 ---
 
-## 13. Deliberately out of scope
+## 13. The complementary material
 
-The corpus contains a **second, separate system** — "Simple Stoic Setups" (`SSS`), the "HTF Stoic
-Trader Protocol" (`HTF`), "Candle Swing Theory" (`CST`) and the weekly cycle war map (`WM`). It is
-built on daily/weekly/monthly **closes**, a **three-day cycle** with five named templates, **signal
-days** (three higher/lower closes, first red/green day, inside day), and an **MA chop zone** using
-the 20/200 SMA on the 5m for entry timing.
+"Simple Stoic Setups" (`SSS`), the "HTF Stoic Trader Protocol" (`HTF`), "Candle Swing Theory"
+(`CST`) and the weekly cycle war map (`WM`) teach a **fuller system around the same method**:
+daily / weekly / monthly **closes**, a **three-day cycle** with five named templates, **signal days**
+(three higher or lower closes, first red or green day, inside day), the **MA chop zone** on the 5m,
+and four-hour rotation windows.
 
-It is a coherent system and it shares vocabulary with this one — consolidation → expansion, trapped
-traders, break & retest, SFP, SBS, fib geometry, the same daily and monthly levels. **It is not the
-1-2-3 sequence and its rules are not imported here.** `M1 @ 01:06` sets the precedence: the Stoic
-Edge System course is the current operating version, and *"if an older lesson conflicts with the
-rule taught here, follow this course."*
+**These are complementary, not excluded.** `M1 @ 00:59` calls the Stoic Edge System course *"my
+latest synthesis of that work"* — the 1-2-3 is distilled **from** this material, which is why the
+vocabulary is shared: consolidation → expansion, trapped traders, break & retest, SFP, SBS, fib
+geometry, the same daily and monthly levels. Read them to understand *why* a rule in §1–§9 says what
+it says, and to source the context layer in §7.3–§7.5.
 
-Concretely, the following do **not** bind any rule in §1–§9: the three-day cycle and its day 1/2/3
-roles; the five templates; signal days; the MA chop zone as an entry trigger; the 6am/10am/2pm
-rotation windows; the *"no chop zone, no trade"* rule; the measured-move target; the monthly
-bias-by-higher-highs filter; the weekly Monday-range map.
+**Two constraints on how they are used.**
 
-Two things from that system are cited above and only for the reason given:
+1. **Precedence on conflict.** `M1 @ 01:06`: *"if an older lesson conflicts with the rule taught here,
+   follow this course and the current rulebook."* Where `SSS`/`HTF`/`CST` and `M1`/`PC`/`ET` say
+   different things about the same decision, §1–§6 wins. The live example is the MA pair (§7.1
+   vs §7.2), settled by **D-14**.
+2. **Distinguish context from trigger.** A rule from this layer may shape *whether a setup deserves
+   risk* (§7.3–§7.5) or *what a realistic target is* (§6). It does not become a step of the
+   sequence, and it does not fire an entry — the sequence and the PTB do that (§2, §5). The
+   distinction matters because rules like *"no chop zone, no trade"* or *"the third daily close is
+   the signal"* read like sequence rules and are not.
+
+Already carried into §1–§9 from this layer:
 
 - `CST @ 04:49` — why the **daily** close is the only close the material treats as real (§7.3).
 - `CST @ 22:22` — the one mechanical phrasing of the no-edge zone found anywhere (§7.4.3).
+- `OTV`'s concept layer throughout §7 and §8 — HCOM/LCOM, PDH/PDL/PDC, the two setups, SBS, fib
+  geometry, the no-edge zone, trapped side.
 
-Also out of scope, from `VISION.md` and `CLAUDE.md`: any LLM or SLM in the path that decides a
+**Not yet carried, and worth a decision later:** the three-day cycle and its templates, signal days,
+the chop zone, the rotation windows, the measured-move target, the monthly bias filter, the Monday
+range. Each is a candidate confluence input for the §7.5 "deserves risk" question and for the
+deterministic confidence score `VISION.md` requires — none is a candidate for §2 or §5.
+
+Genuinely out of scope, from `VISION.md` and `CLAUDE.md`: any LLM or SLM in the path that decides a
 trade; any parameter grid search for the best value of an open row above.
