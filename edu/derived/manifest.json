@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31 20:25:35",
+  "generated_at": "2026-08-08 16:26:48",
   "pipeline": "build_corpus",
   "videos": [
     {
@@ -31,6 +31,36 @@
       },
       "transcript_segments": 639,
       "keyframes": 234
+    },
+    {
+      "id": "concept_navigating_tough_price_action_with_1_2_3_and_ptbs",
+      "source": "123sequence/videos/Navigating tough price action with 1-2-3 and PTBs - Stoic Edge System · Stoic Traders.mp4",
+      "title": "Navigating tough price action with 1-2-3 and PTBs",
+      "duration_sec": 3480.942667,
+      "status": "in_progress",
+      "stages": {
+        "probe": "done",
+        "audio": "done",
+        "transcribe": "pending",
+        "keyframes": "pending"
+      },
+      "transcript_segments": 0,
+      "keyframes": 0
+    },
+    {
+      "id": "concept_ptb_entries_nq_live_trading_10r",
+      "source": "123sequence/videos/💎 PTB Entries - NQ Live Trading 10R - Stoic Edge System · Stoic Traders.mp4",
+      "title": "💎 PTB Entries - NQ Live Trading 10R",
+      "duration_sec": 5874.942667,
+      "status": "done",
+      "stages": {
+        "probe": "done",
+        "audio": "done",
+        "transcribe": "done",
+        "keyframes": "done"
+      },
+      "transcript_segments": 748,
+      "keyframes": 687
     },
     {
       "id": "concept_scalping_example_live_trading_session",

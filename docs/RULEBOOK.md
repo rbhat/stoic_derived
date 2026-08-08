@@ -1,8 +1,11 @@
 # Rulebook — the 1-2-3 sequence
 
 **The distilled strategy spec. This is the engine's source of truth, not the transcripts.**
-Written 2026-08-01 (Phase 2). Every rule below cites the material it comes from. Where the material
-declines to pin something, this file says so in the open — it does not invent a number.
+Every rule cites the material it comes from. Where the material declines to pin something, this file
+says so in the open — it does not invent a number.
+
+**This file states what is true now.** It is not a changelog: closed questions live in §11 as
+decisions, not as struck-through rows, and `git log -- docs/RULEBOOK.md` is the history.
 
 ---
 
@@ -33,9 +36,9 @@ strategy decision requiring the human, per the standing directive in `CLAUDE.md`
 | `DISC` | `edu/123sequence/discussion/discussions.md` (with `discussion/Q1.png`) |
 | `DIA-L` | `edu/123sequence/entry_technique/step-3-pullback-diagram.svg` (bullish; byte-identical to `step-1-2-3.svg`) |
 | `DIA-S` | `edu/123sequence/entry_technique/step-3-pullback-bearish-diagram.svg` |
-| `DIA-P` | `edu/123sequence/1-2-3-PTB-Long.svg` (bullish, PTB-annotated; added 2026-08-03) |
+| `DIA-P` | `edu/123sequence/1-2-3-PTB-Long.svg` (bullish, PTB-annotated) |
 | `LT` | `edu/123sequence/entry_technique/step-3-livetrade.png` |
-| `NQ3` | `edu/123sequence/nq-1-2-3.png` (NQ 5m, bullish, live-marked; added 2026-08-03) |
+| `NQ3` | `edu/123sequence/nq-1-2-3.png` (NQ 5m, bullish, live-marked) |
 | `PTBV` | `edu/derived/concept_ptb_entries_nq_live_trading_10r/transcript.md` — by timestamp |
 | `T1` | `edu/123sequence/stoic_trade1.png` |
 | `MAS` | `edu/123sequence/stoic_ma_study.png` |
@@ -166,10 +169,14 @@ that resets many times in a chop is behaving correctly, not thrashing — see **
 | 2.5.2 | While the original directional structure remains active, wait **on the same chart** for a **fresh base and a new break of that base**. | M | `M1 @ 15:45` |
 | 2.5.3 | *"On the continuation entries, a new step one is not required. We're simply trading continuation consolidations that retrace to moving averages."* | M | `M1 @ 15:56` |
 | 2.5.4 | Observed in the live chart: `LT` labels **two** entries in one move — *"Step 3 Pullbck Entry"* and, lower, a second *"Pullback Entry"*. | — | `LT` |
+| 2.5.5 | A continuation entry needs **no new Step 3 and no new Step 1**. The directional state opened by the Confirmed Step 3 is what qualifies it: *"the ptb entry is the retracement into the 10 and 20 sma after the confirm step 3. confirm step 3 is very important because otherwise we're just going to be entering on random pullbacks."* | M | `PTBV @ 00:11:18`, `PTBV @ 00:11:28`; decision **D-21**, §11 |
+| 2.5.6 | The state runs **until the reset**, and every pullback inside it is an entry: *"even if you don't enter here let's say you missed this entry and price goes higher higher higher higher and then you have this ptb over here so that would be the entry and you [ride] this until price breaks back below moving averages."* | M | `PTBV @ 00:13:07`, `PTBV @ 00:13:13`, `PTBV @ 00:13:20` |
+| 2.5.7 | Same rule stated as the session's whole method: *"after one two three all of these are opportunities to enter again all of these are continuation trades"*; *"after 1 to 3 you're looking for continuations, the retracements into the 10 and 20 SMA."* | M | `PTBV @ 00:16:35`, `PTBV @ 00:16:43`, `PTBV @ 00:52:07`, `PTBV @ 00:52:13` |
+| 2.5.8 | The reset that ends the state is the **10/20** break of 2.4 — *"look for this continuation higher as long as the price stays about [above] 10 and 20"* — the same pair **D-15** keys the reset off. | M | `PTBV @ 00:37:03`, `PTBV @ 00:13:20`; decision **D-15**, §11 |
 
-**Engine note.** 2.5 means the sequence state machine has a *sustained directional state* after a
-Confirmed Step 3, inside which any subsequent base-and-break emits a signal. This is a distinct
-signal class from the initial Step 3 and should be labelled as such in the signal record.
+**Engine note.** The state machine holds a *sustained directional state* with exactly one entry
+condition (Confirmed Step 3) and one exit condition (the §2.4 reset on the 10/20); nothing between
+them re-qualifies it. Every PTB inside it emits a signal, labelled as the continuation class.
 
 ---
 
@@ -183,11 +190,11 @@ signal class from the initial Step 3 and should be labelled as such in the signa
 | 3.4 | **Live definition.** The Step 3 High is the **running maximum of highs from the Confirmed Step 3 bar onward** (Step 3 Low: running minimum), advancing bar by bar for as long as the expansion continues. | M | decision **D-16**, §11 |
 | 3.5 | It **never has to be declared final to trade**. The expansion pauses when a correction bar completes; from that bar the PTB governs (§5.2), and the working order rides forward with it. The Step 3 High is **frozen at PTB activation** — its value at the moment the entry fills is the number TP1 uses (§6.1). | M | decision **D-16**, §11 |
 | 3.6 | `DIA-P` places the Step 3 High on the **second expansion candle** after Confirmed Step 3 — an instance of 3.4, not a bar count. | M | `DIA-P` |
+| 3.7 | **A continuation entry (§2.5) does not get a Step 3 High of its own.** There is one running extreme per directional state; it keeps advancing through the continuation and each entry freezes it at its own PTB activation: *"price makes another high over here … and you wait for the pullback and here's your ptb candle right here and you buy stop, stop loss below the candle."* Two entries in one state therefore use **different numbers from the same series**, not two series. | M | `PTBV @ 00:09:43`, `PTBV @ 00:09:50`, `PTBV @ 00:09:59`; decision **D-21**, §11 |
 
-**Why this closes the live-vs-hindsight gap.** The diagrams look like they fix the Step 3 High in
-hindsight, and that reading is what made O-4 look blocking. It is not: nothing upstream of the order
-needs the extreme. Entry is a function of the PTB alone, and the only consumer that needs a *number*
-— TP1 — is evaluated at fill time, when the running maximum is known. See **D-16**.
+**Engine note.** The diagrams appear to fix the Step 3 High in hindsight; nothing in the engine needs
+them to. Entry is a function of the PTB alone, and the only consumer that needs a *number* — TP1 — is
+evaluated at fill time, when the running extreme is known.
 
 ---
 
@@ -209,23 +216,16 @@ or invalidate a signal. It may only annotate the record and drive partials.
 
 ### 5.1 Which entry governs
 
-`PC` says **Entry: Step 3 Break**. `ET` teaches a later, more specific trigger: wait for the pullback
-after the Step 3 High and enter on the **PTB** break. Both are in the material and they are not the
-same bar.
+`PC` says **Entry: Step 3 Break**; `ET` teaches a later trigger — wait for the pullback after the
+Step 3 High and enter on the **PTB** break. Both are in the material and they are not the same bar.
 
-**Resolution (human decision D-4, §11): the PTB break is our entry trigger.** The Step 3 boundary
-break remains what it is in `M1` — the event that changes the chart's technical state and opens the
-opportunity — but the engine's entry order is placed off the PTB.
+**Decision D-4: the PTB break is the entry trigger.** The Step 3 boundary break stays what `M1` makes
+it — the event that changes the chart's technical state and opens the opportunity — but the order is
+placed off the PTB. `LT` agrees: on a live MNQ 5m short, `Step 2` and `Step 3` are labelled at the
+structure while both executed entries are labelled as pullback entries, below Step 3.
 
-`LT` is consistent with this: on a live MNQ 5m short, `Step 2` and `Step 3` are labelled at the
-structure, and the executed entries are labelled *"Step 3 Pullbck Entry"* and *"Pullback Entry"* —
-both below Step 3, not at the boundary break.
-
-**Both entries in `LT` are valid, and they are the same rule applied twice.** The second exists
-because the first can be missed; it is not a scale-in and not a lesser signal. This is §2.5 in
-practice — `M1 @ 15:40`'s *"leave the old break alone"* and *"wait on the same chart for a fresh
-base and a new break of that base."* The engine emits one signal per PTB activation, and a sequence
-in a sustained directional state can produce several. See decision **D-13**, §11.
+The engine emits **one signal per PTB activation**, so one directional state can produce several
+(**D-13**, and §2.5). The second is not a scale-in and not a lesser signal.
 
 ### 5.2 The pullback and the PTB
 
@@ -238,6 +238,8 @@ in a sustained directional state can produce several. See decision **D-13**, §1
 | 5.2.4 | In `DIA-L` the Entry line sits exactly at the PTB bar's **high**, and the next bar trades through it. Mirror in `DIA-S` at the PTB **low**. `DIA-P` draws the same line at the same level on the same schematic, labelled. | M | `DIA-L`, `DIA-S`, `DIA-P` |
 | 5.2.5 | The pullback **need not reach the moving averages or retest the old base.** *"A shallow pullback can qualify."* | M | `PTBQ` §3 |
 | 5.2.6 | The PTB pullback has **no MA-touch and no base-touch requirement** — this is what distinguishes it from Step 2, which does require the visual retest of the 10/20 area. | M | `PTBQ` §3 |
+| 5.2.7 | 5.2.6 restated live as a preference, not a gate: *"ideally it will touch the moving averages, that's a nice healthy pullback — sometimes it won't."* Remarks elsewhere in the same session that a pullback is *"a bit early because we never touched the moving averages"* are quality reads on the same permissive rule, not a second condition. | M | `PTBV @ 00:08:47`, `PTBV @ 00:43:43`, `PTBV @ 00:43:50` |
+| 5.2.8 | **An inside candle is not a PTB.** *"When it's inside candle you don't want to treat it as ptb."* Restated: *"if it's inside candle ptb I would ignore it… we go down, make lower lows, so we keep tracking the ptb — so the ptb is the last candle."* The pullback simply continues and the anchor moves on (5.3.5). | M | `PTBV @ 01:33:01`, `PTBV @ 01:02:29`, `PTBV @ 01:02:39` |
 
 ### 5.3 Live activation
 
@@ -250,25 +252,38 @@ Verbatim, `PTBQ` §1:
 > correction bar within the three-bar window, and sufficient room must remain to the Step 3
 > High/Low. **Exact entry buffers, gaps, and fill rules are not yet locked.**
 
+Each term that paragraph leaves open is now settled: buffers by **D-12** (none), the three-bar window
+by **D-17** (no cap), *"correction bar"* by **D-23**, gaps and fills by **D-22**.
+
 | # | Rule | Status | Source |
 |---|---|---|---|
-| 5.3.1 | The PTB candidate must have **closed** before it can be activated. | M | `PTBQ` §1 |
+| 5.3.1 | The PTB candidate must have **closed** before it can be activated. Restated live: *"the PTB entry becomes the break of that high — after the full candle closed though, so keep that in mind."* | M | `PTBQ` §1; `PTBV @ 00:35:47`, `PTBV @ 00:35:52` |
 | 5.3.2 | Activation is **trade-through, not close-through**. | M | `PTBQ` §1 |
 | 5.3.3 | The activating level must belong to the **latest** completed correction bar. | M | `PTBQ` §1 |
+| 5.3.3a | **Correction bar, defined.** A bar whose **body opposes the sequence direction**: for a long `close < open`, for a short `close > open`. Not "any bar making a lower high". Two consequences fall out and are not separate rules: a bar with `close == open` is **not** a correction bar, and an inside bar is excluded anyway by 5.2.8. | M | decision **D-23**, §11 |
 | 5.3.4 | **There is no bar cap.** *"The 3 bar window is not definite but a PTB has 2 sides — the direction, the pull back trigger and the move again going back."* The PTB is fixed by **structure, not by count**: it is the last correction bar before the move resumes. | M | `PTBQ` §1; decision **D-17**, §11 |
-| 5.3.5 | Therefore the working order **re-anchors every bar**: while the pullback continues, each newly completed correction bar becomes the PTB and the resting stop moves to its extreme. The order fires on the first trade beyond the current anchor. | M | decision **D-17**, §11 |
+| 5.3.5 | Therefore the working order **re-anchors every bar**: while the pullback continues, each newly completed correction bar becomes the PTB and the resting stop moves to its extreme. The order fires on the first trade beyond the current anchor. Stated live as *"we want to trail behind the PTB"*, and again as *"I'm just following the candles down until we have the candle that's PTB."* | M | decision **D-17**, §11; `PTBV @ 00:35:34`, `PTBV @ 01:32:55`, `PTBV @ 01:33:01` |
 | 5.3.6 | `DIA-P` shows the mechanism with a **two**-bar pullback: two down candles into the moving averages, the **later** one carries the Entry line at its high. Two, not three — the count is incidental. | M | `DIA-P` |
-| 5.3.7 | Entry buffers are settled (**D-12**: none). Gap handling and fill rules are **stated as not locked** by the source itself. | — | §12 row **O-2** |
+| 5.3.7 | **Fill price.** The order is a stop market (5.2.3a), so it fills **at the trigger** when the bar trades through it, and **at the bar's open** when the bar **gaps past** it — a market fill, taken at whatever the gap offers. A fill is **never better than the trigger**. | M | decision **D-22**, §11 |
+| 5.3.8 | **A level that is never traded is not an entry.** *"This would be the ptb entry — price never triggered it"*, and the read moves on to the next PTB. No chasing, no relaxed level. | M | `PTBV @ 00:12:51` |
+| 5.3.9 | Corroborating 5.3.7 live — when price has already left the level, the trade is taken at the price available rather than skipped: *"another entry, thousand dollar stop loss, I gotta do market — this is a ptb entry."* | M | `PTBV @ 00:23:37` |
+| 5.3.10 | **R is computed from the actual fill, not from the trigger.** A gap fill sits further from the PTB extreme, so it widens R and every ratio built on it (§5.4.2). The signal record stores both the trigger and the fill. | M | derived from 5.3.7 + 5.4.2 |
+
+**Engine note on 5.3.7.** The rule is stop-market semantics applied honestly, which is why it needs
+no parameter: the gap case is a property of the order type, not a choice about the strategy. One
+modelling assumption does ride on it — **no slippage is modelled beyond the gap itself**. That is a
+replay convention, not a rule from the material; if Phase 6 finds it flattering, it is the thing to
+change, and it must change in one place.
 
 ### 5.4 Stop and invalidation
 
 | # | Rule | Status | Source |
 |---|---|---|---|
 | 5.4.1 | **Stop = the PTB low (long) / PTB high (short).** | M | `PTBQ` §2 |
-| 5.4.2 | Therefore **R = \|entry − PTB extreme\|**, and this is the R in every downstream ratio. | M | derived from 5.2.3 + 5.4.1 |
+| 5.4.2 | Therefore **R = \|fill − PTB extreme\|**, and this is the R in every downstream ratio. *Fill*, not trigger — the two differ on a gap (5.3.7, 5.3.10) and only the fill is real. | M | derived from 5.2.3 + 5.4.1 + 5.3.10 |
 | 5.4.3 | When entering off a faster chart, the **stop is set from the slower chart**: *"we could be entering off of the one minute chart but we could be setting stop loss based on the five minute chart, which is whatever the high is gonna put in."* | M | `SCALP @ 05:42`; decision **D-7**, §11 |
 | 5.4.4 | **Minimum stop distance.** A PTB that is small relative to the bars around it puts the stop too close and the trade is stopped by noise. When `\|entry − PTB extreme\| < k × ATR(n)` on the setup timeframe, the stop moves **behind the last swing extreme beyond the PTB** instead of sitting at the PTB extreme. | P | decision **D-18**, §11 |
-| 5.4.5 | `k`, `n`, and the pivot width that defines "swing" in 5.4.4 are **not in the material**. They are set once, by the human, after the distribution of PTB range ÷ ATR is measured on the reference set — **not** by searching for the best-performing cell (`CLAUDE.md`). | P | §12 row **O-5** |
+| 5.4.5 | `k`, `n`, and the pivot width that defines "swing" in 5.4.4 are **not in the material**. They are set once, by the human, off the measured distribution of bar range ÷ ATR (`.artifacts/ptb_atr_distribution.md` — a bracketing population, since no labelled PTB set exists before Phase 3) — **not** by searching for the best-performing cell (`CLAUDE.md`). | P | §12 row **O-5** |
 | 5.4.6 | *"Sufficient room must remain to the Step 3 High/Low"* — with 5.4.4 setting R, this condition is expressible as **TP1 distance ≥ m × R** and merges into the minimum-R question. | P | `PTBQ` §1; §12 rows **O-5**, **O-10** |
 | 5.4.7 | Position-level invalidation, distinct from the stop: the **confirmed opposite Step 3** (§6.4). | M | `PC`, `M1 @ 23:46` |
 
@@ -302,11 +317,6 @@ labels may show it; the engine should not emit it. See decision **D-11**, §11.
 | 6.5 | Between entry and 6.4, the position is simply held: *"we simply stay with the move until the complete opposite one two three pattern confirms."* | M | `M1 @ 09:24` |
 | 6.6 | Climax is the only other sanctioned management cue (§4.3). | M | `M1 @ 16:19` |
 
-**On 6.3a–6.3c.** The apparent conflict between `OTV`'s *"first pullback after reversal"* and
-`SCALP`'s *"first lower high"* was a conflation of the two fib tools, not a disagreement between the
-sources. Retracement is per-swing and descriptive; the extension has exactly one anchor. Closed by
-**D-20**.
-
 **Open:** 6.2 vs 6.1 ordering when the Step 3 High/Low sits beyond 2.618, and partial sizing at each
 — see §12 row **O-7**.
 
@@ -330,16 +340,10 @@ The sequence produces a signal. These decide whether it deserves risk.
 | 7.1.7 | **"Staying above/below" needs no bar count and no tolerance band.** The gate is read on each bar's **close** against the 50. When price straddles the 50, the two sides keep alternating, Step 1 keeps failing its own gate, and the count keeps resetting (§2.4) — *"if candles keep sticking up and down the 50, it's choppy … practically it could mean that we count/reset continuously."* | M | decision **D-19**, §11 |
 | 7.1.8 | Therefore **there is no chop detector.** Chop is not a state the engine recognises; it is what continuous count-and-reset looks like from outside. The same holds for price stuck around the 10/20 and the 200. | M | decision **D-19**, §11 |
 
-**7.1.7 removes a parameter rather than setting one.** The instinct on a filter like *"staying above
-the 50"* is to reach for a lookback and a tolerance — *N bars above*, *within X points*. Both would
-be invented numbers, and both would suppress real setups at the edges. Waiting for the count to
-survive is already the test: a sequence that cannot get through Step 1 without a reset **is** the
-chop reading, arrived at without a threshold. See **D-19**.
-
-**7.1.6 separates two roles that look like one.** *Gating* (7.1.2) must be one fixed pair or the
-engine is non-deterministic — `M1 @ 20:09` fixes it at 50/200. *Targeting* (7.1.5) needs no pair at
-all: whichever MA is next in the direction of travel is the next destination, so 20/200 and 50/200
-stop competing. See **D-14**.
+**Engine note.** Two roles that look like one: *gating* (7.1.2) must be one fixed pair or the engine
+is non-deterministic, and `M1 @ 20:09` fixes it at 50/200; *targeting* (7.1.5) needs no pair at all,
+since the next MA in the direction of travel is the next destination. Do not reach for a lookback or
+a tolerance on 7.1.7 — continuous count-and-reset **is** the chop reading, with no threshold.
 
 ### 7.2 The 20/200 session bias (the free-training layer)
 
@@ -520,8 +524,7 @@ that is itself the reversal, so it is a weaker illustration of the §7.1 gate th
 ## 11. Decisions
 
 Places the material genuinely underdetermines, settled by the human and recorded here. These are
-**strategy decisions**, not readings of the material. They were collected in the Phase-2 register;
-this file is now their durable home.
+**strategy decisions**, not readings of the material.
 
 | ID | Question | Decision | Binds |
 |---|---|---|---|
@@ -538,29 +541,16 @@ this file is now their durable home.
 | **D-11** | Anticipatory inside-bar entry | **Out of scope for v1 signal emission.** Recorded for Phase 3 labelling only. | §5.5 |
 | **D-12** | Entry order type and level | **Stop market at the PTB extreme** — PTB high for a long, PTB low for a short. No buffer. | §5.2.3a |
 | **D-13** | Two entries on one move | **Both are valid.** The second exists because the first can be missed. Not a scale-in, not a lesser signal — one signal per PTB activation. | §5.1, §2.5 |
-| **D-14** | 20/200 vs 50/200 as destinations | **Both work; the choice is subjective and depends on which is closer when trading to it.** Resolved by separating the roles: **gating stays fixed at 50/200** (`M1 @ 20:09`), **targeting takes the next MA beyond entry in the trade direction** from {10, 20, 50, 200}. Closes O-11. | §7.1.2, §7.1.6 |
-| **D-15** | Which pair the reset rule keys off | **The 10/20** — the pair that runs the sequence. A break back through them resets the count, and the reset is also a prompt to re-read direction, since higher-timeframe context may have flipped. Closes O-3. | §2.4.3, §2.4.6 |
-| **D-16** | When the Step 3 High/Low is final | **It never has to be.** It is the running extreme from Confirmed Step 3 onward, and it is **frozen at PTB activation** for TP1. Execution keys off the PTB alone: *"once PTB is in, the order is a stop order placed on the PTB candle's High (long) / low (short)."* Closes O-4. | §3.4–§3.6 |
-| **D-17** | The "three-bar window" | **There is no bar cap.** *"The 3 bar window is not defintite but a PTB has 2 sides — the direction, the pull back trigger and the move again going back."* The PTB is the last correction bar before the move resumes; the resting order re-anchors to each new correction bar. Closes O-1. | §5.3.4–§5.3.6 |
-| **D-18** | Stops too tight on a small PTB | **An ATR floor on stop distance.** When the PTB is small relative to the bars around it, the stop goes **behind the last swing extreme** instead of at the PTB extreme. The threshold is measured first, then chosen — never grid-searched. Narrows O-5 to its remaining numbers. | §5.4.4–§5.4.6 |
-| **D-19** | *"Staying above/below the 50"* | **Per-bar close against the 50; no bar count, no tolerance, no chop detector.** Straddling the 50 makes the count reset repeatedly, and that is the correct behaviour — *"we need to wait to start counting a breakout."* Closes O-8. | §7.1.7, §7.1.8 |
-| **D-20** | The fib anchor | **Retracement measures each swing; the extension has one anchor — the first pullback after the reversal, i.e. the Step 2 swing.** Entry sits on the second pullback (the Step 3 pullback / PTB). Closes O-6. | §6.3a–§6.3c |
-
-**On D-14.** 20/200 is the pair from the original course (`OTV @ 44:39`) and 50/200 the pair Module 1
-teaches with the sequence. Treating "which pair" as the question forces a false choice; treating the
-MA as a destination makes the geometry answer it. Gating is the one place a pair must be pinned,
-because a switchable filter is a non-deterministic filter.
-
-**On D-16, D-17 and D-19 — three of the six close by deleting a parameter, not by picking one.**
-O-4 assumed the engine needed a *finality* rule, O-1 a *bar count*, O-8 a *tolerance band*. In each
-case the material declined to give a number because none is needed: the PTB re-anchors, the running
-extreme freezes at fill, and the reset does the chop filtering. A question that only has an answer
-in the form of an invented constant is worth re-reading before it is answered.
-
-**On D-18, the one place a number is genuinely required.** `CLAUDE.md` forbids searching for the
-best-performing cell, and this is not that: the quantity to measure is the **distribution of PTB
-range ÷ ATR** across the reference set, reported as counts. The human then sets the floor. The test
-is whether stops sit outside noise, not whether the equity curve improves.
+| **D-14** | 20/200 vs 50/200 as destinations | **Both work; the choice is subjective and depends on which is closer when trading to it.** Resolved by separating the roles: **gating stays fixed at 50/200** (`M1 @ 20:09`), **targeting takes the next MA beyond entry in the trade direction** from {10, 20, 50, 200}. | §7.1.2, §7.1.6 |
+| **D-15** | Which pair the reset rule keys off | **The 10/20** — the pair that runs the sequence. A break back through them resets the count, and the reset is also a prompt to re-read direction, since higher-timeframe context may have flipped. | §2.4.3, §2.4.6 |
+| **D-16** | When the Step 3 High/Low is final | **It never has to be.** It is the running extreme from Confirmed Step 3 onward, and it is **frozen at PTB activation** for TP1. Execution keys off the PTB alone: *"once PTB is in, the order is a stop order placed on the PTB candle's High (long) / low (short)."* | §3.4–§3.6 |
+| **D-17** | The "three-bar window" | **There is no bar cap.** *"The 3 bar window is not defintite but a PTB has 2 sides — the direction, the pull back trigger and the move again going back."* The PTB is the last correction bar before the move resumes; the resting order re-anchors to each new correction bar. | §5.3.4–§5.3.6 |
+| **D-18** | Stops too tight on a small PTB | **An ATR floor on stop distance.** When the PTB is small relative to the bars around it, the stop goes **behind the last swing extreme** instead of at the PTB extreme. The threshold is measured first, then chosen — never grid-searched: the test is whether stops sit outside noise, not whether the equity curve improves. The remaining numbers are **O-5**. | §5.4.4–§5.4.6 |
+| **D-19** | *"Staying above/below the 50"* | **Per-bar close against the 50; no bar count, no tolerance, no chop detector.** Straddling the 50 makes the count reset repeatedly, and that is the correct behaviour — *"we need to wait to start counting a breakout."* | §7.1.7, §7.1.8 |
+| **D-20** | The fib anchor | **Retracement measures each swing; the extension has one anchor — the first pullback after the reversal, i.e. the Step 2 swing.** Entry sits on the second pullback (the Step 3 pullback / PTB). | §6.3a–§6.3c |
+| **D-21** | Does a continuation entry need its own Step 3 High | **No. It reuses the sequence state, and there is one Step 3 High per state, not one per entry.** The qualifying condition is the *existing* Confirmed Step 3 — *"the ptb entry is the retracement into the 10 and 20 sma after the confirm step 3"* (`PTBV @ 00:11:18`) — and the state runs *"until price breaks back below moving averages"* (`PTBV @ 00:13:20`). §3.4's running extreme keeps advancing, so each continuation PTB freezes a **later value of the same series** (§3.7). | §2.5.5–§2.5.8, §3.7 |
+| **D-22** | What a fill is when price **gaps** through the trigger | **Market fill at the bar's open.** The stop-market order (D-12) fills at the trigger when the bar trades through it, and at the open when the bar opens beyond it. Never better than the trigger; R is taken from the fill, not the trigger. Slippage beyond the gap is not modelled — a replay convention, flagged as such in the §5.3.7 engine note. | §5.3.7, §5.3.10 |
+| **D-23** | What counts as a **correction bar** | **Body against the sequence direction** — `close < open` for a long, `close > open` for a short. Not "any bar making a lower high": the two readings pick different bars on ~63% of candidates (`.artifacts/ptb_atr_distribution.md`), so this sets the anchor bar on most pullbacks. Consistent with the one place the material names one, a bearish trigger off *"another green candle"* (`PTBV @ 00:02:15`). | §5.3.3a |
 
 ---
 
@@ -571,27 +561,15 @@ without it.
 
 | ID | Open question | Where it bites | Blocking? |
 |---|---|---|---|
-| ~~**O-1**~~ | ~~The "three-bar window"~~ | **Closed 2026-08-03 by D-17** — no bar cap; the PTB re-anchors. | — |
-| **O-2** | **Gap handling and fill rules** — the source says these *"are not yet locked."* Order type and level are settled by **D-12**; what remains is what a replay fills at when a bar **gaps through** the PTB extreme instead of trading through it. | §5.3 — decides fill price in replay | **Yes** for L3 and Phase 6 |
-| ~~**O-3**~~ | ~~Which MA pair the reset keys off~~ | **Closed 2026-08-03 by D-15** — the 10/20. | — |
-| ~~**O-4**~~ | ~~When the Step 3 High/Low is final~~ | **Closed 2026-08-03 by D-16** — it never has to be. | — |
-| **O-5** | The **numbers in the stop floor**: `k` and `n` in `k × ATR(n)`, and the pivot width that defines "swing". **D-18** settled the *mechanism*; these three constants are still unset. Measure the distribution first (§11). | §5.4.4–§5.4.6 — sets R, and therefore every ratio | **Yes** for L4 |
-| ~~**O-6**~~ | ~~The fib anchor~~ | **Closed 2026-08-03 by D-20** — the first pullback (Step 2) anchors the extension. | — |
+| **O-5** | The **numbers in the stop floor**: `k` and `n` in `k × ATR(n)`, and the pivot width that defines "swing". **D-18** settled the mechanism; these three constants are unset. The distribution is measured — `.artifacts/ptb_atr_distribution.md`, from `.venv/bin/python scripts/measure_ptb_atr.py`: counts and percentiles of bar range ÷ ATR on NQ and ES 5m RTH, `n` ∈ {14, 20}. It scores nothing; the human reads counts off it. The **pivot width** is not measurable this way and remains an unaided choice. | §5.4.4–§5.4.6 — sets R, and therefore every ratio | **Yes** for L4 |
 | **O-7** | **Ordering and partial sizing** when the Step 3 High/Low and 2.618 are not in the expected order. | §6.1, §6.2 | No — TP1 alone is well defined |
-| ~~**O-8**~~ | ~~"Staying above/below the 50"~~ | **Closed 2026-08-03 by D-19** — per-bar close, no tolerance, no chop detector. | — |
 | **O-9** | The **no-edge zone** is a list of situations, not a condition. §7.4.4 mechanises three of them; the rest are open. | §7.4 | No — the rest are filters, not signals |
 | **O-10** | **Minimum R** for a setup to deserve risk, now also carrying the *"sufficient room to the Step 3 High/Low"* condition (§5.4.6). Taught as a principle with no number (`CMD` §4). Observed values (§7.5.3) are expectations, not thresholds. | §7.5, §5.4.6 | No — record R, do not gate on it |
-| ~~**O-11**~~ | ~~20/200 vs 50/200 as staged targets~~ | **Closed 2026-08-01 by D-14.** | — |
-| **O-12** | Whether a **continuation entry** (§2.5) needs its own Step 3 High before its PTB, or reuses the original. | §2.5, §3 | **Yes** for the continuation signal class |
-| **O-13** | What counts as a **correction bar** for §5.3 — a down bar (`close < open`) for a long, or any bar making a lower high? `PTBQ` uses the term without defining it; `DIA-P`'s two pullback bars satisfy both readings, so the diagram cannot decide it. | §5.3.4 — decides which bar the order anchors to | **Yes** for L3 |
 
-**Blocking: O-2, O-5, O-12, O-13.** Down from eight on 2026-08-01. They must close before Phase 5
-writes L2/L3/L4.
+**Blocking: O-5 alone.** It must close before Phase 5 writes L4.
 
-**O-13 is new, and it is the residue of closing O-1**, not a re-opening of it. Dropping the bar cap
-made the *predicate* load-bearing: with no window to fall back on, "latest completed correction bar"
-is the whole definition of the anchor, and the two readings pick different bars whenever a bar
-closes down but prints a higher high.
+IDs are stable and are never reused: O-1, O-2, O-3, O-4, O-6, O-8, O-11, O-12 and O-13 closed into
+§11 and are not listed here. `git log -- docs/RULEBOOK.md` is the history of this file.
 
 ---
 
@@ -603,30 +581,24 @@ daily / weekly / monthly **closes**, a **three-day cycle** with five named templ
 (three higher or lower closes, first red or green day, inside day), the **MA chop zone** on the 5m,
 and four-hour rotation windows.
 
-**These are complementary, not excluded.** `M1 @ 00:59` calls the Stoic Edge System course *"my
-latest synthesis of that work"* — the 1-2-3 is distilled **from** this material, which is why the
-vocabulary is shared: consolidation → expansion, trapped traders, break & retest, SFP, SBS, fib
-geometry, the same daily and monthly levels. Read them to understand *why* a rule in §1–§9 says what
-it says, and to source the context layer in §7.3–§7.5.
+**Complementary, not excluded.** `M1 @ 00:59` calls the course *"my latest synthesis of that work"* —
+the 1-2-3 is distilled **from** this material, which is why the vocabulary is shared. Read them to
+understand *why* a rule in §1–§9 says what it says, and to source the context layer in §7.3–§7.5.
 
 **Two constraints on how they are used.**
 
 1. **Precedence on conflict.** `M1 @ 01:06`: *"if an older lesson conflicts with the rule taught here,
-   follow this course and the current rulebook."* Where `SSS`/`HTF`/`CST` and `M1`/`PC`/`ET` say
-   different things about the same decision, §1–§6 wins. The live example is the MA pair (§7.1
+   follow this course and the current rulebook."* §1–§6 wins. The live example is the MA pair (§7.1
    vs §7.2), settled by **D-14**.
 2. **Distinguish context from trigger.** A rule from this layer may shape *whether a setup deserves
-   risk* (§7.3–§7.5) or *what a realistic target is* (§6). It does not become a step of the
-   sequence, and it does not fire an entry — the sequence and the PTB do that (§2, §5). The
-   distinction matters because rules like *"no chop zone, no trade"* or *"the third daily close is
-   the signal"* read like sequence rules and are not.
+   risk* (§7.3–§7.5) or *what a realistic target is* (§6). It never becomes a step of the sequence
+   and never fires an entry — the sequence and the PTB do that. This matters because rules like
+   *"no chop zone, no trade"* or *"the third daily close is the signal"* read like sequence rules
+   and are not.
 
-Already carried into §1–§9 from this layer:
-
-- `CST @ 04:49` — why the **daily** close is the only close the material treats as real (§7.3).
-- `CST @ 22:22` — the one mechanical phrasing of the no-edge zone found anywhere (§7.4.3).
-- `OTV`'s concept layer throughout §7 and §8 — HCOM/LCOM, PDH/PDL/PDC, the two setups, SBS, fib
-  geometry, the no-edge zone, trapped side.
+Already carried in: `CST @ 04:49` (why the **daily** close is the only close the material treats as
+real, §7.3), `CST @ 22:22` (the one mechanical phrasing of the no-edge zone, §7.4.3), and `OTV`'s
+concept layer throughout §7 and §8.
 
 **Not yet carried, and worth a decision later:** the three-day cycle and its templates, signal days,
 the chop zone, the rotation windows, the measured-move target, the monthly bias filter, the Monday

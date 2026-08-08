@@ -1,0 +1,34 @@
+{
+  "source": "123sequence/videos/💎 PTB Entries - NQ Live Trading 10R - Stoic Edge System · Stoic Traders.mp4",
+  "stages": {
+    "probe": {
+      "status": "done",
+      "ts": 1785808501.209098,
+      "pid": 87181,
+      "heartbeat": 1785808501.1533298,
+      "attempts": 1
+    },
+    "audio": {
+      "status": "done",
+      "ts": 1785808505.76553,
+      "pid": 87181,
+      "heartbeat": 1785808501.288608,
+      "attempts": 1
+    },
+    "transcribe": {
+      "status": "done",
+      "ts": 1785817050.503778,
+      "pid": 93297,
+      "heartbeat": 1785817042.78976,
+      "attempts": 2
+    },
+    "keyframes": {
+      "status": "done",
+      "ts": 1785817167.557,
+      "pid": 93297,
+      "heartbeat": 1785817155.5674691,
+      "attempts": 1
+    }
+  },
+  "signature": "469700405-1785806872"
+}

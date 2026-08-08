@@ -1,45 +1,59 @@
 # Current state — what is true right now
 
-**Updated: 2026-08-03.** One file, overwritten in place.
+**Updated: 2026-08-08.** One file, overwritten in place.
 
 ## Running now
 
-**One unfinished job: the `PTB Entries` transcript.** `edu/derived/concept_ptb_entries_nq_live_trading_10r/`
-has `probe` and `audio` done and `transcribe` stopped at **01:21:23 of 01:37:54** (618 segments in
-`transcript.partial.jsonl`). The stage is resumable —
-`.venv/bin/python scripts/build_corpus.py --only ptb_entries` picks up from the partial. Until it
-finishes there is **no `transcript.md`**, so the `PTBV` citation key in `docs/RULEBOOK.md` §0 has no
-file behind it yet and nothing cites it.
+**A ninth video is transcribing.** `Navigating tough price action with 1-2-3 and PTBs` (58:00, added
+2026-08-08) — `scripts/build_corpus.py --only "Navigating"`, resumable, output at
+`edu/derived/concept_navigating_tough_price_action_with_1_2_3_and_ptbs/`. Nothing cites it yet and it
+has no citation key in `docs/RULEBOOK.md` §0. It has not been read.
 
-**Phases 0 and 1 are complete.** **Phase 2 has a deliverable — `docs/RULEBOOK.md` — and its
-gate is not yet met.** The spec is written and every rule cites the material (129 timestamp
-citations, all verified, negative control passing). What is missing is agreement on the terms the
-material leaves open: `docs/RULEBOOK.md` §12 lists **4 blocking** — O-2, O-5, O-12, O-13 — down from
-8 on 2026-08-01. Phase 5 must not start until those close.
+The `PTB Entries` set is complete — 748 segments, the full 01:37:54, all four stages `done` in
+`edu/derived/manifest.json`. `PTBV` in §0 has a file behind it, and 34 citations at 32 distinct
+timestamps point at it.
 
-**Six blocking rows closed on 2026-08-03** (D-15…D-20 in §11), from the user's answers plus new
-material: O-1 (no three-bar cap), O-3 (reset keys off the 10/20), O-4 (the Step 3 High never has to
-be final), O-6 (the fib extension anchors on the first pullback), O-8 (no chop detector). O-5 was
-narrowed to three constants. **O-13 is new** — the residue of closing O-1: with no bar cap, the
-definition of "correction bar" becomes load-bearing.
+**Phases 0 and 1 are complete.** **Phase 2 has a deliverable — `docs/RULEBOOK.md` — and one row
+short of its gate.** The spec is written and every rule cites the material (157 timestamp citations,
+all verified, negative control passing). §12 is down to **one blocking row, O-5** — the three
+constants in the ATR stop floor — from eight on 2026-08-01.
 
-**The decision register has moved.** `docs/RULEBOOK.md` §11 holds the closed decisions and §12 the
-open ones. The table in `docs/PLAN.md` was the intake form and is now historical.
+**Two things now block Phase 5, not one.** O-5 above, and **Phase 2a — the invented-rule audit**
+(`docs/PLAN.md`), opened 2026-08-08 on the user's directive. Phase 2 made the rules computable, and
+the risk it took on is that a silence in the material got closed with a crisp predicate that reads as
+settled. Every rule in §1–§9 has to be classed *cited* / *human decision* / *invented*, and the third
+class leaves the spec. The standing rule behind it is in
+`claude_memories/audit-hard-rules-not-in-material.md`: never invent a predicate to fill a gap — it
+pre-decides what Phase 4's SLM exists to discover.
+
+**Nine rows closed on 2026-08-03** (D-15…D-23 in §11), from the user's answers plus the `PTB Entries`
+video. The three that came out of the video: a continuation entry **reuses** the sequence state, with
+one Step 3 High per state frozen per entry (**D-21**); a gap through the trigger is a **market fill at
+the bar's open**, never better than the trigger, with R taken from the fill (**D-22**); a **correction
+bar** is one whose body opposes the sequence direction — `close < open` for a long (**D-23**).
+
+**D-23 was the consequential one.** The alternative reading — any bar making a lower high — picks a
+different anchor bar on **62.8%** of candidates (NQ 5m RTH 2019–2026, counted in
+`.artifacts/ptb_atr_distribution.md`), and the anchor sets the entry level, the stop and R.
+
+**The decision register lives in `docs/RULEBOOK.md` §11**, with §12 for what is still open. The table
+in `docs/PLAN.md` was the intake form and is now historical.
 
 ## The material
 
 - **`edu/123sequence/` — the main source.** The 1-2-3 sequence: 4 videos, the entry-technique
   write-up and diagrams, the concepts files, the war map, and the `discussion/` and
   `concepts/PTB Questions.md` notes from the user.
-- **Added 2026-08-03:** the `PTB Entries - NQ Live Trading 10R` video (1h38m, transcript in
-  progress), `1-2-3-PTB-Long.svg` (`DIA-P` — `DIA-L` re-drawn with the Step 3 High and PTB labelled),
+- **Added 2026-08-03:** the `PTB Entries - NQ Live Trading 10R` video (1h38m, `PTBV` — a full session
+  traded on PTB continuation entries, and the densest single source on §2.5 and §5.3),
+  `1-2-3-PTB-Long.svg` (`DIA-P` — `DIA-L` re-drawn with the Step 3 High and PTB labelled),
   `nq-1-2-3.png` (`NQ3` — the first fully-marked live chart with real prices, worked at
   `docs/RULEBOOK.md` §10.7), and one clarifying sentence appended to `PTB Questions.md`.
 - **`edu/videos/` — supporting.** 3 concept videos (Candle Swing Theory, HTF Protocol, Simple Stoic
   Setups).
 - **`edu/resources/` — 8 case-study PDFs.** Validation material for the rulebook, not training input.
-- **`edu/derived/` — 7 complete transcript sets plus one in progress**, one per video, indexed by
-  `edu/derived/manifest.json`. The eighth (`PTB Entries`) is the unfinished job above.
+- **`edu/derived/` — 8 complete transcript sets**, one per video, indexed by
+  `edu/derived/manifest.json`.
 
 **A duplicate was removed on 2026-08-01.** `Universal 1-2-3 Sequence …mp4` was a byte-identical
 recording of `Stoic Edge System Module 1 is Live …mp4` — same full-audio md5
@@ -52,17 +66,18 @@ So Phase 1 produced **2** new transcript sets, not the 3 its exit gate named.
 **`docs/PLAN.md` is the plan, end to end.** Position: Phases 0 and 1 closed, **Phase 2 open on its
 gate, not on its deliverable**.
 
-1. **Finish the `PTB Entries` transcript** (one command, resumable). The user's read is that it
-   answers **O-2** (gaps and fills) and **O-12** (whether a continuation entry needs its own Step 3
-   High) directly — *"I think the others are covered in the video."* Both are still open pending
-   that read.
-2. **Close the remaining blocking rows** in `docs/RULEBOOK.md` §12: O-2 and O-12 from the video,
-   **O-13** (what counts as a correction bar) and **O-5** (the three constants in the ATR stop floor)
-   from the human. They are the human's to settle, per the standing directive in `CLAUDE.md` — not a
-   grid search. **O-5 in particular:** measure the distribution of PTB range ÷ ATR and report counts;
-   do not search for the best-performing cell.
-3. Then Phase 3 (labelled reference set) can start against a spec that says the same thing twice.
-   `NQ3` (§10.7) is the first candidate fixture — one instance, so small-*n* rules apply.
+1. **Run Phase 2a — the invented-rule audit.** Sweep `docs/RULEBOOK.md` §1–§9 and class every rule.
+   The plan lists the known candidates and the exit gate. This is the next thing to run.
+2. **Close O-5** — `k` and `n` in the `k × ATR(n)` stop floor, plus the pivot width that defines
+   "swing". The distribution is measured: `.artifacts/ptb_atr_distribution.md`, regenerate with
+   `.venv/bin/python scripts/measure_ptb_atr.py`. Read it as counts and set the number;
+   **do not search for the best-performing cell** (`CLAUDE.md`). The pivot width is not measurable
+   that way and is an unaided choice. No further reading of the material will settle any of it.
+3. **Read the ninth transcript** once it lands, and register a citation key for it in §0 if it earns
+   one. Read it for what it settles — do **not** mine it for predicates to harden (Phase 2a).
+4. Then Phase 3 (labelled reference set) can start against a spec that says the same thing twice.
+   `NQ3` (§10.7) is the first candidate fixture — one instance, so small-*n* rules apply. `PTBV` is
+   the richer source: a full session in which the trader marks every PTB entry on one 1-2-3.
 
 `docs/RULEBOOK.md` §13 records how the rest of the corpus is used. Simple Stoic Setups / HTF Protocol
 / Candle Swing Theory / the war map are the **complementary layer the 1-2-3 was distilled from** —
@@ -85,7 +100,8 @@ context and targets, never a step of the sequence, and they yield on conflict.
   label or Phase 5 replay touching that date must exclude or flag it. See
   `claude_memories/historical-bars-2025-11-28-outage.md`; Gate E reports it every run.
 - **The source videos exist only on this disk.** They are gitignored (`*.mp4`) and `videos.zip`
-  predates the 1-2-3 material, so it does not contain the Marker Study or Scalping Example. Nothing
+  predates the 1-2-3 material, so it does not contain the Marker Study, the Scalping Example, or the
+  `PTB Entries` video added 2026-08-03 — the one the newest 34 citations rest on. Nothing
   restores them if the disk is lost. They need to go to Google Drive and into `videos.zip`.
   The transcripts and keyframe manifests are in git; the keyframe **images** are gitignored
   (`edu/derived/**/keyframes/`) and are regenerable from the videos — which is only true while the

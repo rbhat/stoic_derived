@@ -88,6 +88,43 @@ number someone quietly picked.
 **Exit gate.** A reader who has never seen the videos can point at a chart and say where Step 3
 confirmed, and two readers agree. Every rule cites its source. No rule cites this plan.
 
+## Phase 2a — Audit the invented rules *(blocks Phase 5)*
+
+**Goal.** Find every hard rule in `docs/RULEBOOK.md` that the material did not specify, and get it
+out of the spec before the engine compiles it. Phase 2 was written under pressure to make the rules
+*computable*; the risk it took on is that a gap in the material gets closed with a crisp predicate
+that reads as settled and never gets revisited.
+
+**Why it is its own phase.** A rule invented to fill a silence forecloses the exact question Phase 4
+charters the SLM to answer — the SLM ends up scored against our guess instead of against the
+material. It also hides specification bugs: `CLAUDE.md` says divergence from the labelled material is
+a spec bug, and that is much harder to see when the spec asserts something no source ever said.
+
+**Deliverable.** A sweep of §1–§9, every numbered rule classified into exactly one of:
+
+| Class | Test | Disposition |
+|---|---|---|
+| **Cited** | A source says it, and the rule is no more specific than the source | Keep |
+| **Human decision** | The material genuinely underdetermines it and a human chose | Keep, but it must be a **D-row in §11** and marked **P**, not **M** |
+| **Invented** | Neither — the rule is more specific than every sentence backing it | Remove, demote to a **§12 open row**, or convert to an SLM question |
+
+The audit output names the class per rule and, for every *invented* one, says which disposition it
+took and why. Known candidates to start from, not a complete list: any definition of *inside bar*
+beyond §5.2.8's cited exclusion; §5.3.3a's strict `close < open` and its `close == open` corollary;
+§5.2.8's implicit reference bar; the §5.3.7 no-slippage convention; §7.4.4's three "already
+mechanical" derivations.
+
+**Watch the status column, not just the prose.** An **M** on a rule whose source is a judgment call
+is the signature of this failure. §0 already provides **J** for terms the material refuses to
+quantify — reaching for **M** instead is how a hypothesis gets into the engine.
+
+**Exit gate.** Every rule in §1–§9 carries a class. No rule is classed *invented* and still stated as
+**M**. The count of rules moved to §12 or to the SLM is reported — not minimised.
+
+**Standing rule after this phase, not just during it:** before writing any rule, say where the
+predicate came from. Material → cite it. Human → D-row. Neither → it is an open row or an SLM
+question, never a line in §1–§9. See `claude_memories/audit-hard-rules-not-in-material.md`.
+
 ## Phase 3 — Labelled reference set
 
 **Goal.** Ground truth. Without it, Phase 6 has nothing to measure against and the whole project is
