@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 16:26:48",
+  "generated_at": "2026-08-08 16:38:33",
   "pipeline": "build_corpus",
   "videos": [
     {
@@ -37,15 +37,15 @@
       "source": "123sequence/videos/Navigating tough price action with 1-2-3 and PTBs - Stoic Edge System · Stoic Traders.mp4",
       "title": "Navigating tough price action with 1-2-3 and PTBs",
       "duration_sec": 3480.942667,
-      "status": "in_progress",
+      "status": "done",
       "stages": {
         "probe": "done",
         "audio": "done",
-        "transcribe": "pending",
-        "keyframes": "pending"
+        "transcribe": "done",
+        "keyframes": "done"
       },
-      "transcript_segments": 0,
-      "keyframes": 0
+      "transcript_segments": 410,
+      "keyframes": 283
     },
     {
       "id": "concept_ptb_entries_nq_live_trading_10r",

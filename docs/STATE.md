@@ -1,14 +1,5 @@
 # Current state — what is true right now
 
-**Updated: 2026-08-08.** One file, overwritten in place.
-
-## Running now
-
-**A ninth video is transcribing.** `Navigating tough price action with 1-2-3 and PTBs` (58:00, added
-2026-08-08) — `scripts/build_corpus.py --only "Navigating"`, resumable, output at
-`edu/derived/concept_navigating_tough_price_action_with_1_2_3_and_ptbs/`. Nothing cites it yet and it
-has no citation key in `docs/RULEBOOK.md` §0. It has not been read.
-
 The `PTB Entries` set is complete — 748 segments, the full 01:37:54, all four stages `done` in
 `edu/derived/manifest.json`. `PTBV` in §0 has a file behind it, and 34 citations at 32 distinct
 timestamps point at it.
@@ -49,10 +40,14 @@ in `docs/PLAN.md` was the intake form and is now historical.
   `1-2-3-PTB-Long.svg` (`DIA-P` — `DIA-L` re-drawn with the Step 3 High and PTB labelled),
   `nq-1-2-3.png` (`NQ3` — the first fully-marked live chart with real prices, worked at
   `docs/RULEBOOK.md` §10.7), and one clarifying sentence appended to `PTB Questions.md`.
+- **Added 2026-08-08:** the `Navigating tough price action with 1-2-3 and PTBs` video (58:00, 410
+  segments, transcript complete) and `insidebar.png` (the StoicEdge inside-bar schematic: a parent
+  bar, two inside bars, a breakout bar). **Neither has been read**, and neither has a citation key in
+  `docs/RULEBOOK.md` §0.
 - **`edu/videos/` — supporting.** 3 concept videos (Candle Swing Theory, HTF Protocol, Simple Stoic
   Setups).
 - **`edu/resources/` — 8 case-study PDFs.** Validation material for the rulebook, not training input.
-- **`edu/derived/` — 8 complete transcript sets**, one per video, indexed by
+- **`edu/derived/` — 9 complete transcript sets**, one per video, indexed by
   `edu/derived/manifest.json`.
 
 **A duplicate was removed on 2026-08-01.** `Universal 1-2-3 Sequence …mp4` was a byte-identical
@@ -73,7 +68,7 @@ gate, not on its deliverable**.
    `.venv/bin/python scripts/measure_ptb_atr.py`. Read it as counts and set the number;
    **do not search for the best-performing cell** (`CLAUDE.md`). The pivot width is not measurable
    that way and is an unaided choice. No further reading of the material will settle any of it.
-3. **Read the ninth transcript** once it lands, and register a citation key for it in §0 if it earns
+3. **Read the ninth transcript** - it is done, and register a citation key for it in §0 if it earns
    one. Read it for what it settles — do **not** mine it for predicates to harden (Phase 2a).
 4. Then Phase 3 (labelled reference set) can start against a spec that says the same thing twice.
    `NQ3` (§10.7) is the first candidate fixture — one instance, so small-*n* rules apply. `PTBV` is
@@ -100,8 +95,9 @@ context and targets, never a step of the sequence, and they yield on conflict.
   label or Phase 5 replay touching that date must exclude or flag it. See
   `claude_memories/historical-bars-2025-11-28-outage.md`; Gate E reports it every run.
 - **The source videos exist only on this disk.** They are gitignored (`*.mp4`) and `videos.zip`
-  predates the 1-2-3 material, so it does not contain the Marker Study, the Scalping Example, or the
-  `PTB Entries` video added 2026-08-03 — the one the newest 34 citations rest on. Nothing
+  predates the 1-2-3 material, so it does not contain the Marker Study, the Scalping Example, the
+  `PTB Entries` video (the one the newest 34 citations rest on), or `Navigating tough price action`
+  added 2026-08-08. Nothing
   restores them if the disk is lost. They need to go to Google Drive and into `videos.zip`.
   The transcripts and keyframe manifests are in git; the keyframe **images** are gitignored
   (`edu/derived/**/keyframes/`) and are regenerable from the videos — which is only true while the
