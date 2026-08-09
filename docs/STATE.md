@@ -52,7 +52,10 @@ it.
 
 **D-24 opened and closed on 2026-08-08 — trade invalidation.** Three conditions, any one of which
 ends an open trade: the confirmed opposite Step 3 (already §6.4); a **strong close beyond the 10/20
-against the trade direction**; and a **break of the Step 2 boundary against the trade direction**.
+against the trade direction**; and a **close beyond the Step 2 boundary against the trade
+direction** — trading through it is not enough, which makes 5.4.7c the mirror of §2.3.1, where a
+trade through the *same* line is what starts Step 3. All three exits are close-based; the stop is the
+only trade-through in the exit path.
 The MA condition is corroborated (`TPA @ 00:24:48`, `PTBV @ 00:03:28`); the **Step 2 boundary
 condition was not found anywhere in the corpus** and is the user's, as is *strong* — so it is a
 decision, not a citation. It narrows §6.5, which still says the position is *"simply held"*.

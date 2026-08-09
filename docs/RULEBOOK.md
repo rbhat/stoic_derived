@@ -304,17 +304,33 @@ change, and it must change in one place.
 | 5.4.7 | **Position-level invalidation is distinct from the stop.** The stop (5.4.1) is a price the order rests at; these are conditions that end the trade whether or not the stop is reached. **Any one of 5.4.7a–c invalidates.** | M | decision **D-24**, §11 |
 | 5.4.7a | The **confirmed opposite Step 3** (§6.4). | M | `PC`, `M1 @ 23:46` |
 | 5.4.7b | A **strong close beyond the 10/20 SMA against the trade direction** — for a long, a strong close below them; mirror for a short. *Strong* is the **J** qualifier of §2.1.4 and **D-2**: body, not wick, no threshold. The bare break is already the §2.4.3 reset and the §2.5.8 end of the directional state; what 5.4.7b adds is that it also closes an **open position**. | J | `TPA @ 00:24:48`, `PTBV @ 00:03:28`; decision **D-24**, §11 |
-| 5.4.7c | A **break of the Step 2 boundary against the trade direction** — for a long, price going below the Step 2 consolidation boundary; mirror for a short. The boundary is the one already selected under §2.2.8, so no new selection is made here. | M | decision **D-24**, §11 |
+| 5.4.7c | A **close beyond the Step 2 boundary against the trade direction** — for a long, a bar **closing** below the Step 2 consolidation boundary; mirror for a short. **A trade through it is not enough.** That is what separates this from §2.3.1, where a trade through the *same* boundary is exactly what starts Step 3. No strength qualifier either: unlike 5.4.7b, the close alone is the whole test. The boundary is the one already selected under §2.2.8, so no new selection happens here. | M | decision **D-24**, §11 |
 
 **Engine note on 5.4.7.** These are evaluated **per bar on an open position**, and they fire before
-the opposite sequence completes — which is the point: 5.4.7a can be many bars away. Two of the three
-are cheap; 5.4.7b inherits the unquantified *strong*, so an engine cannot evaluate it without the
-same **J** decision §2.1.4 carries. **Note an asymmetry left open on purpose:** §2.4.3 resets the
-count on a bare 10/20 break with no strength qualifier, while 5.4.7b closes a position only on a
-*strong* close. A wick through therefore resets the count but does not invalidate the trade. That may
-be exactly right — a reset emits nothing, an invalidation costs money — but it is currently an
-unreconciled difference between two rules keyed to the same event, not a derived result. See §12 row
-**O-15**.
+the opposite sequence completes — which is the point: 5.4.7a can be many bars away.
+
+**All three are close-based, and that is the shape of the rule, not a coincidence.** 5.4.7a is a
+*confirmed* Step 3, which §2.3.4 already defines as a meaningful close; 5.4.7b is a strong close;
+5.4.7c is a close. Nothing here exits on a trade-through. An intrabar spike beyond a level does not
+end a trade under any of the three — only the stop (5.4.1) does that, and the stop is the only
+trade-through in the exit path.
+
+**5.4.7c is the mirror image of §2.3.1 on the same line.** A trade through the selected boundary
+*starts* Step 3 in the direction of Step 1; a **close** beyond it in the opposite direction ends the
+trade. Deliberately asymmetric — entry is permissive because the PTB stop bounds the risk, and exit
+is strict because a wick through a boundary in a live position is noise.
+
+Two evaluation notes. 5.4.7b inherits the unquantified *strong*, so an engine cannot evaluate it
+without the same **J** decision §2.1.4 carries; 5.4.7c has no such qualifier and needs none.
+5.4.7c is **M** on the same footing as §2.3.1 — the *test* is computable, while the *boundary* it
+tests against is selected under §2.2.5–§2.2.8, which is **J**. Marking it M follows the convention
+§2.3.1 already set; it does not mean boundary selection has been solved.
+
+**One asymmetry left open on purpose:** §2.4.3 resets the count on a bare 10/20 break with no
+strength qualifier, while 5.4.7b closes a position only on a *strong* close. A wick through therefore
+resets the count but does not invalidate the trade. That may be exactly right — a reset emits
+nothing, an invalidation costs money — but it is an unreconciled difference between two rules keyed
+to the same event, not a derived result. See §12 row **O-15**.
 
 **Engine note on 5.4.4.** The fallback changes R, so it changes every ratio downstream — TP sizing,
 the minimum-R gate, the R recorded per signal. It must be applied *before* R is computed, never as a
@@ -579,7 +595,7 @@ Places the material genuinely underdetermines, settled by the human and recorded
 | **D-20** | The fib anchor | **Retracement measures each swing; the extension has one anchor — the first pullback after the reversal, i.e. the Step 2 swing.** Entry sits on the second pullback (the Step 3 pullback / PTB). | §6.3a–§6.3c |
 | **D-21** | Does a continuation entry need its own Step 3 High | **No. It reuses the sequence state, and there is one Step 3 High per state, not one per entry.** The qualifying condition is the *existing* Confirmed Step 3 — *"the ptb entry is the retracement into the 10 and 20 sma after the confirm step 3"* (`PTBV @ 00:11:18`) — and the state runs *"until price breaks back below moving averages"* (`PTBV @ 00:13:20`). §3.4's running extreme keeps advancing, so each continuation PTB freezes a **later value of the same series** (§3.7). | §2.5.5–§2.5.8, §3.7 |
 | **D-22** | What a fill is when price **gaps** through the trigger | **Market fill at the bar's open.** The stop-market order (D-12) fills at the trigger when the bar trades through it, and at the open when the bar opens beyond it. Never better than the trigger; R is taken from the fill, not the trigger. Slippage beyond the gap is not modelled — a replay convention, flagged as such in the §5.3.7 engine note. | §5.3.7, §5.3.10 |
-| **D-24** | What **invalidates an open trade**, beyond the stop | **Three conditions, any one of which ends the trade:** the confirmed opposite Step 3; a **strong close beyond the 10/20 SMA against the trade direction**; and a **break of the Step 2 boundary against the trade direction** (for a long, below the Step 2 consolidation boundary). The MA condition is corroborated by the material — *"now price is trading below the moving averages so now the bullish sequence invalidated"* (`TPA @ 00:24:48`), *"if we fail here the bullish sequence will be invalidated"* (`PTBV @ 00:03:28`) — but the **Step 2 boundary condition was not found anywhere in the corpus** and is the human's, as is the *strong* qualifier on the MA close. Recorded as a decision on that basis rather than cited. | §5.4.7–§5.4.7c, and §6.5 which it narrows |
+| **D-24** | What **invalidates an open trade**, beyond the stop | **Three conditions, any one of which ends the trade:** the confirmed opposite Step 3; a **strong close beyond the 10/20 SMA against the trade direction**; and a **close beyond the Step 2 boundary against the trade direction** (for a long, a bar closing below the Step 2 consolidation boundary — **trading through it is not enough**). The MA condition is corroborated by the material — *"now price is trading below the moving averages so now the bullish sequence invalidated"* (`TPA @ 00:24:48`), *"if we fail here the bullish sequence will be invalidated"* (`PTBV @ 00:03:28`) — but the **Step 2 boundary condition was not found anywhere in the corpus** and is the human's, as is the *strong* qualifier on the MA close. Recorded as a decision on that basis rather than cited. | §5.4.7–§5.4.7c, and §6.5 which it narrows |
 | **D-23** | What qualifies a candle as a **PTB** | **A candle after Confirmed Step 3 that is approaching the 10/20 SMA, and is not an inside candle.** Left deliberately unquantified beyond that: it may get close, wick in, or close beyond, and *"the candle can open and wick unpredictably."* Both mechanical readings were considered and **rejected as over-specification** — the **body** test (`close < open`) and the **lower-high** test. They pick different bars on 62.8% of candidates (`.artifacts/ptb_atr_distribution.md`), so neither could be adopted quietly; the human's call is that neither becomes a rule. *Inside* is referenced to the **parent bar** — the nearest preceding bar not itself inside — per `IBD` and *"we are trading inside of this bearish candle"* (`TPA @ 00:02:20`). Formalizing *approaching* is **O-14**, not a decision. | §5.2.8a, §5.3.3a–c, §5.3.5 |
 
 ---
