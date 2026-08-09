@@ -6,17 +6,17 @@ post-Step-3 expansion leg ends), closed on 2026-08-08 as **D-28**, so **L1, L3 a
 Phase 2's exit gate names a *two-reader* test that has never actually been run — the register being
 closed is not the same claim, so do not report that gate as met.
 
-**Phase 5 is under way: L0 and L1 are built.** Baseline as at 2026-08-08: `pytest` **76 passed**,
-`scripts/verify_citations.py` **205 citations across 8 sources, all resolve**, negative control PASS.
+**Phase 5 is under way: L0, L1 and L2 are built.** Baseline as at 2026-08-09: `pytest`
+**122 passed**, `scripts/verify_citations.py` **205 citations across 8 sources, all resolve**,
+negative control PASS.
 
-**Next step: L2, the sequence state machine — and it is the first layer that does *not* compile
-from the rulebook as written.** L1, L3 and L4 compile; L2 needs four terms the spec deliberately
+**Next step: decide L2's four terms, then L3.** L2's machine is built with them injected, so nothing
+runs end to end until they are decided. They are the four terms the spec deliberately
 leaves unquantified: *"meaningful"* for the Step 1 break and close (§2.1.1 **P**, §2.1.4 **J**,
 **D-2** sets no threshold), *"meaningful close"* for Confirmed Step 3 (§2.3.4 **P**), an **obvious
 base** (§2.2.5 **J**, **D-3** qualitative), and **boundary selection** (§2.2.6–§2.2.9 **J**, under
 the §2.2.8 no-hindsight constraint). None of these is an open §12 row — they are **J**/**P** by
-design, so they need the human, not more reading. That is a decision to take before L2, not a
-blocker to code around.
+design, so they need the human, not more reading.
 
 The decision register is `docs/RULEBOOK.md` **§11** (closed) and **§12** (open) — nowhere else. The
 table in `docs/PLAN.md` is the superseded intake form.
@@ -103,6 +103,21 @@ hand-built; the suite is 76.
 | `stoic/candles.py` | `candle_structure` — inside-bar flags and **parent-bar** positions (§5.2.8a, **D-23**). A run of inside bars shares one parent; for a non-inside bar the parent is the nearest preceding non-inside bar, which is the reference **D-28** requires |
 | `stoic/structure.py` | **L1.** `opens_pullback` / `find_pullback_start` / `leg_phases` — **D-28** (§5.2.1a): the pullback opens at the first completed candle whose **both** extremes move against the direction, measured against the parent bar. Never reads `open` or `close` (§5.3.3c) |
 | `stoic/levels.py` | PDH/PDL/PDC, PWC/PWH/PLOW, HCOM/LCOM (§7.3, **D-8**). HCOM/LCOM are highest/lowest daily **close** — *"not the highest wick"* |
+| `stoic/sequence.py` | **L2.** The Step 1 → Step 2 → Step 3 machine, the reset (**D-15**), the directional state (**D-21**), the running Step 3 High/Low (**D-16**, not frozen here), the Step 2 swing (**D-20**), and the three §5.4.7 invalidation events |
+
+**L2's four unquantified terms are injected, not implemented.** `Judgment` is a frozen dataclass of
+four predicates with **no defaults** — *"meaningful"* break, obvious base, boundary selection,
+*"meaningful close"*. L2 enforces every mechanical clause itself and asks a predicate only about the
+unquantified adjective; a predicate is not even called when a mechanical precondition fails. §2.2.8
+is enforced structurally: `select_boundary` receives bars truncated at the base's last bar, so it
+cannot see the break. **Nothing runs end to end until the four are decided.**
+
+**Invalidation scope outlives the directional state, and that is the rulebook, not a convenience.**
+An L2 count dies at the 10/20 reset (§2.5.8, **D-21**); the §5.4.7 conditions attach to a position
+or a pending order, which does not (§6.5). Gating them on the count's stage made §5.4.7a
+unreachable — the bullish reset predicate is character-identical to the bearish Step 1 predicate, so
+the opposite Step 1 always resets us before its Step 3 can confirm. The §5.4.7 engine note settles
+it: they *"fire before the opposite sequence completes — 5.4.7a can be many bars away."*
 
 **L1 is only the pullback boundary.** Base detection, boundary selection and climax are **not**
 built: §2.2.5–§2.2.9 and §4 are **J**, so building them would invent the thresholds `CLAUDE.md`
@@ -137,6 +152,12 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
   The transcripts and keyframe manifests are in git; the keyframe **images** are gitignored
   (`edu/derived/**/keyframes/`) and are regenerable from the videos — which is only true while the
   videos survive.
+- **L2 has had one audit pass; the review was capped there by the user on 2026-08-09.** Everything
+  that pass found is fixed. Two things it decided rather than found, recorded so they are not
+  re-litigated silently: a re-break of a still-pending base emits `STEP_3_BREAK` **again** (§2.3.3,
+  §2.3.7 — the sticky reading discarded all but the first), and the base may not be broken on the
+  bar its own boundary was selected (§2.2.5, *"markable before the break"*), though a
+  late-recognised base may.
 - **`stoic/levels.py` reports a leading partial month as if it were complete.** ES/NQ daily history
   begins 2019-06-10, so June 2019 holds 15 sessions; **45 sessions per symbol** then read
   `hcom_m1`/`hcom_m2` off that truncated month with no NaN and no flag. Same class as the

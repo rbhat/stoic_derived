@@ -171,7 +171,7 @@ engine depends on the spec and the labels — not on the model.
 |---|---|
 | L0 primitives | SMAs, swing points, HCOM/LCOM, PDH/PDL/PDC, PWC/PLOW, session windows |
 | L1 structure | consolidation vs expansion, base detection, boundary selection, extension from MA structure — **and where an expansion leg ends and a pullback begins** |
-| L2 sequence | the Step 1 → Step 2 → Step 3 state machine. Emits Confirmed Step 3, the Step 3 High/Low, the **Step 2 swing** (the fib anchor, D-20), and the **invalidation events** of §5.4.7 |
+| L2 sequence | the Step 1 → Step 2 → Step 3 state machine. Emits Confirmed Step 3, the Step 3 High/Low, the **Step 2 swing** (the fib anchor, D-20), and the **invalidation events** of §5.4.7. Its four unquantified terms are **injected predicates with no defaults** — see `docs/STATE.md` |
 | L3 entry | the **PTB** — the last candle of the pullback L1 marked, minus inside bars — the stop-order price, the stop, and the break-even trigger. Consumes L1's pullback and L2's events; derives neither |
 | L4 gating | HTF bias alignment, no-edge-zone filter, trapped side, does this setup deserve risk |
 | L5 emission | the signal record in the `VISION.md` schema, **R computed from the fill**, and a deterministic confluence score |
