@@ -154,8 +154,23 @@ Split the set accordingly rather than discovering this during Phase 6.
 the supporting passages attached. Training on the Windows box per `VISION.md`; artifacts under
 `.artifacts/` per `claude_memories/artifact-locality.md`.
 
-**Exit gate.** It has measurably reduced human labelling effort on Phase 3, and it appears nowhere
-in Phase 5's import graph.
+**(b) now has a named, gating target: L2's four injected predicates.** Routed here by the user on
+2026-08-09. They are *"meaningful"* for the Step 1 break and close (`docs/RULEBOOK.md` §2.1.1,
+§2.1.4, **D-2**), *"meaningful close"* for Confirmed Step 3 (§2.3.4), an **obvious base** (§2.2.5,
+**D-3**), and **boundary selection** (§2.2.6–§2.2.9, under §2.2.8's no-hindsight constraint).
+`stoic/sequence.py` already has the seams — a `Judgment` of four predicates with no defaults — so
+the SLM's job is to propose what goes in them, with passages attached, never to be called by them.
+
+**Exit gate.** It has measurably reduced human labelling effort on Phase 3; it has put a proposal
+with supporting passages in front of the human for each of the four L2 terms; and it appears
+nowhere in Phase 5's import graph.
+
+**The fallback is the human, and it is not a failure mode.** §0 already says a proposed number for a
+**J** term is a strategy decision requiring the human, so every proposal lands as a **D-row in §11**
+with a confirmation on it — the **D-9** pattern. **A term the SLM cannot ground in the material
+comes back for a decision and never receives a default.** Leaving a predicate unfilled is the
+correct state; filling it to unblock the engine is the failure Phase 2a exists to prevent
+(`claude_memories/audit-hard-rules-not-in-material.md`).
 
 **Honest dependency note.** Phases 2, 3 and 4 bootstrap each other: seed labels by hand, let the SLM
 propose more, confirm by hand, refine the spec, relabel. Run them as one loop, not a waterfall. The

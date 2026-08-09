@@ -10,13 +10,19 @@ closed is not the same claim, so do not report that gate as met.
 **122 passed**, `scripts/verify_citations.py` **205 citations across 8 sources, all resolve**,
 negative control PASS.
 
-**Next step: decide L2's four terms, then L3.** L2's machine is built with them injected, so nothing
-runs end to end until they are decided. They are the four terms the spec deliberately
-leaves unquantified: *"meaningful"* for the Step 1 break and close (§2.1.1 **P**, §2.1.4 **J**,
-**D-2** sets no threshold), *"meaningful close"* for Confirmed Step 3 (§2.3.4 **P**), an **obvious
-base** (§2.2.5 **J**, **D-3** qualitative), and **boundary selection** (§2.2.6–§2.2.9 **J**, under
-the §2.2.8 no-hindsight constraint). None of these is an open §12 row — they are **J**/**P** by
-design, so they need the human, not more reading.
+**Next step: L2's four terms go to Phase 4's SLM — the user's call, 2026-08-09.** L2's machine is
+built with them injected, so nothing runs end to end until they are filled in. They are the four
+terms the spec deliberately leaves unquantified: *"meaningful"* for the Step 1 break and close
+(§2.1.1 **P**, §2.1.4 **J**, **D-2** sets no threshold), *"meaningful close"* for Confirmed Step 3
+(§2.3.4 **P**), an **obvious base** (§2.2.5 **J**, **D-3** qualitative), and **boundary selection**
+(§2.2.6–§2.2.9 **J**, under the §2.2.8 no-hindsight constraint). None is an open §12 row.
+
+**Two things that routing does not change.** The SLM **proposes; it never decides** — `VISION.md`
+keeps it offline and out of the live path, and §0 says a proposed number for a **J** term *"is a
+strategy decision requiring the human"*. So each proposal still lands as a **D-row in §11** with the
+human's confirmation on it, exactly as **D-9** already routes the no-edge zone. And the fallback is
+the human: **if the SLM cannot ground a term in the material, that term comes back for a decision —
+it does not get a default.** An unfilled predicate is the correct state; an invented one is not.
 
 The decision register is `docs/RULEBOOK.md` **§11** (closed) and **§12** (open) — nowhere else. The
 table in `docs/PLAN.md` is the superseded intake form.
@@ -72,9 +78,11 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
    `PTBV` is the richer source: a full session in which the trader marks every PTB entry on one
    1-2-3. **§10.10 recovers the stop from any of them** — none draws one, but the R labels are
    normalised against a ~$1,000 risk unit, so `stop distance = P&L points ÷ R multiple`.
-3. **Phase 4 (the SLM) has no blocking question left.** O-14 was the one thing routed to it; the
-   human decided it instead. What remains for it is **O-9** (the no-edge zone, per **D-9**) and
-   Phase 3 label proposals — both off the critical path.
+3. **Phase 4 (the SLM) is back on the critical path.** It briefly had no blocking question — O-14
+   was routed to it and the human decided it instead as **D-28**. Then **L2's four terms went to it
+   on 2026-08-09**, and they gate the engine running end to end, so Phase 4 now sits between L2 and
+   L3 rather than beside them. Also still its: **O-9** (the no-edge zone, per **D-9**) and Phase 3
+   label proposals, both still off the critical path.
 
 `docs/RULEBOOK.md` §13 records how the rest of the corpus is used. Simple Stoic Setups / HTF Protocol
 / Candle Swing Theory / the war map are the **complementary layer the 1-2-3 was distilled from** —
