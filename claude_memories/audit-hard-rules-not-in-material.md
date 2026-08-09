@@ -11,8 +11,24 @@ move on. Every such rule has to be audited and justified before Phase 5 compiles
 
 The trigger was `docs/RULEBOOK.md` §5.2.8, *"an inside candle is not a PTB"* — cited, so the rule
 itself is sound — followed by a proposal to also define *inside-ness* (parent-bar reference vs
-previous-bar). The material never defines it. The user's response: *"why are you encoding the rules?
-You just have to set it up for the SLM to figure it out — dont put in hard rules like this."*
+previous-bar). The user's response: *"why are you encoding the rules? You just have to set it up for
+the SLM to figure it out — dont put in hard rules like this."*
+
+**Update 2026-08-08 — the trigger example resolved, the rule did not change.** `insidebar.png`
+(`IBD`) turned up in the material and *does* define inside-ness: one labelled Parent Bar with a run
+of two Inside Bars referenced to it, so the reference is the **parent bar** — the nearest preceding
+bar not itself inside. §5.2.8a is now cited, not invented. Read that as the rule working, not as it
+being unnecessary: the predicate stayed out of the spec for five days until a source appeared, which
+is the whole point. **The corpus is not finished, so "the material is silent" is always provisional.**
+
+**The better worked example is now D-23.** A predicate that *did* get written — *a correction bar is
+one whose body opposes the sequence direction, `close < open` for a long* — recorded as a decision on
+the belief the material was silent. It was not: the ninth transcript (`TPA`) states a rival reading
+in five distinct passages, and D-23's sole citation discriminated neither. The two readings pick different anchor
+bars on 62.8% of candidates, so the invented predicate was silently setting the entry, the stop and R
+on most pullbacks. Put to the user, **both** mechanical readings were rejected as over-specification
+and the term went back to **J** with an open row (**O-14**). Note the shape: it was labelled a human
+decision, which made it look settled, and only reading the whole corpus caught it.
 
 **Why:** a hard rule written to fill a silence is a **hypothesis wearing a spec's clothes**. It reads
 as settled, it compiles, it never gets revisited — and it forecloses exactly the question Phase 4
