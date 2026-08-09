@@ -6,9 +6,14 @@ post-Step-3 expansion leg ends), closed on 2026-08-08 as **D-28**, so **L1, L3 a
 Phase 2's exit gate names a *two-reader* test that has never actually been run — the register being
 closed is not the same claim, so do not report that gate as met.
 
-**Phase 5 is under way: L0, L1, L2, L3 and L4 are built. Only L5 (emission) is left.** Baseline as
-at 2026-08-09: `pytest` **199 passed**, `scripts/verify_citations.py` **216 citations across 8
+**Phase 5's engine is built end to end as code: L0, L1, L2, L3, L4 and L5 all exist.** Baseline as
+at 2026-08-09: `pytest` **220 passed**, `scripts/verify_citations.py` **216 citations across 8
 sources, all resolve**, negative control PASS.
+
+**But "built" is not "runnable."** The engine still cannot be driven over real bars, because
+`find_base` — L2's last injected predicate — is undecided. Every layer is tested against hand-built
+fixtures only. Do not read the layer table below as a claim that a signal has ever been produced
+from market data; none has.
 
 **Three of L2's four terms are decided. One is left: the obvious base.** All four were routed to
 Phase 4's SLM on 2026-08-09; the human then decided three of them the same day, with the census in
@@ -106,19 +111,28 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-1. **Phase 5 — the rulebook engine. L3 and L4 were both built on 2026-08-09. L5 (emission) is
-   next.** L0–L4 are built (tables below); **D-29** and **D-30** fill three of L2's four injected
-   predicates.
+**The critical path is now a single item: `find_base`.** With L5 built, no layer is waiting on
+another layer — the engine is waiting on one undecided term (§2.2.5, **D-3**), routed to Phase 4 on
+2026-08-09. Until it is decided nothing can be replayed over market data, which also means **Phase 6
+cannot start** and the Phase 5 exit gate's *"every layer unit-tested against hand-built fixtures"* is
+met while its purpose is not. See `docs/CONSTRAINTS.md`'s `find_base` row for what bounds that
+routing; an unfilled predicate remains the correct state and never gets a default.
 
-   **Neither L3 nor L4 needed an open term, and neither introduced one.** `stoic/entry.py` and
-   `stoic/gating.py` hold no threshold — the separation `docs/CONSTRAINTS.md` names is intact,
+1. **Phase 5 — the rulebook engine. L5 was built on 2026-08-09; every layer now exists.** L0–L5 are
+   built (tables below); **D-29** and **D-30** fill three of L2's four injected predicates, and
+   **D-32** / **D-33** settled the two things L5 needed that nothing had pinned.
+
+   **No layer needed an open term and none introduced one.** `stoic/entry.py`, `stoic/gating.py` and
+   `stoic/emission.py` hold no threshold — the separation `docs/CONSTRAINTS.md` names is intact,
    `stoic/judgment.py` is still the only module with a number in it. L3 consumes
    `stoic/structure.py`'s pullback (**D-28**) and `stoic/sequence.py`'s events and derives neither;
-   L4 consumes nothing but bars and their SMAs.
+   L4 consumes nothing but bars and their SMAs; L5 consumes L3's records and L4's gate and derives
+   neither.
 
-   **What they do *not* unblock:** running the engine end to end still needs the **obvious base**
-   (`find_base`), the last unquantified term. `replay_entries` exists and is tested, but only against
-   a stub judgment; it cannot be driven over real bars until `find_base` is decided.
+   **What being built does *not* unblock:** running the engine over real bars still needs the
+   **obvious base** (`find_base`), the last unquantified term. `replay_entries` and `replay_signals`
+   both exist and are tested, but only against hand-built fixtures and a stub judgment. **No signal
+   has been generated from market data.**
 
    **L4 came out smaller than its plan row, and that is the finding, not a shortfall.** §7 was read
    end to end on 2026-08-09; read it again rather than trusting this summary. Of the four things
@@ -134,49 +148,38 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
    (**O-9**), and §7.4.3 (**O-19**). **HTF alignment is L5's own work and is not a gate** (§7.5.5,
    **D-27** — it raises the confluence score and never blocks).
 
-   **L5 is the last layer. §3, §5.3.10, §5.4.2, §6 and `VISION.md`'s schema scope it — read those,
-   not this summary.** **In scope:** the **signal record** in `VISION.md`'s schema, plus one field
-   that schema omits — the §5.3.10 engine note requires storing **both the trigger and the fill**,
-   because they differ on a gap and only the fill sets R. **R = |fill − PTB extreme|** (§5.4.2),
-   fixed once at fill, no floor (**D-18**); the engine note on §5.4.4/§5.4.5 binds — break-even
-   moves the **stop**, not R, so the record carries the break-even *event* and never a second R.
-   **TP1 = the Step 3 High/Low frozen at fill** (§6.1, **D-6**, **D-16** §3.5) — L3 already emits it
-   as `step3_extreme` on `ENTRY_FILLED`, so L5 reads it rather than re-deriving it. And **Type
-   instantiation** (§9, **D-7**): the setup timeframe per Type, Scalp and Day wholly on the 5m —
-   which is also what tells L4's `fast_chart` what chart it is on.
+   **L5 was the last layer, and both things nothing had pinned are now settled.** §3, §5.3.10,
+   §5.4.2, §6, §9 and `VISION.md`'s schema scope it — read those and `stoic/emission.py`'s docstring,
+   not this summary. It emits the **signal record** in `VISION.md`'s schema, plus the field that
+   schema omits — the §5.3.10 engine note requires storing **both the trigger and the fill**, because
+   they differ on a gap and only the fill sets R. **R = |fill − PTB extreme|** (§5.4.2), fixed once
+   at fill, no floor (**D-18**); break-even moves the **stop**, not R, so the record carries the
+   break-even *event* and never a second R. **TP1 = the Step 3 High/Low frozen at fill** (§6.1,
+   **D-6**, **D-16** §3.5) — L3 emits it as `step3_extreme` on `ENTRY_FILLED` and L5 reads it rather
+   than re-deriving it. **Type instantiation** (§9, **D-7**) gives the setup timeframe per Type,
+   Scalp and Day wholly on the 5m, and that is also what tells L4's `fast_chart` what chart it is on.
 
-   **Two things L5 needs that nothing has pinned. Neither is a number to pick quietly.**
+   1. **The confluence score is decided: D-33, a plain count.** The user's rule on 2026-08-09 was
+      *"the rules should be present for entry"* — the inputs are the rulebook's **own
+      already-specified conditions** (§7.1.1's 50 and 200 reads, §7.1.3 on the 200 as HTF trend, and
+      §7.5.5 / **D-27**'s HTF confirmed Step 3), and the combination is a **count of those present,
+      *k* of 3**, every flag also recorded individually. **Weights were rejected** as invented
+      numbers. **Do not confuse §7.1.1 with §7.1.2** — §7.1.2 is the **gate** (**D-19**, L4's);
+      §7.1.1 is the **read**, and the rulebook holds them as separate rows.
 
-   1. **The confluence score — settled in shape by the user on 2026-08-09: *"the rules should be
-      present for entry."*** `VISION.md` requires confidence to be *"a deterministic confluence score
-      computed by the rules — not a model output."* The inputs are the rulebook's **own
-      already-specified conditions, checked at the entry bar**. Nothing new is invented for scoring,
-      and **§7 already names them**:
+      **The bar they are read on is D-32: the PTB anchor bar, never the fill bar** — a fill is
+      intrabar and the gate is a close read, so a fill-bar read is lookahead. **D-32 also records the
+      consequence, which is not a bug:** on a **fast** chart a passing gate already implies both
+      §7.1.1 conditions, so on Scalp and Day the score varies only with the HTF input. The three vary
+      independently only on **slow** charts, where the 200 gate never fires.
+   2. **TP2's fib anchors are still unpinned, and that is unchanged.** §6.2 / **D-6** give the ratio
+      (2.618) and **D-20** gives the swing (Step 2, the first pullback), but a trend-extension tool
+      takes **three** points and no rule pins them. L2 exposes `step1_pos`, `step2_swing_pos`,
+      `step2_swing_price` and `base`, so the geometry is reachable without reaching past a layer —
+      what is missing is the *reading*, not the data. **Not blocking: TP1 is fully defined**, and
+      `SignalRecord.tp2` is therefore always `None` in v1.
 
-      - **§7.1.1** — *"the best setups are going to be in the direction of the 50 **and** 200 simple
-        moving average."* A confidence statement in the material's own words. **§7.1.3** adds that the
-        200 carries the higher-timeframe trend.
-      - **§7.5.5 / D-27** — the HTF's confirmed Step 3 in the same direction. §11 already says it
-        raises the score and never blocks.
-
-      **Do not confuse §7.1.1 with §7.1.2** — the rulebook keeps them as separate rows on the same
-      MAs, and so must L5. §7.1.2 is the **gate** (**D-19**, per-bar close against the 50), which is
-      L4's and already built; §7.1.1 is the **read**. The 200 is a gate only for longs on fast charts
-      (§7.1.4), so its alignment varies freely on shorts and on slow charts — the two rows do not
-      collide.
-
-      **Only the combination is undirected** — a plain count of the conditions present, or weights.
-      That is not in the material, so it is a decision, not something to derive
-      (`claude_memories/audit-hard-rules-not-in-material.md`). Everything **J** in §7.3/§8 — trapped
-      side, break & retest, SFP, SBS — stays out until it is decided; it is not a missing input to
-      solve for.
-   2. **TP2's fib anchors.** §6.2 / **D-6** give the ratio (2.618) and **D-20** gives the swing (Step
-      2, the first pullback), but a trend-extension tool takes **three** points and no rule pins
-      them. L2 exposes `step1_pos`, `step2_swing_pos`, `step2_swing_price` and `base`, so the
-      geometry is reachable without reaching past a layer — what is missing is the *reading*, not the
-      data. **Not blocking: TP1 is fully defined, so a v1 record carrying TP1 stands without it.**
-
-   **Out of scope for L5, and each one is a trap:** no **minimum-R or "sufficient room" gate**
+   **What L5 must never grow, and each one is a trap:** no **minimum-R or "sufficient room" gate**
    (§5.4.6, **O-10** — `m` is unset; record R, never gate on it); no **anticipatory entry** (§5.5,
    **D-11** — it appears in the labelled material and the engine must not emit it); **climax** (§4.3)
    and the **lower-high cue** (§6.5a, **D-26**) **annotate only** — §4.3 is a hard constraint that
@@ -216,11 +219,12 @@ context and targets, never a step of the sequence, and they yield on conflict.
 | `scripts/measure_ptb_atr.py` | Produced `docs/evidence/ptb_atr_distribution.md`. Now inert except for its 62.8% figure — see above |
 | `tests/` | 25 tests, hermetic |
 
-## What Phase 5 L0–L4 built
+## What Phase 5 L0–L5 built
 
 Pure functions over bars — no disk I/O, no network, no clock, no model. Tests are hermetic and
-hand-built; the suite is 199. L2's decided predicates add 27 in `tests/test_judgment.py`, L3 adds 23
-in `tests/test_entry.py`, L4 adds 27 in `tests/test_gating.py`.
+hand-built; the suite is 220. L2's decided predicates add 27 in `tests/test_judgment.py`, L3 adds 23
+in `tests/test_entry.py`, L4 adds 27 in `tests/test_gating.py`, L5 adds 21 in
+`tests/test_emission.py`.
 
 | | |
 |---|---|
@@ -230,7 +234,8 @@ in `tests/test_entry.py`, L4 adds 27 in `tests/test_gating.py`.
 | `stoic/levels.py` | PDH/PDL/PDC, PWC/PWH/PLOW, HCOM/LCOM (§7.3, **D-8**). HCOM/LCOM are highest/lowest daily **close** — *"not the highest wick"* |
 | `stoic/sequence.py` | **L2.** The Step 1 → Step 2 → Step 3 machine, the reset (**D-15**), the directional state (**D-21**), the running Step 3 High/Low (**D-16**, not frozen here), the Step 2 swing (**D-20**), and the three §5.4.7 invalidation events |
 | `stoic/entry.py` | **L3.** The PTB walk — anchor, re-anchor per non-inside candle (**D-17**), inside-candle skip (**D-23**/§5.3.5a), the stop-market fill including the gap case (**D-22**), the stop at the opposite PTB extreme (**D-18**, no floor), and the break-even trigger (**D-25**) against the Step 3 extreme **frozen at fill** (**D-16**). Consumes L1's pullback and L2's events; derives neither |
-| `stoic/gating.py` | **L4.** Two gates and no more: the 50 SMA direction gate (§7.1.2, **D-19** — per-bar close, no lookback, no tolerance, no chop detector) and the 200 SMA rule (§7.1.4 — **symmetric per D-31**, blocking a long at or below the 200 and a short at or above it, and **fast-chart-only**, so `fast_chart` is required with no default). Reason members are `TREND_50` and `INTO_200`; `gate(bars, pos, direction, *, fast_chart)` collects **every** reason, never short-circuits. A pure evaluator: the caller picks the bar, so *when* the gate is read is L5's question, not one L4 answered |
+| `stoic/gating.py` | **L4.** Two gates and no more: the 50 SMA direction gate (§7.1.2, **D-19** — per-bar close, no lookback, no tolerance, no chop detector) and the 200 SMA rule (§7.1.4 — **symmetric per D-31**, blocking a long at or below the 200 and a short at or above it, and **fast-chart-only**, so `fast_chart` is required with no default). Reason members are `TREND_50` and `INTO_200`; `gate(bars, pos, direction, *, fast_chart)` collects **every** reason, never short-circuits. A pure evaluator: the caller picks the bar — **L5 answered that with D-32 (the PTB anchor bar)**, and L4 still holds no opinion on it |
+| `stoic/emission.py` | **L5.** The signal record (`VISION.md`'s schema + trigger *and* fill, §5.3.10), **R = \|fill − stop\|** fixed at fill with no floor (§5.4.2, **D-18**), **TP1** read from L3's frozen `step3_extreme` (**D-16**), `tp2` always `None` (anchors unpinned), the **confluence count** (**D-33**) and the **anchor-bar read** (**D-32**). Emits `SIGNAL`, `SUPPRESSED` (a fill L4 gated away — kept for Phase 6 triage, carrying no `SignalRecord`) and `BREAK_EVEN` (the event, never a second R). One `SignalEmitter` per direction; `replay_signals` drives both over `entry.iter_replay_steps`, which is the **one** implementation of the per-bar loop. Holds no threshold |
 
 **L2's four unquantified terms are injected, not implemented — and that has not changed now that
 three are decided.** `Judgment` is a frozen dataclass of four predicates with **no defaults** —
@@ -268,6 +273,16 @@ and **200 before any long passes on a fast chart**. That is the intended reading
 emitting signals whose gates were never actually checked — but it is a warm-up cost Phase 6 will see
 at the head of every frame, not a bug.
 
+**L5 fixed seven conventions the same way; three of them are load-bearing.** A **NaN SMA** and an
+**exact tie** both make a confluence condition *absent*, never present — `gating.py`'s precedent, no
+yardstick means not confirmed. **`htf=None` makes the HTF condition absent and the denominator stays
+3**, so a caller who supplies no HTF frame tops out at 2 of 3 rather than being silently rescaled;
+scores stay comparable across records. And **break-even links to its signal by `(direction, fill
+price)`, earliest match first** — L3's `STOP_TO_BREAK_EVEN` carries no `fill_pos`, so price is the
+only handle, and a break-even for a **suppressed** candidate emits nothing, since L3 does not know
+about gating and keeps tracking it. The residual is stated in the docstring: two same-direction
+entries filling at the identical price make that link ambiguous.
+
 **Two orderings inside L3's bar are the design, not accidents.** The **fill is checked before L2's
 events** because a fill is intrabar while all three §5.4.7 conditions are close-based (the §5.4.7
 engine note), so on a bar that both fills and invalidates, the fill happened first. And a **`RESET`
@@ -286,6 +301,14 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
 
 ## Open
 
+- **L5's `continuation` flag resets only on `RESET`, and a §5.4.7 invalidation is not one.** The
+  field is False on a directional state's first candidate and True thereafter, cleared on
+  `Event.RESET` — which is what **D-21** / §2.5.8 specify, since the directional state dies at the
+  10/20 reset. But a §5.4.7 invalidation *also* disarms L3 without emitting a `RESET`, so the first
+  entry after one is labelled a continuation. Whether the directional state should survive an
+  invalidation is **not stated anywhere** — noticed, not decided, same shape as **O-15** and
+  **O-17**. **Nothing depends on it:** `continuation` is a record label, and no entry, stop, R or
+  target reads it. Not opened as an O-row because it is a property of the record, not of the rulebook.
 - **A `T2` reading that would bear on D-23, not yet verified.** On `T2`'s bullish count the last
   pullback candle before the entry looks **up-bodied (green)**, which would make it a live-marked
   counterexample to the `close < open` body test D-23 rejected — evidence *for* the decision the user

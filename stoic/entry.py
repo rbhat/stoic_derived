@@ -40,6 +40,7 @@ randomness, no accumulation the caller cannot inspect via `EntryMachine.state`.
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from dataclasses import dataclass, replace
 from enum import StrEnum
 
@@ -335,26 +336,35 @@ class EntryMachine:
 
 
 # ---------------------------------------------------------------------------
-# The replay entry point
+# The shared per-bar wiring -- consumed by both replay entry points below and by
+# `stoic.emission.replay_signals`, so there is exactly one implementation of the bar loop.
 # ---------------------------------------------------------------------------
 
-_PAYLOAD_COLUMNS = ("pos", "ts", "event", "direction", "anchor_pos", "trigger", "stop", "fill",
-                    "step3_extreme")
+
+@dataclass(frozen=True)
+class BarStep:
+    """One bar's L2 events and L3 records, per direction. `*_sequence_events` is each direction's
+    `step_count` events plus that same call's `step_invalidations` events, in that order -- the
+    same list `EntryMachine.step` is fed as `events` below."""
+
+    pos: int
+    bull_entry_records: list[EntryRecord]
+    bear_entry_records: list[EntryRecord]
+    bull_sequence_events: list[EventRecord]
+    bear_sequence_events: list[EventRecord]
 
 
-def replay_entries(bars: pd.DataFrame, judgment: Judgment) -> pd.DataFrame:
-    """Run both directions' `SequenceMachine`s and `EntryMachine`s over `bars`, one row per
-    emitted `EntryRecord`.
+def iter_replay_steps(bars: pd.DataFrame, judgment: Judgment) -> Iterator[BarStep]:
+    """Run both directions' `SequenceMachine`s and `EntryMachine`s over `bars`, one `BarStep` per
+    bar. This is the two-pass-per-bar structure `stoic.sequence.replay` uses, reused rather than
+    reimplemented: per bar, capture each `SequenceMachine`'s pre-bar `step3_extreme`, run both
+    `step_count`s, then both `step_invalidations` with the cross-linked confirmation flags exactly
+    as `sequence.replay` does, then step each `EntryMachine` with that direction's events for the
+    bar and its pre-bar extreme. `candle_structure(bars)` is computed once and passed to every call.
 
-    Mirrors `stoic.sequence.replay`'s two-pass-per-bar structure and reuses it rather than
-    reimplementing it: per bar, capture each `SequenceMachine`'s pre-bar `step3_extreme`, run
-    both `step_count`s, then both `step_invalidations` with the cross-linked confirmation flags
-    exactly as `sequence.replay` does, then step each `EntryMachine` with that direction's events
-    for the bar and its pre-bar extreme. `candle_structure(bars)` is computed once and passed to
-    every call.
-
-    Does **not** return L2's `EventRecord`s -- a caller that wants both calls `sequence.replay`
-    too.
+    `replay_entries` below flattens this into L3's own `EntryRecord` rows; `stoic.emission.
+    replay_signals` consumes the same iterator to drive `SignalEmitter`s. Neither reimplements the
+    loop.
 
     **This cannot run end to end today.** `find_base` is undecided (§2.2.5, D-3), so
     `stoic.judgment.decided_judgment()` requires it as an argument with no default. That is the
@@ -367,7 +377,6 @@ def replay_entries(bars: pd.DataFrame, judgment: Judgment) -> pd.DataFrame:
     entry_bull = EntryMachine(Direction.BULLISH)
     entry_bear = EntryMachine(Direction.BEARISH)
 
-    records: list[EntryRecord] = []
     for pos in range(len(bars)):
         pre_bull_extreme = seq_bull.state.step3_extreme
         pre_bear_extreme = seq_bear.state.step3_extreme
@@ -389,24 +398,53 @@ def replay_entries(bars: pd.DataFrame, judgment: Judgment) -> pd.DataFrame:
             bars, pos, opposite_confirmed_this_bar=bull_confirmed_this_bar
         )
 
-        records.extend(
-            entry_bull.step(
-                bars,
-                pos,
-                events=bull_count_events + bull_inval_events,
-                step3_extreme=pre_bull_extreme,
-                structure=structure,
-            )
+        bull_sequence_events = bull_count_events + bull_inval_events
+        bear_sequence_events = bear_count_events + bear_inval_events
+
+        bull_entry_records = entry_bull.step(
+            bars,
+            pos,
+            events=bull_sequence_events,
+            step3_extreme=pre_bull_extreme,
+            structure=structure,
         )
-        records.extend(
-            entry_bear.step(
-                bars,
-                pos,
-                events=bear_count_events + bear_inval_events,
-                step3_extreme=pre_bear_extreme,
-                structure=structure,
-            )
+        bear_entry_records = entry_bear.step(
+            bars,
+            pos,
+            events=bear_sequence_events,
+            step3_extreme=pre_bear_extreme,
+            structure=structure,
         )
+
+        yield BarStep(
+            pos=pos,
+            bull_entry_records=bull_entry_records,
+            bear_entry_records=bear_entry_records,
+            bull_sequence_events=bull_sequence_events,
+            bear_sequence_events=bear_sequence_events,
+        )
+
+
+# ---------------------------------------------------------------------------
+# The replay entry point
+# ---------------------------------------------------------------------------
+
+_PAYLOAD_COLUMNS = ("pos", "ts", "event", "direction", "anchor_pos", "trigger", "stop", "fill",
+                    "step3_extreme")
+
+
+def replay_entries(bars: pd.DataFrame, judgment: Judgment) -> pd.DataFrame:
+    """Run both directions' `SequenceMachine`s and `EntryMachine`s over `bars`, one row per
+    emitted `EntryRecord`.
+
+    Thin flattening layer over `iter_replay_steps` -- see that function's docstring for the
+    per-bar wiring. Does **not** return L2's `EventRecord`s -- a caller that wants both calls
+    `sequence.replay` too.
+    """
+    records: list[EntryRecord] = []
+    for step in iter_replay_steps(bars, judgment):
+        records.extend(step.bull_entry_records)
+        records.extend(step.bear_entry_records)
 
     data: dict[str, list] = {c: [] for c in _PAYLOAD_COLUMNS}
     for r in records:
@@ -438,11 +476,13 @@ def replay_entries(bars: pd.DataFrame, judgment: Judgment) -> pd.DataFrame:
 
 
 __all__ = [
+    "BarStep",
     "EntryEvent",
     "EntryMachine",
     "EntryRecord",
     "EntryState",
     "OpenEntry",
     "WorkingOrder",
+    "iter_replay_steps",
     "replay_entries",
 ]
