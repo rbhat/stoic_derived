@@ -151,11 +151,16 @@ argument* is void.
   real, the corroboration is not. Done because leaving a *verified-false* claim in the binding spec
   across a context reset is worse than leaving it unresolved — the next reader treats §10.3 as source
   of truth.
-- **Open.** §3.4 and §5.3.4 were promoted to **M** partly on the void corroboration. They now stand
-  on `DIA-L` plus the transcripts alone. **Nobody has re-checked whether that carries M** — the rules
-  may well be fine, but the argument that put them there is gone. This is the judgment half and it is
-  the lead's call, not a subagent's.
-- Also check `DIA-P`'s other citation sites — §5.2.4, §5.3.6 — for the same "two drawings" reasoning.
+- **Judgment half — resolved 2026-08-08. Both keep M.**
+  - **§3.4** never rested on the corroboration in the first place: its Source column is **D-16**, a
+    decision, and a running maximum from a known start bar has **no free parameter**, which is §0's
+    test for **M**. The void claim lived in §10.3's prose, not in §3.4's citation. It is independently
+    supported by `DIA-S` — which the corpus-wide hash scan confirms **is** a genuinely distinct file
+    (F-13) — and by `PTBV @ 00:09:43`–`00:09:59`.
+  - **§5.3.4** keeps **M** with a disclosure instead: the row now cites **D-17** first and states that
+    `PTBQ` §1 contradicts itself, so no reader can mistake the source for having settled it.
+- `DIA-P`'s other citation sites, §5.2.4 and §5.3.6, were checked: both already say in-line that this
+  is one drawing under two names. No "two drawings" reasoning survives anywhere.
 
 ### F-2 — 2.3.10 imports "wick"
 
@@ -440,28 +445,72 @@ The one place this needs care is the reverse case, which the status column *does
 F-12 shows the prose does not: a rule whose **source** is a decision, whose **status** is M, and whose
 decision was never written down. `5.4.7c` is that shape and is checked in `sweep_D`.
 
-## Exit gate — not met
+## The classification — all 132 definitional rows
+
+**The rule applied.** A row's class follows from its evidence: a `NO` verdict against a material
+citation is ***cited***; a `DECISION` verdict is ***human decision***; a `YES` is a *candidate* and
+was judged one at a time. Eleven of the 143 swept rows are prose, not rules, and are excluded here —
+4 of those were `DECISION`, 7 were `NO`.
+
+| Class | Count | Which |
+|---|---|---|
+| **Cited** | **109** | The 101 `NO` rows, plus 8 of the 10 `YES` after correction |
+| **Human decision** | **23** | The 21 `DECISION` rows, plus 5.4.6 and 6.3c |
+| **Invented** | **0** | — after dispositions; see the caveat below |
+
+**The 10 candidates, one line each.** Seven were corrected to say what their source says; two were
+decisions all along and now cite one; one was already right.
+
+| Rule | Resolution | Class |
+|---|---|---|
+| 2.3.10 | *"swept by a wick"* → *"barely swept"*, matching `M1`; status **M → J** | cited |
+| 5.3.10 | circular citation broken; the signal-record clause moved to an engine note | cited |
+| 5.4.1 | `ET` via §5.2.3 added — it supplies the long/short pairing `PTBQ` §2 omits | cited |
+| 5.4.6 | the `≥ m × R` inequality is ours; row now says so, `m` open on **O-10** | human decision |
+| 6.3b | `OTV @ 1:07:32` added — the sentence that actually says *"where we enter"* | cited |
+| 6.3c | now cites **D-20**, which owns the translation into 1-2-3 vocabulary | human decision |
+| 6.6 | *"only"* dropped; `M1 @ 16:08` lists four management items, not one | cited |
+| 7.1.4 | narrowed back to **long-only**, as `SCALP` states it | cited |
+| 7.4.4 | *"three are mechanical"* → **one is**; §5.4.4 pointer corrected to §5.4.6 | cited |
+| 7.5.4 | the false universal replaced; `SSS @ 53:51` cited and put in context | cited |
+
+**The caveat, stated plainly: "0 invented" is not a clean bill of health.** The single largest
+invented mechanism in the spec — the `k × ATR(n)` stop floor — was classed **`DECISION`** by the
+sweep, correctly, because it cited a real D-row with a real open row for its constants. It was
+removed on 2026-08-08 by **asking the human where the predicate came from**, not by any mechanical
+check. Had that conversation not happened it would have passed this classification untouched. The
+count below reports it.
+
+## What moved out — the count, not minimised
+
+| | |
+|---|---|
+| Rules **deleted** from §1–§9 | **2** — the ATR stop floor (old §5.4.4) and its constants row (old §5.4.5) |
+| Open rows **closed by deletion** | **1** — **O-5**, closed by removing the mechanism that needed it, not by setting its three constants |
+| Open rows **reframed to an SLM question** | **1** — **O-14**, from an unsourceable distance threshold to *"where does the expansion leg end"* |
+| Rules **corrected** for saying more than their source | **10** |
+| Rules **added** because the material or the human supplied them | **4** — §5.3.4a, §5.3.5a, §5.4.5 (break-even), and the split of §5.4.7 onto pending orders |
+| Rules still classed **invented** | **0** |
+| Source files found **unread** | **3** (F-13) |
+
+**Net effect on Phase 5:** L4 unblocked (O-5 gone), L1 and L3 still gated on O-14.
+
+## Exit gate — met, with one carry-over
 
 `docs/PLAN.md` requires: every rule in §1–§9 carries a class; no rule classed *invented* is still
 stated as **M**; the count moved to §12 or to the SLM is reported and not minimised.
 
-**Remaining work, in order:**
+All six items are done:
 
-1. ~~Verify the seven unverified findings against source.~~ **Done** — all twelve verified, one
-   reported claim rejected. See Verification status.
-2. ~~`sweep_D` — the 11 numbered rules the first three sweeps missed.~~ **Done.** Coverage is now
-   complete at 143 rows: 0 broken, 0 YES, 8 of 11 DECISION.
-3. **Class all 132 definitional rows** (118 numbered rules + 14 term rows) *cited* / *human decision*
-   / *invented*, in a table in this file. The sweeps give the evidence; the class is a judgment and is
-   the lead's, not a subagent's. **This is the next thing to do.**
-4. Apply dispositions. F-1 is the one with reach — it touches §0, §3.4, §5.3.4 and §10.3. F-6 … F-12
-   are each scoped to one or two rows and carry their disposition inline. F-13's disposition is
-   corpus work, not rule work, and is listed separately below.
-5. Re-check status tags: an **M** on a rule whose source is a judgment call is the signature failure
-   `docs/PLAN.md` names — read with ruling 2 above. Both known candidates are handled: **5.3.4** now
-   cites D-17 first and discloses that `PTBQ` contradicts itself, and **5.4.7c** was re-read and
-   affirmed by the user. **5.4.7b** moved **J → P** when *strong* was quantified.
-6. Report the count moved out. Do not minimise it.
+1. **Verify the findings.** All twelve verified against source; one reported claim rejected.
+2. **`sweep_D`.** Coverage complete at 143 rows — 0 broken, 0 YES, 8 of 11 DECISION.
+3. **Class all 132 definitional rows.** 109 cited, 23 human decision, 0 invented — above.
+4. **Apply dispositions.** F-1 … F-12 all applied to `docs/RULEBOOK.md`.
+5. **Re-check status tags.** 2.3.10 **M → J**, 5.4.7b **J → P**, 5.3.4 keeps **M** with the `PTBQ`
+   contradiction disclosed, 5.4.7c keeps **M** and was re-affirmed by the user, §3.4 keeps **M** on
+   grounds that never depended on the void corroboration.
+6. **Report the count moved out.** Above, un-minimised, including the caveat that the largest
+   invented mechanism was caught by asking rather than by sweeping.
 
 **Carried out of this audit, for the pass that follows it** — F-13's disposition is about the corpus,
 not about §1–§9, so it does not gate the exit:

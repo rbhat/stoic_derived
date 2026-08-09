@@ -4,9 +4,9 @@ The `PTB Entries` set is complete — 748 segments, the full 01:37:54, all four 
 `edu/derived/manifest.json`. `PTBV` in §0 has a file behind it, and 34 citations at 32 distinct
 timestamps point at it.
 
-**Phases 0 and 1 are complete.** **Phase 2 has a deliverable — `docs/RULEBOOK.md` — and is short of
-its gate on one open row and an unfinished audit.** The spec is written and every rule carries a
-citation; §12 now blocks on **O-14** alone (where the post-Step-3 expansion leg ends).
+**Phases 0, 1 and 2a are complete.** **Phase 2 has a deliverable — `docs/RULEBOOK.md` — and is short
+of its gate on one open row.** The spec is written and every rule carries a citation; §12 now blocks
+on **O-14** alone (where the post-Step-3 expansion leg ends).
 
 **"Every rule cites the material" is not the same as "every rule is supported by it."** Citations
 **resolve** — all of them, including under the Phase 2a sweep. That was never a check on whether a
@@ -53,13 +53,17 @@ new**: the stop goes to break-even when price trades beyond the Step 3 High/Low 
 TP1, which is where `ET` already put it. `TPA @ 00:13:00` teaches an earlier trigger and D-25 records
 the divergence rather than dropping it.
 
-**Two things now block Phase 5.** **O-14** (below) and **Phase 2a — the invented-rule audit**
-(`docs/PLAN.md`), opened 2026-08-08 on the user's directive. Phase 2 made the rules computable, and
-the risk it took on is that a silence in the material got closed with a crisp predicate that reads as
-settled. Every rule in §1–§9 has to be classed *cited* / *human decision* / *invented*, and the third
-class leaves the spec. The standing rule behind it is in
-`claude_memories/audit-hard-rules-not-in-material.md`: never invent a predicate to fill a gap — it
-pre-decides what Phase 4's SLM exists to discover.
+**One thing now blocks Phase 5: O-14**, and it gates **L1 and L3**. L4 is clear.
+
+**Phase 2a closed on 2026-08-08 — `docs/AUDIT-2a.md` is the record.** All 132 definitional rows in
+§1–§9 are classed: **109 cited, 23 human decision, 0 invented**. Ten rules that said more than their
+source were corrected; two rules and one open row (**O-5**) were deleted outright; **O-14** was
+reframed into a question the material can answer. **The caveat matters more than the count:** the
+largest invented mechanism in the spec — the ATR stop floor — was classed a legitimate `DECISION` by
+every sweep, because it cited a real D-row with a real open row for its constants. It came out only
+because the human was asked where the predicate came from. No mechanical check would have caught it,
+which is exactly why `claude_memories/audit-hard-rules-not-in-material.md` is a standing rule and not
+a phase.
 
 **Nine rows closed on 2026-08-03** (D-15…D-23 in §11), from the user's answers plus the `PTB Entries`
 video. Two that came out of the video still stand: a continuation entry **reuses** the sequence state,
@@ -138,18 +142,16 @@ So Phase 1 produced **2** new transcript sets, not the 3 its exit gate named.
 
 ## Next
 
-**`docs/PLAN.md` is the plan, end to end.** Position: Phases 0 and 1 closed, **Phase 2 open on its
+**`docs/PLAN.md` is the plan, end to end.** Position: Phases 0, 1 and 2a closed, **Phase 2 open on its
 gate, not on its deliverable**.
 
-1. **Finish Phase 2a — `docs/AUDIT-2a.md` is the record.** The mechanical sweep is **complete and
-   verified**: 143 rows across four sweeps, **10 `YES`**, **0 broken citations**, all twelve findings
-   checked against source by the lead. What remains is the judgment half, and it is now the only
-   thing left in the phase: **class the 132 definitional rows** *cited* / *human decision* /
-   *invented*, apply the dispositions F-1 … F-12 each carry, re-check the status tags on `5.3.4` and
-   `5.4.7c`, and report the count moved out without minimising it.
-2. **Fold `TPA`'s management content into §6.** Held back deliberately so the audit sweeps text that
-   is not moving underneath it. The passages are listed under Open below; §6.5 currently contradicts
-   one of them.
+1. **Fold `TPA`'s management content into §6.** Held back deliberately so the audit swept text that
+   was not moving underneath it — that reason is now spent. Two of the four findings were resolved
+   while closing Phase 2a (the *"trailing behind the PTB"* passages were entry anchoring, not a stop
+   rule; the break-even trigger became **D-25**). **What is left is HTF nesting**, and **§6.5 is still
+   contradicted** — see Open below.
+2. **Wire in the three charts F-13 found** — citation keys in §0, worked examples in §10 — and open a
+   row for `PWC` / `PLOW`. Cheap, and it feeds Phase 3 directly.
 3. **Close O-14 — reframed 2026-08-08, and the reframing is most of the work.** It was *"what does
    **approaching the 10/20 SMA** mean"*, a distance nobody could source. It is now **"where does the
    post-Step-3 expansion leg end and the pullback begin"** — a structural question **L1 already owns**

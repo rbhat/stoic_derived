@@ -147,7 +147,7 @@ hindsight. Boundary selection must be a function of bars **up to and including**
 | 2.3.7 | A break that closes **back inside** the consolidation did **not** confirm. The base *"may remain pending while it is still visually intact. Otherwise, discard it and wait for a fresh consolidation."* | J | `M1 @ 14:40` |
 | 2.3.8 | Two execution choices are taught: enter **while the break is happening** (discretionary, unconfirmed) or **wait for the close** and evaluate after confirmation. Whether to take the signal at all is a separate trading decision. | — | `M1 @ 13:30`, `M1 @ 13:54` |
 | 2.3.9 | Waiting costs geometry: *"the more you wait for the confirmation the worse your risk to reward will be."* | — | `M1 @ 20:52` |
-| 2.3.10 | A boundary that is merely **swept by a wick** is not a Step 3. Worked negative example: *"the step three would be the breakout … but we just barely swept that high … and continues lower."* | M | `M1 @ 19:18`–`19:46` |
+| 2.3.10 | A boundary that is only **barely swept** is not a Step 3. Worked negative example: *"the step three would be the breakout … but we just barely swept that high … and continues lower."* **The source says *barely swept*, which is about magnitude — it is not a wick-vs-body test.** §2.1.2 carries the wick rule, for Step 1, where `M1` does state it. Read the magnitude as the **J** of §2.1.4: no threshold. | J | `M1 @ 19:18`–`19:46` |
 
 ### 2.4 Cancellation and reset
 
@@ -276,7 +276,7 @@ Each term that paragraph leaves open: buffers by **D-12** (none), the three-bar 
 | 5.3.7 | **Fill price.** The order is a stop market (5.2.3a), so it fills **at the trigger** when the bar trades through it, and **at the bar's open** when the bar **gaps past** it — a market fill, taken at whatever the gap offers. A fill is **never better than the trigger**. | M | decision **D-22**, §11 |
 | 5.3.8 | **A level that is never traded is not an entry.** *"This would be the ptb entry — price never triggered it"*, and the read moves on to the next PTB. No chasing, no relaxed level. | M | `PTBV @ 00:12:51` |
 | 5.3.9 | Corroborating 5.3.7 live — when price has already left the level, the trade is taken at the price available rather than skipped: *"another entry, thousand dollar stop loss, I gotta do market — this is a ptb entry."* | M | `PTBV @ 00:23:37` |
-| 5.3.10 | **R is computed from the actual fill, not from the trigger.** A gap fill sits further from the PTB extreme, so it widens R and every ratio built on it (§5.4.2). The signal record stores both the trigger and the fill. | M | derived from 5.3.7 + 5.4.2 |
+| 5.3.10 | **R is computed from the actual fill, not from the trigger.** A gap fill sits beyond the trigger (5.3.7) while the stop stays at the opposite PTB extreme (5.4.1), so the gap **widens** R and every ratio built on it. | M | derived from 5.3.7 + 5.4.1 |
 
 **Engine note on 5.3.3a — this is what O-14 blocks.** 5.3.5 re-anchors the resting order to every
 newly completed PTB candidate. If *"PTB candidate"* is left to mean any bar, **every** completed bar
@@ -291,6 +291,12 @@ Defining a PTB candidate by its distance to the 10/20 was L3 reaching past a lay
 the concept — the invented predicate Phase 2a exists to remove
 (`claude_memories/audit-hard-rules-not-in-material.md`). Until **O-14** closes, **L1 and L3** do not
 compile.
+
+**Engine note on 5.3.10.** The signal record stores **both the trigger and the fill**, because on a
+gap they differ and only the fill sets R. That is a data-model requirement, not a rule about trades —
+it sat in 5.3.10 as if it were one until `docs/AUDIT-2a.md` F-6. The derivation chain is also
+one-directional now: 5.3.10 rests on 5.3.7 + 5.4.1, and 5.4.2 on 5.2.3 + 5.4.1 + 5.3.7. The two
+previously cited each other.
 
 **Engine note on 5.3.5a.** An inside candle has a lower high than its parent by definition (and a
 higher low). Anchoring to it would move a long's buy stop **down, inside the parent's range** — so
@@ -310,8 +316,8 @@ change, and it must change in one place.
 
 | # | Rule | Status | Source |
 |---|---|---|---|
-| 5.4.1 | **Stop = the PTB low (long) / PTB high (short).** | M | `PTBQ` §2 |
-| 5.4.2 | Therefore **R = \|fill − PTB extreme\|**, and this is the R in every downstream ratio. *Fill*, not trigger — the two differ on a gap (5.3.7, 5.3.10) and only the fill is real. | M | derived from 5.2.3 + 5.4.1 + 5.3.10 |
+| 5.4.1 | **Stop = the PTB low (long) / PTB high (short).** `PTBQ` §2 answers the question in two words — *"PTB low/high"* — with no long/short labels; the pairing comes from §5.2.3, where the entry sits at the opposite extreme, so the stop takes the other side. | M | `PTBQ` §2; `ET` via §5.2.3 |
+| 5.4.2 | Therefore **R = \|fill − PTB extreme\|**, and this is the R in every downstream ratio. *Fill*, not trigger — the two differ on a gap (5.3.7, 5.3.10) and only the fill is real. | M | derived from 5.2.3 + 5.4.1 + 5.3.7 |
 | 5.4.3 | When entering off a faster chart, the **stop is set from the slower chart**: *"we could be entering off of the one minute chart but we could be setting stop loss based on the five minute chart, which is whatever the high is gonna put in."* | M | `SCALP @ 05:42`; decision **D-7**, §11 |
 | 5.4.4 | **There is no minimum stop distance.** The stop sits at the PTB extreme and nowhere else. A small PTB simply produces a small R — that is the trade the method offers, not a defect to correct. No ATR floor, no swing-extreme fallback, no volatility scaling. | M | decision **D-18**, §11 |
 | 5.4.5 | **Break-even.** Once price trades beyond the **Step 3 High (long) / Step 3 Low (short)** in the trade direction, the stop moves to the **fill price**. This is the same event as reaching TP1 (§6.1), which is where `ET` already puts it: *"This is the place to take partials and put stop to break even."* | M | decision **D-25**, §11; `ET` |
@@ -377,11 +383,11 @@ labels may show it; the engine should not emit it. See decision **D-11**, §11.
 | 6.2 | **Second target = the 2.618 fib extension.** | M | decision **D-6**, §11; measured in `SCALP @ 06:35`; drawn on `LT` and `T1` as `261.80%` |
 | 6.3 | Fib geometry is a **measurement** tool for targets, anchored on the pullback: measure the **first pullback** after the reversal with the trend-extension tool; the published extension levels are **2.618, 4.23 and 6.86**. | M | `OTV @ 51:26`, `OTV @ 52:39`, `OTV @ 52:44` |
 | 6.3a | **Two different tools, two different jobs.** *Retracement* measures a swing — any swing, descriptively: *"we're using fib retracements to measure the pullbacks."* The *extension* is what produces targets, and it is anchored on **one specific swing**: *"then we use the trend extension tool to measure this very first pullback in order to give us these targets."* | M | `OTV @ 52:08`, `OTV @ 52:33`, `OTV @ 52:39`; decision **D-20**, §11 |
-| 6.3b | In 1-2-3 terms the anchor is the **Step 2 swing**. `OTV` enters on the second pullback: *"because we don't know the first pullback might be a fake out, we looking for the second pullback. And once the second pullback occurs, then that's more likely that price actually reversed."* The second pullback is the Step 3 pullback that carries the PTB. First pullback anchors the fib; second pullback carries the entry. | M | `OTV @ 52:22`, `OTV @ 52:28`; decision **D-20**, §11 |
-| 6.3c | `SCALP`'s *"we want to measure the first lower high right so 2618 this is the target"* is the bearish mirror of 6.3b, said **before** the breakdown: the first lower high after the reversal is the Step 2 bounce. The two sources agree. | M | `SCALP @ 06:35` |
+| 6.3b | In 1-2-3 terms the anchor is the **Step 2 swing**. `OTV` enters on the second pullback: *"because we don't know the first pullback might be a fake out, we looking for the second pullback. And once the second pullback occurs, then that's more likely that price actually reversed."* The second pullback is the Step 3 pullback that carries the PTB. First pullback anchors the fib; second pullback carries the entry. The cited span establishes that the second pullback *confirms* the reversal; that it is where **we enter** is stated at `OTV @ 1:07:32` — *"There is the first 100%. This is your second pullback where we enter"* — in a passage that also names 2618 and 423 as first and second target, corroborating **D-20** whole. | M | `OTV @ 52:22`, `OTV @ 52:28`, `OTV @ 1:07:32`; decision **D-20**, §11 |
+| 6.3c | `SCALP`'s *"we want to measure the first lower high right so 2618 this is the target"* is the bearish mirror of 6.3b, said **before** the breakdown: the first lower high after the reversal is the Step 2 bounce — a translation into 1-2-3 vocabulary that is **D-20**'s, not `SCALP`'s, which never says *Step 1*, *Step 2* or *bounce* anywhere in this trade's narration. The two sources agree. | M | `SCALP @ 06:35`; decision **D-20**, §11 |
 | 6.4 | **Final technical exit = the confirmed opposite Step 3**, for the remaining position. Partials may be taken before it. | M | `PC`, `M1 @ 09:24`, `M1 @ 23:46` |
 | 6.5 | Between entry and 6.4, the position is simply held: *"we simply stay with the move until the complete opposite one two three pattern confirms."* | M | `M1 @ 09:24` |
-| 6.6 | Climax is the only other sanctioned management cue (§4.3). | M | `M1 @ 16:19` |
+| 6.6 | Climax is a sanctioned management cue (§4.3) — **not the only one.** `M1 @ 16:08` lists four things as *"optional management context"*: the 50/200 SMA, climax conditions, additional entries, and partial profits. Two of those are already rules here (continuation entries §2.5, partials §6.1). What binds is §4.3: none of them creates a signal or changes the technical state. | M | `M1 @ 16:08`, `M1 @ 16:19`, `M1 @ 16:31` |
 
 **Open:** 6.2 vs 6.1 ordering when the Step 3 High/Low sits beyond 2.618, and partial sizing at each
 — see §12 row **O-7**.
@@ -399,11 +405,11 @@ The sequence produces a signal. These decide whether it deserves risk.
 | 7.1.1 | *"The best setups are going to be in the direction of the 50 and 200 simple moving average."* | M | `M1 @ 18:30` |
 | 7.1.2 | *"When the price is staying above 50 you only want to take bullish setups; when the price is staying below 50 you want to look for the bearish setups."* | M | `M1 @ 18:38` |
 | 7.1.3 | The 200 SMA carries the higher-timeframe trend: *"we are looking for the bullish setup here because the price is staying above 200 SMA … the higher time frame trend is bullish."* | M | `M1 @ 19:54` |
-| 7.1.4 | Do not take a trade **into** the 200 SMA on fast charts: *"on one minute chart, five minute chart, do not long into the 200 SMA."* | M | `SCALP @ 23:02` |
+| 7.1.4 | Do not **long** into the 200 SMA on fast charts: *"on one minute chart, five minute chart, do not long into the 200 SMA."* **The material states the bullish case only** — nothing in `SCALP` addresses shorting into the 200 from below. The engine applies it long-only until the mirror is decided; do not assume symmetry here. | M | `SCALP @ 23:02` |
 | 7.1.5 | The MAs act as **staged destinations**: *"you can long from 10 20 back to 50, from 50 to 200, and then eventually it flips."* | — | `SCALP @ 22:45` |
 | 7.1.6 | **MA target rule.** When an MA is used as a destination, take the **next MA beyond entry in the trade direction**, from the set on the chart (10, 20, 50, 200). Which SMA that is falls out of the geometry — it is not a choice between pairs. | M | decision **D-14**, §11 |
 
-| 7.1.7 | **"Staying above/below" needs no bar count and no tolerance band.** The gate is read on each bar's **close** against the 50. When price straddles the 50, the two sides keep alternating, Step 1 keeps failing its own gate, and the count keeps resetting (§2.4) — *"if candles keep sticking up and down the 50, it's choppy … practically it could mean that we count/reset continuously."* | M | decision **D-19**, §11 |
+| 7.1.7 | **"Staying above/below" needs no bar count and no tolerance band.** The gate is read on each bar's **close** against the 50. When price straddles the 50, the two sides keep alternating, Step 1 keeps failing its own gate, and the count keeps resetting (§2.4) — in the user's words when settling **D-19**, *"if candles keep sticking up and down the 50, it's choppy … practically it could mean that we count/reset continuously."* **That quotation is the user's, not the material's** — it appears nowhere under `edu/`, and is marked so because every other italic quotation in this file is material. | M | decision **D-19**, §11 |
 | 7.1.8 | Therefore **there is no chop detector.** Chop is not a state the engine recognises; it is what continuous count-and-reset looks like from outside. The same holds for price stuck around the 10/20 and the 200. | M | decision **D-19**, §11 |
 
 **Engine note.** Two roles that look like one: *gating* (7.1.2) must be one fixed pair or the engine
@@ -441,7 +447,7 @@ a tolerance on 7.1.7 — continuous count-and-reset **is** the chop reading, wit
 | 7.4.1 | Definition: *"any part of the chart where price may be moving but the stoic lens gives you no clear reason to risk capital."* Price moving in it is not evidence it was tradable. | J | `OTV @ 25:30` |
 | 7.4.2 | Enumerated instances: the middle of the range; **messy chop around the 20 and 200 SMA**; low-conviction candles far from meaningful levels; **setups with no trap side**; **trades with no clean invalidation**; **trades with no realistic target**; boredom trades; chase trades. | J | `OTV @ 26:20` |
 | 7.4.3 | The only mechanical statement of it found in the corpus: *"we do not trade these setups in the middle of previous daily high and previous daily low; we only trade these setups when price has traded to our POIs."* | M | `CST @ 22:22` |
-| 7.4.4 | Three of 7.4.2's instances are already mechanical under this rulebook: no clean invalidation → no PTB stop (§5.4.1); no realistic target → the room condition (§5.4.4, open); no trap side → §7.3. | — | derived |
+| 7.4.4 | **One of 7.4.2's instances is mechanical under this rulebook; two are not.** *No clean invalidation* → **is** mechanical: §5.4.1 gives every signal a numeric stop by construction. *No realistic target* → the room condition at **§5.4.6** (not §5.4.4), which is **P** and open on **O-10**. *No trap side* → §7.3's *Trapped side*, which is **J**. An earlier version of this row called all three *"already mechanical"*. | — | derived |
 
 **Open:** the no-edge zone as a whole is taught as a list of situations, not a condition — see §12
 row **O-9**.
@@ -453,7 +459,7 @@ row **O-9**.
 | 7.5.1 | *"The setup has to deserve risk."* A setup name is not enough: it must have context, asymmetrical R:R, invalidation, and a reason to exist. | J | `OTV @ 11:11`, `CMD` §4 |
 | 7.5.2 | **No trade is a valid outcome.** Cash is a position. | — | `CMD` §3, `CMD` §8 |
 | 7.5.3 | Observed R expectations in the live session: a scalp of 2–3R is *"a good day"*, 4R *"exceptional"*; a day trade held into the close targets ~5R. These are the trader's stated expectations, **not** a minimum-R rule. | — | `SCALP @ 29:32`, `SCALP @ 32:49` |
-| 7.5.4 | No minimum R is stated anywhere in the corpus. | — | §12 row **O-10** |
+| 7.5.4 | **No minimum R governs the 1-2-3 entry.** One number does exist in the corpus, in the complementary layer: `SSS @ 53:51` says *"the risk to reward is absolutely ridiculous five to one at minimum."* Read in context it describes the R:R a chop-zone setup **offers** when the target is far and the stop tight — the geometry of that setup, not a gate any setup must clear — so it hands **O-10** no threshold. The earlier phrasing here, *"no minimum R is stated anywhere in the corpus"*, was false. | — | §12 row **O-10**; `SSS @ 53:51` |
 
 ---
 
