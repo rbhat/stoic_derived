@@ -38,7 +38,8 @@ SBS, fib geometry, the no-edge zone, the 20/200 SMA session bias — are taught 
 - **Bars.** `data/historical/{NQ,ES}_1m.parquet` — 2019-06-10 → 2026-06-10, ~2.47M rows each,
   UTC-indexed OHLCV. Every timeframe in the Timeframes Guide resamples from these.
   `scripts/normalize_historical_bars.py` produced them.
-- **Transcripts.** Five videos already transcribed in `edu/derived/`.
+- **Transcripts.** `edu/derived/`, indexed by its `manifest.json` — the count moves, so read the
+  manifest rather than a number written here.
 - **Validation material.** Eight case-study PDFs in `edu/resources/`.
 
 ---
@@ -280,11 +281,8 @@ are settled by the human and recorded as strategy decisions, never by searching 
 - **Three source videos exist only on this disk** — gitignored and absent from `videos.zip`. Losing
   them costs Phase 1 its most on-scope input.
 
-## Kickoff
+## The one ordering rule left
 
-Start at **Phase 0 and Phase 1** — they share no state and can run at the same time. Neither one
-needs a decision from the register, which is why they come first: they build the ground Phase 2
-stands on while the spec work is still open.
-
-Do not start Phase 5 before Phase 2 has closed the register. Writing the engine against an
+Phases 0 and 1 are closed, so the kickoff advice that stood here is spent. What still binds:
+**do not start Phase 5 before Phase 2 has closed the register.** Writing the engine against an
 unfinished spec is the specific failure this plan is shaped to avoid.

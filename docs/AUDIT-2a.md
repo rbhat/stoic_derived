@@ -1,7 +1,9 @@
 # Phase 2a — the invented-rule audit
 
-**Opened 2026-08-08. The sweep is complete and every finding below is verified against source. What
-is left is the judgment half: class the rules, apply the dispositions, report the count moved out.**
+**Opened and closed 2026-08-08. This is a record of a finished phase — nothing in it is outstanding.**
+Every finding below is verified against source, every disposition is applied, and the carry-over list
+at the end was discharged in the two commits that followed. `docs/STATE.md` holds what is true now and
+deliberately does not summarise this file. Read it for *why* a rule in §1–§9 says what it says.
 
 `docs/PLAN.md` Phase 2a defines the job: sweep `docs/RULEBOOK.md` §1–§9 and class every rule as
 *cited* / *human decision* / *invented*, and get the third class out of the spec before Phase 5
@@ -364,9 +366,10 @@ outran its **cited** sources, never whether an uncited source exists.
 2. **A live-marked reset now exists as a fixture.** §2.4's reset is currently sourced only from
    narration (`SCALP`, `DISC` + `Q1.png`). `stoic_trade2.png` shows a bearish count completing and a
    bullish count starting, on one chart, with real prices — which is what Phase 3 needs.
-3. **`BE` is drawn on a live chart**, corroborating the break-even trigger that `docs/STATE.md` lists
-   as read-but-not-folded-in from `TPA @ 00:13:00`. §6 has no break-even rule; §6.1 only quotes `ET`'s
-   *"put stop to break even"* at TP1.
+3. **`BE` is drawn on a live chart** — at the time, §6 had no break-even rule at all and §6.1 only
+   quoted `ET`'s *"put stop to break even"* at TP1. **Superseded:** the rule is now §5.4.5 / **D-25**,
+   and reading the chart closely showed this claim overreached — `BE` records *where* the stop went,
+   never *which event* moved it, so it corroborates the practice but **not** the trigger. See §10.9.
 
 **And two level types the material uses but §7.3 does not define.** `PWC` (previous weekly close) and
 `PLOW` (previous low of the week) are drawn on these charts and taught in the corpus — `PTBV @
@@ -384,7 +387,8 @@ output here is the finding. What Phase 2a must do is stop claiming a silence it 
 
 ## What the audit has already produced
 
-**D-23 was rewritten before the sweep finished** — see `docs/STATE.md`. It is the model for what a
+**D-23 was rewritten before the sweep finished** — the decision itself is `docs/RULEBOOK.md` §11, and
+`git log -- docs/RULEBOOK.md` has the rewrite. It is the model for what a
 Phase 2a disposition looks like: a predicate that had been recorded as a human decision on the belief
 that the material was silent, found contradicted, put back to the human, and returned to **J** with
 an open row (**O-14**). It also cost the spec a blocker it did not previously know it had.
@@ -512,11 +516,14 @@ All six items are done:
 6. **Report the count moved out.** Above, un-minimised, including the caveat that the largest
    invented mechanism was caught by asking rather than by sweeping.
 
-**Carried out of this audit, for the pass that follows it** — F-13's disposition is about the corpus,
-not about §1–§9, so it does not gate the exit:
+**Carried out of this audit — all discharged 2026-08-08, in the two commits after it.** F-13's
+disposition was about the corpus, not §1–§9, so it never gated this exit. Where each landed:
 
-- Citation keys in §0 and worked examples in §10 for `stoic_trade2.png`, `stoic_live_trade3.png`,
-  `stoic_live_trade4.png`; correct §10.7's "first fully-marked" claim.
-- An open row for **`PWC` / `PLOW`** — previous-week levels, used as targets in the material and
-  drawn on the charts, undefined in §7.3.
-- Fold in `TPA`'s management content (`docs/STATE.md` Open), now with `BE` corroborated on a chart.
+- The three charts → keys `T2` / `LT3` / `LT4` in §0, worked examples §10.8–§10.9, §10.7 corrected.
+- The previous-week levels → **defined** in §7.3 as `PWC` / `PWH` / `PLOW`, all cited, with **O-16**
+  opened for the one part the material does not pin (a weekly analogue of HCOM/LCOM).
+- `TPA`'s management content → **D-26** (lower high is a cue, not an invalidation), **D-27** (HTF
+  alignment is a confidence input, not a gate), and the **D-7 amendment** dropping 1m execution.
+
+**Nothing in this file is outstanding.** It is a record of a closed phase; `docs/STATE.md` holds what
+is true now and does not summarise it.
