@@ -7,15 +7,27 @@ Phase 2's exit gate names a *two-reader* test that has never actually been run �
 closed is not the same claim, so do not report that gate as met.
 
 **Phase 5 is under way: L0, L1 and L2 are built.** Baseline as at 2026-08-09: `pytest`
-**122 passed**, `scripts/verify_citations.py` **205 citations across 8 sources, all resolve**,
+**140 passed**, `scripts/verify_citations.py` **207 citations across 8 sources, all resolve**,
 negative control PASS.
 
-**Next step: L2's four terms go to Phase 4's SLM — the user's call, 2026-08-09.** L2's machine is
-built with them injected, so nothing runs end to end until they are filled in. They are the four
-terms the spec deliberately leaves unquantified: *"meaningful"* for the Step 1 break and close
-(§2.1.1 **P**, §2.1.4 **J**, **D-2** sets no threshold), *"meaningful close"* for Confirmed Step 3
-(§2.3.4 **P**), an **obvious base** (§2.2.5 **J**, **D-3** qualitative), and **boundary selection**
-(§2.2.6–§2.2.9 **J**, under the §2.2.8 no-hindsight constraint). None is an open §12 row.
+**Two of L2's four terms are decided; two go to Phase 4's SLM.** The four are the terms the spec
+deliberately leaves unquantified, and the split as at 2026-08-09 is:
+
+- **Decided — D-29, the human's call.** *"Meaningful"* for the Step 1 break and close (§2.1.1) and
+  *"meaningful close"* for Confirmed Step 3 (§2.3.4), which the user chose to treat as **one
+  question**. The rule: **the close must sit beyond its reference by ≥10% of the parent bar's
+  high-low range** — reference being the *further* MA for Step 1 and the selected boundary for Step
+  3. Parent bar per §5.2.8a / **D-23**, not `i-1`. Built in **`stoic/judgment.py`**, deliberately
+  outside `stoic/sequence.py` so the machine stays threshold-free. **The number is chosen, not
+  measured** — the census found no passage quantifying either term.
+- **Still open, routed to the SLM.** An **obvious base** (§2.2.5 **J**, **D-3** qualitative) and
+  **boundary selection** (§2.2.6–§2.2.9 **J**, under the §2.2.8 no-hindsight constraint).
+  `decided_judgment()` requires both as arguments and supplies no default, which is the correct
+  state. **Nothing runs end to end until they are filled in.**
+
+**D-29 created one new open row: O-17.** It uses 10% of the **parent** bar's range; **D-24**/§5.4.7b
+uses 10% of the **candle's own** range. Same number, different denominator, noticed rather than
+decided — same shape as **O-15**, which sits one row above it. Neither blocks.
 
 **The first deliverable is a passage census, not a trained model.** The whole corpus is **66,463
 words** across 9 transcripts — small enough to read whole, so fine-tuning on it would memorise
@@ -24,8 +36,17 @@ each of the four terms, with citations, into `docs/evidence/census_meaningful.md
 `docs/evidence/census_base_boundary.md`. That is both the input the SLM proposes over and the eval
 set for what it proposes. It may settle a term outright, or show the material never speaks to it —
 which is the answer, and sends that term to the human. **Brief: `.scratch/census_brief.md`**
-(gitignored, this machine only — regenerate it from this paragraph if lost). Two Sonnet agents were
-dispatched on 2026-08-09 and died on a session limit with nothing written; nothing is part-done.
+(gitignored, this machine only — regenerate it from this paragraph if lost).
+
+**Both censuses are written as at 2026-08-09** — 157 citations across 9 sources, all resolve.
+**No passage in either one quantifies any of the four terms.** That is what makes **D-29** a decision
+rather than a derivation, and it is why the two terms it does not cover went to the SLM instead of
+being guessed. Two findings that are not about the four terms: `OTV` and
+`edu/derived/concept_the_only_trading_video_that_you_will_ever_need/transcript.md` are the **same
+video transcribed twice** (only the first has a §0 key — the `DIA-P`/`DIA-L` failure again), and
+`MS` is in `scripts/verify_citations.py`'s `SOURCES` map but missing from §0's key table. Neither is
+acted on. `scripts/verify_citations.py` now takes optional paths so `docs/evidence/` can be checked;
+with no argument it still scans `docs/RULEBOOK.md` alone, which is the gate and the baseline above.
 
 **Two things that routing does not change.** The SLM **proposes; it never decides** — `VISION.md`
 keeps it offline and out of the live path, and §0 says a proposed number for a **J** term *"is a
@@ -75,8 +96,9 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-1. **Phase 5 — the rulebook engine.** L0 and L1 are built (table below). **L2 is next and needs the
-   four decisions named at the top of this file first.** L3 → L5 follow per the `docs/PLAN.md`
+1. **Phase 5 — the rulebook engine.** L0, L1 and L2 are built (tables below), and **D-29** fills two
+   of L2's four injected predicates. **L3 is next; running L2 end to end still needs the obvious
+   base and boundary selection from the SLM.** L3 → L5 follow per the `docs/PLAN.md`
    layer table, pure functions over bars, no network and no model, each layer unit-tested against
    hand-built fixtures with a negative control per `coding_rules.md`.
 2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
@@ -113,7 +135,7 @@ context and targets, never a step of the sequence, and they yield on conflict.
 ## What Phase 5 L0 and L1 built
 
 Pure functions over bars — no disk I/O, no network, no clock, no model. Tests are hermetic and
-hand-built; the suite is 76.
+hand-built; the suite is 76. L2's decided predicates add 18 more in `tests/test_judgment.py`.
 
 | | |
 |---|---|
@@ -123,12 +145,22 @@ hand-built; the suite is 76.
 | `stoic/levels.py` | PDH/PDL/PDC, PWC/PWH/PLOW, HCOM/LCOM (§7.3, **D-8**). HCOM/LCOM are highest/lowest daily **close** — *"not the highest wick"* |
 | `stoic/sequence.py` | **L2.** The Step 1 → Step 2 → Step 3 machine, the reset (**D-15**), the directional state (**D-21**), the running Step 3 High/Low (**D-16**, not frozen here), the Step 2 swing (**D-20**), and the three §5.4.7 invalidation events |
 
-**L2's four unquantified terms are injected, not implemented.** `Judgment` is a frozen dataclass of
-four predicates with **no defaults** — *"meaningful"* break, obvious base, boundary selection,
-*"meaningful close"*. L2 enforces every mechanical clause itself and asks a predicate only about the
-unquantified adjective; a predicate is not even called when a mechanical precondition fails. §2.2.8
-is enforced structurally: `select_boundary` receives bars truncated at the base's last bar, so it
-cannot see the break. **Nothing runs end to end until the four are decided.**
+**L2's four unquantified terms are injected, not implemented — and that has not changed now that
+two are decided.** `Judgment` is a frozen dataclass of four predicates with **no defaults** —
+*"meaningful"* break, obvious base, boundary selection, *"meaningful close"*. L2 enforces every
+mechanical clause itself and asks a predicate only about the unquantified adjective; a predicate is
+not even called when a mechanical precondition fails. §2.2.8 is enforced structurally:
+`select_boundary` receives bars truncated at the base's last bar, so it cannot see the break.
+**Nothing runs end to end until the remaining two are decided.**
+
+**`stoic/judgment.py` is where a decided predicate lives — never `stoic/sequence.py`.** It holds the
+two **D-29** predicates and the single constant `MEANINGFUL_FRACTION = 0.10`, each naming the §11
+row that authorised it. It fixes two conventions in its docstring rather than in `docs/RULEBOOK.md`,
+the same disposition `candles.py` took for its inside-bar tie-break: **no parent bar means not
+confirmed** (head of frame — no yardstick, so `False`, never a pass), and **a non-finite parent range
+means not confirmed**, while a parent range of exactly zero is left to the literal arithmetic.
+`attach_parent_pos(bars)` must be called once per frame; the predicates raise rather than guess if
+the column is absent.
 
 **Invalidation scope outlives the directional state, and that is the rulebook, not a convenience.**
 An L2 count dies at the 10/20 reset (§2.5.8, **D-21**); the §5.4.7 conditions attach to a position

@@ -9,6 +9,16 @@ metadata:
 break and close, *"meaningful close"* for Confirmed Step 3, an **obvious base**, and **boundary
 selection** — the four injected predicates in `stoic/sequence.py`'s `Judgment`.
 
+**Update 2026-08-09, later the same day — two of the four came back and the human decided them.**
+Presented with the census, the user set both *"meaningful"* terms himself as **D-29** (≥10% of the
+parent bar's range beyond the reference) and treated them as **one question**, leaving only the
+obvious base and boundary selection with the SLM. **Read that as the routing working, not as it
+being overridden:** the census ran first, established that *no passage quantifies either term*, and
+only then was a number chosen — which is the order `audit-hard-rules-not-in-material.md` asks for.
+The generalisable part is the one already recorded there: **once the passages are enumerated, what
+is left is a choice, and a choice is the human's — offer it to them before parking it in a phase.**
+Do not read "routed to the SLM" as meaning the human may not simply decide.
+
 **Why:** the user's standing position is that these are exactly what the SLM exists to discover from
 the material. Deciding them cold — by the agent, or by asking the human to pick a number with no
 bars in front of them — pre-empts that, which is the failure
