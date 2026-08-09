@@ -131,6 +131,42 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
    (**O-10** — record it, do not gate on it), trapped side (§7.3, **J**), the rest of §7.4.2
    (**O-9**), and §7.4.3 (**O-19**). **HTF alignment is L5's own work and is not a gate** (§7.5.5,
    **D-27** — it raises the confluence score and never blocks).
+
+   **L5 is the last layer. §3, §5.3.10, §5.4.2, §6 and `VISION.md`'s schema scope it — read those,
+   not this summary.** **In scope:** the **signal record** in `VISION.md`'s schema, plus one field
+   that schema omits — the §5.3.10 engine note requires storing **both the trigger and the fill**,
+   because they differ on a gap and only the fill sets R. **R = |fill − PTB extreme|** (§5.4.2),
+   fixed once at fill, no floor (**D-18**); the engine note on §5.4.4/§5.4.5 binds — break-even
+   moves the **stop**, not R, so the record carries the break-even *event* and never a second R.
+   **TP1 = the Step 3 High/Low frozen at fill** (§6.1, **D-6**, **D-16** §3.5) — L3 already emits it
+   as `step3_extreme` on `ENTRY_FILLED`, so L5 reads it rather than re-deriving it. And **Type
+   instantiation** (§9, **D-7**): the setup timeframe per Type, Scalp and Day wholly on the 5m —
+   which is also what tells L4's `fast_chart` what chart it is on.
+
+   **Two things L5 needs that nothing has pinned. Neither is a number to pick quietly.**
+
+   1. **The confluence score.** `VISION.md` requires confidence to be *"a deterministic confluence
+      score computed by the rules — not a model output."* The rulebook names exactly **one** input —
+      **D-27**'s HTF alignment, which raises it and never blocks — and **no** weights, no other
+      inputs, no scale. Choosing a set and weighting it is what
+      `claude_memories/audit-hard-rules-not-in-material.md` forbids, and any choice would look
+      reasonable, which is precisely what makes it L5's trap. **Put it to the human before writing
+      it.**
+   2. **TP2's fib anchors.** §6.2 / **D-6** give the ratio (2.618) and **D-20** gives the swing (Step
+      2, the first pullback), but a trend-extension tool takes **three** points and no rule pins
+      them. L2 exposes `step1_pos`, `step2_swing_pos`, `step2_swing_price` and `base`, so the
+      geometry is reachable without reaching past a layer — what is missing is the *reading*, not the
+      data. **Not blocking: TP1 is fully defined, so a v1 record carrying TP1 stands without it.**
+
+   **Out of scope for L5, and each one is a trap:** no **minimum-R or "sufficient room" gate**
+   (§5.4.6, **O-10** — `m` is unset; record R, never gate on it); no **anticipatory entry** (§5.5,
+   **D-11** — it appears in the labelled material and the engine must not emit it); **climax** (§4.3)
+   and the **lower-high cue** (§6.5a, **D-26**) **annotate only** — §4.3 is a hard constraint that
+   neither may fire, suppress or invalidate a signal; **partial sizing** and the TP1/TP2 ordering stay
+   open on **O-7**; no new gates (**O-9**, **O-19**, §7.3's **J**); **slippage stays unmodelled beyond
+   the gap** (§5.3.7 engine note) and if Phase 6 finds that flattering it must change in **one**
+   place; and tracking a signalled trade to its outcome, the flatten and the ledger are **Phase 7**,
+   not L5.
 2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
    backtest once the system is on."* It is **not cancelled**: Phase 6 cannot report fidelity without
    it, and it is the evidence that would confirm or overturn **D-28**. It simply does not gate the
