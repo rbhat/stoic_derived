@@ -23,6 +23,7 @@ open the source. A row that starts to look like a paraphrase has become a bug.
 | Emit a second signal while a direction is still running | `docs/RULEBOOK.md` — §2.5 and §3.7; decision **D-21** |
 | Fill an order, or decide what a gap through the trigger costs | `docs/RULEBOOK.md` — §5.3.7–§5.3.10 and the engine note under them (R comes from the fill, not the trigger) |
 | Reach for a lookback or tolerance on an MA filter | `docs/RULEBOOK.md` — §7.1.7 and the note under it |
+| **Gate a signal on R, on a trapped side, or on HTF alignment** | `docs/RULEBOOK.md` §7.5.4 and **O-10** (record R, do **not** gate); §7.3 *Trapped side* (**J** — inventing it is what `claude_memories/audit-hard-rules-not-in-material.md` forbids); §7.5.5 / **D-27** (HTF alignment raises the confluence score and **never blocks** — it is L5's, not a gate). Also §7.1.4: the 200 SMA rule is **long-only**, and the row says the material never states the mirror |
 | Reach for a rule from the daily-templates / signal-days / chop-zone material | `docs/RULEBOOK.md` — §13 |
 | Label a fixture off a marked chart, or go looking for its stop | `docs/RULEBOOK.md` §10.10 — no chart in §10 draws a stop, and the R labels are dollar-normalised; recover the distance, do not guess it. Read the two limits stated there before relying on it |
 | Reach for a previous-week level | `docs/RULEBOOK.md` §7.3 — `PWC` / `PWH` / `PLOW` and the week-boundary note (`stoic/bars.py`, ISO week over CME trading days); §12 row **O-16** for the one that is *not* defined |

@@ -119,9 +119,20 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
    (`find_base`), the last unquantified term. `replay_entries` exists and is tested, but only against
    a stub judgment; it cannot be driven over real bars until `find_base` is decided. L4 → L5 follow
    per the `docs/PLAN.md` layer table, pure functions over bars, no network and no model, each layer
-   unit-tested against hand-built fixtures with a negative control per `coding_rules.md`. **L4's
-   inputs are already decided** — `D-18` removed the mechanism **O-5** was blocking on, and **O-9**
-   (the no-edge zone) is a filter, not a signal.
+   unit-tested against hand-built fixtures with a negative control per `coding_rules.md`.
+
+   **L4 is buildable now and needs nothing open — but most of its work is what it must *not* do.**
+   §7 was read end to end on 2026-08-09 to establish this; read it again rather than trusting this
+   summary. **In scope:** the **50 SMA gate** (§7.1.2, **D-19** — per-bar close, no lookback, no
+   tolerance, and **no chop detector**: chop is what continuous count-and-reset looks like from
+   outside, §7.1.8); the **200 SMA rule** (§7.1.4 — *long-only*, because the row says outright the
+   material never states the mirror, so **do not assume symmetry**); and the one mechanical no-edge
+   instance (§7.4.3 — no setups in the middle of PDH/PDL, which `stoic/levels.py` already computes).
+   **Out of scope, and each one is a trap:** no **minimum-R gate** (§7.5.4, **O-10** — record R, do
+   not gate on it); no **trapped-side** filter (§7.3 — **J**, and inventing it is exactly what
+   `claude_memories/audit-hard-rules-not-in-material.md` forbids); **HTF alignment is not a gate**
+   (§7.5.5, **D-27** — it raises the confluence score and never blocks, so it is **L5's**); and the
+   rest of §7.4.2's instances stay open on **O-9**. L4 should need no threshold, same as L3.
 2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
    backtest once the system is on."* It is **not cancelled**: Phase 6 cannot report fidelity without
    it, and it is the evidence that would confirm or overturn **D-28**. It simply does not gate the
