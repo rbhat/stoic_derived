@@ -18,7 +18,12 @@ they do, all of them, including under the Phase 2a sweep. It was never a check o
 `diff` empty, three paths one content. §10.3 concludes *"two independent drawings agreeing bar for
 bar is why §3.4 and §5.3.4 could be stated mechanically"*, and there are not two drawings. The
 diagram's content is real and the geometry checks out; the **corroboration argument is void**, and
-two rules were promoted to **M** partly on it. Not yet applied — see `docs/AUDIT-2a.md` F-1.
+two rules were promoted to **M** partly on it.
+
+**The factual half is applied** — §0 discloses the identity, §10.3's two false sentences are gone,
+and §5.2.4 / §5.3.6 no longer count one drawing twice. **The judgment half is open:** §3.4 and §5.3.4
+now stand on `DIA-L` plus the transcripts alone, and nobody has re-checked whether that carries their
+**M**. See `docs/AUDIT-2a.md` F-1.
 
 **Three things now block Phase 5.** O-5 above, **O-14** (below), and **Phase 2a — the invented-rule audit**
 (`docs/PLAN.md`), opened 2026-08-08 on the user's directive. Phase 2 made the rules computable, and
@@ -56,6 +61,7 @@ against the trade direction**; and a **close beyond the Step 2 boundary against 
 direction** — trading through it is not enough, which makes 5.4.7c the mirror of §2.3.1, where a
 trade through the *same* line is what starts Step 3. All three exits are close-based; the stop is the
 only trade-through in the exit path.
+
 The MA condition is corroborated (`TPA @ 00:24:48`, `PTBV @ 00:03:28`); the **Step 2 boundary
 condition was not found anywhere in the corpus** and is the user's, as is *strong* — so it is a
 decision, not a citation. It narrows §6.5, which still says the position is *"simply held"*.
@@ -76,7 +82,8 @@ in `docs/PLAN.md` was the intake form and is now historical.
   `concepts/PTB Questions.md` notes from the user.
 - **Added 2026-08-03:** the `PTB Entries - NQ Live Trading 10R` video (1h38m, `PTBV` — a full session
   traded on PTB continuation entries, and the densest single source on §2.5 and §5.3),
-  `1-2-3-PTB-Long.svg` (`DIA-P` — `DIA-L` re-drawn with the Step 3 High and PTB labelled),
+  `1-2-3-PTB-Long.svg` (`DIA-P` — **not a re-drawing: byte-identical to `DIA-L`**, as this file
+  claimed until the audit checked the md5; see the F-1 note above),
   `nq-1-2-3.png` (`NQ3` — the first fully-marked live chart with real prices, worked at
   `docs/RULEBOOK.md` §10.7), and one clarifying sentence appended to `PTB Questions.md`.
 - **Added 2026-08-08:** the `Navigating tough price action with 1-2-3 and PTBs` video (58:00, 410

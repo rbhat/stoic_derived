@@ -74,9 +74,18 @@ were promoted to **M** partly on the strength of a corroboration that does not e
 coordinates and reports 3.2 and 3.6 geometrically correct. The claims are fine; the *corroboration
 argument* is void.
 
-**Disposition (not yet applied).** §0 must disclose that `DIA-P` is the same bytes as `DIA-L`, the
-way it already discloses `step-1-2-3.svg`. §10.3's "two independent drawings" sentence must go. Then
-§3.4 and §5.3.4 need re-justifying on what is actually left, or demoting.
+**Disposition — factual half applied 2026-08-08, judgment half open.**
+
+- **Applied.** §0 now discloses the byte-identity and says never to cite `DIA-P` as corroboration of
+  `DIA-L`. §10.3's two false sentences are gone, replaced by what is actually true: the labels are
+  real, the corroboration is not. Done because leaving a *verified-false* claim in the binding spec
+  across a context reset is worse than leaving it unresolved — the next reader treats §10.3 as source
+  of truth.
+- **Open.** §3.4 and §5.3.4 were promoted to **M** partly on the void corroboration. They now stand
+  on `DIA-L` plus the transcripts alone. **Nobody has re-checked whether that carries M** — the rules
+  may well be fine, but the argument that put them there is gone. This is the judgment half and it is
+  the lead's call, not a subagent's.
+- Also check `DIA-P`'s other citation sites — §5.2.4, §5.3.6 — for the same "two drawings" reasoning.
 
 ### F-2 — 2.3.10 imports "wick"
 

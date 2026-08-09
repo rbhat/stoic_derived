@@ -36,7 +36,7 @@ strategy decision requiring the human, per the standing directive in `CLAUDE.md`
 | `DISC` | `edu/123sequence/discussion/discussions.md` (with `discussion/Q1.png`) |
 | `DIA-L` | `edu/123sequence/entry_technique/step-3-pullback-diagram.svg` (bullish; byte-identical to `step-1-2-3.svg`) |
 | `DIA-S` | `edu/123sequence/entry_technique/step-3-pullback-bearish-diagram.svg` |
-| `DIA-P` | `edu/123sequence/1-2-3-PTB-Long.svg` (bullish, PTB-annotated) |
+| `DIA-P` | `edu/123sequence/1-2-3-PTB-Long.svg` — **byte-identical to `DIA-L`** (md5 `5db99292…`), so it is the *same drawing under a third path*, not a second one. Cite it for its labels, never as corroboration of `DIA-L` |
 | `IBD` | `edu/123sequence/insidebar.png` (the inside-bar schematic: one parent bar, two inside bars, a breakout bar) |
 | `LT` | `edu/123sequence/entry_technique/step-3-livetrade.png` |
 | `NQ3` | `edu/123sequence/nq-1-2-3.png` (NQ 5m, bullish, live-marked) |
@@ -237,7 +237,7 @@ The engine emits **one signal per PTB activation**, so one directional state can
 | 5.2.2 | **PTB (Pullback Trigger Bar)** = *"simply the last candle in that pullback."* | M | `ET`, `HOW` |
 | 5.2.3 | Bullish: place a **buy stop above the PTB high**; entry triggers when price trades above it. Bearish: the last candle of the **bounce** is the PTB; place a **sell stop below its low**. | M | `ET` |
 | 5.2.3a | The order is a **stop market at the PTB extreme** — the PTB high for a long, the PTB low for a short. No buffer beyond the extreme. | M | decision **D-12**, §11 |
-| 5.2.4 | In `DIA-L` the Entry line sits exactly at the PTB bar's **high**, and the next bar trades through it. Mirror in `DIA-S` at the PTB **low**. `DIA-P` draws the same line at the same level on the same schematic, labelled. | M | `DIA-L`, `DIA-S`, `DIA-P` |
+| 5.2.4 | In `DIA-L` the Entry line sits exactly at the PTB bar's **high**, and the next bar trades through it. Mirror in `DIA-S` at the PTB **low**. (`DIA-P` shows the same line, but it **is** `DIA-L` — one drawing, so this rests on the bullish/bearish pair, not on three sources.) | M | `DIA-L`, `DIA-S` |
 | 5.2.5 | The pullback **need not reach the moving averages or retest the old base.** *"A shallow pullback can qualify."* | M | `PTBQ` §3 |
 | 5.2.6 | The PTB pullback has **no MA-touch and no base-touch requirement** — this is what distinguishes it from Step 2, which does require the visual retest of the 10/20 area. | M | `PTBQ` §3 |
 | 5.2.7 | 5.2.6 restated live as a preference, not a gate: *"ideally it will touch the moving averages, that's a nice healthy pullback — sometimes it won't."* Remarks elsewhere in the same session that a pullback is *"a bit early because we never touched the moving averages"* are quality reads on the same permissive rule, not a second condition. | M | `PTBV @ 00:08:47`, `PTBV @ 00:43:43`, `PTBV @ 00:43:50` |
@@ -270,7 +270,7 @@ Each term that paragraph leaves open: buffers by **D-12** (none), the three-bar 
 | 5.3.3c | **No body test and no lower-high test.** Both mechanical readings were put to the human and **rejected as over-specification**: neither `close < open` nor "makes a lower high" is a condition of this spec. Do not reintroduce either as an implementation convenience. | J | decision **D-23**, §11 |
 | 5.3.4 | **There is no bar cap.** *"The 3 bar window is not definite but a PTB has 2 sides — the direction, the pull back trigger and the move again going back."* The PTB is fixed by **structure, not by count**: it is the last PTB candidate before the move resumes. | M | `PTBQ` §1; decision **D-17**, §11 |
 | 5.3.5 | Therefore the working order **re-anchors every bar**: while the pullback continues, each newly completed PTB candidate becomes the PTB and the resting stop moves to its extreme. The order fires on the first trade beyond the current anchor. Stated live as *"we want to trail behind the PTB"*, and again as *"I'm just following the candles down until we have the candle that's PTB."* Corroborated across a whole session: *"all we're doing is ptb entries and we are trailing behind them."* | M | decision **D-17**, §11; `PTBV @ 00:35:34`, `PTBV @ 01:32:55`, `PTBV @ 01:33:01`; `TPA @ 00:17:50` |
-| 5.3.6 | `DIA-P` shows the mechanism with a **two**-bar pullback: two down candles into the moving averages, the **later** one carries the Entry line at its high. Two, not three — the count is incidental. | M | `DIA-P` |
+| 5.3.6 | The schematic shows the mechanism with a **two**-bar pullback: two down candles into the moving averages, the **later** one carries the Entry line at its high. Two, not three — the count is incidental. One drawing, cited under either name. | M | `DIA-L` (= `DIA-P`) |
 | 5.3.7 | **Fill price.** The order is a stop market (5.2.3a), so it fills **at the trigger** when the bar trades through it, and **at the bar's open** when the bar **gaps past** it — a market fill, taken at whatever the gap offers. A fill is **never better than the trigger**. | M | decision **D-22**, §11 |
 | 5.3.8 | **A level that is never traded is not an entry.** *"This would be the ptb entry — price never triggered it"*, and the read moves on to the next PTB. No chasing, no relaxed level. | M | `PTBV @ 00:12:51` |
 | 5.3.9 | Corroborating 5.3.7 live — when price has already left the level, the trade is taken at the price available rather than skipped: *"another entry, thousand dollar stop loss, I gotta do market — this is a ptb entry."* | M | `PTBV @ 00:23:37` |
@@ -517,12 +517,17 @@ Reading the bullish diagram left to right (the bearish one is its exact mirror):
 
 In this diagram the PTB's low lands on the 20 SMA — but §5.2.5 makes that incidental, not required.
 
-**`DIA-P` is the same schematic with the labels made explicit** — bar for bar identical, adding the
-`Step 3 High` and `PTB` callouts and stating in its own description: *"the Step 3 High on the second
-expansion candle, two down candles into the moving averages, the last down bar as the PTB, and the
-entry."* Its Entry line sits at y = the PTB bar's high exactly, with no offset, which is the
-independent confirmation of **D-12**. Two independent drawings agreeing bar for bar is why §3.4 and
-§5.3.4 could be stated mechanically.
+**`DIA-P` is not a second drawing — it is this same file at a third path.** `1-2-3-PTB-Long.svg`,
+`step-3-pullback-diagram.svg` and `step-1-2-3.svg` all hash to `5db99292…` and `diff` empty. Its
+`Step 3 High`, `PTB` and `Entry` labels are real and its Entry line does sit at y = the PTB bar's
+high exactly with no offset — so it remains a legitimate citation **for its own content**.
+
+**What it cannot do is corroborate.** This passage previously called that entry line *"the
+independent confirmation of D-12"* and concluded *"two independent drawings agreeing bar for bar is
+why §3.4 and §5.3.4 could be stated mechanically."* Both sentences were false: agreement between a
+file and itself is not evidence. §3.4 and §5.3.4 therefore stand on `DIA-L` and the transcripts
+alone, and **whether that carries their M status is open** — see `docs/AUDIT-2a.md` F-1. `DIA-S` is
+the only genuinely independent drawing in this set, and it is the bearish mirror.
 
 ### 10.4 `M1 @ 17:04`–`21:21` — the narrated chart walkthrough
 
