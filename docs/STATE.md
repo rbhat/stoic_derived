@@ -7,27 +7,37 @@ Phase 2's exit gate names a *two-reader* test that has never actually been run �
 closed is not the same claim, so do not report that gate as met.
 
 **Phase 5 is under way: L0, L1 and L2 are built.** Baseline as at 2026-08-09: `pytest`
-**140 passed**, `scripts/verify_citations.py` **207 citations across 8 sources, all resolve**,
+**149 passed**, `scripts/verify_citations.py` **210 citations across 8 sources, all resolve**,
 negative control PASS.
 
-**Two of L2's four terms are decided; two go to Phase 4's SLM.** The four are the terms the spec
-deliberately leaves unquantified, and the split as at 2026-08-09 is:
+**Three of L2's four terms are decided. One is left: the obvious base.** All four were routed to
+Phase 4's SLM on 2026-08-09; the human then decided three of them the same day, with the census in
+hand. The split as at 2026-08-09:
 
-- **Decided — D-29, the human's call.** *"Meaningful"* for the Step 1 break and close (§2.1.1) and
-  *"meaningful close"* for Confirmed Step 3 (§2.3.4), which the user chose to treat as **one
-  question**. The rule: **the close must sit beyond its reference by ≥10% of the parent bar's
-  high-low range** — reference being the *further* MA for Step 1 and the selected boundary for Step
-  3. Parent bar per §5.2.8a / **D-23**, not `i-1`. Built in **`stoic/judgment.py`**, deliberately
-  outside `stoic/sequence.py` so the machine stays threshold-free. **The number is chosen, not
-  measured** — the census found no passage quantifying either term.
-- **Still open, routed to the SLM.** An **obvious base** (§2.2.5 **J**, **D-3** qualitative) and
-  **boundary selection** (§2.2.6–§2.2.9 **J**, under the §2.2.8 no-hindsight constraint).
-  `decided_judgment()` requires both as arguments and supplies no default, which is the correct
-  state. **Nothing runs end to end until they are filled in.**
+- **D-29 — what makes a break or a close "meaningful."** Covers *both* terms, §2.1.1 and §2.3.4,
+  which the user chose to treat as **one question**. The rule: **the close must sit beyond its
+  reference by ≥10% of the parent bar's high-low range** — reference being the *further* MA for
+  Step 1 and the selected boundary for Step 3. Parent bar per §5.2.8a / **D-23**, not `i-1`.
+- **D-30 — how the boundary is selected.** **Choosing the base determines the line:** the boundary
+  is the base's **close** extreme on the Step 1 side, §2.3.1 forcing the side. Closes not wicks, on
+  the §7.3 / **D-8** precedent. This is a **default, not the whole rule** — §2.2.7's sloping
+  boundary is **retained** and deliberately unimplemented (**O-18**).
+- **Still open: the obvious base** (§2.2.5 **J**, **D-3** qualitative). `decided_judgment()`
+  requires `find_base` as an argument and supplies no default, which is the correct state.
+  **Nothing runs end to end until it is filled in.**
 
-**D-29 created one new open row: O-17.** It uses 10% of the **parent** bar's range; **D-24**/§5.4.7b
-uses 10% of the **candle's own** range. Same number, different denominator, noticed rather than
-decided — same shape as **O-15**, which sits one row above it. Neither blocks.
+**Both numbers are chosen, not measured.** The censuses enumerated every passage on all four terms
+and **none quantifies any of them**; D-30 in particular decides a **6-to-5 split** in the corpus that
+no passage addresses directly. That is what makes them decisions rather than derivations.
+
+**Everything decided lives in `stoic/judgment.py`, never in `stoic/sequence.py`** — the machine stays
+threshold-free, and each predicate names the §11 row that authorised it.
+
+**Two new open rows, both non-blocking, both noticed rather than decided.** **O-17**: D-29 uses 10%
+of the **parent** bar's range while **D-24**/§5.4.7b uses 10% of the **candle's own** — same number,
+different denominator, same shape as **O-15**. **O-18**: when is a base edge a *trend line* rather
+than a level? D-30's horizontal default is always available, so an implementation never has to guess
+— but it may not pick the sloping case silently.
 
 **The first deliverable is a passage census, not a trained model.** The whole corpus is **66,463
 words** across 9 transcripts — small enough to read whole, so fine-tuning on it would memorise
@@ -39,9 +49,9 @@ which is the answer, and sends that term to the human. **Brief: `.scratch/census
 (gitignored, this machine only — regenerate it from this paragraph if lost).
 
 **Both censuses are written as at 2026-08-09** — 157 citations across 9 sources, all resolve.
-**No passage in either one quantifies any of the four terms.** That is what makes **D-29** a decision
-rather than a derivation, and it is why the two terms it does not cover went to the SLM instead of
-being guessed. Two findings that are not about the four terms: `OTV` and
+**No passage in either one quantifies any of the four terms.** That is what makes **D-29** and
+**D-30** decisions rather than derivations, and it is why the one term neither covers — the obvious
+base — is still unfilled rather than guessed. Two findings that are not about the four terms: `OTV` and
 `edu/derived/concept_the_only_trading_video_that_you_will_ever_need/transcript.md` are the **same
 video transcribed twice** (only the first has a §0 key — the `DIA-P`/`DIA-L` failure again), and
 `MS` is in `scripts/verify_citations.py`'s `SOURCES` map but missing from §0's key table. Neither is
@@ -96,9 +106,9 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-1. **Phase 5 — the rulebook engine.** L0, L1 and L2 are built (tables below), and **D-29** fills two
-   of L2's four injected predicates. **L3 is next; running L2 end to end still needs the obvious
-   base and boundary selection from the SLM.** L3 → L5 follow per the `docs/PLAN.md`
+1. **Phase 5 — the rulebook engine.** L0, L1 and L2 are built (tables below); **D-29** and **D-30**
+   fill three of L2's four injected predicates. **L3 is next, and needs none of them; running L2 end
+   to end still needs the obvious base.** L3 → L5 follow per the `docs/PLAN.md`
    layer table, pure functions over bars, no network and no model, each layer unit-tested against
    hand-built fixtures with a negative control per `coding_rules.md`.
 2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
@@ -135,7 +145,7 @@ context and targets, never a step of the sequence, and they yield on conflict.
 ## What Phase 5 L0 and L1 built
 
 Pure functions over bars — no disk I/O, no network, no clock, no model. Tests are hermetic and
-hand-built; the suite is 76. L2's decided predicates add 18 more in `tests/test_judgment.py`.
+hand-built; the suite is 76. L2's decided predicates add 27 more in `tests/test_judgment.py`.
 
 | | |
 |---|---|
@@ -146,16 +156,16 @@ hand-built; the suite is 76. L2's decided predicates add 18 more in `tests/test_
 | `stoic/sequence.py` | **L2.** The Step 1 → Step 2 → Step 3 machine, the reset (**D-15**), the directional state (**D-21**), the running Step 3 High/Low (**D-16**, not frozen here), the Step 2 swing (**D-20**), and the three §5.4.7 invalidation events |
 
 **L2's four unquantified terms are injected, not implemented — and that has not changed now that
-two are decided.** `Judgment` is a frozen dataclass of four predicates with **no defaults** —
+three are decided.** `Judgment` is a frozen dataclass of four predicates with **no defaults** —
 *"meaningful"* break, obvious base, boundary selection, *"meaningful close"*. L2 enforces every
 mechanical clause itself and asks a predicate only about the unquantified adjective; a predicate is
 not even called when a mechanical precondition fails. §2.2.8 is enforced structurally:
 `select_boundary` receives bars truncated at the base's last bar, so it cannot see the break.
-**Nothing runs end to end until the remaining two are decided.**
+**Nothing runs end to end until the obvious base is decided.**
 
 **`stoic/judgment.py` is where a decided predicate lives — never `stoic/sequence.py`.** It holds the
-two **D-29** predicates and the single constant `MEANINGFUL_FRACTION = 0.10`, each naming the §11
-row that authorised it. It fixes two conventions in its docstring rather than in `docs/RULEBOOK.md`,
+two **D-29** predicates, **D-30**'s `select_boundary_from_base`, and the single constant
+`MEANINGFUL_FRACTION = 0.10`, each naming the §11 row that authorised it. It fixes two conventions in its docstring rather than in `docs/RULEBOOK.md`,
 the same disposition `candles.py` took for its inside-bar tie-break: **no parent bar means not
 confirmed** (head of frame — no yardstick, so `False`, never a pass), and **a non-finite parent range
 means not confirmed**, while a parent range of exactly zero is left to the literal arithmetic.

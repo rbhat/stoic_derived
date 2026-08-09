@@ -5,23 +5,27 @@ takes four predicates with no defaults, and L2 asks one only after every mechani
 already holds. This module is the one place a number for those terms is allowed to exist, and
 every number here names the §11 decision that authorised it. Nothing here reads the material.
 
-**Two of the four are filled here -- `D-29`.**
+**Three of the four are filled here -- `D-29` and `D-30`.**
 
-    is_meaningful_break   §2.1.1, §2.1.4  the Step 1 break and close beyond both 10/20 SMA
-    is_meaningful_close   §2.3.4          the close that confirms Step 3
+    is_meaningful_break        §2.1.1, §2.1.4  the Step 1 break and close beyond both MAs
+    is_meaningful_close        §2.3.4          the close that confirms Step 3
+    select_boundary_from_base  §2.2.6          the line the base determines (D-30)
 
-Both use one form: the close must sit beyond its reference by at least **10% of the parent bar's
-high-low range**.
+The two **D-29** predicates share one form: the close must sit beyond its reference by at least
+**10% of the parent bar's high-low range**.
 
     excursion = |close - reference|          reference = the further MA (§2.1.1) or the
                                                          selected boundary (§2.3.4)
     confirmed = excursion >= 0.10 * (parent.high - parent.low)
 
-**Two are deliberately NOT filled** -- `find_base` (§2.2.5, **D-3**) and `select_boundary`
-(§2.2.6 to §2.2.9). They are routed to Phase 4's SLM. An unfilled predicate is the correct
-state; a default here would pre-decide exactly what that phase exists to discover
-(`claude_memories/audit-hard-rules-not-in-material.md`). `decided_judgment()` therefore
-*requires* both as arguments and supplies neither.
+**One is deliberately NOT filled** -- `find_base`, the *obvious base* of §2.2.5 / **D-3**.
+It is the last unquantified term in the engine. An unfilled predicate is the correct state; a
+default would pre-decide exactly what Phase 4 exists to discover
+(`claude_memories/audit-hard-rules-not-in-material.md`), so `decided_judgment()` *requires* it.
+
+**One is filled only in part.** `select_boundary` gets **D-30**'s base-derived default, but
+§2.2.7's **sloping** boundary is retained and is *not* implemented -- see
+`select_boundary_from_base`. Deciding when a base edge is a trend line is still **J**.
 
 **Why the parent bar and not the previous bar.** *Prev candle* is ambiguous in this repo in a
 way §5.2.8a and **D-23** already settled: the reference is the **parent** -- the nearest
@@ -48,7 +52,7 @@ import numpy as np
 import pandas as pd
 
 from stoic.candles import candle_structure
-from stoic.sequence import Boundary, Judgment
+from stoic.sequence import BaseSpan, Boundary, HorizontalBoundary, Judgment
 from stoic.structure import Direction
 
 # The one number in this module. Human decision, 2026-08-09 -- docs/RULEBOOK.md §11, D-29.
@@ -128,15 +132,51 @@ def is_meaningful_close(
     return _clears(bars, pos, excursion)
 
 
+def select_boundary_from_base(
+    bars: pd.DataFrame, base: BaseSpan, direction: Direction
+) -> Boundary | None:
+    """§2.2.6 -- the boundary the base determines: its **close** extreme, Step 1 side. (D-30)
+
+    Choosing the base determines the line. §2.3.1 fixes which side -- Step 3 breaks in the direction
+    of Step 1 -- so the side is forced, not chosen: the highest close of the base for a bullish
+    sequence, the lowest for a bearish one.
+
+    **Closes, not wicks**, per **D-30**. The precedent is §7.3 / **D-8**, where `HCOM`/`LCOM`
+    are the highest and lowest daily *close*, *"not the highest wick"*. §2.1.2's wick rule is
+    about what counts as a *break*, not about where a level is drawn, so it does not bear here.
+
+    Returns `None` when the span yields no usable level, which §2.2.9 already defines as *wait* --
+    never an invented fallback.
+
+    **This is the default, not the whole of §2.2.6.** §2.2.7 is retained: `PC` draws the bullish
+    boundary as an up-sloping line and `SCALP @ 00:05:57` narrates a sloping one live, so a **sloped
+    boundary remains permitted where the base edge is a trend line**. That override is still **J**
+    and is deliberately **not implemented here** -- deciding *when* an edge is a trend line is
+    exactly the predicate `audit-hard-rules-not-in-material.md` forbids inventing. Inject a
+    different selector to supply one; `Boundary` is a Protocol and `level_at(pos)` already carries
+    any shape.
+    """
+    if base.end < base.start:
+        return None
+    closes = bars["close"].iloc[base.start : base.end + 1]
+    level = float(closes.max()) if direction is Direction.BULLISH else float(closes.min())
+    if not np.isfinite(level):
+        return None
+    return HorizontalBoundary(level)
+
+
 def decided_judgment(
     find_base: object,
-    select_boundary: object,
+    select_boundary: object = select_boundary_from_base,
 ) -> Judgment:
-    """A `Judgment` with the two decided predicates filled and the two open ones required.
+    """A `Judgment` with the decided predicates filled and the open one required.
 
-    `find_base` and `select_boundary` have **no defaults on purpose** — they are Phase 4's, and
-    supplying one here would be the failure `audit-hard-rules-not-in-material.md` names. Pass them
-    explicitly, or do not build a `Judgment`.
+    `find_base` has **no default on purpose** -- an *obvious base* (§2.2.5, **D-3**) is the one term
+    still unquantified, and supplying a default would be the failure
+    `audit-hard-rules-not-in-material.md` names. Pass it explicitly, or do not build a `Judgment`.
+
+    `select_boundary` **does** default, to `select_boundary_from_base` -- not because a default is
+    safe in general, but because **D-30** decided it. Override it to supply §2.2.7's sloping case.
     """
     return Judgment(
         is_meaningful_break=is_meaningful_break,
@@ -152,4 +192,5 @@ __all__ = [
     "decided_judgment",
     "is_meaningful_break",
     "is_meaningful_close",
+    "select_boundary_from_base",
 ]

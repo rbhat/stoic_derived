@@ -17,8 +17,9 @@ from stoic.judgment import (
     decided_judgment,
     is_meaningful_break,
     is_meaningful_close,
+    select_boundary_from_base,
 )
-from stoic.sequence import HorizontalBoundary
+from stoic.sequence import BaseSpan, HorizontalBoundary
 from stoic.structure import Direction
 
 
@@ -224,16 +225,122 @@ def test_attach_parent_pos_is_idempotent():
     assert list(again.columns) == list(bars.columns)
 
 
-def test_decided_judgment_fills_two_and_demands_the_other_two():
-    """The SLM's two terms have no defaults — that is the point, so it is a test."""
+def test_decided_judgment_fills_three_and_demands_find_base():
+    """`find_base` has no default — the last unquantified term, so it is a test."""
     sentinel_base = object()
-    sentinel_boundary = object()
-    judgment = decided_judgment(sentinel_base, sentinel_boundary)
+    judgment = decided_judgment(sentinel_base)
 
     assert judgment.is_meaningful_break is is_meaningful_break
     assert judgment.is_meaningful_close is is_meaningful_close
+    assert judgment.select_boundary is select_boundary_from_base  # D-30's default
     assert judgment.find_base is sentinel_base
-    assert judgment.select_boundary is sentinel_boundary
 
     with pytest.raises(TypeError):
         decided_judgment()  # type: ignore[call-arg]
+
+
+def test_decided_judgment_boundary_default_is_overridable():
+    """§2.2.7's sloping case is supplied by substitution, not by a flag."""
+    sentinel_boundary = object()
+    judgment = decided_judgment(object(), sentinel_boundary)
+    assert judgment.select_boundary is sentinel_boundary
+
+
+# ---------------------------------------------------------------------------
+# select_boundary_from_base — the base's close extreme, Step 1 side (D-30)
+# ---------------------------------------------------------------------------
+
+
+def test_bullish_boundary_is_the_highest_close_of_the_base():
+    bars = _bars(
+        highs=[100.0, 118.0, 112.0, 100.0],
+        lows=[90.0, 100.0, 100.0, 90.0],
+        closes=[95.0, 109.0, 111.0, 95.0],
+    )
+    boundary = select_boundary_from_base(bars, BaseSpan(1, 2), Direction.BULLISH)
+    assert boundary == HorizontalBoundary(111.0)
+
+
+def test_bearish_boundary_is_the_lowest_close_of_the_base():
+    bars = _bars(
+        highs=[100.0, 118.0, 112.0, 100.0],
+        lows=[90.0, 100.0, 100.0, 90.0],
+        closes=[95.0, 109.0, 111.0, 95.0],
+    )
+    boundary = select_boundary_from_base(bars, BaseSpan(1, 2), Direction.BEARISH)
+    assert boundary == HorizontalBoundary(109.0)
+
+
+def test_boundary_uses_closes_not_wicks():
+    """Negative control for the rejected reading (D-30, precedent §7.3 / D-8).
+
+    The base's highest *high* is 118.0 but its highest *close* is 111.0. A wick-based line would
+    sit 7 points higher and Step 3 would trigger later, so the two readings are not equivalent.
+    """
+    bars = _bars(
+        highs=[100.0, 118.0, 112.0, 100.0],
+        lows=[90.0, 100.0, 100.0, 90.0],
+        closes=[95.0, 109.0, 111.0, 95.0],
+    )
+    boundary = select_boundary_from_base(bars, BaseSpan(1, 2), Direction.BULLISH)
+    assert boundary.level_at(3) == 111.0
+    assert bars["high"].iloc[1:3].max() == 118.0  # what the wick reading would have given
+
+
+def test_boundary_span_is_inclusive_of_both_ends():
+    bars = _bars(
+        highs=[100.0] * 4,
+        lows=[90.0] * 4,
+        closes=[95.0, 96.0, 97.0, 98.0],
+    )
+    assert select_boundary_from_base(bars, BaseSpan(0, 3), Direction.BULLISH) == HorizontalBoundary(
+        98.0
+    )
+    assert select_boundary_from_base(bars, BaseSpan(0, 1), Direction.BULLISH) == HorizontalBoundary(
+        96.0
+    )
+
+
+def test_boundary_cannot_see_past_the_base():
+    """§2.2.8 is enforced structurally, but the selector must not reach forward either."""
+    bars = _bars(
+        highs=[100.0] * 4,
+        lows=[90.0] * 4,
+        closes=[95.0, 96.0, 97.0, 999.0],  # bar 3 is outside the base
+    )
+    boundary = select_boundary_from_base(bars, BaseSpan(0, 2), Direction.BULLISH)
+    assert boundary == HorizontalBoundary(97.0)
+
+
+def test_degenerate_span_returns_none_rather_than_a_fallback():
+    """§2.2.9 already defines the no-clean-answer case as *wait*."""
+    bars = _bars(highs=[100.0, 100.0], lows=[90.0, 90.0], closes=[95.0, 96.0])
+    assert select_boundary_from_base(bars, BaseSpan(1, 0), Direction.BULLISH) is None
+
+
+def test_all_nan_closes_return_none():
+    bars = _bars(highs=[100.0, 100.0], lows=[90.0, 90.0], closes=[np.nan, np.nan])
+    assert select_boundary_from_base(bars, BaseSpan(0, 1), Direction.BULLISH) is None
+
+
+def test_boundary_feeds_the_confirmation_test_end_to_end():
+    """D-30 picks the line; D-29 then judges the close beyond it. The two compose."""
+    # base = bars 0-1, highest close 100.0 -> boundary 100.0
+    # bar 2 is the parent for bar 3 (range 40 -> threshold 4.0)
+    bars = _bars(
+        highs=[100.0, 100.0, 120.0, 130.0],
+        lows=[90.0, 90.0, 80.0, 100.0],
+        closes=[99.0, 100.0, 95.0, 104.5],
+    )
+    boundary = select_boundary_from_base(bars, BaseSpan(0, 1), Direction.BULLISH)
+    assert boundary == HorizontalBoundary(100.0)
+    assert bars["parent_pos"].iat[3] == 2
+    # excursion 4.5 >= 0.10 * 40 = 4.0
+    assert is_meaningful_close(bars, 3, boundary, Direction.BULLISH) is True
+    # negative control: a close of 103.5 clears the boundary but not the threshold
+    bars2 = _bars(
+        highs=[100.0, 100.0, 120.0, 130.0],
+        lows=[90.0, 90.0, 80.0, 100.0],
+        closes=[99.0, 100.0, 95.0, 103.5],
+    )
+    assert is_meaningful_close(bars2, 3, boundary, Direction.BULLISH) is False
