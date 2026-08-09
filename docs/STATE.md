@@ -6,8 +6,8 @@ post-Step-3 expansion leg ends), closed on 2026-08-08 as **D-28**, so **L1, L3 a
 Phase 2's exit gate names a *two-reader* test that has never actually been run — the register being
 closed is not the same claim, so do not report that gate as met.
 
-**Phase 5 is under way: L0, L1 and L2 are built.** Baseline as at 2026-08-09: `pytest`
-**149 passed**, `scripts/verify_citations.py` **210 citations across 8 sources, all resolve**,
+**Phase 5 is under way: L0, L1, L2 and L3 are built.** Baseline as at 2026-08-09: `pytest`
+**172 passed**, `scripts/verify_citations.py` **210 citations across 8 sources, all resolve**,
 negative control PASS.
 
 **Three of L2's four terms are decided. One is left: the obvious base.** All four were routed to
@@ -106,23 +106,22 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-1. **Phase 5 — the rulebook engine. L3 is the next thing to build — the user's call, 2026-08-09,
-   taken over deciding the obvious base first.** L0, L1 and L2 are built (tables below); **D-29** and
-   **D-30** fill three of L2's four injected predicates.
+1. **Phase 5 — the rulebook engine. L3 was built on 2026-08-09 — the user's call, taken over
+   deciding the obvious base first. L4 (gating) is next.** L0–L3 are built (tables below); **D-29**
+   and **D-30** fill three of L2's four injected predicates.
 
-   **L3 needs none of the open terms.** `docs/PLAN.md`'s layer table scopes it as the **PTB** — the
-   last candle of the pullback L1 marked, minus inside bars — plus the stop-order price, the stop and
-   the break-even trigger, and says it *"Consumes L1's pullback and L2's events; derives neither."*
-   Everything it consumes is built: `stoic/structure.py` owns the pullback (**D-28**) and
-   `stoic/sequence.py` emits the events. Its exit gate is hand-built fixtures with a negative
-   control, so it does not need L2 running end to end either. Before writing a predicate, check the
-   layer below owns it — that is what **O-14** was. Read §5.2–§5.4 and the `docs/CONSTRAINTS.md` rows
-   on the PTB, the stop and the entry bar first.
+   **L3 needed none of the open terms and introduced none.** `stoic/entry.py` holds no threshold —
+   the separation `docs/CONSTRAINTS.md` names is intact, `stoic/judgment.py` is still the only module
+   with a number in it. L3 consumes `stoic/structure.py`'s pullback (**D-28**) and
+   `stoic/sequence.py`'s events and derives neither, per the `docs/PLAN.md` layer table.
 
-   **What L3 does *not* unblock:** running L2 end to end still needs the **obvious base**
-   (`find_base`), the last unquantified term. L3 → L5 follow per the `docs/PLAN.md`
-   layer table, pure functions over bars, no network and no model, each layer unit-tested against
-   hand-built fixtures with a negative control per `coding_rules.md`.
+   **What L3 does *not* unblock:** running the engine end to end still needs the **obvious base**
+   (`find_base`), the last unquantified term. `replay_entries` exists and is tested, but only against
+   a stub judgment; it cannot be driven over real bars until `find_base` is decided. L4 → L5 follow
+   per the `docs/PLAN.md` layer table, pure functions over bars, no network and no model, each layer
+   unit-tested against hand-built fixtures with a negative control per `coding_rules.md`. **L4's
+   inputs are already decided** — `D-18` removed the mechanism **O-5** was blocking on, and **O-9**
+   (the no-edge zone) is a filter, not a signal.
 2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
    backtest once the system is on."* It is **not cancelled**: Phase 6 cannot report fidelity without
    it, and it is the evidence that would confirm or overturn **D-28**. It simply does not gate the
@@ -154,10 +153,11 @@ context and targets, never a step of the sequence, and they yield on conflict.
 | `scripts/measure_ptb_atr.py` | Produced `docs/evidence/ptb_atr_distribution.md`. Now inert except for its 62.8% figure — see above |
 | `tests/` | 25 tests, hermetic |
 
-## What Phase 5 L0 and L1 built
+## What Phase 5 L0–L3 built
 
 Pure functions over bars — no disk I/O, no network, no clock, no model. Tests are hermetic and
-hand-built; the suite is 76. L2's decided predicates add 27 more in `tests/test_judgment.py`.
+hand-built; the suite is 172. L2's decided predicates add 27 in `tests/test_judgment.py`, L3 adds 23
+in `tests/test_entry.py`.
 
 | | |
 |---|---|
@@ -166,6 +166,7 @@ hand-built; the suite is 76. L2's decided predicates add 27 more in `tests/test_
 | `stoic/structure.py` | **L1.** `opens_pullback` / `find_pullback_start` / `leg_phases` — **D-28** (§5.2.1a): the pullback opens at the first completed candle whose **both** extremes move against the direction, measured against the parent bar. Never reads `open` or `close` (§5.3.3c) |
 | `stoic/levels.py` | PDH/PDL/PDC, PWC/PWH/PLOW, HCOM/LCOM (§7.3, **D-8**). HCOM/LCOM are highest/lowest daily **close** — *"not the highest wick"* |
 | `stoic/sequence.py` | **L2.** The Step 1 → Step 2 → Step 3 machine, the reset (**D-15**), the directional state (**D-21**), the running Step 3 High/Low (**D-16**, not frozen here), the Step 2 swing (**D-20**), and the three §5.4.7 invalidation events |
+| `stoic/entry.py` | **L3.** The PTB walk — anchor, re-anchor per non-inside candle (**D-17**), inside-candle skip (**D-23**/§5.3.5a), the stop-market fill including the gap case (**D-22**), the stop at the opposite PTB extreme (**D-18**, no floor), and the break-even trigger (**D-25**) against the Step 3 extreme **frozen at fill** (**D-16**). Consumes L1's pullback and L2's events; derives neither |
 
 **L2's four unquantified terms are injected, not implemented — and that has not changed now that
 three are decided.** `Judgment` is a frozen dataclass of four predicates with **no defaults** —
@@ -190,6 +191,18 @@ or a pending order, which does not (§6.5). Gating them on the count's stage mad
 unreachable — the bullish reset predicate is character-identical to the bearish Step 1 predicate, so
 the opposite Step 1 always resets us before its Step 3 can confirm. The §5.4.7 engine note settles
 it: they *"fire before the opposite sequence completes — 5.4.7a can be many bars away."*
+
+**L3 fixed three conventions in its module docstring rather than in `docs/RULEBOOK.md`**, the same
+disposition `candles.py` and `judgment.py` took: an **exact touch of the trigger does not fill**
+(§5.2.3 says *"trades above it"*; strict, not inclusive), **simultaneous §5.4.7 conditions cancel the
+one working order once**, and `ORDER_CANCELLED` carries the cancelled order's own payload.
+
+**Two orderings inside L3's bar are the design, not accidents.** The **fill is checked before L2's
+events** because a fill is intrabar while all three §5.4.7 conditions are close-based (the §5.4.7
+engine note), so on a bar that both fills and invalidates, the fill happened first. And a **`RESET`
+does not cancel a working order** — it only disarms, so no *new* pullback is scanned. §5.3.4a says
+there is *"no third outcome and no timeout"*: only a fill or §5.4.7a–c ends the walk. That is
+**O-15** implemented exactly as the rulebook is written, not reconciled, and a test pins it.
 
 **L1 is only the pullback boundary.** Base detection, boundary selection and climax are **not**
 built: §2.2.5–§2.2.9 and §4 are **J**, so building them would invent the thresholds `CLAUDE.md`

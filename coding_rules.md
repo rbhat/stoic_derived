@@ -72,6 +72,14 @@ subagent reports a new recurring error. Bullets only — no explanations, no his
 - Stratify before gating. One threshold over a mixed population either gates on the wrong subgroup
   or has to be loosened until it gates on nothing.
 
+## Tests
+
+- A test helper driving a stateful stepper must snapshot state **after every step**, not return the
+  final state — an assertion about an intermediate bar otherwise checks the wrong moment and passes.
+- Ruff `RUF005`: build a fixture list as `[*PREFIX, ...]`, never `PREFIX + [...]`.
+- Ruff `RUF059`: a trailing-underscore name (`_bars_`) is not a dummy; use `_` or a leading
+  underscore only.
+
 ## Reporting
 
 - Paste verbatim command output; never summarise a number you were asked to verify.
