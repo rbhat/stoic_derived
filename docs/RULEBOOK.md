@@ -759,7 +759,7 @@ without it.
 | ID | Open question | Where it bites | Blocking? |
 |---|---|---|---|
 | **O-7** | **Ordering and partial sizing** when the Step 3 High/Low and 2.618 are not in the expected order. **Narrowed by D-25:** the stop goes to break-even at the Step 3 High/Low regardless of where 2.618 sits, so only the *partial sizing* half is still open. | §6.1, §6.2 | No — TP1 alone is well defined |
-| **O-14** | **Where the post-Step-3 expansion leg ends and the pullback begins.** *Reframed 2026-08-08.* It was *"what does **approaching the 10/20 SMA** mean for a PTB candidate"* — a distance threshold nobody could source. That framing was the bug: `ET` defines the PTB as *"simply the last candle in that pullback"*, so it **presupposes a pullback**, and §5.3.3a substituted an atomic property of one candle for a structural fact about a leg. The structural concept belongs to **L1**, which already lists *consolidation vs expansion*; §5.3.3a reached past it. Asked correctly, this is answerable **from the material** rather than by picking a number — §8's consolidation→expansion model, §2.2's return to the trend area, §4's climax, and the bar-by-bar walkthroughs (`TPA @ 00:23:20`–`00:26:52`, `PTBV`) all describe legs ending. **Phase 4 SLM question**, with those passages attached: propose candidate formalizations for human confirmation, per `VISION.md`. | §5.3.3a and §5.3.5 — which bar the order sits on, therefore entry and stop | **Yes** for L1/L3 |
+| **O-14** | **Where the post-Step-3 expansion leg ends and the pullback begins.** *Reframed 2026-08-08.* It was *"what does **approaching the 10/20 SMA** mean for a PTB candidate"* — a distance threshold nobody could source. That framing was the bug: `ET` defines the PTB as *"simply the last candle in that pullback"*, so it **presupposes a pullback**, and §5.3.3a substituted an atomic property of one candle for a structural fact about a leg. The structural concept belongs to **L1**, which already lists *consolidation vs expansion*; §5.3.3a reached past it. **Phase 4 SLM question** — propose candidate formalizations for human confirmation, per `VISION.md`. **The passages are attached below this table**; they were gathered and put to the human on 2026-08-08, who **declined to pick a reading and kept it with the SLM**. Do not re-derive them, and do not re-ask. | §5.3.3a and §5.3.5 — which bar the order sits on, therefore entry and stop | **Yes** for L1/L3 |
 | **O-15** | **The strength asymmetry between the reset and the invalidation.** §2.4.3 resets the count on a bare 10/20 break; §5.4.7b closes an open position only on a close **≥10% of the candle's range** beyond it (**D-24**). So a break closing less than that resets the count but does not exit the trade. That may be correct — a reset emits nothing, an invalidation costs money — but it is an unreconciled difference between two rules keyed to the same event, and it was noticed rather than decided. Quantifying *strong* made the gap precise instead of closing it. | §2.4.3, §5.4.7b, §2.5.8 | No — both rules are usable; they just may not agree |
 | **O-16** | **Is there a weekly analogue of HCOM/LCOM?** §7.3 now defines `PWC`, `PWH` and `PLOW`, all cited. But `HTF @ 20:22` marks *"the highest close of the previous week **and** the high of the previous week"* as **two** levels, and §7.3 carries only the second. `HCOM`/`LCOM` are the same distinction one timeframe up — highest/lowest **daily close** of the month, *"not the highest wick"* — so the weekly version is plausible rather than established. **Do not add it by symmetry**: `OTV @ 27:54` states the monthly rule outright, and no passage states a weekly one. Needs either a citation or a decision. | §7.3 | No — the three defined levels cover every use in §10 |
 | **O-9** | The **no-edge zone** is a list of situations, not a condition. §7.4.4 mechanises three of them; the rest are open. | §7.4 | No — the rest are filters, not signals |
@@ -768,6 +768,40 @@ without it.
 **Blocking: O-14, and only O-14.** It must close before Phase 5 writes **L3**. **O-5 closed on
 2026-08-08** — not by setting its three constants but by **D-18 removing the mechanism that needed
 them**, which also unblocks **L4**.
+
+### O-14 — the passages, attached
+
+**This is the SLM's input set, assembled 2026-08-08.** `docs/PLAN.md` Phase 4 charters the SLM to
+propose formalizations *"with the supporting passages attached"* — these are they.
+
+**What the material does settle: the concept.** The expansion leg is the run of candles making
+successive new extremes in the sequence direction, and **during it there is no pullback and no PTB**.
+Stated as a negative in both directions:
+
+- *"price breaks out, breaks out — there is no ptb, price makes **higher high higher high**, so there
+  is no ptb here"* — `TPA @ 00:23:30` (long)
+- *"we want to see a pullback, and **right now there is no pullbacks**, right now we're just making
+  **lower lows**"* — `PTBV @ 00:01:58` (short)
+
+**What it does not settle: how to test "the first candle that goes the other way."** Six passages, in
+both directions, across two sessions — and they operationalize it **three** ways:
+
+| Reading | Passages |
+|---|---|
+| **Breaches the previous candle's extreme** against the direction | *"it **trades below** the previous candle, it's not inside — so this is the first ptb"* (`TPA @ 00:23:50`, long); *"this candle **trades above** our candle here … so now we can treat it as ptb"* (`TPA @ 00:26:17`, short); *"a trade **about [above] the previous candle** — that's a ptb"* (`TPA @ 00:19:28`, short) |
+| **Fails to extend** in the direction | *"higher high higher high so there is no ptb"* (`TPA @ 00:23:30`, long); *"we need **at least one** five minute candle that [is] making a **higher low**, and then fails"* (`TPA @ 00:27:55`, short) |
+| **Both extremes move against** it | *"this candle is **lower than the previous candle** **and also** it trades below the previous candle"* (`TPA @ 00:23:50`, long — the one passage stating two clauses) |
+
+**Three constraints on any answer the SLM proposes.**
+
+1. It must not smuggle back **D-23**. That decision rejected tests for *which candle is the PTB*;
+   this is a different question at a different layer — *when an order may rest at all* — and §5.3.3c's
+   wording will need revisiting if the chosen reading compares highs.
+2. The readings **disagree on inside and outside bars**, which is where the choice actually bites: an
+   inside bar satisfies *fails to extend* but not *breaches the extreme*. §5.2.8 excludes it as a PTB
+   either way, but not as a **leg boundary**.
+3. `PTBV @ 00:02:15` shows a **green** candle serving as the PTB in a short, so whatever is chosen must
+   stay consistent with D-23's rejection of the body test.
 
 IDs are stable and are never reused: O-1, O-2, O-3, O-4, O-5, O-6, O-8, O-11, O-12 and O-13 closed
 into §11 and are not listed here. `git log -- docs/RULEBOOK.md` is the history of this file.

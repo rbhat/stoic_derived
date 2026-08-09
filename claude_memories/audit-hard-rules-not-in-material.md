@@ -30,6 +30,16 @@ on most pullbacks. Put to the user, **both** mechanical readings were rejected a
 and the term went back to **J** with an open row (**O-14**). Note the shape: it was labelled a human
 decision, which made it look settled, and only reading the whole corpus caught it.
 
+**Update 2026-08-08 — the rule fires on conflicting abundance, not only on silence.** Working **O-14**
+(where the expansion leg ends and the pullback begins), the corpus turned out to be loud: seven
+passages across `TPA` and `PTBV`, both directions, two bar-by-bar walkthroughs. They settle the
+*concept* — no pullback while price keeps making new extremes — but operationalize *"the first candle
+that goes the other way"* **three different ways**, which disagree on inside and outside bars. Offered
+a well-evidenced recommendation and three alternatives, the user chose **"leave O-14 open for the
+Phase 4 SLM."** So: *the material having spoken is not sufficient*. When it speaks in rival
+operationalizations, that is still an SLM question. The passages were attached under §12 rather than
+resolved — which is the deliverable `docs/PLAN.md` Phase 4 actually asks for.
+
 **Why:** a hard rule written to fill a silence is a **hypothesis wearing a spec's clothes**. It reads
 as settled, it compiles, it never gets revisited — and it forecloses exactly the question Phase 4
 exists to answer. `docs/PLAN.md` Phase 4 charters the SLM to *"propose candidate formalizations of the
@@ -43,6 +53,9 @@ harder to see when the spec asserts something the source never said.
 - Before writing any rule, ask **where the number or predicate came from**. Material → cite it.
   Human → it is a **D-row in §11**, labelled a strategy decision. Neither → it does not go in;
   it becomes an **O-row in §12** or an SLM question.
+- **"Material → cite it" needs the sources to agree.** If two or more passages support *rival*
+  predicates, you do not get to pick the best-evidenced one — attach them all to the O-row and leave
+  it for the SLM. Count the readings before recommending one.
 - Status **J** already exists for terms the material *refuses* to quantify. Reach for **J** or an
   O-row before inventing an **M**. §0 says a proposed number for a **J** term needs the human.
 - Watch for the shape: a rule that is more specific than every sentence backing it. §5.2.8's

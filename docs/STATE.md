@@ -138,15 +138,14 @@ So Phase 1 produced **2** new transcript sets, not the 3 its exit gate named.
 **`docs/PLAN.md` is the plan, end to end.** Position: Phases 0, 1 and 2a closed, **Phase 2 open on its
 gate, not on its deliverable**.
 
-1. **Close O-14 — reframed 2026-08-08, and the reframing is most of the work.** It was *"what does
-   **approaching the 10/20 SMA** mean"*, a distance nobody could source. It is now **"where does the
-   post-Step-3 expansion leg end and the pullback begin"** — a structural question **L1 already owns**
-   (`docs/PLAN.md` lists *consolidation vs expansion* there). `ET` defines the PTB as *"simply the
-   last candle in that pullback"*, so it presupposes a pullback; §5.3.3a had substituted an atomic
-   property of one candle for a fact about a leg. Asked correctly it is **answerable from the
-   material** — §8, §2.2, §4, and the bar-by-bar walkthroughs — so it goes to the **Phase 4 SLM** with
-   those passages attached, per `claude_memories/audit-hard-rules-not-in-material.md`. It gates **L1
-   and L3**.
+1. **O-14 is with the Phase 4 SLM, and its input set is now assembled.** It gates **L1 and L3**.
+   Reframed 2026-08-08 from *"what does approaching the 10/20 SMA mean"* to **"where does the
+   post-Step-3 expansion leg end and the pullback begin"** — a structural question **L1 already owns**.
+   **The passages are attached under §12** — seven citations across `TPA` and `PTBV`. They settle the
+   *concept* (no pullback while price keeps making new extremes; both directions stated) and leave
+   **three rival operationalizations** of the first candle that goes the other way. **Put to the user
+   2026-08-08, who declined to pick and kept it with the SLM** — so this needs Phase 4, not another
+   pass over the corpus. Do not re-derive the passages and do not re-ask.
 2. Then Phase 3 (labelled reference set) can start against a spec that says the same thing twice.
    **`T2` (§10.8) is the densest fixture** — two counts, a live-marked reset, two PTBs, six
    executions — with `NQ3` (§10.7) the cleanest single-sequence one and `LT3`/`LT4` (§10.9) the only
