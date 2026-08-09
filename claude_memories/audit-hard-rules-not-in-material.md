@@ -34,11 +34,19 @@ decision, which made it look settled, and only reading the whole corpus caught i
 (where the expansion leg ends and the pullback begins), the corpus turned out to be loud: seven
 passages across `TPA` and `PTBV`, both directions, two bar-by-bar walkthroughs. They settle the
 *concept* — no pullback while price keeps making new extremes — but operationalize *"the first candle
-that goes the other way"* **three different ways**, which disagree on inside and outside bars. Offered
-a well-evidenced recommendation and three alternatives, the user chose **"leave O-14 open for the
-Phase 4 SLM."** So: *the material having spoken is not sufficient*. When it speaks in rival
-operationalizations, that is still an SLM question. The passages were attached under §12 rather than
-resolved — which is the deliverable `docs/PLAN.md` Phase 4 actually asks for.
+that goes the other way"* **three different ways**, which disagree on inside and outside bars. So:
+*the material having spoken is not sufficient*. When it speaks in rival operationalizations, the
+agent still does not get to pick — enumerate them, attach the passages, and put them to the human.
+
+**What the human then did with it — and the correction that matters.** The first answer was *"leave
+O-14 open for the Phase 4 SLM"*; the second, later the same day, was to **pick the two-clause
+reading** outright (**D-28**). Both times the choice was the human's, which is the part that
+generalises. What does *not* generalise is the intermediate step this file previously recorded as
+the lesson: **routing a rival-readings question to the SLM is not automatically right.** Once the
+readings are enumerated with citations, Phase 4's stated deliverable — *"propose candidate
+formalizations with the supporting passages attached"* — has already been produced by hand, and what
+is left is a **choice**, which is a human decision under `CLAUDE.md`, not a model's output. Offer the
+human the decision before parking it in a phase.
 
 **Why:** a hard rule written to fill a silence is a **hypothesis wearing a spec's clothes**. It reads
 as settled, it compiles, it never gets revisited — and it forecloses exactly the question Phase 4
@@ -54,8 +62,9 @@ harder to see when the spec asserts something the source never said.
   Human → it is a **D-row in §11**, labelled a strategy decision. Neither → it does not go in;
   it becomes an **O-row in §12** or an SLM question.
 - **"Material → cite it" needs the sources to agree.** If two or more passages support *rival*
-  predicates, you do not get to pick the best-evidenced one — attach them all to the O-row and leave
-  it for the SLM. Count the readings before recommending one.
+  predicates, you do not get to pick the best-evidenced one. Count the readings, attach every
+  passage, and put the choice to the human — that is a **D-row**, not an O-row parked in a later
+  phase. **D-28** is the worked example.
 - Status **J** already exists for terms the material *refuses* to quantify. Reach for **J** or an
   O-row before inventing an **M**. §0 says a proposed number for a **J** term needs the human.
 - Watch for the shape: a rule that is more specific than every sentence backing it. §5.2.8's

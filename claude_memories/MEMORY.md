@@ -13,6 +13,7 @@ which has been retired for this project. See `CLAUDE.md` for the contract.
 - [Always ruff --fix](ruff-always-fix.md) — user directive: never bare `ruff check`; use `uvx ruff check --fix`
 - [Opus expanded role](opus-expanded-role.md) — user directive: Opus subagents orchestrate+verify+audit whole phases, not just final audits
 - [Audit hard rules not in the material](audit-hard-rules-not-in-material.md) — user directive: never invent a predicate to close a gap the material left open; it pre-decides what the SLM should discover
+- [Measure after the engine runs](measure-after-the-engine-runs.md) — user directive: decide the open rule and build; do not gate the engine on labelling an answer key first
 - [Coverage claims need enumeration](coverage-claims-need-enumeration.md) — matching row counts are not coverage; diff the IDs, and list the source directory before claiming the material is silent
 - [Databento OHLCV buckets by ts_recv](databento-ohlcv-buckets-by-ts-recv.md) — aggregating trades by ts_event silently mismatches vendor bars at minute boundaries
 - [tz-aware day arithmetic](tz-aware-day-arithmetic.md) — Timedelta(days=1) on a tz-aware timestamp misdates the DST fall-back day; gate the deriving function, not just its consumers

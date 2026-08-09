@@ -497,7 +497,9 @@ count below reports it.
 | Rules still classed **invented** | **0** |
 | Source files found **unread** | **3** (F-13) |
 
-**Net effect on Phase 5:** L4 unblocked (O-5 gone), L1 and L3 still gated on O-14.
+**Net effect on Phase 5, as at this audit's close:** L4 unblocked (O-5 gone), L1 and L3 still gated
+on O-14. *(O-14 has since closed as **D-28**, 2026-08-08 — see `docs/RULEBOOK.md` §11. This file is
+the record of the audit, not of the current state; `docs/STATE.md` is that.)*
 
 ## Exit gate — met, with one carry-over
 

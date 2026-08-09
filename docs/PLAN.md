@@ -188,7 +188,8 @@ wrong layer, and the damage was concrete:
   Nothing emitted one. L1 already listed *consolidation vs expansion*, but L3 never consumed it, so
   `docs/RULEBOOK.md` §5.3.3a defined a PTB candidate **atomically** — *"a candle approaching the 10/20
   SMA"* — as a stand-in for the structural concept a layer below already owned. That substitution is
-  what open row **O-14** actually is, and why it looked like an unpinnable distance threshold.
+  what open row **O-14** was, and why it looked like an unpinnable distance threshold. Reframed as a
+  leg boundary, it took a **decision** instead — **D-28**, `docs/RULEBOOK.md` §5.2.1a.
 - **Invalidation is structural.** All three §5.4.7 conditions are L2 events; L3 only consumes them to
   cancel a working order.
 - **The fib extension is anchored on the Step 2 swing** (**D-20**), fixed before Step 3 confirms. L3

@@ -1,9 +1,8 @@
 # Current state — what is true right now
 
-**Phases 0, 1 and 2a are complete. Phase 2 has its deliverable — `docs/RULEBOOK.md` — and is short of
-its gate on one open row.** Every rule carries a citation; §12 blocks on **O-14** alone (where the
-post-Step-3 expansion leg ends). **O-14 is the only thing blocking Phase 5**, and it gates **L1 and
-L3**; L4 is clear.
+**Phases 0, 1, 2 and 2a are complete. `docs/RULEBOOK.md` has closed its register, and nothing in §12
+blocks Phase 5.** Every rule carries a citation. The last blocker — **O-14**, where the post-Step-3
+expansion leg ends — closed on 2026-08-08 as **D-28**, so **L1, L3 and L4** all compile.
 
 The decision register is `docs/RULEBOOK.md` **§11** (closed) and **§12** (open) — nowhere else. The
 table in `docs/PLAN.md` is the superseded intake form.
@@ -46,21 +45,22 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-1. **O-14 is with the Phase 4 SLM, and its input set is now assembled.** It gates **L1 and L3**.
-   Reframed 2026-08-08 from *"what does approaching the 10/20 SMA mean"* to **"where does the
-   post-Step-3 expansion leg end and the pullback begin"** — a structural question **L1 already owns**.
-   **The passages are attached under §12** — seven citations across `TPA` and `PTBV`. They settle the
-   *concept* (no pullback while price keeps making new extremes; both directions stated) and leave
-   **three rival operationalizations** of the first candle that goes the other way. **Put to the user
-   2026-08-08, who declined to pick and kept it with the SLM** — so this needs Phase 4, not another
-   pass over the corpus. Do not re-derive the passages and do not re-ask.
-2. Then Phase 3 (labelled reference set) can start against a spec that says the same thing twice.
-   **`T2` (§10.8) is the densest fixture** — two counts, a live-marked reset, two PTBs, six
-   executions — with `NQ3` (§10.7) the cleanest single-sequence one and `LT3`/`LT4` (§10.9) the only
-   trade held past the session. All are single instances, so small-*n* rules apply. `PTBV` is the
-   richer source: a full session in which the trader marks every PTB entry on one 1-2-3.
-   **§10.10 recovers the stop from any of them** — none draws one, but the R labels are normalised
-   against a ~$1,000 risk unit, so `stop distance = P&L points ÷ R multiple`.
+1. **Phase 5 — the rulebook engine.** The spec is closed and the layer boundaries are settled, so
+   this is the next build. L0 → L5 per the `docs/PLAN.md` layer table, pure functions over bars,
+   no network and no model, each layer unit-tested against hand-built fixtures with a negative
+   control per `coding_rules.md`.
+2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
+   backtest once the system is on."* It is **not cancelled**: Phase 6 cannot report fidelity without
+   it, and it is the evidence that would confirm or overturn **D-28**. It simply does not gate the
+   engine. When it starts: **`T2` (§10.8) is the densest fixture** — two counts, a live-marked reset,
+   two PTBs, six executions — with `NQ3` (§10.7) the cleanest single-sequence one and `LT3`/`LT4`
+   (§10.9) the only trade held past the session. All are single instances, so small-*n* rules apply.
+   `PTBV` is the richer source: a full session in which the trader marks every PTB entry on one
+   1-2-3. **§10.10 recovers the stop from any of them** — none draws one, but the R labels are
+   normalised against a ~$1,000 risk unit, so `stop distance = P&L points ÷ R multiple`.
+3. **Phase 4 (the SLM) has no blocking question left.** O-14 was the one thing routed to it; the
+   human decided it instead. What remains for it is **O-9** (the no-edge zone, per **D-9**) and
+   Phase 3 label proposals — both off the critical path.
 
 `docs/RULEBOOK.md` §13 records how the rest of the corpus is used. Simple Stoic Setups / HTF Protocol
 / Candle Swing Theory / the war map are the **complementary layer the 1-2-3 was distilled from** —
