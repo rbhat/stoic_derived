@@ -241,7 +241,7 @@ The engine emits **one signal per PTB activation**, so one directional state can
 | 5.2.5 | The pullback **need not reach the moving averages or retest the old base.** *"A shallow pullback can qualify."* | M | `PTBQ` §3 |
 | 5.2.6 | The PTB pullback has **no MA-touch and no base-touch requirement** — this is what distinguishes it from Step 2, which does require the visual retest of the 10/20 area. | M | `PTBQ` §3 |
 | 5.2.7 | 5.2.6 restated live as a preference, not a gate: *"ideally it will touch the moving averages, that's a nice healthy pullback — sometimes it won't."* Remarks elsewhere in the same session that a pullback is *"a bit early because we never touched the moving averages"* are quality reads on the same permissive rule, not a second condition. | M | `PTBV @ 00:08:47`, `PTBV @ 00:43:43`, `PTBV @ 00:43:50` |
-| 5.2.8 | **An inside candle is never a PTB.** *"When it's inside candle you don't want to treat it as ptb."* Restated: *"if it's inside candle ptb I would ignore it… we go down, make lower lows, so we keep tracking the ptb — so the ptb is the last candle."* The pullback simply continues and the anchor moves on (5.3.5). | M | `PTBV @ 01:33:01`, `PTBV @ 01:02:29`, `PTBV @ 01:02:39`; `TPA @ 00:17:20`, `TPA @ 00:24:31` |
+| 5.2.8 | **An inside candle is never a PTB.** *"When it's inside candle you don't want to treat it as ptb."* Restated: *"if it's inside candle ptb I would ignore it… we go down, make lower lows, so we keep tracking the ptb — so the ptb is the last candle."* The pullback simply continues and **the anchor stays where it is** — it does not advance to the inside candle (5.3.5a). | M | `PTBV @ 01:33:01`, `PTBV @ 01:02:29`, `PTBV @ 01:02:39`; `TPA @ 00:17:20`, `TPA @ 00:24:31` |
 | 5.2.8a | **What *inside* is measured against: the parent bar** — the nearest preceding bar that is not itself an inside bar. Not the bar immediately to the left. `IBD` labels exactly **one** Parent Bar, draws its reference lines from that bar's high and low, and points a run of **two** Inside Bars at it. Stated the same way for a multi-bar run: *"these are inside candles right, we are trading inside of **this** bearish candle"*, and *"inside candles are part of that previous candle."* | M | `IBD`; `TPA @ 00:02:20`, `TPA @ 00:18:24`, `TPA @ 00:25:58`; decision **D-23**, §11 |
 
 ### 5.3 Live activation
@@ -265,11 +265,13 @@ Each term that paragraph leaves open: buffers by **D-12** (none), the three-bar 
 | 5.3.1 | The PTB candidate must have **closed** before it can be activated. Restated live: *"the PTB entry becomes the break of that high — after the full candle closed though, so keep that in mind."* | M | `PTBQ` §1; `PTBV @ 00:35:47`, `PTBV @ 00:35:52` |
 | 5.3.2 | Activation is **trade-through, not close-through**. | M | `PTBQ` §1 |
 | 5.3.3 | The activating level must belong to the **latest** completed PTB candidate (`PTBQ`'s *"correction bar"*). | M | `PTBQ` §1 |
-| 5.3.3a | **PTB candidate, defined.** A candle that comes **after Confirmed Step 3** and is **approaching the 10/20 SMA**. It may come close to them, wick into them, or close beyond — the rule draws no distinction between those, because a candle *"can open and wick unpredictably."* | J | decision **D-23**, §11; §12 row **O-14** |
+| 5.3.3a | **PTB candidate, defined.** A candle **inside the pullback that follows Confirmed Step 3** — the pullback being a structural leg, not a property of the candle. Within it, a candidate may come close to the 10/20, wick into them, or close beyond, and the rule draws no distinction, because a candle *"can open and wick unpredictably."* **What marks the start of that pullback is `O-14` and is not settled.** This row previously read *"a candle approaching the 10/20 SMA"*, which put a structural fact on a single bar — see §12 **O-14**. | J | decision **D-23**, §11; §12 row **O-14**; `ET` |
 | 5.3.3b | **The one hard exclusion:** a PTB candidate must **not be an inside candle** (5.2.8, 5.2.8a). | M | decision **D-23**, §11; `IBD` |
 | 5.3.3c | **No body test and no lower-high test.** Both mechanical readings were put to the human and **rejected as over-specification**: neither `close < open` nor "makes a lower high" is a condition of this spec. Do not reintroduce either as an implementation convenience. | J | decision **D-23**, §11 |
-| 5.3.4 | **There is no bar cap.** *"The 3 bar window is not definite but a PTB has 2 sides — the direction, the pull back trigger and the move again going back."* The PTB is fixed by **structure, not by count**: it is the last PTB candidate before the move resumes. | M | `PTBQ` §1; decision **D-17**, §11 |
+| 5.3.4 | **There is no bar cap.** The PTB is fixed by **structure, not by count**: it is the last PTB candidate before the move resumes. `PTBQ` §1 states **both** *"it must be the latest correction bar within the three-bar window"* **and** *"The 3 bar window is not defintite but a PTB has 2 sides — the direction, the pull back trigger and the move again going back."* The source contradicts itself; **D-17 is what picks the second reading**, so the citation below names the decision first. | M | decision **D-17**, §11; `PTBQ` §1 (both clauses) |
+| 5.3.4a | **What ends the walk.** The order re-anchors candle by candle (5.3.5) until exactly one of two things happens: it **fills**, or the setup is **invalidated without an entry** by any of §5.4.7a–c. There is no third outcome and no timeout — an unfilled order does not expire on bar count. | M | decision **D-17**, §11 |
 | 5.3.5 | Therefore the working order **re-anchors every bar**: while the pullback continues, each newly completed PTB candidate becomes the PTB and the resting stop moves to its extreme. The order fires on the first trade beyond the current anchor. Stated live as *"we want to trail behind the PTB"*, and again as *"I'm just following the candles down until we have the candle that's PTB."* Corroborated across a whole session: *"all we're doing is ptb entries and we are trailing behind them."* | M | decision **D-17**, §11; `PTBV @ 00:35:34`, `PTBV @ 01:32:55`, `PTBV @ 01:33:01`; `TPA @ 00:17:50` |
+| 5.3.5a | **The trail skips inside candles — it does not move to them.** When the next completed candle is an inside candle, the resting order **stays at the current anchor's extreme**; it does not re-anchor and it is not cancelled. **The trail then resumes at the next non-inside candle**, which becomes the new anchor normally. The pause is **per candle**, not a state the pullback enters: a run of inside candles is skipped one by one, however long the run, and nothing about the trail changes when it ends. | M | decision **D-23**, §11; `PTBV @ 01:33:01`, `TPA @ 00:17:20` |
 | 5.3.6 | The schematic shows the mechanism with a **two**-bar pullback: two down candles into the moving averages, the **later** one carries the Entry line at its high. Two, not three — the count is incidental. One drawing, cited under either name. | M | `DIA-L` (= `DIA-P`) |
 | 5.3.7 | **Fill price.** The order is a stop market (5.2.3a), so it fills **at the trigger** when the bar trades through it, and **at the bar's open** when the bar **gaps past** it — a market fill, taken at whatever the gap offers. A fill is **never better than the trigger**. | M | decision **D-22**, §11 |
 | 5.3.8 | **A level that is never traded is not an entry.** *"This would be the ptb entry — price never triggered it"*, and the read moves on to the next PTB. No chasing, no relaxed level. | M | `PTBV @ 00:12:51` |
@@ -277,13 +279,26 @@ Each term that paragraph leaves open: buffers by **D-12** (none), the three-bar 
 | 5.3.10 | **R is computed from the actual fill, not from the trigger.** A gap fill sits further from the PTB extreme, so it widens R and every ratio built on it (§5.4.2). The signal record stores both the trigger and the fill. | M | derived from 5.3.7 + 5.4.2 |
 
 **Engine note on 5.3.3a — this is what O-14 blocks.** 5.3.5 re-anchors the resting order to every
-newly completed PTB candidate, so *"PTB candidate"* is the only thing separating a pullback bar from
-an expansion bar. Left unquantified, **every** completed bar re-anchors, the buy stop sits above the
-last bar's high throughout the expansion, and the next expansion bar fires an entry — the engine
-would signal on every bar of the run. The discriminator is therefore load-bearing, and **it is not
-ours to pick**: a distance-to-the-MA measure chosen here is exactly the invented predicate Phase 2a
-exists to remove (`claude_memories/audit-hard-rules-not-in-material.md`). It is an SLM question with
-the passages attached, per Phase 4. Until **O-14** closes, L3 does not compile.
+newly completed PTB candidate. If *"PTB candidate"* is left to mean any bar, **every** completed bar
+re-anchors, the buy stop sits above the last bar's high throughout the expansion, and the next
+expansion bar fires an entry — the engine signals on every bar of the run.
+
+**The fix is a layer, not a threshold.** The discriminator is *"is this bar inside a pullback"*, which
+is a fact about a **leg**, and legs belong to **L1** (`docs/PLAN.md` Phase 5 — L1 already lists
+*consolidation vs expansion*). L3 asks L1 where the expansion ended and then applies `ET`'s actual
+definition: the PTB is *"simply the last candle in that pullback"*, minus inside bars (5.2.8, 5.2.8a).
+Defining a PTB candidate by its distance to the 10/20 was L3 reaching past a layer that already owned
+the concept — the invented predicate Phase 2a exists to remove
+(`claude_memories/audit-hard-rules-not-in-material.md`). Until **O-14** closes, **L1 and L3** do not
+compile.
+
+**Engine note on 5.3.5a.** An inside candle has a lower high than its parent by definition (and a
+higher low). Anchoring to it would move a long's buy stop **down, inside the parent's range** — so
+price could trigger the entry without ever exceeding the parent's high, which is an entry on a move
+that has not resumed. Skipping inside candles keeps the trigger at the last bar that actually made
+the extreme. That is the mechanical reason behind *"if it's inside candle ptb I would ignore it."*
+Note the asymmetry with 5.3.4a: an inside candle **pauses** the trail, it does not end it — only a
+fill or an invalidation does that.
 
 **Engine note on 5.3.7.** The rule is stop-market semantics applied honestly, which is why it needs
 no parameter: the gap case is a property of the order type, not a choice about the strategy. One
@@ -298,43 +313,49 @@ change, and it must change in one place.
 | 5.4.1 | **Stop = the PTB low (long) / PTB high (short).** | M | `PTBQ` §2 |
 | 5.4.2 | Therefore **R = \|fill − PTB extreme\|**, and this is the R in every downstream ratio. *Fill*, not trigger — the two differ on a gap (5.3.7, 5.3.10) and only the fill is real. | M | derived from 5.2.3 + 5.4.1 + 5.3.10 |
 | 5.4.3 | When entering off a faster chart, the **stop is set from the slower chart**: *"we could be entering off of the one minute chart but we could be setting stop loss based on the five minute chart, which is whatever the high is gonna put in."* | M | `SCALP @ 05:42`; decision **D-7**, §11 |
-| 5.4.4 | **Minimum stop distance.** A PTB that is small relative to the bars around it puts the stop too close and the trade is stopped by noise. When `\|entry − PTB extreme\| < k × ATR(n)` on the setup timeframe, the stop moves **behind the last swing extreme beyond the PTB** instead of sitting at the PTB extreme. | P | decision **D-18**, §11 |
-| 5.4.5 | `k`, `n`, and the pivot width that defines "swing" in 5.4.4 are **not in the material**. They are set once, by the human, off the measured distribution of bar range ÷ ATR (`.artifacts/ptb_atr_distribution.md` — a bracketing population, since no labelled PTB set exists before Phase 3) — **not** by searching for the best-performing cell (`CLAUDE.md`). | P | §12 row **O-5** |
-| 5.4.6 | *"Sufficient room must remain to the Step 3 High/Low"* — with 5.4.4 setting R, this condition is expressible as **TP1 distance ≥ m × R** and merges into the minimum-R question. | P | `PTBQ` §1; §12 rows **O-5**, **O-10** |
-| 5.4.7 | **Position-level invalidation is distinct from the stop.** The stop (5.4.1) is a price the order rests at; these are conditions that end the trade whether or not the stop is reached. **Any one of 5.4.7a–c invalidates.** | M | decision **D-24**, §11 |
+| 5.4.4 | **There is no minimum stop distance.** The stop sits at the PTB extreme and nowhere else. A small PTB simply produces a small R — that is the trade the method offers, not a defect to correct. No ATR floor, no swing-extreme fallback, no volatility scaling. | M | decision **D-18**, §11 |
+| 5.4.5 | **Break-even.** Once price trades beyond the **Step 3 High (long) / Step 3 Low (short)** in the trade direction, the stop moves to the **fill price**. This is the same event as reaching TP1 (§6.1), which is where `ET` already puts it: *"This is the place to take partials and put stop to break even."* | M | decision **D-25**, §11; `ET` |
+| 5.4.6 | *"Sufficient room must remain to the Step 3 High/Low"* — expressible as **TP1 distance ≥ m × R**. The inequality is this file's construction of `PTBQ`'s qualitative condition, not `PTBQ`'s own words (`docs/AUDIT-2a.md` F-8); `m` is unset. | P | `PTBQ` §1; §12 row **O-10** |
+| 5.4.7 | **Invalidation is distinct from the stop.** The stop (5.4.1) is a price the order rests at; these are conditions that end the setup whether or not the stop is reached. **Any one of 5.4.7a–c invalidates.** They apply to an **open position and to a pending setup alike** — a working order that has not filled is cancelled by the same three conditions (§5.3.4a). | M | decision **D-24**, §11; decision **D-17**, §11 |
 | 5.4.7a | The **confirmed opposite Step 3** (§6.4). | M | `PC`, `M1 @ 23:46` |
-| 5.4.7b | A **strong close beyond the 10/20 SMA against the trade direction** — for a long, a strong close below them; mirror for a short. *Strong* is the **J** qualifier of §2.1.4 and **D-2**: body, not wick, no threshold. The bare break is already the §2.4.3 reset and the §2.5.8 end of the directional state; what 5.4.7b adds is that it also closes an **open position**. | J | `TPA @ 00:24:48`, `PTBV @ 00:03:28`; decision **D-24**, §11 |
+| 5.4.7b | A **strong close beyond the 10/20 SMA against the trade direction** — for a long, a strong close below them; mirror for a short. **Strong = the close sits beyond the MA by at least 10% of that candle's own high-low range.** The bare break is already the §2.4.3 reset and the §2.5.8 end of the directional state; what 5.4.7b adds is that it also closes an **open position**. | P | `TPA @ 00:24:48`, `PTBV @ 00:03:28`; decision **D-24**, §11 |
 | 5.4.7c | A **close beyond the Step 2 boundary against the trade direction** — for a long, a bar **closing** below the Step 2 consolidation boundary; mirror for a short. **A trade through it is not enough.** That is what separates this from §2.3.1, where a trade through the *same* boundary is exactly what starts Step 3. No strength qualifier either: unlike 5.4.7b, the close alone is the whole test. The boundary is the one already selected under §2.2.8, so no new selection happens here. | M | decision **D-24**, §11 |
 
-**Engine note on 5.4.7.** These are evaluated **per bar on an open position**, and they fire before
-the opposite sequence completes — which is the point: 5.4.7a can be many bars away.
+**Engine note on 5.4.7.** These are evaluated **per bar on an open position and on a pending setup**,
+and they fire before the opposite sequence completes — which is the point: 5.4.7a can be many bars
+away. The pending-setup case is what terminates §5.3.4's unbounded re-anchoring: the working order
+walks candle by candle until it fills or one of these three cancels it.
 
 **All three are close-based, and that is the shape of the rule, not a coincidence.** 5.4.7a is a
 *confirmed* Step 3, which §2.3.4 already defines as a meaningful close; 5.4.7b is a strong close;
 5.4.7c is a close. Nothing here exits on a trade-through. An intrabar spike beyond a level does not
 end a trade under any of the three — only the stop (5.4.1) does that, and the stop is the only
-trade-through in the exit path.
+trade-through that **closes** a position. Two other trade-throughs exist and neither exits: the entry
+(§5.3.2) and the break-even trigger (5.4.5), which moves the stop rather than ending the trade.
 
 **5.4.7c is the mirror image of §2.3.1 on the same line.** A trade through the selected boundary
 *starts* Step 3 in the direction of Step 1; a **close** beyond it in the opposite direction ends the
 trade. Deliberately asymmetric — entry is permissive because the PTB stop bounds the risk, and exit
 is strict because a wick through a boundary in a live position is noise.
 
-Two evaluation notes. 5.4.7b inherits the unquantified *strong*, so an engine cannot evaluate it
-without the same **J** decision §2.1.4 carries; 5.4.7c has no such qualifier and needs none.
-5.4.7c is **M** on the same footing as §2.3.1 — the *test* is computable, while the *boundary* it
-tests against is selected under §2.2.5–§2.2.8, which is **J**. Marking it M follows the convention
-§2.3.1 already set; it does not mean boundary selection has been solved.
+Two evaluation notes. 5.4.7b's *strong* is **quantified by D-24 at 10% of the candle's range** — it
+is the one number in the exit path, and it is a recorded decision, not a reading of the material.
+5.4.7c carries no strength qualifier and needs none. 5.4.7c is **M** on the same footing as §2.3.1 —
+the *test* is computable, while the *boundary* it tests against is selected under §2.2.5–§2.2.8,
+which is **J**. Marking it M follows the convention §2.3.1 already set; it does not mean boundary
+selection has been solved.
 
 **One asymmetry left open on purpose:** §2.4.3 resets the count on a bare 10/20 break with no
-strength qualifier, while 5.4.7b closes a position only on a *strong* close. A wick through therefore
-resets the count but does not invalidate the trade. That may be exactly right — a reset emits
-nothing, an invalidation costs money — but it is an unreconciled difference between two rules keyed
-to the same event, not a derived result. See §12 row **O-15**.
+strength qualifier, while 5.4.7b closes a position only on a close **10% of the candle's range**
+beyond. A break that closes less than that therefore resets the count but does not invalidate the
+trade. That may be exactly right — a reset emits nothing, an invalidation costs money — but it is an
+unreconciled difference between two rules keyed to the same event, not a derived result. Quantifying
+*strong* sharpened the gap rather than closing it. See §12 row **O-15**.
 
-**Engine note on 5.4.4.** The fallback changes R, so it changes every ratio downstream — TP sizing,
-the minimum-R gate, the R recorded per signal. It must be applied *before* R is computed, never as a
-post-hoc adjustment, and the signal record must say which of the two anchors was used.
+**Engine note on 5.4.4 and 5.4.5.** R is fixed once, at fill: `|fill − PTB extreme|`, with no floor
+and no adjustment. 5.4.5 then moves the **stop**, not R — a break-even stop does not re-scale the R
+already recorded on the signal, and every downstream ratio keeps using the entry R. The signal record
+should carry the break-even event, not a second R.
 
 ### 5.5 Anticipatory entry (variant, not the default)
 
@@ -352,7 +373,7 @@ labels may show it; the engine should not emit it. See decision **D-11**, §11.
 
 | # | Rule | Status | Source |
 |---|---|---|---|
-| 6.1 | **First target = the Step 3 High (long) / Step 3 Low (short).** *"This is the place to take partials and put stop to break even."* | M | `ET` |
+| 6.1 | **First target = the Step 3 High (long) / Step 3 Low (short).** *"This is the place to take partials and put stop to break even."* The break-even half of that sentence is the stop rule **§5.4.5** (**D-25**); partial *sizing* is still open (**O-7**). | M | `ET`; decision **D-25**, §11 |
 | 6.2 | **Second target = the 2.618 fib extension.** | M | decision **D-6**, §11; measured in `SCALP @ 06:35`; drawn on `LT` and `T1` as `261.80%` |
 | 6.3 | Fib geometry is a **measurement** tool for targets, anchored on the pullback: measure the **first pullback** after the reversal with the trend-extension tool; the published extension levels are **2.618, 4.23 and 6.86**. | M | `OTV @ 51:26`, `OTV @ 52:39`, `OTV @ 52:44` |
 | 6.3a | **Two different tools, two different jobs.** *Retracement* measures a swing — any swing, descriptively: *"we're using fib retracements to measure the pullbacks."* The *extension* is what produces targets, and it is anchored on **one specific swing**: *"then we use the trend extension tool to measure this very first pullback in order to give us these targets."* | M | `OTV @ 52:08`, `OTV @ 52:33`, `OTV @ 52:39`; decision **D-20**, §11 |
@@ -546,8 +567,12 @@ Cited in full at 2.4.4. The single best source for how the count is abandoned an
 
 ### 10.7 `NQ3` — NQ 5m, bullish, marked on a live chart
 
-The first fully-marked example with real prices, and the closest thing in the corpus to a test
-fixture. Reading it against the rules:
+The cleanest **single-sequence** fixture in the corpus — one count, one PTB, one entry, all with real
+prices. It is **not** the only fully-marked chart and not the first: `T1` (§10.2) and
+`stoic_trade2.png` mark the same session with executions, and `stoic_trade2.png` carries two complete
+counts. This file previously called `NQ3` *"the first fully-marked example with real prices"*, which
+was written before those charts were opened — see `docs/AUDIT-2a.md` F-13. Reading it against the
+rules:
 
 | | |
 |---|---|
@@ -594,14 +619,15 @@ Places the material genuinely underdetermines, settled by the human and recorded
 | **D-14** | 20/200 vs 50/200 as destinations | **Both work; the choice is subjective and depends on which is closer when trading to it.** Resolved by separating the roles: **gating stays fixed at 50/200** (`M1 @ 20:09`), **targeting takes the next MA beyond entry in the trade direction** from {10, 20, 50, 200}. | §7.1.2, §7.1.6 |
 | **D-15** | Which pair the reset rule keys off | **The 10/20** — the pair that runs the sequence. A break back through them resets the count, and the reset is also a prompt to re-read direction, since higher-timeframe context may have flipped. | §2.4.3, §2.4.6 |
 | **D-16** | When the Step 3 High/Low is final | **It never has to be.** It is the running extreme from Confirmed Step 3 onward, and it is **frozen at PTB activation** for TP1. Execution keys off the PTB alone: *"once PTB is in, the order is a stop order placed on the PTB candle's High (long) / low (short)."* | §3.4–§3.6 |
-| **D-17** | The "three-bar window" | **There is no bar cap.** *"The 3 bar window is not defintite but a PTB has 2 sides — the direction, the pull back trigger and the move again going back."* The PTB is the last PTB candidate before the move resumes; the resting order re-anchors to each new one. | §5.3.4–§5.3.6 |
-| **D-18** | Stops too tight on a small PTB | **An ATR floor on stop distance.** When the PTB is small relative to the bars around it, the stop goes **behind the last swing extreme** instead of at the PTB extreme. The threshold is measured first, then chosen — never grid-searched: the test is whether stops sit outside noise, not whether the equity curve improves. The remaining numbers are **O-5**. | §5.4.4–§5.4.6 |
+| **D-17** | The "three-bar window" | **There is no bar cap.** `PTBQ` §1 asserts both *"within the three-bar window"* and *"The 3 bar window is not defintite"*; this decision takes the second. The PTB is the last PTB candidate before the move resumes, and the resting order re-anchors to each new one. **The walk ends in exactly one of two ways** — *"we keep going candle by candle till either we hit an entry or it invalidates without an entry"* — so §5.4.7's three conditions cancel a pending order as well as closing an open trade. | §5.3.4–§5.3.6, §5.4.7 |
+| **D-18** | Stops too tight on a small PTB | **No floor. The stop is the PTB's opposite extreme and nothing else** — *"stop after entry is the opposite extreme of the PTB."* A small PTB gives a small R; that is the trade the method offers, not a defect to correct. This **replaces** an earlier ATR-floor mechanism (`k × ATR(n)` with a swing-extreme fallback) that had no basis in the material — ATR is never mentioned in the corpus — and whose three unset constants were the open row **O-5**. Removing it closes O-5 and unblocks L4. | §5.4.4 |
 | **D-19** | *"Staying above/below the 50"* | **Per-bar close against the 50; no bar count, no tolerance, no chop detector.** Straddling the 50 makes the count reset repeatedly, and that is the correct behaviour — *"we need to wait to start counting a breakout."* | §7.1.7, §7.1.8 |
 | **D-20** | The fib anchor | **Retracement measures each swing; the extension has one anchor — the first pullback after the reversal, i.e. the Step 2 swing.** Entry sits on the second pullback (the Step 3 pullback / PTB). | §6.3a–§6.3c |
 | **D-21** | Does a continuation entry need its own Step 3 High | **No. It reuses the sequence state, and there is one Step 3 High per state, not one per entry.** The qualifying condition is the *existing* Confirmed Step 3 — *"the ptb entry is the retracement into the 10 and 20 sma after the confirm step 3"* (`PTBV @ 00:11:18`) — and the state runs *"until price breaks back below moving averages"* (`PTBV @ 00:13:20`). §3.4's running extreme keeps advancing, so each continuation PTB freezes a **later value of the same series** (§3.7). | §2.5.5–§2.5.8, §3.7 |
 | **D-22** | What a fill is when price **gaps** through the trigger | **Market fill at the bar's open.** The stop-market order (D-12) fills at the trigger when the bar trades through it, and at the open when the bar opens beyond it. Never better than the trigger; R is taken from the fill, not the trigger. Slippage beyond the gap is not modelled — a replay convention, flagged as such in the §5.3.7 engine note. | §5.3.7, §5.3.10 |
-| **D-24** | What **invalidates an open trade**, beyond the stop | **Three conditions, any one of which ends the trade:** the confirmed opposite Step 3; a **strong close beyond the 10/20 SMA against the trade direction**; and a **close beyond the Step 2 boundary against the trade direction** (for a long, a bar closing below the Step 2 consolidation boundary — **trading through it is not enough**). The MA condition is corroborated by the material — *"now price is trading below the moving averages so now the bullish sequence invalidated"* (`TPA @ 00:24:48`), *"if we fail here the bullish sequence will be invalidated"* (`PTBV @ 00:03:28`) — but the **Step 2 boundary condition was not found anywhere in the corpus** and is the human's, as is the *strong* qualifier on the MA close. Recorded as a decision on that basis rather than cited. | §5.4.7–§5.4.7c, and §6.5 which it narrows |
-| **D-23** | What qualifies a candle as a **PTB** | **A candle after Confirmed Step 3 that is approaching the 10/20 SMA, and is not an inside candle.** Left deliberately unquantified beyond that: it may get close, wick in, or close beyond, and *"the candle can open and wick unpredictably."* Both mechanical readings were considered and **rejected as over-specification** — the **body** test (`close < open`) and the **lower-high** test. They pick different bars on 62.8% of candidates (`.artifacts/ptb_atr_distribution.md`), so neither could be adopted quietly; the human's call is that neither becomes a rule. *Inside* is referenced to the **parent bar** — the nearest preceding bar not itself inside — per `IBD` and *"we are trading inside of this bearish candle"* (`TPA @ 00:02:20`). Formalizing *approaching* is **O-14**, not a decision. | §5.2.8a, §5.3.3a–c, §5.3.5 |
+| **D-24** | What **invalidates an open trade**, beyond the stop | **Three conditions, any one of which ends the trade:** the confirmed opposite Step 3; a **strong close beyond the 10/20 SMA against the trade direction**; and a **close beyond the Step 2 boundary against the trade direction** (for a long, a bar closing below the Step 2 consolidation boundary — **trading through it is not enough**). The MA condition is corroborated by the material — *"now price is trading below the moving averages so now the bullish sequence invalidated"* (`TPA @ 00:24:48`), *"if we fail here the bullish sequence will be invalidated"* (`PTBV @ 00:03:28`) — but the **Step 2 boundary condition was not found anywhere in the corpus** and is the human's, as is the *strong* qualifier on the MA close. Recorded as a decision on that basis rather than cited. ***Strong* is now quantified: the close must sit beyond the MA by at least 10% of that candle's own high-low range.** That number is the human's, chosen not measured, and it is the only number in the exit path. | §5.4.7–§5.4.7c, and §6.5 which it narrows |
+| **D-25** | When the stop moves to break-even | **When price trades beyond the Step 3 High (long) / Step 3 Low (short) in the trade direction** — *"once the price has moved in the direction of the trade and broken past step 3's price, then the stop loss moves to break even."* Break-even is the **fill** price (§5.3.7), not the trigger. This is the same event as reaching TP1, which is where `ET` already puts it: *"This is the place to take partials and put stop to break even."* **Known divergence:** `TPA @ 00:13:00` teaches an *earlier* trigger — break-even once price takes out the PTB, making it a *"confirmed PTB bar"*. This decision takes `ET`'s later trigger; `TPA`'s is recorded here so it is not lost. `BE` is drawn on `stoic_live_trade3.png` / `stoic_live_trade4.png`. | §5.4.5, §6.1 |
+| **D-23** | What qualifies a candle as a **PTB** | **A candle after Confirmed Step 3 that is approaching the 10/20 SMA, and is not an inside candle.** Left deliberately unquantified beyond that: it may get close, wick in, or close beyond, and *"the candle can open and wick unpredictably."* Both mechanical readings were considered and **rejected as over-specification** — the **body** test (`close < open`) and the **lower-high** test. They pick different bars on 62.8% of candidates (`.artifacts/ptb_atr_distribution.md`), so neither could be adopted quietly; the human's call is that neither becomes a rule. *Inside* is referenced to the **parent bar** — the nearest preceding bar not itself inside — per `IBD` and *"we are trading inside of this bearish candle"* (`TPA @ 00:02:20`). Formalizing the leg boundary is **O-14**, not a decision. **The exclusion also governs the trail:** an inside candle is skipped, and the resting order **stays at the current anchor** rather than moving to it (§5.3.5a) — *"when we trail the PTB, we don't trail the inside candles."* | §5.2.8a, §5.3.3a–c, §5.3.5, §5.3.5a |
 
 ---
 
@@ -612,18 +638,18 @@ without it.
 
 | ID | Open question | Where it bites | Blocking? |
 |---|---|---|---|
-| **O-5** | The **numbers in the stop floor**: `k` and `n` in `k × ATR(n)`, and the pivot width that defines "swing". **D-18** settled the mechanism; these three constants are unset. The distribution is measured — `.artifacts/ptb_atr_distribution.md`, from `.venv/bin/python scripts/measure_ptb_atr.py`: counts and percentiles of bar range ÷ ATR on NQ and ES 5m RTH, `n` ∈ {14, 20}. It scores nothing; the human reads counts off it. The **pivot width** is not measurable this way and remains an unaided choice. | §5.4.4–§5.4.6 — sets R, and therefore every ratio | **Yes** for L4 |
-| **O-7** | **Ordering and partial sizing** when the Step 3 High/Low and 2.618 are not in the expected order. | §6.1, §6.2 | No — TP1 alone is well defined |
-| **O-14** | **What *"approaching the 10/20 SMA"* means for a PTB candidate** (§5.3.3a). **D-23** fixed the shape of the rule and left this open on purpose — *"this becomes subjective… no need to complicate beyond this."* The engine still needs it, because it is the only thing separating a pullback bar from an expansion bar under §5.3.5 (see the engine note there). Status **J**: picking a distance measure here would be the invented predicate Phase 2a exists to remove, so this is a **Phase 4 SLM question** with the passages attached — not a number to choose. Note it is *approaching*, not *touching*: §5.2.5–§5.2.7 already say a pullback need not reach the MAs. | §5.3.3a, and through §5.3.5 which bar the order sits on — therefore entry, stop and R | **Yes** for L3 |
-| **O-15** | **The strength asymmetry between the reset and the invalidation.** §2.4.3 resets the count on a bare 10/20 break; §5.4.7b closes an open position only on a **strong** close beyond it (**D-24**). So a wick through resets the count but does not exit the trade. That may be correct — a reset emits nothing, an invalidation costs money — but it is an unreconciled difference between two rules keyed to the same event, and it was noticed rather than decided. | §2.4.3, §5.4.7b, §2.5.8 | No — both rules are usable; they just may not agree |
+| **O-7** | **Ordering and partial sizing** when the Step 3 High/Low and 2.618 are not in the expected order. **Narrowed by D-25:** the stop goes to break-even at the Step 3 High/Low regardless of where 2.618 sits, so only the *partial sizing* half is still open. | §6.1, §6.2 | No — TP1 alone is well defined |
+| **O-14** | **Where the post-Step-3 expansion leg ends and the pullback begins.** *Reframed 2026-08-08.* It was *"what does **approaching the 10/20 SMA** mean for a PTB candidate"* — a distance threshold nobody could source. That framing was the bug: `ET` defines the PTB as *"simply the last candle in that pullback"*, so it **presupposes a pullback**, and §5.3.3a substituted an atomic property of one candle for a structural fact about a leg. The structural concept belongs to **L1**, which already lists *consolidation vs expansion*; §5.3.3a reached past it. Asked correctly, this is answerable **from the material** rather than by picking a number — §8's consolidation→expansion model, §2.2's return to the trend area, §4's climax, and the bar-by-bar walkthroughs (`TPA @ 00:23:20`–`00:26:52`, `PTBV`) all describe legs ending. **Phase 4 SLM question**, with those passages attached: propose candidate formalizations for human confirmation, per `VISION.md`. | §5.3.3a and §5.3.5 — which bar the order sits on, therefore entry and stop | **Yes** for L1/L3 |
+| **O-15** | **The strength asymmetry between the reset and the invalidation.** §2.4.3 resets the count on a bare 10/20 break; §5.4.7b closes an open position only on a close **≥10% of the candle's range** beyond it (**D-24**). So a break closing less than that resets the count but does not exit the trade. That may be correct — a reset emits nothing, an invalidation costs money — but it is an unreconciled difference between two rules keyed to the same event, and it was noticed rather than decided. Quantifying *strong* made the gap precise instead of closing it. | §2.4.3, §5.4.7b, §2.5.8 | No — both rules are usable; they just may not agree |
 | **O-9** | The **no-edge zone** is a list of situations, not a condition. §7.4.4 mechanises three of them; the rest are open. | §7.4 | No — the rest are filters, not signals |
 | **O-10** | **Minimum R** for a setup to deserve risk, now also carrying the *"sufficient room to the Step 3 High/Low"* condition (§5.4.6). Taught as a principle with no number (`CMD` §4). Observed values (§7.5.3) are expectations, not thresholds. | §7.5, §5.4.6 | No — record R, do not gate on it |
 
-**Blocking: O-5 and O-14.** O-14 must close before Phase 5 writes **L3**; O-5 before it writes **L4**.
-O-14 is the earlier gate of the two.
+**Blocking: O-14, and only O-14.** It must close before Phase 5 writes **L3**. **O-5 closed on
+2026-08-08** — not by setting its three constants but by **D-18 removing the mechanism that needed
+them**, which also unblocks **L4**.
 
-IDs are stable and are never reused: O-1, O-2, O-3, O-4, O-6, O-8, O-11, O-12 and O-13 closed into
-§11 and are not listed here. `git log -- docs/RULEBOOK.md` is the history of this file.
+IDs are stable and are never reused: O-1, O-2, O-3, O-4, O-5, O-6, O-8, O-11, O-12 and O-13 closed
+into §11 and are not listed here. `git log -- docs/RULEBOOK.md` is the history of this file.
 
 ---
 

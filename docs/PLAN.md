@@ -168,16 +168,35 @@ engine depends on the spec and the labels — not on the model.
 
 | Layer | What it computes |
 |---|---|
-| L0 primitives | SMAs, swing points, HCOM/LCOM, PDH/PDL/PDC, session windows |
-| L1 structure | consolidation vs expansion, base detection, boundary selection, extension from MA structure |
-| L2 sequence | the Step 1 → Step 2 → Step 3 state machine; emits Confirmed Step 3 and Step 3 High/Low |
-| L3 entry | PTB, stop-order price, invalidation, fib-geometry targets, R |
+| L0 primitives | SMAs, swing points, HCOM/LCOM, PDH/PDL/PDC, PWC/PLOW, session windows |
+| L1 structure | consolidation vs expansion, base detection, boundary selection, extension from MA structure — **and where an expansion leg ends and a pullback begins** |
+| L2 sequence | the Step 1 → Step 2 → Step 3 state machine. Emits Confirmed Step 3, the Step 3 High/Low, the **Step 2 swing** (the fib anchor, D-20), and the **invalidation events** of §5.4.7 |
+| L3 entry | the **PTB** — the last candle of the pullback L1 marked, minus inside bars — the stop-order price, the stop, and the break-even trigger. Consumes L1's pullback and L2's events; derives neither |
 | L4 gating | HTF bias alignment, no-edge-zone filter, trapped side, does this setup deserve risk |
-| L5 emission | the signal record in the `VISION.md` schema, with a deterministic confluence score |
+| L5 emission | the signal record in the `VISION.md` schema, **R computed from the fill**, and a deterministic confluence score |
 
 Run per Type — Scalp, Day, Swing, Position — each with its own map → setup → execute timeframes from
 the Timeframes Guide. The sequence is fractal by the method's own claim, so L2 should be
 timeframe-agnostic and take its MA pair as a parameter.
+
+**These boundaries were corrected on 2026-08-08, and the correction is the point.** L3 previously read
+*"PTB, stop-order price, invalidation, fib-geometry targets, R"* — three of those five sat in the
+wrong layer, and the damage was concrete:
+
+- **`ET` defines the PTB as *"simply the last candle in that pullback"* — it presupposes a pullback.**
+  Nothing emitted one. L1 already listed *consolidation vs expansion*, but L3 never consumed it, so
+  `docs/RULEBOOK.md` §5.3.3a defined a PTB candidate **atomically** — *"a candle approaching the 10/20
+  SMA"* — as a stand-in for the structural concept a layer below already owned. That substitution is
+  what open row **O-14** actually is, and why it looked like an unpinnable distance threshold.
+- **Invalidation is structural.** All three §5.4.7 conditions are L2 events; L3 only consumes them to
+  cancel a working order.
+- **The fib extension is anchored on the Step 2 swing** (**D-20**), fixed before Step 3 confirms. L3
+  would have had to reach backwards for it.
+- **R is `|fill − PTB extreme|`** and the fill is an execution fact, so R is L5's, not L3's.
+
+The rule generalises: **a layer that has to invent a predicate is usually reaching past a layer that
+already owns it.** Check the layer below before writing the predicate —
+`claude_memories/audit-hard-rules-not-in-material.md`.
 
 **Exit gate.** Every layer unit-tested against hand-built bar fixtures. No network, no model, no
 clock-dependent behaviour. Each gate has a negative control per `coding_rules.md`.
