@@ -106,9 +106,21 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-1. **Phase 5 — the rulebook engine.** L0, L1 and L2 are built (tables below); **D-29** and **D-30**
-   fill three of L2's four injected predicates. **L3 is next, and needs none of them; running L2 end
-   to end still needs the obvious base.** L3 → L5 follow per the `docs/PLAN.md`
+1. **Phase 5 — the rulebook engine. L3 is the next thing to build — the user's call, 2026-08-09,
+   taken over deciding the obvious base first.** L0, L1 and L2 are built (tables below); **D-29** and
+   **D-30** fill three of L2's four injected predicates.
+
+   **L3 needs none of the open terms.** `docs/PLAN.md`'s layer table scopes it as the **PTB** — the
+   last candle of the pullback L1 marked, minus inside bars — plus the stop-order price, the stop and
+   the break-even trigger, and says it *"Consumes L1's pullback and L2's events; derives neither."*
+   Everything it consumes is built: `stoic/structure.py` owns the pullback (**D-28**) and
+   `stoic/sequence.py` emits the events. Its exit gate is hand-built fixtures with a negative
+   control, so it does not need L2 running end to end either. Before writing a predicate, check the
+   layer below owns it — that is what **O-14** was. Read §5.2–§5.4 and the `docs/CONSTRAINTS.md` rows
+   on the PTB, the stop and the entry bar first.
+
+   **What L3 does *not* unblock:** running L2 end to end still needs the **obvious base**
+   (`find_base`), the last unquantified term. L3 → L5 follow per the `docs/PLAN.md`
    layer table, pure functions over bars, no network and no model, each layer unit-tested against
    hand-built fixtures with a negative control per `coding_rules.md`.
 2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
