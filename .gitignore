@@ -15,6 +15,10 @@ htmlcov/
 
 # Training run artifacts (HF cache, datasets, checkpoints, exports, logs)
 # — default $STOIC_TRAIN_HOME, see training/win_cuda/README.md
+#
+# Regenerable output only. If a document here becomes EVIDENCE a decision cites —
+# a sweep, a census, a measured distribution — move it to docs/evidence/ and track it.
+# Four D-rows once cited files that lived on one disk; see docs/AUDIT-2a.md.
 .artifacts/
 
 # Large media — kept in Google Drive, not git

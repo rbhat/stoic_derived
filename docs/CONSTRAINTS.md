@@ -32,7 +32,7 @@ open the source. A row that starts to look like a paraphrase has become a bug.
 | Read bars for a date near 2025-11-28 | `claude_memories/historical-bars-2025-11-28-outage.md` |
 | Emit a signal record | `VISION.md` — "What a signal actually is" |
 | Write to the ledger | `VISION.md` — Trade ledger |
-| Decide where a run artifact goes | `claude_memories/artifact-locality.md` |
+| Decide where a run artifact goes | `claude_memories/artifact-locality.md` — and if a decision will **cite** it, it is evidence, not a run artifact: `docs/evidence/`, tracked. `.artifacts/` is gitignored and reaches one disk |
 | Decide which engine layer a rule belongs in | `docs/PLAN.md` Phase 5 layer table and the correction under it — **a layer that has to invent a predicate is usually reaching past a layer that already owns it.** L3 defining a pullback atomically is what O-14 was; check the layer below before writing the predicate |
 | Add a citation, or add a source to the corpus | Run `scripts/verify_citations.py`, and add the key to its `SOURCES` map in the same change — an unregistered key reports as *unknown citation key*, not as an error anyone will read |
 | Compute an MA, an inside bar, a pullback boundary, or an HTF level | It is already built — `stoic/indicators.py`, `stoic/candles.py`, `stoic/structure.py`, `stoic/levels.py`. Read the module docstring before reimplementing; each names its rulebook section and the conventions it fixed |

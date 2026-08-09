@@ -22,6 +22,15 @@ as of 2026-07-29), so it is a project contract, not just a preference. Note
 `.gitignore` also blocks a bare `/artifacts/` dir, which has been created by
 accident before.
 
+**The dividing line is regenerable-vs-evidence, not big-vs-small.** `.artifacts/`
+is for output a rerun replaces. A document a **decision cites** is evidence and
+belongs in `docs/evidence/`, tracked — five such files (the four Phase 2a sweeps
+and the PTB/ATR distribution, 108 KB total) sat gitignored until 2026-08-09
+while `docs/AUDIT-2a.md` and **D-23** cited them by name, so the basis of four
+decisions existed on one disk and reached neither the Windows box nor a reader
+of the repo. The user's directive on 2026-08-09 was that everything belongs in
+git **except** big blobs and data.
+
 The general rule — regenerable output under `.artifacts/`, the code that
 generates it tracked — still holds. The specific example this memory used
 (`.artifacts/research/bars/` alongside tracked `research/`) refers to the

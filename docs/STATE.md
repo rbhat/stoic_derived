@@ -33,12 +33,12 @@ Phase 2a is closed and **is not summarised here** — `docs/AUDIT-2a.md` is its 
 §11 holds every decision it produced, and `git log` holds the rest. Two things it left behind are
 current rather than historical:
 
-- **`.artifacts/ptb_atr_distribution.md` is now almost entirely inert.** O-5 closed by deleting the
+- **`docs/evidence/ptb_atr_distribution.md` is now almost entirely inert.** O-5 closed by deleting the
   ATR stop floor (**D-18**), so nothing in the spec reads its percentiles, and its `BODY` / `EXTREME`
   columns describe two readings **D-23** rejected. **One number in it still matters:** those two
   readings pick a different anchor bar on **62.8%** of candidates (NQ 5m RTH 2019–2026), which is why
-  neither could be adopted quietly and why D-23 stands. `.artifacts/` is gitignored, so this file does
-  not travel between machines.
+  neither could be adopted quietly and why D-23 stands. It lived in the gitignored `.artifacts/` and
+  did not travel between machines until 2026-08-09; it is now tracked under `docs/evidence/`.
 - **The standing rule that came out of it** is `claude_memories/audit-hard-rules-not-in-material.md`,
   not a phase. The ATR floor passed every mechanical sweep because it cited a real D-row with a real
   open row; only asking the human where the predicate came from caught it.
@@ -97,7 +97,7 @@ context and targets, never a step of the sequence, and they yield on conflict.
 | `scripts/check_bar_spine.py` | Gates A–E, each with literal output and a negative control |
 | `scripts/build_corpus.py` | Resumable transcribe + keyframe pipeline, 4 stages, no LLM/VLM |
 | `scripts/verify_citations.py` | Every `KEY @ TIMESTAMP` in `RULEBOOK.md` resolves to a real marker, with a negative control. **Its `SOURCES` map is hand-maintained and drifts** — `TPA` was missing from it for the eight days it was the newest source, so 23 real citations reported as *unknown citation key* and nobody noticed. Add the key when you add a source, and run it after editing citations |
-| `scripts/measure_ptb_atr.py` | Produced `.artifacts/ptb_atr_distribution.md`. Now inert except for its 62.8% figure — see above |
+| `scripts/measure_ptb_atr.py` | Produced `docs/evidence/ptb_atr_distribution.md`. Now inert except for its 62.8% figure — see above |
 | `tests/` | 25 tests, hermetic |
 
 ## What Phase 5 L0 and L1 built

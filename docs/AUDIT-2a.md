@@ -18,8 +18,9 @@ by band, then `sweep_D` for the rules Coverage found missing — quoting verbati
 consulting `docs/PLAN.md`, `docs/STATE.md`, `claude_memories/` or each other's output, so that nothing
 about what a rule *should* say could leak into what its source *does* say.
 
-Raw evidence, one row per rule, in `.artifacts/` — **gitignored, does not travel between machines,
-regenerate rather than trust a stale copy**:
+Raw evidence, one row per rule, in **`docs/evidence/`** — tracked, so it travels between machines
+and a citation to it resolves. It lived in the gitignored `.artifacts/` until 2026-08-09, which meant
+the evidence four decisions rest on existed on one disk only:
 
 | File | Scope | Rows |
 |---|---|---|
@@ -425,11 +426,12 @@ which is the question `claude_memories/audit-hard-rules-not-in-material.md` exis
 Both are the lead's, both were forced by the work, and the second departs from `docs/PLAN.md`'s
 literal wording — so it is written down here rather than acted on quietly.
 
-**1. The class table lives in this file, not in `docs/RULEBOOK.md` and not in `.artifacts/`.**
+**1. The class table lives in this file, not in `docs/RULEBOOK.md` and not in a raw sweep.**
 `docs/PLAN.md` asks the *audit output* to name the class per rule, so the rulebook needs no fifth
-column. And `.artifacts/` is gitignored: it does not travel to the Windows box and does not survive a
-regenerate. A classification kept only there would have to be redone by whoever opens the repo next,
-which is how the first sweep's coverage gap survived. `docs/` is tracked; the class goes here.
+column. The sweeps are per-rule evidence that a rerun replaces; the classification is a conclusion
+drawn across them and must survive that rerun. Keeping it only in a regenerable file is how the
+first sweep's coverage gap survived. (The sweeps were also gitignored when this was written, so they
+did not reach the Windows box at all — fixed 2026-08-09 by tracking them under `docs/evidence/`.)
 
 **2. Status and class are different axes, and the status column stays as it is.**
 `docs/PLAN.md`'s disposition table says a *human decision* rule "must be a D-row in §11 and marked
