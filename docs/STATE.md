@@ -240,14 +240,6 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
   Asia/London portion, both instruments. Real missing data, not a holiday early close. Any Phase 3
   label or Phase 5 replay touching that date must exclude or flag it. See
   `claude_memories/historical-bars-2025-11-28-outage.md`; Gate E reports it every run.
-- **The source videos exist only on this disk.** They are gitignored (`*.mp4`) and `videos.zip`
-  predates the 1-2-3 material, so it does not contain the Marker Study, the Scalping Example, the
-  `PTB Entries` video (the one the newest 34 citations rest on), or `Navigating tough price action`
-  added 2026-08-08. Nothing
-  restores them if the disk is lost. They need to go to Google Drive and into `videos.zip`.
-  The transcripts and keyframe manifests are in git; the keyframe **images** are gitignored
-  (`edu/derived/**/keyframes/`) and are regenerable from the videos — which is only true while the
-  videos survive.
 - **L2 has had one audit pass; the review was capped there by the user on 2026-08-09.** Everything
   that pass found is fixed. Two things it decided rather than found, recorded so they are not
   re-litigated silently: a re-break of a still-pending base emits `STEP_3_BREAK` **again** (§2.3.3,
