@@ -6,9 +6,9 @@ post-Step-3 expansion leg ends), closed on 2026-08-08 as **D-28**, so **L1, L3 a
 Phase 2's exit gate names a *two-reader* test that has never actually been run — the register being
 closed is not the same claim, so do not report that gate as met.
 
-**Phase 5 is under way: L0, L1, L2 and L3 are built.** Baseline as at 2026-08-09: `pytest`
-**172 passed**, `scripts/verify_citations.py` **210 citations across 8 sources, all resolve**,
-negative control PASS.
+**Phase 5 is under way: L0, L1, L2, L3 and L4 are built. Only L5 (emission) is left.** Baseline as
+at 2026-08-09: `pytest` **197 passed**, `scripts/verify_citations.py` **212 citations across 8
+sources, all resolve**, negative control PASS.
 
 **Three of L2's four terms are decided. One is left: the obvious base.** All four were routed to
 Phase 4's SLM on 2026-08-09; the human then decided three of them the same day, with the census in
@@ -106,33 +106,31 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-1. **Phase 5 — the rulebook engine. L3 was built on 2026-08-09 — the user's call, taken over
-   deciding the obvious base first. L4 (gating) is next.** L0–L3 are built (tables below); **D-29**
-   and **D-30** fill three of L2's four injected predicates.
+1. **Phase 5 — the rulebook engine. L3 and L4 were both built on 2026-08-09. L5 (emission) is
+   next.** L0–L4 are built (tables below); **D-29** and **D-30** fill three of L2's four injected
+   predicates.
 
-   **L3 needed none of the open terms and introduced none.** `stoic/entry.py` holds no threshold —
-   the separation `docs/CONSTRAINTS.md` names is intact, `stoic/judgment.py` is still the only module
-   with a number in it. L3 consumes `stoic/structure.py`'s pullback (**D-28**) and
-   `stoic/sequence.py`'s events and derives neither, per the `docs/PLAN.md` layer table.
+   **Neither L3 nor L4 needed an open term, and neither introduced one.** `stoic/entry.py` and
+   `stoic/gating.py` hold no threshold — the separation `docs/CONSTRAINTS.md` names is intact,
+   `stoic/judgment.py` is still the only module with a number in it. L3 consumes
+   `stoic/structure.py`'s pullback (**D-28**) and `stoic/sequence.py`'s events and derives neither;
+   L4 consumes nothing but bars and their SMAs.
 
-   **What L3 does *not* unblock:** running the engine end to end still needs the **obvious base**
+   **What they do *not* unblock:** running the engine end to end still needs the **obvious base**
    (`find_base`), the last unquantified term. `replay_entries` exists and is tested, but only against
-   a stub judgment; it cannot be driven over real bars until `find_base` is decided. L4 → L5 follow
-   per the `docs/PLAN.md` layer table, pure functions over bars, no network and no model, each layer
-   unit-tested against hand-built fixtures with a negative control per `coding_rules.md`.
+   a stub judgment; it cannot be driven over real bars until `find_base` is decided.
 
-   **L4 is buildable now and needs nothing open — but most of its work is what it must *not* do.**
-   §7 was read end to end on 2026-08-09 to establish this; read it again rather than trusting this
-   summary. **In scope:** the **50 SMA gate** (§7.1.2, **D-19** — per-bar close, no lookback, no
-   tolerance, and **no chop detector**: chop is what continuous count-and-reset looks like from
-   outside, §7.1.8); the **200 SMA rule** (§7.1.4 — *long-only*, because the row says outright the
-   material never states the mirror, so **do not assume symmetry**); and the one mechanical no-edge
-   instance (§7.4.3 — no setups in the middle of PDH/PDL, which `stoic/levels.py` already computes).
-   **Out of scope, and each one is a trap:** no **minimum-R gate** (§7.5.4, **O-10** — record R, do
-   not gate on it); no **trapped-side** filter (§7.3 — **J**, and inventing it is exactly what
-   `claude_memories/audit-hard-rules-not-in-material.md` forbids); **HTF alignment is not a gate**
-   (§7.5.5, **D-27** — it raises the confluence score and never blocks, so it is **L5's**); and the
-   rest of §7.4.2's instances stay open on **O-9**. L4 should need no threshold, same as L3.
+   **L4 came out smaller than its plan row, and that is the finding, not a shortfall.** §7 was read
+   end to end on 2026-08-09; read it again rather than trusting this summary. Of the four things
+   `docs/PLAN.md` listed for L4, one survived contact with §7 — and **§7.4.3, the corpus's one
+   *"mechanical"* no-edge statement, turned out not to be one.** `CST @ 00:22:05` names **PDC** a
+   daily level 25 seconds before the rule, and PDC sits inside the PDH/PDL range by construction, so
+   *strictly-between-blocks* forbids a trade the same passage licenses. The user's call was to build
+   neither reading and open **O-19**. What L4 does build is the **50 SMA gate** (§7.1.2, **D-19**)
+   and the **200 SMA long-only rule** (§7.1.4). **L5 must not re-add what L4 declined:** minimum R
+   (**O-10** — record it, do not gate on it), trapped side (§7.3, **J**), the rest of §7.4.2
+   (**O-9**), and §7.4.3 (**O-19**). **HTF alignment is L5's own work and is not a gate** (§7.5.5,
+   **D-27** — it raises the confluence score and never blocks).
 2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
    backtest once the system is on."* It is **not cancelled**: Phase 6 cannot report fidelity without
    it, and it is the evidence that would confirm or overturn **D-28**. It simply does not gate the
@@ -164,11 +162,11 @@ context and targets, never a step of the sequence, and they yield on conflict.
 | `scripts/measure_ptb_atr.py` | Produced `docs/evidence/ptb_atr_distribution.md`. Now inert except for its 62.8% figure — see above |
 | `tests/` | 25 tests, hermetic |
 
-## What Phase 5 L0–L3 built
+## What Phase 5 L0–L4 built
 
 Pure functions over bars — no disk I/O, no network, no clock, no model. Tests are hermetic and
-hand-built; the suite is 172. L2's decided predicates add 27 in `tests/test_judgment.py`, L3 adds 23
-in `tests/test_entry.py`.
+hand-built; the suite is 197. L2's decided predicates add 27 in `tests/test_judgment.py`, L3 adds 23
+in `tests/test_entry.py`, L4 adds 25 in `tests/test_gating.py`.
 
 | | |
 |---|---|
@@ -178,6 +176,7 @@ in `tests/test_entry.py`.
 | `stoic/levels.py` | PDH/PDL/PDC, PWC/PWH/PLOW, HCOM/LCOM (§7.3, **D-8**). HCOM/LCOM are highest/lowest daily **close** — *"not the highest wick"* |
 | `stoic/sequence.py` | **L2.** The Step 1 → Step 2 → Step 3 machine, the reset (**D-15**), the directional state (**D-21**), the running Step 3 High/Low (**D-16**, not frozen here), the Step 2 swing (**D-20**), and the three §5.4.7 invalidation events |
 | `stoic/entry.py` | **L3.** The PTB walk — anchor, re-anchor per non-inside candle (**D-17**), inside-candle skip (**D-23**/§5.3.5a), the stop-market fill including the gap case (**D-22**), the stop at the opposite PTB extreme (**D-18**, no floor), and the break-even trigger (**D-25**) against the Step 3 extreme **frozen at fill** (**D-16**). Consumes L1's pullback and L2's events; derives neither |
+| `stoic/gating.py` | **L4.** Two gates and no more: the 50 SMA direction gate (§7.1.2, **D-19** — per-bar close, no lookback, no tolerance, no chop detector) and the 200 SMA rule (§7.1.4 — **long-only**, no bearish mirror, and **fast-chart-only**, so `fast_chart` is required with no default). `gate(bars, pos, direction, *, fast_chart)` collects **every** reason, never short-circuits. A pure evaluator: the caller picks the bar, so *when* the gate is read is L5's question, not one L4 answered |
 
 **L2's four unquantified terms are injected, not implemented — and that has not changed now that
 three are decided.** `Judgment` is a frozen dataclass of four predicates with **no defaults** —
@@ -207,6 +206,13 @@ it: they *"fire before the opposite sequence completes — 5.4.7a can be many ba
 disposition `candles.py` and `judgment.py` took: an **exact touch of the trigger does not fill**
 (§5.2.3 says *"trades above it"*; strict, not inclusive), **simultaneous §5.4.7 conditions cancel the
 one working order once**, and `ORDER_CANCELLED` carries the cancelled order's own payload.
+
+**L4 fixed five conventions the same way, and one of them has a consequence worth stating.** A close
+exactly equal to either MA **blocks**; a **NaN SMA blocks**; `fast_chart` has no default; reasons are
+collected, not short-circuited. The consequence: a frame needs **50 bars before any signal passes**,
+and **200 before any long passes on a fast chart**. That is the intended reading — the alternative is
+emitting signals whose gates were never actually checked — but it is a warm-up cost Phase 6 will see
+at the head of every frame, not a bug.
 
 **Two orderings inside L3's bar are the design, not accidents.** The **fill is checked before L2's
 events** because a fill is intrabar while all three §5.4.7 conditions are close-based (the §5.4.7

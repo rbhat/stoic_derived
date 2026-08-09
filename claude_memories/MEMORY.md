@@ -16,6 +16,7 @@ which has been retired for this project. See `CLAUDE.md` for the contract.
 - [SLM decides L2's fuzzy terms](slm-decides-l2-fuzzy-terms.md) — user directive: route the unquantified L2 terms to the SLM to propose; ungroundable ones come back to the human, never a default. **Two of the four the human then decided himself (D-29) once the census was in** — routing is not a bar on his deciding
 - [Measure after the engine runs](measure-after-the-engine-runs.md) — user directive: decide the open rule and build; do not gate the engine on labelling an answer key first
 - [Long research tasks write incrementally](long-research-tasks-write-incrementally.md) — background subagents died 3x on the census with nothing written; judge delegation by the write pattern, not the task size
+- [Read around the citation](read-around-the-citation.md) — a rulebook quote can be cut short of the sentence that undoes it; verify_citations cannot catch that
 - [Coverage claims need enumeration](coverage-claims-need-enumeration.md) — matching row counts are not coverage; diff the IDs, and list the source directory before claiming the material is silent
 - [Databento OHLCV buckets by ts_recv](databento-ohlcv-buckets-by-ts-recv.md) — aggregating trades by ts_event silently mismatches vendor bars at minute boundaries
 - [tz-aware day arithmetic](tz-aware-day-arithmetic.md) — Timedelta(days=1) on a tz-aware timestamp misdates the DST fall-back day; gate the deriving function, not just its consumers

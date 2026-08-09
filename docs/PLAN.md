@@ -188,7 +188,7 @@ engine depends on the spec and the labels — not on the model.
 | L1 structure | consolidation vs expansion, base detection, boundary selection, extension from MA structure — **and where an expansion leg ends and a pullback begins** |
 | L2 sequence | the Step 1 → Step 2 → Step 3 state machine. Emits Confirmed Step 3, the Step 3 High/Low, the **Step 2 swing** (the fib anchor, D-20), and the **invalidation events** of §5.4.7. Its four unquantified terms are **injected predicates with no defaults** — see `docs/STATE.md` |
 | L3 entry | the **PTB** — the last candle of the pullback L1 marked, minus inside bars — the stop-order price, the stop, and the break-even trigger. Consumes L1's pullback and L2's events; derives neither |
-| L4 gating | HTF bias alignment, no-edge-zone filter, trapped side, does this setup deserve risk |
+| L4 gating | **The two moving-average gates, and nothing else** — the 50 SMA direction gate (§7.1.2, **D-19**) and the 200 SMA long-only rule (§7.1.4, fast charts only). HTF alignment is **not** a gate (**D-27** — it scores, so it is L5's), trapped side is **J**, minimum R is **O-10**, and the no-edge zone's one *"mechanical"* instance turned out not to be — **O-19** |
 | L5 emission | the signal record in the `VISION.md` schema, **R computed from the fill**, and a deterministic confluence score |
 
 Run per Type — Scalp, Day, Swing, Position — each with its own map → setup → execute timeframes from
@@ -214,6 +214,12 @@ wrong layer, and the damage was concrete:
 The rule generalises: **a layer that has to invent a predicate is usually reaching past a layer that
 already owns it.** Check the layer below before writing the predicate —
 `claude_memories/audit-hard-rules-not-in-material.md`.
+
+**The L4 row was corrected on 2026-08-09, in the opposite direction: it listed four things and kept
+one.** *HTF bias alignment* was never a gate (**D-27** — it scores), *trapped side* is **J**, *does
+this setup deserve risk* is **O-10** with no number, and the *no-edge-zone filter* lost its one
+mechanical instance to **O-19** on the day L4 was built. A layer's job can shrink as the spec
+sharpens, and a plan row that still lists the original four reads as four things left to build.
 
 **Exit gate.** Every layer unit-tested against hand-built bar fixtures. No network, no model, no
 clock-dependent behaviour. Each gate has a negative control per `coding_rules.md`.
