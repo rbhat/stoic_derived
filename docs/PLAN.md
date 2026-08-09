@@ -294,8 +294,6 @@ are settled by the human and recorded as strategy decisions, never by searching 
   one doesn't, the answer is a human decision recorded in the register — not a swept parameter.
 - **The labelled set will be small.** That is a reason to report counts and withhold verdicts, not a
   reason to manufacture labels.
-- **Three source videos exist only on this disk** — gitignored and absent from `videos.zip`. Losing
-  them costs Phase 1 its most on-scope input.
 
 ## The one ordering rule left
 
