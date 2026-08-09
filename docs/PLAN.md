@@ -188,7 +188,7 @@ engine depends on the spec and the labels — not on the model.
 | L1 structure | consolidation vs expansion, base detection, boundary selection, extension from MA structure — **and where an expansion leg ends and a pullback begins** |
 | L2 sequence | the Step 1 → Step 2 → Step 3 state machine. Emits Confirmed Step 3, the Step 3 High/Low, the **Step 2 swing** (the fib anchor, D-20), and the **invalidation events** of §5.4.7. Its four unquantified terms are **injected predicates with no defaults** — see `docs/STATE.md` |
 | L3 entry | the **PTB** — the last candle of the pullback L1 marked, minus inside bars — the stop-order price, the stop, and the break-even trigger. Consumes L1's pullback and L2's events; derives neither |
-| L4 gating | **The two moving-average gates, and nothing else** — the 50 SMA direction gate (§7.1.2, **D-19**) and the 200 SMA long-only rule (§7.1.4, fast charts only). HTF alignment is **not** a gate (**D-27** — it scores, so it is L5's), trapped side is **J**, minimum R is **O-10**, and the no-edge zone's one *"mechanical"* instance turned out not to be — **O-19** |
+| L4 gating | **The two moving-average gates, and nothing else** — the 50 SMA direction gate (§7.1.2, **D-19**) and the 200 SMA rule (§7.1.4, fast charts only, symmetric per **D-31**). HTF alignment is **not** a gate (**D-27** — it scores, so it is L5's), trapped side is **J**, minimum R is **O-10**, and the no-edge zone's one *"mechanical"* instance turned out not to be — **O-19** |
 | L5 emission | the signal record in the `VISION.md` schema, **R computed from the fill**, and a deterministic confluence score |
 
 Run per Type — Scalp, Day, Swing, Position — each with its own map → setup → execute timeframes from

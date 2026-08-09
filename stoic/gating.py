@@ -10,14 +10,18 @@ of the close against the 50 -- no bar count, no lookback, no tolerance band, and
 (§7.1.8 -- a resetting count *is* what chop looks like from outside, not a state this module
 recognises).
 
-**Gate 2 -- the 200 SMA long-only rule** (§7.1.4). *"we're not trying to long against 200 sma, not
-on the one minute chart ... do not long into the 200 sma"* (`SCALP @ 22:45`-`23:02`). Two things
-this passage fixes: it is **long-only** -- §7.1.4 states the bullish case only and says outright
-*"do not assume symmetry here,"* so a bearish candidate is never blocked by the 200, on any chart
--- and it is **scoped to fast charts**: the passage licenses `50 -> 200` longs on a higher
-timeframe and forbids them on the 1m/5m, so the caller must say which kind of chart it is
+**Gate 2 -- the 200 SMA rule** (§7.1.4). *"we're not trying to long against 200 sma, not on the
+one minute chart ... do not long into the 200 sma"* (`SCALP @ 22:45`-`23:02`). §7.1.4 states the
+bullish case only; the passage is silent on shorting into the 200 from below. The mirror is the
+human's decision **D-31** (2026-08-09, `docs/RULEBOOK.md` §11): *"just like we look for longs
+above 50/200sma, we look for shorts below it."* That is a recorded strategy decision, not a
+reading of the material -- the same disposition `judgment.py` gives `MEANINGFUL_FRACTION`. So
+this gate is now symmetric: a bullish candidate is blocked at or below the 200, a bearish one at
+or above it. It remains **scoped to fast charts**: the passage licenses `50 -> 200` longs on a
+higher timeframe and forbids them on the 1m/5m, so the caller must say which kind of chart it is
 (`fast_chart`, no default). *"Longing into the 200"* mechanises as price sitting at or below it,
-since the 200 is the obstacle above.
+and its mirror as price sitting at or above it, since the 200 is the obstacle above for a long and
+the floor below for a short.
 
 A pure evaluator over bars -- the caller picks the bar position. This module does not know about
 orders, fills, sequences or signals, and holds **no threshold, fraction or tuned number of any
@@ -44,13 +48,13 @@ inside-bar tie-break and `judgment.py`'s two conventions):
 1. **A close exactly equal to the 50 blocks both directions.** It is neither "staying above" nor
    "staying below" -- the precedent is `judgment.py`'s own disposition: no yardstick to read a
    pass off means not confirmed, never a pass by default.
-2. **A close exactly equal to the 200 blocks a long on a fast chart** -- being *at* the 200 is
-   still longing into it. Hence `<=`, not `<`.
-3. **A non-finite (NaN) SMA blocks.** During warm-up there is no 50 (or no 200) to read the gate
-   against, so a candidate cannot be shown to pass it and is blocked instead. Consequence, stated
-   plainly: a frame needs 50 bars before any signal can pass gate 1, and 200 bars before any long
-   can pass gate 2 on a fast chart. That is correct -- the alternative is emitting signals whose
-   gates were never actually checked.
+2. **A close exactly equal to the 200 blocks, in both directions, on a fast chart** -- being *at*
+   the 200 is still longing (or shorting) into it. Hence `<=`/`>=`, not `<`/`>`.
+3. **A non-finite (NaN) SMA blocks, in both directions.** During warm-up there is no 50 (or no
+   200) to read the gate against, so a candidate cannot be shown to pass it and is blocked
+   instead. Consequence, stated plainly: a frame needs 50 bars before any signal can pass gate 1,
+   and 200 bars before any candidate can pass gate 2 on a fast chart. That is correct -- the
+   alternative is emitting signals whose gates were never actually checked.
 4. **`fast_chart` has no default.** §7.1.4 scopes the 200 rule to the 1m/5m and licenses the
    higher-timeframe case; the engine may not guess which chart it is reading.
 5. **All reasons are collected, never short-circuited.** A blocked record names everything that
@@ -72,7 +76,7 @@ from stoic.structure import Direction
 
 class GateReason(StrEnum):
     TREND_50 = "trend_50"  # §7.1.2, D-19
-    LONG_INTO_200 = "long_into_200"  # §7.1.4
+    INTO_200 = "into_200"  # §7.1.4, D-31
 
 
 @dataclass(frozen=True)
@@ -102,18 +106,20 @@ def _trend_50_blocks(bars: pd.DataFrame, pos: int, direction: Direction) -> bool
     return not (close < sma_50)
 
 
-def _long_into_200_blocks(
+def _into_200_blocks(
     bars: pd.DataFrame, pos: int, direction: Direction, *, fast_chart: bool
 ) -> bool:
-    """Gate 2 (§7.1.4): long-only, fast-chart-only. Never blocks a bearish candidate, and never
-    blocks anything when `fast_chart` is False."""
-    if not fast_chart or direction is not Direction.BULLISH:
+    """Gate 2 (§7.1.4, D-31): symmetric, fast-chart-only. Never blocks anything when `fast_chart`
+    is False."""
+    if not fast_chart:
         return False
     close = float(bars["close"].iat[pos])
     sma_200 = float(bars["sma_200"].iat[pos])
     if not np.isfinite(close) or not np.isfinite(sma_200):
         return True  # convention 3
-    return close <= sma_200  # convention 2
+    if direction is Direction.BULLISH:
+        return close <= sma_200  # convention 2
+    return close >= sma_200  # convention 2, mirrored (D-31)
 
 
 def gate(bars: pd.DataFrame, pos: int, direction: Direction, *, fast_chart: bool) -> GateDecision:
@@ -124,8 +130,8 @@ def gate(bars: pd.DataFrame, pos: int, direction: Direction, *, fast_chart: bool
     reasons: list[GateReason] = []
     if _trend_50_blocks(bars, pos, direction):
         reasons.append(GateReason.TREND_50)
-    if _long_into_200_blocks(bars, pos, direction, fast_chart=fast_chart):
-        reasons.append(GateReason.LONG_INTO_200)
+    if _into_200_blocks(bars, pos, direction, fast_chart=fast_chart):
+        reasons.append(GateReason.INTO_200)
 
     blocked_by = tuple(reasons)
     return GateDecision(pos, direction, passed=not blocked_by, blocked_by=blocked_by)

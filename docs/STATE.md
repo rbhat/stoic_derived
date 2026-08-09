@@ -7,7 +7,7 @@ Phase 2's exit gate names a *two-reader* test that has never actually been run �
 closed is not the same claim, so do not report that gate as met.
 
 **Phase 5 is under way: L0, L1, L2, L3 and L4 are built. Only L5 (emission) is left.** Baseline as
-at 2026-08-09: `pytest` **197 passed**, `scripts/verify_citations.py` **212 citations across 8
+at 2026-08-09: `pytest` **199 passed**, `scripts/verify_citations.py` **216 citations across 8
 sources, all resolve**, negative control PASS.
 
 **Three of L2's four terms are decided. One is left: the obvious base.** All four were routed to
@@ -127,7 +127,9 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
    daily level 25 seconds before the rule, and PDC sits inside the PDH/PDL range by construction, so
    *strictly-between-blocks* forbids a trade the same passage licenses. The user's call was to build
    neither reading and open **O-19**. What L4 does build is the **50 SMA gate** (§7.1.2, **D-19**)
-   and the **200 SMA long-only rule** (§7.1.4). **L5 must not re-add what L4 declined:** minimum R
+   and the **200 SMA rule** (§7.1.4), which the human made **symmetric the same day** — **D-31**, so a
+   short is blocked at or above the 200 as a long is blocked at or below it, on fast charts only.
+   **L5 must not re-add what L4 declined:** minimum R
    (**O-10** — record it, do not gate on it), trapped side (§7.3, **J**), the rest of §7.4.2
    (**O-9**), and §7.4.3 (**O-19**). **HTF alignment is L5's own work and is not a gate** (§7.5.5,
    **D-27** — it raises the confluence score and never blocks).
@@ -145,13 +147,29 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
    **Two things L5 needs that nothing has pinned. Neither is a number to pick quietly.**
 
-   1. **The confluence score.** `VISION.md` requires confidence to be *"a deterministic confluence
-      score computed by the rules — not a model output."* The rulebook names exactly **one** input —
-      **D-27**'s HTF alignment, which raises it and never blocks — and **no** weights, no other
-      inputs, no scale. Choosing a set and weighting it is what
-      `claude_memories/audit-hard-rules-not-in-material.md` forbids, and any choice would look
-      reasonable, which is precisely what makes it L5's trap. **Put it to the human before writing
-      it.**
+   1. **The confluence score — settled in shape by the user on 2026-08-09: *"the rules should be
+      present for entry."*** `VISION.md` requires confidence to be *"a deterministic confluence score
+      computed by the rules — not a model output."* The inputs are the rulebook's **own
+      already-specified conditions, checked at the entry bar**. Nothing new is invented for scoring,
+      and **§7 already names them**:
+
+      - **§7.1.1** — *"the best setups are going to be in the direction of the 50 **and** 200 simple
+        moving average."* A confidence statement in the material's own words. **§7.1.3** adds that the
+        200 carries the higher-timeframe trend.
+      - **§7.5.5 / D-27** — the HTF's confirmed Step 3 in the same direction. §11 already says it
+        raises the score and never blocks.
+
+      **Do not confuse §7.1.1 with §7.1.2** — the rulebook keeps them as separate rows on the same
+      MAs, and so must L5. §7.1.2 is the **gate** (**D-19**, per-bar close against the 50), which is
+      L4's and already built; §7.1.1 is the **read**. The 200 is a gate only for longs on fast charts
+      (§7.1.4), so its alignment varies freely on shorts and on slow charts — the two rows do not
+      collide.
+
+      **Only the combination is undirected** — a plain count of the conditions present, or weights.
+      That is not in the material, so it is a decision, not something to derive
+      (`claude_memories/audit-hard-rules-not-in-material.md`). Everything **J** in §7.3/§8 — trapped
+      side, break & retest, SFP, SBS — stays out until it is decided; it is not a missing input to
+      solve for.
    2. **TP2's fib anchors.** §6.2 / **D-6** give the ratio (2.618) and **D-20** gives the swing (Step
       2, the first pullback), but a trend-extension tool takes **three** points and no rule pins
       them. L2 exposes `step1_pos`, `step2_swing_pos`, `step2_swing_price` and `base`, so the
@@ -201,8 +219,8 @@ context and targets, never a step of the sequence, and they yield on conflict.
 ## What Phase 5 L0–L4 built
 
 Pure functions over bars — no disk I/O, no network, no clock, no model. Tests are hermetic and
-hand-built; the suite is 197. L2's decided predicates add 27 in `tests/test_judgment.py`, L3 adds 23
-in `tests/test_entry.py`, L4 adds 25 in `tests/test_gating.py`.
+hand-built; the suite is 199. L2's decided predicates add 27 in `tests/test_judgment.py`, L3 adds 23
+in `tests/test_entry.py`, L4 adds 27 in `tests/test_gating.py`.
 
 | | |
 |---|---|
@@ -212,7 +230,7 @@ in `tests/test_entry.py`, L4 adds 25 in `tests/test_gating.py`.
 | `stoic/levels.py` | PDH/PDL/PDC, PWC/PWH/PLOW, HCOM/LCOM (§7.3, **D-8**). HCOM/LCOM are highest/lowest daily **close** — *"not the highest wick"* |
 | `stoic/sequence.py` | **L2.** The Step 1 → Step 2 → Step 3 machine, the reset (**D-15**), the directional state (**D-21**), the running Step 3 High/Low (**D-16**, not frozen here), the Step 2 swing (**D-20**), and the three §5.4.7 invalidation events |
 | `stoic/entry.py` | **L3.** The PTB walk — anchor, re-anchor per non-inside candle (**D-17**), inside-candle skip (**D-23**/§5.3.5a), the stop-market fill including the gap case (**D-22**), the stop at the opposite PTB extreme (**D-18**, no floor), and the break-even trigger (**D-25**) against the Step 3 extreme **frozen at fill** (**D-16**). Consumes L1's pullback and L2's events; derives neither |
-| `stoic/gating.py` | **L4.** Two gates and no more: the 50 SMA direction gate (§7.1.2, **D-19** — per-bar close, no lookback, no tolerance, no chop detector) and the 200 SMA rule (§7.1.4 — **long-only**, no bearish mirror, and **fast-chart-only**, so `fast_chart` is required with no default). `gate(bars, pos, direction, *, fast_chart)` collects **every** reason, never short-circuits. A pure evaluator: the caller picks the bar, so *when* the gate is read is L5's question, not one L4 answered |
+| `stoic/gating.py` | **L4.** Two gates and no more: the 50 SMA direction gate (§7.1.2, **D-19** — per-bar close, no lookback, no tolerance, no chop detector) and the 200 SMA rule (§7.1.4 — **symmetric per D-31**, blocking a long at or below the 200 and a short at or above it, and **fast-chart-only**, so `fast_chart` is required with no default). Reason members are `TREND_50` and `INTO_200`; `gate(bars, pos, direction, *, fast_chart)` collects **every** reason, never short-circuits. A pure evaluator: the caller picks the bar, so *when* the gate is read is L5's question, not one L4 answered |
 
 **L2's four unquantified terms are injected, not implemented — and that has not changed now that
 three are decided.** `Judgment` is a frozen dataclass of four predicates with **no defaults** —

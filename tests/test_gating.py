@@ -1,8 +1,8 @@
 """Unit tests for stoic.gating (L4) -- hand-built fixtures only, no disk or network access.
 
-Only the two MA gates: the 50 SMA direction gate (§7.1.2, D-19) and the 200 SMA long-only rule
-(§7.1.4). Every gate here gets a negative control per `coding_rules.md`: inject the fault it exists
-to catch and confirm it fails.
+Only the two MA gates: the 50 SMA direction gate (§7.1.2, D-19) and the 200 SMA rule (§7.1.4),
+symmetric since decision D-31. Every gate here gets a negative control per `coding_rules.md`:
+inject the fault it exists to catch and confirm it fails.
 """
 
 from __future__ import annotations
@@ -92,55 +92,57 @@ def test_trend_50_negative_control():
 
 
 # ---------------------------------------------------------------------------
-# Gate 2 -- the 200 SMA long-only rule (§7.1.4)
+# Gate 2 -- the 200 SMA rule, symmetric since D-31 (§7.1.4)
 # ---------------------------------------------------------------------------
 
 
 def test_200_sma_blocks_bullish_below_on_fast_chart():
     bars = _bars(closes=[90.0], sma_50=[80.0], sma_200=[100.0])
     decision = gate(bars, 0, Direction.BULLISH, fast_chart=True)
-    assert decision.blocked_by == (GateReason.LONG_INTO_200,)
+    assert decision.blocked_by == (GateReason.INTO_200,)
 
 
 def test_200_sma_does_not_block_bullish_above_on_fast_chart():
     bars = _bars(closes=[110.0], sma_50=[80.0], sma_200=[100.0])
     decision = gate(bars, 0, Direction.BULLISH, fast_chart=True)
-    assert GateReason.LONG_INTO_200 not in decision.blocked_by
+    assert GateReason.INTO_200 not in decision.blocked_by
 
 
 def test_200_sma_exact_tie_blocks_bullish_on_fast_chart():
     """Convention 2: at the 200 is still longing into it -- `<=`, not `<`."""
     bars = _bars(closes=[100.0], sma_50=[80.0], sma_200=[100.0])
     decision = gate(bars, 0, Direction.BULLISH, fast_chart=True)
-    assert decision.blocked_by == (GateReason.LONG_INTO_200,)
+    assert decision.blocked_by == (GateReason.INTO_200,)
 
 
-def test_nan_sma_200_blocks_bullish_but_not_bearish_on_fast_chart():
+def test_nan_sma_200_blocks_both_directions_on_fast_chart():
+    """Convention 3, since D-31: NaN blocks both directions, not bullish only."""
     bars = _bars(closes=[110.0], sma_50=[80.0], sma_200=[np.nan])
     bull = gate(bars, 0, Direction.BULLISH, fast_chart=True)
     bear = gate(bars, 0, Direction.BEARISH, fast_chart=True)
-    assert GateReason.LONG_INTO_200 in bull.blocked_by
-    assert GateReason.LONG_INTO_200 not in bear.blocked_by
+    assert GateReason.INTO_200 in bull.blocked_by
+    assert GateReason.INTO_200 in bear.blocked_by
 
 
 @pytest.mark.parametrize(
-    ("close", "sma_200"),
+    ("close", "sma_200", "expect_blocked"),
     [
-        (90.0, 100.0),  # below
-        (100.0, 100.0),  # at
-        (110.0, 100.0),  # above
-        (110.0, np.nan),  # NaN
+        (90.0, 100.0, False),  # below -- passes
+        (100.0, 100.0, True),  # at -- blocks (convention 2, mirrored)
+        (110.0, 100.0, True),  # above -- blocks
+        (110.0, np.nan, True),  # NaN -- blocks (convention 3)
     ],
 )
-def test_200_sma_rule_has_no_bearish_mirror(close: float, sma_200: float):
-    """§7.1.4: long-only, no mirror. A bearish candidate is never blocked by LONG_INTO_200 under
-    any of {below, at, above, NaN} the 200."""
+def test_200_sma_rule_mirrors_for_shorts(close: float, sma_200: float, expect_blocked: bool):
+    """D-31: "just like we look for longs above 50/200sma, we look for shorts below it" -- a
+    bearish candidate is blocked at or above the 200 and passes below it, across the same
+    {below, at, above, NaN} cases the old long-only test covered."""
     bars = _bars(closes=[close], sma_50=[close], sma_200=[sma_200])
     decision = gate(bars, 0, Direction.BEARISH, fast_chart=True)
-    assert GateReason.LONG_INTO_200 not in decision.blocked_by
+    assert (GateReason.INTO_200 in decision.blocked_by) is expect_blocked
 
 
-def test_fast_chart_false_never_emits_long_into_200():
+def test_fast_chart_false_never_emits_into_200():
     bars = _bars(
         closes=[90.0, 100.0, 110.0],
         sma_50=[80.0, 80.0, 80.0],
@@ -149,21 +151,52 @@ def test_fast_chart_false_never_emits_long_into_200():
     for pos in range(3):
         for direction in (Direction.BULLISH, Direction.BEARISH):
             decision = gate(bars, pos, direction, fast_chart=False)
-            assert GateReason.LONG_INTO_200 not in decision.blocked_by
+            assert GateReason.INTO_200 not in decision.blocked_by
 
 
 def test_200_sma_negative_control():
-    """Same discipline as the 50's negative control: a passing baseline, then the injected fault."""
+    """Same discipline as the 50's negative control: a passing baseline, then the injected fault --
+    for both directions, since D-31 makes the gate symmetric. A check never observed failing is
+    not evidence of anything."""
     closes = [110.0, 120.0, 130.0]
-    passing = _bars(closes=closes, sma_50=[80.0] * 3, sma_200=[100.0] * 3)
+    passing_bull = _bars(closes=closes, sma_50=[80.0] * 3, sma_200=[100.0] * 3)
     for pos in range(len(closes)):
-        decision = gate(passing, pos, Direction.BULLISH, fast_chart=True)
-        assert GateReason.LONG_INTO_200 not in decision.blocked_by
+        decision = gate(passing_bull, pos, Direction.BULLISH, fast_chart=True)
+        assert GateReason.INTO_200 not in decision.blocked_by
 
-    faulted = _bars(closes=closes, sma_50=[80.0] * 3, sma_200=[200.0] * 3)
+    faulted_bull = _bars(closes=closes, sma_50=[80.0] * 3, sma_200=[200.0] * 3)
     for pos in range(len(closes)):
-        decision = gate(faulted, pos, Direction.BULLISH, fast_chart=True)
-        assert decision.blocked_by == (GateReason.LONG_INTO_200,)
+        decision = gate(faulted_bull, pos, Direction.BULLISH, fast_chart=True)
+        assert decision.blocked_by == (GateReason.INTO_200,)
+
+    # Mirror: a bearish baseline below the 200 passes; inverting the 200 below every close
+    # blocks all of them.
+    bear_closes = [90.0, 80.0, 70.0]
+    passing_bear = _bars(closes=bear_closes, sma_50=[200.0] * 3, sma_200=[100.0] * 3)
+    for pos in range(len(bear_closes)):
+        decision = gate(passing_bear, pos, Direction.BEARISH, fast_chart=True)
+        assert GateReason.INTO_200 not in decision.blocked_by
+
+    faulted_bear = _bars(closes=bear_closes, sma_50=[200.0] * 3, sma_200=[50.0] * 3)
+    for pos in range(len(bear_closes)):
+        decision = gate(faulted_bear, pos, Direction.BEARISH, fast_chart=True)
+        assert decision.blocked_by == (GateReason.INTO_200,)
+
+
+def test_bearish_below_50_and_below_200_passes_both_gates_on_fast_chart():
+    """New since D-31: the 200 now bites on shorts too, so a bearish candidate below both MAs
+    must still pass cleanly."""
+    bars = _bars(closes=[70.0], sma_50=[80.0], sma_200=[100.0])
+    decision = gate(bars, 0, Direction.BEARISH, fast_chart=True)
+    assert decision.passed is True
+    assert decision.blocked_by == ()
+
+
+def test_bearish_below_50_but_above_200_blocked_by_into_200_alone():
+    """New since D-31: below the 50 passes gate 1, but at/above the 200 still blocks gate 2."""
+    bars = _bars(closes=[110.0], sma_50=[120.0], sma_200=[100.0])
+    decision = gate(bars, 0, Direction.BEARISH, fast_chart=True)
+    assert decision.blocked_by == (GateReason.INTO_200,)
 
 
 # ---------------------------------------------------------------------------
@@ -174,7 +207,7 @@ def test_200_sma_negative_control():
 def test_bar_that_trips_both_gates_names_both_in_declaration_order():
     bars = _bars(closes=[90.0], sma_50=[100.0], sma_200=[100.0])
     decision = gate(bars, 0, Direction.BULLISH, fast_chart=True)
-    assert decision.blocked_by == (GateReason.TREND_50, GateReason.LONG_INTO_200)
+    assert decision.blocked_by == (GateReason.TREND_50, GateReason.INTO_200)
 
 
 @pytest.mark.parametrize(
