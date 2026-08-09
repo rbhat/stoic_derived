@@ -4,10 +4,15 @@ The `PTB Entries` set is complete — 748 segments, the full 01:37:54, all four 
 `edu/derived/manifest.json`. `PTBV` in §0 has a file behind it, and 34 citations at 32 distinct
 timestamps point at it.
 
-**Phases 0 and 1 are complete.** **Phase 2 has a deliverable — `docs/RULEBOOK.md` — and one row
-short of its gate.** The spec is written and every rule cites the material (157 timestamp citations,
-all verified, negative control passing). §12 is down to **one blocking row, O-5** — the three
-constants in the ATR stop floor — from eight on 2026-08-01.
+**Phases 0 and 1 are complete.** **Phase 2 has a deliverable — `docs/RULEBOOK.md` — and is short of
+its gate on two open rows and an unfinished audit.** The spec is written and every rule carries a
+citation; §12 blocks on **O-5** (the three constants in the ATR stop floor) and **O-14** (what
+*"approaching the 10/20"* means), O-14 being the earlier gate.
+
+**"Every rule cites the material" is not the same as "every rule is supported by it."** This file
+used to claim 157 citations *"all verified"*. That claim was about whether citations **resolve** —
+they do, all of them, including under the Phase 2a sweep. It was never a check on whether a rule says
+**more than** the source it points at, and **10 of 132 rules do**. See `docs/AUDIT-2a.md`.
 
 **The audit found that `DIA-P` and `DIA-L` are the same file** — md5 `5db99292665d2f688ee34531688444ad`,
 `diff` empty, three paths one content. §10.3 concludes *"two independent drawings agreeing bar for
