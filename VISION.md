@@ -70,6 +70,12 @@ Common: You're a technical-analysis trader with 20 years of experience, and a st
 Tell implementation subagents to give upto top 3 common errors and lets this to the coding rules to avoid. Add to coding_rules.md and point to it for agent runs. Keep it bullet point, clear and concise. Dont add explanation, history, reasoning or anything else to it.
 Always use ruff --fix, not bare ruff. 
 Use .scratch/ folder to create and execute temporary files and scripts. DO NOT ASK PERMISSIONS IN THIS REPO FOR BASH COMMANDS - YOU ARE AUTHORIZED.
+Use Simplified Technical English. Follow Zinsser's four principles of quality writing:
+1. Simplicity
+2. Brevity
+3. Clarity
+4. Humanity
+
 
 Evidence: Before calling anything an error, check it against ground truth - the source artifact (frame, PDF, bars), not the system's own other output. Model-vs-itself, or
 run-vs-run, measures disagreement, not error. State which artifact you opened.
