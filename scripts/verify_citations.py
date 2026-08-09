@@ -5,6 +5,11 @@ Two marker dialects:
   only_trading_video.md  M:SS / MM:SS / H:MM:SS  alone on a line
 
 Negative control: fabricated timestamps must be reported missing. Run with --self-test.
+
+With no arguments it scans docs/RULEBOOK.md — that is the gate, and its count is the baseline
+in docs/STATE.md. Pass paths to scan other files instead, e.g. the censuses under docs/evidence/:
+
+    python scripts/verify_citations.py docs/evidence/census_*.md
 """
 
 from __future__ import annotations
@@ -70,12 +75,20 @@ def check(cites: list[tuple[str, str]]) -> list[str]:
 
 
 def main() -> int:
-    text = RULEBOOK.read_text(encoding="utf-8")
-    cites = CITE.findall(text)
+    args = [a for a in sys.argv[1:] if a != "--self-test"]
+    targets = [Path(a).resolve() for a in args] if args else [RULEBOOK]
+
+    cites: list[tuple[str, str]] = []
+    for target in targets:
+        if not target.exists():
+            print(f"target absent: {target}")
+            return 1
+        cites.extend(CITE.findall(target.read_text(encoding="utf-8")))
     keys = sorted({k for k, _ in cites})
     missing = check(cites)
 
-    print(f"{len(cites)} citations across {len(keys)} sources: {', '.join(keys)}")
+    scanned = ", ".join(t.relative_to(REPO).as_posix() for t in targets)
+    print(f"{len(cites)} citations across {len(keys)} sources: {', '.join(keys)}  [{scanned}]")
     if missing:
         print(f"MISSING ({len(missing)}):")
         for m in missing:
