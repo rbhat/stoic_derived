@@ -17,6 +17,16 @@ terms the spec deliberately leaves unquantified: *"meaningful"* for the Step 1 b
 (§2.3.4 **P**), an **obvious base** (§2.2.5 **J**, **D-3** qualitative), and **boundary selection**
 (§2.2.6–§2.2.9 **J**, under the §2.2.8 no-hindsight constraint). None is an open §12 row.
 
+**The first deliverable is a passage census, not a trained model.** The whole corpus is **66,463
+words** across 9 transcripts — small enough to read whole, so fine-tuning on it would memorise
+rather than discover, with no held-out set to check against. So: enumerate every passage bearing on
+each of the four terms, with citations, into `docs/evidence/census_meaningful.md` and
+`docs/evidence/census_base_boundary.md`. That is both the input the SLM proposes over and the eval
+set for what it proposes. It may settle a term outright, or show the material never speaks to it —
+which is the answer, and sends that term to the human. **Brief: `.scratch/census_brief.md`**
+(gitignored, this machine only — regenerate it from this paragraph if lost). Two Sonnet agents were
+dispatched on 2026-08-09 and died on a session limit with nothing written; nothing is part-done.
+
 **Two things that routing does not change.** The SLM **proposes; it never decides** — `VISION.md`
 keeps it offline and out of the live path, and §0 says a proposed number for a **J** term *"is a
 strategy decision requiring the human"*. So each proposal still lands as a **D-row in §11** with the
