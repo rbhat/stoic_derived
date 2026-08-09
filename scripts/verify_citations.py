@@ -21,6 +21,10 @@ SOURCES = {
     "M1": (D / "concept_stoic_edge_system_module_1_is_live" / "transcript.md", "transcript"),
     "SCALP": (D / "concept_scalping_example_live_trading_session" / "transcript.md", "transcript"),
     "PTBV": (D / "concept_ptb_entries_nq_live_trading_10r" / "transcript.md", "transcript"),
+    "TPA": (
+        D / "concept_navigating_tough_price_action_with_1_2_3_and_ptbs" / "transcript.md",
+        "transcript",
+    ),
     "SSS": (D / "concept_simple_stoic_setups_sss" / "transcript.md", "transcript"),
     "HTF": (D / "concept_htf_stoic_trader_protocol" / "transcript.md", "transcript"),
     "CST": (D / "concept_candle_swing_theory_pdh_pdl_pdc" / "transcript.md", "transcript"),

@@ -1,8 +1,13 @@
 # Current state — what is true right now
 
-**Phases 0, 1, 2 and 2a are complete. `docs/RULEBOOK.md` has closed its register, and nothing in §12
-blocks Phase 5.** Every rule carries a citation. The last blocker — **O-14**, where the post-Step-3
-expansion leg ends — closed on 2026-08-08 as **D-28**, so **L1, L3 and L4** all compile.
+**Phases 0, 1 and 2a are complete. Phase 2's deliverable — `docs/RULEBOOK.md` — is written and its
+register is closed: nothing in §12 blocks Phase 5.** The last blocker, **O-14** (where the
+post-Step-3 expansion leg ends), closed on 2026-08-08 as **D-28**, so **L1, L3 and L4** all compile.
+Phase 2's exit gate names a *two-reader* test that has never actually been run — the register being
+closed is not the same claim, so do not report that gate as met.
+
+**Next step: Phase 5, the engine.** Baseline as at 2026-08-08: `pytest` **25 passed**,
+`scripts/verify_citations.py` **205 citations across 8 sources, all resolve**, negative control PASS.
 
 The decision register is `docs/RULEBOOK.md` **§11** (closed) and **§12** (open) — nowhere else. The
 table in `docs/PLAN.md` is the superseded intake form.
@@ -74,6 +79,8 @@ context and targets, never a step of the sequence, and they yield on conflict.
 | `stoic/bars.py` | 1m → 5m/15m/60m/1D/1W. Pure resample, no materialised parquet |
 | `scripts/check_bar_spine.py` | Gates A–E, each with literal output and a negative control |
 | `scripts/build_corpus.py` | Resumable transcribe + keyframe pipeline, 4 stages, no LLM/VLM |
+| `scripts/verify_citations.py` | Every `KEY @ TIMESTAMP` in `RULEBOOK.md` resolves to a real marker, with a negative control. **Its `SOURCES` map is hand-maintained and drifts** — `TPA` was missing from it for the eight days it was the newest source, so 23 real citations reported as *unknown citation key* and nobody noticed. Add the key when you add a source, and run it after editing citations |
+| `scripts/measure_ptb_atr.py` | Produced `.artifacts/ptb_atr_distribution.md`. Now inert except for its 62.8% figure — see above |
 | `tests/` | 25 tests, hermetic |
 
 ## Open

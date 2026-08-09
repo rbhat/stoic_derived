@@ -33,6 +33,8 @@ open the source. A row that starts to look like a paraphrase has become a bug.
 | Emit a signal record | `VISION.md` — "What a signal actually is" |
 | Write to the ledger | `VISION.md` — Trade ledger |
 | Decide where a run artifact goes | `claude_memories/artifact-locality.md` |
+| Decide which engine layer a rule belongs in | `docs/PLAN.md` Phase 5 layer table and the correction under it — **a layer that has to invent a predicate is usually reaching past a layer that already owns it.** L3 defining a pullback atomically is what O-14 was; check the layer below before writing the predicate |
+| Add a citation, or add a source to the corpus | Run `scripts/verify_citations.py`, and add the key to its `SOURCES` map in the same change — an unregistered key reports as *unknown citation key*, not as an error anyone will read |
 | Write any code at all | `coding_rules.md` |
 | Call something an error | `VISION.md` — Evidence: check the source artifact, not the system's other output |
 
