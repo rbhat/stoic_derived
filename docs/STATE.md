@@ -6,8 +6,17 @@ post-Step-3 expansion leg ends), closed on 2026-08-08 as **D-28**, so **L1, L3 a
 Phase 2's exit gate names a *two-reader* test that has never actually been run — the register being
 closed is not the same claim, so do not report that gate as met.
 
-**Next step: Phase 5, the engine.** Baseline as at 2026-08-08: `pytest` **25 passed**,
+**Phase 5 is under way: L0 and L1 are built.** Baseline as at 2026-08-08: `pytest` **76 passed**,
 `scripts/verify_citations.py` **205 citations across 8 sources, all resolve**, negative control PASS.
+
+**Next step: L2, the sequence state machine — and it is the first layer that does *not* compile
+from the rulebook as written.** L1, L3 and L4 compile; L2 needs four terms the spec deliberately
+leaves unquantified: *"meaningful"* for the Step 1 break and close (§2.1.1 **P**, §2.1.4 **J**,
+**D-2** sets no threshold), *"meaningful close"* for Confirmed Step 3 (§2.3.4 **P**), an **obvious
+base** (§2.2.5 **J**, **D-3** qualitative), and **boundary selection** (§2.2.6–§2.2.9 **J**, under
+the §2.2.8 no-hindsight constraint). None of these is an open §12 row — they are **J**/**P** by
+design, so they need the human, not more reading. That is a decision to take before L2, not a
+blocker to code around.
 
 The decision register is `docs/RULEBOOK.md` **§11** (closed) and **§12** (open) — nowhere else. The
 table in `docs/PLAN.md` is the superseded intake form.
@@ -50,10 +59,10 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-1. **Phase 5 — the rulebook engine.** The spec is closed and the layer boundaries are settled, so
-   this is the next build. L0 → L5 per the `docs/PLAN.md` layer table, pure functions over bars,
-   no network and no model, each layer unit-tested against hand-built fixtures with a negative
-   control per `coding_rules.md`.
+1. **Phase 5 — the rulebook engine.** L0 and L1 are built (table below). **L2 is next and needs the
+   four decisions named at the top of this file first.** L3 → L5 follow per the `docs/PLAN.md`
+   layer table, pure functions over bars, no network and no model, each layer unit-tested against
+   hand-built fixtures with a negative control per `coding_rules.md`.
 2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
    backtest once the system is on."* It is **not cancelled**: Phase 6 cannot report fidelity without
    it, and it is the evidence that would confirm or overturn **D-28**. It simply does not gate the
@@ -83,6 +92,27 @@ context and targets, never a step of the sequence, and they yield on conflict.
 | `scripts/measure_ptb_atr.py` | Produced `.artifacts/ptb_atr_distribution.md`. Now inert except for its 62.8% figure — see above |
 | `tests/` | 25 tests, hermetic |
 
+## What Phase 5 L0 and L1 built
+
+Pure functions over bars — no disk I/O, no network, no clock, no model. Tests are hermetic and
+hand-built; the suite is 76.
+
+| | |
+|---|---|
+| `stoic/indicators.py` | 10/20 (sequence) and 50/200 (trend) SMAs of the close, on the frame given. Warm-up stays NaN — never `min_periods=1` |
+| `stoic/candles.py` | `candle_structure` — inside-bar flags and **parent-bar** positions (§5.2.8a, **D-23**). A run of inside bars shares one parent; for a non-inside bar the parent is the nearest preceding non-inside bar, which is the reference **D-28** requires |
+| `stoic/structure.py` | **L1.** `opens_pullback` / `find_pullback_start` / `leg_phases` — **D-28** (§5.2.1a): the pullback opens at the first completed candle whose **both** extremes move against the direction, measured against the parent bar. Never reads `open` or `close` (§5.3.3c) |
+| `stoic/levels.py` | PDH/PDL/PDC, PWC/PWH/PLOW, HCOM/LCOM (§7.3, **D-8**). HCOM/LCOM are highest/lowest daily **close** — *"not the highest wick"* |
+
+**L1 is only the pullback boundary.** Base detection, boundary selection and climax are **not**
+built: §2.2.5–§2.2.9 and §4 are **J**, so building them would invent the thresholds `CLAUDE.md`
+forbids. Swing-point detection is not built either — no rulebook definition exists, any pivot needs
+an invented lookback, and nothing consumes one.
+
+**Two unpinned choices are documented as conventions in their module docstrings, and deliberately
+not written into `docs/RULEBOOK.md`:** a bar whose high *and* low exactly equal its parent's counts
+as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 names neither).
+
 ## Open
 
 - **A `T2` reading that would bear on D-23, not yet verified.** On `T2`'s bullish count the last
@@ -107,6 +137,12 @@ context and targets, never a step of the sequence, and they yield on conflict.
   The transcripts and keyframe manifests are in git; the keyframe **images** are gitignored
   (`edu/derived/**/keyframes/`) and are regenerable from the videos — which is only true while the
   videos survive.
+- **`stoic/levels.py` reports a leading partial month as if it were complete.** ES/NQ daily history
+  begins 2019-06-10, so June 2019 holds 15 sessions; **45 sessions per symbol** then read
+  `hcom_m1`/`hcom_m2` off that truncated month with no NaN and no flag. Same class as the
+  2025-11-28 hole, and the same disposition — the caller excludes or flags it, the function cannot
+  detect it. A frame starting mid-week does the same to `pwc`/`pwh`/`plow`. Documented in the
+  module docstring.
 - `past_flatten` is 0 for every 5m bar by construction — the cutoff sits in a 2-minute window no 5m
   bar can start in. Phase 7 will need the bar *containing* the cutoff, not bars after it.
 

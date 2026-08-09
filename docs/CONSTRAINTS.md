@@ -35,6 +35,8 @@ open the source. A row that starts to look like a paraphrase has become a bug.
 | Decide where a run artifact goes | `claude_memories/artifact-locality.md` |
 | Decide which engine layer a rule belongs in | `docs/PLAN.md` Phase 5 layer table and the correction under it — **a layer that has to invent a predicate is usually reaching past a layer that already owns it.** L3 defining a pullback atomically is what O-14 was; check the layer below before writing the predicate |
 | Add a citation, or add a source to the corpus | Run `scripts/verify_citations.py`, and add the key to its `SOURCES` map in the same change — an unregistered key reports as *unknown citation key*, not as an error anyone will read |
+| Compute an MA, an inside bar, a pullback boundary, or an HTF level | It is already built — `stoic/indicators.py`, `stoic/candles.py`, `stoic/structure.py`, `stoic/levels.py`. Read the module docstring before reimplementing; each names its rulebook section and the conventions it fixed |
+| Build **L2** — Step 1, the base, the boundary, or Confirmed Step 3 | `docs/STATE.md` — the four **J**/**P** terms L2 needs; `docs/RULEBOOK.md` §2.1.4, §2.2.5–§2.2.9, §2.3.4, **D-2**, **D-3**. They are unquantified **by design**, not open rows. The human decides; do not derive a threshold to get unblocked |
 | Write any code at all | `coding_rules.md` |
 | Call something an error | `VISION.md` — Evidence: check the source artifact, not the system's other output |
 
