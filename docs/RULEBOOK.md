@@ -40,6 +40,9 @@ strategy decision requiring the human, per the standing directive in `CLAUDE.md`
 | `IBD` | `edu/123sequence/insidebar.png` (the inside-bar schematic: one parent bar, two inside bars, a breakout bar) |
 | `LT` | `edu/123sequence/entry_technique/step-3-livetrade.png` |
 | `NQ3` | `edu/123sequence/nq-1-2-3.png` (NQ 5m, bullish, live-marked) |
+| `T2` | `edu/123sequence/stoic_trade2.png` — MNQ 5m. **Two complete counts, a reset between them, two `ptb` levels, six executions.** A later snapshot of `T1`'s session (§10.8) |
+| `LT3` | `edu/123sequence/entry_technique/stoic_live_trade3.png` — MNQ 5m, bullish, `BE` drawn, position still open (§10.9) |
+| `LT4` | `edu/123sequence/entry_technique/stoic_live_trade4.png` — **the same trade as `LT3`, closed.** Cite the pair for one trade, never as two (§10.9) |
 | `PTBV` | `edu/derived/concept_ptb_entries_nq_live_trading_10r/transcript.md` — by timestamp |
 | `TPA` | `edu/derived/concept_navigating_tough_price_action_with_1_2_3_and_ptbs/transcript.md` — by timestamp |
 | `T1` | `edu/123sequence/stoic_trade1.png` |
@@ -386,7 +389,9 @@ labels may show it; the engine should not emit it. See decision **D-11**, §11.
 | 6.3b | In 1-2-3 terms the anchor is the **Step 2 swing**. `OTV` enters on the second pullback: *"because we don't know the first pullback might be a fake out, we looking for the second pullback. And once the second pullback occurs, then that's more likely that price actually reversed."* The second pullback is the Step 3 pullback that carries the PTB. First pullback anchors the fib; second pullback carries the entry. The cited span establishes that the second pullback *confirms* the reversal; that it is where **we enter** is stated at `OTV @ 1:07:32` — *"There is the first 100%. This is your second pullback where we enter"* — in a passage that also names 2618 and 423 as first and second target, corroborating **D-20** whole. | M | `OTV @ 52:22`, `OTV @ 52:28`, `OTV @ 1:07:32`; decision **D-20**, §11 |
 | 6.3c | `SCALP`'s *"we want to measure the first lower high right so 2618 this is the target"* is the bearish mirror of 6.3b, said **before** the breakdown: the first lower high after the reversal is the Step 2 bounce — a translation into 1-2-3 vocabulary that is **D-20**'s, not `SCALP`'s, which never says *Step 1*, *Step 2* or *bounce* anywhere in this trade's narration. The two sources agree. | M | `SCALP @ 06:35`; decision **D-20**, §11 |
 | 6.4 | **Final technical exit = the confirmed opposite Step 3**, for the remaining position. Partials may be taken before it. | M | `PC`, `M1 @ 09:24`, `M1 @ 23:46` |
-| 6.5 | Between entry and 6.4, the position is simply held: *"we simply stay with the move until the complete opposite one two three pattern confirms."* | M | `M1 @ 09:24` |
+| 6.5 | Between entry and 6.4 the position is **held** — *"we simply stay with the move until the complete opposite one two three pattern confirms"* — subject to the §5.4.7 invalidations and the 6.5a cue. It previously read *"simply held"*, which `TPA` contradicts. | M | `M1 @ 09:24`; §5.4.7 |
+| 6.5a | **Lower-high cue** (long; higher-low for a short). Once price stops making higher highs, that is a **cue to consider exiting and reassessing** — *"as soon as price making a lower high that's signaling to traders that they need to get out … just get out of the position and reassess."* It is **subjective and does not invalidate**: same class as climax (§4.3), so it never fires, suppresses or ends a trade on its own. `TPA` qualifies it in the next breath — *"this only works this well when price is trending."* | J | `TPA @ 00:13:36`–`00:14:06`, `TPA @ 00:14:17`; decision **D-26**, §11 |
+| 6.5b | **An inside candle is never a lower high, and it moves nothing.** It has a lower high than its parent **by construction**, so a post-entry lower-high read that counted it would fire on every inside candle. It also does not move the **stop**: §5.3.5a holds the working order at its anchor before entry, and the stop stays where it is after — there is exactly one stop move and it is 5.4.5. | M | decision **D-26**, §11; §5.2.8a, §5.3.5a |
 | 6.6 | Climax is a sanctioned management cue (§4.3) — **not the only one.** `M1 @ 16:08` lists four things as *"optional management context"*: the 50/200 SMA, climax conditions, additional entries, and partial profits. Two of those are already rules here (continuation entries §2.5, partials §6.1). What binds is §4.3: none of them creates a signal or changes the technical state. | M | `M1 @ 16:08`, `M1 @ 16:19`, `M1 @ 16:31` |
 
 **Open:** 6.2 vs 6.1 ordering when the Step 3 High/Low sits beyond 2.618, and partial sizing at each
@@ -435,10 +440,19 @@ a tolerance on 7.1.7 — continuous count-and-reset **is** the chop reading, wit
 | **HCOM** | **Highest daily close of the month.** *"Not the highest wick"* — the close, because it shows where the market accepted price at the end of the day. | M | `OTV @ 27:54`, `HOW` |
 | **LCOM** | **Lowest daily close of the month.** | M | `OTV @ 27:54`, `HOW` |
 | **PDH / PDL / PDC** | Previous day high / low / close. *"They tell you where yesterday's market made decisions."* The daily close is the only intraday-relevant close the material trusts, because it is the cash close. | M | `OTV @ 35:29`, `CST @ 04:49` |
+| **PWC** | **Previous weekly close.** The weekly analogue of `PDC`, and stated as such: *"just like we basing our decisions from previous daily close we can be basing the weekly decisions from previous weekly close."* Used as an explicit **target**: *"this line is the previous weekly close, that previous weekly close is my target right now."* Drawn on `LT3` / `LT4` at 28,306.75. | M | `PTBV @ 00:27:42`, `PTBV @ 00:25:54`, `PTBV @ 00:17:57`, `SSS @ 03:18` |
+| **PWH / PLOW** | **Previous week's high / low** — the raw extremes, not closes. Taught as levels to mark before the session — *"you want to simply mark out previous week levels … previous weekly low over here and the previous weekly high over here"* — and used live as a **target**: *"we're just gonna take profit at previous low of the week."* `PLOW` is the label drawn on `T1`, `T2`, `LT3` and `LT4`. | M | `CST @ 28:12`, `CST @ 28:37`, `SCALP @ 04:19`, `SCALP @ 11:13`, `PTBV @ 00:04:02` |
 | **Trapped side** | The side that committed late into an extreme and would be forced to exit if it fails. Not a pattern — *"where did one side commit very hard, where did they get comfortable, where would they be wrong, where would they be forced to exit."* | J | `OTV @ 31:59`, `OTV @ 30:29` |
 | **Asymmetrical R:R** | Risk defined clearly and close, while the forced move is much larger. Not a guarantee. | — | `OTV @ 33:09` |
 
 **HCOM/LCOM lookback:** decision **D-8**, §11 — three months, from the Stoic indicator.
+
+**The week boundary is already settled in code, not open here.** `PWC`/`PWH`/`PLOW` are computed over
+the **ISO week of CME trading days** — `stoic/bars.py` `_resample_weekly`, which groups `1D` sessions
+by ISO year/week and indexes each row by the week's first `session_open_utc`. Do not introduce a
+second weekly convention. What is *not* settled is whether the map also carries a **weekly analogue
+of HCOM/LCOM** — `HTF @ 20:22` marks *"the highest close of the previous week **and** the high of the
+previous week"* as two different levels, and only the second is `PWH` above. See §12 row **O-16**.
 
 ### 7.4 The no-edge zone
 
@@ -459,6 +473,7 @@ row **O-9**.
 | 7.5.1 | *"The setup has to deserve risk."* A setup name is not enough: it must have context, asymmetrical R:R, invalidation, and a reason to exist. | J | `OTV @ 11:11`, `CMD` §4 |
 | 7.5.2 | **No trade is a valid outcome.** Cash is a position. | — | `CMD` §3, `CMD` §8 |
 | 7.5.3 | Observed R expectations in the live session: a scalp of 2–3R is *"a good day"*, 4R *"exceptional"*; a day trade held into the close targets ~5R. These are the trader's stated expectations, **not** a minimum-R rule. | — | `SCALP @ 29:32`, `SCALP @ 32:49` |
+| 7.5.5 | **HTF alignment is a confidence input, not a gate.** When the *higher* timeframe's Step 3 has confirmed in the same direction, the lower-timeframe PTB entries are the **high-confidence case** — *"this is what we can do on the lower time frames when the higher time frame number three is breaking out about [above] the step two boundary, that's a trade … as long as the momentum holds about [above] the 10 20 sma on the five minute chart, that's when we can look for the ptb entries."* It **raises the confluence score and never blocks a signal**, and the sequence still runs on the setup timeframe (**D-7**). | M | `TPA @ 00:45:17`–`00:45:43`; decision **D-27**, §11 |
 | 7.5.4 | **No minimum R governs the 1-2-3 entry.** One number does exist in the corpus, in the complementary layer: `SSS @ 53:51` says *"the risk to reward is absolutely ridiculous five to one at minimum."* Read in context it describes the R:R a chop-zone setup **offers** when the target is far and the stop tight — the geometry of that setup, not a gate any setup must clear — so it hands **O-10** no threshold. The earlier phrasing here, *"no minimum R is stated anywhere in the corpus"*, was false. | — | §12 row **O-10**; `SSS @ 53:51` |
 
 ---
@@ -495,8 +510,17 @@ the confluence score reference them.
 
 **Which chart runs the sequence.** Decision **D-7** (§11): the sequence and its MA pair live on the
 **setup** timeframe; the execute timeframe may be used to find a tighter pullback entry; **stop and
-targets stay on the setup timeframe** (`SCALP @ 05:42`). For Scalp and Day that means: sequence on
-5m against the 5m 10/20 SMA, optional 1m entry timing, stop and targets from the 5m.
+targets stay on the setup timeframe** (`SCALP @ 05:42`).
+
+**For Scalp and Day the Execute column is not used — everything runs on the 5m.** D-7 was amended on
+2026-08-08 to drop 1m execution for these two Types: *"usually five minutes is a good way to judge
+those pullbacks. One minute is tricky, it's a bit confusing, it could have fake outs … if you're
+trading one minute chart and you have consolidation on five minutes the one minute chart is going to
+be difficult"* (`TPA @ 00:18:49`–`00:19:04`). The table above is `TFG` verbatim and is left as
+written; the amendment is a decision about how we instantiate it, not a correction of the source.
+
+The execute timeframe stays live for **Swing (15m)** and **Position (60m)**, and §5.4.3's
+slower-chart stop applies there — for Scalp and Day it now has nothing to do.
 
 This is consistent with `M1 @ 05:11` (the sequence travels across intervals unchanged) and with
 `M1 @ 15:32`'s warning that switching the timeframe midway *"would create a different chart
@@ -528,6 +552,9 @@ seed set for Phase 3.
   §5.2.3 requires.
 - Two shorts (7 @ 28231.75, 9 @ 28286.67), two covers, marked **−1R** and **+1R**.
 - **261.80%** target at ~28,100; PLOW at 28,244; Jun LCOM at 28,482.
+
+`T2` (§10.8) is **this same session, later in the day**: both of these shorts appear on it unchanged,
+followed by the reset and the bullish count. Read the two together as one session, not two fixtures.
 
 ### 10.3 `DIA-L` / `DIA-S` / `DIA-P` — the schematic, bar by bar
 
@@ -574,11 +601,10 @@ Cited in full at 2.4.4. The single best source for how the count is abandoned an
 ### 10.7 `NQ3` — NQ 5m, bullish, marked on a live chart
 
 The cleanest **single-sequence** fixture in the corpus — one count, one PTB, one entry, all with real
-prices. It is **not** the only fully-marked chart and not the first: `T1` (§10.2) and
-`stoic_trade2.png` mark the same session with executions, and `stoic_trade2.png` carries two complete
-counts. This file previously called `NQ3` *"the first fully-marked example with real prices"*, which
-was written before those charts were opened — see `docs/AUDIT-2a.md` F-13. Reading it against the
-rules:
+prices. It is **not** the only fully-marked chart and not the first: `T1` (§10.2) and `T2` (§10.8)
+mark the same session with executions, and `T2` carries two complete counts. This file previously
+called `NQ3` *"the first fully-marked example with real prices"*, which was written before those
+charts were opened — see `docs/AUDIT-2a.md` F-13. Reading it against the rules:
 
 | | |
 |---|---|
@@ -600,6 +626,92 @@ Two cautions before using it as a fixture. It is **one instance** — `CLAUDE.md
 applies, and nothing about frequency or hit rate follows from it. And the Step 1 label sits on a bar
 that is itself the reversal, so it is a weaker illustration of the §7.1 gate than of §2.
 
+### 10.8 `T2` — MNQ, 5m: two counts, a reset between them, six executions
+
+**The densest fixture in the corpus**, and the only one that shows a **reset** with real prices —
+§2.4 is otherwise sourced from narration alone (`SCALP`, `DISC` + `Q1.png`). It is `T1`'s session
+later in the day (§10.2).
+
+**The bearish count**, down from the 09:30 expansion out of the New York opening range:
+
+| | |
+|---|---|
+| **1**, **2**, **3** | Labelled down the leg, in orange |
+| **`ptb`** | A horizontal level at ~28,290, drawn at the PTB extreme as the trigger of §5.2.3 |
+| Executions | Short 7 @ 28,231.75 → covered 7 @ 28,301.75, marked **−1R**. Short 9 @ 28,286.67 → covered 9 @ 28,232.25, marked **+1R** |
+
+**Then price turns back up through the 10/20 ribbon and a second, bullish count begins** — a
+green **1**, **2**, **3** off the ~28,150 low. That is §2.4.3's reset and §2.4.4's *"new count number
+one, number two and number three"*, drawn rather than narrated.
+
+| | |
+|---|---|
+| **`ptb`** | A second level at ~28,345, at the high of the last pullback candle after the Step 3 expansion |
+| Entry | Long 12 @ 28,350.92 **on the very next bar** — §5.2.4 and `DIA-L`'s geometry, on real prices |
+| Exit | Sold 12 @ 28,454.50, marked **+2.5R**, into `Jun LCOM` 28,473.81 |
+| Targets drawn | **261.80%** and **423.60%** extensions above; `PLOW` below |
+
+Three cautions. A third, green **`1`** sits above and left of both counts at ~28,675 with nothing else
+attached to it — recorded as drawn, **not interpreted**. The `ptb` price above is read off pixels and
+carries roughly ±10 points of error; the **execution prices are text and are exact**. And this is one
+session — small *n* applies (`CLAUDE.md`).
+
+### 10.9 `LT3` / `LT4` — MNQ, 5m: one bullish trade, two snapshots
+
+**These are one trade, not two.** Same entry (13 @ 28,244.42), same `ptb`, same annotations; `LT3`
+catches it open, `LT4` catches it closed. Citing them as two instances would double-count a single
+observation — the error F-1 caught for `DIA-P`.
+
+| | |
+|---|---|
+| **1**, **2**, **3** | A bullish count through the afternoon, Step 3 confirming into ~03:00 PM |
+| **`ptb`** | Level drawn at ~28,245 |
+| Entry | **13 @ 28,244.42** |
+| **`BE`** | Drawn on the chart, on the **earlier `+2.8R` morning trade** — not on this one. See the note below before citing it for **D-25** |
+| Exit | **13 @ 28,417.50**, marked **+4.5R**, held past the NY session into Asia — `LT4` shows the `Asia OR` |
+| Levels | `PWC` 28,306.75 (§7.3), `PLOW`, `PDH`, `Jun LCOM` 28,471.53; `sbs` / `SBS` levels (§8) |
+
+**This is the corpus's clearest case of a target beyond TP1.** The trade runs to +4.5R, well past both
+the Step 3 High and `PWC`, and is held **through the session boundary** — which no other fixture does.
+`LT4` is therefore the fixture for §6.4's *"we simply stay with the move"*, and it is also the one
+that will collide with the `VISION.md` 1:58pm Pacific flatten: a Day-type trade would have been marked
+closed hours before 28,417.50. See §9 — this trade is only reproducible as a **Swing or Position**
+Type, or not at all.
+
+**What `BE` does and does not corroborate.** It shows the break-even stop of §5.4.5 **practised on a
+live chart** — the first such instance in the corpus, and `docs/AUDIT-2a.md` F-13 flagged it as one.
+It cannot corroborate the **trigger**, which is the only part **D-25** actually decided: the mark says
+*where* the stop went, never *which event* moved it, so it discriminates neither `ET`'s Step 3
+High/Low trigger nor `TPA @ 00:13:00`'s earlier one. D-25 still rests on `ET`.
+
+`Jun LCOM` **dates these against `T1`/`T2`**: 28,471.53 here versus 28,473.81 there. LCOM is the
+*lowest* daily close of the month and can only fall as the month runs, so `LT3`/`LT4` is the **later**
+session. Useful for ordering Phase 3 fixtures; nothing else rests on it.
+
+### 10.10 Recovering the stop from a marked chart — a Phase 3 aid, not a rule
+
+**No chart in §10 draws a stop.** It is recoverable: the R labels are dollar-normalised against a
+fixed risk unit of **≈$1,000**, so **`stop distance = P&L points ÷ R multiple`**. MNQ is $2/point —
+fixed by `LT3`'s open 13 @ 28,244.42 marked **+$2,433.00**, which puts price at 28,338.00, the chart's
+last price.
+
+| Fixture | Round trip | Points | Lots | P&L | Label |
+|---|---|---|---|---|---|
+| `T1`/`T2` | 28,231.75 → 28,301.75, short | −70.00 | 7 | **−$980** | −1R |
+| `T2` | 28,286.67 → 28,232.25, short | +54.42 | 9 | **+$980** | +1R |
+| `T2` | 28,350.92 → 28,454.50, long | +103.58 | 12 | **+$2,486** | +2.5R |
+| `LT3`/`LT4` | 28,244.42 → 28,417.50, long | +173.08 | 13 | **+$4,500** | +4.5R |
+
+Corroborated at `PTBV @ 00:23:37` — *"another entry, thousand dollar stop loss"* (§5.3.9). On `LT4`
+the formula gives 173.08 ÷ 4.5 = **38.5 points**, a stop at ~28,206, consistent with the PTB low
+(§5.4.1) to within what pixels can resolve.
+
+**Three limits.** Only the **−1R** row is direct evidence — a −1R outcome *is* a stop-out, so its
+70.00 points is a measured distance; the other three divide by their own label and are *consistent
+with* $1,000, not confirmations of it. Lot counts are that unit **rounded down** — 7 = ⌊1000 ÷ (2 ×
+70)⌋ — which is why they land just under. And **this is not a sizing rule**: `VISION.md` scopes v1 to
+signals and §5.4.2 defines R in **points**, `|fill − PTB extreme|`.
+
 ---
 
 ## 11. Decisions
@@ -615,7 +727,7 @@ Places the material genuinely underdetermines, settled by the human and recorded
 | **D-4** | How the entry trigger is defined | **The entry trigger is the PTB**, per `PTBQ`. The Step 3 boundary break remains the state change, not the order. | §5.1 |
 | **D-5** | What "visibly extended" means for climax | **Deferred.** Human's answer: *"Will have to define, keep it till we get more info."* Climax stays advisory (§4.3), so nothing is blocked. | §4 |
 | **D-6** | Which target governs | **TP1 = Step 3 High/Low; TP2 = 2.618 fib extension.** | §6.1, §6.2 |
-| **D-7** | MA pair per timeframe | **The sequence runs on the setup timeframe's own MAs. The execute timeframe may be used to find a pullback entry. Stop and targets stay on the setup timeframe.** Matches `SCALP @ 05:42`. | §9, §5.4.3 |
+| **D-7** | MA pair per timeframe | **The sequence runs on the setup timeframe's own MAs. Stop and targets stay on the setup timeframe.** Matches `SCALP @ 05:42`. **Amended 2026-08-08: the execute timeframe is dropped for Scalp and Day** — both run wholly on the 5m — because `TPA @ 00:18:57` discourages the 1m outright (*"one minute is tricky … it could have fake outs"*) while `@ 00:18:49` makes the 5m the default for judging pullbacks. It remains available for **Swing (15m)** and **Position (60m)**. | §9, §5.4.3 |
 | **D-8** | HCOM/LCOM lookback | **Three months** — what the Stoic indicator supplies. | §7.3 |
 | **D-9** | Mechanical no-edge zone | **Deferred**; where there is no entry, the offline SLM proposes candidates for human confirmation. Never in the live path (`VISION.md`). | §7.4 |
 | **D-10** | Stop placement / minimum R | **Stop = PTB low/high**, per `PTBQ` §2. Minimum R left open — see **O-10**. | §5.4.1 |
@@ -633,6 +745,8 @@ Places the material genuinely underdetermines, settled by the human and recorded
 | **D-22** | What a fill is when price **gaps** through the trigger | **Market fill at the bar's open.** The stop-market order (D-12) fills at the trigger when the bar trades through it, and at the open when the bar opens beyond it. Never better than the trigger; R is taken from the fill, not the trigger. Slippage beyond the gap is not modelled — a replay convention, flagged as such in the §5.3.7 engine note. | §5.3.7, §5.3.10 |
 | **D-24** | What **invalidates an open trade**, beyond the stop | **Three conditions, any one of which ends the trade:** the confirmed opposite Step 3; a **strong close beyond the 10/20 SMA against the trade direction**; and a **close beyond the Step 2 boundary against the trade direction** (for a long, a bar closing below the Step 2 consolidation boundary — **trading through it is not enough**). The MA condition is corroborated by the material — *"now price is trading below the moving averages so now the bullish sequence invalidated"* (`TPA @ 00:24:48`), *"if we fail here the bullish sequence will be invalidated"* (`PTBV @ 00:03:28`) — but the **Step 2 boundary condition was not found anywhere in the corpus** and is the human's, as is the *strong* qualifier on the MA close. Recorded as a decision on that basis rather than cited. ***Strong* is now quantified: the close must sit beyond the MA by at least 10% of that candle's own high-low range.** That number is the human's, chosen not measured, and it is the only number in the exit path. | §5.4.7–§5.4.7c, and §6.5 which it narrows |
 | **D-25** | When the stop moves to break-even | **When price trades beyond the Step 3 High (long) / Step 3 Low (short) in the trade direction** — *"once the price has moved in the direction of the trade and broken past step 3's price, then the stop loss moves to break even."* Break-even is the **fill** price (§5.3.7), not the trigger. This is the same event as reaching TP1, which is where `ET` already puts it: *"This is the place to take partials and put stop to break even."* **Known divergence:** `TPA @ 00:13:00` teaches an *earlier* trigger — break-even once price takes out the PTB, making it a *"confirmed PTB bar"*. This decision takes `ET`'s later trigger; `TPA`'s is recorded here so it is not lost. `BE` is drawn on `stoic_live_trade3.png` / `stoic_live_trade4.png`. | §5.4.5, §6.1 |
+| **D-26** | Does `TPA`'s **lower high** end the trade | **No — it is a subjective management cue, not an invalidation.** `TPA @ 00:13:36`–`00:14:06` says *"as soon as price makes a lower high just get out of the position and reassess"*, which contradicted §6.5's *"simply held"*. The human's call: *"this is subjective."* It joins climax (§4.3) as management context — it may annotate a record and drive a discretionary exit, it never fires, suppresses or ends a signal, and §5.4.7's three invalidations stay the only things that do. **The binding half is the exclusion:** *"we \*must\* not count inside candles … we don't trail it for entry or stop loss but leave our SL as is."* An inside candle has a lower high than its parent by construction, so counting it would fire this cue on every one. It also confirms the stop does not trail — §5.4.5 remains the only stop move. | §6.5–§6.5b, §5.3.5a |
+| **D-27** | What the **HTF's confirmed Step 3** does for a lower-timeframe entry | **It is a high-confidence setup, not a gate.** `TPA @ 00:45:17`–`00:45:43` describes the HTF number three breaking its Step 2 boundary as what licenses the 5m PTB entries, which reads stronger than §9's *"map"*. The human's call: *"it's a high confidence setup, not a full gate."* So it feeds the **deterministic confluence score** `VISION.md` requires and **never blocks a signal**; the sequence still runs on the setup timeframe. Recorded so the engine does not compile it as a filter. | §7.5.5, §9 |
 | **D-23** | What qualifies a candle as a **PTB** | **A candle inside the pullback that follows Confirmed Step 3, and is not an inside candle.** *(Stated as "approaching the 10/20 SMA" until 2026-08-08; that phrase was standing in for a structural fact **L1** owns — see **O-14**.)* Left deliberately unquantified beyond that: it may get close, wick in, or close beyond, and *"the candle can open and wick unpredictably."* Both mechanical readings were considered and **rejected as over-specification** — the **body** test (`close < open`) and the **lower-high** test. They pick different bars on 62.8% of candidates (`.artifacts/ptb_atr_distribution.md`), so neither could be adopted quietly; the human's call is that neither becomes a rule. *Inside* is referenced to the **parent bar** — the nearest preceding bar not itself inside — per `IBD` and *"we are trading inside of this bearish candle"* (`TPA @ 00:02:20`). Formalizing the leg boundary is **O-14**, not a decision. **The exclusion also governs the trail:** an inside candle is skipped, and the resting order **stays at the current anchor** rather than moving to it (§5.3.5a) — *"when we trail the PTB, we don't trail the inside candles."* | §5.2.8a, §5.3.3a–c, §5.3.5, §5.3.5a |
 
 ---
@@ -647,6 +761,7 @@ without it.
 | **O-7** | **Ordering and partial sizing** when the Step 3 High/Low and 2.618 are not in the expected order. **Narrowed by D-25:** the stop goes to break-even at the Step 3 High/Low regardless of where 2.618 sits, so only the *partial sizing* half is still open. | §6.1, §6.2 | No — TP1 alone is well defined |
 | **O-14** | **Where the post-Step-3 expansion leg ends and the pullback begins.** *Reframed 2026-08-08.* It was *"what does **approaching the 10/20 SMA** mean for a PTB candidate"* — a distance threshold nobody could source. That framing was the bug: `ET` defines the PTB as *"simply the last candle in that pullback"*, so it **presupposes a pullback**, and §5.3.3a substituted an atomic property of one candle for a structural fact about a leg. The structural concept belongs to **L1**, which already lists *consolidation vs expansion*; §5.3.3a reached past it. Asked correctly, this is answerable **from the material** rather than by picking a number — §8's consolidation→expansion model, §2.2's return to the trend area, §4's climax, and the bar-by-bar walkthroughs (`TPA @ 00:23:20`–`00:26:52`, `PTBV`) all describe legs ending. **Phase 4 SLM question**, with those passages attached: propose candidate formalizations for human confirmation, per `VISION.md`. | §5.3.3a and §5.3.5 — which bar the order sits on, therefore entry and stop | **Yes** for L1/L3 |
 | **O-15** | **The strength asymmetry between the reset and the invalidation.** §2.4.3 resets the count on a bare 10/20 break; §5.4.7b closes an open position only on a close **≥10% of the candle's range** beyond it (**D-24**). So a break closing less than that resets the count but does not exit the trade. That may be correct — a reset emits nothing, an invalidation costs money — but it is an unreconciled difference between two rules keyed to the same event, and it was noticed rather than decided. Quantifying *strong* made the gap precise instead of closing it. | §2.4.3, §5.4.7b, §2.5.8 | No — both rules are usable; they just may not agree |
+| **O-16** | **Is there a weekly analogue of HCOM/LCOM?** §7.3 now defines `PWC`, `PWH` and `PLOW`, all cited. But `HTF @ 20:22` marks *"the highest close of the previous week **and** the high of the previous week"* as **two** levels, and §7.3 carries only the second. `HCOM`/`LCOM` are the same distinction one timeframe up — highest/lowest **daily close** of the month, *"not the highest wick"* — so the weekly version is plausible rather than established. **Do not add it by symmetry**: `OTV @ 27:54` states the monthly rule outright, and no passage states a weekly one. Needs either a citation or a decision. | §7.3 | No — the three defined levels cover every use in §10 |
 | **O-9** | The **no-edge zone** is a list of situations, not a condition. §7.4.4 mechanises three of them; the rest are open. | §7.4 | No — the rest are filters, not signals |
 | **O-10** | **Minimum R** for a setup to deserve risk, now also carrying the *"sufficient room to the Step 3 High/Low"* condition (§5.4.6). Taught as a principle with no number (`CMD` §4). Observed values (§7.5.3) are expectations, not thresholds. | §7.5, §5.4.6 | No — record R, do not gate on it |
 

@@ -37,11 +37,11 @@ Four results bind what comes next:
   D-16, and a running maximum has no free parameter), and §5.3.4 keeps M with the `PTBQ`
   contradiction disclosed. Hashing every image asset settled the wider question: **fifteen files,
   exactly one duplicated hash**, so `DIA-S` and `IBD` are genuinely distinct.
-- **Three marked-up charts had never been opened** — `stoic_trade2.png`, `stoic_live_trade3.png`,
-  `stoic_live_trade4.png`, in the repo since the restart cull, referenced nowhere in `docs/`, read
-  2026-08-08 (F-13). Between them: **two complete 1-2-3 counts with two PTBs on one chart** and a
-  live-marked **reset**, **`BE`** drawn on a chart, outcomes to **+4.5R**, and **`PWC` / `PLOW`** —
-  previous-week levels the material targets and §7.3 does not define.
+- **Three marked-up charts had never been opened** — in the repo since the restart cull, referenced
+  nowhere in `docs/`, read 2026-08-08 (F-13). **Now wired in as `T2`, `LT3` and `LT4`** (§0, §10.8–
+  §10.9), and `PWC` / `PWH` / `PLOW` are defined in §7.3. Between them: **two complete 1-2-3 counts
+  with two PTBs on one chart** and a live-marked **reset**, **`BE`** drawn on a chart, and outcomes
+  to **+4.5R**.
 
 **Five decisions closed the same day**, from the user reading the audit's frozen-decision list:
 
@@ -73,7 +73,7 @@ readings were rejected as over-specification.** A PTB is *a candle **inside the 
 follows Confirmed Step 3, and not an inside candle* — status **J**. It read *"approaching the 10/20
 SMA"* until 2026-08-08, when fixing L3's layer boundaries showed that phrase was standing in for a
 structural fact a layer below already owned: **the open question is where the expansion leg ends, not
-how near the MAs a candle sits.** That is **O-14** — see Next, item 3.
+how near the MAs a candle sits.** That is **O-14** — see Next, item 1.
 
 **The 62.8% still matters, inverted.** That is how often the two rejected readings pick a different
 anchor bar (NQ 5m RTH 2019–2026, `.artifacts/ptb_atr_distribution.md`) — which is why neither could
@@ -93,7 +93,7 @@ The MA condition is corroborated (`TPA @ 00:24:48`, `PTBV @ 00:03:28`); the **St
 condition was not found anywhere in the corpus** — an independent search under Phase 2a confirmed
 zero hits — and is the user's, as is *strong*, now set at **10% of the candle's range**. Both are
 decisions, not citations, and the user re-read and affirmed the boundary condition on 2026-08-08. It
-narrows §6.5, which still says the position is *"simply held"*.
+narrows §6.5, which said the position is *"simply held"* until **D-26** rewrote it.
 
 **`insidebar.png` (`IBD`) closed the question the audit was created over.** The inside-bar reference
 is the **parent bar** — the nearest preceding bar not itself inside — not the bar immediately to the
@@ -120,7 +120,7 @@ in `docs/PLAN.md` was the intake form and is now historical.
   segments, transcript complete) and `insidebar.png` (the StoicEdge inside-bar schematic: a parent
   bar, two inside bars, a breakout bar). **Both read 2026-08-08**, and both now carry citation keys
   in `docs/RULEBOOK.md` §0 — `TPA` and `IBD`. `TPA` is the densest source in the corpus on what a PTB
-  is and is not, and it rewrote **D-23**. Its management content is **not yet folded in** — see Open.
+  is and is not, and it rewrote **D-23**. Its management content is **folded in** — D-25, D-26, D-27 and the D-7 amendment.
 - **`edu/videos/` — supporting.** 3 concept videos (Candle Swing Theory, HTF Protocol, Simple Stoic
   Setups).
 - **`edu/resources/` — 8 case-study PDFs.** Validation material for the rulebook, not training input.
@@ -138,14 +138,7 @@ So Phase 1 produced **2** new transcript sets, not the 3 its exit gate named.
 **`docs/PLAN.md` is the plan, end to end.** Position: Phases 0, 1 and 2a closed, **Phase 2 open on its
 gate, not on its deliverable**.
 
-1. **Fold `TPA`'s management content into §6.** Held back deliberately so the audit swept text that
-   was not moving underneath it — that reason is now spent. Two of the four findings were resolved
-   while closing Phase 2a (the *"trailing behind the PTB"* passages were entry anchoring, not a stop
-   rule; the break-even trigger became **D-25**). **What is left is HTF nesting**, and **§6.5 is still
-   contradicted** — see Open below.
-2. **Wire in the three charts F-13 found** — citation keys in §0, worked examples in §10 — and open a
-   row for `PWC` / `PLOW`. Cheap, and it feeds Phase 3 directly.
-3. **Close O-14 — reframed 2026-08-08, and the reframing is most of the work.** It was *"what does
+1. **Close O-14 — reframed 2026-08-08, and the reframing is most of the work.** It was *"what does
    **approaching the 10/20 SMA** mean"*, a distance nobody could source. It is now **"where does the
    post-Step-3 expansion leg end and the pullback begin"** — a structural question **L1 already owns**
    (`docs/PLAN.md` lists *consolidation vs expansion* there). `ET` defines the PTB as *"simply the
@@ -154,11 +147,13 @@ gate, not on its deliverable**.
    material** — §8, §2.2, §4, and the bar-by-bar walkthroughs — so it goes to the **Phase 4 SLM** with
    those passages attached, per `claude_memories/audit-hard-rules-not-in-material.md`. It gates **L1
    and L3**.
-4. Then Phase 3 (labelled reference set) can start against a spec that says the same thing twice.
-   `stoic_trade2.png` is now the densest candidate fixture — two counts, two PTBs, six executions on
-   one chart (F-13) — with `NQ3` (§10.7) the cleanest single-sequence one. Both are single instances,
-   so small-*n* rules apply. `PTBV` is the richer source: a full session in which the trader marks
-   every PTB entry on one 1-2-3.
+2. Then Phase 3 (labelled reference set) can start against a spec that says the same thing twice.
+   **`T2` (§10.8) is the densest fixture** — two counts, a live-marked reset, two PTBs, six
+   executions — with `NQ3` (§10.7) the cleanest single-sequence one and `LT3`/`LT4` (§10.9) the only
+   trade held past the session. All are single instances, so small-*n* rules apply. `PTBV` is the
+   richer source: a full session in which the trader marks every PTB entry on one 1-2-3.
+   **§10.10 recovers the stop from any of them** — none draws one, but the R labels are normalised
+   against a ~$1,000 risk unit, so `stop distance = P&L points ÷ R multiple`.
 
 `docs/RULEBOOK.md` §13 records how the rest of the corpus is used. Simple Stoic Setups / HTF Protocol
 / Candle Swing Theory / the war map are the **complementary layer the 1-2-3 was distilled from** —
@@ -176,27 +171,21 @@ context and targets, never a step of the sequence, and they yield on conflict.
 
 ## Open
 
-- **`TPA`'s management content is read but not folded into §6.** Four findings, all cited, held for
-  the pass after the audit (Next, item 2). **§6.5 is contradicted**: it says the position is *"simply
-  held"* to the opposite Step 3, but `TPA @ 00:13:36`–`00:14:06` says *"as soon as price makes a lower
-  high just get out of the position and reassess."* One more is missing, and two are now resolved.
-  **Resolved:** the *"trailing behind the PTB"* passages (`TPA @ 00:17:50`, `00:31:06`, `00:21:20`)
-  were filed here as a **trailing stop** and are **not** — the user confirmed on 2026-08-08 that this
-  is **entry anchoring**, which §5.3.5 already cites `TPA @ 00:17:50` for. The **break-even trigger**
-  (`TPA @ 00:13:00`, once price takes out the PTB) is now **D-25**, which takes `ET`'s later trigger
-  instead and records `TPA`'s as a divergence. **Still missing:** **HTF nesting**,
-  where the *higher* timeframe's confirmed Step 3 is what licenses the 5m PTB entries
-  (`TPA @ 00:45:01`–`00:45:43`) — stronger than §9's current reading of the execute timeframe as a
-  timing aid. Also qualifying D-7: the 1m is explicitly discouraged, *"one minute is tricky… it could
-  have fake outs"* (`TPA @ 00:18:57`).
-- **Three marked charts still need citation keys and worked examples** — `stoic_trade2.png`,
-  `stoic_live_trade3.png`, `stoic_live_trade4.png` (F-13). They are read but not yet wired into §0
-  or §10, so no rule can cite them and Phase 3 cannot use them as fixtures. `stoic_trade2.png` is the
-  denser reset fixture; the other two are one trade at two snapshots.
-- **`PWC` and `PLOW` are undefined in §7.3** — previous weekly close and previous low of the week.
-  The material uses `PWC` as an explicit target (`PTBV @ 00:25:54`) and `CST` teaches previous-week
-  levels throughout; §7.3 defines only `PDH`/`PDL`/`PDC` and `HCOM`/`LCOM`, while §10.1–§10.2 already
-  name `PLOW` without defining it. Needs an open row.
+- **`TPA`'s management content is folded in — closed 2026-08-08.** All four findings landed:
+  the *"trailing behind the PTB"* passages were **entry anchoring**, not a stop rule (§5.3.5); the
+  break-even trigger became **D-25**; the lower-high exit became **D-26** and the **HTF nesting**
+  **D-27**; and **D-7 was amended** to drop 1m execution for Scalp and Day. Nothing from `TPA`
+  remains unread against §6.
+- **A `T2` reading that would bear on D-23, not yet verified.** On `T2`'s bullish count the last
+  pullback candle before the entry looks **up-bodied (green)**, which would make it a live-marked
+  counterexample to the `close < open` body test D-23 rejected — evidence *for* the decision the user
+  already took. It is **not** written into §10.8, because at the available zoom the `ptb` level's
+  anchor bar cannot be told apart from the large down candle before it (~14 points, inside the ±10
+  pixel error). Worth one pass at full resolution; nothing depends on it.
+- **`LT4` is held past the 1:58pm Pacific flatten** — entry 04:00 PM ET, exit into the Asia session
+  at +4.5R (§10.9). Under `VISION.md` a Scalp or Day trade is marked closed at the cutoff, so this
+  fixture is only reproducible as a **Swing or Position** Type. Phase 3 must record the Type it
+  labels it as; Phase 6 will otherwise report a divergence that is the harness's, not the engine's.
 - **Session `2025-11-28` has a ~645-minute hole in `data/historical/{NQ,ES}_1m.parquet`** — the whole
   Asia/London portion, both instruments. Real missing data, not a holiday early close. Any Phase 3
   label or Phase 5 replay touching that date must exclude or flag it. See
