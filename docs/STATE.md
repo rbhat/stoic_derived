@@ -8,62 +8,54 @@ timestamps point at it.
 of its gate on one open row.** The spec is written and every rule carries a citation; §12 now blocks
 on **O-14** alone (where the post-Step-3 expansion leg ends).
 
-**"Every rule cites the material" is not the same as "every rule is supported by it."** Citations
-**resolve** — all of them, including under the Phase 2a sweep. That was never a check on whether a
-rule says **more than** the source it points at, and **10 of 143 swept rows do**.
-
-**The sweep is now complete and verified; it was neither before.** Its coverage was wrong and the
-arithmetic hid it — three sweeps counted 132 rows, §1–§9 holds 132 definitional rows, **different
-132**. Eleven numbered rules had no evidence at all. `sweep_D` closed that on 2026-08-08 (143 rows, 0
-broken), and all twelve findings are now verified against source — one of them **rejected** on
-verification. Detail, per finding, in `docs/AUDIT-2a.md`. Two results bind what comes next:
-**`5.3.4`** rests on `PTBQ` §1 **contradicting itself** (*"within the three-bar window"* and *"The 3
-bar window is not defintite"*, both verbatim), and **`5.4.7c`** rests on a condition an independent
-search confirms is **nowhere in the corpus**. Both are now disclosed in the rules themselves.
-
-**Three marked-up charts in `edu/123sequence/` had never been opened** — `stoic_trade2.png`,
-`stoic_live_trade3.png`, `stoic_live_trade4.png`, in the repo since the restart cull, referenced
-nowhere in `docs/`, read 2026-08-08. Between them: **two complete 1-2-3 counts with two PTBs on one
-chart** and a live-marked **reset**, **`BE`** drawn on a chart, outcomes to **+4.5R**, and **`PWC` /
-`PLOW`** — previous-week levels the material targets and §7.3 does not define. `docs/AUDIT-2a.md`
-F-13. Hashing every image asset also settled the wider question F-1 raised: **fifteen files, exactly
-one duplicated hash** — F-1's known triple — so `DIA-S` and `IBD` are genuinely distinct and F-1's
-damage does not spread.
-
-**The audit found that `DIA-P` and `DIA-L` are the same file** — md5 `5db99292665d2f688ee34531688444ad`,
-`diff` empty, three paths one content. §10.3 concludes *"two independent drawings agreeing bar for
-bar is why §3.4 and §5.3.4 could be stated mechanically"*, and there are not two drawings. The
-diagram's content is real and the geometry checks out; the **corroboration argument is void**, and
-two rules were promoted to **M** partly on it.
-
-**The factual half is applied** — §0 discloses the identity, §10.3's two false sentences are gone,
-and §5.2.4 / §5.3.6 no longer count one drawing twice. **The judgment half is open:** §3.4 and §5.3.4
-now stand on `DIA-L` plus the transcripts alone, and nobody has re-checked whether that carries their
-**M**. See `docs/AUDIT-2a.md` F-1.
-
-**Five decisions closed on 2026-08-08, from the user reading the audit's frozen-decision list.**
-**D-18 deleted the ATR stop floor** — *"stop after entry is the opposite extreme of the PTB"* — which
-**closed O-5 without setting its three constants** and unblocked L4. ATR is never mentioned in the
-corpus; the mechanism was ours. **D-24's *strong* is now 10% of the candle's own high-low range**, the
-only number in the exit path. **D-17 gained the termination it was missing** — the order walks candle
-by candle *"till either we hit an entry or it invalidates without an entry"*, so §5.4.7 now cancels
-pending orders as well as closing open trades (§5.3.4a). **D-24's Step 2 boundary condition was
-re-read and affirmed** by the user, so it stays despite being absent from the corpus. And **D-25 is
-new**: the stop goes to break-even when price trades beyond the Step 3 High/Low — the same event as
-TP1, which is where `ET` already put it. `TPA @ 00:13:00` teaches an earlier trigger and D-25 records
-the divergence rather than dropping it.
-
 **One thing now blocks Phase 5: O-14**, and it gates **L1 and L3**. L4 is clear.
 
-**Phase 2a closed on 2026-08-08 — `docs/AUDIT-2a.md` is the record.** All 132 definitional rows in
-§1–§9 are classed: **109 cited, 23 human decision, 0 invented**. Ten rules that said more than their
-source were corrected; two rules and one open row (**O-5**) were deleted outright; **O-14** was
-reframed into a question the material can answer. **The caveat matters more than the count:** the
-largest invented mechanism in the spec — the ATR stop floor — was classed a legitimate `DECISION` by
-every sweep, because it cited a real D-row with a real open row for its constants. It came out only
-because the human was asked where the predicate came from. No mechanical check would have caught it,
-which is exactly why `claude_memories/audit-hard-rules-not-in-material.md` is a standing rule and not
-a phase.
+## Phase 2a — closed 2026-08-08. `docs/AUDIT-2a.md` is the record; this is the summary
+
+All **132 definitional rows** in §1–§9 are classed: **109 cited, 23 human decision, 0 invented**. The
+sweep ran to 143 rows across four passes, 0 broken citations, and all twelve findings were verified
+against source by the lead — **one agent-reported finding was rejected** on verification.
+
+**The caveat matters more than the count.** The largest invented mechanism in the spec — the ATR stop
+floor — was classed a legitimate `DECISION` by every sweep, because it cited a real D-row with a real
+open row for its constants. It came out only because the human was asked where the predicate came
+from. **No mechanical check would have caught it**, which is why
+`claude_memories/audit-hard-rules-not-in-material.md` is a standing rule and not a phase.
+
+Four results bind what comes next:
+
+- **The sweep's own coverage was wrong and the arithmetic hid it.** Three sweeps counted 132 rows and
+  §1–§9 holds 132 definitional rows — **different 132**. Eleven numbered rules had no evidence at
+  all. `sweep_D` closed it. See `claude_memories/coverage-claims-need-enumeration.md`.
+- **`5.3.4`** rests on `PTBQ` §1 **contradicting itself** — *"within the three-bar window"* and *"The
+  3 bar window is not defintite"* are both verbatim in that file, and **D-17** picks a side.
+  **`5.4.7c`** rests on a condition an independent search confirms is **nowhere in the corpus**, and
+  the user re-read and affirmed it. Both are disclosed in the rules themselves.
+- **`DIA-P` and `DIA-L` are one file** (md5 `5db99292…`, `diff` empty, three paths). §10.3's
+  corroboration argument was void and is gone; §0, §5.2.4 and §5.3.6 disclose the identity.
+  **Resolved:** §3.4 and §5.3.4 **keep M** — §3.4 never rested on the corroboration (its source is
+  D-16, and a running maximum has no free parameter), and §5.3.4 keeps M with the `PTBQ`
+  contradiction disclosed. Hashing every image asset settled the wider question: **fifteen files,
+  exactly one duplicated hash**, so `DIA-S` and `IBD` are genuinely distinct.
+- **Three marked-up charts had never been opened** — `stoic_trade2.png`, `stoic_live_trade3.png`,
+  `stoic_live_trade4.png`, in the repo since the restart cull, referenced nowhere in `docs/`, read
+  2026-08-08 (F-13). Between them: **two complete 1-2-3 counts with two PTBs on one chart** and a
+  live-marked **reset**, **`BE`** drawn on a chart, outcomes to **+4.5R**, and **`PWC` / `PLOW`** —
+  previous-week levels the material targets and §7.3 does not define.
+
+**Five decisions closed the same day**, from the user reading the audit's frozen-decision list:
+
+| | |
+|---|---|
+| **D-18** | **Deleted the ATR stop floor** — *"stop after entry is the opposite extreme of the PTB."* ATR is nowhere in the corpus. **Closed O-5 without setting its constants; unblocked L4** |
+| **D-24** | ***Strong* = 10% of the candle's own high-low range** — the only number in the exit path |
+| **D-24** | The **Step 2 boundary condition re-read and affirmed**, so it stays despite being absent from the corpus |
+| **D-17** | Gained its missing termination — the order walks candle by candle *"till either we hit an entry or it invalidates without an entry"*, so §5.4.7 now cancels pending orders too (§5.3.4a) |
+| **D-25** | **New.** Stop to break-even when price trades beyond the Step 3 High/Low — the same event as TP1, where `ET` already put it. `TPA @ 00:13:00` teaches an earlier trigger; D-25 records the divergence |
+
+**Also settled:** the trail **skips inside candles** rather than advancing to them, and resumes at the
+next non-inside candle (§5.3.5a) — §5.2.8 previously said the anchor *"moves on"*, which read as the
+opposite.
 
 **Nine rows closed on 2026-08-03** (D-15…D-23 in §11), from the user's answers plus the `PTB Entries`
 video. Two that came out of the video still stand: a continuation entry **reuses** the sequence state,
@@ -77,10 +69,11 @@ material was silent. The ninth transcript (`TPA`) is not silent: it states the r
 reading in **five** distinct passages — `@ 00:01:05`, `@ 00:23:30`, `@ 00:23:50`, `@ 00:27:47`,
 `@ 00:29:52`, the last two being the bearish mirror — inside a bar-by-bar walkthrough at
 `00:23:20`–`00:26:52`, while D-23's sole citation (`PTBV @ 00:02:15`) discriminates neither reading. Put to the user, **both mechanical
-readings were rejected as over-specification.** A PTB is now *a candle after Confirmed Step 3
-approaching the 10/20 SMA, and not an inside candle* — status **J**, with the *approaching* clause
-open as **O-14**. That clause was **reframed on 2026-08-08** once L3's layer boundaries were fixed:
-it is not a distance to the MAs, it is where the expansion leg ends. See Next, item 3.
+readings were rejected as over-specification.** A PTB is *a candle **inside the pullback** that
+follows Confirmed Step 3, and not an inside candle* — status **J**. It read *"approaching the 10/20
+SMA"* until 2026-08-08, when fixing L3's layer boundaries showed that phrase was standing in for a
+structural fact a layer below already owned: **the open question is where the expansion leg ends, not
+how near the MAs a candle sits.** That is **O-14** — see Next, item 3.
 
 **The 62.8% still matters, inverted.** That is how often the two rejected readings pick a different
 anchor bar (NQ 5m RTH 2019–2026, `.artifacts/ptb_atr_distribution.md`) — which is why neither could
