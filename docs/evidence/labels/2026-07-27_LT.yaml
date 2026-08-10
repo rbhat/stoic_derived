@@ -1,0 +1,77 @@
+# LT — docs/RULEBOOK.md §10.1. MNQ 5m, bearish, live-traded.
+# Schema: docs/PHASE3.md section 2. provenance is exact | read | derived on every valued field.
+fixture: LT
+artifact: edu/123sequence/entry_technique/step-3-livetrade.png
+rulebook: "§10.1"
+session: 2026-07-27          # CME trading day
+instrument: NQ               # our bars
+chart_instrument: MNQ        # prints differ by a few points — not an engine divergence
+timeframe: 5m
+type: Scalp                  # intraday, closed well before the 13:58 PT flatten
+screenshot_bar: 2026-07-27T14:05:00Z   # ET 10:05; last-price tag 28,305.25, countdown 02:59
+
+dating:                      # docs/evidence/fixture_dating.md
+  - {field: sma_fingerprint, chart: [28647.85, 28643.64, 28567.39, 28465.63],
+     bars: [28648.25, 28643.75, 28568.19, 28467.40], worst_delta: 1.77, next_best_bar: 32.41,
+     provenance: exact}
+  - {field: PDC_equals_LCOM, chart: "PDC and LCOM tags drawn at one price",
+     bars: "pdc 28306.50 == lcom_mtd 28306.50 — equal only on this session", provenance: exact}
+  - {field: PDL, chart: ~28213, bars: 28212.50, provenance: read}
+
+labels:
+  - id: LT-A1
+    class: taken
+    direction: short
+    # The count is read off the chart's Step 1 / Step 2 / Step 3 labels; bar prices are ours.
+    step1: {pos_ts: 2026-07-27T13:30:00Z, et: "09:30", bar: {o: 28590.50, h: 28615.75, l: 28487.00, c: 28536.50}, provenance: read}
+    step2: {pos_ts: 2026-07-27T13:35:00Z, et: "09:35", bar: {o: 28536.75, h: 28613.75, l: 28525.75, c: 28545.25}, provenance: read}
+    step3: {pos_ts: 2026-07-27T13:40:00Z, et: "09:40", bar: {o: 28545.25, h: 28553.75, l: 28428.00, c: 28455.00}, provenance: read}
+    ptb:
+      pos_ts: 2026-07-27T13:35:00Z
+      et: "09:35"
+      # The chart draws "Step 3 Pullbck Entry" as a horizontal line at ~28,530.
+      trigger: {chart: ~28530, bars: 28525.75, basis: "PTB low, §5.2.3", provenance: read}
+    entry:
+      price: 28516.00
+      lots: 6
+      pos_ts: 2026-07-27T13:40:00Z
+      et: "09:40"
+      provenance: exact
+      source: "LT execution text '6 @ 28516.00'"
+      note: "9.75 pts below the 28,525.75 trigger — a stop-market fill on a fast bar (§5.3.7)."
+    stop:
+      # Two readings, both derived, and they disagree. Recorded rather than resolved.
+      by_ptb_extreme: {price: 28613.75, distance: 97.75, basis: "§5.4.1 / D-18 — PTB high", provenance: derived}
+      by_r_label:     {price: 28601.50, distance: 85.50, basis: "§10.10 — 171.00 pts ÷ 2R", provenance: derived}
+      disagreement: 12.25
+      note: >
+        §10.10 warns that only a -1R row is direct evidence; this is a +2R row, so its distance is
+        divided by its own label. The PTB-extreme reading gives 171.00 / 97.75 = 1.75R, which the
+        chart may have rounded to +2R. Neither reading is adopted here.
+    tp1: {chart: ~28350, bars: null, basis: "§6.1 Step 3 Low — not drawn as a line on this chart", provenance: read}
+    outcome:
+      exit: 28345.00
+      lots: 6
+      r_label: 2.0
+      points: 171.00
+      exit_pos_ts: 2026-07-27T14:05:00Z
+      et: "10:05"
+      exit_bar_provenance: read
+      exit_bar_candidates: ["09:55", "10:00", "10:05"]   # 28,345.00 lies inside all three
+      provenance: exact
+      source: "LT execution text '6 @ 28345.00', '+2R'"
+      past_flatten: false
+
+  - id: LT-B1
+    class: named               # drawn as an entry, never executed
+    direction: short
+    setup: continuation        # §2.5 — a second signal without a new Step 1
+    ptb:
+      pos_ts: 2026-07-27T13:50:00Z
+      et: "09:50"
+      trigger: {chart: ~28450, bars: 28446.50, basis: "PTB low, §5.2.3", provenance: read}
+    would_trigger_on: {pos_ts: 2026-07-27T13:55:00Z, et: "09:55", low: 28341.25, provenance: derived}
+    note: >
+      The chart draws this line labelled "Pullback Entry" one leg below LT-A1's "Step 3 Pullbck
+      Entry" and attaches no execution to it. §10.1 reads it as the continuation entry of §2.5.
+      An engine signal here is correct-but-not-taken, not a false positive.

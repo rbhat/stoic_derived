@@ -1,0 +1,64 @@
+# NQ3 — docs/RULEBOOK.md §10.7. NQ 5m, bullish, marked on a live chart.
+# The one fixture on OUR instrument: the E-mini, not the Micro. Prices should agree exactly.
+# Schema: docs/PHASE3.md section 2.
+fixture: NQ3
+artifact: edu/123sequence/nq-1-2-3.png
+rulebook: "§10.7"
+session: 2026-08-03
+instrument: NQ
+chart_instrument: NQ         # E-mini — same contract as our bars
+timeframe: 5m
+type: Scalp
+screenshot_bar: 2026-08-03T14:35:00Z   # ET 10:35; last-price 28,716.75, countdown 00:08
+
+dating:                      # docs/evidence/fixture_dating.md
+  - {field: sma_fingerprint, chart: [28620.18, 28580.09, 28540.74, 28499.84],
+     bars: [28620.10, 28580.08, 28540.70, 28499.83], worst_delta: 0.08, next_best_bar: 18.37,
+     provenance: exact}
+  - {field: last_price, chart: 28716.75, bars: 28716.00,
+     note: "countdown 00:08 — the bar closed 8 s after the screenshot", provenance: exact}
+  - {field: session_low, chart: ~28320, bars: 28313.50, provenance: read}
+  - {field: PDC, chart: ~28290, bars: 28287.00, provenance: read}
+
+labels:
+  - id: NQ3-A1
+    class: taken               # marked as an entry with a reward box; no fill price is printed
+    direction: long
+    step1: {pos_ts: 2026-08-03T13:35:00Z, et: "09:35", bar: {o: 28380.50, h: 28540.00, l: 28374.00, c: 28502.25}, provenance: read}
+    step2: {pos_ts: 2026-08-03T13:45:00Z, et: "09:45", bar: {o: 28495.00, h: 28539.00, l: 28443.25, c: 28474.25}, provenance: read}
+    step3: {pos_ts: 2026-08-03T13:55:00Z, et: "09:55", bar: {o: 28524.50, h: 28628.00, l: 28513.25, c: 28626.25}, provenance: read}
+    ptb:
+      pos_ts: 2026-08-03T14:05:00Z
+      et: "10:05"
+      # "PTB Entry" is drawn as a horizontal line sitting on the 28,600 gridline.
+      trigger: {chart: 28600, bars: 28597.50, basis: "PTB high, §5.2.3", provenance: read}
+      alternative:
+        pos_ts: 2026-08-03T14:00:00Z
+        et: "10:00"
+        trigger: 28626.50
+        why_rejected: "its high is 26.5 pts above the drawn line; 10:05's is 2.5 pts below it"
+    entry:
+      price: null              # no execution text on this chart — the line is the trigger
+      pos_ts: 2026-08-03T14:10:00Z
+      et: "10:10"
+      bar: {o: 28571.75, h: 28616.25, l: 28557.50, c: 28572.25}
+      basis: "first bar trading above the 28,597.50 trigger (§5.2.4)"
+      provenance: derived
+    stop:
+      by_ptb_extreme: {price: 28529.50, distance: 68.00, basis: "§5.4.1 / D-18 — PTB low", provenance: derived}
+      note: >
+        §10.7 records the stop as "28,540.75, the PTB low — box bottom". That value is within 0.04
+        of this chart's own 20 SMA (28,540.70; the right-axis label reads 28,540.74), and the PTB
+        bar's low is 28,529.50. See docs/evidence/fixture_dating.md — the §10.7 reading is in doubt
+        and is NOT adopted here. §10.10 already states no chart in §10 draws a stop.
+    tp1: {price: 28628.00, basis: "§6.1 / D-6 — the Step 3 High, frozen at fill (D-16)", provenance: derived}
+    target_drawn: {price: 28716.75, basis: "§10.7 — the reward box runs to PDH, an external level (§7.3)", provenance: read}
+    outcome:
+      exit: null
+      r_label: null
+      provenance: none
+      note: >
+        The screenshot is taken 8 s before the 10:35 bar closes, with the position still open and
+        price at 28,716.75 — one tick under the drawn PDH target. There is no exit on this artifact,
+        so no outcome is labelled. Phase 6 can score entry, stop and TP1 and must not score an exit.
+      past_flatten: false
