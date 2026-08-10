@@ -29,16 +29,21 @@ Three things this script is not:
 * **Not a reader of the count.** The italic 1/2/3 are chart-anchored but hand-placed, and on
   `T1`/`T2` their x-order is not the count order — `docs/CONSTRAINTS.md`. Locating a numeral says
   where the text sits, never which bar it counts.
-* **Not tolerant of a wrong ``--last-bar``.** A one-bar error shifts every mark by one bar and the
-  price fit absorbs it, so the residual will not always catch it. Anchor on the countdown, and
-  check the reported residual against the 1-point scale the fixtures so far give.
+* **Not tolerant of a wrong ``--last-bar``.** A one-bar error shifts every mark by one bar. The
+  price residual has caught it on every fixture so far — `LT4` gives 0.92 pts sd at 22:15 against
+  16.9 and 17.4 one bar either side, `LT3` 0.69 against 16.4 and 19.2 — but the fit does absorb
+  some of the error, so anchor on the countdown and sweep the neighbours rather than trust one run.
 
-**It assumes consecutive slots are consecutive bars, and that is false across a session break.**
-The chart draws no gap for the CME maintenance hour, so on a screenshot that spans it every slot
-left of the break is off by the number of missing bars. **The residual does catch this** — on
-`LT3`/`LT4` it reports 16.95 points sd against the 0.4-1.0 the intraday fixtures give — so read the
-residual before reading the arrows. Fixing it means walking real bar timestamps instead of counting
-slots back from the anchor; that is not built.
+**A session break needs no special handling, and this docstring used to say it did.** The chart
+draws no gap for the CME maintenance hour and neither does our 5m frame, which simply holds no bars
+between 17:00 and 18:00 ET — so ``last_index - k`` walks across it correctly from either side.
+`LT3`/`LT4` spans that break and reported 16.95 points sd for a different reason: **four of its
+candles draw no body pixels** — dojis, and candles under the shaded session boxes — and each leaves
+a two-slot gap that the old ``span / median_gap`` seed could not see, so the comb searched 134-138
+slots when the truth was 139 and the spacing came out 6% long. ``fit_comb`` now seeds the count by
+counting the gaps. **The absolute comb residual is not a gate** — `T1` fits cleanly at 10.22 px on
+a 39 px spacing — but a residual near *half* the spacing, as `LT4`'s 10.79 px on 22 px was, means
+the search never contained the true slot count. The price residual stays the real check.
 
 Colours are TradingView's default light theme as most §10 fixtures were captured. `LT`
 (`step-3-livetrade.png`) is a different theme and reports zero candle columns; it needs
@@ -106,12 +111,18 @@ def fit_comb(centres: np.ndarray) -> tuple[float, float, float]:
     body-coloured blob moves the winner, and a 2 px change in `--xmax` flipped it on `T1`.
     """
     span = float(centres[-1] - centres[0])
-    step = float(np.median(np.diff(centres)))
+    gaps = np.diff(centres)
+    step = float(np.median(gaps))
+    # Seed the slot count by counting the gaps, NOT by `span / step`: a candle whose body is
+    # hidden — a doji, or one drawn under a shaded session box — leaves a two-slot gap, and
+    # `span / step` then undercounts by one slot per hidden candle. On `LT4` four are hidden,
+    # so the old seed searched 134-138 while the truth was 139 and the fit missed by 6% —
+    # a 16.95 pt price residual that was read as a session-break artefact for a day.
+    seed = max(1, int(sum(round(g / step) for g in gaps)))
     best: tuple[float, float, float] | None = None
-    # Candle centres land on whole pixels, so the median gap is quantised and drifts by a
-    # slot or two across a wide chart. Seed the spacing off the FULL span for each plausible
-    # slot count and keep whichever converges tightest.
-    for n in range(max(1, round(span / step) - 2), round(span / step) + 3):
+    # Candle centres land on whole pixels, so the spacing is quantised. Seed it off the FULL
+    # span for each plausible slot count and keep whichever converges tightest.
+    for n in range(max(1, seed - 2), seed + 3):
         spacing, phase = span / n, float(centres[0])
         slots = np.round((centres - phase) / spacing)
         for _ in range(20):
@@ -271,6 +282,11 @@ def main() -> int:
             if area < 200:
                 continue
             slot = float(x + w / 2 - phase) / spacing
+            # Right of the live edge there are no bars, only widgets drawn in the same two
+            # colours — the open-position P&L pill and the blue/red price-axis tags. `LT3`
+            # carries all three.
+            if not -0.5 <= slot <= last_slot + 0.5:
+                continue
             if round(slot) in seen:
                 continue
             seen.add(round(slot))

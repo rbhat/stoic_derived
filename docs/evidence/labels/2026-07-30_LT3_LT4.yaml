@@ -1,0 +1,309 @@
+# LT3/LT4 — docs/RULEBOOK.md §10.9. MNQ 5m. ONE session, two snapshots, six hours apart.
+# §10.9 describes ONE trade here (the +4.5R). LT3 carries four more execution marks the
+# section does not list — the morning round trips — so this file holds three `taken`
+# labels, not one. Cite the PAIR as one instance (§10.9, docs/PHASE3.md §3).
+# Schema: docs/PHASE3.md section 2. provenance is exact | read | derived on every valued field.
+fixture: LT3/LT4
+artifact:
+  - edu/123sequence/entry_technique/stoic_live_trade3.png   # LT3 — snapshot at 16:15 ET, position OPEN
+  - edu/123sequence/entry_technique/stoic_live_trade4.png   # LT4 — snapshot at 22:15 ET, position CLOSED
+rulebook: "§10.9"
+session: 2026-07-30          # CME trading day; the 22:15 ET snapshot falls in the 07-31 CME session
+instrument: NQ               # our bars
+chart_instrument: MNQ        # prints differ by a few points — not an engine divergence
+timeframe: 5m
+screenshot_bar:
+  LT3: 2026-07-30T20:15:00Z  # ET 16:15; last-price tag 28,339.00, countdown 01:52
+  LT4: 2026-07-31T02:15:00Z  # ET 22:15; last-price tag 28,407.50, countdown 00:44
+
+# ---------------------------------------------------------------- Type: neither §10.9 reading survives §9
+type:
+  chart: Scalp_or_Day
+  held_past_flatten: true    # entry 15:55 ET, exit 22:15 ET; the 13:58 PT cutoff is 16:58 ET
+  reproducible_as: null
+  note: >
+    §10.9 says this trade "is only reproducible as a Swing or Position Type, or not at all."
+    Measured against §9's own table it is "not at all": Swing sets up on the 60m and Position
+    on the Daily, so neither instantiates a 5m sequence, while Scalp and Day both run wholly
+    on the 5m (§9, D-7) and both flatten at 13:58 PT — six hours before the 28,417.50 exit.
+    CONSEQUENCE FOR PHASE 6: score direction, trigger, entry bar and R on this fixture. Do
+    NOT score the exit, the +4.5R outcome or the hold against a flatten-bound Type; that
+    divergence is VISION.md's Type table meeting a 5m trade held overnight, not the engine.
+    Reported, not resolved — VISION.md is the user's and §10 is the user's.
+
+# ---------------------------------------------------------------- how every bar index was resolved
+calibration:
+  reproduce: "scripts/fit_marked_chart.py <artifact> --last-bar <screenshot bar, ET>"
+  LT4: {comb_spacing_px: 21.505, price_of_y: "28584.888 - 0.28492*y",
+        fitted_on: "272 candle-body ends", resid_sd_pts: 0.92, resid_max_pts: 2.95,
+        first_bar: "09:40 ET", last_slot: 139}
+  LT3: {comb_spacing_px: 29.985, price_of_y: "28406.218 - 0.29409*y",
+        fitted_on: "178 candle-body ends", resid_sd_pts: 0.69, resid_max_pts: 2.11,
+        first_bar: "08:10 ET", last_slot: 97}
+  cross_check: >
+    The two snapshots are at different zooms (21.5 vs 30.0 px per candle) and were fitted
+    independently. The +4.5R entry arrow lands on the SAME bar — 15:55 ET — in both, which
+    checks the method rather than the data. LT4's exit arrow sits on its own last, in-progress
+    bar, so the screenshot was taken seconds after the close-out.
+  anchor_is_measured_not_assumed: >
+    The price residual discriminates a one-bar error sharply on both: LT4 gives 0.92 pts sd at
+    22:15 against 16.9 / 17.4 at 22:10 / 22:20, and LT3 gives 0.69 at 16:15 against 16.4 / 19.2
+    at 16:10 / 16:20. LT3's anchor is confirmed a second time, independently, by its own four
+    right-axis SMA tags (below).
+  script_fix: >
+    fit_marked_chart.py could not resolve this fixture until 2026-08-10 — it reported 16.95 pts
+    sd and the docstring read that as the CME maintenance break, which the slot count does not
+    model. That was wrong. Our 5m frame holds no bars in the 17:00-18:00 ET break either, so
+    walking `last_index - k` skips it correctly and needed no change. The real fault was the
+    comb: four of LT4's candles draw no body pixels (dojis, and candles under the shaded
+    session boxes), each leaving a two-slot gap, so the `span / median_gap` seed searched 134-138
+    slots when the truth was 139 and the spacing came out 6% long. The seed now counts the gaps.
+    T1/T2 reproduce unchanged under the fix.
+
+# ---------------------------------------------------------------- dating
+dating:                      # docs/evidence/fixture_dating.md, plus what this pass measured
+  - {field: sma_fingerprint_LT4, chart: [28501.64, 28471.53, 28448.50, 28095.47],
+     bars: [28501.66, 28471.40, 28448.36, 28095.31], worst_delta: 0.16, next_best_bar: 12.93,
+     provenance: exact}
+  - {field: sma_fingerprint_LT3, chart: [28270.60, 28245.95, 28194.81, 27806.26],
+     bars: [28271.67, 28246.46, 28195.08, 27806.17], worst_delta: 1.08, next_best_bar: 9.92,
+     provenance: exact, source: "LT3's own axis tags — dates the SECOND snapshot on its own"}
+  - {field: PWC, chart: 28306.75, bars: 28306.50, provenance: exact, source: "printed tag"}
+  - {field: PWC_line, chart: 28306.81, bars: 28306.50, delta: 0.31, provenance: read,
+     source: "measured off the plot; LT3 gives 28306.82"}
+  - {field: PLOW_line, chart: 28212.50, bars: 28212.50, delta: 0.00, provenance: read,
+     source: "measured off the plot; LT3 gives 28212.41. Same level T1/T2 draws"}
+  - {field: PDH_line, chart: 28177.71, bars: 28178.25, delta: 0.54, provenance: read,
+     source: "LT3 only — 07-29 CME session high"}
+  - {field: day_separator, chart: "x-axis `31` at the right edge", bars: "22:15 ET on 07-30",
+     provenance: exact, source: "LT4"}
+
+# ---------------------------------------------------------------- labels
+labels:
+  # ------------------------------------------------- the §10.9 trade
+  - id: LT34-A1
+    class: taken
+    direction: long
+    setup: step3_pullback
+    ptb:
+      # TWO readings of what the trigger was. Neither is adopted.
+      drawn_level:
+        price: 28245.55        # LT3 gives 28245.64 — two independent fits, 0.09 apart
+        provenance: read
+        anchored_at: {pos_ts: 2026-07-30T14:30:00Z, et: "10:30", bar_high: 28246.50, delta: 0.95}
+        source: "the brown line labelled `ptb`; §10.9 reads it as ~28,245"
+        note: >
+          The line's left end sits exactly on the 10:30 bar in BOTH renders, five hours before
+          the entry, and its price is that bar's HIGH (28,246.50) rather than its close
+          (28,234.50). So it is a level carried forward from the morning, not a tick drawn on
+          the pullback candle the way T2's is.
+      by_rule:
+        pos_ts: 2026-07-30T19:50:00Z
+        et: "15:50"
+        bar: {o: 28236.00, h: 28241.75, l: 28207.00, c: 28223.25}
+        trigger: 28241.75
+        basis: "PTB high, §5.2.3 — the last pullback candle before the fill bar"
+        provenance: derived
+      disagreement: 3.80
+      note: >
+        The fill at 28,244.42 is 2.67 ABOVE the by_rule trigger, which a stop-market buy does,
+        and 1.13 BELOW the drawn level, which it cannot. That argues for by_rule — but the fill
+        is an MNQ print and the drawn level was fitted against NQ bars, and MNQ runs a couple of
+        points off NQ, so the sign of a 1.13-point gap decides nothing. Recorded, not resolved.
+        What both readings agree on: 15:55 is the first bar to trade through either level
+        (15:50 highs 28,241.75; 15:55 highs 28,262.50).
+    entry:
+      price: 28244.42
+      lots: 13
+      pos_ts: 2026-07-30T19:55:00Z
+      et: "15:55"
+      bar: {o: 28223.75, h: 28262.50, l: 28202.50, c: 28229.00}
+      provenance: exact
+      source: "LT3 and LT4 execution text '13 @ 28244.42'; bar from the arrow, agreeing in both renders"
+    stop:
+      # Two derived readings, and they nearly agree. Neither is adopted.
+      by_ptb_extreme: {price: 28207.00, distance: 37.42, basis: "§5.4.1 / D-18 — the 15:50 PTB low", provenance: derived}
+      by_r_label:     {price: 28205.96, distance: 38.46, basis: "§10.10 — 173.08 pts ÷ 4.5R", provenance: derived}
+      disagreement: 1.04
+      by_lot_count:
+        bracket: [35.71, 38.46]
+        basis: "§10.10 — 13 lots is ⌊1000 ÷ (2 × d)⌋, so d ∈ (1000/28, 1000/26]"
+        discriminates: false
+        note: "Both readings fall inside the bracket, so the lot count corroborates the $1,000 unit and separates nothing."
+      note: >
+        1.04 points apart — the second-closest agreement between §10.10 and §5.4.1 in the corpus,
+        after T-B1's 0.99 and against LT's 12.25. §10.10's row is a +4.5R row divided by its own
+        label, not direct evidence, so neither reading is adopted.
+    tp1:
+      price: 28297.75
+      pos_ts: 2026-07-30T19:15:00Z
+      et: "15:15"
+      basis: "§6.1 / D-6 / D-16 — the Step 3 High, the extreme of the leg, frozen at fill"
+      provenance: derived
+      note: >
+        Read off bars, not off the chart: no Step 3 High line is drawn on either snapshot. The
+        leg after the Step 3 close runs 15:05 h28,255.50 → 15:10 h28,296.50 → 15:15 h28,297.75,
+        and 15:20 highs lower. TP1 was reached on 16:00 (h 28,367.00), the bar after the fill.
+    outcome:
+      exit: 28417.50
+      lots: 13
+      r_label: 4.5
+      points: 173.08
+      exit_pos_ts: 2026-07-31T02:15:00Z
+      et: "22:15"
+      exit_bar: {o: 28438.25, h: 28438.75, l: 28401.00, c: 28405.00}
+      provenance: exact
+      source: "LT4 execution text '13 @ 28417.50', '+4.5R'"
+      past_flatten: true
+      note: >
+        The exit sits on LT4's own last, in-progress bar. §10.9's "target beyond TP1" is what the
+        numbers say: TP1 (28,297.75) was passed on the very next bar and the position ran another
+        119.75 points over six hours — §6.4's "we simply stay with the move".
+
+  # ------------------------------------------------- the morning round trips, LT3 only
+  - id: LT34-M1
+    class: taken
+    direction: long
+    ptb: null                  # no trigger is drawn for this entry
+    entry:
+      price: 27896.25
+      lots: 6
+      pos_ts: 2026-07-30T13:35:00Z
+      et: "09:35"
+      bar: {o: 27871.25, h: 27919.50, l: 27847.50, c: 27889.25}
+      provenance: exact
+      source: "LT3 execution text '6 @ 27896.25'"
+    stop:
+      by_r_label: {price: 27814.46, distance: 81.79, basis: "§10.10 — 229.00 pts ÷ 2.8R", provenance: derived}
+      by_lot_count: {bracket: [71.43, 83.33], basis: "§10.10 — 6 lots is ⌊1000 ÷ (2 × d)⌋"}
+      note: "The §5.4.1 reading is unavailable — no PTB level is drawn for this entry."
+    tp1: null                  # no count is marked on this trade
+    outcome:
+      exit: 28125.25
+      lots: 6
+      r_label: 2.8
+      points: 229.00
+      exit_pos_ts: 2026-07-30T14:05:00Z
+      et: "10:05"
+      exit_bar: {o: 28159.75, h: 28166.00, l: 28073.25, c: 28086.25}
+      provenance: exact
+      source: "LT3 execution text '6 @ 28125.25'; the '+2.8R' text is on the chart"
+      past_flatten: false
+    note: >
+      This is §10.9's "earlier +2.8R morning trade", and it is the fixture's only trade whose R
+      label needs no division: 229.00 pts × 6 lots × $2 = $2,748, which IS 2.75R against §10.10's
+      $1,000 unit and rounds to the printed +2.8R. It corroborates that unit rather than assuming it.
+
+  - id: LT34-M2
+    class: taken
+    direction: long
+    ptb: null
+    entry:
+      price: 28114.50
+      lots: 8
+      pos_ts: 2026-07-30T14:15:00Z
+      et: "10:15"
+      bar: {o: 28107.25, h: 28140.00, l: 28080.25, c: 28113.25}
+      provenance: exact
+      source: "LT3 execution text '8 @ 28114.50'"
+    stop:
+      by_lot_count: {bracket: [55.56, 62.50], basis: "§10.10 — 8 lots is ⌊1000 ÷ (2 × d)⌋"}
+      note: "No R label is printed for this trade, so §10.10's division has no input. No PTB level is drawn either."
+    tp1: null
+    outcome:
+      exit: 28117.25
+      lots: 8
+      r_label: null
+      points: 2.75
+      pnl_usd: 44.00
+      exit_pos_ts: 2026-07-30T14:50:00Z
+      et: "10:50"
+      exit_bar: {o: 28166.25, h: 28176.25, l: 28063.00, c: 28068.50}
+      provenance: exact
+      source: "LT3 execution text '8 @ 28117.25'"
+      past_flatten: false
+    note: >
+      A scratch: +2.75 points on 8 lots is +$44, or 0.04R. See `break_even_mark` below — this is
+      the only round trip on either snapshot that closed at break-even, which bears on which
+      trade the drawn `BE` belongs to.
+
+# ---------------------------------------------------------------- what is drawn and how it reads
+count_numerals:
+  test: >
+    docs/CONSTRAINTS.md requires the two-render test before any step field is recorded. Run here
+    by locating the italic glyphs (BGR 74,134,122) in both snapshots and putting each centre
+    through its own comb.
+  finding: >
+    UNLIKE T1/T2, the x-order here IS the count order: 1 → 2 → 3 left to right. `2` and `3` land
+    on the same bar in both renders. `1` differs by one bar because its glyph centre falls within
+    0.02 of a slot boundary, so the rounding flips.
+  glyphs:
+    - {glyph: "1", LT4_et: "13:10", LT3_et: "13:05", agree: false, provenance: read}
+    - {glyph: "2", LT4_et: "14:10", LT3_et: "14:10", agree: true, provenance: read}
+    - {glyph: "3", LT4_et: "15:00", LT3_et: "15:00", agree: true, provenance: read}
+  consequence: >
+    The numerals are still hand-placed in whitespace — their y-positions (28,199 / 28,143 /
+    28,276) are annotation heights, not bar prices — so a numeral marks a REGION and its own bar
+    is a reading, not a fact. step1 is left ambiguous between 13:05 and 13:10. Phase 6 may score
+    step2 and step3 here at one-bar tolerance and must not score step1.
+  agrees_with_10_9: "§10.9's 'Step 3 confirming into ~03:00 PM' — the `3` glyph is on the 15:00 bar."
+
+drawn_levels:                # measured under each snapshot's own fitted axis; all provenance read
+  - {name: ptb, price: 28245.55, LT3: 28245.64, spans_et: "10:30 → 15:50", anchored_bar_high: 28246.50}
+  - {name: base_boundary, price: 28208.51, LT3: 28208.59, spans_et: "13:15 → 15:00", label: none}
+  - {name: PWC, price: 28306.81, LT3: 28306.82}
+  - {name: PLOW, price: 28212.50, LT3: 28212.41}
+  - {name: PDH, price: null, LT3: 28177.71}
+  - {name: "Jun LCOM", price: 28471.49, LT3: null}
+  - {name: sbs, price: null, LT3: 28153.01, spans_et: "13:40 → 14:35"}
+  - {name: SBS, price: null, LT3: 28066.99, spans_et: "12:45 → 13:40", anchored_bar_low: 28066.25}
+
+break_even_mark:
+  drawn: "the letters `BE`, at the 10:35 / 10:40 bars in both renders"
+  what_10_9_says: "drawn on the earlier +2.8R morning trade — not on the +4.5R one"
+  what_the_arithmetic_says: >
+    The +2.8R trade (LT34-M1) ran 09:35 → 10:05 and closed +229.00 points; the 8-lot trade
+    (LT34-M2) ran 10:15 → 10:50 and closed +2.75 points, which IS break-even. The `BE` text sits
+    inside LT34-M2's window, not LT34-M1's.
+  disposition: >
+    Both readings stand. `BE` is hand-placed text, so its x-position identifies a trade no more
+    reliably than a count numeral marks a bar, and §10.9 already states that the mark says WHERE
+    the stop went and never WHICH event moved it — so it corroborates neither trigger under D-25
+    either way. Reported, not corrected: editing §10 is the user's call.
+
+# ---------------------------------------------------------------- reported, not corrected
+observations:
+  - id: boundary_is_the_high_not_the_close
+    bears_on: "D-30 — the boundary is the base's CLOSE extreme on the Step 1 side"
+    measured: >
+      The unlabelled brown line spanning 13:15 → 15:00 measures 28,208.51 (LT4) and 28,208.59
+      (LT3). Over that span the base's highest HIGH is 28,208.50 (the 13:50 bar) and its highest
+      CLOSE is 28,203.00 (the 13:15 bar). The drawn line reproduces the high to 0.01 / 0.09 and
+      misses the close by 5.5 — far outside this fit's ~0.5-point accuracy on levels (PLOW 0.00,
+      PWC 0.31, PDH 0.54). The `ptb` line reads the same way: 28,245.55 against the 10:30 bar's
+      high 28,246.50, its close 28,234.50 being 11 points away.
+    status: >
+      ONE session, and D-30 was decided on the §7.3 / D-8 closes-not-wicks precedent with the
+      censuses showing no passage quantifies it. This is the first drawn boundary measured
+      against both readings. It is an observation, not a decision and not a D-row — CLAUDE.md's
+      small-n rule applies and §11 is the user's. It is exactly the kind of evidence Phase 3
+      exists to put in front of D-30 and D-34.
+  - id: axis_tag_near_coincidence
+    bears_on: "docs/CONSTRAINTS.md — a printed number on a §10 chart may be an indicator's axis label"
+    measured: >
+      §10.9 reads `Jun LCOM 28,471.53` off LT4's price axis. Our Jun LCOM (lowest June daily
+      close, 2026-06-09) is 28,472.00 and our 10 SMA at the 22:15 bar is 28,471.40 — the printed
+      value sits within 0.6 of BOTH, so on this fixture the tag cannot tell them apart. What
+      settles it is the fingerprint: all four of LT4's tags fit the 10/20/50/200 at 22:15 to 0.16,
+      so 28,471.53 is the 10 SMA tag. The DRAWN Jun LCOM line measures 28,471.49, against our
+      28,472.00.
+    second_instance: >
+      LT3's `28,245.95` tag sits 0.9 from the drawn `ptb` line (28,245.64) and 0.51 from our 20
+      SMA at 16:15 (28,246.46). The fingerprint again says it is the 20 SMA. Reading either tag
+      as a level would have been wrong twice on one fixture — measure the line, do not read the axis.
+
+double_count_warning: >
+  This session is also `PTBV`'s (docs/evidence/fixture_dating.md: PTBV keyframe 0399 is
+  2026-07-30 15:10 ET, inside LT3's window). The three executions here may be narrated there.
+  When PTBV is labelled, reconcile against these three ids rather than adding new ones —
+  docs/PHASE3.md §3, the error AUDIT-2a F-1 caught for DIA-P.

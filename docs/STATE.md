@@ -24,9 +24,29 @@ say so. Every layer's *unit* tests remain hand-built fixtures.
 
 **Phase 3 started on 2026-08-10 and is partly built. `docs/PHASE3.md` is its design — read it
 before touching a label.** What is done: the bar spine now reaches **2026-08-10**, all five §10
-fixtures are **dated**, and **three** of them are **labelled** — `LT`, `NQ3` and the densest one,
-`T1`/`T2`, whose six executions all resolved to bars. What is not: `LT3`/`LT4`, the `PTBV`
-class-`named` pass, and this file's own sibling `docs/CONSTRAINTS.md` rows for the rest.
+fixtures are **dated**, and **all four marked-chart fixtures** are **labelled** — `LT`, `NQ3`,
+`T1`/`T2` and `LT3`/`LT4`. **8 `taken` labels and 1 `named` across 4 sessions.** What is not: the
+`PTBV` class-`named` pass, and this file's own sibling `docs/CONSTRAINTS.md` rows for the rest.
+
+**`LT3`/`LT4` is labelled, and it carries more than §10.9 lists.** §10.9 describes one trade; `LT3`
+carries four further execution marks — the morning round trips — so the fixture holds **three**
+`taken` labels. Three findings came out of it, none of them a decision:
+
+- **The drawn boundary is the base's `high`, not its highest close, and that bears on D-30.** The
+  unlabelled line spanning 13:15 → 15:00 measures **28,208.51** / **28,208.59** on the two
+  snapshots; the base's highest **high** is 28,208.50 and its highest **close** is 28,203.00. The
+  fit resolves levels to ~0.5 points here (`PLOW` 0.00, `PWC` 0.31, `PDH` 0.54), so a 5.5-point
+  miss is outside it. The `ptb` line reads the same way. **One session** — an observation for
+  D-30, not a change to it.
+- **The fixture is reproducible under *no* v1 Type, which is stronger than §10.9's reading.** §10.9
+  offers *"Swing or Position ... or not at all"*; §9's own table makes it *not at all*, because
+  Swing sets up on the 60m and Position on the Daily, so neither runs a 5m sequence, while Scalp
+  and Day both flatten at 13:58 PT — six hours before the exit. **The label records this so Phase 6
+  scores entry, trigger and R here and never the exit or the +4.5R outcome.**
+- **`LT34-M1` is only the second §10.10 row that needs no division.** 229.00 pts × 6 lots × $2 =
+  **$2,748** = 2.75R, which *is* the printed **+2.8R**. It corroborates the $1,000 unit rather than
+  assuming it. And on the +4.5R trade §10.10 and §5.4.1 land **1.04** points apart — second only to
+  `T-B1`'s 0.99, against `LT`'s 12.25.
 
 **How a marked chart is now read, and it is not by eye.** `T1`/`T2` was labelled by fitting the
 candle comb and the price axis off the artifact itself — candle bodies are flat exact colours, so
@@ -35,6 +55,20 @@ reproduces our NQ bars to **0.92 points sd** over 146 body ends, and the fitted 
 TradingView's own printed labels. **The two snapshots were fitted independently at different zooms
 and put all six executions on the same bars**, which checks the method rather than the data. It is
 `scripts/fit_marked_chart.py`, and the numbers it produced are in the label file.
+
+**The one fixture that would not fit has been fixed, and the reason it would not was misdiagnosed
+for two days.** `LT3`/`LT4` reported 16.95 points sd and this file, `docs/CONSTRAINTS.md` and the
+script's own docstring all blamed the **CME maintenance break** the chart spans. That was wrong:
+our 5m frame holds no bars between 17:00 and 18:00 ET either, so walking `last_index - k` crosses
+the break correctly and never needed changing. The real fault was the comb — **four of `LT4`'s
+candles draw no body pixels** (dojis, and candles under the shaded session boxes), each leaving a
+two-slot gap the `span / median_gap` seed could not see, so it searched 134–138 slots when the truth
+was 139. `fit_comb` now seeds the count by counting the gaps. `LT4` fits to **0.92** pts sd over 272
+body ends and `LT3` to **0.69**; **`T1`/`T2` and `NQ3` reproduce unchanged**. The tell was in the
+output all along: the comb's own pixel residual was **10.79 px on a 22 px spacing** — half a candle
+— and drops to 0.51 at the right slot count. It is a warning and not a gate: `T1` fits cleanly at
+10.22 px on a 39 px spacing. **Read the comb residual as a fraction of the spacing, then the price
+residual.**
 
 **The finding that reshaped the phase: every §10 marked chart is a 2026-07-27 → 2026-08-03 session,
 and our bars ended 2026-06-10.** Phase 3 was never blocked on labelling effort; it was blocked on
@@ -163,20 +197,16 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-**The critical path is Phase 3, and it is in progress. `docs/PHASE3.md` is the design; work resumes
-at `LT3`/`LT4`.** In order:
+**The critical path is Phase 3, and it is in progress. `docs/PHASE3.md` is the design; every
+marked chart is labelled and work resumes at `PTBV`.** In order:
 
-1. **`LT3`/`LT4` — session 2026-07-30, exit in the 2026-07-31 session.** One trade, two snapshots;
-   cite it once. It is held past the 13:58 PT flatten, so the label **must record the Type** as
-   Swing or Position or Phase 6 reports a divergence that is the harness's. **`fit_marked_chart.py`
-   does not resolve this one as it stands** — the chart spans the CME maintenance break, which the
-   slot count does not model, and its residual reports 16.95 pts sd against the 0.4–1.0 the intraday
-   fixtures give. Walk real bar timestamps instead of counting slots back from the anchor.
-2. **`PTBV` — session 2026-07-30, the class-`named` pass.** A 1h38m narrated session where the
+1. **`PTBV` — session 2026-07-30, the class-`named` pass.** A 1h38m narrated session where the
    trader talks through setups he does not take. This is the bulk of the remaining reading and the
    part worth delegating; judge that delegation by its **write pattern**, per
-   `claude_memories/long-research-tasks-write-incrementally.md`.
-3. **`docs/CONSTRAINTS.md`** rows for labelling, and this file's Open list as things close.
+   `claude_memories/long-research-tasks-write-incrementally.md`. **It is the same session as
+   `LT3`/`LT4`** — reconcile any execution it narrates against `LT34-A1`, `LT34-M1` and `LT34-M2`
+   rather than adding a fourth, which is the `DIA-P` double-count in a new place.
+2. **`docs/CONSTRAINTS.md`** rows for labelling, and this file's Open list as things close.
 
 **The first question to put to the engine is still not a number, it is the base.** D-34 was chosen
 among rival constructions with **no eval set** — the natural one is §10's marked charts, and those
@@ -311,16 +341,16 @@ context and targets, never a step of the sequence, and they yield on conflict.
 | `docs/PHASE3.md` | The design — data prerequisite, label schema, scope, order of work, exit gate. Read it before touching a label |
 | `scripts/merge_signal_bars.py` | Extends `{NQ,ES}_1m.parquet` from `signals.db`. Idempotent, atomic, `--dry-run`, `$STOIC_SIGNALS_DB`. Our parquet wins on the overlap; the overlap check is **reported, never fatal** — that source is a lossy live capture, not a second vendor truth |
 | `scripts/date_marked_chart.py` | Dates a chart by matching its four printed right-axis values against our SMAs, as a **sorted multiset** — the chart never says which label is which average. One sharp minimum is a candidate; `docs/PHASE3.md` needs a second, independent agreement |
-| `scripts/fit_marked_chart.py` | Says which **bar** each mark sits on. Fits the candle comb and the price axis off the artifact, resolves execution arrows, and `--probe` prices any drawn line. **Read the reported residual first** — 0.4–1.0 pts sd on the intraday fixtures, 16.95 on `LT3`/`LT4`, which spans a session break the slot count does not model. `LT` is a different theme and returns zero candles |
-| `docs/evidence/fixture_dating.md` | All five fixtures dated, each with its second agreement. Also settles the SMA input series and puts §10.7's stop in doubt |
-| `docs/evidence/labels/` | One YAML per fixture session. `2026-07-27_LT.yaml` (1 `taken`, 1 `named`), `2026-08-03_NQ3.yaml` (1 `taken`), `2026-07-31_T1_T2.yaml` (3 `taken`) |
+| `scripts/fit_marked_chart.py` | Says which **bar** each mark sits on. Fits the candle comb and the price axis off the artifact, resolves execution arrows, and `--probe` prices any drawn line. **Read the comb's pixel residual first, then the price residual** — the comb should fit to ~1 px and the price to 0.4–1.0 pts sd. A comb residual near half a candle width means the slot count is wrong, which is what `LT3`/`LT4` was. Blobs past the live edge are dropped (the open-position P&L pill shares the arrow colours). `LT` is a different theme and returns zero candles |
+| `docs/evidence/fixture_dating.md` | All five fixtures dated, each with its second agreement — `LT3` and `LT4` separately, being six hours apart. Also settles the SMA input series and puts §10.7's stop in doubt |
+| `docs/evidence/labels/` | One YAML per fixture session. `2026-07-27_LT.yaml` (1 `taken`, 1 `named`), `2026-08-03_NQ3.yaml` (1 `taken`), `2026-07-31_T1_T2.yaml` (3 `taken`), `2026-07-30_LT3_LT4.yaml` (3 `taken`) |
 
 **Every §10 fixture is dated** — reproduce with `scripts/date_marked_chart.py`:
 
 | Fixture | CME session | Screenshot bar (ET) | SMA worst \|Δ\| | next-best bar |
 |---|---|---|---|---|
 | `LT` | 2026-07-27 | 10:05 | 1.77 | 32.41 |
-| `LT3`/`LT4` | 2026-07-30 (exit 07-31) | 07-30 22:15 | 0.16 | 12.93 |
+| `LT3`/`LT4` | 2026-07-30 (exit 07-31) | 07-30 22:15 (`LT4`), 16:15 (`LT3`) | 0.16 / 1.08 | 12.93 / 9.92 |
 | `PTBV` | 2026-07-30 | 15:10 | 0.59 | 10.05 |
 | `T1`/`T2` | 2026-07-31 | 13:45 | 3.23 | 5.47 |
 | `NQ3` | 2026-08-03 | 10:35 | 0.08 | 18.37 |
@@ -446,7 +476,11 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
   and `tp1` are **unlabelled** on all three `T1`/`T2` trades: Phase 6 can score direction, trigger,
   entry bar, R and outcome there, and cannot score the count or TP1. **Check the other fixtures for
   the same thing before trusting a step field** — `LT` and `NQ3` recorded theirs as `read` before
-  this test existed.
+  this test existed. **On `LT3`/`LT4` the test was run and came out the other way:** the x-order
+  *is* the count order there, `2` and `3` land on the same bar in both renders, and only `1` slips
+  a bar because its glyph centre falls on a slot boundary. So the T1/T2 result is a property of
+  that chart, not of the numerals in general — **run the test per fixture, conclude nothing from
+  the last one.**
 - **`T-B1` is the corpus's one close agreement between §10.10 and §5.4.1**, at **0.99** points
   (41.43 vs 42.42). On `LT` the same two readings disagree by **12.25**. Both fixtures record both
   readings and adopt neither, so nothing rests on this yet — but it is the first evidence that the
@@ -467,11 +501,15 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
   before it (12:40) highs at **28,371.50**, 22 points away; and the fill at **28,350.92** is 1.17
   above the 12:45 high, so a trigger at 28,371.50 could not have filled there. Settled twice over.
   **Not written into §10.8** — editing §10 is the user's call.
-- **`LT4` is held past the 1:58pm Pacific flatten** — entry 04:00 PM ET, exit into the Asia session
-  at +4.5R (§10.9). Under `VISION.md` a Scalp or Day trade is marked closed at the cutoff, so this
-  fixture is only reproducible as a **Swing or Position** Type. Phase 3 must record the Type it
-  labels it as; Phase 6 will otherwise report a divergence that is the harness's, not the engine's.
-  **Now dated: session 2026-07-30, with the exit falling in the 2026-07-31 CME session.**
+- **`LT4` is held past the 1:58pm Pacific flatten, and no v1 Type reproduces it.** Entry **15:55
+  ET** (not 04:00 PM — that is §10.9's approximation; the arrow lands on 15:55 in both renders),
+  exit 22:15 ET into the Asia session at +4.5R (§10.9). §10.9 offers *"Swing or Position ... or not
+  at all"*; §9's own table makes it **not at all**, because Swing sets up on the 60m and Position on
+  the Daily, so neither runs a 5m sequence, while Scalp and Day run wholly on the 5m (**D-7**) and
+  both flatten at the cutoff. `docs/evidence/labels/2026-07-30_LT3_LT4.yaml` records it under
+  `type:` with the consequence spelled out: **Phase 6 scores entry, trigger and R here, never the
+  exit or the outcome.** Whether `VISION.md`'s Type table should carry a 5m Type that survives the
+  session is the **user's call** — `VISION.md` is not ours to modify.
 - **§10.7's stop for `NQ3` is in doubt, and it is not edited.** §10.7 reads *"Stop 28,540.75, the
   PTB low (§5.4.1) — box bottom"*. That value is within **0.04** of the same chart's **20 SMA**
   (28,540.70, whose right-axis label reads `28,540.74`), and the PTB bar's low is **28,529.50**. So

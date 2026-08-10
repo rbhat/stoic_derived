@@ -13,6 +13,7 @@ Reproduce with `scripts/date_marked_chart.py <four printed values>`.
 |---|---|---|---|---|---|
 | `LT` | 2026-07-27 | 2026-07-27 14:05 | 10:05 | **1.77** | 32.41 |
 | `LT3` / `LT4` | 2026-07-30 (exit in 07-31) | 2026-07-31 02:15 | 07-30 22:15 | **0.16** | 12.93 |
+| `LT3` alone | 2026-07-30 | 2026-07-30 20:15 | 07-30 16:15 | **1.08** | 9.92 |
 | `PTBV` (kf 0399) | 2026-07-30 | 2026-07-30 19:10 | 15:10 | **0.59** | 10.05 |
 | `T1` / `T2` | 2026-07-31 | 2026-07-31 17:45 | 13:45 | **3.23** | 5.47 |
 | `NQ3` | 2026-08-03 | 2026-08-03 14:35 | 10:35 | **0.08** | 18.37 |
@@ -31,6 +32,14 @@ fingerprint is one. These are the others, and none of them is a moving average:
 | `LT` | `PDL` | ~28,213 | **28,212.50** |
 | `LT3`/`LT4` | `PWC` printed | **28,306.75** | **28,306.50** |
 | `LT3`/`LT4` | x-axis day separator `31` at the right edge | session is the 30th | 22:15 ET on 07-30 |
+| `LT3`/`LT4` | `PLOW` and `PWC`, measured off both plots | 28,212.50 / 28,212.41 and 28,306.81 / 28,306.82 | **28,212.50** and **28,306.50** |
+| `LT3` | `PDH`, measured off the plot | **28,177.71** | **28,178.25** (07-29 CME session high) |
+
+**The pair is two screenshots six hours apart, not one**, and the row above was written as if it
+were one. `LT3` catches the position open at **16:15 ET** and `LT4` catches it closed at **22:15
+ET**; each dates itself from its own four axis tags, and `scripts/fit_marked_chart.py` puts the
+`+4.5R` entry on the same **15:55 ET** bar in both. Details in
+`docs/evidence/labels/2026-07-30_LT3_LT4.yaml`.
 | `PTBV` | on-screen clock, bottom right | **`03:14:52 PM UTC-4`** | falls inside the 15:10–15:15 bar |
 | `PTBV` | crosshair date label | **`Thu 30 Jul '26`** | 2026-07-30 |
 | `T1`/`T2` | session low | ~28,075 | **28,079.75** |
@@ -109,6 +118,14 @@ labelling `T1`/`T2` (`docs/evidence/labels/2026-07-31_T1_T2.yaml`):
 | 28,482.85 (`T1` axis tag) | §10.2 *"Jun LCOM at 28,482"* | `T1`'s **200 SMA** at its last bar | 28,483.03 |
 | 28,473.81 (`T2` axis tag) | §10.8 *"into `Jun LCOM` 28,473.81"* | `T2`'s **200 SMA** at its last bar | 28,473.70 |
 | 28,471.53 (`LT3`/`LT4` axis tag) | §10.9 *"`Jun LCOM` 28,471.53"* | that chart's **10 SMA** at its last bar | 28,471.40 |
+
+**On `LT3`/`LT4` the tag is genuinely ambiguous, and only the fingerprint settles it.** §10.9's
+printed `28,471.53` sits within **0.6 of both** candidates — our `Jun LCOM` is **28,472.00** and our
+10 SMA at that chart's last bar is **28,471.40** — so the number alone separates nothing. What
+settles it is that all **four** of `LT4`'s tags fit the 10/20/50/200 at 22:15 to **0.16**, which
+leaves 28,471.53 in the 10 SMA's slot. The **drawn** `Jun LCOM` line on that chart measures
+**28,471.49**. `LT3` repeats the trap one level down: its `28,245.95` tag is **0.51** from our 20
+SMA and **0.9** from its own drawn `ptb` line. Measure the line; do not read the axis.
 
 The **drawn** `Jun LCOM` line on `T1`/`T2` measures **28,471.62** / **28,471.58** against our
 **28,472.00** — under half a point, on a level a month old. So month-old levels do **not** drift
