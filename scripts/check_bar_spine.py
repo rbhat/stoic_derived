@@ -111,8 +111,40 @@ def compare_to_vendor(resampled: pd.DataFrame, vendor: pd.DataFrame) -> SpineCom
     )
 
 
+def clip_to_comparable_span(
+    resampled: pd.DataFrame, vendor: pd.DataFrame
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Restrict both frames to the span over which each side's buckets are complete.
+
+    Two things are dropped, and neither is a resample defect:
+
+    * **The vendor's last bar.** The 1h files are frozen at the timestamp their own pull ended, and
+      that pull stopped mid-hour — NQ's final vendor bar covers 16:00-17:00 UTC on 2026-06-10 but
+      was built from trades up to 16:45 only. While the 1m spine ended at 16:44 both sides were
+      truncated the same way and agreed. `scripts/merge_signal_bars.py` extended the 1m spine past
+      that point, so the 60m resample of that hour is now complete while the vendor's is still
+      truncated: they disagree about a partial bucket, not about resampling. Dropping it is the
+      disposition `stoic/levels.py` documents for a leading partial month — the caller excludes the
+      incomplete bucket because the function cannot detect it.
+    * **Everything past the vendor file's end.** That is absence of vendor data, not disagreement
+      with it. `Gate D` reports the extended coverage and `Gate E` checks its continuity.
+
+    The vendor 1h files are deliberately not extended: they are the independent series Gate A exists
+    to compare against, so rebuilding them from our own 1m would make the gate compare us to us.
+    """
+    if vendor.empty:
+        return resampled, vendor
+    vendor = vendor.iloc[:-1]
+    if vendor.empty:
+        return resampled.iloc[:0], vendor
+    return resampled.loc[vendor.index[0] : vendor.index[-1]], vendor
+
+
 def gate_a() -> bool:
-    """60m resample vs vendor 1h, full overlap, per symbol — literal counts, no summarising."""
+    """60m resample vs vendor 1h, over the span both cover completely, per symbol.
+
+    Literal counts, no summarising. See `clip_to_comparable_span` for what "completely" excludes.
+    """
     print("\n=== Gate A: 60m resample vs vendor 1h ===")
     started = time.perf_counter()
     ok = True
@@ -120,6 +152,7 @@ def gate_a() -> bool:
     for symbol in SYMBOLS:
         resampled = resample(load_1m(symbol), "60m")
         vendor = pd.read_parquet(HISTORICAL / f"{symbol}_1h.parquet")
+        resampled, vendor = clip_to_comparable_span(resampled, vendor)
         cmp = compare_to_vendor(resampled, vendor)
 
         print(f"  {symbol}:")
@@ -147,6 +180,8 @@ def gate_b() -> bool:
     m1 = load_1m(symbol)
     resampled = resample(m1, "60m")
     vendor = pd.read_parquet(HISTORICAL / f"{symbol}_1h.parquet")
+    # Clip exactly as Gate A does, or the control measures Gate A's span rather than its logic.
+    resampled, vendor = clip_to_comparable_span(resampled, vendor)
 
     # Fault 1: perturb one resampled close by +0.25 — must surface as exactly 1 mismatched bar.
     faulted = resampled.copy()
@@ -172,7 +207,7 @@ def gate_b() -> bool:
     }
     wrong = m1.resample("60min", label="right", closed="left").agg(agg).dropna(subset=["open"])
     wrong["volume"] = wrong["volume"].astype("uint64")
-    cmp2 = compare_to_vendor(wrong, vendor)
+    cmp2 = compare_to_vendor(wrong.loc[vendor.index[0] : vendor.index[-1]], vendor)
     # A real pass reports 0/0; treat "large" as three orders of magnitude above that, well below
     # the ~1,812 actually observed, so the bar is easy to clear without being a coincidence.
     fault2_caught = cmp2.resampled_only > 500 and cmp2.vendor_only > 500
@@ -389,16 +424,32 @@ def gate_d() -> bool:
 # schedule. The early close happens every year in this dataset and yields 231 5m bars (session
 # Thu 18:00 -> Fri 13:10 ET); 2025 spans that identical window holding only 102, because ~645
 # minutes of 1m bars are simply absent. See `_GATE_E_NAMED_GAPS` for the measured hole.
+#
+# 2026-06-11 .. 2026-06-19 is a second source-data hole, and a different one: those sessions come
+# from the live signal system's own capture (`scripts/merge_signal_bars.py`), which was being
+# brought up across that window and recorded 12%-65% of each session — 06-19 caught 9 bars of 1,380.
+# From 2026-06-22 onward the same source runs essentially complete. It is named here for the same
+# reason 2025-11-28 is: real missing data that the caller must exclude, never a benign schedule.
+# The 2026-06-09 ES entry that used to sit here — "truncated mid-day by the pull's end" — was
+# removed when that merge extended ES past it. A named exception outliving its cause is the
+# mislabel above in miniature.
+_GATE_E_BRING_UP = (
+    "source-data outage — signals.db live capture in bring-up; see scripts/merge_signal_bars.py"
+)
 _GATE_E_NAMED_EXCEPTIONS: dict[str, dict[date, str]] = {
     "NQ": {
         date(2025, 11, 28): "source-data outage — ~645 min of 1m bars absent inside an "
         "otherwise-normal Black Friday session; see the Gate E gap sweep below",
+        date(2026, 6, 12): _GATE_E_BRING_UP,
+        date(2026, 6, 15): _GATE_E_BRING_UP,
+        date(2026, 6, 19): _GATE_E_BRING_UP,
     },
     "ES": {
         date(2025, 11, 28): "source-data outage — ~645 min of 1m bars absent inside an "
         "otherwise-normal Black Friday session; see the Gate E gap sweep below",
-        date(2026, 6, 9): "last session in data/historical/ES_1m.parquet — truncated mid-day by "
-        "the pull's end, not by trading activity",
+        date(2026, 6, 12): _GATE_E_BRING_UP,
+        date(2026, 6, 15): _GATE_E_BRING_UP,
+        date(2026, 6, 19): _GATE_E_BRING_UP,
     },
 }
 
@@ -418,9 +469,13 @@ _GATE_E_NAMED_GAPS: dict[str, dict[date, str]] = {
         "every one; session low -11.45% vs the prior session close",
         date(2020, 3, 17): "COVID limit-down halt carrying into the next session",
         date(2025, 11, 28): "source-data outage — price moved across the hole, so not a halt",
+        date(2026, 6, 11): _GATE_E_BRING_UP,
+        date(2026, 6, 12): _GATE_E_BRING_UP,
     },
     "ES": {
         date(2025, 11, 28): "source-data outage — price moved across the hole, so not a halt",
+        date(2026, 6, 11): _GATE_E_BRING_UP,
+        date(2026, 6, 12): _GATE_E_BRING_UP,
     },
 }
 
