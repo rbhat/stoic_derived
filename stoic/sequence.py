@@ -283,11 +283,20 @@ class SequenceMachine:
                 self._state = replace(self._state, stage=Stage.AFTER_STEP1, step1_pos=pos)
 
         # --- Step 2: base + boundary (§2.2) ---
-        elif stage == Stage.AFTER_STEP1:
+        # D-34 makes the base a *state*, not a one-time selection: it is re-asked on every bar for
+        # as long as it has never been broken, and the span it returns always ends at `pos - 1`.
+        # So the boundary is re-read from bars strictly earlier than the one whose break is tested
+        # below, which is what makes §2.2.8 literal rather than conventional -- F5 keeps enforcing
+        # it. Once the stage is STEP3_BROKEN the line is "pre-selected" (§2.3.1) and freezes: F6's
+        # re-break of a still-pending base must re-break the *same* line, or a failed break under
+        # §2.3.7 would silently move the line it failed against.
+        elif stage in (Stage.AFTER_STEP1, Stage.BASE_SELECTED):
             step1_pos = self._state.step1_pos
             assert step1_pos is not None
             base = self.judgment.find_base(view, step1_pos, self.direction)
-            if base is not None:
+            if base is None:
+                boundary = None
+            else:
                 # F4: find_base must return a span inside [step1_pos, pos] -- a base that starts
                 # before Step 1 or ends after the bar being evaluated is lookahead, not a base.
                 if not (step1_pos <= base.start <= base.end <= pos):
@@ -302,59 +311,94 @@ class SequenceMachine:
                 boundary = self.judgment.select_boundary(
                     bars.iloc[: base.end + 1], base, self.direction
                 )
-                if boundary is not None:
-                    # Step 2 swing window is [step1_pos, base.end], inclusive of the Step 1 bar
-                    # (D-20/§6.3b); sliced from `view`, not `bars` (F4), and safe because the
-                    # span validation above already guarantees base.end <= pos.
-                    if bullish:
-                        window = view["low"].iloc[step1_pos : base.end + 1].to_numpy()
-                        offset = int(np.argmin(window))
-                    else:
-                        window = view["high"].iloc[step1_pos : base.end + 1].to_numpy()
-                        offset = int(np.argmax(window))
-                    swing_pos = step1_pos + offset
-                    swing_price = float(window[offset])
-                    level = boundary.level_at(pos)
+            if base is not None and boundary is not None:
+                # Step 2 swing window is [step1_pos, base.end], inclusive of the Step 1 bar
+                # (D-20/§6.3b); sliced from `view`, not `bars` (F4), and safe because the
+                # span validation above already guarantees base.end <= pos. It widens with the
+                # base under D-34, so the swing is re-read rather than kept from first selection.
+                if bullish:
+                    window = view["low"].iloc[step1_pos : base.end + 1].to_numpy()
+                    offset = int(np.argmin(window))
+                else:
+                    window = view["high"].iloc[step1_pos : base.end + 1].to_numpy()
+                    offset = int(np.argmax(window))
+                swing_pos = step1_pos + offset
+                swing_price = float(window[offset])
 
+                # BASE_SELECTED is emitted once, on entry to the stage -- D-34. While the base
+                # extends, the span and the line update silently: re-emitting per bar would make
+                # the stream mostly noise, and STEP_3_BREAK already carries the level actually
+                # broken. A base cancelled and later re-formed does emit again, because that is a
+                # genuinely new selection rather than the same one growing.
+                if stage == Stage.AFTER_STEP1:
                     events.append(
                         EventRecord(
                             pos,
                             Event.BASE_SELECTED,
                             self.direction,
-                            boundary_level=level,
+                            boundary_level=boundary.level_at(pos),
                             base_start=base.start,
                             base_end=base.end,
                             step2_swing_pos=swing_pos,
                             step2_swing_price=swing_price,
                         )
                     )
-                    self._state = replace(
-                        self._state,
-                        stage=Stage.BASE_SELECTED,
-                        base=base,
-                        boundary=boundary,
-                        step2_swing_pos=swing_pos,
-                        step2_swing_price=swing_price,
-                    )
-                    stage = Stage.BASE_SELECTED
+                self._state = replace(
+                    self._state,
+                    stage=Stage.BASE_SELECTED,
+                    base=base,
+                    boundary=boundary,
+                    step2_swing_pos=swing_pos,
+                    step2_swing_price=swing_price,
+                )
+                stage = Stage.BASE_SELECTED
+            elif stage == Stage.BASE_SELECTED:
+                # The leg resumed (D-34), or no line could be drawn from the span (§2.2.9). The
+                # base is cancelled, not frozen -- it never confirmed a Step 3, so nothing is
+                # emitted, and the count waits at AFTER_STEP1 for the next one to form.
+                self._state = replace(
+                    self._state,
+                    stage=Stage.AFTER_STEP1,
+                    base=None,
+                    boundary=None,
+                    step2_swing_pos=None,
+                    step2_swing_price=None,
+                )
+                stage = Stage.AFTER_STEP1
 
         # --- Step 3 break (§2.3.1, §2.3.2, F5, F6) ---
         if stage in (Stage.BASE_SELECTED, Stage.STEP3_BROKEN):
             base = self._state.base
             boundary = self._state.boundary
             assert base is not None and boundary is not None
-            # F5: the boundary must be markable BEFORE the break (§2.2.5) -- gate the break test
-            # on base.end < pos so the bar that recognises the base cannot also break it on the
-            # same bar, unless the base was recognised late (base.end < pos already), which
-            # legitimately breaks on the recognition bar.
+            # F5: the boundary must be markable BEFORE the break (§2.2.5). Under D-34 the default
+            # find_base already guarantees `base.end == pos - 1`, so §2.2.8 is enforced there and
+            # this guard is vacuously true on every evaluation. It stays because an *injected*
+            # predicate (D-34 names three rejected constructions, and O-18 needs a fourth) may
+            # return a span ending at `pos`, and such a span must not be breakable on its own bar.
             if base.end < pos:
                 level = boundary.level_at(pos)
                 broke = high > level if bullish else low < level
                 if broke:
                     # F6: every trade-through of a still-pending base is a fresh entry
                     # opportunity (§2.3.3), not just the first one.
+                    #
+                    # The span and the Step 2 swing are carried here, not just on BASE_SELECTED:
+                    # under D-34 that event fires once, on the first bar a base exists, while the
+                    # span keeps growing behind it. Without these fields the only recorded value
+                    # of D-20's fib anchor would be the first-bar one, which the state that
+                    # actually drove the break can contradict.
                     events.append(
-                        EventRecord(pos, Event.STEP_3_BREAK, self.direction, boundary_level=level)
+                        EventRecord(
+                            pos,
+                            Event.STEP_3_BREAK,
+                            self.direction,
+                            boundary_level=level,
+                            base_start=base.start,
+                            base_end=base.end,
+                            step2_swing_pos=self._state.step2_swing_pos,
+                            step2_swing_price=self._state.step2_swing_price,
+                        )
                     )
                     if stage == Stage.BASE_SELECTED:
                         self._state = replace(self._state, stage=Stage.STEP3_BROKEN)

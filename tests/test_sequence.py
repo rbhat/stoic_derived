@@ -679,7 +679,12 @@ def test_second_confirmed_step3_same_direction_replaces_boundary_and_rearms():
     boundary_box = [HorizontalBoundary(130.0)]
 
     def find_base(view, step1_pos, direction):
-        return BaseSpan(len(view) - 1, len(view) - 1)
+        # Ends at pos-1, per D-34. A span ending at `pos` can never be broken -- F5 enforces
+        # §2.2.5's "markable before the break" -- and since D-34 re-asks this predicate on every
+        # bar, a stub that always returned `pos` would leave the count stuck at BASE_SELECTED.
+        if len(view) < 2:
+            return None
+        return BaseSpan(len(view) - 2, len(view) - 2)
 
     judgment = _judgment(
         is_meaningful_break=lambda *_: True,
@@ -1132,3 +1137,181 @@ def test_replay_end_to_end_emits_full_sequence():
         "step2_swing_price",
         "step3_extreme",
     ]
+
+
+# ---------------------------------------------------------------------------
+# D-34: the base is a state, re-asked every bar while unbroken
+# ---------------------------------------------------------------------------
+
+
+def _step1_then(rows: list[dict[str, float]]) -> pd.DataFrame:
+    """A bullish Step 1 on bar 0, then `rows` -- all closing above the MAs so nothing resets."""
+    return _bars([{"high": 106, "low": 101, "close": 105, "sma_10": 100, "sma_20": 100}, *rows])
+
+
+def _quiet(n: int) -> list[dict[str, float]]:
+    return [{"high": 106, "low": 101, "close": 104, "sma_10": 100, "sma_20": 100}] * n
+
+
+def test_base_extends_every_bar_and_base_selected_is_emitted_once():
+    """D-34: the span grows by a candle at a time and the line is re-read, but the event fires
+    only on entry to the stage -- STEP_3_BREAK carries the level actually broken."""
+
+    def find_base(view, step1_pos, direction):
+        return BaseSpan(1, len(view) - 2) if len(view) >= 4 else None
+
+    judgment = _judgment(
+        is_meaningful_break=lambda *_: True,
+        find_base=find_base,
+        # a level no bar reaches, so the base is never broken and never freezes
+        select_boundary=lambda _bars, base, _dir: HorizontalBoundary(1000.0 + base.end),
+        is_meaningful_close=lambda *_: False,
+    )
+    machine = SequenceMachine(Direction.BULLISH, judgment)
+
+    bars = _step1_then(_quiet(5))
+    events = []
+    for pos in range(len(bars)):
+        events.extend(machine.step(bars, pos))
+
+    assert [e.pos for e in events if e.event == Event.BASE_SELECTED] == [3]
+    assert machine.state.stage == Stage.BASE_SELECTED
+    assert machine.state.base == BaseSpan(1, len(bars) - 2)
+    assert machine.state.boundary.level_at(0) == 1000.0 + (len(bars) - 2)
+
+
+def test_base_is_cancelled_when_the_leg_resumes():
+    """D-34: `None` means the leg resumed. The base is cancelled, not frozen -- and since it
+    never confirmed a Step 3, nothing is emitted."""
+    live = [True]
+
+    def find_base(view, step1_pos, direction):
+        if not live[0] or len(view) < 4:
+            return None
+        return BaseSpan(1, len(view) - 2)
+
+    judgment = _judgment(
+        is_meaningful_break=lambda *_: True,
+        find_base=find_base,
+        select_boundary=lambda *_: HorizontalBoundary(1000.0),
+        is_meaningful_close=lambda *_: False,
+    )
+    machine = SequenceMachine(Direction.BULLISH, judgment)
+
+    bars = _step1_then(_quiet(5))
+    for pos in range(4):
+        machine.step(bars, pos)
+    assert machine.state.stage == Stage.BASE_SELECTED
+
+    live[0] = False
+    events = machine.step(bars, 4)
+    assert events == []
+    assert machine.state.stage == Stage.AFTER_STEP1
+    assert machine.state.base is None
+    assert machine.state.boundary is None
+    assert machine.state.step2_swing_pos is None
+
+
+def test_a_base_that_reforms_after_cancellation_emits_again():
+    """The second BASE_SELECTED is a genuinely new selection, not the first one growing."""
+    live = [True]
+
+    def find_base(view, step1_pos, direction):
+        if not live[0] or len(view) < 4:
+            return None
+        return BaseSpan(1, len(view) - 2)
+
+    judgment = _judgment(
+        is_meaningful_break=lambda *_: True,
+        find_base=find_base,
+        select_boundary=lambda *_: HorizontalBoundary(1000.0),
+        is_meaningful_close=lambda *_: False,
+    )
+    machine = SequenceMachine(Direction.BULLISH, judgment)
+
+    bars = _step1_then(_quiet(5))
+    events = []
+    for pos in range(len(bars)):
+        if pos == 4:
+            live[0] = False
+        if pos == 5:
+            live[0] = True
+        events.extend(machine.step(bars, pos))
+
+    assert [e.pos for e in events if e.event == Event.BASE_SELECTED] == [3, 5]
+
+
+def test_boundary_freezes_once_the_base_has_been_broken():
+    """§2.3.1's "pre-selected", and F6: a re-break of a still-pending base must re-break the
+    *same* line, so the base stops being re-asked once STEP3_BROKEN."""
+    def _base(view, step1_pos, direction):
+        return BaseSpan(1, len(view) - 2) if len(view) >= 3 else None
+
+    recorder = Recorder(_base)
+    judgment = _judgment(
+        is_meaningful_break=lambda *_: True,
+        find_base=recorder,
+        select_boundary=lambda *_: HorizontalBoundary(110.0),
+        is_meaningful_close=lambda *_: False,  # breaks but never confirms
+    )
+    machine = SequenceMachine(Direction.BULLISH, judgment)
+
+    bars = _bars(
+        [
+            {"high": 106, "low": 101, "close": 105, "sma_10": 100, "sma_20": 100},
+            {"high": 106, "low": 101, "close": 104, "sma_10": 100, "sma_20": 100},
+            {"high": 106, "low": 101, "close": 104, "sma_10": 100, "sma_20": 100},
+            {"high": 120, "low": 101, "close": 104, "sma_10": 100, "sma_20": 100},
+            {"high": 121, "low": 101, "close": 104, "sma_10": 100, "sma_20": 100},
+        ]
+    )
+    events = []
+    for pos in range(len(bars)):
+        events.extend(machine.step(bars, pos))
+
+    assert machine.state.stage == Stage.STEP3_BROKEN
+    assert [e.pos for e in events if e.event == Event.STEP_3_BREAK] == [3, 4]
+    calls_after_break = [c for c in recorder.calls if len(c[0]) - 1 > 3]
+    assert calls_after_break == []
+    assert machine.state.base == BaseSpan(1, 2)
+
+
+def test_step_3_break_carries_the_span_and_swing_that_actually_drove_it():
+    """BASE_SELECTED fires once, on the first bar a base exists, while the span keeps growing
+    behind it (D-34). So the break must carry the live span and D-20's swing, or the only
+    recorded fib anchor would be the first-bar one."""
+
+    def find_base(view, step1_pos, direction):
+        return BaseSpan(1, len(view) - 2) if len(view) >= 3 else None
+
+    judgment = _judgment(
+        is_meaningful_break=lambda *_: True,
+        find_base=find_base,
+        select_boundary=lambda *_: HorizontalBoundary(110.0),
+        is_meaningful_close=lambda *_: False,
+    )
+    machine = SequenceMachine(Direction.BULLISH, judgment)
+
+    bars = _bars(
+        [
+            {"high": 106, "low": 101, "close": 105, "sma_10": 100, "sma_20": 100},
+            {"high": 106, "low": 101, "close": 104, "sma_10": 100, "sma_20": 100},
+            {"high": 106, "low": 99, "close": 104, "sma_10": 100, "sma_20": 100},
+            {"high": 106, "low": 101, "close": 104, "sma_10": 100, "sma_20": 100},
+            {"high": 120, "low": 101, "close": 104, "sma_10": 100, "sma_20": 100},
+        ]
+    )
+    events = []
+    for pos in range(len(bars)):
+        events.extend(machine.step(bars, pos))
+
+    selected = next(e for e in events if e.event == Event.BASE_SELECTED)
+    broke = next(e for e in events if e.event == Event.STEP_3_BREAK)
+
+    # the span grew between the two events, and the break carries the later one
+    assert (selected.base_start, selected.base_end) == (1, 1)
+    assert (broke.base_start, broke.base_end) == (1, 3)
+    # the swing moved with it: bar 2's low of 99 is the lowest in [step1_pos, base_end]
+    assert selected.step2_swing_pos == 0
+    assert broke.step2_swing_pos == 2
+    assert broke.step2_swing_price == 99.0

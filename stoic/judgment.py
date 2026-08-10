@@ -5,10 +5,11 @@ takes four predicates with no defaults, and L2 asks one only after every mechani
 already holds. This module is the one place a number for those terms is allowed to exist, and
 every number here names the §11 decision that authorised it. Nothing here reads the material.
 
-**Three of the four are filled here -- `D-29` and `D-30`.**
+**All four are filled here -- `D-29`, `D-30` and `D-34`.**
 
     is_meaningful_break        §2.1.1, §2.1.4  the Step 1 break and close beyond both MAs
     is_meaningful_close        §2.3.4          the close that confirms Step 3
+    find_base                  §2.2.5a         the obvious base (D-34)
     select_boundary_from_base  §2.2.6          the line the base determines (D-30)
 
 The two **D-29** predicates share one form: the close must sit beyond its reference by at least
@@ -18,10 +19,12 @@ The two **D-29** predicates share one form: the close must sit beyond its refere
                                                          selected boundary (§2.3.4)
     confirmed = excursion >= 0.10 * (parent.high - parent.low)
 
-**One is deliberately NOT filled** -- `find_base`, the *obvious base* of §2.2.5 / **D-3**.
-It is the last unquantified term in the engine. An unfilled predicate is the correct state; a
-default would pre-decide exactly what Phase 4 exists to discover
-(`claude_memories/audit-hard-rules-not-in-material.md`), so `decided_judgment()` *requires* it.
+**`find_base` carries no number at all, and that is D-34's point.** The base is the *residual*
+state -- unless price is trending or breaking out, it is basing -- so there is nothing to
+calibrate. `MEANINGFUL_FRACTION` remains the only constant in this module, and therefore in the
+engine. D-34 dropped **D-3**'s three clauses rather than leaving them unimplemented: compression
+because a base's ranges can be about the same, MA proximity and *breakouts inside* because
+**D-15**'s reset already ends the count on a close back through both MAs.
 
 **One is filled only in part.** `select_boundary` gets **D-30**'s base-derived default, but
 §2.2.7's **sloping** boundary is retained and is *not* implemented -- see
@@ -53,31 +56,47 @@ import pandas as pd
 
 from stoic.candles import candle_structure
 from stoic.sequence import BaseSpan, Boundary, HorizontalBoundary, Judgment
-from stoic.structure import Direction
+from stoic.structure import Direction, opens_pullback
 
 # The one number in this module. Human decision, 2026-08-09 -- docs/RULEBOOK.md §11, D-29.
 # Not measured, not searched, and not read off the material: the census in
 # docs/evidence/census_meaningful.md found no passage in the corpus that quantifies either term.
 MEANINGFUL_FRACTION = 0.10
 
+# The base's floor, in **non-inside** candles. Human decision, 2026-08-09 -- docs/RULEBOOK.md §11,
+# D-34: "min is 2 bars". Not tuned and not measured: 2 is the fewest candles that can carry a
+# range at all, which is why §2.2.5a is P rather than J. Inside candles do not count toward it --
+# §5.3.5a / D-23's precedent, and the reason a run of them cannot become a base on its own.
+MIN_BASE_CANDLES = 2
+
 _PARENT_COL = "parent_pos"
+_INSIDE_COL = "is_inside"
+_STRUCTURE_COLS = (_INSIDE_COL, _PARENT_COL)
 
 
 def attach_parent_pos(bars: pd.DataFrame) -> pd.DataFrame:
-    """Return `bars` carrying the `parent_pos` column these predicates need.
+    """Return `bars` carrying the `is_inside` / `parent_pos` columns these predicates need.
 
-    Idempotent: a frame that already has the column is returned unchanged. Computing it is O(n)
-    (`stoic.candles.candle_structure`), so attach it once per frame rather than per bar.
+    Idempotent: a frame that already has both columns is returned unchanged. Computing them is
+    O(n) (`stoic.candles.candle_structure`), so attach them once per frame rather than per bar --
+    `find_base` is asked on every bar of a growing view, so recomputing inside it would make L2
+    quadratic in the length of the frame.
+
+    Both columns are **prefix-stable**: `candle_structure` is a single forward pass, so a value at
+    position `i` is the same whether it was computed on the whole frame or on any prefix ending at
+    or after `i`. That is what makes attaching once and slicing later correct.
     """
-    if _PARENT_COL in bars.columns:
+    if all(col in bars.columns for col in _STRUCTURE_COLS):
         return bars
-    return bars.join(candle_structure(bars)[[_PARENT_COL]])
+    present = [col for col in _STRUCTURE_COLS if col in bars.columns]
+    return bars.drop(columns=present).join(candle_structure(bars)[list(_STRUCTURE_COLS)])
 
 
 def _require_parent_pos(bars: pd.DataFrame) -> None:
-    if _PARENT_COL not in bars.columns:
+    missing = [col for col in _STRUCTURE_COLS if col not in bars.columns]
+    if missing:
         raise ValueError(
-            f"bars is missing {_PARENT_COL!r} -- call stoic.judgment.attach_parent_pos(bars) first"
+            f"bars is missing {missing!r} -- call stoic.judgment.attach_parent_pos(bars) first"
         )
 
 
@@ -132,6 +151,113 @@ def is_meaningful_close(
     return _clears(bars, pos, excursion)
 
 
+def _extension(bars: pd.DataFrame, pos: int, structure: pd.DataFrame) -> int:
+    """+1 if both of bar `pos`'s extremes sit above its parent's, -1 if both below, else 0.
+
+    **This is `stoic.structure.opens_pullback` read without a direction**, not a second copy of
+    its comparison: *both extremes against a bullish sequence* is the same test as *both extremes
+    down*, and the bearish call is the same test upward. Delegating keeps **D-28**'s two-clause
+    rule single-sourced, which is what makes the sweep case fall out here rather than being
+    re-derived (`docs/CONSTRAINTS.md` -- a layer that reimplements a predicate is reaching past
+    the layer that owns it).
+
+    0 means an outside bar or a tie on either extreme. Neither extends, so under **D-34** both are
+    basing -- which is exactly the sweep-and-reverse the human's rule keeps inside the base.
+
+    `structure` is built once per `find_base` call and threaded through: `opens_pullback` reads
+    only `parent_pos` from it, and rebuilding the frame per call cost more than every other part
+    of this predicate put together.
+    """
+    if opens_pullback(bars, pos, Direction.BULLISH, structure=structure):
+        return -1  # lower high and lower low
+    if opens_pullback(bars, pos, Direction.BEARISH, structure=structure):
+        return 1  # higher high and higher low
+    return 0
+
+
+def _continues_trend(bars: pd.DataFrame, pos: int, structure: pd.DataFrame) -> bool:
+    """Is bar `pos` the second of two consecutive non-inside candles extending the same way? (D-34)
+
+    Read backwards through `parent_pos`, which for a non-inside bar *is* the previous non-inside
+    bar -- so this is O(1) and needs no scan. A bar with no parent cannot be classified and is
+    **not** a continuation: **D-34** makes basing the residual, so an unclassifiable bar is basing
+    (convention 3). A bar whose *parent* has no parent needs no separate guard -- `_extension`
+    already returns 0 there, and 0 never matches.
+    """
+    parent = int(bars[_PARENT_COL].iat[pos])
+    if parent < 0:
+        return False
+
+    here = _extension(bars, pos, structure)
+    return here != 0 and here == _extension(bars, parent, structure)
+
+
+def find_base(bars: pd.DataFrame, step1_pos: int, direction: Direction) -> BaseSpan | None:
+    """§2.2.5a -- the *obvious base*, as the trailing run of candles that are not trending. (D-34)
+
+    The base is the **residual state**: unless price is trending or breaking out, it is basing.
+    *Trending* is two consecutive **non-inside** candles extending the same way against the parent
+    bar (§5.2.8a); everything else is a basing candle. So a **sweep that reverses** -- an outside
+    bar -- stays inside the base, which is the human's rule and the reason a containment reading
+    was rejected (see **D-34**). **Inside candles are skipped, never treated as a pause in the
+    trend**, so a run of them mid-leg cannot open a base; that is §5.3.5a's precedent.
+
+    `bars` is the view truncated at the bar being evaluated, so the span returned always ends at
+    `len(bars) - 2` -- **the candle before the one being tested**. That is what makes §2.2.8
+    literal rather than conventional: the boundary `select_boundary` draws from this span cannot
+    have seen the bar whose break it is about to be tested against. `stoic.sequence` re-asks on
+    every bar while the base is unbroken, so the span grows by one candle at a time.
+
+    Returns `None` when the run holds fewer than `MIN_BASE_CANDLES` **non-inside** candles. The
+    floor counting non-inside candles is what stops a run of inside candles from becoming a base
+    on its own: they are contained by a parent that is itself part of the trend, so reading them
+    as a base would make every inside-candle pause mid-leg into a Step 2 -- exactly the *"there
+    could be inside bars and then it continues"* case. `None` also covers *the leg resumed*, which
+    cancels the base rather than freezing it.
+
+    **`direction` is deliberately unused**, and that is not an oversight. Under **D-34** a trend in
+    *either* direction stops the basing -- a continued expansion after Step 1 and the return leg
+    that follows it are both trending -- so the classification is symmetric. The parameter stays
+    because `Judgment.find_base`'s protocol carries it and a future §2.2.7-style override may need
+    it.
+
+    **Two conventions fixed here** rather than in `docs/RULEBOOK.md`, in the same disposition as
+    this module's other two:
+
+    3. **An unclassifiable candle is basing.** With no parent bar there is no yardstick, and
+       **D-34** makes basing the residual state, so the permissive branch is the correct one here.
+       Note this is the opposite disposition to conventions 1 and 2 above, which return `False` for
+       want of a yardstick -- there the residual is *not confirmed*, here it is *basing*. Both
+       follow the rule they implement rather than a house style.
+    4. **The Step 1 candle is never part of the base.** §2.2 puts the return, and so the base,
+       *after* Step 1, so the span starts at `step1_pos + 1` at the earliest. Without this the
+       Step 1 candle's close could set the boundary under **D-30**, which would require Step 3 to
+       clear Step 1's own close.
+    """
+    _require_parent_pos(bars)
+
+    base_end = len(bars) - 2  # the candle before the one being tested
+    earliest = step1_pos + 1  # convention 4
+    if base_end < earliest:
+        return None
+
+    inside = bars[_INSIDE_COL]
+    structure = bars[[_PARENT_COL]]
+    start = earliest
+    for pos in range(base_end, earliest - 1, -1):
+        if bool(inside.iat[pos]):
+            continue  # inside candles are skipped, not classified
+        if _continues_trend(bars, pos, structure):
+            start = pos + 1  # the base begins after the last trending candle
+            break
+
+    if start > base_end:
+        return None
+    if int((~inside.iloc[start : base_end + 1]).sum()) < MIN_BASE_CANDLES:
+        return None
+    return BaseSpan(start, base_end)
+
+
 def select_boundary_from_base(
     bars: pd.DataFrame, base: BaseSpan, direction: Direction
 ) -> Boundary | None:
@@ -166,17 +292,20 @@ def select_boundary_from_base(
 
 
 def decided_judgment(
-    find_base: object,
+    find_base: object = find_base,
     select_boundary: object = select_boundary_from_base,
 ) -> Judgment:
-    """A `Judgment` with the decided predicates filled and the open one required.
+    """A `Judgment` with all four predicates filled by recorded §11 decisions.
 
-    `find_base` has **no default on purpose** -- an *obvious base* (§2.2.5, **D-3**) is the one term
-    still unquantified, and supplying a default would be the failure
-    `audit-hard-rules-not-in-material.md` names. Pass it explicitly, or do not build a `Judgment`.
+    Every default here is a decision, not a convenience: **D-29** for the two *meaningful* tests,
+    **D-34** for `find_base`, **D-30** for `select_boundary`. Both arguments stay overridable --
+    `select_boundary` so §2.2.7's sloping case can be supplied (**O-18**), `find_base` so a rival
+    construction can be replayed against this one without editing the engine.
 
-    `select_boundary` **does** default, to `select_boundary_from_base` -- not because a default is
-    safe in general, but because **D-30** decided it. Override it to supply §2.2.7's sloping case.
+    **This signature used to require `find_base` and deliberately supply no default**, because the
+    *obvious base* was the last unquantified term. **D-34** closed it on 2026-08-09; the argument
+    is now defaulted rather than removed so that the alternative readings D-34 names as rejected
+    stay cheap to test.
     """
     return Judgment(
         is_meaningful_break=is_meaningful_break,
@@ -190,6 +319,7 @@ __all__ = [
     "MEANINGFUL_FRACTION",
     "attach_parent_pos",
     "decided_judgment",
+    "find_base",
     "is_meaningful_break",
     "is_meaningful_close",
     "select_boundary_from_base",

@@ -13,7 +13,9 @@ which has been retired for this project. See `CLAUDE.md` for the contract.
 - [Always ruff --fix](ruff-always-fix.md) — user directive: never bare `ruff check`; use `uvx ruff check --fix`
 - [Opus expanded role](opus-expanded-role.md) — user directive: Opus subagents orchestrate+verify+audit whole phases, not just final audits
 - [Audit hard rules not in the material](audit-hard-rules-not-in-material.md) — user directive: never invent a predicate to close a gap the material left open; it pre-decides what the SLM should discover
-- [SLM decides L2's fuzzy terms](slm-decides-l2-fuzzy-terms.md) — user directive: route the unquantified L2 terms to the SLM to propose; ungroundable ones come back to the human, never a default. **Two of the four the human then decided himself (D-29) once the census was in** — routing is not a bar on his deciding
+- [SLM decides L2's fuzzy terms](slm-decides-l2-fuzzy-terms.md) — user directive: route the unquantified L2 terms to the SLM to propose; ungroundable ones come back to the human, never a default. **All four the human then decided himself (D-29, D-30, D-34) once the censuses were in** — routing is not a bar on his deciding
+- [Define fuzzy terms as residuals](define-fuzzy-terms-as-residuals.md) — user design rule: say what the term is NOT and let the rest be it; D-34 needed no number where four positive detectors all would have
+- [Marked charts do not fingerprint to our bars](marked-charts-do-not-fingerprint-to-our-bars.md) — §10's charts are May–June 2026 NQ 5m but could not be dated by their printed MA values; bites Phase 3
 - [Measure after the engine runs](measure-after-the-engine-runs.md) — user directive: decide the open rule and build; do not gate the engine on labelling an answer key first
 - [Long research tasks write incrementally](long-research-tasks-write-incrementally.md) — background subagents died 3x on the census with nothing written; judge delegation by the write pattern, not the task size
 - [Read around the citation](read-around-the-citation.md) — a rulebook quote can be cut short of the sentence that undoes it; verify_citations cannot catch that

@@ -6,18 +6,30 @@ post-Step-3 expansion leg ends), closed on 2026-08-08 as **D-28**, so **L1, L3 a
 Phase 2's exit gate names a *two-reader* test that has never actually been run — the register being
 closed is not the same claim, so do not report that gate as met.
 
-**Phase 5's engine is built end to end as code: L0, L1, L2, L3, L4 and L5 all exist.** Baseline as
-at 2026-08-09: `pytest` **220 passed**, `scripts/verify_citations.py` **216 citations across 8
-sources, all resolve**, negative control PASS.
+**Phase 5's engine is built end to end as code: L0, L1, L2, L3, L4 and L5 all exist — and as of
+2026-08-09 it runs.** Baseline: `pytest` **240 passed**, `scripts/verify_citations.py` **222
+citations across 8 sources, all resolve**, negative control PASS.
 
-**But "built" is not "runnable."** The engine still cannot be driven over real bars, because
-`find_base` — L2's last injected predicate — is undecided. Every layer is tested against hand-built
-fixtures only. Do not read the layer table below as a claim that a signal has ever been produced
-from market data; none has.
+**The engine has now produced signals from market data.** `find_base` — L2's last injected
+predicate — was decided on 2026-08-09 as **D-34**, which filled the last seam and made
+`decided_judgment()` complete. First run over **NQ 5m, 2026-05-01 → 2026-06-10** (7,785 bars,
+Scalp, `htf=None`): **389 emission rows — 210 `SIGNAL`, 43 `SUPPRESSED`, 136 `BREAK_EVEN`**. An
+earlier run of the same window reported 246 signals; **review found a bug the same day** — a run of
+inside candles could be a base on its own (96 of 413 selected bases were entirely inside candles),
+which is the *"there could be inside bars and then it continues"* case read as a Step 2. D-34's floor
+now counts **non-inside** candles. The 246 figure is superseded, not a second measurement.
+The split is 131 bullish / 79 bearish. **Reported as counts, not as a verdict**, per `CLAUDE.md`:
+nothing here says the signals are the right ones, and Phase 3's labelled set — still deferred — is what would
+say so. Every layer's *unit* tests remain hand-built fixtures.
 
-**Three of L2's four terms are decided. One is left: the obvious base.** All four were routed to
-Phase 4's SLM on 2026-08-09; the human then decided three of them the same day, with the census in
-hand. The split as at 2026-08-09:
+**Two things that run confirmed, both predicted rather than discovered.** All **210** emitted
+signals scored **2 of 3** confluence, which is exactly what **D-32** records as its consequence: on
+a fast chart a passing gate already implies both §7.1.1 conditions, and `htf=None` leaves the third
+absent with the denominator still 3. And `continuation` runs `True` in clusters, which is **D-21**
+working. Neither is a finding about the method.
+
+**All four of L2's terms are now decided.** All four were routed to Phase 4's SLM on 2026-08-09;
+the human decided all four the same day, with the censuses in hand:
 
 - **D-29 — what makes a break or a close "meaningful."** Covers *both* terms, §2.1.1 and §2.3.4,
   which the user chose to treat as **one question**. The rule: **the close must sit beyond its
@@ -27,22 +39,39 @@ hand. The split as at 2026-08-09:
   is the base's **close** extreme on the Step 1 side, §2.3.1 forcing the side. Closes not wicks, on
   the §7.3 / **D-8** precedent. This is a **default, not the whole rule** — §2.2.7's sloping
   boundary is **retained** and deliberately unimplemented (**O-18**).
-- **Still open: the obvious base** (§2.2.5 **J**, **D-3** qualitative). `decided_judgment()`
-  requires `find_base` as an argument and supplies no default, which is the correct state.
-  **Nothing runs end to end until it is filled in.**
+- **D-34 — what makes a base "obvious."** **The base is the residual state: unless price is
+  trending or breaking out, it is basing.** *Trending* is two consecutive **non-inside** candles
+  extending the same way against the parent bar; everything else is basing, so a **sweep that
+  reverses** stays inside the base. The span is the trailing run of basing candles, it **ends at
+  the candle before the one being tested**, its floor is **2 non-inside candles**, and it is
+  **cancelled if the leg resumes**. §2.2.5a carries it.
 
-**Both numbers are chosen, not measured.** The censuses enumerated every passage on all four terms
-and **none quantifies any of them**; D-30 in particular decides a **6-to-5 split** in the corpus that
-no passage addresses directly. That is what makes them decisions rather than derivations.
+**D-34 carries no number, and that is the whole of its design.** It **dropped D-3's three clauses**
+rather than calibrating them — compression because a base's ranges can be about the same, MA
+proximity and *breakouts inside* because **D-15**'s reset already ends the count on a close back
+through both MAs. **It is not free of numbers, and the first write-up of it wrongly said so:** the
+2-candle floor is a literal, and it lives as `MIN_BASE_CANDLES` in `stoic/judgment.py` beside
+`MEANINGFUL_FRACTION` — named, not inlined, because an unnamed `2` is as invisible as an unnamed
+`0.10`. That is also why §2.2.5a is **P** and not **M**. **Two constants in the engine, both in
+`stoic/judgment.py`, both naming their §11 row.**
+
+**D-29 and D-30's numbers are chosen, not measured.** The censuses enumerated every passage on all
+four terms and **none quantifies any of them**; D-30 in particular decides a **6-to-5 split** in the
+corpus that no passage addresses directly. D-34 is the same kind of choice one step further out —
+it picks among rival *constructions* rather than rival numbers, and the rejected ones are named in
+its §11 row so a later measurement knows what it is testing against.
 
 **Everything decided lives in `stoic/judgment.py`, never in `stoic/sequence.py`** — the machine stays
 threshold-free, and each predicate names the §11 row that authorised it.
 
-**Two new open rows, both non-blocking, both noticed rather than decided.** **O-17**: D-29 uses 10%
+**Three open rows, all non-blocking, all noticed rather than decided.** **O-17**: D-29 uses 10%
 of the **parent** bar's range while **D-24**/§5.4.7b uses 10% of the **candle's own** — same number,
 different denominator, same shape as **O-15**. **O-18**: when is a base edge a *trend line* rather
 than a level? D-30's horizontal default is always available, so an implementation never has to guess
-— but it may not pick the sloping case silently.
+— but it may not pick the sloping case silently. **O-20**: §2.2.9's *"if two boundaries look equally
+valid there is no clean step three yet"* — wait — **has no counterpart in the engine**, because a
+residual base yields exactly one span per bar and two candidates can never tie. Whether that
+satisfies the tie-break or silently drops it is undecided; **do not add a selector to fill it**.
 
 **The first deliverable is a passage census, not a trained model.** The whole corpus is **66,463
 words** across 9 transcripts — small enough to read whole, so fine-tuning on it would memorise
@@ -55,8 +84,9 @@ which is the answer, and sends that term to the human. **Brief: `.scratch/census
 
 **Both censuses are written as at 2026-08-09** — 157 citations across 9 sources, all resolve.
 **No passage in either one quantifies any of the four terms.** That is what makes **D-29** and
-**D-30** decisions rather than derivations, and it is why the one term neither covers — the obvious
-base — is still unfilled rather than guessed. Two findings that are not about the four terms: `OTV` and
+**D-30** decisions rather than derivations. The one term neither census could quantify — the obvious
+base — was not guessed either: **D-34** answered it by changing the question from *which number* to
+*which construction*, which is why it needed none. Two findings that are not about the four terms: `OTV` and
 `edu/derived/concept_the_only_trading_video_that_you_will_ever_need/transcript.md` are the **same
 video transcribed twice** (only the first has a §0 key — the `DIA-P`/`DIA-L` failure again), and
 `MS` is in `scripts/verify_citations.py`'s `SOURCES` map but missing from §0's key table. Neither is
@@ -111,16 +141,21 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-**The critical path is now a single item: `find_base`.** With L5 built, no layer is waiting on
-another layer — the engine is waiting on one undecided term (§2.2.5, **D-3**), routed to Phase 4 on
-2026-08-09. Until it is decided nothing can be replayed over market data, which also means **Phase 6
-cannot start** and the Phase 5 exit gate's *"every layer unit-tested against hand-built fixtures"* is
-met while its purpose is not. See `docs/CONSTRAINTS.md`'s `find_base` row for what bounds that
-routing; an unfilled predicate remains the correct state and never gets a default.
+**The critical path is now Phase 3.** `find_base` closed as **D-34** on 2026-08-09, so no layer and
+no predicate is waiting on anything — the engine runs, and **Phase 6 is unblocked in the sense that
+it can now execute**. What it still cannot do is *report fidelity*, because that needs the labelled
+reference set Phase 3 was deferred to build. The Phase 5 exit gate is met; its purpose now depends
+on evidence that does not exist yet.
 
-1. **Phase 5 — the rulebook engine. L5 was built on 2026-08-09; every layer now exists.** L0–L5 are
-   built (tables below); **D-29** and **D-30** fill three of L2's four injected predicates, and
-   **D-32** / **D-33** settled the two things L5 needed that nothing had pinned.
+**The first question to put to the engine is not a number, it is the base.** D-34 was chosen among
+rival constructions with **no eval set** — the natural one is §10's marked charts, i.e. Phase 3.
+Its §11 row names the constructions it rejected precisely so that measurement has something to test
+against. Treat the 246 signals below as **output to be checked, not as evidence of anything.**
+
+1. **Phase 5 — the rulebook engine. Complete as of 2026-08-09: every layer exists and every
+   injected predicate is filled.** L0–L5 are built (tables below); **D-29**, **D-30** and **D-34**
+   fill all four of L2's injected predicates, and **D-32** / **D-33** settled the two things L5
+   needed that nothing had pinned.
 
    **No layer needed an open term and none introduced one.** `stoic/entry.py`, `stoic/gating.py` and
    `stoic/emission.py` hold no threshold — the separation `docs/CONSTRAINTS.md` names is intact,
@@ -129,10 +164,10 @@ routing; an unfilled predicate remains the correct state and never gets a defaul
    L4 consumes nothing but bars and their SMAs; L5 consumes L3's records and L4's gate and derives
    neither.
 
-   **What being built does *not* unblock:** running the engine over real bars still needs the
-   **obvious base** (`find_base`), the last unquantified term. `replay_entries` and `replay_signals`
-   both exist and are tested, but only against hand-built fixtures and a stub judgment. **No signal
-   has been generated from market data.**
+   **`replay_entries` and `replay_signals` have now been driven over real bars** as well as
+   hand-built fixtures — see the counts at the top of this file. Their **unit** tests are still
+   fixtures and a stub judgment, which is the right thing for a unit test and is not a claim about
+   the output.
 
    **L4 came out smaller than its plan row, and that is the finding, not a shortfall.** §7 was read
    end to end on 2026-08-09; read it again rather than trusting this summary. Of the four things
@@ -188,20 +223,23 @@ routing; an unfilled predicate remains the correct state and never gets a defaul
    the gap** (§5.3.7 engine note) and if Phase 6 finds that flattering it must change in **one**
    place; and tracking a signalled trade to its outcome, the flatten and the ledger are **Phase 7**,
    not L5.
-2. **Phase 3 (labelled reference set) is deferred by the user's call on 2026-08-08** — *"we will
-   backtest once the system is on."* It is **not cancelled**: Phase 6 cannot report fidelity without
-   it, and it is the evidence that would confirm or overturn **D-28**. It simply does not gate the
-   engine. When it starts: **`T2` (§10.8) is the densest fixture** — two counts, a live-marked reset,
+2. **Phase 3 (labelled reference set) was deferred by the user's call on 2026-08-08** — *"we will
+   backtest once the system is on."* **The system is now on, so the condition that deferred it has
+   been met.** It is the evidence that would confirm or overturn **D-28** and **D-34**, and Phase 6
+   cannot report fidelity without it. When it starts: **`T2` (§10.8) is the densest fixture** — two counts, a live-marked reset,
    two PTBs, six executions — with `NQ3` (§10.7) the cleanest single-sequence one and `LT3`/`LT4`
    (§10.9) the only trade held past the session. All are single instances, so small-*n* rules apply.
    `PTBV` is the richer source: a full session in which the trader marks every PTB entry on one
    1-2-3. **§10.10 recovers the stop from any of them** — none draws one, but the R labels are
    normalised against a ~$1,000 risk unit, so `stop distance = P&L points ÷ R multiple`.
-3. **Phase 4 (the SLM) is back on the critical path.** It briefly had no blocking question — O-14
-   was routed to it and the human decided it instead as **D-28**. Then **L2's four terms went to it
-   on 2026-08-09**, and they gate the engine running end to end, so Phase 4 now sits between L2 and
-   L3 rather than beside them. Also still its: **O-9** (the no-edge zone, per **D-9**) and Phase 3
-   label proposals, both still off the critical path.
+3. **Phase 4 (the SLM) is off the critical path again, and the pattern is now three deep.** O-14
+   was routed to it and the human decided it as **D-28**; L2's four terms were routed to it on
+   2026-08-09 and the human decided all four the same day (**D-29**, **D-30**, **D-34**). Each time
+   the routing did its job first — the census established that no passage quantifies the term — and
+   what was left was a **choice**, which is the human's. That is exactly what
+   `claude_memories/audit-hard-rules-not-in-material.md` says to expect; it is not the routing being
+   overridden. Still Phase 4's: **O-9** (the no-edge zone, per **D-9**) and Phase 3 label proposals,
+   neither blocking.
 
 `docs/RULEBOOK.md` §13 records how the rest of the corpus is used. Simple Stoic Setups / HTF Protocol
 / Candle Swing Theory / the war map are the **complementary layer the 1-2-3 was distilled from** —
@@ -222,9 +260,9 @@ context and targets, never a step of the sequence, and they yield on conflict.
 ## What Phase 5 L0–L5 built
 
 Pure functions over bars — no disk I/O, no network, no clock, no model. Tests are hermetic and
-hand-built; the suite is 220. L2's decided predicates add 27 in `tests/test_judgment.py`, L3 adds 23
-in `tests/test_entry.py`, L4 adds 27 in `tests/test_gating.py`, L5 adds 21 in
-`tests/test_emission.py`.
+hand-built; the suite is 240. L2's decided predicates add 42 in `tests/test_judgment.py` (15 of them
+**D-34**'s), L3 adds 23 in `tests/test_entry.py`, L4 adds 27 in `tests/test_gating.py`, L5 adds 21
+in `tests/test_emission.py`, and **D-34**'s five state-machine tests are in `tests/test_sequence.py`.
 
 | | |
 |---|---|
@@ -232,27 +270,35 @@ in `tests/test_entry.py`, L4 adds 27 in `tests/test_gating.py`, L5 adds 21 in
 | `stoic/candles.py` | `candle_structure` — inside-bar flags and **parent-bar** positions (§5.2.8a, **D-23**). A run of inside bars shares one parent; for a non-inside bar the parent is the nearest preceding non-inside bar, which is the reference **D-28** requires |
 | `stoic/structure.py` | **L1.** `opens_pullback` / `find_pullback_start` / `leg_phases` — **D-28** (§5.2.1a): the pullback opens at the first completed candle whose **both** extremes move against the direction, measured against the parent bar. Never reads `open` or `close` (§5.3.3c) |
 | `stoic/levels.py` | PDH/PDL/PDC, PWC/PWH/PLOW, HCOM/LCOM (§7.3, **D-8**). HCOM/LCOM are highest/lowest daily **close** — *"not the highest wick"* |
-| `stoic/sequence.py` | **L2.** The Step 1 → Step 2 → Step 3 machine, the reset (**D-15**), the directional state (**D-21**), the running Step 3 High/Low (**D-16**, not frozen here), the Step 2 swing (**D-20**), and the three §5.4.7 invalidation events |
+| `stoic/sequence.py` | **L2.** The Step 1 → Step 2 → Step 3 machine, the reset (**D-15**), the directional state (**D-21**), the running Step 3 High/Low (**D-16**, not frozen here), the Step 2 swing (**D-20**), and the three §5.4.7 invalidation events. **Under D-34 the base is a *state*, not a one-time selection:** `find_base` is re-asked on every bar while the base has never been broken, the span grows, and the Step 2 swing widens with it. `BASE_SELECTED` is emitted **once** on entry to the stage; a base that is cancelled and later re-forms emits again. Once `STEP3_BROKEN`, the line **freezes** — §2.3.1's *"pre-selected"*, and F6's re-break must re-break the same line. Still holds **no threshold** |
 | `stoic/entry.py` | **L3.** The PTB walk — anchor, re-anchor per non-inside candle (**D-17**), inside-candle skip (**D-23**/§5.3.5a), the stop-market fill including the gap case (**D-22**), the stop at the opposite PTB extreme (**D-18**, no floor), and the break-even trigger (**D-25**) against the Step 3 extreme **frozen at fill** (**D-16**). Consumes L1's pullback and L2's events; derives neither |
 | `stoic/gating.py` | **L4.** Two gates and no more: the 50 SMA direction gate (§7.1.2, **D-19** — per-bar close, no lookback, no tolerance, no chop detector) and the 200 SMA rule (§7.1.4 — **symmetric per D-31**, blocking a long at or below the 200 and a short at or above it, and **fast-chart-only**, so `fast_chart` is required with no default). Reason members are `TREND_50` and `INTO_200`; `gate(bars, pos, direction, *, fast_chart)` collects **every** reason, never short-circuits. A pure evaluator: the caller picks the bar — **L5 answered that with D-32 (the PTB anchor bar)**, and L4 still holds no opinion on it |
 | `stoic/emission.py` | **L5.** The signal record (`VISION.md`'s schema + trigger *and* fill, §5.3.10), **R = \|fill − stop\|** fixed at fill with no floor (§5.4.2, **D-18**), **TP1** read from L3's frozen `step3_extreme` (**D-16**), `tp2` always `None` (anchors unpinned), the **confluence count** (**D-33**) and the **anchor-bar read** (**D-32**). Emits `SIGNAL`, `SUPPRESSED` (a fill L4 gated away — kept for Phase 6 triage, carrying no `SignalRecord`) and `BREAK_EVEN` (the event, never a second R). One `SignalEmitter` per direction; `replay_signals` drives both over `entry.iter_replay_steps`, which is the **one** implementation of the per-bar loop. Holds no threshold |
 
-**L2's four unquantified terms are injected, not implemented — and that has not changed now that
-three are decided.** `Judgment` is a frozen dataclass of four predicates with **no defaults** —
-*"meaningful"* break, obvious base, boundary selection, *"meaningful close"*. L2 enforces every
-mechanical clause itself and asks a predicate only about the unquantified adjective; a predicate is
-not even called when a mechanical precondition fails. §2.2.8 is enforced structurally:
-`select_boundary` receives bars truncated at the base's last bar, so it cannot see the break.
-**Nothing runs end to end until the obvious base is decided.**
+**L2's four terms stay injected, not implemented — and that is still true now that all four are
+decided.** `Judgment` is a frozen dataclass of four predicates: *"meaningful"* break, obvious base,
+boundary selection, *"meaningful close"*. L2 enforces every mechanical clause itself and asks a
+predicate only about the unquantified adjective; a predicate is not even called when a mechanical
+precondition fails. **The seam is what lets D-34's rejected constructions be replayed against it
+without editing the engine** — `decided_judgment()` now defaults all four, and every default is
+overridable for exactly that reason. §2.2.8 is enforced structurally, and twice over:
+`select_boundary` receives bars truncated at the base's last bar, and under **D-34** that span
+itself ends at the candle *before* the one whose break is being tested.
 
 **`stoic/judgment.py` is where a decided predicate lives — never `stoic/sequence.py`.** It holds the
-two **D-29** predicates, **D-30**'s `select_boundary_from_base`, and the single constant
-`MEANINGFUL_FRACTION = 0.10`, each naming the §11 row that authorised it. It fixes two conventions in its docstring rather than in `docs/RULEBOOK.md`,
-the same disposition `candles.py` took for its inside-bar tie-break: **no parent bar means not
-confirmed** (head of frame — no yardstick, so `False`, never a pass), and **a non-finite parent range
-means not confirmed**, while a parent range of exactly zero is left to the literal arithmetic.
-`attach_parent_pos(bars)` must be called once per frame; the predicates raise rather than guess if
-the column is absent.
+two **D-29** predicates, **D-30**'s `select_boundary_from_base`, **D-34**'s `find_base`, and the
+two constants `MEANINGFUL_FRACTION = 0.10` (**D-29**) and `MIN_BASE_CANDLES = 2` (**D-34**) —
+**the only numbers in the engine**. Each names the §11 row that authorised it. It fixes **four** conventions in its
+docstring rather than in `docs/RULEBOOK.md`, the same disposition `candles.py` took for its
+inside-bar tie-break: **no parent bar means not confirmed** (head of frame — no yardstick, so
+`False`, never a pass); **a non-finite parent range means not confirmed**, while a parent range of
+exactly zero is left to the literal arithmetic; **an unclassifiable candle is *basing***, which is
+the *opposite* disposition to the first two and deliberately so, since D-34 makes basing the
+residual rather than confirmation the thing being withheld; and **the Step 1 candle is never part
+of the base**, or its close could set the boundary under D-30. `attach_parent_pos(bars)` must be
+called once per frame — it now attaches **`is_inside` as well as `parent_pos`**, both prefix-stable
+so it can be called once and sliced — and the predicates raise rather than guess if a column is
+absent.
 
 **Invalidation scope outlives the directional state, and that is the rulebook, not a convenience.**
 An L2 count dies at the 10/20 reset (§2.5.8, **D-21**); the §5.4.7 conditions attach to a position
@@ -290,10 +336,12 @@ does not cancel a working order** — it only disarms, so no *new* pullback is s
 there is *"no third outcome and no timeout"*: only a fill or §5.4.7a–c ends the walk. That is
 **O-15** implemented exactly as the rulebook is written, not reconciled, and a test pins it.
 
-**L1 is only the pullback boundary.** Base detection, boundary selection and climax are **not**
-built: §2.2.5–§2.2.9 and §4 are **J**, so building them would invent the thresholds `CLAUDE.md`
-forbids. Swing-point detection is not built either — no rulebook definition exists, any pivot needs
-an invented lookback, and nothing consumes one.
+**L1 is still only the pullback boundary, and base detection did not move into it.** Base detection
+(**D-34**) and boundary selection (**D-30**) live in `stoic/judgment.py`, because both are decided
+predicates and that is the only module allowed to hold one — but **D-34 is built out of L1's
+`opens_pullback` logic rather than a second copy of it**, which is the layer rule working. **Climax
+is still not built** (§4 is **J**), and **swing-point detection is not built either** — no rulebook
+definition exists, any pivot needs an invented lookback, and nothing consumes one.
 
 **Two unpinned choices are documented as conventions in their module docstrings, and deliberately
 not written into `docs/RULEBOOK.md`:** a bar whose high *and* low exactly equal its parent's counts

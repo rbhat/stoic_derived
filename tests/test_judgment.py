@@ -13,8 +13,10 @@ import pytest
 
 from stoic.judgment import (
     MEANINGFUL_FRACTION,
+    MIN_BASE_CANDLES,
     attach_parent_pos,
     decided_judgment,
+    find_base,
     is_meaningful_break,
     is_meaningful_close,
     select_boundary_from_base,
@@ -225,24 +227,23 @@ def test_attach_parent_pos_is_idempotent():
     assert list(again.columns) == list(bars.columns)
 
 
-def test_decided_judgment_fills_three_and_demands_find_base():
-    """`find_base` has no default — the last unquantified term, so it is a test."""
-    sentinel_base = object()
-    judgment = decided_judgment(sentinel_base)
+def test_decided_judgment_fills_all_four_from_recorded_decisions():
+    """Every default is a §11 decision: D-29, D-34, D-30. `find_base` gained its default when
+    D-34 closed the last unquantified term — this test asserted the absence of one until then."""
+    judgment = decided_judgment()
 
     assert judgment.is_meaningful_break is is_meaningful_break
     assert judgment.is_meaningful_close is is_meaningful_close
+    assert judgment.find_base is find_base  # D-34's default
     assert judgment.select_boundary is select_boundary_from_base  # D-30's default
+
+
+def test_decided_judgment_defaults_are_overridable():
+    """§2.2.7's sloping case (O-18) and D-34's rejected rival constructions are supplied by
+    substitution, not by a flag — which is what keeps them cheap to replay against this one."""
+    sentinel_base, sentinel_boundary = object(), object()
+    judgment = decided_judgment(sentinel_base, sentinel_boundary)
     assert judgment.find_base is sentinel_base
-
-    with pytest.raises(TypeError):
-        decided_judgment()  # type: ignore[call-arg]
-
-
-def test_decided_judgment_boundary_default_is_overridable():
-    """§2.2.7's sloping case is supplied by substitution, not by a flag."""
-    sentinel_boundary = object()
-    judgment = decided_judgment(object(), sentinel_boundary)
     assert judgment.select_boundary is sentinel_boundary
 
 
@@ -344,3 +345,143 @@ def test_boundary_feeds_the_confirmation_test_end_to_end():
         closes=[99.0, 100.0, 95.0, 103.5],
     )
     assert is_meaningful_close(bars2, 3, boundary, Direction.BULLISH) is False
+
+
+# ---------------------------------------------------------------------------
+# find_base — the obvious base as the residual state (D-34, §2.2.5a)
+#
+# Trending = two consecutive NON-INSIDE candles extending the same way against the parent bar.
+# Basing = anything else. Every fixture below is built from explicit highs/lows so the
+# classification of each candle can be read off the numbers; closes are inert here.
+# ---------------------------------------------------------------------------
+
+
+def _hl(highs: list[float], lows: list[float]) -> pd.DataFrame:
+    """A frame for find_base: only the extremes matter, so closes are the midpoints."""
+    return _bars(highs, lows, [(h + low) / 2 for h, low in zip(highs, lows, strict=True)])
+
+
+def test_find_base_none_while_the_leg_is_trending():
+    """A monotone run of same-way extensions is trending, so there is no base. (D-34)"""
+    bars = _hl([10, 11, 12, 13, 14, 15], [0, 1, 2, 3, 4, 5])
+    assert find_base(bars, 0, Direction.BULLISH) is None
+
+
+def test_find_base_none_while_the_leg_is_trending_down():
+    """Symmetric: a down-leg is trending too, so the return after Step 1 is not yet a base."""
+    bars = _hl([15, 14, 13, 12, 11, 10], [5, 4, 3, 2, 1, 0])
+    assert find_base(bars, 0, Direction.BULLISH) is None
+
+
+def test_find_base_is_the_trailing_run_of_basing_candles():
+    """The base starts after the last trending candle and ends at pos-1."""
+    #  0: seed          1: +1 (no grandparent)   2: +1 -> CONTINUES (last trending candle)
+    #  3: -1 basing     4: +1 basing             5: -1 basing        6: the candle being tested
+    bars = _hl([10, 11, 12, 11.5, 11.8, 11.6, 20], [0, 1, 2, 1.5, 1.8, 1.6, 0])
+    base = find_base(bars, 0, Direction.BULLISH)
+    assert base == BaseSpan(3, 5)
+
+
+def test_find_base_span_always_ends_at_the_candle_before_the_one_tested():
+    """§2.2.8, structurally: the boundary drawn from this span cannot have seen bar `pos`."""
+    bars = _hl([10, 11, 12, 11.5, 11.8, 11.6, 20], [0, 1, 2, 1.5, 1.8, 1.6, 0])
+    base = find_base(bars, 0, Direction.BULLISH)
+    assert base is not None
+    assert base.end == len(bars) - 2
+
+
+def test_find_base_keeps_a_sweep_that_reverses_inside_the_base():
+    """The human's rule: a candle may 'sweep a high or a low and then reverse' and still be
+    basing. An outside bar extends neither way, so it is a basing candle -- which is why the
+    containment reading D-34 names was rejected."""
+    #  3: +1 CONTINUES   4: outside (sweeps both sides of 3) -> basing   5: +1 basing
+    bars = _hl([10, 11, 12, 13, 14, 15, 20], [0, 1, 2, 3, 1, 4, 0])
+    assert bool(bars["is_inside"].iat[4]) is False
+    base = find_base(bars, 0, Direction.BULLISH)
+    assert base == BaseSpan(4, 5)
+
+
+def test_find_base_skips_inside_candles_so_the_leg_can_continue_through_them():
+    """'There could be inside bars and then it continues.' A run of inside candles mid-leg is
+    skipped, not read as a pause, so it cannot open a base."""
+    #  3, 4: inside (contained by 2)    5: +1 against parent 2 -> CONTINUES
+    bars = _hl([10, 11, 12, 11.5, 11.8, 13, 20], [0, 1, 2, 2.5, 2.2, 3, 0])
+    assert list(bars["is_inside"]) == [False, False, False, True, True, False, False]
+    assert bars["parent_pos"].iat[5] == 2  # the inside run shares one parent
+    assert find_base(bars, 0, Direction.BULLISH) is None
+
+
+def test_find_base_needs_two_candles():
+    """The human's floor, and the minimum for a range to exist at all."""
+    #  4 CONTINUES, so the trailing basing run is bar 5 alone
+    bars = _hl([10, 11, 12, 13, 14, 13.5, 20], [0, 1, 2, 3, 4, 3.5, 0])
+    assert find_base(bars, 0, Direction.BULLISH) is None
+
+
+def test_find_base_never_includes_the_step_1_candle():
+    """Convention 4: §2.2 puts the return after Step 1, and including it would let Step 1's own
+    close set the boundary under D-30."""
+    # every candle alternates, so nothing is trending and only `earliest` bounds the span
+    bars = _hl([10, 9, 10.5, 9.5, 10.8, 9.8, 20], [0, -1, 0.5, -0.5, 0.8, -0.2, 0])
+    assert find_base(bars, 0, Direction.BULLISH) == BaseSpan(1, 5)
+    assert find_base(bars, 2, Direction.BULLISH) == BaseSpan(3, 5)
+
+
+def test_find_base_treats_an_unclassifiable_candle_as_basing():
+    """Convention 3: bar 1 has no grandparent, so it cannot be a continuation. Were the opposite
+    convention taken, the trailing run would be one candle and this would return None."""
+    bars = _hl([10, 11, 10.5, 20], [0, 1, 0.5, 0])
+    assert bars["parent_pos"].iat[1] == 0
+    assert bars["parent_pos"].iat[0] == -1
+    assert find_base(bars, 0, Direction.BULLISH) == BaseSpan(1, 2)
+
+
+def test_find_base_ignores_direction():
+    """D-34 is symmetric -- a trend either way stops the basing -- so the answer cannot depend on
+    the sequence direction. The parameter is kept for the Judgment protocol only."""
+    bars = _hl([10, 11, 12, 11.5, 11.8, 11.6, 20], [0, 1, 2, 1.5, 1.8, 1.6, 0])
+    assert find_base(bars, 0, Direction.BULLISH) == find_base(bars, 0, Direction.BEARISH)
+
+
+def test_find_base_requires_the_structure_columns():
+    """Same contract as the D-29 predicates: raise rather than guess."""
+    raw = pd.DataFrame(
+        {"high": [10.0, 11.0, 12.0], "low": [0.0, 1.0, 2.0], "close": [5.0, 6.0, 7.0]},
+        index=pd.date_range("2026-01-05", periods=3, freq="5min", tz="UTC"),
+    )
+    with pytest.raises(ValueError, match="attach_parent_pos"):
+        find_base(raw, 0, Direction.BULLISH)
+
+
+def test_find_base_returns_none_on_a_frame_too_short_to_hold_one():
+    """No span, rather than a degenerate one."""
+    bars = _hl([10, 11], [0, 1])
+    assert find_base(bars, 0, Direction.BULLISH) is None
+
+
+def test_find_base_floor_counts_non_inside_candles_only():
+    """A run of inside candles is not a base on its own. They are contained by a parent that is
+    itself part of the trend, so counting them would make every inside-candle pause mid-leg a
+    Step 2 -- the 'there could be inside bars and then it continues' case. §5.3.5a / D-23's
+    precedent: an inside candle is skipped, not counted."""
+    #  2 is the last trending candle; 3 and 4 are both inside it, and nothing else follows
+    bars = _hl([10, 11, 12, 11.5, 11.8, 13], [0, 1, 2, 2.5, 2.2, 3])
+    assert list(bars["is_inside"]) == [False, False, False, True, True, False]
+    assert find_base(bars, 0, Direction.BULLISH) is None
+
+
+def test_find_base_counts_a_span_holding_two_non_inside_candles():
+    """The discriminator for the test above. Same last-trending candle and the same inside candle
+    after it, but two non-inside basing candles follow -- so the floor is met and the inside
+    candle rides along inside the span rather than being what the span is made of."""
+    #  2 CONTINUES (last trending)   3 inside 2   4: -1 basing   5: +1 basing   6: tested
+    bars = _hl([10, 11, 12, 11.5, 11.9, 12.1, 20], [0, 1, 2, 2.5, 1.5, 1.6, 0])
+    assert list(bars["is_inside"]) == [False, False, False, True, False, False, False]
+    base = find_base(bars, 0, Direction.BULLISH)
+    assert base == BaseSpan(3, 5)
+    assert int((~bars["is_inside"].iloc[3:6]).sum()) == MIN_BASE_CANDLES
+
+
+def test_min_base_candles_is_the_recorded_decision():
+    """D-34's floor. If this changes, the §11 row and docs/STATE.md change with it."""
+    assert MIN_BASE_CANDLES == 2
