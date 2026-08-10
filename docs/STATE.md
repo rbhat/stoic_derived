@@ -19,8 +19,21 @@ inside candles could be a base on its own (96 of 413 selected bases were entirel
 which is the *"there could be inside bars and then it continues"* case read as a Step 2. D-34's floor
 now counts **non-inside** candles. The 246 figure is superseded, not a second measurement.
 The split is 131 bullish / 79 bearish. **Reported as counts, not as a verdict**, per `CLAUDE.md`:
-nothing here says the signals are the right ones, and Phase 3's labelled set — still deferred — is what would
+nothing here says the signals are the right ones, and Phase 3's labelled set is what would
 say so. Every layer's *unit* tests remain hand-built fixtures.
+
+**Phase 3 started on 2026-08-10 and is partly built. `docs/PHASE3.md` is its design — read it
+before touching a label.** What is done: the bar spine now reaches **2026-08-10**, all five §10
+fixtures are **dated**, and two of them are **labelled**. What is not: `T1`/`T2`, `LT3`/`LT4`, the
+`PTBV` class-`named` pass, and this file's own sibling `docs/CONSTRAINTS.md` rows for the rest.
+
+**The finding that reshaped the phase: every §10 marked chart is a 2026-07-27 → 2026-08-03 session,
+and our bars ended 2026-06-10.** Phase 3 was never blocked on labelling effort; it was blocked on
+data. `scripts/merge_signal_bars.py` fills the gap from the live signal system's `signals.db`
+(`~/dev/trading_signal/data/`, overridable with `$STOIC_SIGNALS_DB`) — our parquet stays
+authoritative on the overlap, only bars strictly after it are appended, and appended rows carry
+`source = signals_db` so provenance survives in the data itself. Gates A–E pass; **two of them
+needed a real fix, not a suppression** — see the Open list.
 
 **Two things that run confirmed, both predicted rather than discovered.** All **210** emitted
 signals scored **2 of 3** confluence, which is exactly what **D-32** records as its consequence: on
@@ -141,16 +154,27 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-**The critical path is now Phase 3.** `find_base` closed as **D-34** on 2026-08-09, so no layer and
-no predicate is waiting on anything — the engine runs, and **Phase 6 is unblocked in the sense that
-it can now execute**. What it still cannot do is *report fidelity*, because that needs the labelled
-reference set Phase 3 was deferred to build. The Phase 5 exit gate is met; its purpose now depends
-on evidence that does not exist yet.
+**The critical path is Phase 3, and it is in progress. `docs/PHASE3.md` is the design; work resumes
+at `T2`.** In order:
 
-**The first question to put to the engine is not a number, it is the base.** D-34 was chosen among
-rival constructions with **no eval set** — the natural one is §10's marked charts, i.e. Phase 3.
-Its §11 row names the constructions it rejected precisely so that measurement has something to test
-against. Treat the 246 signals below as **output to be checked, not as evidence of anything.**
+1. **`T1`/`T2` — session 2026-07-31.** The densest fixture: two counts, a reset between them, two
+   `ptb` levels, six executions. All six execution prices are exact text (§10.8); each still needs
+   its bar resolved from the chart's x-axis position, because price alone is ambiguous — 28,231.75
+   sits inside ten different 5m bars that session.
+2. **`LT3`/`LT4` — session 2026-07-30, exit in the 2026-07-31 session.** One trade, two snapshots;
+   cite it once. It is held past the 13:58 PT flatten, so the label **must record the Type** as
+   Swing or Position or Phase 6 reports a divergence that is the harness's.
+3. **`PTBV` — session 2026-07-30, the class-`named` pass.** A 1h38m narrated session where the
+   trader talks through setups he does not take. This is the bulk of the remaining reading and the
+   part worth delegating; judge that delegation by its **write pattern**, per
+   `claude_memories/long-research-tasks-write-incrementally.md`.
+4. **`docs/CONSTRAINTS.md`** rows for labelling, and this file's Open list as things close.
+
+**The first question to put to the engine is still not a number, it is the base.** D-34 was chosen
+among rival constructions with **no eval set** — the natural one is §10's marked charts, and those
+are now dated and partly labelled, so the eval set is finally buildable. Its §11 row names the
+constructions it rejected precisely so that measurement has something to test against. Treat the
+389 emission rows as **output to be checked, not as evidence of anything.**
 
 1. **Phase 5 — the rulebook engine. Complete as of 2026-08-09: every layer exists and every
    injected predicate is filled.** L0–L5 are built (tables below); **D-29**, **D-30** and **D-34**
@@ -223,15 +247,30 @@ against. Treat the 246 signals below as **output to be checked, not as evidence 
    the gap** (§5.3.7 engine note) and if Phase 6 finds that flattering it must change in **one**
    place; and tracking a signalled trade to its outcome, the flatten and the ledger are **Phase 7**,
    not L5.
-2. **Phase 3 (labelled reference set) was deferred by the user's call on 2026-08-08** — *"we will
-   backtest once the system is on."* **The system is now on, so the condition that deferred it has
-   been met.** It is the evidence that would confirm or overturn **D-28** and **D-34**, and Phase 6
-   cannot report fidelity without it. When it starts: **`T2` (§10.8) is the densest fixture** — two counts, a live-marked reset,
-   two PTBs, six executions — with `NQ3` (§10.7) the cleanest single-sequence one and `LT3`/`LT4`
-   (§10.9) the only trade held past the session. All are single instances, so small-*n* rules apply.
-   `PTBV` is the richer source: a full session in which the trader marks every PTB entry on one
-   1-2-3. **§10.10 recovers the stop from any of them** — none draws one, but the R labels are
-   normalised against a ~$1,000 risk unit, so `stop distance = P&L points ÷ R multiple`.
+2. **Phase 3 (labelled reference set) — started 2026-08-10, design in `docs/PHASE3.md`.** It was
+   deferred by the user on 2026-08-08 — *"we will backtest once the system is on"* — and the system
+   is now on. It is the evidence that would confirm or overturn **D-28** and **D-34**, and Phase 6
+   cannot report fidelity without it. All are single instances, so small-*n* rules apply.
+
+   **Scope is replayable NQ/ES only** (user's call, 2026-08-10): the §10 marked charts plus
+   `PTBV`'s full session. The narrated-only examples (`M1`, `SCALP`, `DISC`+`Q1.png`) and the
+   non-NQ/ES case-study PDFs are out — see `docs/PHASE3.md` §3 for why each.
+
+   **A label is one of two classes** (user's call, same day): **`taken`**, a trade the trader
+   executed, and **`named`**, a setup he names and does not take. An engine signal matching a
+   `named` label is **correct-but-not-taken, never a false positive** — without the class, Phase 6
+   cannot tell an invented setup from a declined one, and `CLAUDE.md`'s divergence-is-a-spec-bug
+   rule would push every such case toward a false alarm.
+
+   **There is no label verifier.** `scripts/verify_labels.py` was designed and cut the same day to
+   reach a first labelled set sooner. **Nothing re-checks a label when the bars or a reading
+   change**, so a stale label presents in Phase 6 as an engine divergence. The per-field
+   `provenance` (`exact` / `read` / `derived`) carries what a verifier would have used.
+
+   **§10.10 recovers the stop from any chart** — none draws one, but the R labels are normalised
+   against a ~$1,000 risk unit, so `stop distance = P&L points ÷ R multiple`. **On `LT` this
+   disagrees with §5.4.1's PTB extreme by 12.25 points** (85.50 vs 97.75), which is why that
+   label records both readings and adopts neither.
 3. **Phase 4 (the SLM) is off the critical path again, and the pattern is now three deep.** O-14
    was routed to it and the human decided it as **D-28**; L2's four terms were routed to it on
    2026-08-09 and the human decided all four the same day (**D-29**, **D-30**, **D-34**). Each time
@@ -256,6 +295,40 @@ context and targets, never a step of the sequence, and they yield on conflict.
 | `scripts/verify_citations.py` | Every `KEY @ TIMESTAMP` in `RULEBOOK.md` resolves to a real marker, with a negative control. **Its `SOURCES` map is hand-maintained and drifts** — `TPA` was missing from it for the eight days it was the newest source, so 23 real citations reported as *unknown citation key* and nobody noticed. Add the key when you add a source, and run it after editing citations |
 | `scripts/measure_ptb_atr.py` | Produced `docs/evidence/ptb_atr_distribution.md`. Now inert except for its 62.8% figure — see above |
 | `tests/` | 25 tests, hermetic |
+
+## What Phase 3 built so far
+
+| | |
+|---|---|
+| `docs/PHASE3.md` | The design — data prerequisite, label schema, scope, order of work, exit gate. Read it before touching a label |
+| `scripts/merge_signal_bars.py` | Extends `{NQ,ES}_1m.parquet` from `signals.db`. Idempotent, atomic, `--dry-run`, `$STOIC_SIGNALS_DB`. Our parquet wins on the overlap; the overlap check is **reported, never fatal** — that source is a lossy live capture, not a second vendor truth |
+| `scripts/date_marked_chart.py` | Dates a chart by matching its four printed right-axis values against our SMAs, as a **sorted multiset** — the chart never says which label is which average. One sharp minimum is a candidate; `docs/PHASE3.md` needs a second, independent agreement |
+| `docs/evidence/fixture_dating.md` | All five fixtures dated, each with its second agreement. Also settles the SMA input series and puts §10.7's stop in doubt |
+| `docs/evidence/labels/` | One YAML per fixture session. `2026-07-27_LT.yaml` (1 `taken`, 1 `named`), `2026-08-03_NQ3.yaml` (1 `taken`) |
+
+**Every §10 fixture is dated** — reproduce with `scripts/date_marked_chart.py`:
+
+| Fixture | CME session | Screenshot bar (ET) | SMA worst \|Δ\| | next-best bar |
+|---|---|---|---|---|
+| `LT` | 2026-07-27 | 10:05 | 1.77 | 32.41 |
+| `LT3`/`LT4` | 2026-07-30 (exit 07-31) | 07-30 22:15 | 0.16 | 12.93 |
+| `PTBV` | 2026-07-30 | 15:10 | 0.59 | 10.05 |
+| `T1`/`T2` | 2026-07-31 | 13:45 | 3.23 | 5.47 |
+| `NQ3` | 2026-08-03 | 10:35 | 0.08 | 18.37 |
+
+**Two gates needed a real fix when the spine grew, and neither was suppressed.** Gate A began
+failing because the vendor 1h pull ended **mid-hour**: while the 1m spine also stopped there both
+sides were truncated alike and agreed, and extending the spine made our bucket complete against the
+vendor's partial one. `clip_to_comparable_span` drops that bar and everything past the vendor file's
+end, and Gate B clips identically so the control measures Gate A's *logic* and not its *span*. **The
+1h files stay frozen on purpose** — rebuilding them from our own 1m would make Gate A compare us to
+us. Gate E names the bring-up window; the stale `2026-06-09` ES exception was removed, because a
+named exception outliving its cause is the 2025-11-28 mislabel in miniature.
+
+**The SMA input series is the close, and that is no longer a convention.** On `NQ3`'s bar the close
+reproduces all four printed values to **0.08** points while `hl2`, `hlc3` and `ohlc4` are 9–13 out.
+`stoic/indicators.py` had to pick one because §1.1 names none. It is corroborated, **not** a new
+rule, and it gets no D-row.
 
 ## What Phase 5 L0–L5 built
 
@@ -367,6 +440,26 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
   at +4.5R (§10.9). Under `VISION.md` a Scalp or Day trade is marked closed at the cutoff, so this
   fixture is only reproducible as a **Swing or Position** Type. Phase 3 must record the Type it
   labels it as; Phase 6 will otherwise report a divergence that is the harness's, not the engine's.
+  **Now dated: session 2026-07-30, with the exit falling in the 2026-07-31 CME session.**
+- **§10.7's stop for `NQ3` is in doubt, and it is not edited.** §10.7 reads *"Stop 28,540.75, the
+  PTB low (§5.4.1) — box bottom"*. That value is within **0.04** of the same chart's **20 SMA**
+  (28,540.70, whose right-axis label reads `28,540.74`), and the PTB bar's low is **28,529.50**. So
+  the number is an indicator's axis label, and the box bottom is a pixel read. §10.10's *"no chart
+  in §10 draws a stop"* is consistent with this and was the safer reading. Measured in
+  `docs/evidence/fixture_dating.md`; the label file adopts no stop. **Reported, not corrected** —
+  editing §10 is the user's call.
+- **`2026-06-11` → `2026-06-19` is a second known data hole**, and unlike 2025-11-28 it is ours:
+  those sessions come from `signals.db` while that capture was being brought up, at 12%–65% per
+  session (06-19 caught **9 bars of 1,380**). From 2026-06-22 the same source runs essentially
+  complete. Named in Gate E. **No §10 fixture falls in it.** Any Phase 5 replay spanning it must
+  exclude or flag it, exactly as for 2025-11-28.
+- **Bars after 2026-06-10 come from a live capture, not from Databento's own OHLCV.** In the
+  overlap, 25 of 3,240 NQ bars disagree — a ±1-trade boundary attribution
+  (`claude_memories/databento-ohlcv-buckets-by-ts-recv.md`) and outright feed dropouts, e.g.
+  2026-06-08 15:29 holding volume 1,936 in ours against 84 in the capture. **All 25 sit inside the
+  bring-up window.** The merge reports them rather than absorbing them; `source = signals_db` marks
+  every affected row. Databento's historical API is **not** available here — the key on this
+  machine is live-feed only.
 - **Session `2025-11-28` has a ~645-minute hole in `data/historical/{NQ,ES}_1m.parquet`** — the whole
   Asia/London portion, both instruments. Real missing data, not a holiday early close. Any Phase 3
   label or Phase 5 replay touching that date must exclude or flag it. See
