@@ -1,0 +1,216 @@
+# T1/T2 — docs/RULEBOOK.md §10.2 and §10.8. MNQ 5m. ONE session, two snapshots.
+# The densest fixture in the corpus: two counts, a reset between them, two `ptb`
+# levels, six executions. Cite the pair as one instance (§10.8, docs/PHASE3.md §3).
+# Schema: docs/PHASE3.md section 2. provenance is exact | read | derived on every valued field.
+fixture: T1/T2
+artifact:
+  - edu/123sequence/stoic_trade1.png      # T1 — snapshot at 11:52 ET
+  - edu/123sequence/stoic_trade2.png      # T2 — snapshot at 13:45 ET, same session
+rulebook: "§10.2, §10.8"
+session: 2026-07-31          # CME trading day
+instrument: NQ               # our bars
+chart_instrument: MNQ        # prints differ by a few points — not an engine divergence
+timeframe: 5m
+type: Scalp                  # all three trades opened and closed inside the RTH morning
+screenshot_bar:
+  T1: 2026-07-31T15:50:00Z   # ET 11:50; last-price tag 28,250.50, countdown 02:53
+  T2: 2026-07-31T17:45:00Z   # ET 13:45; last-price tag 28,454.50, countdown 04:53
+
+# How every bar index below was resolved. Both PNGs were measured the same way:
+# candle bodies are flat exact colours, so the candle comb (spacing, phase) is
+# recoverable, and a least-squares fit of body ends against our NQ bars recovers the
+# price axis. The fitted axes reproduce TradingView's own printed gridline labels and
+# x-axis time labels, so the mapping is checked against the artifact, not against itself.
+calibration:
+  reproduce: "scripts/fit_marked_chart.py <artifact> --last-bar <screenshot bar, ET>"
+  T2: {comb_spacing_px: 32.565, price_of_y: "28788.192 - 0.33575*y",
+       fitted_on: "146 candle-body ends", resid_sd_pts: 0.92, resid_max_pts: 2.67}
+  T1: {comb_spacing_px: 39.156, price_of_y: "28764.812 - 0.33623*y",
+       fitted_on: "124 candle-body ends", resid_sd_pts: 1.02, resid_max_pts: 2.62}
+  note: >
+    The two snapshots are at different zooms and were fitted independently. All six
+    execution arrows land on the same bars in both, which checks the method rather than
+    the data. Bars for this session are `source = signals_db` (all 1,019 1m rows) —
+    docs/STATE.md Open. The session is outside the 2026-06-11 → 06-19 hole.
+
+dating:                      # docs/evidence/fixture_dating.md, plus what this pass measured
+  - {field: sma_fingerprint, chart: [28473.81, 28435.70, 28388.83, 28310.71],
+     bars: [28473.70, 28432.48, 28387.16, 28310.01], worst_delta: 3.22, next_best_bar: 5.47,
+     provenance: exact}
+  - {field: jun_lcom_line, chart: 28471.58, bars: 28472.00, delta: 0.42, provenance: read,
+     source: "T2 drawn level, measured; T1 gives 28471.62"}
+  - {field: PLOW_line, chart: 28212.38, bars: 28212.50, delta: 0.12, provenance: read,
+     source: "T2 drawn level, measured; T1 gives 28212.39"}
+  - {field: sma_200_line, chart: 28490.38, bars: 28490.39, delta: 0.01, provenance: read,
+     source: "T2, measured at the 11:10 ET bar — the plotted brown line IS the 200 SMA"}
+  - {field: session_low, chart: ~28075, bars: 28079.75, provenance: read}
+  - {field: session_high, chart: ~28740, bars: 28725.75, provenance: read}
+
+labels:
+  # ---------------------------------------------------------------- bearish count
+  - id: T-A1
+    class: taken
+    direction: short
+    ptb: null                  # no `ptb` level is drawn for this entry — see note
+    entry:
+      price: 28231.75
+      lots: 7
+      pos_ts: 2026-07-31T14:40:00Z
+      et: "10:40"
+      bar: {o: 28270.50, h: 28296.00, l: 28211.75, c: 28268.75}
+      provenance: exact
+      source: "T1 and T2 execution text '7 @ 28231.75'; bar from the arrow's x-position"
+    stop:
+      by_r_label: {price: 28301.75, distance: 70.00, basis: "§10.10 — 70.00 pts at -1R", provenance: derived}
+      note: >
+        This is §10.10's one row of DIRECT evidence: a -1R outcome is a stop-out, so the
+        70.00 points is a measured distance, not a division by its own label. The §5.4.1
+        reading is unavailable — no `ptb` level is drawn for this entry.
+    tp1: null                  # §6.1 needs the Step 3 extreme; the count numerals do not resolve — see `count_numerals`
+    outcome:
+      exit: 28301.75
+      lots: 7
+      r_label: -1.0
+      points: -70.00
+      exit_pos_ts: 2026-07-31T14:45:00Z
+      et: "10:45"
+      exit_bar: {o: 28268.25, h: 28338.75, l: 28237.00, c: 28332.50}
+      provenance: exact
+      source: "execution text '7 @ 28301.75', '-1R'"
+      past_flatten: false
+    note: >
+      The first of two shorts. It has no drawn trigger: the brown `ptb` line starts at the
+      10:50 bar, ten minutes after this fill, and belongs to T-A2. Phase 6 can score this
+      entry's bar and its R, and has nothing on this artifact to score its trigger against.
+
+  - id: T-A2
+    class: taken
+    direction: short
+    ptb:
+      pos_ts: 2026-07-31T14:50:00Z
+      et: "10:50"
+      bar: {o: 28333.50, h: 28345.50, l: 28289.75, c: 28298.25}
+      # The brown horizontal line labelled `ptb` starts at this bar and runs right.
+      trigger: {chart: 28290.61, bars: 28289.75, delta: 0.86, basis: "PTB low, §5.2.3", provenance: read}
+      chart_line_start_slot: "10:50 bar"
+    entry:
+      price: 28286.67
+      lots: 9
+      pos_ts: 2026-07-31T14:55:00Z
+      et: "10:55"
+      bar: {o: 28298.75, h: 28333.75, l: 28255.25, c: 28307.50}
+      provenance: exact
+      source: "T1 and T2 execution text '9 @ 28286.67'"
+      note: "3.08 pts below the 28,289.75 trigger, on the next bar — §5.2.4, §5.3.7."
+    stop:
+      # Two readings, both derived, and they disagree. Recorded rather than resolved.
+      by_ptb_extreme: {price: 28345.50, distance: 58.83, basis: "§5.4.1 / D-18 — PTB high", provenance: derived}
+      by_r_label:     {price: 28341.09, distance: 54.42, basis: "§10.10 — 54.42 pts ÷ 1R", provenance: derived}
+      disagreement: 4.41
+      note: >
+        §10.10 warns that only a -1R row is direct evidence; this is a +1R row, so its
+        distance is divided by its own label. The PTB-extreme reading gives 54.42 / 58.83 =
+        0.93R, which the chart may have rounded to +1R. Neither reading is adopted here.
+    tp1: null                  # see `count_numerals`
+    outcome:
+      exit: 28232.25
+      lots: 9
+      r_label: 1.0
+      points: 54.42
+      exit_pos_ts: 2026-07-31T15:50:00Z
+      et: "11:50"
+      exit_bar: {o: 28194.50, h: 28288.00, l: 28189.00, c: 28280.25}
+      provenance: exact
+      source: "execution text '9 @ 28232.25', '+1R'"
+      past_flatten: false
+    note: >
+      The 11:50 bar is T1's own last, still open when T1 was taken — which is why T1 shows
+      this cover and no later mark.
+
+  # ---------------------------------------------------------------- bullish count, after the reset
+  - id: T-B1
+    class: taken
+    direction: long
+    setup: post_reset          # §2.4.3 / §2.4.4 — a new count in the opposite direction
+    ptb:
+      pos_ts: 2026-07-31T16:45:00Z
+      et: "12:45"
+      bar: {o: 28321.50, h: 28349.75, l: 28308.50, c: 28348.00}
+      # A short green tick is drawn at this bar's high, with `ptb` lettered to its right.
+      trigger: {chart: ~28348.9, bars: 28349.75, delta: 0.85, basis: "PTB high, §5.2.3", provenance: read}
+    entry:
+      price: 28350.92
+      lots: 12
+      pos_ts: 2026-07-31T16:50:00Z
+      et: "12:50"
+      bar: {o: 28348.50, h: 28383.75, l: 28344.50, c: 28354.25}
+      provenance: exact
+      source: "T2 execution text '12 @ 28350.92'"
+      note: "1.17 pts above the 28,349.75 trigger, on the very next bar — §5.2.4, and §10.8 says so."
+    stop:
+      by_ptb_extreme: {price: 28308.50, distance: 42.42, basis: "§5.4.1 / D-18 — PTB low", provenance: derived}
+      by_r_label:     {price: 28309.49, distance: 41.43, basis: "§10.10 — 103.58 pts ÷ 2.5R", provenance: derived}
+      disagreement: 0.99
+      note: >
+        The two readings agree to within a point here — the closest agreement any §10
+        fixture gives. On `LT` they disagree by 12.25. Still neither is adopted: §10.10's
+        row is a +2.5R row divided by its own label, not direct evidence.
+    tp1: null                  # see `count_numerals`
+    outcome:
+      exit: 28454.50
+      lots: 12
+      r_label: 2.5
+      points: 103.58
+      exit_pos_ts: 2026-07-31T17:40:00Z
+      et: "13:40"
+      exit_bar: {o: 28454.75, h: 28471.75, l: 28443.25, c: 28457.50}
+      provenance: exact
+      source: "execution text '12 @ 28454.50', '+2.5R'"
+      note: >
+        The exit is on the 13:40 bar, one bar before T2's own last. T2's last-price tag also
+        reads 28,454.50 — coincidence, not the same event: that tag is MNQ's price 7 s into
+        the 13:45 bar, whose NQ open is 28,456.25.
+      past_flatten: false
+
+# ---------------------------------------------------------------- what is drawn and NOT read
+count_numerals:
+  finding: >
+    The italic 1 / 2 / 3 on both counts are anchored in chart coordinates — each numeral
+    lands on the same bar in T1 and T2, which were rendered at different zooms — but their
+    x-order is NOT the count order. They are hand-placed in whitespace, so they do not mark
+    their own bars and no step bar is labelled from them.
+  bearish: [{glyph: "1", et: "09:40"}, {glyph: "3", et: "09:50"}, {glyph: "2", et: "10:10"}]
+  bullish: [{glyph: "1", et: "11:55"}, {glyph: "3", et: "12:15"}, {glyph: "2", et: "12:20"}]
+  cross_check: "the bearish three resolve to 09:40 / 09:50 / 10:10 on BOTH T1 and T2"
+  consequence: >
+    step1 / step2 / step3 and tp1 are unlabelled on all three trades. Phase 6 can score
+    direction, trigger, entry bar, R and outcome on this fixture; it cannot score the count
+    or TP1 against it.
+  stray_numeral:
+    glyph: "1"
+    et: "09:00"
+    price: ~28670
+    note: "§10.8's third green `1`, above and left of both counts. Recorded as drawn, not interpreted."
+
+drawn_levels:                # measured off T2 under the fitted axis; all provenance read
+  - {name: ptb_bearish, price: 28290.61}
+  - {name: ptb_bullish, price: ~28348.9}
+  - {name: PLOW, price: 28212.38}
+  - {name: Jun LCOM, price: 28471.58}
+  - {name: "261.80%", price: 28543.26}
+  - {name: "423.60%", price: 28777.95}
+
+# ---------------------------------------------------------------- reported, not corrected
+rulebook_numbers_in_doubt:
+  finding: >
+    Three of §10's printed "Jun LCOM" values are right-axis tags belonging to a moving
+    average, not to the drawn level. Same class as §10.7's stop, which docs/CONSTRAINTS.md
+    already flags: a printed number on a §10 chart may be an indicator's axis label.
+  rows:
+    - {ref: "§10.2", printed: 28482, is: "T1's 200 SMA at its last bar", bars: 28483.03}
+    - {ref: "§10.8", printed: 28473.81, is: "T2's 200 SMA at its last bar", bars: 28473.70}
+    - {ref: "§10.9", printed: 28471.53, is: "LT3/LT4's 10 SMA at its last bar", bars: 28471.40}
+  measured_level: "the drawn Jun LCOM line on T1/T2 is 28,471.6, against our 28,472.00"
+  disposition: >
+    Not corrected. Editing docs/RULEBOOK.md §10 is the user's call. The consequence for
+    docs/evidence/fixture_dating.md IS corrected there, because that file is ours.

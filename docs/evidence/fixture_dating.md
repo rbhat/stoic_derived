@@ -34,7 +34,8 @@ fingerprint is one. These are the others, and none of them is a moving average:
 | `PTBV` | on-screen clock, bottom right | **`03:14:52 PM UTC-4`** | falls inside the 15:10–15:15 bar |
 | `PTBV` | crosshair date label | **`Thu 30 Jul '26`** | 2026-07-30 |
 | `T1`/`T2` | session low | ~28,075 | **28,079.75** |
-| `T1`/`T2` | `PLOW` | ~28,215 | **28,212.50** |
+| `T1`/`T2` | `PLOW`, measured off the plot on both snapshots | **28,212.39** / **28,212.38** | **28,212.50** |
+| `T1`/`T2` | `Jun LCOM`, measured off the plot on both snapshots | **28,471.62** / **28,471.58** | **28,472.00** |
 | `T1`/`T2` | session high | ~28,740 | **28,725.75** |
 | `NQ3` | last-price tag with an `00:08` countdown | **28,716.75** | 10:35 bar closes **28,716.00** eight seconds later |
 | `NQ3` | session low, the 09:30 wick | ~28,320 | **28,313.50** |
@@ -94,9 +95,28 @@ Four printed indicator values, matched as a **sorted multiset** against our SMAs
 says which label is which average, so an assignment would be an assumption. `--periods` makes the
 set of periods explicit rather than assumed.
 
-**The limit is contract drift, and it is measurable here.** `T1`/`T2` and `LT3`/`LT4` print a
-`Jun LCOM` of **28,473.81** and **28,471.53** on sessions one day apart, in that order — a level
-that cannot rise once June has closed. Our own June LCOM is **28,472.00**. So month-old levels move
-by ~2 points between screenshots while same-week levels (`PWC`: 28,306.75 vs 28,306.50) hold to a
-tick. **Anchor on recent levels; treat HCOM/LCOM as corroboration only.** This also explains the
-non-tick-valid prints (`28,540.74`, `28,473.81`) that the old memory flagged and could not place.
+**The limit is that a printed number may not be a level at all** — the same trap as §10.7's stop,
+one section up.
+
+This paragraph used to say the limit was **contract drift**: that `T1`/`T2` and `LT3`/`LT4` print a
+`Jun LCOM` of **28,473.81** and **28,471.53** on sessions one day apart, so month-old levels move
+~2 points between screenshots while same-week levels hold to a tick. **Every part of that reading
+was wrong, and it was wrong the same way §10.7's stop is.** Measured on the artifacts while
+labelling `T1`/`T2` (`docs/evidence/labels/2026-07-31_T1_T2.yaml`):
+
+| Printed | §10 calls it | It is | Ours |
+|---|---|---|---|
+| 28,482.85 (`T1` axis tag) | §10.2 *"Jun LCOM at 28,482"* | `T1`'s **200 SMA** at its last bar | 28,483.03 |
+| 28,473.81 (`T2` axis tag) | §10.8 *"into `Jun LCOM` 28,473.81"* | `T2`'s **200 SMA** at its last bar | 28,473.70 |
+| 28,471.53 (`LT3`/`LT4` axis tag) | §10.9 *"`Jun LCOM` 28,471.53"* | that chart's **10 SMA** at its last bar | 28,471.40 |
+
+The **drawn** `Jun LCOM` line on `T1`/`T2` measures **28,471.62** / **28,471.58** against our
+**28,472.00** — under half a point, on a level a month old. So month-old levels do **not** drift
+here; the drift was an artefact of reading three axis tags as levels. On the same charts `PLOW`
+measures 28,212.39 / 28,212.38 against our **28,212.50**, and the plotted brown line reproduces our
+200 SMA to **0.01** at the 11:10 ET bar.
+
+**The standing advice survives, with a different reason.** Anchor on a level you have **measured off
+the plot**, not on a number printed in the price axis: the axis carries every indicator's last
+value, and those are the non-tick-valid prints (`28,540.74`, `28,473.81`) the old memory flagged and
+could not place. **§10 is not edited** — that is the user's call.
