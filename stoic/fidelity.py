@@ -29,6 +29,8 @@ Conventions fixed here rather than in `docs/PHASE6.md`:
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 import pandas as pd
 
 # The keys of a `phase6_scope` block that name a comparable reference, and which attributes of
@@ -183,10 +185,240 @@ def check_scope_consistency(label: dict) -> tuple[str, ...]:
     return tuple(problems)
 
 
+# The four comparable quantities on a matched `taken` label, and where each side comes from.
+# `stop_distance` compares the engine's `r` -- |fill - stop|, §5.4.2 -- against the label's own
+# stop distance in points. The label's `r_label` is an OUTCOME MULTIPLE and is never compared to
+# it: they are different quantities (docs/PHASE6.md §1).
+_TAKEN_FIELDS: tuple[tuple[str, str, str, str], ...] = (
+    # (delta field, scope key, scope attr, engine column)
+    ("trigger", "trigger", "price", "trigger"),
+    ("stop", "stop", "price", "stop"),
+    ("stop_distance", "stop", "distance", "r"),
+    ("tp1", "tp1", "price", "tp1"),
+)
+
+_TERMINAL_EVENTS: frozenset[str] = frozenset(
+    {"ENTRY_FILLED", "ORDER_CANCELLED", "ORDER_VOIDED"}
+)
+
+
+@dataclass(frozen=True)
+class Delta:
+    """One comparable quantity. `delta` is engine minus label, in points."""
+
+    field: str
+    label: float | None
+    engine: float | None
+    delta: float | None
+    scoreable: bool
+    reason: str = ""
+
+
+@dataclass(frozen=True)
+class LabelResult:
+    """One label's reconciliation. Carries no verdict -- only what was and was not found."""
+
+    label_id: str
+    session: str
+    label_class: str
+    direction: str
+    matched: bool
+    engine_event: str | None
+    engine_ts: pd.Timestamp | None
+    blocked_by: tuple[str, ...]
+    anchor_matched: bool | None
+    deltas: tuple[Delta, ...]
+    nearest_ts: pd.Timestamp | None
+    nearest_delta_bars: int | None
+    circular: bool
+    notes: tuple[str, ...]
+
+
+def bar_offset(
+    bar_index: pd.DatetimeIndex, a: pd.Timestamp | None, b: pd.Timestamp | None
+) -> int | None:
+    """Signed distance from `b` to `a` in bars of the replay frame. `None` if either is off it.
+
+    Bars, not minutes: the frame holds no bars across the CME maintenance break, so a wall-clock
+    difference is not a bar count (`docs/CONSTRAINTS.md` -- the row about blaming that break).
+    """
+    if a is None or b is None:
+        return None
+    try:
+        return int(bar_index.get_loc(pd.Timestamp(a))) - int(bar_index.get_loc(pd.Timestamp(b)))
+    except KeyError:
+        return None
+
+
+def _unscoreable(field: str, reason: str, label_value: float | None = None) -> Delta:
+    return Delta(
+        field=field, label=label_value, engine=None, delta=None, scoreable=False, reason=reason
+    )
+
+
+def _finite(value: object) -> float | None:
+    """A float, or None for None / NaN / pandas NA. Guards against pandas' nullable columns."""
+    if value is None or (isinstance(value, float) and value != value):
+        return None
+    if value is pd.NA:
+        return None
+    return float(value)  # type: ignore[arg-type]
+
+
+def _l3_prices(entries: pd.DataFrame, ts: pd.Timestamp, direction: str) -> dict[str, object]:
+    """L3's `ENTRY_FILLED` record at this bar, or an empty dict.
+
+    A `SUPPRESSED` emission carries no `SignalRecord`, so every price on it is null
+    (`stoic/emission.py`). The prices exist one layer down and this recovers them, which is why
+    the driver runs both replays (`docs/PHASE6.md` §3).
+    """
+    hit = entries[
+        (entries["ts"] == ts)
+        & (entries["direction"].astype(str) == direction)
+        & (entries["event"].astype(str) == "ENTRY_FILLED")
+    ]
+    if hit.empty:
+        return {}
+    row = hit.iloc[0]
+    return {
+        "anchor_ts": row["anchor_ts"],
+        "trigger": row["trigger"],
+        "stop": row["stop"],
+        "fill": row["fill"],
+        "r": (
+            abs(_finite(row["fill"]) - _finite(row["stop"]))
+            if _finite(row["fill"]) is not None and _finite(row["stop"]) is not None
+            else None
+        ),
+        "tp1": row["step3_extreme"],
+    }
+
+
+def reconcile_taken(
+    label: dict,
+    session: str,
+    emissions: pd.DataFrame,
+    entries: pd.DataFrame,
+    bar_index: pd.DatetimeIndex,
+) -> LabelResult:
+    """Pair one `taken` label to an emission on the SAME BAR, exactly (`docs/PHASE6.md` §4).
+
+    `emissions` and `entries` are already sliced to this label's session; both directions may be
+    present and this filters. An unmatched label is characterised by its nearest same-direction
+    emission and the signed bar offset to it -- a miss by one bar and a miss by forty are
+    different facts and §2 of the report cannot be written without knowing which.
+    """
+    scope = label["phase6_scope"]
+    direction = str(label["direction"])
+    engine_direction = "bullish" if direction == "long" else "bearish"
+    circular = bool(scope.get("circular", False))
+
+    candidates = emissions[
+        (emissions["direction"].astype(str) == engine_direction)
+        & (emissions["event"].astype(str).isin(["SIGNAL", "SUPPRESSED"]))
+    ]
+
+    entry_bar = scope.get("entry_bar")
+    if entry_bar is None:
+        return LabelResult(
+            label_id=label["id"], session=session, label_class=str(label["class"]),
+            direction=direction, matched=False, engine_event=None, engine_ts=None,
+            blocked_by=(), anchor_matched=None,
+            deltas=tuple(
+                _unscoreable(f, "phase6_scope.entry_bar is null") for f, _, _, _ in _TAKEN_FIELDS
+            ),
+            nearest_ts=None, nearest_delta_bars=None, circular=circular,
+            notes=("no entry bar in scope -- nothing to pair on",),
+        )
+
+    expected = pd.Timestamp(entry_bar["ts"])
+    hit = candidates[candidates["ts"] == expected]
+
+    if hit.empty:
+        nearest_ts, nearest_bars = None, None
+        if not candidates.empty:
+            offsets = [
+                (bar_offset(bar_index, ts, expected), ts)
+                for ts in candidates["ts"]
+                if bar_offset(bar_index, ts, expected) is not None
+            ]
+            if offsets:
+                nearest_bars, nearest_ts = min(offsets, key=lambda pair: (abs(pair[0]), pair[0]))
+        return LabelResult(
+            label_id=label["id"], session=session, label_class=str(label["class"]),
+            direction=direction, matched=False, engine_event=None, engine_ts=None,
+            blocked_by=(), anchor_matched=False,
+            deltas=tuple(
+                _unscoreable(f, "no emission on the label's bar") for f, _, _, _ in _TAKEN_FIELDS
+            ),
+            nearest_ts=nearest_ts, nearest_delta_bars=nearest_bars, circular=circular,
+            notes=(),
+        )
+
+    row = hit.iloc[0]
+    event = str(row["event"])
+    notes: list[str] = []
+    if len(hit) > 1:
+        notes.append(f"{len(hit)} same-direction emissions on this bar; the first is compared")
+
+    engine: dict[str, object] = {
+        "anchor_ts": row["anchor_ts"], "trigger": row["trigger"], "stop": row["stop"],
+        "r": row["r"], "tp1": row["tp1"],
+    }
+    if event == "SUPPRESSED":
+        borrowed = _l3_prices(entries, expected, engine_direction)
+        if borrowed:
+            engine = borrowed
+            notes.append("prices recovered from L3's ENTRY_FILLED -- a SUPPRESSED row carries none")
+        else:
+            notes.append("SUPPRESSED with no L3 ENTRY_FILLED on the same bar -- prices unavailable")
+
+    deltas: list[Delta] = []
+    for field_name, scope_key, scope_attr, column in _TAKEN_FIELDS:
+        block = scope.get(scope_key)
+        if block is None:
+            deltas.append(_unscoreable(field_name, f"phase6_scope.{scope_key} is null"))
+            continue
+        label_value = _finite(block.get(scope_attr))
+        engine_value = _finite(engine.get(column))
+        if label_value is None:
+            deltas.append(
+                _unscoreable(field_name, f"phase6_scope.{scope_key}.{scope_attr} is null")
+            )
+        elif engine_value is None:
+            deltas.append(
+                Delta(field_name, label_value, None, None, False, "the engine emitted no value")
+            )
+        else:
+            deltas.append(
+                Delta(field_name, label_value, engine_value, engine_value - label_value, True)
+            )
+
+    anchor_block = scope.get("anchor_bar")
+    anchor_matched: bool | None = None
+    if anchor_block is not None:
+        engine_anchor = engine.get("anchor_ts")
+        anchor_matched = engine_anchor is not None and pd.Timestamp(engine_anchor) == pd.Timestamp(
+            anchor_block["ts"]
+        )
+
+    return LabelResult(
+        label_id=label["id"], session=session, label_class=str(label["class"]),
+        direction=direction, matched=True, engine_event=event, engine_ts=expected,
+        blocked_by=tuple(str(r) for r in (row["blocked_by"] or ())),
+        anchor_matched=anchor_matched, deltas=tuple(deltas),
+        nearest_ts=None, nearest_delta_bars=None, circular=circular, notes=tuple(notes),
+    )
+
+
 __all__ = [
     "COMPARED_ATTRS",
     "DECLARATION_KEYS",
     "SCOPE_KEYS",
+    "Delta",
+    "LabelResult",
+    "bar_offset",
     "check_scope_consistency",
+    "reconcile_taken",
     "resolve_path",
 ]

@@ -9,8 +9,18 @@ from __future__ import annotations
 
 import datetime as dt
 
+import pandas as pd
+import pytest
+
 from stoic import fidelity as fidelity_module
-from stoic.fidelity import check_scope_consistency, resolve_path
+from stoic.fidelity import (
+    Delta,
+    LabelResult,
+    bar_offset,
+    check_scope_consistency,
+    reconcile_taken,
+    resolve_path,
+)
 
 
 def _utc(y: int, m: int, d: int, hh: int, mm: int) -> dt.datetime:
@@ -279,3 +289,141 @@ def test_consistently_misspelled_attribute_does_not_pass_vacuously():
     problems = check_scope_consistency(label)
     assert problems  # not the vacuous ()
     assert any("price" in p for p in problems)
+
+
+# --- Task 3: pairing and deltas for class `taken` ----------------------------------------------
+
+BAR_INDEX = pd.date_range("2026-07-31 14:00", periods=24, freq="5min", tz="UTC")
+
+
+def _emissions(rows: list[dict]) -> pd.DataFrame:
+    columns = [
+        "ts", "event", "direction", "blocked_by", "anchor_ts",
+        "trigger", "fill", "stop", "r", "tp1",
+    ]
+    return pd.DataFrame([{c: row.get(c) for c in columns} for row in rows], columns=columns)
+
+
+def _entries(rows: list[dict]) -> pd.DataFrame:
+    columns = ["ts", "event", "direction", "anchor_ts", "trigger", "stop", "fill", "step3_extreme"]
+    return pd.DataFrame([{c: row.get(c) for c in columns} for row in rows], columns=columns)
+
+
+def _signal_row(**over) -> dict:
+    row = {
+        "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"),
+        "event": "SIGNAL",
+        "direction": "bearish",
+        "blocked_by": (),
+        "anchor_ts": pd.Timestamp("2026-07-31 14:50", tz="UTC"),
+        "trigger": 28289.75,
+        "fill": 28286.67,
+        "stop": 28345.50,
+        "r": 58.83,
+        "tp1": None,
+    }
+    row.update(over)
+    return row
+
+
+def test_bar_offset_is_signed_and_in_bars():
+    a = pd.Timestamp("2026-07-31 14:55", tz="UTC")
+    b = pd.Timestamp("2026-07-31 14:40", tz="UTC")
+    assert bar_offset(BAR_INDEX, a, b) == 3
+    assert bar_offset(BAR_INDEX, b, a) == -3
+
+
+def test_bar_offset_is_none_off_the_frame():
+    off = pd.Timestamp("2026-07-31 09:00", tz="UTC")
+    assert bar_offset(BAR_INDEX, off, BAR_INDEX[0]) is None
+
+
+def test_exact_bar_match_produces_zero_deltas():
+    result = reconcile_taken(
+        _label(), "2026-07-31", _emissions([_signal_row()]), _entries([]), BAR_INDEX
+    )
+    assert isinstance(result, LabelResult)
+    assert result.matched is True
+    assert result.engine_event == "SIGNAL"
+    assert result.anchor_matched is True
+    by_field = {d.field: d for d in result.deltas}
+    assert by_field["trigger"].delta == 0.0
+    assert by_field["stop"].delta == 0.0
+    assert by_field["stop_distance"].delta == 0.0
+
+
+def test_one_bar_off_is_unmatched_and_characterised():
+    late = _signal_row(ts=pd.Timestamp("2026-07-31 15:00", tz="UTC"))
+    result = reconcile_taken(_label(), "2026-07-31", _emissions([late]), _entries([]), BAR_INDEX)
+    assert result.matched is False
+    assert result.nearest_delta_bars == 1
+    assert result.nearest_ts == pd.Timestamp("2026-07-31 15:00", tz="UTC")
+    assert all(d.scoreable is False for d in result.deltas)
+
+
+def test_opposite_direction_emission_never_matches():
+    wrong = _signal_row(direction="bullish")
+    result = reconcile_taken(_label(), "2026-07-31", _emissions([wrong]), _entries([]), BAR_INDEX)
+    assert result.matched is False
+    assert result.nearest_ts is None
+
+
+def test_no_emissions_at_all_leaves_nearest_none():
+    result = reconcile_taken(_label(), "2026-07-31", _emissions([]), _entries([]), BAR_INDEX)
+    assert result.matched is False
+    assert result.nearest_ts is None
+    assert result.nearest_delta_bars is None
+
+
+def test_suppressed_matches_and_borrows_prices_from_l3():
+    suppressed = _signal_row(
+        event="SUPPRESSED", blocked_by=("trend_50",),
+        anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
+    )
+    l3 = _entries([{
+        "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"),
+        "event": "ENTRY_FILLED",
+        "direction": "bearish",
+        "anchor_ts": pd.Timestamp("2026-07-31 14:50", tz="UTC"),
+        "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
+    }])
+    result = reconcile_taken(_label(), "2026-07-31", _emissions([suppressed]), l3, BAR_INDEX)
+    assert result.matched is True
+    assert result.engine_event == "SUPPRESSED"
+    assert result.blocked_by == ("trend_50",)
+    by_field = {d.field: d for d in result.deltas}
+    assert by_field["trigger"].delta == 0.0
+    # abs(fill - stop) is a float subtraction, not a copied literal, so it lands a
+    # representation error off 58.83 (docs/CONSTRAINTS.md -- no tolerance in the module itself;
+    # this is float hygiene in the test, matching tests/test_levels.py's existing convention).
+    assert by_field["stop_distance"].delta == pytest.approx(0.0, abs=1e-9)
+    assert result.anchor_matched is True
+
+
+def test_unscoreable_field_states_a_reason_and_never_a_zero():
+    label = _label()
+    label["phase6_scope"]["trigger"] = None
+    result = reconcile_taken(
+        label, "2026-07-31", _emissions([_signal_row()]), _entries([]), BAR_INDEX
+    )
+    trigger = next(d for d in result.deltas if d.field == "trigger")
+    assert trigger.scoreable is False
+    assert trigger.delta is None
+    assert trigger.reason != ""
+
+
+def test_circular_flag_is_carried_onto_the_result():
+    label = _label()
+    label["phase6_scope"]["circular"] = True
+    result = reconcile_taken(
+        label, "2026-07-31", _emissions([_signal_row()]), _entries([]), BAR_INDEX
+    )
+    assert result.circular is True
+
+
+def test_delta_sign_is_engine_minus_label():
+    high = _signal_row(trigger=28292.75)
+    result = reconcile_taken(_label(), "2026-07-31", _emissions([high]), _entries([]), BAR_INDEX)
+    trigger = next(d for d in result.deltas if d.field == "trigger")
+    assert trigger.delta == 3.0
+    assert isinstance(trigger, Delta)
