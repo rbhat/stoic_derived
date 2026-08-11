@@ -267,8 +267,10 @@ labels:
       circular:    false
       never:       [exit, outcome]
       why: >
-        ptb is null and no R label is printed, so §10.10's division has no input either.
-        Scoreable: direction and entry bar.
+        ptb is null, so the §5.4.1 stop is unavailable. No R label is printed for this trade, so
+        §10.10's division has no input. by_lot_count is a bracket, not a distance, and neither it
+        nor by_r_label is ever a reference (docs/CONSTRAINTS.md). Scoreable: direction and entry
+        bar.
 
   # ------------------------------------------------- no_opportunity, from PTBV (not on either chart)
   - id: PTBV30-N1

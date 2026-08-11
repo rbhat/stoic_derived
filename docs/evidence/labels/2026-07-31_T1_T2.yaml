@@ -94,7 +94,10 @@ labels:
       why: >
         ptb is null — the drawn `ptb` line starts at the 10:50 bar and belongs to T-A2, so there
         is nothing on this artifact to score this trigger against. The stop has only by_r_label,
-        which is never a reference. Scoreable: direction and entry bar.
+        which is never a reference. Scoreable: direction and entry bar. The label's own note and
+        count_numerals.consequence say "R" here to mean r_label, the printed outcome multiple —
+        docs/PHASE6.md §1 does not compare that to the engine's point distance. So this is not an
+        exclusion by decision: the comparable quantity does not exist on this artifact.
 
   - id: T-A2
     class: taken
@@ -152,6 +155,8 @@ labels:
         The +1R exit is a discretionary stop move, not §5.4.5 / D-25 — ptbv_narration.
         management_observed.disposition says score the entry, the trigger and R, never the exit.
         tp1 is unscoreable: the count numerals on T1/T2 do not resolve to bars (count_numerals).
+        The stop is by_ptb_extreme, which disagrees with by_r_label by 4.41 points: by_ptb_extreme
+        is §5.4.1 / D-18, the reading the engine computes, and by_r_label is never a reference.
 
   # ---------------------------------------------------------------- bullish count, after the reset
   - id: T-B1
@@ -208,8 +213,8 @@ labels:
       never:       [exit, outcome]
       why: >
         tp1 is unscoreable — the count numerals on T1/T2 do not resolve to bars (count_numerals).
-        This is the corpus's one close agreement between §10.10 and §5.4.1, at 0.99 points, and
-        by_r_label is still not the reference.
+        This is the closest agreement any §10 fixture gives between §10.10 and §5.4.1, at 0.99
+        points, and by_r_label is still not the reference.
 
 # ---------------------------------------------------------------- what is drawn and NOT read
 count_numerals:

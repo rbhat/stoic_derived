@@ -100,4 +100,5 @@ labels:
       why: >
         class `named` — the trader declined it. Scored as "did the engine anchor here". An engine
         fill is correct-but-not-taken, never a false positive (docs/PHASE3.md §2); the label's own
-        would_trigger_on says the bars would have filled it.
+        would_trigger_on says the bars would have filled it. stop and tp1 are unscoreable: the
+        trade was never executed, so the label carries no stop key and no tp1 key at all.
