@@ -247,20 +247,32 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-**Asked for by the user on 2026-08-10 and not yet done: audit what is left for Phase 4's SLM.**
-The concern, in his words, is that *"a lot of these rules are going to constrain or make the SLM
-incoherent."* Two things are already known and neither settles it. The SLM's input is the **passage
-census**, not this rulebook — `docs/evidence/census_*.md` cite transcripts, and pointing the SLM at
-`docs/RULEBOOK.md` would be the contamination `claude_memories/audit-hard-rules-not-in-material.md`
-forbids. But **34 D-rows exist and the SLM has proposed none of them**, and the routing pattern is
-three deep: O-14 → D-28, then all four L2 terms routed 08-09 and decided by the human the same day
-(D-29, D-30, D-34).
+**The Phase 4 room-left audit is done — 2026-08-10, `docs/evidence/phase4_room_left.md`. Nothing
+was decided.** The user's concern was that *"a lot of these rules are going to constrain or make the
+SLM incoherent."* **The count does not show that.** Of §1–§9's **21 J** rows, only **5** carry a
+D-row at all (2.1.4→D-29, 2.2.5→D-34, 2.2.6→D-30, 5.3.3c→D-23/D-28, 6.5a→D-26), and **none of the
+five sits under a term Phase 4 would work on** — §7.3 and §7.4 are gating and context, and no
+decision has ever touched them.
 
-So the audit is a count, not an opinion. §1–§9 currently holds **94 M, 6 P, 21 J**. For each of the
-**21 J** rows: is it still open, or has a D-row closed it? Report the split, name the J terms still
-open, and say which of those Phase 4 could actually propose over given the corpus. **Do not decide
-any of them** — the point is to measure the room left, not to fill it. Small-n and the no-grid-search
-directives apply as always.
+**What limits Phase 4 is that the room closed by other means.** 5 compiled, **7 inert** (the engine's
+behaviour is fixed by another rule and no D-row names the term — 2.2.3, 2.3.7, 2.3.10, 2.4.2 and
+climax's 4.1/4.2/4.4, which **D-5** deferred and §4.3 caps at annotation), **3 out of the v1 path**
+(§8's `Break & retest` / `SFP` / `SBS`), **4 routed to an open row** (O-18, O-20, O-9 ×2), **2 open
+with nothing routing them** (§7.3 *trapped side*, §7.5.1 *deserves risk*).
+
+**Two rows are where a proposal would change something: §7.4.1/§7.4.2** (already Phase 4's charter —
+**D-9** assigns it, **O-9** is open, and its dense sources are the §13 complementary layer, so
+anything proposed lands as *context*, never a step of the sequence) **and §7.3 *trapped side***, the
+densest term measured and a prerequisite for one of §7.4.2's instances — but it has **no open row**,
+so a proposal has nowhere to land. **Whether to open one is the user's call, not the audit's.**
+
+**Two things the audit surfaced, reported and not acted on.** §2.3.7's engine disposition — a
+re-break of a still-pending base emits `STEP_3_BREAK` again, and a base may not be broken on the bar
+its own boundary was selected — lives in this file's L2 audit note and **has no §11 row**, though
+this file calls §11 the register *"nowhere else."* And **§8's preamble is stale**: it says its terms
+are referenced by the signal record and the confluence score, but **D-33** fixed the score to three
+named conditions, none a setup type, and `stoic/emission.py` emits `setup_type="123_ptb"` as a
+literal. Editing §1–§9 is the user's call.
 
 **The critical path is Phase 3, and it is in progress. `docs/PHASE3.md` is the design; every
 marked chart is labelled and work resumes at `PTBV`.** In order:
