@@ -22,11 +22,12 @@ The split is 131 bullish / 79 bearish. **Reported as counts, not as a verdict**,
 nothing here says the signals are the right ones, and Phase 3's labelled set is what would
 say so. Every layer's *unit* tests remain hand-built fixtures.
 
-**Phase 3 started on 2026-08-10 and is partly built. `docs/PHASE3.md` is its design — read it
-before touching a label.** What is done: the bar spine now reaches **2026-08-10**, all five §10
-fixtures are **dated**, and **all four marked-chart fixtures** are **labelled** — `LT`, `NQ3`,
-`T1`/`T2` and `LT3`/`LT4`. **8 `taken` labels and 2 `named` across 4 sessions.** What is not: the
-bulk of the `PTBV` class-`named` pass, and `docs/CONSTRAINTS.md` rows for the rest.
+**Phase 3 started on 2026-08-10 and its labelling pass is complete. `docs/PHASE3.md` is the design
+— read it before touching a label.** The bar spine reaches **2026-08-10**, all five §10 fixtures are
+**dated**, all four marked-chart fixtures are **labelled** — `LT`, `NQ3`, `T1`/`T2`, `LT3`/`LT4` —
+and **both `PTBV` segments are reconciled**. Counts across the four sessions: **8 `taken`, 1
+`named`, 1 `no_opportunity`**. What is not done: `docs/CONSTRAINTS.md` rows as things close, and the
+per-keyframe clock table (below).
 
 **`PTBV` is two sessions, not one, and that reshapes the pass that was about to start.** Measured
 2026-08-10 off the keyframes' own TradingView clock: the video cuts from **2026-07-30** (video
@@ -52,6 +53,42 @@ three `LT34` executions are narrated in `PTBV` and matched to it by clock, creat
   read off an execution arrow alone (09:35:01 and 10:17:43). First independent check on any entry
   bar in the fixture set. `LT34-M2`'s *"i gotta do market"* also explains why no trigger is drawn
   for it.
+
+**Segment 2 is now reconciled too, and it also created no label id.** `PTBV` narrates six
+executions across its two days and **all six were already labelled off the marked charts** — the
+`DIA-P` double-count it was guarding against did not happen. Segment 2 runs **[01:05:11] →
+[01:37:53]** (the transcript dates the seam six seconds after segment 1's sign-off, sharper than the
+keyframe jump), and every line is **bracketed between the two nearest measured keyframe clocks,
+never interpolated**. `docs/evidence/labels/2026-07-31_T1_T2.yaml`, `ptbv_narration`. Four results:
+
+- **The `~$1,000` risk unit is now cited, not inferred.** §10.10 rests on it; the trader states it
+  outright — *"one thousand dollar per risk for me this is my risk currently"* [01:36:09], plus
+  *"one thousand dollars is locked in"* for `T-A2`'s +1R and *"about thousand dollar r[isk]"* while
+  sizing it. All five arithmetic checks land within 6% of $1,000.
+- **That reframes what §10.10 recovers, and it is not the stop.** The R label is P&L ÷ the **round**
+  $1,000, and the initial risk only equals $1,000 because the lot count is floor-rounded to it. So
+  the method returns the **risk unit**, missing the true stop by the rounding — `T-B1`'s celebrated
+  **0.99**-point agreement is that rounding ($1,018.08 of real risk against a $1,000 unit), not an
+  independent confirmation. **`LT`'s 12.25 is far too large for this and stays unexplained.**
+  Reported; editing §10 is the user's call.
+- **`T-A2`'s +1R is a discretionary stop move, not a target and not the rulebook's break-even.**
+  *"i'm gonna put my stop loss over here and then i will lock in plus one r"* [01:26:50], filled by
+  a buy stop at 11:50. §5.4.5 / **D-25** allows exactly one stop move and it is to break-even. This
+  is **not** written in and gets no D-row — the consequence is narrow: **Phase 6 scores `T-A2`'s
+  entry, trigger and R, never its exit.**
+- **Two rules are corroborated live, on the trades this repo labelled.** **D-17**'s re-anchoring —
+  *"the ptb bar just keeps moving higher … keep trailing this behind the latest ptb bar"* — and
+  **D-23** / §5.3.5a in as many words: *"when it's inside candle you don't want to treat it as
+  ptb."* §5.4.1 is corroborated too, with a wrinkle: he says the stop went **below** the PTB low,
+  which the `by_r_label` reading (*above* it) does not support. Neither reading is adopted.
+
+**Segment 2's first minute reviews the previous session, and that goes in the 07-30 file.**
+`LT34-A1`'s **exit reason** is narrated where no chart draws one — *"in asia i exited because the
+price was going down below the 50 sma"* — and it is **recorded, not adopted**: §5.4.7b / **D-24**
+keys the invalidating close to the **10/20**, not the 50, and neither source says which timeframe he
+was on. The *"7r on the day"* total reconciles (+2.8R, break-even, +4.5R = 7.3R) and **narrows the
+4-lot question without settling it**: it rules out a fourth trade with material P&L, but a 4-lot
+fill closed at break-even — exactly what `LT34-M2` did — would also leave the day at 7R.
 
 **There is now a third label class — `no_opportunity`, the user's call on 2026-08-10.** A setup he
 **wanted** and the market never triggered, as against `named`, which he **declined**. *"The market
@@ -266,37 +303,47 @@ anything proposed lands as *context*, never a step of the sequence) **and §7.3 
 densest term measured and a prerequisite for one of §7.4.2's instances — but it has **no open row**,
 so a proposal has nowhere to land. **Whether to open one is the user's call, not the audit's.**
 
-**Two things the audit surfaced, reported and not acted on.** §2.3.7's engine disposition — a
-re-break of a still-pending base emits `STEP_3_BREAK` again, and a base may not be broken on the bar
-its own boundary was selected — lives in this file's L2 audit note and **has no §11 row**, though
-this file calls §11 the register *"nowhere else."* And **§8's preamble is stale**: it says its terms
-are referenced by the signal record and the confluence score, but **D-33** fixed the score to three
-named conditions, none a setup type, and `stoic/emission.py` emits `setup_type="123_ptb"` as a
-literal. Editing §1–§9 is the user's call.
+**Two things the audit surfaced. Reported, not acted on — editing §1–§9 is the user's call.**
 
-**The critical path is Phase 3, and it is in progress. `docs/PHASE3.md` is the design; every
-marked chart is labelled and work resumes at `PTBV`.** In order:
+- **§2.3.7 has no §11 row.** Its engine behaviour was settled in the L2 audit and recorded in this
+  file: a re-break of a still-pending base emits `STEP_3_BREAK` again, and a base may not be broken
+  on the bar its own boundary was selected. This file says the register is §11 *"and nowhere else."*
+- **§8's preamble is stale.** It says its terms are referenced by the signal record and the
+  confluence score. Neither holds now: **D-33** fixed the score to three conditions, none of them a
+  setup type, and `stoic/emission.py` emits `setup_type="123_ptb"` as a literal.
 
-1. **`PTBV` — the class-`named` pass, and it is TWO sessions.** A 1h38m narrated cut of 2026-07-30
-   and 2026-07-31. **Segment 1 (07-30) is reconciled** — see above. **Segment 2 (07-31, video
-   ~01:06 → 01:37:54) is untouched and is the bulk of what remains**; it is `T1`/`T2`'s session, so
-   reconcile every execution it narrates against `docs/evidence/labels/2026-07-31_T1_T2.yaml`'s
-   three `taken` ids rather than adding a fourth — the `DIA-P` double-count in a new place. The
-   transcript is only **13,079 words**; the cost is in the keyframes, not the reading.
+**The critical path is Phase 3, and its labelling is done. `docs/PHASE3.md` is the design.**
+**Its exit gate asks for the label count per class and per session, and the count of fixtures that
+would not date. Both are answerable now** — and `docs/PHASE3.md` forbids reading either as evidence
+of anything on its own, as does `CLAUDE.md`. Every fixture here is one session, so small *n*
+applies to all of them.
 
-   **Do this in the main session.** It was dispatched to a subagent on 2026-08-10 and died on a
-   session limit having written nothing — the **fourth** such loss and the first with
-   `claude_memories/long-research-tasks-write-incrementally.md` already on the books.
+| Session | file | `taken` | `named` | `no_opportunity` |
+|---|---|---|---|---|
+| 2026-07-27 | `2026-07-27_LT.yaml` | 1 | 1 | 0 |
+| 2026-07-30 | `2026-07-30_LT3_LT4.yaml` | 3 | 0 | 1 |
+| 2026-07-31 | `2026-07-31_T1_T2.yaml` | 3 | 0 | 0 |
+| 2026-08-03 | `2026-08-03_NQ3.yaml` | 1 | 0 | 0 |
+| | **total** | **8** | **1** | **1** |
 
-   **A narrated setup gets its bar from a keyframe clock, never from interpolation** — the
-   recording is cut, and video 00:34:58 → 00:44:58 spans 2h37m of wall clock. Method and the
-   x-shifting-clock trap: `docs/PHASE3.md` §4 item 4.
+**Fixtures that would not date: 0** — all five are dated with two independent agreements each
+(`docs/evidence/fixture_dating.md`). **`PTBV` adds no id to this table**, which is the finding, not
+a shortfall: both its segments narrate executions that were already labelled off the marked charts.
 
-   **Still unbuilt and worth building: the per-keyframe clock table.** 14 of 687 frames are read
-   (`docs/evidence/ptbv_session_map.md`); the rest are not. A `scripts/map_video_clock.py` doing
-   `UTC-4` template-match plus digit NCC would place every narration line at once. Ground truth
-   for bootstrapping and self-test is those 14 rows, which cover all ten digits.
-2. **`docs/CONSTRAINTS.md`** rows for labelling, and this file's Open list as things close.
+**Whether that closes Phase 3 is the user's call.** What is not done, and neither blocks Phase 6:
+
+1. **`docs/CONSTRAINTS.md`** rows as things close, and this file's Open list.
+2. **The per-keyframe clock table — still unbuilt, and now optional rather than needed.** 14 of 687
+   frames are read (`docs/evidence/ptbv_session_map.md`); every `PTBV` line was placed by
+   *bracketing* between two measured clocks instead, which was enough because no line needed a bar
+   of its own. A `scripts/map_video_clock.py` doing `UTC-4` template-match plus digit NCC would
+   place every narration line exactly; ground truth for bootstrapping and self-test is those 14
+   rows, which cover all ten digits. **Build it only if a later pass needs a narrated setup put on
+   a specific bar.**
+
+**Never interpolate video time onto a bar** — the recording is cut, and video 00:34:58 → 00:44:58
+spans 2h37m of wall clock. Read the clock off the nearest keyframe, or bracket between two. Method
+and the x-shifting-clock trap: `docs/PHASE3.md` §4 item 4.
 
 **The first question to put to the engine is still not a number, it is the base.** D-34 was chosen
 among rival constructions with **no eval set** — the natural one is §10's marked charts, and those

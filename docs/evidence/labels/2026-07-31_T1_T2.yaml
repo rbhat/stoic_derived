@@ -226,9 +226,19 @@ double_count_warning: >
   AUDIT-2a F-1 caught for DIA-P. The 07-30 half is already reconciled in
   docs/evidence/labels/2026-07-30_LT3_LT4.yaml under `ptbv_narration`.
 
-ptbv_segment_2:
-  status: not_yet_read
-  span: "video ~01:06:41 → 01:37:49"
+ptbv_narration:
+  status: reconciled                # 2026-08-10. Was `not_yet_read`.
+  source: edu/derived/concept_ptb_entries_nq_live_trading_10r/transcript.md
+  span: "video [01:05:11] → [01:37:53], wall 09:27 → 13:44 ET"
+  seam: >
+    The transcript dates the seam more sharply than the keyframes did. docs/evidence/
+    ptbv_session_map.md put it between video 01:04:57 and 01:06:41 on the backward clock jump;
+    the narration itself turns over at [01:05:11] — "good morning stoic traders welcome back to
+    another live trading session today is friday". Segment 1's sign-off is [01:05:04].
+  result: >
+    ZERO new label ids. Every execution segment 2 narrates is one of the three `taken` labels
+    already in this file. Same outcome as segment 1 in 2026-07-30_LT3_LT4.yaml, and the duty
+    docs/PHASE3.md §3 names — reconcile, do not add a fourth.
   clocks_measured:                # read off keyframes; docs/evidence/ptbv_session_map.md
     - {video: "01:06:41", clock_et: "09:27:07", shows: "daily chart, pre-market"}
     - {video: "01:08:22", clock_et: "09:30:55"}
@@ -236,7 +246,120 @@ ptbv_segment_2:
     - {video: "01:19:57", clock_et: "11:13:38"}
     - {video: "01:29:51", clock_et: "11:42:01"}
     - {video: "01:37:49", clock_et: "01:44:11 PM", shows: "the T1/T2 chart, six executions, two counts, two ptb levels"}
-  note: >
-    Video time does NOT map linearly to wall clock — the recording is cut. Read the clock off the
-    nearest keyframe, never interpolate. docs/PHASE3.md §4 item 4 has the method and the
-    x-shifting-clock trap.
+  method: >
+    Video time does NOT map linearly to wall clock — the recording is cut. Every narration line
+    below is BRACKETED between the two nearest measured keyframe clocks, never interpolated onto a
+    bar. Where a bracket contains the label's own timestamp that is an agreement, not a derivation:
+    the bar came from the chart fit, the bracket from the clock. docs/PHASE3.md §4 item 4.
+
+  matches_taken:
+    - id: T-A1
+      lines:
+        - {video: "01:11:22", bracket_et: "10:03–11:13", quote: "now we are looking for this short like this cell stop here stopless above here"}
+        - {video: "01:12:18", bracket_et: "10:03–11:13", quote: "the number three obvious price closing below and all you have to do now is just look for the ptb"}
+        - {video: "01:15:35", bracket_et: "10:03–11:13", quote: "that was minus one r not a big deal"}
+      agrees_with: "the -1R outcome, exit 10:45 @ 28301.75 — inside the bracket"
+    - id: T-A2
+      lines:
+        - {video: "01:16:46", bracket_et: "10:03–11:13", quote: "i'll be looking for the short right now this is the ptb candle"}
+        - {video: "01:17:22", bracket_et: "10:03–11:13", quote: "i got to go in i need to go with four more ... the candle just closed so fast i couldn't ... it will be about thousand dollar r[isk] ... nine contracts in"}
+        - {video: "01:18:25", bracket_et: "10:03–11:13", quote: "wow almost got swept out of that second trade"}
+        - {video: "01:26:50", bracket_et: "11:13–11:42", quote: "i'm gonna put my stop loss over here and then i will lock in plus one r ... for the whole day i'd be at break even"}
+        - {video: "01:29:35", bracket_et: "11:13–11:42", quote: "so actually one thousand dollars is locked in ... i'm gonna put my buy stop here"}
+        - {video: "01:30:48", bracket_et: "11:42–13:44", quote: "my exit was pretty good breakeven here"}
+      agrees_with: >
+        The 9 lots, and the +1R exit at 11:50 @ 28232.25. The buy stop was placed just before the
+        01:29:51 keyframe (11:42:01) and the 11:50 bar (o 28194.50, h 28288.00) trades up through
+        28232.25 eight minutes later. "breakeven here" is the DAY, -1R then +1R — not the trade.
+    - id: T-B1
+      lines:
+        - {video: "01:31:09", bracket_et: "11:42–13:44", quote: "so one two three confirmed you can see how the price breaks out retesting the moving averages"}
+        - {video: "01:31:26", bracket_et: "11:42–13:44", quote: "i would like to see a nice ptb nice pullback retesting 50 sma and this could be a trade into the june l com into the 200 sma"}
+        - {video: "01:32:30", bracket_et: "11:42–13:44", quote: "all right i'm in stop was below the ptb low this is the ptb"}
+        - {video: "01:33:52", bracket_et: "11:42–13:44", quote: "the target really is june elcom i'm gonna put my stop loss of break even here"}
+        - {video: "01:35:38", bracket_et: "11:42–13:44", quote: "closed it here at 2.5 r pretty good so now i'm done for the day"}
+      agrees_with: "the 12-lot long, the +2.5R label, and the 13:40 exit"
+      note: >
+        The target is stated BEFORE the entry and it is neither TP1 nor a fib: "into the june l com
+        into the 200 sma". §6.1's Step 3 High is not what he traded to here. Recorded as narrated;
+        this file does not label a tp1 for any trade (see count_numerals).
+
+  # ------------------------------------------------- what the narration corroborates
+  corroborates:
+    - rule: "D-17 — the resting order re-anchors to each new PTB candidate, no bar cap"
+      video: "01:13:11"
+      quote: "so now ptb moved over here that's the ptb and the ptb bar just keeps moving higher so nothing really to do besides just keep trailing this behind the latest ptb bar"
+    - rule: "D-23 / §5.3.5a — an inside candle is never the PTB"
+      video: "01:32:55"
+      quote: "i'm just keep following the candles down until we have the candle that's ptb when it's inside candle you don't want to treat it as ptb"
+      note: "Stated in as many words, live, on the trade this file labels T-B1."
+    - rule: "§5.4.1 / D-18 — the stop is the PTB's opposite extreme"
+      video: "01:32:30"
+      quote: "i'm in stop was below the ptb low this is the ptb"
+      note: >
+        He says BELOW the PTB low, not AT it. T-B1's by_ptb_extreme reading is the low itself
+        (28,308.50); the by_r_label reading (28,309.49) sits ABOVE it and is the one this quote
+        does not support. Neither is adopted — see the stop block and §10.10's own limits.
+
+  # ------------------------------------------------- the $1,000 risk unit, now cited
+  risk_unit:
+    finding: >
+      §10.10 infers a "~$1,000 risk unit" to recover a stop from an R label. On this session the
+      trader states it outright, three times, and the arithmetic closes.
+    quotes:
+      - {video: "01:36:09", quote: "i'm just taking these setups one thousand dollar per risk for me this is my risk currently"}
+      - {video: "01:29:35", quote: "one thousand dollars is locked in", refers_to: "T-A2's +1R"}
+      - {video: "01:17:39", quote: "it will be about thousand dollar r[isk]", refers_to: "sizing T-A2 to 9 lots"}
+    arithmetic:                     # MNQ, $2 per point
+      - {id: T-A1, basis: "risk  70.00 pts x 7 lots x $2",   usd: 980.00}
+      - {id: T-A2, basis: "risk  58.83 pts x 9 lots x $2",   usd: 1058.94}
+      - {id: T-A2, basis: "lock  54.42 pts x 9 lots x $2",   usd: 979.56}
+      - {id: T-B1, basis: "risk  42.42 pts x 12 lots x $2",  usd: 1018.08}
+      - {id: T-B1, basis: "P&L  103.58 pts x 12 lots x $2",  usd: 2485.92, note: "= 2.49 x $1,000 -> the printed +2.5R"}
+    bears_on_10_10:
+      finding: >
+        §10.10 recovers a stop as `P&L points / R multiple`. This session shows what that actually
+        recovers: the R label is P&L divided by the ROUND $1,000, and the initial risk only equals
+        $1,000 because the lot count is floor-rounded to it (§10.10 says so). So the method returns
+        the risk UNIT, and it misses the true stop distance by the lot rounding.
+      consequence_for_T-B1: >
+        The 0.99-point agreement this file calls the closest in the corpus is that rounding and not
+        an independent confirmation: $1,018.08 of real risk against a $1,000 unit is 42.42 vs 41.43
+        points. It remains the closest agreement measured; what changes is what it is evidence OF.
+      consequence_for_T-A2: >
+        Its 4.41-point disagreement now has a cause. The +1R is a LOCKED DOLLAR AMOUNT — a buy stop
+        he placed so that "one thousand dollars is locked in" — not one multiple of that trade's own
+        risk. §10.10's division assumes the second. So T-A2's by_r_label reading is recovering the
+        exit he chose, not the stop he set.
+      does_not_explain: >
+        `LT`'s 12.25-point disagreement (§10.10 vs §5.4.1) is far too large to be lot rounding.
+        Unchanged and still unexplained.
+      disposition: >
+        Reported. §10.10 is docs/RULEBOOK.md §10 and editing it is the user's call —
+        docs/CONSTRAINTS.md, "Write a correction, a caveat or a chain of reasoning into §10".
+
+  # ------------------------------------------------- how T-A2 reached +1R
+  management_observed:
+    finding: >
+      T-A2's +1R is a discretionary stop move, not a target and not the rulebook's break-even.
+      [01:26:50] "i'm gonna put my stop loss over here and then i will lock in plus one r";
+      [01:28:59] "i hesitated and i moved my stop loss not the best execution here"; [01:29:35] the
+      buy stop that filled at 11:50.
+    why_it_matters: >
+      §5.4.5 / D-25 allows exactly ONE stop move and it is to break-even, at the Step 3 extreme.
+      A move to +1R is not in §1–§9. It is the trader managing discretionarily, of the same class
+      as §4.3's climax and §6.5a's lower-high cue (D-26) — subjective, and it never becomes a rule.
+    disposition: >
+      Recorded as an observation of the material. NOT proposed as a rule and NOT given a D-row —
+      claude_memories/audit-hard-rules-not-in-material.md. The consequence for Phase 6 is narrow
+      and concrete: on T-A2, score the entry, the trigger and R; the EXIT is discretionary and the
+      engine is not expected to reproduce it.
+
+  # ------------------------------------------------- considered and deliberately not labelled
+  not_labelled:
+    - {video: "01:08:41–01:09:44", quote: "no trades right no need to fomo in ... no reason to short right now no reason to long it's just consolidating ... this is still number one",
+       why: "The absence of a setup, not one he declined. §7.5.2 — no trade is a valid outcome. Neither `named` nor `no_opportunity` fits: nothing was named and nothing was wanted."}
+    - {video: "01:10:31", quote: "no pullback to enter really it's okay i mean i'm not in a rush to take a trade",
+       why: "The same count that became T-A1 twelve minutes later. Not a separate setup."}
+    - {video: "01:37:25", quote: "if this has a nice breakout here there would be another entry to go but i am pretty much done for the day",
+       why: "Conditional on a breakout that had not happened. No setup existed to decline."}

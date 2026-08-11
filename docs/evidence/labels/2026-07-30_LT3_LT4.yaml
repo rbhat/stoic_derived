@@ -370,6 +370,33 @@ ptbv_narration:
     had recorded from an execution arrow alone. Both agree. This is the first independent check on
     any entry bar in the fixture set.
 
+  # ------------------------------------------------- the NEXT MORNING reviews this session
+  next_morning_recap:
+    added: 2026-08-10
+    where: "video [01:05:19] → [01:06:06] — the first minute of PTBV's SECOND segment, 2026-07-31"
+    quote: >
+      "yesterday i took a very nice trade it was here well actually from this sbs on five minutes
+      that was the new york open i took the scalp and then i took at the end of the day i took this
+      trade ... i entered before the market closed and then in asia i exited because the price was
+      going down below the 50 sma i just exited there very good trade 7r on the day"
+    gives:
+      - id: LT34-A1
+        fact: "the EXIT REASON, which no chart draws — a close below the 50 SMA, in the Asia session"
+        note: >
+          Narrated, not adopted. §5.4.7b / D-24 keys the invalidating close to the 10/20 SMA, not
+          the 50, and neither the chart nor the narration says which timeframe he was reading. This
+          file records the quote and takes nothing from it. It does not become a rule and gets no
+          D-row — claude_memories/audit-hard-rules-not-in-material.md.
+      - id: LT34-M1
+        fact: "characterised as an SBS at the New York open (§8, `SBS`) — the morning scalp"
+      - id: day_total
+        fact: "\"7r on the day\" reconciles against this file: +2.8R (M1) + break-even (M2) + 4.5R (A1) = 7.3R"
+    bears_on_four_lot_order: >
+      Partially, and less than it first looks. A 7R day is consistent with the 4-lot order NOT
+      filling, and equally consistent with it filling and closing at break-even like M2 did. What
+      it does rule out is a fourth trade with material P&L. See open_questions below — the fact is
+      still open.
+
 # ---------------------------------------------------------------- open, measured but unresolved
 open_questions:
   - id: four_lot_order_at_1047
@@ -388,3 +415,9 @@ open_questions:
       class the user added on 2026-08-10. The class question is therefore settled and only the
       FACT is open. Still NOT given an id: which of the two it is depends on whether the order
       filled, and neither chart draws a 4-lot execution to say so.
+    narrowed_2026_08_10: >
+      PTBV's second segment reviews this session the next morning and calls it "7r on the day"
+      (see next_morning_recap). That total is +2.8R + break-even + 4.5R = 7.3R with no room for a
+      fourth trade of any size — but a 4-lot fill closed at break-even, exactly as LT34-M2 was,
+      would also leave the total at 7R. So the recap rules out a fourth trade with MATERIAL P&L
+      and does not settle whether the order filled. The question stands.

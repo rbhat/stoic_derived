@@ -36,6 +36,11 @@ Scan `x ∈ [1100, 1900]`, `y ∈ [1032, 1062]`.
 16:06:53 to 09:27:07. TradingView's bottom-bar clock is wall time and cannot run backwards, so the
 recording is a cut, not one take.
 
+**The transcript locates it inside that gap, at [01:05:11]** — *"good morning stoic traders welcome
+back to another live trading session today is friday"*, six seconds after segment 1 signs off at
+[01:05:04] with *"i will talk to you in the next one take care."* Read segment 2 as
+**[01:05:11] → [01:37:53]**, transcript lines 1041–1503.
+
 ## Which days, read off the charts
 
 - **Segment 1 = 2026-07-30.** Crosshair label `Thu 30 Jul '26` (kf 0399), and the frame carries
@@ -68,6 +73,16 @@ The cuts are inside the segments too: video 00:34:58 → 00:44:58 is **10 minute
 2h37m of wall clock**. So a narration timestamp **cannot be interpolated onto a bar** — read the
 clock from the nearest keyframe instead. Any label placing a narrated setup on a bar must cite the
 keyframe it read, not an interpolation.
+
+## Both segments are now reconciled — 2026-08-10
+
+Neither one created a label id. Segment 1 → `docs/evidence/labels/2026-07-30_LT3_LT4.yaml`
+(`ptbv_narration`); segment 2 → `docs/evidence/labels/2026-07-31_T1_T2.yaml` (`ptbv_narration`).
+**`PTBV` narrates six executions and all six were already labelled** off the marked charts, which is
+what `docs/PHASE3.md` §3 asked for and the `DIA-P` double-count it was guarding against.
+
+Segment 2 also reviews **the previous session** in its first minute — `LT34-A1`'s exit reason and
+the *"7r on the day"* total, both folded into the 07-30 file under `next_morning_recap`.
 
 **A per-keyframe clock table was specified and not built.** The task was dispatched to a subagent
 which died on a session limit having written nothing — the fourth instance of
