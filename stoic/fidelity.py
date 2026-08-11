@@ -120,6 +120,11 @@ def check_scope_consistency(label: dict) -> tuple[str, ...]:
     scope = label.get("phase6_scope")
     if scope is None:
         return (f"{label_id}: no phase6_scope block",)
+    if not isinstance(scope, dict):
+        # A half-transcribed label can leave the whole block as a scalar (`TBD`) or a list --
+        # both look nothing like the mapping every check below assumes. Report it as a problem
+        # instead of letting `.get`/hashing raise and kill the whole run on this one label.
+        return (f"{label_id}: phase6_scope is not a mapping (got {type(scope).__name__})",)
 
     problems: list[str] = []
     known_keys = set(SCOPE_KEYS) | DECLARATION_KEYS
@@ -131,6 +136,22 @@ def check_scope_consistency(label: dict) -> tuple[str, ...]:
         block = scope.get(key)
         if block is None:
             continue
+        if not isinstance(block, dict):
+            # Same half-transcription failure, one level down: `trigger: TBD` in place of a
+            # sub-block mapping.
+            problems.append(
+                f"{label_id}.{key}: phase6_scope.{key} is not a mapping "
+                f"(got {type(block).__name__})"
+            )
+            continue
+        # A sub-block may only carry its own compared attributes plus `from` and `provenance`;
+        # anything else is a misspelling (e.g. `provenence`) that would otherwise go unchecked.
+        recognised = set(COMPARED_ATTRS[key]) | {"from", "provenance"}
+        for sub_key in block:
+            if sub_key not in recognised:
+                problems.append(
+                    f"{label_id}.{key}: unknown key '{sub_key}' in phase6_scope.{key}"
+                )
         source = block.get("from")
         if source is None:
             problems.append(f"{label_id}.{key}: no from: path")
@@ -141,7 +162,19 @@ def check_scope_consistency(label: dict) -> tuple[str, ...]:
             continue
         for attr in COMPARED_ATTRS[key]:
             stated = block.get(attr)
-            actual = node.get(attr) if isinstance(node, dict) else node
+            if isinstance(node, dict):
+                if attr not in block and attr not in node:
+                    # Neither side names the compared attribute -- a consistently misspelled key
+                    # (e.g. `prise` for `price`) makes both `.get` calls return `None`, which
+                    # would otherwise compare equal and pass vacuously.
+                    problems.append(
+                        f"{label_id}.{key}.{attr}: neither the block nor '{source}' "
+                        f"state a value for '{attr}'"
+                    )
+                    continue
+                actual = node.get(attr)
+            else:
+                actual = node
             if not _same(stated, actual):
                 problems.append(
                     f"{label_id}.{key}.{attr}: block says {stated!r}, "

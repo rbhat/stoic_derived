@@ -8,7 +8,6 @@ confirm it is caught.
 from __future__ import annotations
 
 import datetime as dt
-import inspect
 
 from stoic import fidelity as fidelity_module
 from stoic.fidelity import check_scope_consistency, resolve_path
@@ -43,6 +42,7 @@ def _label() -> dict:
             "expect_fill": True,
             "circular": False,
             "never": ["exit", "outcome"],
+            "anchor_bar_narrated": "13:25",
         },
     }
 
@@ -159,14 +159,13 @@ def test_docstring_does_not_claim_the_import_direction_test_already_exists():
     assert "tests/test_fidelity.py` asserts the direction of dependence" not in doc
 
 
-def test_scope_keys_comment_documents_provenance_and_anchor_bar_narrated():
-    """Finding 5: the comment above SCOPE_KEYS must mention `provenance` and explain why
-    `anchor_bar_narrated` is deliberately excluded (its `from:` target, `bar_5m_et`, is a
-    wall-clock string, not comparable by equality to a UTC timestamp)."""
-    source = inspect.getsource(fidelity_module)
-    assert "provenance" in source
-    assert "anchor_bar_narrated" in source
-    assert "bar_5m_et" in source
+def test_anchor_bar_narrated_is_declared_but_never_a_scope_key():
+    """Finding 5 (hardening pass): behaviour, not prose -- `anchor_bar_narrated` must be validated
+    as a known top-level `phase6_scope` key (via DECLARATION_KEYS) but never treated as a
+    comparable reference (SCOPE_KEYS), because its `from:` target is a wall-clock string, not
+    comparable by equality to a UTC timestamp."""
+    assert "anchor_bar_narrated" in fidelity_module.DECLARATION_KEYS
+    assert "anchor_bar_narrated" not in fidelity_module.SCOPE_KEYS
 
 
 def _label_with_tp1() -> dict:
@@ -211,3 +210,72 @@ def test_three_simultaneous_faults_produce_three_problem_lines():
     del label["phase6_scope"]["stop"]["from"]  # missing from: path
     problems = check_scope_consistency(label)
     assert len(problems) == 3
+
+
+# --- Hardening pass: four more review findings ------------------------------------------------
+
+
+def test_scalar_sub_block_is_reported_not_raised():
+    """Finding 2: `phase6_scope: {trigger: TBD}` -- a scalar where a sub-block mapping is expected
+    -- must be reported, not raise AttributeError from `block.get(...)`."""
+    label = _label()
+    label["phase6_scope"]["trigger"] = "TBD"
+    problems = check_scope_consistency(label)
+    assert len(problems) == 1
+    assert "trigger" in problems[0]
+
+
+def test_scalar_phase6_scope_block_is_reported_not_raised():
+    """Finding 2: `phase6_scope: TBD` -- the whole block a scalar -- must be reported, not raise
+    AttributeError from `scope.get(...)`."""
+    label = _label()
+    label["phase6_scope"] = "TBD"
+    problems = check_scope_consistency(label)
+    assert len(problems) == 1
+    assert "phase6_scope" in problems[0]
+
+
+def test_list_phase6_scope_block_is_reported_not_raised():
+    """Finding 2: `phase6_scope: [...]` -- a list -- must be reported, not raise TypeError from
+    hashing an unhashable dict element while checking membership."""
+    label = _label()
+    label["phase6_scope"] = [{"trigger": "x"}]
+    problems = check_scope_consistency(label)
+    assert len(problems) == 1
+    assert "phase6_scope" in problems[0]
+
+
+def test_unrecognised_key_inside_a_sub_block_is_reported():
+    """Finding 3: an unknown key inside a phase6_scope sub-block -- a misspelling (`provenence`)
+    or unrelated junk -- must be reported. The top-level unknown-key guard is blind to it because
+    it only inspects the top level of the block."""
+    label = _label()
+    label["phase6_scope"]["trigger"]["provenence"] = "read"
+    label["phase6_scope"]["trigger"]["junk"] = 1
+    problems = check_scope_consistency(label)
+    assert any("provenence" in p for p in problems)
+    assert any("junk" in p for p in problems)
+
+
+def test_attribute_absent_on_both_sides_is_reported():
+    """Finding 3: the compared attribute simply missing from both the block and the referenced
+    label node (no misspelling, no junk key) must still be reported -- a scope entry that
+    compares nothing is a bug in the block, not a pass."""
+    label = _label()
+    label["tp1"] = {}
+    label["phase6_scope"]["tp1"] = {"from": "tp1"}
+    problems = check_scope_consistency(label)
+    assert len(problems) == 1
+    assert "price" in problems[0]
+
+
+def test_consistently_misspelled_attribute_does_not_pass_vacuously():
+    """Finding 3: the exact scenario from the review -- `tp1: {prise: 28628.0}` in the label,
+    matched by a scope block that carries the same misspelling, must not compare `None` to `None`
+    and pass. Both the unknown-key check and the absent-on-both-sides check should fire."""
+    label = _label()
+    label["tp1"] = {"prise": 28628.0}
+    label["phase6_scope"]["tp1"] = {"prise": 28628.0, "from": "tp1"}
+    problems = check_scope_consistency(label)
+    assert problems  # not the vacuous ()
+    assert any("price" in p for p in problems)
