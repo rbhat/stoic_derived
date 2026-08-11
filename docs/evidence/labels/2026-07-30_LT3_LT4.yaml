@@ -227,6 +227,29 @@ labels:
       the only round trip on either snapshot that closed at break-even, which bears on which
       trade the drawn `BE` belongs to.
 
+  # ------------------------------------------------- named, from PTBV's narration (not on either chart)
+  - id: PTBV30-N1
+    class: named               # docs/PHASE3.md §2 — named and NOT taken; see `class_question` below
+    direction: long
+    source: "PTBV video [00:48:01 → 00:49:56]; nothing is drawn for it on LT3 or LT4"
+    clock_et: "13:27:46"
+    bar_5m_et: "13:25"
+    provenance: exact          # clock read off the nearest keyframe, floored to the 5m frame
+    quote: >
+      "looks like we might have a good PTB let's see this would be a PTB here ... i would be buying
+      this buy stop ... i'm gonna put the buy stop that's the trade" — then at [00:49:56], "ptb
+      fails back below no entry".
+    outcome: order_placed_never_filled
+    why_not_taken: "the PTB failed back below before the trigger was reached — his own words, 'no entry'"
+    class_question: >
+      Recorded as `named` because no trade resulted, but it is not the same thing as LT-B1, which
+      was drawn and never acted on. Here he placed a working buy stop, so he committed to a price
+      and the market declined it. docs/PHASE3.md §2 has only two classes and this fits neither
+      cleanly. The same question governs `four_lot_order_at_1047` below. THE CLASS IS THE USER'S
+      CALL — this row is provisional.
+    note: >
+      Phase 6 should expect the engine to see this setup and to NOT emit a fill.
+
 # ---------------------------------------------------------------- what is drawn and how it reads
 count_numerals:
   test: >
@@ -343,28 +366,6 @@ ptbv_narration:
     LT34-M1's entry and LT34-M2's entry are each confirmed to the second against a bar this file
     had recorded from an execution arrow alone. Both agree. This is the first independent check on
     any entry bar in the fixture set.
-
-# ---------------------------------------------------------------- class `named`: setups not taken
-# docs/PHASE3.md §2 — a setup he names and does NOT take. An engine signal matching one of these
-# is correct-but-not-taken, never a false positive.
-named_labels:
-  - id: PTBV30-N1
-    class: named
-    direction: long
-    video: "00:48:01 → 00:49:56"
-    clock_et: "13:27:46"
-    bar_5m_et: "13:25"
-    provenance: exact          # clock read off keyframe; bar is the clock floored to the 5m frame
-    quote: >
-      "looks like we might have a good PTB let's see this would be a PTB here ... i would be buying
-      this buy stop ... i'm gonna put the buy stop that's the trade" — then at [00:49:56], "ptb
-      fails back below no entry".
-    outcome: order_placed_never_filled
-    why_not_taken: "the PTB failed back below before the trigger was reached — his own words, 'no entry'"
-    note: >
-      The strongest kind of `named`: he committed to a price with a working buy stop and the market
-      never took it. Distinct from a setup merely pointed at. Phase 6 should expect the engine to
-      see this setup and to NOT emit a fill.
 
 # ---------------------------------------------------------------- open, measured but unresolved
 open_questions:
