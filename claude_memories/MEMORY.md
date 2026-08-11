@@ -21,6 +21,7 @@ which has been retired for this project. See `CLAUDE.md` for the contract.
 - [Long research tasks write incrementally](long-research-tasks-write-incrementally.md) — background subagents died 3x on the census with nothing written; judge delegation by the write pattern, not the task size
 - [Read around the citation](read-around-the-citation.md) — a rulebook quote can be cut short of the sentence that undoes it; verify_citations cannot catch that
 - [Sweep a misreading to every instance](sweep-a-misreading-to-every-instance.md) — one misread §10 number was four, and the fourth had already become a "fact" in our own evidence
+- [Agreement can be a shared rounding](agreement-can-be-a-shared-rounding.md) — two readings agreeing to 0.99 pts were both rounded to the same $1,000; ask what each one actually recovers
 - [Plausible cause is not a measured cause](plausible-cause-is-not-a-measured-cause.md) — the CME break "explained" a 16.95 pt residual for two days; the tool had been printing the real cause all along
 - [Coverage claims need enumeration](coverage-claims-need-enumeration.md) — matching row counts are not coverage; diff the IDs, and list the source directory before claiming the material is silent
 - [Databento OHLCV buckets by ts_recv](databento-ohlcv-buckets-by-ts-recv.md) — aggregating trades by ts_event silently mismatches vendor bars at minute boundaries
