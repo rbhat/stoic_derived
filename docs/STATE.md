@@ -247,6 +247,21 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
+**Asked for by the user on 2026-08-10 and not yet done: audit what is left for Phase 4's SLM.**
+The concern, in his words, is that *"a lot of these rules are going to constrain or make the SLM
+incoherent."* Two things are already known and neither settles it. The SLM's input is the **passage
+census**, not this rulebook — `docs/evidence/census_*.md` cite transcripts, and pointing the SLM at
+`docs/RULEBOOK.md` would be the contamination `claude_memories/audit-hard-rules-not-in-material.md`
+forbids. But **34 D-rows exist and the SLM has proposed none of them**, and the routing pattern is
+three deep: O-14 → D-28, then all four L2 terms routed 08-09 and decided by the human the same day
+(D-29, D-30, D-34).
+
+So the audit is a count, not an opinion. §1–§9 currently holds **94 M, 6 P, 21 J**. For each of the
+**21 J** rows: is it still open, or has a D-row closed it? Report the split, name the J terms still
+open, and say which of those Phase 4 could actually propose over given the corpus. **Do not decide
+any of them** — the point is to measure the room left, not to fill it. Small-n and the no-grid-search
+directives apply as always.
+
 **The critical path is Phase 3, and it is in progress. `docs/PHASE3.md` is the design; every
 marked chart is labelled and work resumes at `PTBV`.** In order:
 
