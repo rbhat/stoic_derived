@@ -47,15 +47,25 @@ Each label gains one `phase6_scope` block. It does two jobs: it names what may b
 **points at which existing field is the reference**. It adds no reading — the reading stays in the
 Phase 3 field it already lives in, and `from:` names that field's path.
 
+One key set for all three classes, `null` wherever the artifact gives nothing:
+
 ```yaml
 phase6_scope:                       # T-A2
-  entry_bar: {ts: 2026-07-31T14:55:00Z, from: entry.pos_ts, provenance: exact}
-  trigger:   {price: 28289.75, from: ptb.trigger.bars, provenance: read}
-  stop:      {price: 28345.50, from: stop.by_ptb_extreme.price, provenance: derived}
-  tp1:       null                   # count numerals do not resolve to bars — see count_numerals
-  never:     [exit, outcome]
+  anchor_bar:  {ts: 2026-07-31T14:50:00Z, from: ptb.pos_ts, provenance: read}
+  entry_bar:   {ts: 2026-07-31T14:55:00Z, from: entry.pos_ts, provenance: exact}
+  trigger:     {price: 28289.75, from: ptb.trigger.bars, provenance: read}
+  stop:        {price: 28345.50, distance: 58.83, from: stop.by_ptb_extreme, provenance: derived}
+  tp1:         null                 # count numerals do not resolve to bars — see count_numerals
+  expect_fill: true
+  circular:    false
+  never:       [exit, outcome]
   why: "the +1R exit is a discretionary stop move (PTBV @ 01:26:50), not §5.4.5 / D-25"
 ```
+
+`from:` names the path of the field the value was transcribed from — for `stop` it is the **parent**
+node, because the label already stores `price` and `distance` together there and both are compared.
+`expect_fill: false` marks the `no_opportunity` case. `circular: true` marks a reference the engine's
+own rule produced (`NQ3-A1` only, §4).
 
 Rules for the block, and each has a reason outside this file:
 
