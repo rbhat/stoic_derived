@@ -297,6 +297,24 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
+**Phase 6 is designed and planned as at 2026-08-11, and no code is written yet.**
+`docs/PHASE6.md` is the design — read it first — and `docs/PHASE6-PLAN.md` is the task-by-task
+implementation plan, to be executed by subagent-driven development. Three things in them bind
+anything that touches this phase, and none of them is inferable from the code:
+
+- **Matching is exact bar, with no tolerance anywhere** — the user's call, 2026-08-11, closing the
+  one thing `docs/PHASE3.md` deferred to Phase 6 by name. `stoic/fidelity.py` holds **no number**.
+- **The plan's Task 2 must be committed before its Task 7 ever runs the engine.** Task 2 adds a
+  `phase6_scope` block to all ten labels; committing it first is what proves the scope was not
+  fitted to the engine's output, which is the only guard `docs/PHASE3.md` has here.
+- **`docs/PHASE6-PLAN.md` is execution scaffolding, not a standing document.** Delete it when the
+  phase closes; `docs/PHASE6.md` and `docs/evidence/phase6_reconciliation.md` are what survive.
+
+Two calls made without a separate decision row, both stated in `docs/PHASE6.md` §3: the run uses
+**`htf=None`**, so every emitted signal tops out at 2 of 3 confluence — which is **D-32**'s own
+recorded consequence on a fast chart, not a finding — and **`SignalType.SCALP`** for all four
+sessions, every fixture being a 5m chart.
+
 **The Phase 4 room-left audit is done — 2026-08-10, `docs/evidence/phase4_room_left.md`. Nothing
 was decided.** The user's concern was that *"a lot of these rules are going to constrain or make the
 SLM incoherent."* **The count does not show that.** Of §1–§9's **21 J** rows, only **5** carry a
