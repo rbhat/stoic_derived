@@ -53,12 +53,30 @@ three `LT34` executions are narrated in `PTBV` and matched to it by clock, creat
   bar in the fixture set. `LT34-M2`'s *"i gotta do market"* also explains why no trigger is drawn
   for it.
 
-**One `named` label so far — `PTBV30-N1`** (13:27:46, bar 13:25): a buy stop placed and never
-filled, *"ptb fails back below no entry"*. And **one open question, measured but not resolved**: a
-**4-lot** order at 10:47:52 that no chart draws, bracketing `LT34-M2`'s 10:50 exit. Whether it
-filled decides whether it is a fourth `taken` or a `named` — and an order placed and never filled
-fits **neither** of `docs/PHASE3.md`'s two classes. **The class is the user's call.** Both are in
+**There is now a third label class — `no_opportunity`, the user's call on 2026-08-10.** A setup he
+**wanted** and the market never triggered, as against `named`, which he **declined**. *"The market
+never gave us a chance to take the trade — will happen quite frequently. We don't mark it as a
+trade."* `PTBV30-N1` (13:27:46, bar 13:25) is the first: a working buy stop, *"ptb fails back below
+no entry"*. **It scores more sharply than `named`** — the bars say the trigger was never traded
+through, so the engine must emit **no fill**, and a fill there is a real divergence. Counts across
+the four sessions are now **8 `taken`, 1 `named`, 1 `no_opportunity`**.
+
+**One open question, measured but not resolved**: a **4-lot** order at 10:47:52 that no chart
+draws, bracketing `LT34-M2`'s 10:50 exit. The class question is settled by the above; only the
+**fact** is open — if it filled it is a fourth `taken`, if not it is `no_opportunity`. In
 `docs/evidence/labels/2026-07-30_LT3_LT4.yaml`.
+
+**A candidate rule came out of the same exchange and is deliberately NOT written in.** The user's
+words: *"once the price has moved past the step 3 extreme, the trade is invalidated."* §5.4.7a–c
+is the closed list and §5.3.4a says a pending order ends in *"exactly one of two things"* — a fill
+or §5.4.7 — with *"no third outcome and no timeout"*. So this would be a **fourth** ender for a
+pending order and a change to **L3**. It is not written into §1–§9 and has no D-row, per
+`claude_memories/audit-hard-rules-not-in-material.md`. **It also needs a geometry check first:** on
+a bullish setup the trigger is the PTB candle's high, which sits **below** the Step 3 extreme, so
+price cannot reach that extreme without first trading through the trigger and filling. The
+condition looks unreachable for a pending long as stated — which suggests it describes the
+*never-pulled-back* case (no PTB forms at all, price just runs) rather than a working order.
+**Put to the user; do not implement either reading.**
 
 **`LT3`/`LT4` is labelled, and it carries more than §10.9 lists.** §10.9 describes one trade; `LT3`
 carries four further execution marks — the morning round trips — so the fixture holds **three**
@@ -553,8 +571,10 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
   the Daily, so neither runs a 5m sequence, while Scalp and Day run wholly on the 5m (**D-7**) and
   both flatten at the cutoff. `docs/evidence/labels/2026-07-30_LT3_LT4.yaml` records it under
   `type:` with the consequence spelled out: **Phase 6 scores entry, trigger and R here, never the
-  exit or the outcome.** Whether `VISION.md`'s Type table should carry a 5m Type that survives the
-  session is the **user's call** — `VISION.md` is not ours to modify.
+  exit or the outcome.** **Settled 2026-08-10: keep the flatten.** The user's call is that
+  `VISION.md`'s 1:58pm Pacific flatten stands and no 5m Type gains an exemption — so **v1 does not
+  reproduce this exit, and that is an accepted scope limit, not a divergence to fix.** `VISION.md`
+  is unchanged and was not ours to modify anyway.
 - **§10.7's stop for `NQ3` is in doubt, and it is not edited.** §10.7 reads *"Stop 28,540.75, the
   PTB low (§5.4.1) — box bottom"*. That value is within **0.04** of the same chart's **20 SMA**
   (28,540.70, whose right-axis label reads `28,540.74`), and the PTB bar's low is **28,529.50**. So

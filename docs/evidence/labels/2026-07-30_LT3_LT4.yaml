@@ -21,6 +21,9 @@ type:
   chart: Scalp_or_Day
   held_past_flatten: true    # entry 15:55 ET, exit 22:15 ET; the 13:58 PT cutoff is 16:58 ET
   reproducible_as: null
+  flatten_rule: keep          # user's call, 2026-08-10 — VISION.md's 1:58pm PT flatten STANDS.
+                              # No 5m Type gains an exemption. So v1 does not reproduce this exit,
+                              # and that is an accepted scope limit, not a divergence to fix.
   note: >
     §10.9 says this trade "is only reproducible as a Swing or Position Type, or not at all."
     Measured against §9's own table it is "not at all": Swing sets up on the 60m and Position
@@ -227,9 +230,9 @@ labels:
       the only round trip on either snapshot that closed at break-even, which bears on which
       trade the drawn `BE` belongs to.
 
-  # ------------------------------------------------- named, from PTBV's narration (not on either chart)
+  # ------------------------------------------------- no_opportunity, from PTBV (not on either chart)
   - id: PTBV30-N1
-    class: named               # docs/PHASE3.md §2 — named and NOT taken; see `class_question` below
+    class: no_opportunity      # user's call, 2026-08-10 — the third class. docs/PHASE3.md §2
     direction: long
     source: "PTBV video [00:48:01 → 00:49:56]; nothing is drawn for it on LT3 or LT4"
     clock_et: "13:27:46"
@@ -240,15 +243,15 @@ labels:
       this buy stop ... i'm gonna put the buy stop that's the trade" — then at [00:49:56], "ptb
       fails back below no entry".
     outcome: order_placed_never_filled
-    why_not_taken: "the PTB failed back below before the trigger was reached — his own words, 'no entry'"
-    class_question: >
-      Recorded as `named` because no trade resulted, but it is not the same thing as LT-B1, which
-      was drawn and never acted on. Here he placed a working buy stop, so he committed to a price
-      and the market declined it. docs/PHASE3.md §2 has only two classes and this fits neither
-      cleanly. The same question governs `four_lot_order_at_1047` below. THE CLASS IS THE USER'S
-      CALL — this row is provisional.
-    note: >
-      Phase 6 should expect the engine to see this setup and to NOT emit a fill.
+    why: >
+      A no-fill: the market never traded through the trigger, so there was never a trade to take.
+      NOT a declined setup — he wanted this one and placed a working buy stop for it. That is what
+      separates this class from `named`, where LT-B1 was drawn and deliberately not acted on.
+    phase_6_expectation: >
+      This is NOT a trade and must not be scored as one. The engine is correct to identify the
+      setup and correct to emit NO fill. An emitted fill here IS a divergence, because the bars say
+      the trigger was never traded through — which makes this class cheap to score and worth
+      keeping. The user notes no-fills "will happen quite frequently".
 
 # ---------------------------------------------------------------- what is drawn and how it reads
 count_numerals:
@@ -381,7 +384,7 @@ open_questions:
       the buy stop was placed at ~10:47:52 and never triggered before the 10:50 break-even stop
       closed the position, cancelling it. That is a reading, not a measurement.
     why_it_matters: >
-      If it never filled it is a `named` label; if it filled it is a fourth `taken` one. It is also
-      a class question docs/PHASE3.md does not answer: an order placed and never filled is neither
-      "a trade he executed" nor "a setup he does not take". NOT resolved here and NOT given an id —
-      the class is the user's call.
+      If it filled it is a fourth `taken` label; if it did not it is `no_opportunity`, the third
+      class the user added on 2026-08-10. The class question is therefore settled and only the
+      FACT is open. Still NOT given an id: which of the two it is depends on whether the order
+      filled, and neither chart draws a 4-lot execution to say so.

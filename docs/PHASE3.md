@@ -71,15 +71,27 @@ fixture falls in it** — every one dates to 2026-06-22 or later.
 `docs/evidence/labels/<session>.yaml`, **tracked**. Phase 6 cites these, so they are evidence, not
 run artifacts — `claude_memories/artifact-locality.md`.
 
-Two classes, and the second is the point:
+Three classes, and the second and third are the point:
 
 - **`taken`** — a trade the trader executed. Exact prices, exact outcome.
-- **`named`** — a setup he names on screen or in narration and does **not** take.
+- **`named`** — a setup he names on screen or in narration and **declines**. He could have taken
+  it and chose not to.
+- **`no_opportunity`** — a setup he **wanted** and the market never triggered. Added by the user
+  on 2026-08-10 for `PTBV30-N1`, where a working buy stop was placed and price failed back below
+  before reaching it. *"The market never gave us a chance to take the trade — will happen quite
+  frequently. We don't mark it as a trade."*
 
 An engine signal matching a `named` label is **correct but not taken**, not a false positive.
 `PTBV` is full of these. Without the class, Phase 6 cannot tell *the engine invented a setup* from
 *the trader declined a real one*, and `CLAUDE.md`'s rule that divergence is a specification bug
 would bias every such case toward a false alarm.
+
+**`no_opportunity` is not a weaker `named` — it scores differently, and more sharply.** A `named`
+label says nothing about what the bars did, so Phase 6 can only check that the engine saw the
+setup. A `no_opportunity` label says the bars **never traded through the trigger**, so the engine
+is required to emit *no fill*: identifying the setup is correct, emitting a fill is a real
+divergence. It is the one class where the absence of a signal is the right answer and is checkable
+against the bars rather than against narration.
 
 Every field carries its provenance. A field never gets a value without one:
 
