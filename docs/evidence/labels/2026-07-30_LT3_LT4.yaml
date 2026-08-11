@@ -162,6 +162,21 @@ labels:
         The exit sits on LT4's own last, in-progress bar. §10.9's "target beyond TP1" is what the
         numbers say: TP1 (28,297.75) was passed on the very next bar and the position ran another
         119.75 points over six hours — §6.4's "we simply stay with the move".
+    phase6_scope:
+      anchor_bar:  {ts: 2026-07-30T19:50:00Z, from: ptb.by_rule.pos_ts, provenance: derived}
+      entry_bar:   {ts: 2026-07-30T19:55:00Z, from: entry.pos_ts, provenance: exact}
+      trigger:     {price: 28241.75, from: ptb.by_rule.trigger, provenance: derived}
+      stop:        {price: 28207.00, distance: 37.42, from: stop.by_ptb_extreme, provenance: derived}
+      tp1:         {price: 28297.75, from: tp1, provenance: derived}
+      expect_fill: true
+      circular:    false
+      never:       [exit, outcome]
+      why: >
+        Held past the 13:58 PT flatten on a 5m chart and type.reproducible_as is null — §9's table
+        has no Type that is both, so v1 cannot reproduce this exit and that is an accepted scope
+        limit (docs/STATE.md), not a divergence. The trigger reference is ptb.by_rule, not
+        ptb.drawn_level: the label records the two disagree by 3.80 points and adopts neither, and
+        by_rule is the §5.2.3 reading the engine computes.
 
   # ------------------------------------------------- the morning round trips, LT3 only
   - id: LT34-M1
@@ -196,6 +211,19 @@ labels:
       This is §10.9's "earlier +2.8R morning trade", and it is the fixture's only trade whose R
       label needs no division: 229.00 pts × 6 lots × $2 = $2,748, which IS 2.75R against §10.10's
       $1,000 unit and rounds to the printed +2.8R. It corroborates that unit rather than assuming it.
+    phase6_scope:
+      anchor_bar:  null
+      entry_bar:   {ts: 2026-07-30T13:35:00Z, from: entry.pos_ts, provenance: exact}
+      trigger:     null
+      stop:        null
+      tp1:         null
+      expect_fill: true
+      circular:    false
+      never:       [exit, outcome]
+      why: >
+        ptb is null — no PTB level is drawn for this entry, so trigger and the §5.4.1 stop are
+        both unavailable. Only by_r_label and by_lot_count exist and neither is ever a reference
+        (docs/CONSTRAINTS.md). Scoreable: direction and entry bar.
 
   - id: LT34-M2
     class: taken
@@ -229,6 +257,18 @@ labels:
       A scratch: +2.75 points on 8 lots is +$44, or 0.04R. See `break_even_mark` below — this is
       the only round trip on either snapshot that closed at break-even, which bears on which
       trade the drawn `BE` belongs to.
+    phase6_scope:
+      anchor_bar:  null
+      entry_bar:   {ts: 2026-07-30T14:15:00Z, from: entry.pos_ts, provenance: exact}
+      trigger:     null
+      stop:        null
+      tp1:         null
+      expect_fill: true
+      circular:    false
+      never:       [exit, outcome]
+      why: >
+        ptb is null and no R label is printed, so §10.10's division has no input either.
+        Scoreable: direction and entry bar.
 
   # ------------------------------------------------- no_opportunity, from PTBV (not on either chart)
   - id: PTBV30-N1
@@ -252,6 +292,22 @@ labels:
       setup and correct to emit NO fill. An emitted fill here IS a divergence, because the bars say
       the trigger was never traded through — which makes this class cheap to score and worth
       keeping. The user notes no-fills "will happen quite frequently".
+    phase6_scope:
+      anchor_bar:  null
+      entry_bar:   null
+      trigger:     null
+      stop:        null
+      tp1:         null
+      expect_fill: false
+      circular:    false
+      never:       [exit, outcome]
+      why: >
+        class `no_opportunity`. The label's own phase_6_expectation governs: identify the setup,
+        emit NO fill. anchor_bar is null because the narration gives a 5m bar (13:25 ET) and no
+        drawn PTB level, so there is no `from:` path in this file to transcribe — the driver
+        locates the order by its narrated bar, recorded below, and scores the order's own
+        lifetime rather than a bar equality.
+      anchor_bar_narrated: {ts: 2026-07-30T17:25:00Z, et: "13:25", from: bar_5m_et, provenance: exact}
 
 # ---------------------------------------------------------------- what is drawn and how it reads
 count_numerals:

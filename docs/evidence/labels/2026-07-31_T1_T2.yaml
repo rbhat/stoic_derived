@@ -82,6 +82,19 @@ labels:
       The first of two shorts. It has no drawn trigger: the brown `ptb` line starts at the
       10:50 bar, ten minutes after this fill, and belongs to T-A2. Phase 6 can score this
       entry's bar and its R, and has nothing on this artifact to score its trigger against.
+    phase6_scope:
+      anchor_bar:  null
+      entry_bar:   {ts: 2026-07-31T14:40:00Z, from: entry.pos_ts, provenance: exact}
+      trigger:     null
+      stop:        null
+      tp1:         null
+      expect_fill: true
+      circular:    false
+      never:       [exit, outcome]
+      why: >
+        ptb is null — the drawn `ptb` line starts at the 10:50 bar and belongs to T-A2, so there
+        is nothing on this artifact to score this trigger against. The stop has only by_r_label,
+        which is never a reference. Scoreable: direction and entry bar.
 
   - id: T-A2
     class: taken
@@ -126,6 +139,19 @@ labels:
     note: >
       The 11:50 bar is T1's own last, still open when T1 was taken — which is why T1 shows
       this cover and no later mark.
+    phase6_scope:
+      anchor_bar:  {ts: 2026-07-31T14:50:00Z, from: ptb.pos_ts, provenance: read}
+      entry_bar:   {ts: 2026-07-31T14:55:00Z, from: entry.pos_ts, provenance: exact}
+      trigger:     {price: 28289.75, from: ptb.trigger.bars, provenance: read}
+      stop:        {price: 28345.50, distance: 58.83, from: stop.by_ptb_extreme, provenance: derived}
+      tp1:         null
+      expect_fill: true
+      circular:    false
+      never:       [exit, outcome]
+      why: >
+        The +1R exit is a discretionary stop move, not §5.4.5 / D-25 — ptbv_narration.
+        management_observed.disposition says score the entry, the trigger and R, never the exit.
+        tp1 is unscoreable: the count numerals on T1/T2 do not resolve to bars (count_numerals).
 
   # ---------------------------------------------------------------- bullish count, after the reset
   - id: T-B1
@@ -171,6 +197,19 @@ labels:
         reads 28,454.50 — coincidence, not the same event: that tag is MNQ's price 7 s into
         the 13:45 bar, whose NQ open is 28,456.25.
       past_flatten: false
+    phase6_scope:
+      anchor_bar:  {ts: 2026-07-31T16:45:00Z, from: ptb.pos_ts, provenance: read}
+      entry_bar:   {ts: 2026-07-31T16:50:00Z, from: entry.pos_ts, provenance: exact}
+      trigger:     {price: 28349.75, from: ptb.trigger.bars, provenance: read}
+      stop:        {price: 28308.50, distance: 42.42, from: stop.by_ptb_extreme, provenance: derived}
+      tp1:         null
+      expect_fill: true
+      circular:    false
+      never:       [exit, outcome]
+      why: >
+        tp1 is unscoreable — the count numerals on T1/T2 do not resolve to bars (count_numerals).
+        This is the corpus's one close agreement between §10.10 and §5.4.1, at 0.99 points, and
+        by_r_label is still not the reference.
 
 # ---------------------------------------------------------------- what is drawn and NOT read
 count_numerals:

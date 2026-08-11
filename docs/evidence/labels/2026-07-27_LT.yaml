@@ -61,6 +61,19 @@ labels:
       provenance: exact
       source: "LT execution text '6 @ 28345.00', '+2R'"
       past_flatten: false
+    phase6_scope:
+      anchor_bar:  {ts: 2026-07-27T13:35:00Z, from: ptb.pos_ts, provenance: read}
+      entry_bar:   {ts: 2026-07-27T13:40:00Z, from: entry.pos_ts, provenance: exact}
+      trigger:     {price: 28525.75, from: ptb.trigger.bars, provenance: read}
+      stop:        {price: 28613.75, distance: 97.75, from: stop.by_ptb_extreme, provenance: derived}
+      tp1:         null
+      expect_fill: true
+      circular:    false
+      never:       [exit, outcome]
+      why: >
+        tp1 is unscoreable: the Step 3 Low is not drawn on this chart and tp1.bars is null.
+        stop.by_r_label disagrees by 12.25 points and is never a reference (docs/CONSTRAINTS.md).
+        The exit bar is itself unresolved — 28,345.00 lies inside three candidate bars.
 
   - id: LT-B1
     class: named               # drawn as an entry, never executed
@@ -75,3 +88,16 @@ labels:
       The chart draws this line labelled "Pullback Entry" one leg below LT-A1's "Step 3 Pullbck
       Entry" and attaches no execution to it. §10.1 reads it as the continuation entry of §2.5.
       An engine signal here is correct-but-not-taken, not a false positive.
+    phase6_scope:
+      anchor_bar:  {ts: 2026-07-27T13:50:00Z, from: ptb.pos_ts, provenance: read}
+      entry_bar:   null
+      trigger:     {price: 28446.50, from: ptb.trigger.bars, provenance: read}
+      stop:        null
+      tp1:         null
+      expect_fill: null
+      circular:    false
+      never:       [exit, outcome]
+      why: >
+        class `named` — the trader declined it. Scored as "did the engine anchor here". An engine
+        fill is correct-but-not-taken, never a false positive (docs/PHASE3.md §2); the label's own
+        would_trigger_on says the bars would have filled it.

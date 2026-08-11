@@ -62,3 +62,18 @@ labels:
         price at 28,716.75 — one tick under the drawn PDH target. There is no exit on this artifact,
         so no outcome is labelled. Phase 6 can score entry, stop and TP1 and must not score an exit.
       past_flatten: false
+    phase6_scope:
+      anchor_bar:  {ts: 2026-08-03T14:05:00Z, from: ptb.pos_ts, provenance: read}
+      entry_bar:   {ts: 2026-08-03T14:10:00Z, from: entry.pos_ts, provenance: derived}
+      trigger:     {price: 28597.50, from: ptb.trigger.bars, provenance: read}
+      stop:        {price: 28529.50, distance: 68.00, from: stop.by_ptb_extreme, provenance: derived}
+      tp1:         {price: 28628.00, from: tp1.price, provenance: derived}
+      expect_fill: true
+      circular:    true
+      never:       [exit, outcome]
+      why: >
+        CIRCULAR: entry.pos_ts is provenance derived — the labeller computed it as "first bar
+        trading above the 28,597.50 trigger", which is §5.2.4, the rule the engine applies. A
+        match on this bar tests the labeller's arithmetic, not the engine, and the report says so
+        (docs/PHASE6.md §4). The only E-mini fixture, so prices should agree exactly; there is no
+        exit on the artifact, the position is still open at the screenshot.
