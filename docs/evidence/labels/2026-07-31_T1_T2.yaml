@@ -301,42 +301,60 @@ ptbv_narration:
         (28,308.50); the by_r_label reading (28,309.49) sits ABOVE it and is the one this quote
         does not support. Neither is adopted — see the stop block and §10.10's own limits.
 
-  # ------------------------------------------------- the $1,000 risk unit, now cited
+  # ------------------------------------------------- the ~$1,000 risk figure, now cited
   risk_unit:
     finding: >
-      §10.10 infers a "~$1,000 risk unit" to recover a stop from an R label. On this session the
-      trader states it outright, three times, and the arithmetic closes.
+      §10.10 infers a "~$1,000 risk unit". The trader states it outright in this segment, three
+      times. What he states is a MAX he sizes under, not a constant he hits — which is §10.10's own
+      floor rule, n = floor(1000 / (2 x stop)), "which is why they land just under".
     quotes:
       - {video: "01:36:09", quote: "i'm just taking these setups one thousand dollar per risk for me this is my risk currently"}
       - {video: "01:29:35", quote: "one thousand dollars is locked in", refers_to: "T-A2's +1R"}
       - {video: "01:17:39", quote: "it will be about thousand dollar r[isk]", refers_to: "sizing T-A2 to 9 lots"}
-    arithmetic:                     # MNQ, $2 per point
-      - {id: T-A1, basis: "risk  70.00 pts x 7 lots x $2",   usd: 980.00}
-      - {id: T-A2, basis: "risk  58.83 pts x 9 lots x $2",   usd: 1058.94}
-      - {id: T-A2, basis: "lock  54.42 pts x 9 lots x $2",   usd: 979.56}
-      - {id: T-B1, basis: "risk  42.42 pts x 12 lots x $2",  usd: 1018.08}
-      - {id: T-B1, basis: "P&L  103.58 pts x 12 lots x $2",  usd: 2485.92, note: "= 2.49 x $1,000 -> the printed +2.5R"}
-    bears_on_10_10:
-      finding: >
-        §10.10 recovers a stop as `P&L points / R multiple`. This session shows what that actually
-        recovers: the R label is P&L divided by the ROUND $1,000, and the initial risk only equals
-        $1,000 because the lot count is floor-rounded to it (§10.10 says so). So the method returns
-        the risk UNIT, and it misses the true stop distance by the lot rounding.
-      consequence_for_T-B1: >
-        The 0.99-point agreement this file calls the closest in the corpus is that rounding and not
-        an independent confirmation: $1,018.08 of real risk against a $1,000 unit is 42.42 vs 41.43
-        points. It remains the closest agreement measured; what changes is what it is evidence OF.
-      consequence_for_T-A2: >
-        Its 4.41-point disagreement now has a cause. The +1R is a LOCKED DOLLAR AMOUNT — a buy stop
-        he placed so that "one thousand dollars is locked in" — not one multiple of that trade's own
-        risk. §10.10's division assumes the second. So T-A2's by_r_label reading is recovering the
-        exit he chose, not the stop he set.
-      does_not_explain: >
-        `LT`'s 12.25-point disagreement (§10.10 vs §5.4.1) is far too large to be lot rounding.
-        Unchanged and still unexplained.
-      disposition: >
-        Reported. §10.10 is docs/RULEBOOK.md §10 and editing it is the user's call —
-        docs/CONSTRAINTS.md, "Write a correction, a caveat or a chain of reasoning into §10".
+    what_it_does_NOT_establish: >
+      It does not say how the printed R label is computed. Two candidates fit every row in §10.10's
+      table equally well — P&L divided by the round $1,000, or P&L divided by that trade's own
+      actual risk — and this session cannot separate them, because both give the same printed label
+      on all three trades. An earlier version of this block asserted the first. That was a mechanism
+      stated without being distinguished from its alternative; see
+      claude_memories/plausible-cause-is-not-a-measured-cause.md.
+
+  # ------------------------------------------------- §10.10 stops are SUGGESTIONS, not readings
+  stop_recovery:
+    status: suggestion              # user's call, 2026-08-11
+    governs: "every `by_r_label` field in this file, and the lot bracket below"
+    why: >
+      Recovering a stop from a dollar figure needs two things this repo has not tested. The risk
+      unit is a maximum, not a constant, so the actual risk lands somewhere in
+      (n/(n+1) x $1,000, $1,000] — up to 14% below at 6 lots. And the point value is instrument
+      specific: $2/point is MNQ. NQ is $20, ES $50, MES $5. These charts are MNQ while our bars are
+      NQ, so every dollar figure here is contingent on the contract as well as on the account.
+    disposition: >
+      Treat a `by_r_label` distance as a SUGGESTION until it is tested against a second instrument,
+      never as a reading that can contradict §5.4.1 / D-18. The engine takes its stop from the PTB
+      extreme (D-18) and never from a dollar figure — §5.4.2 defines R in POINTS, and §10.10 itself
+      says it is "not a sizing rule". Nothing in stoic/ reads any of this.
+    lot_count_bracket:
+      status: suggestion            # same contingency as above — same $/point, same cap
+      idea: >
+        §10.10's floor rule inverts: given the lot count n, the stop distance d satisfies
+        1000/(2(n+1)) < d <= 1000/(2n). That brackets a stop WITHOUT dividing by the R label, so it
+        is independent of how the label is computed — which is the one question above that this
+        session could not settle.
+      measured_across_all_fixtures:   # pts; "out" = outside the bracket
+        - {id: LT-A1,    lots: 6,  bracket: "(71.43, 83.33]", ptb_extreme: 97.75, r_label: 85.50, both: out}
+        - {id: LT34-A1,  lots: 13, bracket: "(35.71, 38.46]", ptb_extreme: 37.42, r_label: 38.46, both: in}
+        - {id: LT34-M1,  lots: 6,  bracket: "(71.43, 83.33]", ptb_extreme: null,  r_label: 81.79}
+        - {id: T-A1,     lots: 7,  bracket: "(62.50, 71.43]", ptb_extreme: null,  r_label: 70.00}
+        - {id: T-A2,     lots: 9,  bracket: "(50.00, 55.56]", ptb_extreme: 58.83, r_label: 54.42, ptb: out}
+        - {id: T-B1,     lots: 12, bracket: "(38.46, 41.67]", ptb_extreme: 42.42, r_label: 41.43, ptb: out}
+      do_not_conclude: >
+        The PTB-extreme readings fall outside on T-A2 (by 3.27) and T-B1 (by 0.75), and BOTH
+        readings fall outside on LT-A1. Do NOT read that as evidence against §5.4.1: the excesses
+        on T-A2 and T-B1 are within the MNQ-vs-NQ contract basis that docs/PHASE3.md already says
+        not to triage as a divergence, and the bracket assumes he maxes the lots on every trade,
+        which nothing establishes. It is recorded so a later test has something to test, and it is
+        not acted on.
 
   # ------------------------------------------------- how T-A2 reached +1R
   management_observed:

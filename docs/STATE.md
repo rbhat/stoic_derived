@@ -61,16 +61,20 @@ executions across its two days and **all six were already labelled off the marke
 keyframe jump), and every line is **bracketed between the two nearest measured keyframe clocks,
 never interpolated**. `docs/evidence/labels/2026-07-31_T1_T2.yaml`, `ptbv_narration`. Four results:
 
-- **The `~$1,000` risk unit is now cited, not inferred.** §10.10 rests on it; the trader states it
-  outright — *"one thousand dollar per risk for me this is my risk currently"* [01:36:09], plus
-  *"one thousand dollars is locked in"* for `T-A2`'s +1R and *"about thousand dollar r[isk]"* while
-  sizing it. All five arithmetic checks land within 6% of $1,000.
-- **That reframes what §10.10 recovers, and it is not the stop.** The R label is P&L ÷ the **round**
-  $1,000, and the initial risk only equals $1,000 because the lot count is floor-rounded to it. So
-  the method returns the **risk unit**, missing the true stop by the rounding — `T-B1`'s celebrated
-  **0.99**-point agreement is that rounding ($1,018.08 of real risk against a $1,000 unit), not an
-  independent confirmation. **`LT`'s 12.25 is far too large for this and stays unexplained.**
-  Reported; editing §10 is the user's call.
+- **The `~$1,000` risk figure is now cited rather than inferred** — *"one thousand dollar per risk
+  for me this is my risk currently"* [01:36:09], plus two more. **What he states is a maximum he
+  sizes under, not a constant he hits**, which is §10.10's own floor rule `n = ⌊1000 ÷ (2d)⌋`,
+  *"which is why they land just under"*.
+- **The whole dollar bridge is a SUGGESTION now, not a reading — the user's call, 2026-08-11**, and
+  it stays one until it is tested against a second instrument. Two untested things sit under it:
+  the risk figure is a **cap**, so the real risk lands anywhere in `(n/(n+1) × $1,000, $1,000]` — up
+  to **14% below** at 6 lots — and the point value is **instrument-specific**, `$2/point` being
+  **MNQ** against NQ's $20 and ES's $50, while these charts are MNQ and our bars are NQ. **So a
+  `by_r_label` distance may never contradict §5.4.1 / D-18**, and nothing in `stoic/` reads a dollar
+  figure. A first version of this said §10.10 *"recovers the risk unit, not the stop"* and pinned
+  `T-B1`'s 0.99 on lot rounding; **that asserted one of two constructions that the corpus does not
+  separate** — every §10.10 row fits *P&L ÷ round $1,000* and *P&L ÷ that trade's own risk* equally.
+  `docs/evidence/labels/2026-07-31_T1_T2.yaml`, `stop_recovery`.
 - **`T-A2`'s +1R is a discretionary stop move, not a target and not the rulebook's break-even.**
   *"i'm gonna put my stop loss over here and then i will lock in plus one r"* [01:26:50], filled by
   a buy stop at 11:50. §5.4.5 / **D-25** allows exactly one stop move and it is to break-even. This
