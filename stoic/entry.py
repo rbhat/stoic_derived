@@ -3,10 +3,16 @@
 Source: `docs/RULEBOOK.md` §2.5 (continuation entries), §3.4-3.7 (the Step 3 High/Low, its
 freeze at fill -- **D-16**, **D-21**), §5.2.1a/§5.2.3a/§5.2.8-§5.2.8a (where the pullback begins,
 the order level -- **D-12**, the inside-bar exclusion -- **D-23**), §5.3.1-§5.3.10 (activation,
-the re-anchor walk -- **D-17**, the gap fill -- **D-22**), §5.4.1/§5.4.4/§5.4.5/§5.4.7-§5.4.7c
-(the stop -- **D-10**/**D-18**, break-even -- **D-25**, invalidation -- **D-24**), and the `docs/
-PLAN.md` Phase 5 layer table's L3 row. Open row **O-15** (§12) governs why a `RESET` does not
-cancel a working order; open row **O-10** (§5.4.6) is why there is no minimum-R gate here.
+the re-anchor walk -- **D-17**, the gap fill -- **D-22**), §5.3.4a-§5.3.4b (what ends the walk --
+**D-35**), §5.4.1/§5.4.4/§5.4.5/§5.4.7-§5.4.7c (the stop -- **D-10**/**D-18**, break-even --
+**D-25**, invalidation -- **D-24**), and the `docs/PLAN.md` Phase 5 layer table's L3 row. Open row
+**O-15** (§12) governs why a `RESET` does not cancel a working order; open row **O-10** (§5.4.6)
+is why there is no minimum-R gate here.
+
+**The walk ends three ways and this module is where all three live:** a fill, any of §5.4.7a-c
+(`ORDER_CANCELLED`, which also drops open positions), and §5.3.4b's leg resumption
+(`ORDER_VOIDED`, **D-35**, which touches the order and nothing else). Do not add a fourth --
+§5.3.4a is a closed list and there is still **no timeout**.
 
 L3 **consumes** L1 (`stoic.structure.opens_pullback`, `stoic.candles.candle_structure`) and L2
 (`stoic.sequence`'s `EventRecord`s and running Step 3 extreme). It derives neither. Explicitly
@@ -58,6 +64,10 @@ from stoic.structure import Direction, opens_pullback
 class EntryEvent(StrEnum):
     PTB_ANCHORED = "ptb_anchored"  # order placed or re-anchored (§5.2.3a, §5.3.5)
     ORDER_CANCELLED = "order_cancelled"  # §5.3.4a -- invalidated without an entry
+    # §5.3.4b, D-35 -- the leg resumed past the Step 3 extreme, so the pullback this PTB belonged
+    # to is over. Distinct from ORDER_CANCELLED because the cause differs and Phase 6 triages on
+    # it: ORDER_CANCELLED is §5.4.7a-c and also drops open positions; this touches the order only.
+    ORDER_VOIDED = "order_voided"
     ENTRY_FILLED = "entry_filled"  # §5.3.2, §5.3.7
     STOP_TO_BREAK_EVEN = "stop_to_break_even"  # §5.4.5, D-25
 
@@ -170,6 +180,12 @@ class EntryMachine:
            §5.4.7 invalidation condition is **close-based** (the engine note under §5.4.7: "All
            three are close-based"). So on a bar that both fills and would invalidate, the fill
            happened first, in wall-clock terms, and must be recorded that way.
+        2a. The leg resuming past the Step 3 extreme voids an *unfilled* order (§5.3.4b, D-35) --
+           checked **after** the fill, because a bar that both fills and resumes filled first: the
+           trigger sits between price and the extreme. On a continuous bar that geometry makes this
+           unreachable; it bites only on a gap through both, where the fill still wins unless the
+           order was already gone. It reads the **pre-bar** extreme latched in (1) -- reading an
+           extreme that already included this bar's own high could never be exceeded by it.
         3. Break-even, evaluated on every still-open position -- **including one that just filled
            this bar.** For a long, the trigger (a PTB high inside the pullback) sits below the
            Step 3 High, so a bar whose high reaches the Step 3 High necessarily traded through the
@@ -242,6 +258,28 @@ class EntryMachine:
                     scan_from=pos,  # the next pullback may only open strictly after this bar
                 )
 
+        # --- 2a. The leg resumed past the Step 3 extreme (§5.3.4b, D-35) ---
+        # Ends the WALK and nothing else: positions are untouched (this is not a fourth §5.4.7
+        # condition), `armed` is left alone so the count survives, and `scan_from` moves to this
+        # bar so a NEW pullback -- a continuation PTB (§2.5, D-21) -- may open strictly after it.
+        # Same intrabar trade-through test as break-even below, deliberately: the two must not be
+        # able to disagree about whether this bar reached the extreme.
+        if state.order is not None and state.last_step3_extreme is not None:
+            ext = state.last_step3_extreme
+            if high > ext if bullish else low < ext:
+                records.append(
+                    EntryRecord(
+                        pos,
+                        EntryEvent.ORDER_VOIDED,
+                        self.direction,
+                        anchor_pos=state.order.anchor_pos,
+                        trigger=state.order.trigger,
+                        stop=state.order.stop,
+                        step3_extreme=ext,
+                    )
+                )
+                state = replace(state, order=None, scan_from=pos)
+
         # --- 3. Break-even (§5.4.5, D-25) -- evaluated on every open position, fill bar included
         remaining: list[OpenEntry] = []
         for entry in state.positions:
@@ -282,14 +320,15 @@ class EntryMachine:
             state = replace(state, order=None, positions=(), armed=False)
 
         # STEP_3_CONFIRMED: arm; only move scan_from if no walk is currently in progress -- an
-        # active walk is not disturbed (§5.3.4a lists exactly two ways it ends).
+        # active walk is not disturbed (§5.3.4a lists exactly three ways it ends, and re-arming
+        # is not one of them).
         if any(e.event == Event.STEP_3_CONFIRMED for e in own_events):
             new_scan_from = pos if state.order is None else state.scan_from
             state = replace(state, armed=True, scan_from=new_scan_from)
 
         # RESET (§2.4.3, D-15): disarm -- no *new* pullback may be scanned. A reset does NOT
-        # cancel a working order (O-15; §5.3.4a: "no third outcome and no timeout" -- only a fill
-        # or §5.4.7a-c ends the walk).
+        # cancel a working order (O-15; §5.3.4a: "no timeout" -- only a fill, §5.4.7a-c, or
+        # §5.3.4b's resumption ends the walk, and a reset is none of the three).
         if any(e.event == Event.RESET for e in own_events):
             state = replace(state, armed=False)
 

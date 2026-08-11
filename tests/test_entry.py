@@ -572,6 +572,114 @@ def _replay_bars() -> pd.DataFrame:
     )
 
 
+# ---------------------------------------------------------------------------
+# Case 18 -- §5.3.4b / D-35: the leg resuming past the Step 3 extreme voids the walk
+#
+# Read the invariant these four tests pin down, because it is the whole story:
+#   the working order's trigger is a PTB extreme INSIDE the pullback, so it always sits
+#   between price and the Step 3 extreme -- trigger <= extreme.
+# A bar that reaches the extreme therefore trades through the trigger first and FILLS, and
+# that holds on a gap too (D-22 fills at the open). So under `iter_replay_steps` the void is
+# UNREACHABLE. It is implemented as the decision was taken, and as a guard: the first test
+# drives `EntryMachine.step` with a caller-supplied extreme BELOW the trigger, which is the
+# only way to violate the invariant, and proves the code path is correct if it ever is.
+# ---------------------------------------------------------------------------
+
+
+def test_case18_leg_resumption_voids_order_when_extreme_is_below_trigger():
+    """The only reachable shape: a stale extreme (105) below the standing trigger (108), and a
+    bar that clears the extreme without reaching the trigger. Everything except the order is
+    left alone -- that is what "invalidated but continuation ptb possible" means."""
+    rows = [
+        *_BULLISH_PREFIX,  # 0 arm, 1 expansion (parent), 2 pullback -> trigger 108, stop 99
+        {"open": 101, "high": 107, "low": 100, "close": 106},  # 3: 107 > 105, and 107 <= 108
+    ]
+    _machine, _, records, states = _run_entry(
+        Direction.BULLISH,
+        rows,
+        events_by_pos={0: _arm(Direction.BULLISH)},
+        extremes_by_pos={0: 105.0, 1: 105.0, 2: 105.0, 3: 105.0},
+    )
+
+    voided = [r for r in records[3] if r.event == EntryEvent.ORDER_VOIDED]
+    assert len(voided) == 1
+    assert voided[0].anchor_pos == 2
+    assert voided[0].trigger == 108.0
+    assert voided[0].stop == 99.0
+    assert voided[0].step3_extreme == 105.0
+
+    # No fill, and the record is NOT an ORDER_CANCELLED -- the cause is distinguishable.
+    assert EntryEvent.ENTRY_FILLED not in [r.event for r in records[3]]
+    assert EntryEvent.ORDER_CANCELLED not in [r.event for r in records[3]]
+
+    end = states[3]
+    assert end.order is None  # the walk ended
+    assert end.positions == ()  # nothing was open, and nothing was dropped
+    assert end.armed is True  # the count survives -- NOT a reset (D-21, §2.5)
+    assert end.scan_from == 3  # a new pullback may open strictly after this bar
+
+
+def test_case18_continuation_ptb_can_anchor_after_a_void():
+    """The half of D-35 that is easy to lose: after the void the machine must still be able to
+    anchor a fresh PTB, or "continuation ptb possible after that candle" is not implemented."""
+    rows = [
+        *_BULLISH_PREFIX,
+        {"open": 101, "high": 107, "low": 100, "close": 106},  # 3: voids the order
+        {"open": 112, "high": 115, "low": 108, "close": 114},  # 4: expansion, new parent
+        {"open": 110, "high": 113, "low": 106, "close": 109},  # 5: lower high AND lower low
+    ]
+    _machine, _, records, _states = _run_entry(
+        Direction.BULLISH,
+        rows,
+        events_by_pos={0: _arm(Direction.BULLISH)},
+        extremes_by_pos=dict.fromkeys(range(6), 105.0),
+    )
+
+    assert [r.event for r in records[3]] == [EntryEvent.ORDER_VOIDED]
+    anchored = [r for r in records[5] if r.event == EntryEvent.PTB_ANCHORED]
+    assert len(anchored) == 1
+    assert anchored[0].anchor_pos == 5
+    assert anchored[0].trigger == 113.0
+
+
+def test_case18_negative_control_fill_wins_over_the_void_including_on_a_gap():
+    """The geometry, asserted rather than argued: with the extreme where L2 actually puts it
+    (at or above the trigger), a bar that clears the extreme FILLS and never voids -- and a bar
+    that gaps clean through both fills at the open (D-22), so the gap is not an exception."""
+    trade_through = [*_BULLISH_PREFIX, {"open": 106, "high": 112, "low": 105, "close": 111}]
+    _m1, _, recs1, st1 = _run_entry(
+        Direction.BULLISH,
+        trade_through,
+        events_by_pos={0: _arm(Direction.BULLISH)},
+        extremes_by_pos=dict.fromkeys(range(4), 110.0),  # extreme 110 >= trigger 108
+    )
+    assert [r.event for r in recs1[3]] == [
+        EntryEvent.ENTRY_FILLED,
+        EntryEvent.STOP_TO_BREAK_EVEN,
+    ]
+    assert st1[3].order is None
+
+    gap = [*_BULLISH_PREFIX, {"open": 118, "high": 120, "low": 117, "close": 119}]
+    _m2, _, recs2, _st2 = _run_entry(
+        Direction.BULLISH,
+        gap,
+        events_by_pos={0: _arm(Direction.BULLISH)},
+        extremes_by_pos=dict.fromkeys(range(4), 110.0),
+    )
+    filled = [r for r in recs2[3] if r.event == EntryEvent.ENTRY_FILLED]
+    assert len(filled) == 1
+    assert filled[0].fill == 118.0  # the open, never better than the trigger
+    assert EntryEvent.ORDER_VOIDED not in [r.event for r in recs2[3]]
+
+
+def test_case18_void_is_unreachable_under_replay():
+    """`iter_replay_steps` sources the extreme from L2, which maintains trigger <= extreme, so
+    the void never fires on a real sequence. Pinned so that if a later change makes it fire,
+    that shows up here as a decision to make and not as a silent behaviour change."""
+    result = replay_entries(_replay_bars(), _replay_stub_judgment())
+    assert EntryEvent.ORDER_VOIDED not in set(result["event"])
+
+
 def test_case17_replay_entries_smoke_test_schema_and_determinism():
     judgment = _replay_stub_judgment()
     bars = _replay_bars()

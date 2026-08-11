@@ -107,17 +107,26 @@ draws, bracketing `LT34-M2`'s 10:50 exit. The class question is settled by the a
 **fact** is open — if it filled it is a fourth `taken`, if not it is `no_opportunity`. In
 `docs/evidence/labels/2026-07-30_LT3_LT4.yaml`.
 
-**A candidate rule came out of the same exchange and is deliberately NOT written in.** The user's
-words: *"once the price has moved past the step 3 extreme, the trade is invalidated."* §5.4.7a–c
-is the closed list and §5.3.4a says a pending order ends in *"exactly one of two things"* — a fill
-or §5.4.7 — with *"no third outcome and no timeout"*. So this would be a **fourth** ender for a
-pending order and a change to **L3**. It is not written into §1–§9 and has no D-row, per
-`claude_memories/audit-hard-rules-not-in-material.md`. **It also needs a geometry check first:** on
-a bullish setup the trigger is the PTB candle's high, which sits **below** the Step 3 extreme, so
-price cannot reach that extreme without first trading through the trigger and filling. The
-condition looks unreachable for a pending long as stated — which suggests it describes the
-*never-pulled-back* case (no PTB forms at all, price just runs) rather than a working order.
-**Put to the user; do not implement either reading.**
+**That candidate rule is now decided and built — D-35, taken 2026-08-11.** The user's words:
+*"once the price has moved past the step 3 extreme, the trade is invalidated"*, then, asked which
+object it attaches to, *"current trade is invalidated but continuation ptb possible after that
+candle"* and *"do not overcomplicate this."* It attaches to the **working order**, so it is a
+**third** way the walk ends (§5.3.4a, §5.3.4b) and **not** a fourth §5.4.7 condition: an open
+position is untouched, the count is not reset, and a new pullback after that candle may open a
+continuation PTB (§2.5, **D-21**). Built as `ORDER_VOIDED` in `stoic/entry.py`, four tests in
+`tests/test_entry.py`. **The corpus is silent on it** — a scan of the 17 text sources for
+cancellation language co-occurring with *step three* returns two lines, neither on this condition —
+so it is the human's, on the footing **D-24** and **D-31** already use.
+
+**It is unreachable in the current engine, and that was measured rather than argued.** The trigger
+is a PTB extreme *inside* the pullback, so `trigger ≤ extreme` always, and a bar reaching the
+extreme has already traded through the trigger and filled — **including on a gap**, where **D-22**
+fills at the open. Over **7,860** NQ 5m bars (2026-05-01 → 2026-06-10) L3 emitted 498
+`PTB_ANCHORED`, 258 `ENTRY_FILLED`, 63 `ORDER_CANCELLED` and **0 `ORDER_VOIDED`**. So the rule is
+in the spec and in the code and **changes no output today**; it is a guard, and `test_case18_void_
+is_unreachable_under_replay` pins that so a later change surfaces as a decision rather than as
+drift. **The user should know it is a no-op as scoped** — if the intent was a condition that
+actually bites, the reading to revisit is *which* extreme, not whether to implement it.
 
 **`LT3`/`LT4` is labelled, and it carries more than §10.9 lists.** §10.9 describes one trade; `LT3`
 carries four further execution marks — the morning round trips — so the fixture holds **three**
