@@ -214,3 +214,29 @@ rulebook_numbers_in_doubt:
   disposition: >
     Not corrected. Editing docs/RULEBOOK.md §10 is the user's call. The consequence for
     docs/evidence/fixture_dating.md IS corrected there, because that file is ours.
+
+# ---------------------------------------------------------------- PTBV narrates this session too
+double_count_warning: >
+  ADDED 2026-08-10. This session is PTBV's SECOND segment — video ~01:06 → 01:37:54, wall 09:27 →
+  13:44 ET. PTBV is a cut of two days, not the single 2026-07-30 session docs/PHASE3.md used to
+  scope it as; see docs/evidence/ptbv_session_map.md. PTBV's final keyframe IS the T1/T2 chart,
+  carrying all six executions below, at clock 01:44:11 PM — 34 seconds before T2's 13:45 screenshot
+  bar. So the three `taken` labels in this file are narrated live in PTBV. When that segment is
+  read, RECONCILE against these ids rather than creating new ones — docs/PHASE3.md §3, the error
+  AUDIT-2a F-1 caught for DIA-P. The 07-30 half is already reconciled in
+  docs/evidence/labels/2026-07-30_LT3_LT4.yaml under `ptbv_narration`.
+
+ptbv_segment_2:
+  status: not_yet_read
+  span: "video ~01:06:41 → 01:37:49"
+  clocks_measured:                # read off keyframes; docs/evidence/ptbv_session_map.md
+    - {video: "01:06:41", clock_et: "09:27:07", shows: "daily chart, pre-market"}
+    - {video: "01:08:22", clock_et: "09:30:55"}
+    - {video: "01:10:02", clock_et: "10:03:03", shows: "13 @ 28244.42, 13 @ 28417.50, +4.5R — LT34-A1 reviewed the morning after"}
+    - {video: "01:19:57", clock_et: "11:13:38"}
+    - {video: "01:29:51", clock_et: "11:42:01"}
+    - {video: "01:37:49", clock_et: "01:44:11 PM", shows: "the T1/T2 chart, six executions, two counts, two ptb levels"}
+  note: >
+    Video time does NOT map linearly to wall clock — the recording is cut. Read the clock off the
+    nearest keyframe, never interpolate. docs/PHASE3.md §4 item 4 has the method and the
+    x-shifting-clock trap.

@@ -265,11 +265,19 @@ break_even_mark:
     The +2.8R trade (LT34-M1) ran 09:35 → 10:05 and closed +229.00 points; the 8-lot trade
     (LT34-M2) ran 10:15 → 10:50 and closed +2.75 points, which IS break-even. The `BE` text sits
     inside LT34-M2's window, not LT34-M1's.
+  what_the_narration_says: >
+    RESOLVED 2026-08-10 by PTBV, which narrates this session live (docs/evidence/ptbv_session_map.md).
+    At video [00:26:33], wall clock 10:23:17 AM, he says "this is a very good place to put your stop
+    loss at break-even ... I'm gonna put this at the break even". LT34-M1 had already closed at
+    10:06:11 ([00:23:19]), seventeen minutes earlier, and the position open at 10:23 is the one he
+    entered at 10:17:43 ([00:23:38], "i gotta do market") — LT34-M2. So the break-even stop belongs
+    to LT34-M2, which is what the arithmetic said and NOT what §10.9 says.
   disposition: >
-    Both readings stand. `BE` is hand-placed text, so its x-position identifies a trade no more
-    reliably than a count numeral marks a bar, and §10.9 already states that the mark says WHERE
-    the stop went and never WHICH event moved it — so it corroborates neither trigger under D-25
-    either way. Reported, not corrected: editing §10 is the user's call.
+    The narration settles WHICH trade; it does not rehabilitate the drawn mark. `BE` sits at the
+    10:35 / 10:40 bars while the stop was moved at 10:23:17 — so the glyph's x-position is off by
+    12-17 minutes and still identifies neither a trade nor an event, exactly as a count numeral
+    fails to mark a bar. §10.9's attribution to the +2.8R trade is contradicted by two independent
+    readings now. Reported, not corrected: editing §10 is the user's call.
 
 # ---------------------------------------------------------------- reported, not corrected
 observations:
@@ -303,7 +311,76 @@ observations:
       as a level would have been wrong twice on one fixture — measure the line, do not read the axis.
 
 double_count_warning: >
-  This session is also `PTBV`'s (docs/evidence/fixture_dating.md: PTBV keyframe 0399 is
-  2026-07-30 15:10 ET, inside LT3's window). The three executions here may be narrated there.
-  When PTBV is labelled, reconcile against these three ids rather than adding new ones —
-  docs/PHASE3.md §3, the error AUDIT-2a F-1 caught for DIA-P.
+  RECONCILED 2026-08-10, not merely warned about. This session is PTBV's first segment
+  (docs/evidence/ptbv_session_map.md: PTBV is TWO sessions, 07-30 then 07-31, and only the first
+  is this one). All three executions above ARE narrated in PTBV and are matched to it below under
+  `ptbv_narration`. No new taken id was created — docs/PHASE3.md §3, the error AUDIT-2a F-1 caught
+  for DIA-P. PTBV's SECOND segment is T1/T2's session, so that file carries the same duty:
+  docs/evidence/labels/2026-07-31_T1_T2.yaml.
+
+# ---------------------------------------------------------------- PTBV narrates this session live
+ptbv_narration:
+  source: edu/derived/concept_ptb_entries_nq_live_trading_10r/transcript.md
+  segment: "video 00:00:00 → ~01:05, wall 09:31 → 16:06 ET. docs/evidence/ptbv_session_map.md"
+  method: >
+    Video time does NOT map linearly to wall clock — the recording is cut, and video 00:34:58 →
+    00:44:58 spans 2h37m of wall time. Every clock below was READ off the nearest keyframe's
+    bottom-bar clock (`HH:MM:SS AM|PM UTC-4`, EDT), never interpolated. provenance: exact.
+  matches_taken:
+    - {id: LT34-M1, video: "00:05:55", clock_et: "09:35:01", quote: "i'm gonna buy stop ... buy stop six thousand dollar risk",
+       agrees_with: "entry 09:35 @ 27896.25, 6 lots"}
+    - {id: LT34-M1, video: "00:23:19", clock_et: "10:06:11", quote: "that was it about 2.8 r",
+       agrees_with: "exit 10:05 @ 28125.25, +2.8R"}
+    - {id: LT34-M2, video: "00:23:38", clock_et: "10:17:43", quote: "another entry thousand dollar stop loss i gotta do market this is a ptb entry",
+       agrees_with: "entry 10:15 @ 28114.50, 8 lots — and the market order explains why no trigger is drawn"}
+    - {id: LT34-M2, video: "00:26:33", clock_et: "10:23:17", quote: "a very good place to put your stop loss at break-even",
+       agrees_with: "the BE mark — see break_even_mark above"}
+    - {id: LT34-M2, video: "00:36:22", clock_et: "10:51:32", quote: "got stopped out ... break even that's fine plus 2.8 r for the day",
+       agrees_with: "exit 10:50 @ 28117.25, +2.75 pts"}
+    - {id: LT34-A1, video: "01:04:57", clock_et: "16:06:53", quote: null,
+       agrees_with: "keyframe 0485 shows a working `13 Sell Stop` at +1,874.00 USD — the position open. The 22:15 exit falls in the cut and is NOT in the video"}
+  note: >
+    LT34-M1's entry and LT34-M2's entry are each confirmed to the second against a bar this file
+    had recorded from an execution arrow alone. Both agree. This is the first independent check on
+    any entry bar in the fixture set.
+
+# ---------------------------------------------------------------- class `named`: setups not taken
+# docs/PHASE3.md §2 — a setup he names and does NOT take. An engine signal matching one of these
+# is correct-but-not-taken, never a false positive.
+named_labels:
+  - id: PTBV30-N1
+    class: named
+    direction: long
+    video: "00:48:01 → 00:49:56"
+    clock_et: "13:27:46"
+    bar_5m_et: "13:25"
+    provenance: exact          # clock read off keyframe; bar is the clock floored to the 5m frame
+    quote: >
+      "looks like we might have a good PTB let's see this would be a PTB here ... i would be buying
+      this buy stop ... i'm gonna put the buy stop that's the trade" — then at [00:49:56], "ptb
+      fails back below no entry".
+    outcome: order_placed_never_filled
+    why_not_taken: "the PTB failed back below before the trigger was reached — his own words, 'no entry'"
+    note: >
+      The strongest kind of `named`: he committed to a price with a working buy stop and the market
+      never took it. Distinct from a setup merely pointed at. Phase 6 should expect the engine to
+      see this setup and to NOT emit a fill.
+
+# ---------------------------------------------------------------- open, measured but unresolved
+open_questions:
+  - id: four_lot_order_at_1047
+    measured: >
+      At video [00:36:04], clock 10:47:52 AM, he says "so it would be the buy stop let me add like
+      four just add some four contracts ... 500 risk right ptb entry". By [00:36:22], clock
+      10:51:32, he is "stopped out ... at break even". LT34-M2's recorded exit is 10:50 @ 28117.25
+      for 8 lots.
+    question: >
+      Did the 4-lot order fill? Neither LT3 nor LT4 draws any 4-lot execution text, and the exit
+      that IS drawn is 8 lots — the same size as the LT34-M2 entry. The consistent reading is that
+      the buy stop was placed at ~10:47:52 and never triggered before the 10:50 break-even stop
+      closed the position, cancelling it. That is a reading, not a measurement.
+    why_it_matters: >
+      If it never filled it is a `named` label; if it filled it is a fourth `taken` one. It is also
+      a class question docs/PHASE3.md does not answer: an order placed and never filled is neither
+      "a trade he executed" nor "a setup he does not take". NOT resolved here and NOT given an id —
+      the class is the user's call.

@@ -18,8 +18,22 @@ The failure mode is specific and repeatable: these tasks spend a long time readi
 ten images), hold the entire result in context, and emit one large file at the very end. That final
 write is the only durable output, and it is the part that never happened.
 
+**It happened a fourth time on 2026-08-10, with this memory already written.** The PTBV keyframe
+clock map was dispatched to a Sonnet subagent with a precise spec, a hard self-test and an explicit
+"resumable, atomic, write incrementally" instruction. It died on a session limit and wrote **zero
+bytes** — no script, no TSV. The spec being good did not help; the *shape* was the same as the
+census, one artifact at the end.
+
+The reasoning that overrode the memory was: *`CLAUDE.md` says delegate execution, and this is
+bounded, well-specified execution.* That is exactly the rationalisation this memory exists to
+block. Bounded and well-specified is **not** the test. **The test is whether a kill at minute five
+costs five minutes or costs everything.**
+
 **What worked:** doing it in the main session with the file written as the work completed. The
-first census landed in one pass and verified at 64 citations; the second followed.
+first census landed in one pass and verified at 64 citations; the second followed. On 2026-08-10
+the same substitution worked again — measuring 14 keyframe clocks by hand in the main session and
+writing `docs/evidence/ptbv_session_map.md` immediately produced a durable finding (PTBV is two
+sessions) in less wall time than the dead dispatch.
 
 **Why this matters more than it looks:** `CLAUDE.md`'s orchestration rule says to delegate execution
 to Sonnet subagents, and that rule is right for bounded, well-specified execution. It is *not* a good

@@ -25,8 +25,40 @@ say so. Every layer's *unit* tests remain hand-built fixtures.
 **Phase 3 started on 2026-08-10 and is partly built. `docs/PHASE3.md` is its design — read it
 before touching a label.** What is done: the bar spine now reaches **2026-08-10**, all five §10
 fixtures are **dated**, and **all four marked-chart fixtures** are **labelled** — `LT`, `NQ3`,
-`T1`/`T2` and `LT3`/`LT4`. **8 `taken` labels and 1 `named` across 4 sessions.** What is not: the
-`PTBV` class-`named` pass, and this file's own sibling `docs/CONSTRAINTS.md` rows for the rest.
+`T1`/`T2` and `LT3`/`LT4`. **8 `taken` labels and 2 `named` across 4 sessions.** What is not: the
+bulk of the `PTBV` class-`named` pass, and `docs/CONSTRAINTS.md` rows for the rest.
+
+**`PTBV` is two sessions, not one, and that reshapes the pass that was about to start.** Measured
+2026-08-10 off the keyframes' own TradingView clock: the video cuts from **2026-07-30** (video
+00:00 → ~01:05, wall 09:31 → 16:06) to **2026-07-31** (~01:06 → 01:37:54, wall 09:27 → 13:44), the
+clock jumping **backward** at the seam. The second segment is **`T1`/`T2`'s session narrated
+live** — its final keyframe is the `T1`/`T2` chart with all six executions, 34 seconds before
+`T2`'s screenshot bar. `docs/evidence/ptbv_session_map.md`. So `docs/PHASE3.md`'s *"`PTBV`'s full
+2026-07-30 session"* was half the video, `PTBV` gets **no YAML of its own**, and a `PTBV`
+execution must reconcile against **both** existing label files. Corrected in `docs/PHASE3.md` §3
+and `docs/CONSTRAINTS.md`.
+
+**Segment 1 is now reconciled, and it resolved an open ambiguity rather than adding a label.** All
+three `LT34` executions are narrated in `PTBV` and matched to it by clock, creating **no new
+`taken` id**. Two results:
+
+- **The `BE` mark belongs to `LT34-M2`, not to the +2.8R trade §10.9 assigns it to.** At video
+  [00:26:33], clock **10:23:17**, he says *"a very good place to put your stop loss at
+  break-even"*; `LT34-M1` had closed at 10:06:11 and the open position was the one entered at
+  10:17:43. That is what the arithmetic already said, now confirmed independently. **The drawn
+  glyph is still not a locator** — it sits at the 10:35/10:40 bars, 12–17 minutes off the event.
+  §10 is not edited; that is the user's call.
+- **`LT34-M1`'s and `LT34-M2`'s entry bars are confirmed to the second** against bars this repo had
+  read off an execution arrow alone (09:35:01 and 10:17:43). First independent check on any entry
+  bar in the fixture set. `LT34-M2`'s *"i gotta do market"* also explains why no trigger is drawn
+  for it.
+
+**One `named` label so far — `PTBV30-N1`** (13:27:46, bar 13:25): a buy stop placed and never
+filled, *"ptb fails back below no entry"*. And **one open question, measured but not resolved**: a
+**4-lot** order at 10:47:52 that no chart draws, bracketing `LT34-M2`'s 10:50 exit. Whether it
+filled decides whether it is a fourth `taken` or a `named` — and an order placed and never filled
+fits **neither** of `docs/PHASE3.md`'s two classes. **The class is the user's call.** Both are in
+`docs/evidence/labels/2026-07-30_LT3_LT4.yaml`.
 
 **`LT3`/`LT4` is labelled, and it carries more than §10.9 lists.** §10.9 describes one trade; `LT3`
 carries four further execution marks — the morning round trips — so the fixture holds **three**
@@ -200,12 +232,25 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 **The critical path is Phase 3, and it is in progress. `docs/PHASE3.md` is the design; every
 marked chart is labelled and work resumes at `PTBV`.** In order:
 
-1. **`PTBV` — session 2026-07-30, the class-`named` pass.** A 1h38m narrated session where the
-   trader talks through setups he does not take. This is the bulk of the remaining reading and the
-   part worth delegating; judge that delegation by its **write pattern**, per
-   `claude_memories/long-research-tasks-write-incrementally.md`. **It is the same session as
-   `LT3`/`LT4`** — reconcile any execution it narrates against `LT34-A1`, `LT34-M1` and `LT34-M2`
-   rather than adding a fourth, which is the `DIA-P` double-count in a new place.
+1. **`PTBV` — the class-`named` pass, and it is TWO sessions.** A 1h38m narrated cut of 2026-07-30
+   and 2026-07-31. **Segment 1 (07-30) is reconciled** — see above. **Segment 2 (07-31, video
+   ~01:06 → 01:37:54) is untouched and is the bulk of what remains**; it is `T1`/`T2`'s session, so
+   reconcile every execution it narrates against `docs/evidence/labels/2026-07-31_T1_T2.yaml`'s
+   three `taken` ids rather than adding a fourth — the `DIA-P` double-count in a new place. The
+   transcript is only **13,079 words**; the cost is in the keyframes, not the reading.
+
+   **Do this in the main session.** It was dispatched to a subagent on 2026-08-10 and died on a
+   session limit having written nothing — the **fourth** such loss and the first with
+   `claude_memories/long-research-tasks-write-incrementally.md` already on the books.
+
+   **A narrated setup gets its bar from a keyframe clock, never from interpolation** — the
+   recording is cut, and video 00:34:58 → 00:44:58 spans 2h37m of wall clock. Method and the
+   x-shifting-clock trap: `docs/PHASE3.md` §4 item 4.
+
+   **Still unbuilt and worth building: the per-keyframe clock table.** 14 of 687 frames are read
+   (`docs/evidence/ptbv_session_map.md`); the rest are not. A `scripts/map_video_clock.py` doing
+   `UTC-4` template-match plus digit NCC would place every narration line at once. Ground truth
+   for bootstrapping and self-test is those 14 rows, which cover all ten digits.
 2. **`docs/CONSTRAINTS.md`** rows for labelling, and this file's Open list as things close.
 
 **The first question to put to the engine is still not a number, it is the base.** D-34 was chosen

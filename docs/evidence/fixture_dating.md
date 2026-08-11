@@ -21,6 +21,12 @@ Reproduce with `scripts/date_marked_chart.py <four printed values>`.
 `T2`'s margin is the narrowest and it is the one MNQ chart whose printed values were transcribed
 from a lower-resolution render; it is corroborated below by three further agreements.
 
+**The `PTBV` row dates keyframe 0399 and nothing more — do not read it as dating the video.**
+`PTBV` is a cut of **two** sessions: 2026-07-30 (video 00:00 → ~01:05) and **2026-07-31** (~01:06 →
+01:37:54), the wall clock jumping backward from 16:06:53 to 09:27:07 at the seam. kf 0399 sits in
+the first. The second is `T1`/`T2`'s session narrated live. Measured 2026-08-10 —
+`docs/evidence/ptbv_session_map.md`.
+
 ## The second agreement, per fixture
 
 `docs/PHASE3.md` requires two independent agreements before a fixture counts as dated. The SMA

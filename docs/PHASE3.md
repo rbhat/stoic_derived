@@ -128,8 +128,19 @@ fields keep the information a verifier would have used; only the automation is a
 ## 3. Scope
 
 **Replayable NQ/ES only.** The §10 marked charts — `NQ3`, `T1`/`T2`, `LT`, `LT3`/`LT4` — plus
-`PTBV`'s full 2026-07-30 session. All NQ/ES, all now inside the bars, every label carrying a real
-timestamp and bar index.
+`PTBV`. All NQ/ES, all now inside the bars, every label carrying a real timestamp and bar index.
+
+**`PTBV` is two sessions, and this line used to say "`PTBV`'s full 2026-07-30 session".** Measured
+2026-08-10: the video is a cut of **2026-07-30** (video 00:00 → ~01:05) and **2026-07-31** (~01:06
+→ 01:37:54), the clock jumping backward from 16:06:53 to 09:27:07 at the seam. The second segment
+is **`T1`/`T2`'s session narrated live** and ends 34 seconds before `T2`'s screenshot bar. See
+`docs/evidence/ptbv_session_map.md`. Two consequences:
+
+- `PTBV` gets **no YAML of its own**. Its labels go into the two session files that already exist,
+  because §2 puts one YAML per session.
+- A `PTBV` execution reconciles against **both** `2026-07-30_LT3_LT4.yaml` (`LT34-A1`/`M1`/`M2`)
+  **and** `2026-07-31_T1_T2.yaml`. Reconciling against only the first is the `DIA-P` double-count
+  in a new place.
 
 Out of scope for v1, and each for its own reason:
 
@@ -149,7 +160,17 @@ one trade (§10.9). Double-counting them is the error `docs/AUDIT-2a.md` F-1 cau
    recorded **undated** — never guessed, and never dated off a moving average.
 3. **Label class `taken`** from exact execution text, resolving each mark to a bar index.
 4. **Label class `named`** from `PTBV`'s transcript and keyframes, **written incrementally** —
-   `claude_memories/long-research-tasks-write-incrementally.md`.
+   `claude_memories/long-research-tasks-write-incrementally.md`. That memory was overridden once
+   here, on 2026-08-10, by dispatching the keyframe-clock map to a subagent; it died on a session
+   limit having written nothing, the fourth such loss.
+
+   **How a narrated setup gets a bar, and it is not by interpolation.** Video time does not map
+   linearly to wall clock — `PTBV` cuts, and video 00:34:58 → 00:44:58 spans 2h37m. Read the
+   TradingView clock (`HH:MM:SS AM|PM UTC-4`, EDT) off the **nearest keyframe**, at
+   `y ∈ [1032, 1062]`, scanning `x ∈ [1100, 1900]` — **its x shifts with the right-hand order
+   panel**, and a fixed crop reads a present clock as absent. Floor to the 5m frame for the bar.
+   That is `provenance: exact`. A crosshair label (`Thu 30 Jul '26 02:05 PM`) names the bar he is
+   pointing AT, which is the other exact handle when the mouse is over the chart.
 5. **Correct the memory.** `marked-charts-do-not-fingerprint-to-our-bars.md` is wrong on its dating
    claim and on its method; both are now known.
 6. **Update `docs/STATE.md` and `docs/CONSTRAINTS.md`.**
