@@ -297,23 +297,59 @@ Sequence` file was a byte-identical recording of `Module 1` and was removed 2026
 
 **`docs/PLAN.md` is the plan, end to end.**
 
-**Phase 6 is designed and planned as at 2026-08-11, and no code is written yet.**
-`docs/PHASE6.md` is the design — read it first — and `docs/PHASE6-PLAN.md` is the task-by-task
-implementation plan, to be executed by subagent-driven development. Three things in them bind
-anything that touches this phase, and none of them is inferable from the code:
+**Phase 6 is built and has run once.** `docs/PHASE6.md` is the design — read it first.
+`stoic/fidelity.py` (pure measurement) and `scripts/reconcile_labels.py` (the driver) are built and
+tested; `docs/evidence/phase6_reconciliation.md` is the record — §1 and §3 generated, §2
+hand-written. `docs/PHASE6-PLAN.md` is now deletable execution scaffolding — its task briefs cited
+the 240-test baseline, stale like the figure below; `docs/PHASE6.md` and the report are what
+survive.
 
-- **Matching is exact bar, with no tolerance anywhere** — the user's call, 2026-08-11, closing the
-  one thing `docs/PHASE3.md` deferred to Phase 6 by name. `stoic/fidelity.py` holds **no number**.
-- **The plan's Task 2 must be committed before its Task 7 ever runs the engine.** Task 2 adds a
-  `phase6_scope` block to all ten labels; committing it first is what proves the scope was not
-  fitted to the engine's output, which is the only guard `docs/PHASE3.md` has here.
-- **`docs/PHASE6-PLAN.md` is execution scaffolding, not a standing document.** Delete it when the
-  phase closes; `docs/PHASE6.md` and `docs/evidence/phase6_reconciliation.md` are what survive.
+**The run: `NQ` `5m`, one continuous pass `2026-06-22` → `2026-08-04`, 8,784 bars,
+`SignalType.SCALP`, `htf=None`, `decided_judgment()`, exact-bar matching with no tolerance**
+(`docs/PHASE6.md` §4). Gate 0 (scope consistency) passed first: 10 labels, 0 problems, checked
+before the engine ever ran.
 
-Two calls made without a separate decision row, both stated in `docs/PHASE6.md` §3: the run uses
-**`htf=None`**, so every emitted signal tops out at 2 of 3 confluence — which is **D-32**'s own
-recorded consequence on a fast chart, not a finding — and **`SignalType.SCALP`** for all four
-sessions, every fixture being a 5m chart.
+**10 labels reconciled, 2 matched on the exact bar, 25 unlabelled emissions** (report §3 —
+explicitly not a false-positive rate, since the label set is not exhaustive). **Reported as counts,
+never a verdict**, per `CLAUDE.md`: ten single instances across four sessions, and nothing here says
+the engine is right or wrong.
+
+Engine totals over the window: **L3 1,027 records** (516 `ptb_anchored`, 261 `entry_filled`, 172
+`stop_to_break_even`, 78 `order_cancelled`); **L5 410 rows** (212 `signal`, 149 `break_even`, 49
+`suppressed`).
+
+**The two exact matches, both agreeing on price exactly with no tolerance used:**
+
+- **`LT-B1`** (`named`) — anchor bar and trigger matched, delta **+0.00**. The engine went on to
+  fill the order the trader declined — correct-but-not-taken per `docs/PHASE3.md` §2, never a false
+  positive.
+- **`T-B1`** (`taken`) — trigger and stop both matched, delta **+0.00**; stop distance differs by
+  **−1.17** points (label 42.42, engine 41.25, `by_ptb_extreme`). L5 emitted `SUPPRESSED`,
+  `blocked_by: into_200` — the engine reproduced a trade the trader took and then declined it on
+  §7.1.4 / **D-31**.
+
+**The diagnostic that governs eight of the ten rows.** L2 reaches `step_3_confirmed` during RTH on
+all four sessions (07-27: 3, 07-30: 2, 07-31: 4, 08-03: 2), but L3 opened a PTB walk on only two —
+07-27 and 07-31 anchored 10 and 6 orders in RTH, while **07-30 and 08-03 anchored none at all**.
+Five of the eight unmatched labels sit on those two silent sessions. **This is localised, not
+explained**: a confirmed Step 3 that never opens a walk is correct behaviour when no qualifying
+pullback forms (§5.2.1a / **D-28**). Whether those two sessions had no qualifying pullback, or the
+pullback test is wrong, **is not settled by this run**.
+
+Two further single-instance findings, neither projected past itself: **`T-A1`/`T-A2`** — the engine
+anchored one bearish order at 14:20 and cancelled it at 14:25, 15 and 35 minutes before the labelled
+entries — the sharpest instance in the set and the one with the most reachable next step.
+**`NQ3-A1`** is `circular: true` and excluded — nothing is drawn from it, matched or not
+(`docs/PHASE6.md` §4). **`PTBV30-N1`** (`no_opportunity`) — the engine emitted no fill (half its
+expectation) but never identified the setup (the other half): partially met, not credited.
+
+**Both matches are exact and both misses are total** — no case of the engine finding the right
+setup a bar or two late with approximately right prices. A property of these ten instances, **not
+projected past them.**
+
+Suite is **304 passed**, superseding the 240 baseline above — Phase 6 added `stoic/fidelity.py`,
+`scripts/reconcile_labels.py` and their tests. `scripts/verify_citations.py` still reports **222
+citations across 8 sources, all resolve**, negative control PASS — unchanged from baseline.
 
 **The Phase 4 room-left audit is done — 2026-08-10, `docs/evidence/phase4_room_left.md`. Nothing
 was decided.** The user's concern was that *"a lot of these rules are going to constrain or make the
@@ -343,7 +379,8 @@ so a proposal has nowhere to land. **Whether to open one is the user's call, not
   confluence score. Neither holds now: **D-33** fixed the score to three conditions, none of them a
   setup type, and `stoic/emission.py` emits `setup_type="123_ptb"` as a literal.
 
-**The critical path is Phase 3, and its labelling is done. `docs/PHASE3.md` is the design.**
+**Phase 3 was the critical path; its labelling is done and Phase 6 has now run against it — see
+above.** `docs/PHASE3.md` is the design.
 **Its exit gate asks for the label count per class and per session, and the count of fixtures that
 would not date. Both are answerable now** — and `docs/PHASE3.md` forbids reading either as evidence
 of anything on its own, as does `CLAUDE.md`. Every fixture here is one session, so small *n*
@@ -627,8 +664,31 @@ definition exists, any pivot needs an invented lookback, and nothing consumes on
 not written into `docs/RULEBOOK.md`:** a bar whose high *and* low exactly equal its parent's counts
 as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 names neither).
 
+## What Phase 6 built
+
+| | |
+|---|---|
+| `stoic/fidelity.py` | Pure measurement — pairs labels to L3/L5 records per `docs/PHASE6.md` §4 and computes signed deltas on scoped fields only. Holds no threshold and no tolerance; never imported by L0–L5, enforced by an import-direction test |
+| `scripts/reconcile_labels.py` | The driver — Gate 0 checks every `phase6_scope` block for consistency before any replay runs, then drives `replay_entries` and `replay_signals` over the bars and writes the report |
+| `docs/evidence/phase6_reconciliation.md` | The deliverable. §1 (per-label reconciliation) and §3 (unlabelled emissions) are generated by the driver; §2 (divergences) is hand-written, each entry triaged as a specification bug, a missing rulebook rule, or out of v1 scope |
+
 ## Open
 
+- **Two sessions confirmed Step 3 in RTH and opened no PTB walk — 07-30 and 08-03 — and Phase 6's
+  first run does not settle why.** L2 reached `step_3_confirmed` on all four labelled sessions
+  (07-27: 3, 07-30: 2, 07-31: 4, 08-03: 2), but L3 anchored zero orders in RTH on two of them,
+  against 10 and 6 on the other two. A confirmed Step 3 that opens no walk is correct behaviour when
+  no qualifying pullback forms (§5.2.1a / **D-28**) — whether that is what happened on these two
+  sessions, or the pullback test is wrong, is open. `docs/evidence/phase6_reconciliation.md` §2. The
+  first question the next Phase 6 pass should put to L1/L3.
+- **`T-B1`: the engine reproduced a labelled trade to the cent and then suppressed it, and its R
+  disagrees with the label by 1.17 points — neither is settled.** Trigger and stop both matched
+  exactly; L5 emitted `SUPPRESSED`, `blocked_by: into_200` (§7.1.4 / **D-31**, made symmetric
+  2026-08-09) — the first case where a labelled `taken` trade and the engine's own gate can be
+  checked against each other directly, at **n = 1**. Separately, the engine's R (`|fill − stop|`,
+  §5.4.2) is 41.25 against the label's `by_ptb_extreme` distance of 42.42 — a third reading of the
+  same §5.4.1 quantity, alongside `T-B1`'s existing §10.10/§5.4.1 agreement of 0.99 points recorded
+  below. **No reading is adopted.** `docs/evidence/phase6_reconciliation.md` §2.
 - **§10's three `Jun LCOM` numbers are moving-average axis tags, not levels — reported, not
   corrected.** §10.2's *28,482*, §10.8's *28,473.81* and §10.9's *28,471.53* reproduce, to 0.2
   points or better, the **200 SMA** (`T1`, `T2`) and the **10 SMA** (`LT3`/`LT4`) at each chart's own
