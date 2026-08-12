@@ -250,6 +250,28 @@ def bar_offset(
         return None
 
 
+def _nearest(
+    bar_index: pd.DatetimeIndex, timestamps: pd.Series, expected: pd.Timestamp
+) -> tuple[pd.Timestamp | None, int | None]:
+    """The nearest of `timestamps` to `expected`, in bars, and its signed offset.
+
+    Shared by `reconcile_taken`, `reconcile_named` and `reconcile_no_opportunity`'s unmatched
+    branches -- an unmatched label is characterised by its nearest same-direction candidate and
+    the signed bar offset to it, and that rule must not drift between the three copies. Ties break
+    toward the earlier bar (`min` over `(abs(offset), offset)`). `(None, None)` if `timestamps` is
+    empty or every entry falls off `bar_index` (`bar_offset` returns `None` there).
+    """
+    offsets = [
+        (offset, ts)
+        for ts in timestamps
+        if (offset := bar_offset(bar_index, ts, expected)) is not None
+    ]
+    if not offsets:
+        return None, None
+    nearest_bars, nearest_ts = min(offsets, key=lambda pair: (abs(pair[0]), pair[0]))
+    return nearest_ts, nearest_bars
+
+
 def _unscoreable(field: str, reason: str, label_value: float | None = None) -> Delta:
     return Delta(
         field=field, label=label_value, engine=None, delta=None, scoreable=False, reason=reason
@@ -377,15 +399,7 @@ def reconcile_taken(
     hit = candidates[candidates["ts"] == expected]
 
     if hit.empty:
-        nearest_ts, nearest_bars = None, None
-        if not candidates.empty:
-            offsets = [
-                (bar_offset(bar_index, ts, expected), ts)
-                for ts in candidates["ts"]
-                if bar_offset(bar_index, ts, expected) is not None
-            ]
-            if offsets:
-                nearest_bars, nearest_ts = min(offsets, key=lambda pair: (abs(pair[0]), pair[0]))
+        nearest_ts, nearest_bars = _nearest(bar_index, candidates["ts"], expected)
         return LabelResult(
             label_id=label["id"], session=session, label_class=str(label["class"]),
             direction=direction, matched=False, engine_event=None, engine_ts=None,
@@ -473,7 +487,9 @@ def reconcile_taken(
 
 
 def _direction_rows(entries: pd.DataFrame, engine_direction: str) -> pd.DataFrame:
-    return entries[entries["direction"].astype(str) == engine_direction].sort_values("ts")
+    return entries[entries["direction"].astype(str) == engine_direction].sort_values(
+        "ts", kind="stable"
+    )
 
 
 def reconcile_named(
@@ -506,14 +522,7 @@ def reconcile_named(
     hit = anchors[anchors["ts"] == expected]
 
     if hit.empty:
-        nearest_ts, nearest_bars = None, None
-        offsets = [
-            (bar_offset(bar_index, ts, expected), ts)
-            for ts in anchors["ts"]
-            if bar_offset(bar_index, ts, expected) is not None
-        ]
-        if offsets:
-            nearest_bars, nearest_ts = min(offsets, key=lambda pair: (abs(pair[0]), pair[0]))
+        nearest_ts, nearest_bars = _nearest(bar_index, anchors["ts"], expected)
         return LabelResult(
             label_id=label["id"], session=session, label_class=str(label["class"]),
             direction=direction, matched=False, engine_event=None, engine_ts=None,
@@ -574,21 +583,29 @@ def reconcile_no_opportunity(
     engine_direction = "bullish" if direction == "long" else "bearish"
     rows = _direction_rows(entries, engine_direction)
 
+    # `anchor_bar` first, `anchor_bar_narrated` as this class's declared fallback (see the comment
+    # above `SCOPE_KEYS` on why the narrated field is never a comparison reference elsewhere --
+    # here it is only ever used as a bar to pair on, never compared by equality).
     anchor_block = scope.get("anchor_bar") or scope.get("anchor_bar_narrated")
-    expected = pd.Timestamp(anchor_block["ts"]) if anchor_block else None
+    if anchor_block is None:
+        # Mirrors reconcile_named's identical branch: a label that names no anchor bar at all was
+        # never paired, and reporting anything else here would blame the engine for a gap that is
+        # the label's, not the engine's (review finding 2) -- three distinct states (label silent /
+        # engine anchored elsewhere / engine never anchored) must not collapse into one accusation.
+        return LabelResult(
+            label_id=label["id"], session=session, label_class=str(label["class"]),
+            direction=direction, matched=False, engine_event=None, engine_ts=None,
+            blocked_by=(), anchor_matched=None, deltas=(),
+            nearest_ts=None, nearest_delta_bars=None, circular=False,
+            notes=("no anchor bar in scope -- nothing to pair on",),
+        )
+
+    expected = pd.Timestamp(anchor_block["ts"])
     anchors = rows[rows["event"].astype(str) == "PTB_ANCHORED"]
-    hit = anchors[anchors["ts"] == expected] if expected is not None else anchors.iloc[0:0]
+    hit = anchors[anchors["ts"] == expected]
 
     if hit.empty:
-        nearest_ts, nearest_bars = None, None
-        if expected is not None:
-            offsets = [
-                (bar_offset(bar_index, ts, expected), ts)
-                for ts in anchors["ts"]
-                if bar_offset(bar_index, ts, expected) is not None
-            ]
-            if offsets:
-                nearest_bars, nearest_ts = min(offsets, key=lambda pair: (abs(pair[0]), pair[0]))
+        nearest_ts, nearest_bars = _nearest(bar_index, anchors["ts"], expected)
         return LabelResult(
             label_id=label["id"], session=session, label_class=str(label["class"]),
             direction=direction, matched=False, engine_event=None, engine_ts=None,

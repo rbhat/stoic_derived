@@ -682,6 +682,18 @@ def test_named_matches_when_the_engine_anchored_on_that_bar():
     assert trigger.delta == 0.0
 
 
+def test_named_delta_sign_is_engine_minus_label():
+    """The only other named test with a scoreable trigger delta asserts `== 0.0` (an exact-price
+    fixture), so the sign convention -- engine minus label, matching reconcile_taken's own pinned
+    test -- was untested here. An engine trigger 3.0 above the label's states the sign."""
+    ts = pd.Timestamp("2026-07-27 13:50", tz="UTC")
+    result = reconcile_named(
+        _named_label(), "2026-07-27", _entries([_anchor(ts, trigger=28449.50)]), NAMED_INDEX
+    )
+    trigger = next(d for d in result.deltas if d.field == "trigger")
+    assert trigger.delta == 3.0
+
+
 def test_named_records_a_fill_as_correct_but_not_taken():
     ts = pd.Timestamp("2026-07-27 13:50", tz="UTC")
     fill = {
@@ -701,6 +713,10 @@ def test_named_unmatched_is_characterised_by_the_nearest_anchor():
     result = reconcile_named(_named_label(), "2026-07-27", _entries([_anchor(ts)]), NAMED_INDEX)
     assert result.matched is False
     assert result.nearest_delta_bars == 2
+    # Review finding 1: no engine anchor exists on the label's bar, so no comparison ran --
+    # `None`, not `False` (reconcile_taken's structurally identical branch already pins this;
+    # nothing here did until now, and an edit restoring `False` would pass silently).
+    assert result.anchor_matched is None
 
 
 def test_no_opportunity_with_a_cancelled_order_is_a_match():
@@ -739,3 +755,18 @@ def test_no_opportunity_with_no_anchor_at_all_says_so():
     result = reconcile_no_opportunity(_nopp_label(), "2026-07-30", _entries([]), NOPP_INDEX)
     assert result.matched is False
     assert any("never anchored" in note for note in result.notes)
+    # Review finding 1: same pinning as the named test above -- no engine anchor exists to
+    # compare the label's declared bar against, so no comparison ran.
+    assert result.anchor_matched is None
+
+
+def test_no_opportunity_with_no_anchor_bar_declared_in_scope_says_so():
+    """Review finding 2: when the label declares neither `anchor_bar` nor `anchor_bar_narrated`,
+    there is nothing to pair on -- reporting "the engine never anchored" here would blame the
+    engine for a gap that is the label's. Mirrors reconcile_named's `anchor_bar is None` branch."""
+    label = _nopp_label()
+    label["phase6_scope"]["anchor_bar_narrated"] = None
+    result = reconcile_no_opportunity(label, "2026-07-30", _entries([]), NOPP_INDEX)
+    assert result.matched is False
+    assert result.anchor_matched is None
+    assert result.notes == ("no anchor bar in scope -- nothing to pair on",)
