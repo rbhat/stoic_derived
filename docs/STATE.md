@@ -371,6 +371,12 @@ Suite is **304 passed**, superseding the 240 baseline above — Phase 6 added `s
 `scripts/reconcile_labels.py` and their tests. `scripts/verify_citations.py` still reports **222
 citations across 8 sources, all resolve**, negative control PASS — unchanged from baseline.
 
+**Phase 6 found no specification bug in the engine — every one of its eight unmatched labels traced
+to a rule working as written, above.** So building forward is not building on top of a known defect.
+**`docs/PLAN.md`'s Phase 7 is now the forward-test harness**, split 2026-08-11 from the old Phase 7,
+which is renamed **Phase 7b** and deferred until the system trades real money — `docs/PLAN.md` has
+both. Neither has started; nothing here should be read as claiming otherwise.
+
 **The Phase 4 room-left audit is done — 2026-08-10, `docs/evidence/phase4_room_left.md`. Nothing
 was decided.** The user's concern was that *"a lot of these rules are going to constrain or make the
 SLM incoherent."* **The count does not show that.** Of §1–§9's **21 J** rows, only **5** carry a
@@ -508,8 +514,8 @@ constructions it rejected precisely so that measurement has something to test ag
    neither may fire, suppress or invalidate a signal; **partial sizing** and the TP1/TP2 ordering stay
    open on **O-7**; no new gates (**O-9**, **O-19**, §7.3's **J**); **slippage stays unmodelled beyond
    the gap** (§5.3.7 engine note) and if Phase 6 finds that flattering it must change in **one**
-   place; and tracking a signalled trade to its outcome, the flatten and the ledger are **Phase 7**,
-   not L5.
+   place; and tracking a signalled trade to its outcome and the flatten are **Phase 7**, the
+   multi-writer ledger **Phase 7b**, neither L5.
 2. **Phase 3 (labelled reference set) — started 2026-08-10, design in `docs/PHASE3.md`.** It was
    deferred by the user on 2026-08-08 — *"we will backtest once the system is on"* — and the system
    is now on. It is the evidence that would confirm or overturn **D-28** and **D-34**, and Phase 6

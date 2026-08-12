@@ -237,18 +237,41 @@ report where each divergence is triaged as a specification bug in the engine or 
 **Exit gate.** Divergences are explained, not just counted. Report counts, never verdicts; never
 project direction; never conclude from small n.
 
-## Phase 7 — Signal runtime and ledger
+## Phase 7 — Forward-test harness
 
-**Goal.** Signals become records that get tracked to an outcome.
+**Split from the old Phase 7 on 2026-08-11: the durability requirements below are `VISION.md`'s and
+unchanged, but they gated forward testing, which needs none of them.**
 
-**Deliverable.** A runner over live Databento and over replay, writing append-only per-source
-ledger files reconciled into one ledger per Type, Google Drive as the source of truth. Every row
-carries trade id, timestamp and source. Each signaled trade is tracked to take-profit or stop-loss.
-The 1:58pm Pacific flatten fires for every Type except Position, guaranteed by a watchdog that
-holds even if the process died earlier.
+**Goal.** Run the engine forward on new bars and track what it emits to an outcome, so fidelity can
+be measured going forward rather than only against Phase 3's ten labels.
+
+**Deliverable.** A runner over replay and over new bars that records every emitted signal with a
+trade id, timestamp and source, and tracks each to take-profit or stop-loss. Append-only, single
+writer, local. The 1:58pm Pacific flatten fires for every Type except Position — not as a watchdog,
+but because without it the recorded outcomes for Scalp and Day are simply wrong. Note the known gap
+it must handle, already recorded in `docs/STATE.md`: `past_flatten` is 0 for every 5m bar by
+construction, because the cutoff sits in a 2-minute window no 5m bar can start in — tracking needs
+the bar **containing** the cutoff, not bars after it. `stoic/sessions.py` already owns the cutoff
+and `stoic/emission.py`'s `replay_signals` already emits the records, so this phase adds tracking,
+not signal generation.
+
+**Exit gate.** A signal emitted on one run is tracked to a closed outcome on a later run, across a
+process restart, with no row lost or duplicated. Report counts, never verdicts (`CLAUDE.md`) — this
+measures our execution of the method, not whether the method works.
+
+## Phase 7b — Production ledger and runtime durability
+
+**Goal.** Make the ledger safe for multiple writers and for real money.
+
+**Deliverable.** Everything the old Phase 7 named that Phase 7 above does not — live Databento,
+append-only per-source ledger files reconciled into one ledger per Type, Google Drive as the source
+of truth, and the watchdog/heartbeat that guarantees the flatten even if a process died earlier.
 
 **Exit gate.** Kill the process mid-session and the flatten still happens. Two writers, no lost
 rows, no corruption — this is the failure mode `VISION.md` calls unacceptable.
+
+**This phase is required before any trade is placed off the system**, and it is deferred only
+because nothing is being traded off it yet.
 
 ## Phase 8 — Dashboard
 
