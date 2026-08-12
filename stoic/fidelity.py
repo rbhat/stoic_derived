@@ -234,6 +234,11 @@ class LabelResult:
     notes: tuple[str, ...]
 
 
+def _engine_direction(direction: str) -> str:
+    """The label's `long`/`short` in the engine's own `bullish`/`bearish` vocabulary."""
+    return "bullish" if direction == "long" else "bearish"
+
+
 def bar_offset(
     bar_index: pd.DatetimeIndex, a: pd.Timestamp | None, b: pd.Timestamp | None
 ) -> int | None:
@@ -374,7 +379,7 @@ def reconcile_taken(
     """
     scope = label["phase6_scope"]
     direction = str(label["direction"])
-    engine_direction = "bullish" if direction == "long" else "bearish"
+    engine_direction = _engine_direction(direction)
     circular = bool(scope.get("circular", False))
 
     candidates = emissions[
@@ -503,7 +508,7 @@ def reconcile_named(
     """
     scope = label["phase6_scope"]
     direction = str(label["direction"])
-    engine_direction = "bullish" if direction == "long" else "bearish"
+    engine_direction = _engine_direction(direction)
     rows = _direction_rows(entries, engine_direction)
     anchors = rows[rows["event"].astype(str) == "PTB_ANCHORED"]
 
@@ -580,7 +585,7 @@ def reconcile_no_opportunity(
     """
     scope = label["phase6_scope"]
     direction = str(label["direction"])
-    engine_direction = "bullish" if direction == "long" else "bearish"
+    engine_direction = _engine_direction(direction)
     rows = _direction_rows(entries, engine_direction)
 
     # `anchor_bar` first, `anchor_bar_narrated` as this class's declared fallback (see the comment
@@ -665,9 +670,11 @@ def reconcile_no_opportunity(
 
 
 _NO_VERDICT = (
-    "**the label set is not exhaustive, so none of these is a false positive.** The four charts "
-    "record what the trader took and named, never every setup the session offered. No rate is "
-    "computed from this section and no verdict follows from it (`CLAUDE.md`)."
+    "**The label set is not exhaustive, so none of these is a false positive.** The four charts "
+    "record what the trader took and named, never every setup the session offered. A `named` or "
+    "`no_opportunity` label's own emissions may also appear here, because those classes pair on "
+    "the entries frame rather than on emissions. No rate is computed from this section and no "
+    "verdict follows from it (`CLAUDE.md`)."
 )
 
 
@@ -678,7 +685,7 @@ def unlabelled_emissions(emissions: pd.DataFrame, results: list[LabelResult]) ->
     direction is a different candidate and stays in this list.
     """
     paired = {
-        (pd.Timestamp(r.engine_ts), "bullish" if r.direction == "long" else "bearish")
+        (pd.Timestamp(r.engine_ts), _engine_direction(r.direction))
         for r in results
         if r.matched and r.engine_ts is not None and r.label_class == "taken"
     }
@@ -687,13 +694,26 @@ def unlabelled_emissions(emissions: pd.DataFrame, results: list[LabelResult]) ->
         (pd.Timestamp(ts), str(direction)) not in paired
         for ts, direction in zip(rows["ts"], rows["direction"], strict=True)
     ]
-    return rows[keep]
+    # A plain list is a *column* selector to pandas when empty (shape (0, 0), no columns) --
+    # not a boolean mask -- so a session with no SIGNAL/SUPPRESSED rows would silently drop the
+    # frame's schema. Wrapping as a boolean Series keeps `rows[...]` a mask in every case.
+    return rows[pd.Series(keep, index=rows.index, dtype="bool")]
 
 
 def _delta_cell(delta: Delta) -> str:
     if not delta.scoreable:
-        return f"unscoreable — {delta.reason}"
+        suffix = f" (label {delta.label:.2f})" if delta.label is not None else ""
+        return f"unscoreable — {delta.reason}{suffix}"
     return f"{delta.delta:+.2f} (label {delta.label:.2f}, engine {delta.engine:.2f})"
+
+
+def _cell(value: object) -> object:
+    """An em-dash for a NaN/None table cell, the value unchanged otherwise -- a `SUPPRESSED` row
+    with no recovered fill would otherwise render the literal string "nan" in a human-read table.
+    """
+    if value is None or (isinstance(value, float) and value != value):
+        return "—"
+    return value
 
 
 def render_report(
@@ -720,7 +740,7 @@ def render_report(
     lines.append("## 1. Per-label reconciliation")
     lines.append("")
     matched = sum(1 for r in results if r.matched)
-    lines.append(f"{len(results)} labels, {matched} matched on the exact bar.")
+    lines.append(f"{len(results)} labels, {matched} matched.")
     lines.append("")
     for result in results:
         flag = (
@@ -753,7 +773,7 @@ def render_report(
     lines.append("and the third names the row that already put it out of scope.*")
     lines.append("")
 
-    lines.append(f"## 3. Unlabelled emissions (n = {len(unlabelled)})")
+    lines.append(f"## 3. Emissions not paired to a taken label (n = {len(unlabelled)})")
     lines.append("")
     lines.append(_NO_VERDICT)
     lines.append("")
@@ -761,8 +781,8 @@ def render_report(
     lines.append("|---|---|---|---|---|---|---|")
     for _, row in unlabelled.iterrows():
         lines.append(
-            f"| `{row['ts']}` | {row['direction']} | {row['event']} | {row['trigger']} "
-            f"| {row['fill']} | {row['stop']} | {row['r']} |"
+            f"| `{row['ts']}` | {row['direction']} | {row['event']} | {_cell(row['trigger'])} "
+            f"| {_cell(row['fill'])} | {_cell(row['stop'])} | {_cell(row['r'])} |"
         )
     lines.append("")
     return "\n".join(lines)

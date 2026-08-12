@@ -822,7 +822,7 @@ def test_report_states_the_no_verdict_line_and_the_counts():
         )
     ]
     text = render_report(results, _emissions([]), {"instrument": "NQ", "frame": "5m"})
-    assert "the label set is not exhaustive" in text
+    assert "label set is not exhaustive" in text
     assert "no verdict" in text
     assert "T-A2" in text
     assert "instrument" in text
@@ -844,3 +844,34 @@ def test_report_prints_unscoreable_rather_than_a_blank():
         reconcile_taken(label, "2026-07-31", _emissions([_signal_row()]), _entries([]), BAR_INDEX)
     ]
     assert "unscoreable" in render_report(results, _emissions([]), {})
+
+
+def test_unlabelled_emissions_preserves_columns_when_none_are_left():
+    """Negative control: pandas treats an *empty* list as a column selector, not a boolean mask,
+    so `rows[[]]` collapses a frame with no SIGNAL/SUPPRESSED rows to shape (0, 0) -- no columns --
+    rather than an empty frame carrying the real schema. A caller doing `unlabelled["ts"]` on that
+    session would get a KeyError."""
+    empty = _emissions([])
+    left = unlabelled_emissions(empty, [])
+    assert len(left) == 0
+    assert list(left.columns) == list(empty.columns)
+    assert left["ts"].tolist() == []  # KeyError before the fix
+
+
+def test_report_renders_a_non_empty_unlabelled_table_with_nan_as_an_em_dash():
+    """No prior test rendered a non-empty §3 table, so the seven column accesses in that loop had
+    zero coverage -- the exact defect class that bit Tasks 3 and 4. A SUPPRESSED row with no
+    recovered fill carries NaN in trigger/fill/stop/r, which must render as an em-dash, not the
+    literal string 'nan', in a document a human reads."""
+    suppressed = _signal_row(
+        ts=pd.Timestamp("2026-07-31 15:10", tz="UTC"),
+        event="SUPPRESSED", blocked_by=("trend_50",),
+        anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
+    )
+    unlabelled = _emissions([suppressed])
+    text = render_report([], unlabelled, {})
+    assert "## 3. Emissions not paired to a taken label (n = 1)" in text
+    assert "2026-07-31 15:10:00+00:00" in text
+    assert "SUPPRESSED" in text
+    assert "nan" not in text.lower()
+    assert "—" in text
