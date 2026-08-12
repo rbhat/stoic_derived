@@ -285,6 +285,12 @@ def _l3_prices(entries: pd.DataFrame, ts: pd.Timestamp, direction: str) -> dict[
         "trigger": row["trigger"],
         "stop": row["stop"],
         "fill": row["fill"],
+        # Mirrors stoic/emission.py's own `r=abs(rec.fill - rec.stop)` (§5.4.2, D-18, no floor)
+        # character for character -- this is what the engine would have emitted for the same
+        # trade, including its float behaviour. A `SUPPRESSED` row is measured by the identical
+        # arithmetic as a `SIGNAL` row, so real data carries the same ~1e-12 residual against a
+        # label's 2-dp literal on both paths. That residual is arithmetic, not a divergence, and
+        # Tasks 4/8 must not read it as one -- do not "fix" it with Decimal here or anywhere else.
         "r": (
             abs(_finite(row["fill"]) - _finite(row["stop"]))
             if _finite(row["fill"]) is not None and _finite(row["stop"]) is not None
@@ -347,7 +353,11 @@ def reconcile_taken(
         return LabelResult(
             label_id=label["id"], session=session, label_class=str(label["class"]),
             direction=direction, matched=False, engine_event=None, engine_ts=None,
-            blocked_by=(), anchor_matched=False,
+            # No anchor comparison ran here -- there is no matched emission to compare an
+            # anchor_ts against. `None` means "not compared", `False` means "compared and
+            # differed"; only the second belongs to a real comparison, like the two sibling
+            # returns above (entry_bar is None) and below (matched, block absent).
+            blocked_by=(), anchor_matched=None,
             deltas=tuple(
                 _unscoreable(f, "no emission on the label's bar") for f, _, _, _ in _TAKEN_FIELDS
             ),

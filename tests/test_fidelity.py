@@ -349,6 +349,11 @@ def test_exact_bar_match_produces_zero_deltas():
     by_field = {d.field: d for d in result.deltas}
     assert by_field["trigger"].delta == 0.0
     assert by_field["stop"].delta == 0.0
+    # Exact, not approx: this fixture's emission row carries `r: 58.83` as a hard-coded literal
+    # (SIGNAL path never recomputes it), so it subtracts against the label's identical `58.83`
+    # literal to exactly zero. The SUPPRESSED-path test below recomputes `r` by subtraction and
+    # needs `pytest.approx` for the same value -- real data would carry the same float residual
+    # on both paths; only this fixture's shortcut makes the SIGNAL path exact.
     assert by_field["stop_distance"].delta == 0.0
 
 
@@ -393,9 +398,11 @@ def test_suppressed_matches_and_borrows_prices_from_l3():
     assert result.blocked_by == ("trend_50",)
     by_field = {d.field: d for d in result.deltas}
     assert by_field["trigger"].delta == 0.0
-    # abs(fill - stop) is a float subtraction, not a copied literal, so it lands a
-    # representation error off 58.83 (docs/CONSTRAINTS.md -- no tolerance in the module itself;
-    # this is float hygiene in the test, matching tests/test_levels.py's existing convention).
+    # _l3_prices recomputes r as abs(fill - stop), mirroring stoic/emission.py's own arithmetic
+    # (§5.4.2, D-18) -- so, like the engine's real output, it lands a ~1e-12 float residual off
+    # the label's 2-dp literal 58.83. That residual is arithmetic, not a divergence (see the
+    # comment on `_l3_prices`'s `r` line); this is float-comparison hygiene, matching
+    # tests/test_levels.py's existing `pytest.approx` convention, not a tolerance in the module.
     assert by_field["stop_distance"].delta == pytest.approx(0.0, abs=1e-9)
     assert result.anchor_matched is True
 
@@ -427,3 +434,31 @@ def test_delta_sign_is_engine_minus_label():
     trigger = next(d for d in result.deltas if d.field == "trigger")
     assert trigger.delta == 3.0
     assert isinstance(trigger, Delta)
+
+
+def test_suppressed_with_no_matching_l3_entry_is_matched_but_unscoreable():
+    """Negative control for _l3_prices' empty-dict branch: a SUPPRESSED row with no L3
+    ENTRY_FILLED on the same bar still pairs (the SUPPRESSED emission itself landed on the
+    label's bar), but carries no prices to score, and says so in `notes`."""
+    suppressed = _signal_row(
+        event="SUPPRESSED", blocked_by=("trend_50",),
+        anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
+    )
+    result = reconcile_taken(
+        _label(), "2026-07-31", _emissions([suppressed]), _entries([]), BAR_INDEX
+    )
+    assert result.matched is True
+    assert result.engine_event == "SUPPRESSED"
+    assert all(d.scoreable is False for d in result.deltas)
+    assert any("prices unavailable" in note for note in result.notes)
+
+
+def test_no_entry_bar_in_scope_states_why_in_notes():
+    """The one existing assertion-free path that produces a `notes` entry: the driver's Phase 6
+    report prints this string as evidence, so its exact content is worth pinning."""
+    label = _label()
+    label["phase6_scope"]["entry_bar"] = None
+    result = reconcile_taken(
+        label, "2026-07-31", _emissions([_signal_row()]), _entries([]), BAR_INDEX
+    )
+    assert result.notes == ("no entry bar in scope -- nothing to pair on",)
