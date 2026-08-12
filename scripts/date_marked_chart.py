@@ -24,8 +24,8 @@ Two things this script is not:
 
 Why this works now and did not before: the fixtures are July-August 2026 sessions, and until
 `scripts/merge_signal_bars.py` extended the spine the bars simply were not in the series. The
-earlier failure recorded in `claude_memories/marked-charts-do-not-fingerprint-to-our-bars.md` was
-read as the *method* being wrong; it was the *range*.
+earlier failure was read as the *method* being wrong; it was the *range* --
+`claude_memories/negative-result-over-an-incomplete-range.md`.
 
 The input series is the **close**, and that is no longer a convention — see the module docstring in
 `stoic/indicators.py`. On `NQ3` the close reproduces all four printed values to within 0.08 points

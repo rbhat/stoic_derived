@@ -169,12 +169,14 @@ def test_from_path_resolving_to_a_legitimate_null_is_not_dangling():
     assert check_scope_consistency(label) == ()
 
 
-def test_docstring_does_not_claim_the_import_direction_test_already_exists():
-    """Finding 4: the module docstring must not assert, in the present tense, a test that Task 6
-    has not written yet."""
+def test_docstring_claims_the_import_direction_test_in_the_present_tense():
+    """Originally the inverse: the docstring promised a test Task 6 had not yet written, and this
+    guarded against claiming it in the present tense. The test now exists (above), so the guard is
+    inverted -- what it protects is the same thing either way, that the docstring and the suite
+    agree about what is built."""
     doc = fidelity_module.__doc__
-    assert "Task 6" in doc
-    assert "tests/test_fidelity.py` asserts the direction of dependence" not in doc
+    assert "tests/test_fidelity.py` asserts that direction of dependence" in doc
+    assert "Task 6" not in doc, "docs/PHASE6-PLAN.md was deleted 2026-08-12"
 
 
 def test_anchor_bar_narrated_is_declared_but_never_a_scope_key():

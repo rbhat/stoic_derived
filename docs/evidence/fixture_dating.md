@@ -62,8 +62,8 @@ previous day's close *is* the month's lowest close to date. A wrong date breaks 
 
 ## What this corrects
 
-**`claude_memories/marked-charts-do-not-fingerprint-to-our-bars.md` was wrong twice**, and the two
-errors compounded:
+**An earlier note was wrong twice** — the lesson is now
+`claude_memories/negative-result-over-an-incomplete-range.md` — and the two errors compounded:
 
 1. It dated the charts to **May–June 2026** from a scan that could only see up to 2026-06-10. The
    price band recurs at the edge of the data and continues past it, so the band was real and the

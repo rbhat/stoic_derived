@@ -1,393 +1,45 @@
 # Current state — what is true right now
 
-**Phases 0, 1 and 2a are complete. Phase 2's deliverable — `docs/RULEBOOK.md` — is written and its
-register is closed: nothing in §12 blocks Phase 5.** The last blocker, **O-14** (where the
-post-Step-3 expansion leg ends), closed on 2026-08-08 as **D-28**, so **L1, L3 and L4** all compile.
-Phase 2's exit gate names a *two-reader* test that has never actually been run — the register being
-closed is not the same claim, so do not report that gate as met.
+**This file says what is true now. `git log` says what happened, `docs/CONSTRAINTS.md` says what
+binds you, and the phase docs say how each phase was designed. Nothing here is a changelog.**
 
-**Phase 5's engine is built end to end as code: L0, L1, L2, L3, L4 and L5 all exist — and as of
-2026-08-09 it runs.** Baseline: `pytest` **240 passed**, `scripts/verify_citations.py` **222
-citations across 8 sources, all resolve**, negative control PASS.
+## Where the project is
 
-**The engine has now produced signals from market data.** `find_base` — L2's last injected
-predicate — was decided on 2026-08-09 as **D-34**, which filled the last seam and made
-`decided_judgment()` complete. First run over **NQ 5m, 2026-05-01 → 2026-06-10** (7,785 bars,
-Scalp, `htf=None`): **389 emission rows — 210 `SIGNAL`, 43 `SUPPRESSED`, 136 `BREAK_EVEN`**. An
-earlier run of the same window reported 246 signals; **review found a bug the same day** — a run of
-inside candles could be a base on its own (96 of 413 selected bases were entirely inside candles),
-which is the *"there could be inside bars and then it continues"* case read as a Step 2. D-34's floor
-now counts **non-inside** candles. The 246 figure is superseded, not a second measurement.
-The split is 131 bullish / 79 bearish. **Reported as counts, not as a verdict**, per `CLAUDE.md`:
-nothing here says the signals are the right ones, and Phase 3's labelled set is what would
-say so. Every layer's *unit* tests remain hand-built fixtures.
+| Phase | State |
+|---|---|
+| 0, 1, 2, 2a | Complete. Phase 2's deliverable is `docs/RULEBOOK.md`; its §12 register is closed — nothing blocks the engine. **Phase 2's exit gate names a two-reader test that has never been run**, which is not the same claim as the register being closed |
+| 3 — labelled reference set | Labelling complete, 10 labels across 4 sessions. **Whether it closes is the user's call.** `docs/PHASE3.md` |
+| 4 — the SLM | Off the critical path, three times running. Still its own: **O-9** and label proposals, neither blocking. `docs/evidence/phase4_room_left.md` |
+| 5 — the engine | Complete. L0–L5 all built, every injected predicate filled |
+| 6 — fidelity | Built, run once. `docs/PHASE6.md`, `docs/evidence/phase6_reconciliation.md` |
+| 7 — forward test | Built, run, audited. `docs/PHASE7.md`, `docs/evidence/phase7_forward_test_NQ_scalp.md` |
+| 7b, 8, 9 | Not started. `docs/PLAN.md` |
 
-**Phase 3 started on 2026-08-10 and its labelling pass is complete. `docs/PHASE3.md` is the design
-— read it before touching a label.** The bar spine reaches **2026-08-10**, all five §10 fixtures are
-**dated**, all four marked-chart fixtures are **labelled** — `LT`, `NQ3`, `T1`/`T2`, `LT3`/`LT4` —
-and **both `PTBV` segments are reconciled**. Counts across the four sessions: **8 `taken`, 1
-`named`, 1 `no_opportunity`**. What is not done: `docs/CONSTRAINTS.md` rows as things close, and the
-per-keyframe clock table (below).
+**Baseline:** `pytest` **357 passed**; `scripts/verify_citations.py` **222 citations across 8
+sources, all resolve**, negative control PASS.
 
-**`PTBV` is two sessions, not one, and that reshapes the pass that was about to start.** Measured
-2026-08-10 off the keyframes' own TradingView clock: the video cuts from **2026-07-30** (video
-00:00 → ~01:05, wall 09:31 → 16:06) to **2026-07-31** (~01:06 → 01:37:54, wall 09:27 → 13:44), the
-clock jumping **backward** at the seam. The second segment is **`T1`/`T2`'s session narrated
-live** — its final keyframe is the `T1`/`T2` chart with all six executions, 34 seconds before
-`T2`'s screenshot bar. `docs/evidence/ptbv_session_map.md`. So `docs/PHASE3.md`'s *"`PTBV`'s full
-2026-07-30 session"* was half the video, `PTBV` gets **no YAML of its own**, and a `PTBV`
-execution must reconcile against **both** existing label files. Corrected in `docs/PHASE3.md` §3
-and `docs/CONSTRAINTS.md`.
-
-**Segment 1 is now reconciled, and it resolved an open ambiguity rather than adding a label.** All
-three `LT34` executions are narrated in `PTBV` and matched to it by clock, creating **no new
-`taken` id**. Two results:
-
-- **The `BE` mark belongs to `LT34-M2`, not to the +2.8R trade §10.9 assigns it to.** At video
-  [00:26:33], clock **10:23:17**, he says *"a very good place to put your stop loss at
-  break-even"*; `LT34-M1` had closed at 10:06:11 and the open position was the one entered at
-  10:17:43. That is what the arithmetic already said, now confirmed independently. **The drawn
-  glyph is still not a locator** — it sits at the 10:35/10:40 bars, 12–17 minutes off the event.
-  §10 is not edited; that is the user's call.
-- **`LT34-M1`'s and `LT34-M2`'s entry bars are confirmed to the second** against bars this repo had
-  read off an execution arrow alone (09:35:01 and 10:17:43). First independent check on any entry
-  bar in the fixture set. `LT34-M2`'s *"i gotta do market"* also explains why no trigger is drawn
-  for it.
-
-**Segment 2 is now reconciled too, and it also created no label id.** `PTBV` narrates six
-executions across its two days and **all six were already labelled off the marked charts** — the
-`DIA-P` double-count it was guarding against did not happen. Segment 2 runs **[01:05:11] →
-[01:37:53]** (the transcript dates the seam six seconds after segment 1's sign-off, sharper than the
-keyframe jump), and every line is **bracketed between the two nearest measured keyframe clocks,
-never interpolated**. `docs/evidence/labels/2026-07-31_T1_T2.yaml`, `ptbv_narration`. Four results:
-
-- **The `~$1,000` risk figure is now cited rather than inferred** — *"one thousand dollar per risk
-  for me this is my risk currently"* [01:36:09], plus two more. **What he states is a maximum he
-  sizes under, not a constant he hits**, which is §10.10's own floor rule `n = ⌊1000 ÷ (2d)⌋`,
-  *"which is why they land just under"*.
-- **The whole dollar bridge is a SUGGESTION now, not a reading — the user's call, 2026-08-11**, and
-  it stays one until it is tested against a second instrument. Two untested things sit under it:
-  the risk figure is a **cap**, so the real risk lands anywhere in `(n/(n+1) × $1,000, $1,000]` — up
-  to **14% below** at 6 lots — and the point value is **instrument-specific**, `$2/point` being
-  **MNQ** against NQ's $20 and ES's $50, while these charts are MNQ and our bars are NQ. **So a
-  `by_r_label` distance may never contradict §5.4.1 / D-18**, and nothing in `stoic/` reads a dollar
-  figure. A first version of this said §10.10 *"recovers the risk unit, not the stop"* and pinned
-  `T-B1`'s 0.99 on lot rounding; **that asserted one of two constructions that the corpus does not
-  separate** — every §10.10 row fits *P&L ÷ round $1,000* and *P&L ÷ that trade's own risk* equally.
-  `docs/evidence/labels/2026-07-31_T1_T2.yaml`, `stop_recovery`.
-- **`T-A2`'s +1R is a discretionary stop move, not a target and not the rulebook's break-even.**
-  *"i'm gonna put my stop loss over here and then i will lock in plus one r"* [01:26:50], filled by
-  a buy stop at 11:50. §5.4.5 / **D-25** allows exactly one stop move and it is to break-even. This
-  is **not** written in and gets no D-row — the consequence is narrow: **Phase 6 scores `T-A2`'s
-  entry, trigger and R, never its exit.**
-- **Two rules are corroborated live, on the trades this repo labelled.** **D-17**'s re-anchoring —
-  *"the ptb bar just keeps moving higher … keep trailing this behind the latest ptb bar"* — and
-  **D-23** / §5.3.5a in as many words: *"when it's inside candle you don't want to treat it as
-  ptb."* §5.4.1 is corroborated too, with a wrinkle: he says the stop went **below** the PTB low,
-  which the `by_r_label` reading (*above* it) does not support. Neither reading is adopted.
-
-**Segment 2's first minute reviews the previous session, and that goes in the 07-30 file.**
-`LT34-A1`'s **exit reason** is narrated where no chart draws one — *"in asia i exited because the
-price was going down below the 50 sma"* — and it is **recorded, not adopted**: §5.4.7b / **D-24**
-keys the invalidating close to the **10/20**, not the 50, and neither source says which timeframe he
-was on. The *"7r on the day"* total reconciles (+2.8R, break-even, +4.5R = 7.3R) and **narrows the
-4-lot question without settling it**: it rules out a fourth trade with material P&L, but a 4-lot
-fill closed at break-even — exactly what `LT34-M2` did — would also leave the day at 7R.
-
-**There is now a third label class — `no_opportunity`, the user's call on 2026-08-10.** A setup he
-**wanted** and the market never triggered, as against `named`, which he **declined**. *"The market
-never gave us a chance to take the trade — will happen quite frequently. We don't mark it as a
-trade."* `PTBV30-N1` (13:27:46, bar 13:25) is the first: a working buy stop, *"ptb fails back below
-no entry"*. **It scores more sharply than `named`** — the bars say the trigger was never traded
-through, so the engine must emit **no fill**, and a fill there is a real divergence. Counts across
-the four sessions are now **8 `taken`, 1 `named`, 1 `no_opportunity`**.
-
-**One open question, measured but not resolved**: a **4-lot** order at 10:47:52 that no chart
-draws, bracketing `LT34-M2`'s 10:50 exit. The class question is settled by the above; only the
-**fact** is open — if it filled it is a fourth `taken`, if not it is `no_opportunity`. In
-`docs/evidence/labels/2026-07-30_LT3_LT4.yaml`.
-
-**That candidate rule is now decided and built — D-35, taken 2026-08-11.** The user's words:
-*"once the price has moved past the step 3 extreme, the trade is invalidated"*, then, asked which
-object it attaches to, *"current trade is invalidated but continuation ptb possible after that
-candle"* and *"do not overcomplicate this."* It attaches to the **working order**, so it is a
-**third** way the walk ends (§5.3.4a, §5.3.4b) and **not** a fourth §5.4.7 condition: an open
-position is untouched, the count is not reset, and a new pullback after that candle may open a
-continuation PTB (§2.5, **D-21**). Built as `ORDER_VOIDED` in `stoic/entry.py`, four tests in
-`tests/test_entry.py`. **The corpus is silent on it** — a scan of the 17 text sources for
-cancellation language co-occurring with *step three* returns two lines, neither on this condition —
-so it is the human's, on the footing **D-24** and **D-31** already use.
-
-**It is unreachable in the current engine, and that was measured rather than argued.** The trigger
-is a PTB extreme *inside* the pullback, so `trigger ≤ extreme` always, and a bar reaching the
-extreme has already traded through the trigger and filled — **including on a gap**, where **D-22**
-fills at the open. Over **7,860** NQ 5m bars (2026-05-01 → 2026-06-10) L3 emitted 498
-`PTB_ANCHORED`, 258 `ENTRY_FILLED`, 63 `ORDER_CANCELLED` and **0 `ORDER_VOIDED`**. So the rule is
-in the spec and in the code and **changes no output today**; it is a guard, and `test_case18_void_
-is_unreachable_under_replay` pins that so a later change surfaces as a decision rather than as
-drift. **The user should know it is a no-op as scoped** — if the intent was a condition that
-actually bites, the reading to revisit is *which* extreme, not whether to implement it.
-
-**`LT3`/`LT4` is labelled, and it carries more than §10.9 lists.** §10.9 describes one trade; `LT3`
-carries four further execution marks — the morning round trips — so the fixture holds **three**
-`taken` labels. Three findings came out of it, none of them a decision:
-
-- **The drawn boundary is the base's `high`, not its highest close, and that bears on D-30.** The
-  unlabelled line spanning 13:15 → 15:00 measures **28,208.51** / **28,208.59** on the two
-  snapshots; the base's highest **high** is 28,208.50 and its highest **close** is 28,203.00. The
-  fit resolves levels to ~0.5 points here (`PLOW` 0.00, `PWC` 0.31, `PDH` 0.54), so a 5.5-point
-  miss is outside it. The `ptb` line reads the same way. **One session** — an observation for
-  D-30, not a change to it.
-- **The fixture is reproducible under *no* v1 Type, which is stronger than §10.9's reading.** §10.9
-  offers *"Swing or Position ... or not at all"*; §9's own table makes it *not at all*, because
-  Swing sets up on the 60m and Position on the Daily, so neither runs a 5m sequence, while Scalp
-  and Day both flatten at 13:58 PT — six hours before the exit. **The label records this so Phase 6
-  scores entry, trigger and R here and never the exit or the +4.5R outcome.**
-- **`LT34-M1` is only the second §10.10 row that needs no division.** 229.00 pts × 6 lots × $2 =
-  **$2,748** = 2.75R, which *is* the printed **+2.8R**. It corroborates the $1,000 unit rather than
-  assuming it. And on the +4.5R trade §10.10 and §5.4.1 land **1.04** points apart — second only to
-  `T-B1`'s 0.99, against `LT`'s 12.25.
-
-**How a marked chart is now read, and it is not by eye.** `T1`/`T2` was labelled by fitting the
-candle comb and the price axis off the artifact itself — candle bodies are flat exact colours, so
-the comb and a least-squares fit of body ends against our bars recover both axes. On `T2` that
-reproduces our NQ bars to **0.92 points sd** over 146 body ends, and the fitted gridlines land on
-TradingView's own printed labels. **The two snapshots were fitted independently at different zooms
-and put all six executions on the same bars**, which checks the method rather than the data. It is
-`scripts/fit_marked_chart.py`, and the numbers it produced are in the label file.
-
-**The one fixture that would not fit has been fixed, and the reason it would not was misdiagnosed
-for two days.** `LT3`/`LT4` reported 16.95 points sd and this file, `docs/CONSTRAINTS.md` and the
-script's own docstring all blamed the **CME maintenance break** the chart spans. That was wrong:
-our 5m frame holds no bars between 17:00 and 18:00 ET either, so walking `last_index - k` crosses
-the break correctly and never needed changing. The real fault was the comb — **four of `LT4`'s
-candles draw no body pixels** (dojis, and candles under the shaded session boxes), each leaving a
-two-slot gap the `span / median_gap` seed could not see, so it searched 134–138 slots when the truth
-was 139. `fit_comb` now seeds the count by counting the gaps. `LT4` fits to **0.92** pts sd over 272
-body ends and `LT3` to **0.69**; **`T1`/`T2` and `NQ3` reproduce unchanged**. The tell was in the
-output all along: the comb's own pixel residual was **10.79 px on a 22 px spacing** — half a candle
-— and drops to 0.51 at the right slot count. It is a warning and not a gate: `T1` fits cleanly at
-10.22 px on a 39 px spacing. **Read the comb residual as a fraction of the spacing, then the price
-residual.**
-
-**The finding that reshaped the phase: every §10 marked chart is a 2026-07-27 → 2026-08-03 session,
-and our bars ended 2026-06-10.** Phase 3 was never blocked on labelling effort; it was blocked on
-data. `scripts/merge_signal_bars.py` fills the gap from the live signal system's `signals.db`
-(`~/dev/trading_signal/data/`, overridable with `$STOIC_SIGNALS_DB`) — our parquet stays
-authoritative on the overlap, only bars strictly after it are appended, and appended rows carry
-`source = signals_db` so provenance survives in the data itself. Gates A–E pass; **two of them
-needed a real fix, not a suppression** — see the Open list.
-
-**Two things that run confirmed, both predicted rather than discovered.** All **210** emitted
-signals scored **2 of 3** confluence, which is exactly what **D-32** records as its consequence: on
-a fast chart a passing gate already implies both §7.1.1 conditions, and `htf=None` leaves the third
-absent with the denominator still 3. And `continuation` runs `True` in clusters, which is **D-21**
-working. Neither is a finding about the method.
-
-**All four of L2's terms are now decided.** All four were routed to Phase 4's SLM on 2026-08-09;
-the human decided all four the same day, with the censuses in hand:
-
-- **D-29 — what makes a break or a close "meaningful."** Covers *both* terms, §2.1.1 and §2.3.4,
-  which the user chose to treat as **one question**. The rule: **the close must sit beyond its
-  reference by ≥10% of the parent bar's high-low range** — reference being the *further* MA for
-  Step 1 and the selected boundary for Step 3. Parent bar per §5.2.8a / **D-23**, not `i-1`.
-- **D-30 — how the boundary is selected.** **Choosing the base determines the line:** the boundary
-  is the base's **close** extreme on the Step 1 side, §2.3.1 forcing the side. Closes not wicks, on
-  the §7.3 / **D-8** precedent. This is a **default, not the whole rule** — §2.2.7's sloping
-  boundary is **retained** and deliberately unimplemented (**O-18**).
-- **D-34 — what makes a base "obvious."** **The base is the residual state: unless price is
-  trending or breaking out, it is basing.** *Trending* is two consecutive **non-inside** candles
-  extending the same way against the parent bar; everything else is basing, so a **sweep that
-  reverses** stays inside the base. The span is the trailing run of basing candles, it **ends at
-  the candle before the one being tested**, its floor is **2 non-inside candles**, and it is
-  **cancelled if the leg resumes**. §2.2.5a carries it.
-
-**D-34 carries no number, and that is the whole of its design.** It **dropped D-3's three clauses**
-rather than calibrating them — compression because a base's ranges can be about the same, MA
-proximity and *breakouts inside* because **D-15**'s reset already ends the count on a close back
-through both MAs. **It is not free of numbers, and the first write-up of it wrongly said so:** the
-2-candle floor is a literal, and it lives as `MIN_BASE_CANDLES` in `stoic/judgment.py` beside
-`MEANINGFUL_FRACTION` — named, not inlined, because an unnamed `2` is as invisible as an unnamed
-`0.10`. That is also why §2.2.5a is **P** and not **M**. **Two constants in the engine, both in
-`stoic/judgment.py`, both naming their §11 row.**
-
-**D-29 and D-30's numbers are chosen, not measured.** The censuses enumerated every passage on all
-four terms and **none quantifies any of them**; D-30 in particular decides a **6-to-5 split** in the
-corpus that no passage addresses directly. D-34 is the same kind of choice one step further out —
-it picks among rival *constructions* rather than rival numbers, and the rejected ones are named in
-its §11 row so a later measurement knows what it is testing against.
-
-**Everything decided lives in `stoic/judgment.py`, never in `stoic/sequence.py`** — the machine stays
-threshold-free, and each predicate names the §11 row that authorised it.
-
-**Three open rows, all non-blocking, all noticed rather than decided.** **O-17**: D-29 uses 10%
-of the **parent** bar's range while **D-24**/§5.4.7b uses 10% of the **candle's own** — same number,
-different denominator, same shape as **O-15**. **O-18**: when is a base edge a *trend line* rather
-than a level? D-30's horizontal default is always available, so an implementation never has to guess
-— but it may not pick the sloping case silently. **O-20**: §2.2.9's *"if two boundaries look equally
-valid there is no clean step three yet"* — wait — **has no counterpart in the engine**, because a
-residual base yields exactly one span per bar and two candidates can never tie. Whether that
-satisfies the tie-break or silently drops it is undecided; **do not add a selector to fill it**.
-
-**The first deliverable is a passage census, not a trained model.** The whole corpus is **66,463
-words** across 9 transcripts — small enough to read whole, so fine-tuning on it would memorise
-rather than discover, with no held-out set to check against. So: enumerate every passage bearing on
-each of the four terms, with citations, into `docs/evidence/census_meaningful.md` and
-`docs/evidence/census_base_boundary.md`. That is both the input the SLM proposes over and the eval
-set for what it proposes. It may settle a term outright, or show the material never speaks to it —
-which is the answer, and sends that term to the human. **Brief: `.scratch/census_brief.md`**
-(gitignored, this machine only — regenerate it from this paragraph if lost).
-
-**Both censuses are written as at 2026-08-09** — 157 citations across 9 sources, all resolve.
-**No passage in either one quantifies any of the four terms.** That is what makes **D-29** and
-**D-30** decisions rather than derivations. The one term neither census could quantify — the obvious
-base — was not guessed either: **D-34** answered it by changing the question from *which number* to
-*which construction*, which is why it needed none. Two findings that are not about the four terms: `OTV` and
-`edu/derived/concept_the_only_trading_video_that_you_will_ever_need/transcript.md` are the **same
-video transcribed twice** (only the first has a §0 key — the `DIA-P`/`DIA-L` failure again), and
-`MS` is in `scripts/verify_citations.py`'s `SOURCES` map but missing from §0's key table. Neither is
-acted on. `scripts/verify_citations.py` now takes optional paths so `docs/evidence/` can be checked;
-with no argument it still scans `docs/RULEBOOK.md` alone, which is the gate and the baseline above.
-
-**Two things that routing does not change.** The SLM **proposes; it never decides** — `VISION.md`
-keeps it offline and out of the live path, and §0 says a proposed number for a **J** term *"is a
-strategy decision requiring the human"*. So each proposal still lands as a **D-row in §11** with the
-human's confirmation on it, exactly as **D-9** already routes the no-edge zone. And the fallback is
-the human: **if the SLM cannot ground a term in the material, that term comes back for a decision —
-it does not get a default.** An unfilled predicate is the correct state; an invented one is not.
-
-The decision register is `docs/RULEBOOK.md` **§11** (closed) and **§12** (open) — nowhere else. The
+**The decision register is `docs/RULEBOOK.md` §11 (closed) and §12 (open) — nowhere else.** The
 table in `docs/PLAN.md` is the superseded intake form.
 
-## What is still live from Phase 2a
+## The two runs, and how to read them
 
-Phase 2a is closed and **is not summarised here** — `docs/AUDIT-2a.md` is its record, `docs/RULEBOOK.md`
-§11 holds every decision it produced, and `git log` holds the rest. Two things it left behind are
-current rather than historical:
+Both are **counts, never verdicts** (`CLAUDE.md`): single instances, small *n*, nothing projected.
 
-- **`docs/evidence/ptb_atr_distribution.md` is now almost entirely inert.** O-5 closed by deleting the
-  ATR stop floor (**D-18**), so nothing in the spec reads its percentiles, and its `BODY` / `EXTREME`
-  columns describe two readings **D-23** rejected. **One number in it still matters:** those two
-  readings pick a different anchor bar on **62.8%** of candidates (NQ 5m RTH 2019–2026), which is why
-  neither could be adopted quietly and why D-23 stands. It lived in the gitignored `.artifacts/` and
-  did not travel between machines until 2026-08-09; it is now tracked under `docs/evidence/`.
-- **The standing rule that came out of it** is `claude_memories/audit-hard-rules-not-in-material.md`,
-  not a phase. The ATR floor passed every mechanical sweep because it cited a real D-row with a real
-  open row; only asking the human where the predicate came from caught it.
+### Phase 6 — engine against the labelled set
 
-## The material
+`NQ` `5m`, `2026-06-22` → `2026-08-04`, 8,784 bars, `SCALP`, `htf=None`, exact-bar matching, no
+tolerance. **10 labels reconciled, 2 matched on the exact bar** (`LT-B1`, `T-B1` — both agreeing on
+price exactly), **25 unlabelled emissions** (not a false-positive rate; the label set is not
+exhaustive).
 
-- **`edu/123sequence/` — the main source.** The 1-2-3 sequence: 4 videos, the entry-technique
-  write-up and diagrams, the concepts files, the war map, and the `discussion/` and
-  `concepts/PTB Questions.md` notes from the user.
-  Also `PTBV` (the `PTB Entries - NQ Live Trading 10R` video, 1h38m — the densest single source on
-  §2.5 and §5.3), `TPA` (`Navigating tough price action`, 58:00 — the densest source on what a PTB is
-  and is not), and the marked charts `NQ3`, `T2`, `LT3`, `LT4` and `IBD`. **`DIA-P` is byte-identical
-  to `DIA-L`** — one drawing at three paths, never two sources (§0).
-- **`edu/videos/` — supporting.** 3 concept videos (Candle Swing Theory, HTF Protocol, Simple Stoic
-  Setups).
-- **`edu/resources/` — 8 case-study PDFs.** Validation material for the rulebook, not training input.
-- **`edu/derived/` — 9 complete transcript sets**, one per video, indexed by
-  `edu/derived/manifest.json`.
+**Phase 6 found no specification bug.** All eight unmatched labels traced to a rule working as
+written — in seven, §5.4.7 invalidation fires between Step 3 confirmation and the labelled entry.
+So building forward is not building on a known defect. The triage is in the report §2.
 
-Phase 1 produced **2** new transcript sets, not the 3 its exit gate named: the `Universal 1-2-3
-Sequence` file was a byte-identical recording of `Module 1` and was removed 2026-08-01.
+### Phase 7 — every signal tracked to an outcome
 
-## Next
-
-**`docs/PLAN.md` is the plan, end to end.**
-
-**Phase 6 is built and has run once.** `docs/PHASE6.md` is the design — read it first.
-`stoic/fidelity.py` (pure measurement) and `scripts/reconcile_labels.py` (the driver) are built and
-tested; `docs/evidence/phase6_reconciliation.md` is the record — §1 and §3 generated, §2
-hand-written. `docs/PHASE6-PLAN.md` is now deletable execution scaffolding — its task briefs cited
-the 240-test baseline, stale like the figure below; `docs/PHASE6.md` and the report are what
-survive.
-
-**The run: `NQ` `5m`, one continuous pass `2026-06-22` → `2026-08-04`, 8,784 bars,
-`SignalType.SCALP`, `htf=None`, `decided_judgment()`, exact-bar matching with no tolerance**
-(`docs/PHASE6.md` §4). Gate 0 (scope consistency) passed first: 10 labels, 0 problems, checked
-before the engine ever ran.
-
-**10 labels reconciled, 2 matched on the exact bar, 25 unlabelled emissions** (report §3 —
-explicitly not a false-positive rate, since the label set is not exhaustive). **Reported as counts,
-never a verdict**, per `CLAUDE.md`: ten single instances across four sessions, and nothing here says
-the engine is right or wrong.
-
-Engine totals over the window: **L3 1,027 records** (516 `ptb_anchored`, 261 `entry_filled`, 172
-`stop_to_break_even`, 78 `order_cancelled`); **L5 410 rows** (212 `signal`, 149 `break_even`, 49
-`suppressed`).
-
-**The two exact matches, both agreeing on price exactly with no tolerance used:**
-
-- **`LT-B1`** (`named`) — anchor bar and trigger matched, delta **+0.00**. The engine went on to
-  fill the order the trader declined — correct-but-not-taken per `docs/PHASE3.md` §2, never a false
-  positive.
-- **`T-B1`** (`taken`) — trigger and stop both matched, delta **+0.00**; stop distance differs by
-  **−1.17** points (label 42.42, engine 41.25, `by_ptb_extreme`). L5 emitted `SUPPRESSED`,
-  `blocked_by: into_200` — the engine reproduced a trade the trader took and then declined it on
-  §7.1.4 / **D-31**.
-
-**The mechanism behind seven of the eight unmatched rows is now identified, not merely localised.**
-Tracing the entry machine's own per-bar state, not just event counts, found that in every one of the
-seven, **§5.4.7 invalidation fires between the Step 3 confirmation and the labelled entry** — always
-on `invalidated_boundary_close`, **§5.4.7c**, a close beyond the Step 2 boundary against the trade
-direction:
-
-| session | Step 3 confirmed | invalidated | gap | order existed? |
-|---|---|---|---|---|
-| 07-30 bullish | 18:05 | 18:15 §5.4.7c | 2 bars | no |
-| 07-30 bullish | 20:15 | 20:50 §5.4.7c | 7 bars | no |
-| 08-03 bullish | 13:15 | 13:25 §5.4.7b + §5.4.7c + reset | 2 bars | no |
-| 08-03 bullish | 14:55 | 15:05 §5.4.7c | 2 bars | no |
-| 07-31 bearish | 14:05 | 14:25 §5.4.7c | 4 bars | **yes** — `ORDER_CANCELLED` |
-
-On the 07-31 row a working order existed: the engine anchored a PTB at 14:20 and cancelled it at
-14:25 on §5.4.7c, 3 and 6 bars before `T-A1`/`T-A2`'s labelled entries. That is **not** the engine
-failing to see the setup — it saw it, armed it, and invalidated it on a rule applied correctly, so
-the open question is upstream: whether the engine's selected boundary is the same line the trader
-traded against (**D-30**, a 6-to-5 corpus split no passage addresses directly). On the four rows
-where no order existed, §5.4.7 fired against an *armed* machine with no open position and no working
-order, clearing `armed` in `stoic/entry.py` before a PTB could ever anchor — whether "Step 3
-confirmed, no pullback opened yet" counts as a pending setup under §5.4.7's own scope is not stated
-anywhere; see Open, below.
-
-Three further single-instance findings, neither projected past itself: **`LT-A1`** — the engine
-emitted `step_3_break` and `step_3_confirmed` on the label's own anchor and entry bars exactly, then
-anchored a PTB and filled three bars later; engine and label agree on where the sequence is and
-disagree on *when* an entry may be taken — the trader entered on the confirmation bar, the engine
-requires a pullback to open after it (§5.2.1a / **D-28**). That is the shape of §5.5 / **D-11**, the
-anticipatory entry the engine must not emit, and it is triaged **out of v1 scope pending one artifact
-check**: whether the label's `28525.75` is a PTB extreme or the Step 3 break level. **`NQ3-A1`** is
-`circular: true` and excluded — nothing is drawn from it, matched or not (`docs/PHASE6.md` §4).
-**`PTBV30-N1`** (`no_opportunity`) — the engine emitted no fill (half its expectation) but never
-identified the setup (the other half): partially met, not credited.
-
-**Both matches are exact and both misses are total** — no case of the engine finding the right
-setup a bar or two late with approximately right prices. A property of these ten instances, **not
-projected past them.**
-
-Suite is **355 passed**, superseding the 240 baseline above — Phase 6 added `stoic/fidelity.py`,
-`scripts/reconcile_labels.py` and their tests (304), and Phase 7 added `stoic/tracking.py`,
-`scripts/forward_test.py` and theirs (355, after the 2026-08-12 audit added ten).
-`scripts/verify_citations.py` still reports **222
-citations across 8 sources, all resolve**, negative control PASS — unchanged from baseline.
-
-**Phase 6 found no specification bug in the engine — every one of its eight unmatched labels traced
-to a rule working as written, above.** So building forward is not building on top of a known defect.
-**`docs/PLAN.md`'s Phase 7 is the forward-test harness**, split 2026-08-11 from the old Phase 7,
-which is renamed **Phase 7b** and deferred until the system trades real money — `docs/PLAN.md` has
-both. **Phase 7b has not started.**
-
-**Phase 7 is built and has run. `docs/PHASE7.md` is the design — read it first.** `stoic/tracking.py`
-(pure measurement) and `scripts/forward_test.py` (the driver, ledger and report) are built and
-tested; `docs/evidence/phase7_forward_test_NQ_scalp.md` is generated, never hand-written. Suite
-is **355 passed**.
-
-**The run: `NQ` `5m`, `SignalType.SCALP`, frame `2026-06-22` → `2026-08-04`, 8,784 bars,
-`decided_judgment()`, `htf=None`** — the same window and settings as Phase 6, deliberately, so the
-L5 totals cross-check. They do: 212 `signal`, 149 `break_even`, 49 `suppressed`, identical to Phase
-6's recorded run. **212 signals tracked to an outcome:**
+Same window and settings, deliberately, so the L5 totals cross-check. They do: 212 `signal`, 149
+`break_even`, 49 `suppressed`, identical to Phase 6's run. **212 signals tracked:**
 
 | outcome | count |
 |---|---|
@@ -399,88 +51,57 @@ L5 totals cross-check. They do: 212 `signal`, 149 `break_even`, 49 `suppressed`,
 | `ambiguous` | 0 |
 | `open` | 0 |
 
-**Counts, never a verdict** (`CLAUDE.md`) — and one structural fact must be read alongside them
-before anyone reads the first row as a hit rate: **TP1 is the Step 3 extreme frozen at fill**
-(§6.1, **D-16**), which is the *same near level* **D-25** moves the stop to break-even on. A target
-that close being reached often is geometry, not performance. **The report carries no expectancy, win
-rate, average R or drawdown, by design** — that is Phase 9's, and `docs/PHASE7.md` §8 makes its
-absence a requirement rather than an omission.
+**Read `tp1` 121 with the geometry, not as a hit rate:** TP1 is the Step 3 extreme frozen at fill
+(§6.1, **D-16**), the *same near level* **D-25** moves the stop to break-even on. A target that
+close being reached often is structure, not performance. **The report carries no expectancy, win
+rate, average R or drawdown** — `docs/PHASE7.md` §8 makes that a requirement, and it is Phase 9's
+measurement, not this one's.
 
-**72 of the 212 needed the 1m spine to say which level came first**, and none was unresolvable
-(`ambiguous` 0). The exit gate is met: a fresh run over the full frame writes 212 signals and 212
-outcomes, an identical rerun appends **0 rows — byte-identical file**, and the ledger holds 212
-unique signal ids against 212 unique outcome ids. A frame-start disagreement exits non-zero before
-the replay begins.
+**72 of the 212 needed the 1m spine** to say which level came first; none was unresolvable. The exit
+gate is met: a fresh run writes 212 signals and 212 outcomes, an identical rerun appends **0 rows,
+byte-identical file**, and a frame-start disagreement exits non-zero before the replay begins.
 
-**`not_taken` 1 is a defect this harness found in its own first build, not a property of the
-market.** An audit on 2026-08-12 traced a trade booked as a `flatten` with its exit priced *before
-its entry existed*: `stoic_123:NQ:scalp:bearish:2026-07-29T20:55:00+00:00`, a sell stop at 27,266.25
-that the 1m bars put in the **20:59** minute against a **20:58** cutoff, recorded at `bars_held` 0
-and −0.20R. The cause was structural — §3's three 1m windows were written as alternative branches
-instead of composed, so a bar that hit no level fell through to the flatten without anyone asking
-whether the trade was live at the cutoff. **The user's call, 2026-08-12: a fill at or after the
-cutoff on a flatten Type is not a trade.** It is recorded, flagged `filled_after_cutoff`, and books
-no P&L. The engine still emits the signal — emission is Phase 5's and changing it would move Phase
-6's numbers.
+**`not_taken` 1 is a defect the harness found in its own first build.** A trade was booked as a
+`flatten` with its exit priced *before its entry existed* — a sell stop the 1m bars put in the 20:59
+minute against a 20:58 cutoff. The user's call, 2026-08-12: a fill at or after the cutoff on a
+flatten Type is not a trade. Recorded, flagged, no P&L. **The engine still emits the signal** —
+changing emission would move Phase 6's numbers.
 
-**There is no `break_even` outcome, and the reason is structural.** TP1 and D-25's break-even
-trigger are the identical frozen `step3_extreme` under the identical strict trade-through test, so
-the bar that trips break-even is the bar that reaches TP1 — and **the user's call on 2026-08-12 is
-that TP1 is a full exit**, because partial sizing is **O-7**, open, and `tp2` is always `None`. The
-first build kept the class and pinned it at zero; the same audit found **that pin was worthless** —
-nothing could construct the member, so the assertion held whatever the code did. A pin by *absence*
-is not a pin by *observation*, which is what makes `tests/test_entry.py` case 18's `ORDER_VOIDED` a
-real tripwire. The class is removed and the tripwire moved to
+**There is no `break_even` outcome.** TP1 and D-25's trigger are the identical frozen
+`step3_extreme`, and TP1 is a full exit (user's call, 2026-08-12 — partial sizing is **O-7**, open).
+The tripwire is
 `tests/test_forward_test.py::test_tp1_and_the_break_even_trigger_are_the_same_frozen_number`, which
-drives the real engine and asserts L3's break-even level, L3's `ENTRY_FILLED` extreme and L5's `tp1`
-are one number. **That one can fail, and the day it does, O-7 has landed.**
+drives the real engine and **can fail**. The day it does, O-7 has landed.
 
-**A holiday early close would have produced no flatten at all** — 2026-07-03 closed at 13:00 ET, so
-no bar contains the 16:58 cutoff and a trade would have ridden 53 hours into Monday. Now the
-session's last bar flattens it, flagged. **No trade was open there in this run**, so no recorded
-number changes; the mechanism was live and unguarded, which is the finding.
+## The material
 
-**Two facts about L3 were measured during the design and neither is a defect in it.** A §5.4.7
-invalidation that drops open positions emits **no `EntryRecord` for them** — `ORDER_CANCELLED` is
-emitted only when a working order existed — so the exit is read from **L2**, which owns the
-invalidation event. And **L3 drops a position from its book the moment break-even fires**, because
-§5.4.5 is the only stop move there is; the trade is still open, so tracking keeps its own book. Both
-are in `docs/PHASE7.md` §1.
+- **`edu/123sequence/` — the main source.** 4 videos, the entry-technique write-up and diagrams, the
+  concepts files, the war map, the user's `discussion/` and `concepts/PTB Questions.md` notes. Plus
+  `PTBV` (1h38m, densest on §2.5/§5.3), `TPA` (58:00, densest on what a PTB is), and the marked
+  charts `NQ3`, `T2`, `LT3`, `LT4`, `IBD`. **`DIA-P` is byte-identical to `DIA-L`** — one drawing at
+  three paths, never two sources (§0).
+- **`edu/videos/`** — 3 concept videos, supporting. **`edu/resources/`** — 8 case-study PDFs,
+  validation not training. **`edu/derived/`** — 9 transcript sets, indexed by `manifest.json`.
+- `docs/RULEBOOK.md` §13 records how the rest of the corpus is used: the daily-close layer is
+  **complementary** — context and targets, never a step of the sequence, and it yields on conflict.
 
-**The Phase 4 room-left audit is done — 2026-08-10, `docs/evidence/phase4_room_left.md`. Nothing
-was decided.** The user's concern was that *"a lot of these rules are going to constrain or make the
-SLM incoherent."* **The count does not show that.** Of §1–§9's **21 J** rows, only **5** carry a
-D-row at all (2.1.4→D-29, 2.2.5→D-34, 2.2.6→D-30, 5.3.3c→D-23/D-28, 6.5a→D-26), and **none of the
-five sits under a term Phase 4 would work on** — §7.3 and §7.4 are gating and context, and no
-decision has ever touched them.
+## Next
 
-**What limits Phase 4 is that the room closed by other means.** 5 compiled, **7 inert** (the engine's
-behaviour is fixed by another rule and no D-row names the term — 2.2.3, 2.3.7, 2.3.10, 2.4.2 and
-climax's 4.1/4.2/4.4, which **D-5** deferred and §4.3 caps at annotation), **3 out of the v1 path**
-(§8's `Break & retest` / `SFP` / `SBS`), **4 routed to an open row** (O-18, O-20, O-9 ×2), **2 open
-with nothing routing them** (§7.3 *trapped side*, §7.5.1 *deserves risk*).
+**`docs/PLAN.md` is the plan, end to end.** Nothing is blocked. The open choices, in the order they
+would matter:
 
-**Two rows are where a proposal would change something: §7.4.1/§7.4.2** (already Phase 4's charter —
-**D-9** assigns it, **O-9** is open, and its dense sources are the §13 complementary layer, so
-anything proposed lands as *context*, never a step of the sequence) **and §7.3 *trapped side***, the
-densest term measured and a prerequisite for one of §7.4.2's instances — but it has **no open row**,
-so a proposal has nowhere to land. **Whether to open one is the user's call, not the audit's.**
+1. **Whether Phase 3 closes.** Its exit-gate counts are answerable (below); what is unfinished is
+   only the optional per-keyframe clock table — build it *only* if a later pass needs a narrated
+   setup placed on a specific bar.
+2. **The eval set for D-34.** The base was chosen among rival constructions with **no eval set**;
+   §10's marked charts are the natural one and are now dated and labelled, so it is finally
+   buildable. Its §11 row names the rejected constructions so a measurement knows what it tests
+   against.
+3. **Whether to open a row for §7.3 *trapped side*.** The densest unmeasured term and a prerequisite
+   for one of §7.4.2's instances, but it has **no open row**, so a proposal has nowhere to land.
+   Opening one is the user's call, not the audit's.
 
-**Two things the audit surfaced. Reported, not acted on — editing §1–§9 is the user's call.**
-
-- **§2.3.7 has no §11 row.** Its engine behaviour was settled in the L2 audit and recorded in this
-  file: a re-break of a still-pending base emits `STEP_3_BREAK` again, and a base may not be broken
-  on the bar its own boundary was selected. This file says the register is §11 *"and nowhere else."*
-- **§8's preamble is stale.** It says its terms are referenced by the signal record and the
-  confluence score. Neither holds now: **D-33** fixed the score to three conditions, none of them a
-  setup type, and `stoic/emission.py` emits `setup_type="123_ptb"` as a literal.
-
-**Phase 3 was the critical path; its labelling is done and Phase 6 has now run against it — see
-above.** `docs/PHASE3.md` is the design.
-**Its exit gate asks for the label count per class and per session, and the count of fixtures that
-would not date. Both are answerable now** — and `docs/PHASE3.md` forbids reading either as evidence
-of anything on its own, as does `CLAUDE.md`. Every fixture here is one session, so small *n*
-applies to all of them.
+**Phase 3's exit-gate counts** — every fixture is one session, so small *n* applies to all of them:
 
 | Session | file | `taken` | `named` | `no_opportunity` |
 |---|---|---|---|---|
@@ -490,138 +111,9 @@ applies to all of them.
 | 2026-08-03 | `2026-08-03_NQ3.yaml` | 1 | 0 | 0 |
 | | **total** | **8** | **1** | **1** |
 
-**Fixtures that would not date: 0** — all five are dated with two independent agreements each
-(`docs/evidence/fixture_dating.md`). **`PTBV` adds no id to this table**, which is the finding, not
-a shortfall: both its segments narrate executions that were already labelled off the marked charts.
-
-**Whether that closes Phase 3 is the user's call.** What is not done, and neither blocks Phase 6:
-
-1. **`docs/CONSTRAINTS.md`** rows as things close, and this file's Open list.
-2. **The per-keyframe clock table — still unbuilt, and now optional rather than needed.** 14 of 687
-   frames are read (`docs/evidence/ptbv_session_map.md`); every `PTBV` line was placed by
-   *bracketing* between two measured clocks instead, which was enough because no line needed a bar
-   of its own. A `scripts/map_video_clock.py` doing `UTC-4` template-match plus digit NCC would
-   place every narration line exactly; ground truth for bootstrapping and self-test is those 14
-   rows, which cover all ten digits. **Build it only if a later pass needs a narrated setup put on
-   a specific bar.**
-
-**Never interpolate video time onto a bar** — the recording is cut, and video 00:34:58 → 00:44:58
-spans 2h37m of wall clock. Read the clock off the nearest keyframe, or bracket between two. Method
-and the x-shifting-clock trap: `docs/PHASE3.md` §4 item 4.
-
-**The first question to put to the engine is still not a number, it is the base.** D-34 was chosen
-among rival constructions with **no eval set** — the natural one is §10's marked charts, and those
-are now dated and partly labelled, so the eval set is finally buildable. Its §11 row names the
-constructions it rejected precisely so that measurement has something to test against. Treat the
-389 emission rows as **output to be checked, not as evidence of anything.**
-
-1. **Phase 5 — the rulebook engine. Complete as of 2026-08-09: every layer exists and every
-   injected predicate is filled.** L0–L5 are built (tables below); **D-29**, **D-30** and **D-34**
-   fill all four of L2's injected predicates, and **D-32** / **D-33** settled the two things L5
-   needed that nothing had pinned.
-
-   **No layer needed an open term and none introduced one.** `stoic/entry.py`, `stoic/gating.py` and
-   `stoic/emission.py` hold no threshold — the separation `docs/CONSTRAINTS.md` names is intact,
-   `stoic/judgment.py` is still the only module with a number in it. L3 consumes
-   `stoic/structure.py`'s pullback (**D-28**) and `stoic/sequence.py`'s events and derives neither;
-   L4 consumes nothing but bars and their SMAs; L5 consumes L3's records and L4's gate and derives
-   neither.
-
-   **`replay_entries` and `replay_signals` have now been driven over real bars** as well as
-   hand-built fixtures — see the counts at the top of this file. Their **unit** tests are still
-   fixtures and a stub judgment, which is the right thing for a unit test and is not a claim about
-   the output.
-
-   **L4 came out smaller than its plan row, and that is the finding, not a shortfall.** §7 was read
-   end to end on 2026-08-09; read it again rather than trusting this summary. Of the four things
-   `docs/PLAN.md` listed for L4, one survived contact with §7 — and **§7.4.3, the corpus's one
-   *"mechanical"* no-edge statement, turned out not to be one.** `CST @ 00:22:05` names **PDC** a
-   daily level 25 seconds before the rule, and PDC sits inside the PDH/PDL range by construction, so
-   *strictly-between-blocks* forbids a trade the same passage licenses. The user's call was to build
-   neither reading and open **O-19**. What L4 does build is the **50 SMA gate** (§7.1.2, **D-19**)
-   and the **200 SMA rule** (§7.1.4), which the human made **symmetric the same day** — **D-31**, so a
-   short is blocked at or above the 200 as a long is blocked at or below it, on fast charts only.
-   **L5 must not re-add what L4 declined:** minimum R
-   (**O-10** — record it, do not gate on it), trapped side (§7.3, **J**), the rest of §7.4.2
-   (**O-9**), and §7.4.3 (**O-19**). **HTF alignment is L5's own work and is not a gate** (§7.5.5,
-   **D-27** — it raises the confluence score and never blocks).
-
-   **L5 was the last layer, and both things nothing had pinned are now settled.** §3, §5.3.10,
-   §5.4.2, §6, §9 and `VISION.md`'s schema scope it — read those and `stoic/emission.py`'s docstring,
-   not this summary. It emits the **signal record** in `VISION.md`'s schema, plus the field that
-   schema omits — the §5.3.10 engine note requires storing **both the trigger and the fill**, because
-   they differ on a gap and only the fill sets R. **R = |fill − PTB extreme|** (§5.4.2), fixed once
-   at fill, no floor (**D-18**); break-even moves the **stop**, not R, so the record carries the
-   break-even *event* and never a second R. **TP1 = the Step 3 High/Low frozen at fill** (§6.1,
-   **D-6**, **D-16** §3.5) — L3 emits it as `step3_extreme` on `ENTRY_FILLED` and L5 reads it rather
-   than re-deriving it. **Type instantiation** (§9, **D-7**) gives the setup timeframe per Type,
-   Scalp and Day wholly on the 5m, and that is also what tells L4's `fast_chart` what chart it is on.
-
-   1. **The confluence score is decided: D-33, a plain count.** The user's rule on 2026-08-09 was
-      *"the rules should be present for entry"* — the inputs are the rulebook's **own
-      already-specified conditions** (§7.1.1's 50 and 200 reads, §7.1.3 on the 200 as HTF trend, and
-      §7.5.5 / **D-27**'s HTF confirmed Step 3), and the combination is a **count of those present,
-      *k* of 3**, every flag also recorded individually. **Weights were rejected** as invented
-      numbers. **Do not confuse §7.1.1 with §7.1.2** — §7.1.2 is the **gate** (**D-19**, L4's);
-      §7.1.1 is the **read**, and the rulebook holds them as separate rows.
-
-      **The bar they are read on is D-32: the PTB anchor bar, never the fill bar** — a fill is
-      intrabar and the gate is a close read, so a fill-bar read is lookahead. **D-32 also records the
-      consequence, which is not a bug:** on a **fast** chart a passing gate already implies both
-      §7.1.1 conditions, so on Scalp and Day the score varies only with the HTF input. The three vary
-      independently only on **slow** charts, where the 200 gate never fires.
-   2. **TP2's fib anchors are still unpinned, and that is unchanged.** §6.2 / **D-6** give the ratio
-      (2.618) and **D-20** gives the swing (Step 2, the first pullback), but a trend-extension tool
-      takes **three** points and no rule pins them. L2 exposes `step1_pos`, `step2_swing_pos`,
-      `step2_swing_price` and `base`, so the geometry is reachable without reaching past a layer —
-      what is missing is the *reading*, not the data. **Not blocking: TP1 is fully defined**, and
-      `SignalRecord.tp2` is therefore always `None` in v1.
-
-   **What L5 must never grow, and each one is a trap:** no **minimum-R or "sufficient room" gate**
-   (§5.4.6, **O-10** — `m` is unset; record R, never gate on it); no **anticipatory entry** (§5.5,
-   **D-11** — it appears in the labelled material and the engine must not emit it); **climax** (§4.3)
-   and the **lower-high cue** (§6.5a, **D-26**) **annotate only** — §4.3 is a hard constraint that
-   neither may fire, suppress or invalidate a signal; **partial sizing** and the TP1/TP2 ordering stay
-   open on **O-7**; no new gates (**O-9**, **O-19**, §7.3's **J**); **slippage stays unmodelled beyond
-   the gap** (§5.3.7 engine note) and if Phase 6 finds that flattering it must change in **one**
-   place; and tracking a signalled trade to its outcome and the flatten are **Phase 7**, the
-   multi-writer ledger **Phase 7b**, neither L5.
-2. **Phase 3 (labelled reference set) — started 2026-08-10, design in `docs/PHASE3.md`.** It was
-   deferred by the user on 2026-08-08 — *"we will backtest once the system is on"* — and the system
-   is now on. It is the evidence that would confirm or overturn **D-28** and **D-34**, and Phase 6
-   cannot report fidelity without it. All are single instances, so small-*n* rules apply.
-
-   **Scope is replayable NQ/ES only** (user's call, 2026-08-10): the §10 marked charts plus
-   `PTBV`'s full session. The narrated-only examples (`M1`, `SCALP`, `DISC`+`Q1.png`) and the
-   non-NQ/ES case-study PDFs are out — see `docs/PHASE3.md` §3 for why each.
-
-   **A label is one of two classes** (user's call, same day): **`taken`**, a trade the trader
-   executed, and **`named`**, a setup he names and does not take. An engine signal matching a
-   `named` label is **correct-but-not-taken, never a false positive** — without the class, Phase 6
-   cannot tell an invented setup from a declined one, and `CLAUDE.md`'s divergence-is-a-spec-bug
-   rule would push every such case toward a false alarm.
-
-   **There is no label verifier.** `scripts/verify_labels.py` was designed and cut the same day to
-   reach a first labelled set sooner. **Nothing re-checks a label when the bars or a reading
-   change**, so a stale label presents in Phase 6 as an engine divergence. The per-field
-   `provenance` (`exact` / `read` / `derived`) carries what a verifier would have used.
-
-   **§10.10 recovers the stop from any chart** — none draws one, but the R labels are normalised
-   against a ~$1,000 risk unit, so `stop distance = P&L points ÷ R multiple`. **On `LT` this
-   disagrees with §5.4.1's PTB extreme by 12.25 points** (85.50 vs 97.75), which is why that
-   label records both readings and adopts neither.
-3. **Phase 4 (the SLM) is off the critical path again, and the pattern is now three deep.** O-14
-   was routed to it and the human decided it as **D-28**; L2's four terms were routed to it on
-   2026-08-09 and the human decided all four the same day (**D-29**, **D-30**, **D-34**). Each time
-   the routing did its job first — the census established that no passage quantifies the term — and
-   what was left was a **choice**, which is the human's. That is exactly what
-   `claude_memories/audit-hard-rules-not-in-material.md` says to expect; it is not the routing being
-   overridden. Still Phase 4's: **O-9** (the no-edge zone, per **D-9**) and Phase 3 label proposals,
-   neither blocking.
-
-`docs/RULEBOOK.md` §13 records how the rest of the corpus is used. Simple Stoic Setups / HTF Protocol
-/ Candle Swing Theory / the war map are the **complementary layer the 1-2-3 was distilled from** —
-context and targets, never a step of the sequence, and they yield on conflict.
+**Fixtures that would not date: 0** — all five dated with two independent agreements each
+(`docs/evidence/fixture_dating.md`). **`PTBV` adds no id**: both its segments narrate executions
+already labelled off the marked charts. That is the finding, not a shortfall.
 
 ## What Phase 0 and Phase 1 built
 
@@ -632,7 +124,7 @@ context and targets, never a step of the sequence, and they yield on conflict.
 | `scripts/check_bar_spine.py` | Gates A–E, each with literal output and a negative control |
 | `scripts/build_corpus.py` | Resumable transcribe + keyframe pipeline, 4 stages, no LLM/VLM |
 | `scripts/verify_citations.py` | Every `KEY @ TIMESTAMP` in `RULEBOOK.md` resolves to a real marker, with a negative control. **Its `SOURCES` map is hand-maintained and drifts** — `TPA` was missing from it for the eight days it was the newest source, so 23 real citations reported as *unknown citation key* and nobody noticed. Add the key when you add a source, and run it after editing citations |
-| `scripts/measure_ptb_atr.py` | Produced `docs/evidence/ptb_atr_distribution.md`. Now inert except for its 62.8% figure — see above |
+| `scripts/measure_ptb_atr.py` | Produced `docs/evidence/ptb_atr_distribution.md`, **now inert except for one number**: the two rejected PTB-anchor readings pick a different bar on **62.8%** of candidates (NQ 5m RTH 2019–2026), which is why **D-23** could not be adopted quietly and why it stands. O-5 closed by deleting the ATR stop floor (**D-18**), so nothing in the spec reads its percentiles |
 | `tests/` | 25 tests, hermetic |
 
 ## What Phase 3 built so far
@@ -779,132 +271,43 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
 
 ## Open
 
-- **Whether "Step 3 confirmed, no pullback opened yet" is a pending setup under §5.4.7's own scope
-  is open, and Phase 6's triage narrowed the question to exactly this.** On the four rows where
-  §5.4.7c invalidated with no order yet resting (07-30 ×2, 08-03 ×2), only an *armed* machine was
-  waiting for a pullback to open; §5.4.7's effect in `stoic/entry.py` is to clear `armed`, so the
-  setup dies before a PTB can ever anchor. §5.4.7 scopes itself to *"an open position and to a
-  pending setup alike"*, and the engine note repeats it — but whether "confirmed, no pullback opened
-  yet" counts as a pending setup is not stated anywhere. Both readings are defensible (pending from
-  confirmation, or only once an order rests) and neither is adopted — same shape as **O-15** and
-  **O-17**. **Do not resolve it by editing the engine.** `docs/evidence/phase6_reconciliation.md` §2.
-- **On the row where a working order did exist (`T-A1`/`T-A2`), the engine applied §5.4.7c correctly
-  — what is open is whether its selected boundary is the trader's.** A PTB anchored at 14:20 on
-  07-31 and was cancelled at 14:25 on `invalidated_boundary_close`, 3 and 6 bars before the labelled
-  entries. §5.4.7c is **M** and unambiguous as written — the close alone is the whole test, no
-  strength qualifier, on the boundary already selected under §2.2.8 — so the open question is
-  upstream: is the engine's selected boundary (**D-30**, the base's close extreme on the Step 1
-  side) the same line the trader was trading against? D-30 was chosen from a 6-to-5 corpus split no
-  passage addresses directly. `T-A2`'s `phase6_scope` carries the most transcribed reference values
-  of any unmatched row, so it is the one that would score most if the boundary reading changed.
-  **Nothing is changed here.** `docs/evidence/phase6_reconciliation.md` §2.
-- **`T-B1`: the engine reproduced a labelled trade to the cent and then suppressed it, and its R
-  disagrees with the label by 1.17 points — neither is settled.** Trigger and stop both matched
-  exactly; L5 emitted `SUPPRESSED`, `blocked_by: into_200` (§7.1.4 / **D-31**, made symmetric
-  2026-08-09) — the first case where a labelled `taken` trade and the engine's own gate can be
-  checked against each other directly, at **n = 1**. Separately, the engine's R (`|fill − stop|`,
-  §5.4.2) is 41.25 against the label's `by_ptb_extreme` distance of 42.42 — a third reading of the
-  same §5.4.1 quantity, alongside `T-B1`'s existing §10.10/§5.4.1 agreement of 0.99 points recorded
-  below. **No reading is adopted.** `docs/evidence/phase6_reconciliation.md` §2.
-- **§10's three `Jun LCOM` numbers are moving-average axis tags, not levels — reported, not
-  corrected.** §10.2's *28,482*, §10.8's *28,473.81* and §10.9's *28,471.53* reproduce, to 0.2
-  points or better, the **200 SMA** (`T1`, `T2`) and the **10 SMA** (`LT3`/`LT4`) at each chart's own
-  last bar. The **drawn** `Jun LCOM` line on `T1`/`T2` measures **28,471.6** against our
-  **28,472.00**. This is the fourth instance of the §10.7 trap — a printed number on a §10 chart may
-  be an indicator's axis label — and the first found **inside our own evidence**: it had propagated
-  into `docs/evidence/fixture_dating.md` as a *contract drift* limit, which is now corrected there.
-  **Editing §10 is the user's call.**
-- **The count numerals on `T1`/`T2` do not resolve to bars, and that is measured rather than
-  assumed.** The italic 1/2/3 are anchored in chart coordinates — each lands on the same bar in both
-  snapshots, rendered at different zooms — but their **x-order is not the count order** (bearish:
-  `1` 09:40, `3` 09:50, `2` 10:10). They are hand-placed in whitespace. So `step1`/`step2`/`step3`
-  and `tp1` are **unlabelled** on all three `T1`/`T2` trades: Phase 6 can score direction, trigger,
-  entry bar, R and outcome there, and cannot score the count or TP1. **Check the other fixtures for
-  the same thing before trusting a step field** — `LT` and `NQ3` recorded theirs as `read` before
-  this test existed. **On `LT3`/`LT4` the test was run and came out the other way:** the x-order
-  *is* the count order there, `2` and `3` land on the same bar in both renders, and only `1` slips
-  a bar because its glyph centre falls on a slot boundary. So the T1/T2 result is a property of
-  that chart, not of the numerals in general — **run the test per fixture, conclude nothing from
-  the last one.**
-- **`T-B1` is the corpus's one close agreement between §10.10 and §5.4.1**, at **0.99** points
-  (41.43 vs 42.42). On `LT` the same two readings disagree by **12.25**. Both fixtures record both
-  readings and adopt neither, so nothing rests on this yet — but it is the first evidence that the
-  disagreement is not systematic.
-- **L5's `continuation` flag resets only on `RESET`, and a §5.4.7 invalidation is not one.** The
-  field is False on a directional state's first candidate and True thereafter, cleared on
-  `Event.RESET` — which is what **D-21** / §2.5.8 specify, since the directional state dies at the
-  10/20 reset. But a §5.4.7 invalidation *also* disarms L3 without emitting a `RESET`, so the first
-  entry after one is labelled a continuation. Whether the directional state should survive an
-  invalidation is **not stated anywhere** — noticed, not decided, same shape as **O-15** and
-  **O-17**. **Nothing depends on it:** `continuation` is a record label, and no entry, stop, R or
-  target reads it. Not opened as an O-row because it is a property of the record, not of the rulebook.
-- **The `T2` reading that bears on D-23 is now verified, and it holds.** On `T2`'s bullish count the
-  PTB candle is **up-bodied (green)** — the 12:45 bar, `o 28,321.50 / c 28,348.00` — which makes it a
-  live-marked counterexample to the `close < open` body test **D-23** rejected: evidence *for* the
-  decision the user already took. The ambiguity that blocked it is gone. The drawn `ptb` tick
-  measures **28,348.9** against that bar's high **28,349.75** (0.85), while the large down candle
-  before it (12:40) highs at **28,371.50**, 22 points away; and the fill at **28,350.92** is 1.17
-  above the 12:45 high, so a trigger at 28,371.50 could not have filled there. Settled twice over.
-  **Not written into §10.8** — editing §10 is the user's call.
-- **`LT4` is held past the 1:58pm Pacific flatten, and no v1 Type reproduces it.** Entry **15:55
-  ET** (not 04:00 PM — that is §10.9's approximation; the arrow lands on 15:55 in both renders),
-  exit 22:15 ET into the Asia session at +4.5R (§10.9). §10.9 offers *"Swing or Position ... or not
-  at all"*; §9's own table makes it **not at all**, because Swing sets up on the 60m and Position on
-  the Daily, so neither runs a 5m sequence, while Scalp and Day run wholly on the 5m (**D-7**) and
-  both flatten at the cutoff. `docs/evidence/labels/2026-07-30_LT3_LT4.yaml` records it under
-  `type:` with the consequence spelled out: **Phase 6 scores entry, trigger and R here, never the
-  exit or the outcome.** **Settled 2026-08-10: keep the flatten.** The user's call is that
-  `VISION.md`'s 1:58pm Pacific flatten stands and no 5m Type gains an exemption — so **v1 does not
-  reproduce this exit, and that is an accepted scope limit, not a divergence to fix.** `VISION.md`
-  is unchanged and was not ours to modify anyway.
-- **§10.7's stop for `NQ3` is in doubt, and it is not edited.** §10.7 reads *"Stop 28,540.75, the
-  PTB low (§5.4.1) — box bottom"*. That value is within **0.04** of the same chart's **20 SMA**
-  (28,540.70, whose right-axis label reads `28,540.74`), and the PTB bar's low is **28,529.50**. So
-  the number is an indicator's axis label, and the box bottom is a pixel read. §10.10's *"no chart
-  in §10 draws a stop"* is consistent with this and was the safer reading. Measured in
-  `docs/evidence/fixture_dating.md`; the label file adopts no stop. **Reported, not corrected** —
-  editing §10 is the user's call.
-- **`2026-06-11` → `2026-06-19` is a second known data hole**, and unlike 2025-11-28 it is ours:
-  those sessions come from `signals.db` while that capture was being brought up, at 12%–65% per
-  session (06-19 caught **9 bars of 1,380**). From 2026-06-22 the same source runs essentially
-  complete. Named in Gate E. **No §10 fixture falls in it.** Any Phase 5 replay spanning it must
-  exclude or flag it, exactly as for 2025-11-28.
-- **Bars after 2026-06-10 come from a live capture, not from Databento's own OHLCV.** In the
-  overlap, 25 of 3,240 NQ bars disagree — a ±1-trade boundary attribution
-  (`claude_memories/databento-ohlcv-buckets-by-ts-recv.md`) and outright feed dropouts, e.g.
-  2026-06-08 15:29 holding volume 1,936 in ours against 84 in the capture. **All 25 sit inside the
-  bring-up window.** The merge reports them rather than absorbing them; `source = signals_db` marks
-  every affected row. Databento's historical API is **not** available here — the key on this
-  machine is live-feed only.
-- **Session `2025-11-28` has a ~645-minute hole in `data/historical/{NQ,ES}_1m.parquet`** — the whole
-  Asia/London portion, both instruments. Real missing data, not a holiday early close. Any Phase 3
-  label or Phase 5 replay touching that date must exclude or flag it. See
-  `claude_memories/historical-bars-2025-11-28-outage.md`; Gate E reports it every run.
-- **L2 has had one audit pass; the review was capped there by the user on 2026-08-09.** Everything
-  that pass found is fixed. Two things it decided rather than found, recorded so they are not
-  re-litigated silently: a re-break of a still-pending base emits `STEP_3_BREAK` **again** (§2.3.3,
-  §2.3.7 — the sticky reading discarded all but the first), and the base may not be broken on the
-  bar its own boundary was selected (§2.2.5, *"markable before the break"*), though a
-  late-recognised base may.
-- **`stoic/levels.py` reports a leading partial month as if it were complete.** ES/NQ daily history
-  begins 2019-06-10, so June 2019 holds 15 sessions; **45 sessions per symbol** then read
-  `hcom_m1`/`hcom_m2` off that truncated month with no NaN and no flag. Same class as the
-  2025-11-28 hole, and the same disposition — the caller excludes or flags it, the function cannot
-  detect it. A frame starting mid-week does the same to `pwc`/`pwh`/`plow`. Documented in the
-  module docstring.
-- **Whether §5.4.7 exits a trade that has already moved to break-even is noticed, not decided.**
-  §5.4.7 scopes itself to an open position and a break-even trade is open, so `stoic/tracking.py`
-  applies it — a convention fixed in its docstring, not a rulebook edit. The competing reading is
-  that break-even ends the engine's interest, which is what `stoic/entry.py` does when it drops the
-  position from its book. **Nothing rests on it today**: `Outcome.BREAK_EVEN` cannot fire while TP1
-  is a full exit, so no tracked trade is ever in that state. Same shape as **O-15** and **O-17**;
-  not opened as an O-row because it is a property of the tracker, not of the rulebook.
-- `past_flatten` is 0 for every 5m bar by construction — the cutoff sits in a 2-minute window no 5m
-  bar can start in. **Phase 7 hit this and works around it rather than fixing it**:
-  `stoic/tracking.py` finds the bar *containing* the cutoff with `index.searchsorted` and never
-  reads `past_flatten`. Whether `label_sessions` should grow a `contains_flatten` column is
-  undecided; nothing needs it while one caller exists.
+Real open questions and live caveats only. A finding that is *recorded and not acted on* belongs in
+`docs/CONSTRAINTS.md` (as a trigger) or `docs/evidence/` (as the measurement), not here.
 
+**Undecided, and not to be resolved by editing the engine:**
+
+- **Is "Step 3 confirmed, no pullback opened yet" a pending setup under §5.4.7's own scope?** On
+  four Phase 6 rows, §5.4.7c fired against an *armed* machine with no position and no working
+  order, clearing `armed` before a PTB could anchor. §5.4.7 scopes itself to *"an open position and
+  a pending setup alike"* and nothing says whether this counts. Both readings defensible, neither
+  adopted. Same shape as **O-15** and **O-17**. `docs/evidence/phase6_reconciliation.md` §2.
+- **Is the engine's selected boundary the line the trader traded against?** On `T-A1`/`T-A2` the
+  engine anchored a PTB and cancelled it on §5.4.7c three and six bars before the labelled entries —
+  the rule applied correctly, so the question is upstream at **D-30**, decided from a 6-to-5 corpus
+  split no passage addresses directly. `T-A2` carries the most transcribed reference values of any
+  unmatched row, so it is what would score most if the reading changed.
+- **`T-B1`'s two disagreements, neither settled.** The engine reproduced the trade exactly and then
+  suppressed it on §7.1.4 / **D-31**; separately its R (41.25) differs from the label's
+  `by_ptb_extreme` distance (42.42) by 1.17 points. **n = 1.** No reading adopted.
+- **L5's `continuation` flag survives a §5.4.7 invalidation**, because it clears only on `RESET`
+  (**D-21**). Whether the directional state should die there is not stated anywhere. **Nothing
+  depends on it** — no entry, stop, R or target reads the field — so it is not an O-row.
+
+**Live data caveats. Any replay touching these must exclude or flag them:**
+
+- **`2025-11-28` has a ~645-minute hole** in `data/historical/{NQ,ES}_1m.parquet` — the whole
+  Asia/London portion, both instruments. Real missing data.
+  `claude_memories/historical-bars-2025-11-28-outage.md`; Gate E reports it every run.
+- **`2026-06-11` → `2026-06-19` is a second hole, and it is ours** — those sessions come from
+  `signals.db` during that capture's bring-up, at 12%–65% per session (06-19 caught **9 bars of
+  1,380**). From 2026-06-22 the source runs essentially complete. **No §10 fixture falls in it.**
+- **Bars after 2026-06-10 are a live capture, not Databento OHLCV.** 25 of 3,240 overlap bars
+  disagree, all inside the bring-up window; `source = signals_db` marks every affected row.
+  Databento's historical API is not available here — the key is live-feed only.
+- **`stoic/levels.py` reports a leading partial month as complete.** Daily history begins
+  2019-06-10, so June 2019 holds 15 sessions and **45 sessions per symbol** read `hcom_m1`/`hcom_m2`
+  off a truncated month with no NaN and no flag. A frame starting mid-week does the same to
+  `pwc`/`pwh`/`plow`. The caller excludes or flags it; the function cannot detect it.
 ## What was removed on 2026-07-31, and how to restore it
 
 Restore with `git show main:<path>` or `git checkout main -- <path>`.

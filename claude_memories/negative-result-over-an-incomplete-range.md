@@ -33,5 +33,5 @@ input series, away from the one-line fix.
 - This is the sibling of [[coverage-claims-need-enumeration]]: there, matching counts were mistaken
   for coverage; here, an exhausted search was mistaken for an exhaustive one.
 
-Related: [[marked-charts-do-not-fingerprint-to-our-bars]] is the worked case;
-[[audit-hard-rules-not-in-material]] for the adjacent rule about filling a silence with a predicate.
+Related: [[audit-hard-rules-not-in-material]], the adjacent rule about filling a silence with a
+predicate.

@@ -19,10 +19,11 @@ the source artifacts, not off our own output:
 | `NQ3` | `Jun LCOM ~28,471`, `PDH 28,716.75` | same era |
 | `data/historical/NQ_1m.parquet` | ends **2026-06-10 16:44 UTC**; June's lowest close through Jun 10 is **28,752.00** | an LCOM of 28,471 needs a close after our data ends |
 
-`claude_memories/marked-charts-do-not-fingerprint-to-our-bars.md` is **wrong on both counts** and is
-corrected as part of this phase. Its dating conclusion — May–June 2026 — came from a scan that could
-only see up to 2026-06-10; the price band recurs at the edge of the data and continues past it. Its
-implied method, matching printed moving averages, was the wrong handle: the plotted indicator values
+**An earlier note claimed both that the charts were May–June 2026 and that the SMA fingerprint
+does not work. Both were wrong, and the lesson is
+`claude_memories/negative-result-over-an-incomplete-range.md`.** The dating came from a scan that
+could only see up to 2026-06-10; the price band recurs at the edge of the data and continues past
+it. And matching printed moving averages was the wrong handle: the plotted indicator values
 are not tick-valid (`28,540.74`, `28,473.81`) and shift with the contract roll, which is why the
 closest fit in seven years was 41 points off.
 
@@ -183,9 +184,7 @@ one trade (§10.9). Double-counting them is the error `docs/AUDIT-2a.md` F-1 cau
    panel**, and a fixed crop reads a present clock as absent. Floor to the 5m frame for the bar.
    That is `provenance: exact`. A crosshair label (`Thu 30 Jul '26 02:05 PM`) names the bar he is
    pointing AT, which is the other exact handle when the mouse is over the chart.
-5. **Correct the memory.** `marked-charts-do-not-fingerprint-to-our-bars.md` is wrong on its dating
-   claim and on its method; both are now known.
-6. **Update `docs/STATE.md` and `docs/CONSTRAINTS.md`.**
+5. **Update `docs/STATE.md` and `docs/CONSTRAINTS.md`.**
 
 ## 5. Exit gate
 

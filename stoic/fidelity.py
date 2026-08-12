@@ -4,9 +4,8 @@ Design: `docs/PHASE6.md`. The question is `CLAUDE.md`'s and only `CLAUDE.md`'s -
 implementation generate the trades the method calls for. Never whether the method has an edge.
 
 **This module is measurement, not signal.** `VISION.md` puts the deterministic signal path in
-`stoic/`; a measurement module living beside it must never be reachable from it. Task 6 of
-`docs/PHASE6-PLAN.md` will add a test to `tests/test_fidelity.py` that asserts the direction of
-dependence by parsing every other `stoic/*.py`.
+`stoic/`; a measurement module living beside it must never be reachable from it.
+`tests/test_fidelity.py` asserts that direction of dependence by parsing every other `stoic/*.py`.
 
 **It holds no threshold, fraction or tuned number**, and it must stay that way
 (`docs/CONSTRAINTS.md` -- `stoic/judgment.py` is the only module allowed one). Matching is exact
