@@ -297,16 +297,57 @@ BAR_INDEX = pd.date_range("2026-07-31 14:00", periods=24, freq="5min", tz="UTC")
 
 
 def _emissions(rows: list[dict]) -> pd.DataFrame:
+    """Mirrors `stoic/emission.py:504-524`'s `replay_signals` frame construction, restricted to
+    the column subset `reconcile_taken` reads. `ts` and `anchor_ts` are built as tz-aware
+    datetime64 (`bars.index.dtype` there -- `stoic/emission.py:507,517`), not object columns, so a
+    null anchor arrives as `NaT` here exactly as it does on a real SUPPRESSED row -- a schema
+    drift from the real constructor should fail a test, not go unnoticed.
+    """
     columns = [
         "ts", "event", "direction", "blocked_by", "anchor_ts",
         "trigger", "fill", "stop", "r", "tp1",
     ]
-    return pd.DataFrame([{c: row.get(c) for c in columns} for row in rows], columns=columns)
+    data = {c: [row.get(c) for row in rows] for c in columns}
+    return pd.DataFrame(
+        {
+            "ts": pd.Series(data["ts"], dtype=BAR_INDEX.dtype),
+            "event": pd.Series(data["event"], dtype="object"),
+            "direction": pd.Series(data["direction"], dtype="object"),
+            "blocked_by": pd.Series(data["blocked_by"], dtype="object"),
+            "anchor_ts": pd.Series(data["anchor_ts"], dtype=BAR_INDEX.dtype),
+            "trigger": pd.Series(data["trigger"], dtype="float64"),
+            "fill": pd.Series(data["fill"], dtype="float64"),
+            "stop": pd.Series(data["stop"], dtype="float64"),
+            "r": pd.Series(data["r"], dtype="float64"),
+            "tp1": pd.Series(data["tp1"], dtype="float64"),
+        }
+    )
 
 
 def _entries(rows: list[dict]) -> pd.DataFrame:
-    columns = ["ts", "event", "direction", "anchor_ts", "trigger", "stop", "fill", "step3_extreme"]
-    return pd.DataFrame([{c: row.get(c) for c in columns} for row in rows], columns=columns)
+    """Mirrors `stoic/entry.py:471-514`'s `replay_entries` frame construction (`_PAYLOAD_COLUMNS`)
+    exactly. There is no `anchor_ts` column on the real L3 frame -- only `anchor_pos`, a nullable
+    Int64 *position* into the replay bar index -- so rows here carry `anchor_pos`, and
+    `_l3_prices` translates it. A schema drift from the real constructor should fail a test here,
+    not surface as a `KeyError` the first time Task 7's driver passes real `replay_entries` output.
+    """
+    columns = [
+        "pos", "ts", "event", "direction", "anchor_pos", "trigger", "stop", "fill", "step3_extreme"
+    ]
+    data = {c: [row.get(c) for row in rows] for c in columns}
+    return pd.DataFrame(
+        {
+            "pos": pd.Series(data["pos"], dtype="Int64"),
+            "ts": pd.Series(data["ts"], dtype=BAR_INDEX.dtype),
+            "event": pd.Series(data["event"], dtype="object"),
+            "direction": pd.Series(data["direction"], dtype="object"),
+            "anchor_pos": pd.Series(data["anchor_pos"], dtype="Int64"),
+            "trigger": pd.Series(data["trigger"], dtype="float64"),
+            "stop": pd.Series(data["stop"], dtype="float64"),
+            "fill": pd.Series(data["fill"], dtype="float64"),
+            "step3_extreme": pd.Series(data["step3_extreme"], dtype="float64"),
+        }
+    )
 
 
 def _signal_row(**over) -> dict:
@@ -389,10 +430,11 @@ def test_suppressed_matches_and_borrows_prices_from_l3():
         anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
     )
     l3 = _entries([{
+        "pos": 11,
         "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"),
         "event": "ENTRY_FILLED",
         "direction": "bearish",
-        "anchor_ts": pd.Timestamp("2026-07-31 14:50", tz="UTC"),
+        "anchor_pos": 10,  # BAR_INDEX[10] == 14:50 -- the real L3 frame has no anchor_ts column
         "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
     }])
     result = reconcile_taken(_label(), "2026-07-31", _emissions([suppressed]), l3, BAR_INDEX)
@@ -402,10 +444,11 @@ def test_suppressed_matches_and_borrows_prices_from_l3():
     by_field = {d.field: d for d in result.deltas}
     assert by_field["trigger"].delta == 0.0
     # _l3_prices recomputes r as abs(fill - stop), mirroring stoic/emission.py's own arithmetic
-    # (§5.4.2, D-18) -- so, like the engine's real output, it lands a ~1e-12 float residual off
-    # the label's 2-dp literal 58.83. That residual is arithmetic, not a divergence (see the
-    # comment on `_l3_prices`'s `r` line); this is float-comparison hygiene, matching
-    # tests/test_levels.py's existing `pytest.approx` convention, not a tolerance in the module.
+    # (§5.4.2 -- no floor: D-18 on the stop, O-10 on gating R) -- so, like the engine's real
+    # output, it lands a ~1e-12 float residual off the label's 2-dp literal 58.83. That residual
+    # is arithmetic, not a divergence (see the comment on `_l3_prices`'s `r` line); this is
+    # float-comparison hygiene, matching tests/test_levels.py's existing `pytest.approx`
+    # convention, not a tolerance in the module.
     assert by_field["stop_distance"].delta == pytest.approx(0.0, abs=1e-9)
     assert result.anchor_matched is True
 
@@ -474,3 +517,52 @@ def test_no_entry_bar_in_scope_states_why_in_notes():
     assert result.matched is False
     assert result.anchor_matched is None
     assert result.notes == ("no entry bar in scope -- nothing to pair on",)
+
+
+def test_anchor_mismatch_pins_the_false_case():
+    """`anchor_matched` is `bool | None`; only two other tests exercise it, and both land on
+    `True`/`None` -- nothing pins `False`. A one-bar-off anchor on an otherwise-matched emission
+    is a real comparison that really differs, so this is the third of the three states."""
+    wrong_anchor = _signal_row(anchor_ts=pd.Timestamp("2026-07-31 14:45", tz="UTC"))
+    result = reconcile_taken(
+        _label(), "2026-07-31", _emissions([wrong_anchor]), _entries([]), BAR_INDEX
+    )
+    assert result.matched is True
+    assert result.anchor_matched is False
+
+
+def test_l3_anchor_pos_translates_to_the_labels_anchor_bar():
+    """Defect 1's negative control: the real L3 frame (`stoic/entry.py:471`) has no `anchor_ts`
+    column, only `anchor_pos` -- a position into the replay bar index. Before the fix,
+    `_l3_prices` read `row["anchor_ts"]` and raised `KeyError` on this exact fixture shape.
+    `anchor_pos=10` must translate to `BAR_INDEX[10]` (14:50), which is the label's anchor_bar --
+    so the SUPPRESSED row it is borrowed onto reports a real, positive anchor match."""
+    suppressed = _signal_row(
+        event="SUPPRESSED", blocked_by=(),
+        anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
+    )
+    l3 = _entries([{
+        "pos": 11, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"), "event": "ENTRY_FILLED",
+        "direction": "bearish", "anchor_pos": 10,
+        "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
+    }])
+    result = reconcile_taken(_label(), "2026-07-31", _emissions([suppressed]), l3, BAR_INDEX)
+    assert result.matched is True
+    assert result.anchor_matched is True
+
+
+def test_suppressed_anchor_nat_in_a_real_datetime64_column_is_not_a_mismatch():
+    """Defect 2's negative control: the real emissions frame stores `anchor_ts` as a tz-aware
+    datetime64 column (`stoic/emission.py:517`), so a SUPPRESSED row's absent anchor arrives as
+    `NaT`, not a bare Python `None`. Before the fix, `engine_anchor is None` missed `NaT` and this
+    fixture reported `anchor_matched=False` -- "compared and differed" for a comparison that never
+    ran. Confirms the fixture actually produces `NaT` (not `None`) before asserting on it."""
+    suppressed = _emissions([_signal_row(
+        event="SUPPRESSED", blocked_by=(),
+        anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
+    )])
+    assert pd.isna(suppressed.loc[0, "anchor_ts"])
+    assert suppressed["anchor_ts"].dtype == BAR_INDEX.dtype
+    result = reconcile_taken(_label(), "2026-07-31", suppressed, _entries([]), BAR_INDEX)
+    assert result.matched is True
+    assert result.anchor_matched is None

@@ -265,12 +265,20 @@ def _finite(value: object) -> float | None:
     return float(value)  # type: ignore[arg-type]
 
 
-def _l3_prices(entries: pd.DataFrame, ts: pd.Timestamp, direction: str) -> dict[str, object]:
+def _l3_prices(
+    entries: pd.DataFrame, ts: pd.Timestamp, direction: str, bar_index: pd.DatetimeIndex
+) -> dict[str, object]:
     """L3's `ENTRY_FILLED` record at this bar, or an empty dict.
 
     A `SUPPRESSED` emission carries no `SignalRecord`, so every price on it is null
     (`stoic/emission.py`). The prices exist one layer down and this recovers them, which is why
     the driver runs both replays (`docs/PHASE6.md` §3).
+
+    L3's real frame has no `anchor_ts` column (`stoic/entry.py:471` `_PAYLOAD_COLUMNS`) -- the
+    anchor is stored as `anchor_pos`, a nullable Int64 *position* into the replay bar index, not a
+    timestamp -- so this translates position to timestamp via `bar_index` before handing the
+    anchor onward. An absent or out-of-range position reports as `None`, the same "never raise"
+    discipline `bar_offset` applies to a `KeyError` from `get_loc`.
     """
     hit = entries[
         (entries["ts"] == ts)
@@ -280,8 +288,14 @@ def _l3_prices(entries: pd.DataFrame, ts: pd.Timestamp, direction: str) -> dict[
     if hit.empty:
         return {}
     row = hit.iloc[0]
+    anchor_pos = row["anchor_pos"]
+    anchor_ts: pd.Timestamp | None = None
+    if pd.notna(anchor_pos):
+        pos = int(anchor_pos)
+        if 0 <= pos < len(bar_index):
+            anchor_ts = bar_index[pos]
     return {
-        "anchor_ts": row["anchor_ts"],
+        "anchor_ts": anchor_ts,
         "trigger": row["trigger"],
         "stop": row["stop"],
         "fill": row["fill"],
@@ -377,7 +391,7 @@ def reconcile_taken(
         "r": row["r"], "tp1": row["tp1"],
     }
     if event == "SUPPRESSED":
-        borrowed = _l3_prices(entries, expected, engine_direction)
+        borrowed = _l3_prices(entries, expected, engine_direction, bar_index)
         if borrowed:
             engine = borrowed
             notes.append("prices recovered from L3's ENTRY_FILLED -- a SUPPRESSED row carries none")
@@ -414,9 +428,17 @@ def reconcile_taken(
         # borrowed from L3), `False` means "compared and differed". Collapsing the first into the
         # second would turn "no value" into a false mismatch on the one field where deltas already
         # get this right (Delta.reason == "the engine emitted no value").
+        #
+        # `pd.isna`, not `is None`: the real emissions frame stores `anchor_ts` as a tz-aware
+        # datetime64 column (`stoic/emission.py:517`), and pandas coerces a null in that dtype to
+        # `NaT`, not the bare Python `None` a hand-built dict would carry -- `pd.NaT is None` is
+        # `False`, so `is None` alone lets a real SUPPRESSED row's missing anchor fall through to
+        # `pd.Timestamp(pd.NaT) == ...`, which is `False`: "compared and differed" for the exact
+        # case this comment exists to name as "not compared". Same discipline `_finite` already
+        # applies to the price columns.
         anchor_matched = (
             None
-            if engine_anchor is None
+            if pd.isna(engine_anchor)
             else pd.Timestamp(engine_anchor) == pd.Timestamp(anchor_block["ts"])
         )
 
