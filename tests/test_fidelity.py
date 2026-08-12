@@ -7,7 +7,9 @@ confirm it is caught.
 
 from __future__ import annotations
 
+import ast
 import datetime as dt
+from pathlib import Path
 
 import pandas as pd
 import pytest
@@ -875,3 +877,36 @@ def test_report_renders_a_non_empty_unlabelled_table_with_nan_as_an_em_dash():
     assert "SUPPRESSED" in text
     assert "nan" not in text.lower()
     assert "—" in text
+
+
+STOIC = Path(__file__).resolve().parents[1] / "stoic"
+
+
+def _imported_names(path: Path) -> set[str]:
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    names: set[str] = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            names.update(alias.name for alias in node.names)
+        elif isinstance(node, ast.ImportFrom) and node.module:
+            names.add(node.module)
+            names.update(f"{node.module}.{alias.name}" for alias in node.names)
+    return names
+
+
+def test_no_engine_module_imports_fidelity():
+    """Measurement must never be reachable from the signal path (docs/PHASE6.md §5)."""
+    offenders = [
+        path.name
+        for path in sorted(STOIC.glob("*.py"))
+        if path.name != "fidelity.py"
+        if any("fidelity" in name for name in _imported_names(path))
+    ]
+    assert offenders == []
+
+
+def test_the_import_check_can_actually_see_an_import(tmp_path):
+    """Negative control: the same parser must catch a planted import."""
+    planted = tmp_path / "planted.py"
+    planted.write_text("from stoic.fidelity import reconcile_taken\n", encoding="utf-8")
+    assert any("fidelity" in name for name in _imported_names(planted))
