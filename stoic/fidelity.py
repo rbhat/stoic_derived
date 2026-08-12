@@ -279,6 +279,15 @@ def _l3_prices(
     timestamp -- so this translates position to timestamp via `bar_index` before handing the
     anchor onward. An absent or out-of-range position reports as `None`, the same "never raise"
     discipline `bar_offset` applies to a `KeyError` from `get_loc`.
+
+    A position lookup has no `KeyError` to fail on, unlike `bar_offset`'s `get_loc` -- a
+    `bar_index` sliced differently from the frame L3's positions were recorded against would
+    usually still satisfy `0 <= pos < len(bar_index)` and silently resolve to the WRONG bar, which
+    is a fabricated divergence, not a caught error. The row carries the means to detect this
+    itself: `row["pos"]` is this same record's own position in that frame, so
+    `bar_index[row["pos"]] == row["ts"]` must hold if `bar_index` is in fact the frame the
+    position was recorded against. A mismatch means the caller passed the wrong index -- reported
+    as no recovery (`{}`), never a translated-but-wrong timestamp.
     """
     hit = entries[
         (entries["ts"] == ts)
@@ -288,6 +297,11 @@ def _l3_prices(
     if hit.empty:
         return {}
     row = hit.iloc[0]
+    own_pos = row["pos"]
+    if pd.notna(own_pos):
+        pos = int(own_pos)
+        if not (0 <= pos < len(bar_index)) or bar_index[pos] != row["ts"]:
+            return {}
     anchor_pos = row["anchor_pos"]
     anchor_ts: pd.Timestamp | None = None
     if pd.notna(anchor_pos):
@@ -328,6 +342,13 @@ def reconcile_taken(
     present and this filters. An unmatched label is characterised by its nearest same-direction
     emission and the signed bar offset to it -- a miss by one bar and a miss by forty are
     different facts and §2 of the report cannot be written without knowing which.
+
+    `bar_index` must be the SAME, UNSLICED replay frame index that `entries`' `pos`/`anchor_pos`
+    positions were recorded against (`stoic/entry.py:471`) -- L3 stores positions, not
+    timestamps, and `_l3_prices` translates them positionally. A differently-sliced index would
+    usually still resolve to a bar, just the wrong one, silently. `_l3_prices` checks each row's
+    own `pos` against `bar_index` and refuses to translate on a mismatch, but the caller (Task 7's
+    driver) must still pass the real frame, not a per-session slice of it.
     """
     scope = label["phase6_scope"]
     direction = str(label["direction"])

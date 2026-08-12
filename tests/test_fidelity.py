@@ -297,29 +297,48 @@ BAR_INDEX = pd.date_range("2026-07-31 14:00", periods=24, freq="5min", tz="UTC")
 
 
 def _emissions(rows: list[dict]) -> pd.DataFrame:
-    """Mirrors `stoic/emission.py:504-524`'s `replay_signals` frame construction, restricted to
-    the column subset `reconcile_taken` reads. `ts` and `anchor_ts` are built as tz-aware
-    datetime64 (`bars.index.dtype` there -- `stoic/emission.py:507,517`), not object columns, so a
-    null anchor arrives as `NaT` here exactly as it does on a real SUPPRESSED row -- a schema
-    drift from the real constructor should fail a test, not go unnoticed.
+    """Mirrors `stoic/emission.py:504-531`'s `replay_signals` frame construction
+    (`_PAYLOAD_COLUMNS`) completely -- same columns, same order, same dtypes -- not just the
+    subset `reconcile_taken` reads today, so a Task 4/5 addition that reads a column outside that
+    subset inherits a fixture that already carries the real dtype rather than re-litigating this
+    defect class there. `ts`, `signal_ts` and `anchor_ts` are tz-aware datetime64
+    (`bars.index.dtype` there), so a null anchor arrives as `NaT` here exactly as it does on a
+    real SUPPRESSED row.
     """
     columns = [
-        "ts", "event", "direction", "blocked_by", "anchor_ts",
-        "trigger", "fill", "stop", "r", "tp1",
+        "pos", "ts", "event", "direction", "blocked_by", "signal_id", "source", "instrument",
+        "type_", "setup_tf", "signal_ts", "anchor_ts", "anchor_pos", "fill_pos", "trigger",
+        "fill", "stop", "r", "tp1", "tp2", "setup_type", "continuation", "confluence_present",
+        "confluence_score", "confluence_of",
     ]
     data = {c: [row.get(c) for row in rows] for c in columns}
     return pd.DataFrame(
         {
+            "pos": pd.Series(data["pos"], dtype="Int64"),
             "ts": pd.Series(data["ts"], dtype=BAR_INDEX.dtype),
             "event": pd.Series(data["event"], dtype="object"),
             "direction": pd.Series(data["direction"], dtype="object"),
             "blocked_by": pd.Series(data["blocked_by"], dtype="object"),
+            "signal_id": pd.Series(data["signal_id"], dtype="object"),
+            "source": pd.Series(data["source"], dtype="object"),
+            "instrument": pd.Series(data["instrument"], dtype="object"),
+            "type_": pd.Series(data["type_"], dtype="object"),
+            "setup_tf": pd.Series(data["setup_tf"], dtype="object"),
+            "signal_ts": pd.Series(data["signal_ts"], dtype=BAR_INDEX.dtype),
             "anchor_ts": pd.Series(data["anchor_ts"], dtype=BAR_INDEX.dtype),
+            "anchor_pos": pd.Series(data["anchor_pos"], dtype="Int64"),
+            "fill_pos": pd.Series(data["fill_pos"], dtype="Int64"),
             "trigger": pd.Series(data["trigger"], dtype="float64"),
             "fill": pd.Series(data["fill"], dtype="float64"),
             "stop": pd.Series(data["stop"], dtype="float64"),
             "r": pd.Series(data["r"], dtype="float64"),
             "tp1": pd.Series(data["tp1"], dtype="float64"),
+            "tp2": pd.Series(data["tp2"], dtype="float64"),
+            "setup_type": pd.Series(data["setup_type"], dtype="object"),
+            "continuation": pd.Series(data["continuation"], dtype="boolean"),
+            "confluence_present": pd.Series(data["confluence_present"], dtype="object"),
+            "confluence_score": pd.Series(data["confluence_score"], dtype="Int64"),
+            "confluence_of": pd.Series(data["confluence_of"], dtype="Int64"),
         }
     )
 
@@ -531,24 +550,64 @@ def test_anchor_mismatch_pins_the_false_case():
     assert result.anchor_matched is False
 
 
-def test_l3_anchor_pos_translates_to_the_labels_anchor_bar():
-    """Defect 1's negative control: the real L3 frame (`stoic/entry.py:471`) has no `anchor_ts`
-    column, only `anchor_pos` -- a position into the replay bar index. Before the fix,
-    `_l3_prices` read `row["anchor_ts"]` and raised `KeyError` on this exact fixture shape.
-    `anchor_pos=10` must translate to `BAR_INDEX[10]` (14:50), which is the label's anchor_bar --
-    so the SUPPRESSED row it is borrowed onto reports a real, positive anchor match."""
+def test_l3_anchor_translation_never_raises_and_falls_back_to_none():
+    """Negative control for the three "never raise, fall back to None" guards in `_l3_prices`: a
+    null `anchor_pos`, an out-of-range `anchor_pos`, and (item 1's guard, round 5) an L3 row whose
+    own `pos`/`ts` disagree with `bar_index` -- proof the caller passed the wrong frame. The first
+    two guards degrade only the anchor; prices still resolve normally, showing the guards are
+    scoped to the anchor and don't spuriously block price recovery. The third distrusts the whole
+    row -- `_l3_prices` returns `{}`, matching the "no ENTRY_FILLED" case, because a `bar_index`
+    that disagrees with the row's own position cannot be trusted for anything on that row.
+
+    (`test_suppressed_matches_and_borrows_prices_from_l3` already covers the positive case --
+    `anchor_pos` translating to the label's real anchor bar -- so it is not repeated here.)
+    """
     suppressed = _signal_row(
         event="SUPPRESSED", blocked_by=(),
         anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
     )
-    l3 = _entries([{
+
+    # Case 1: anchor_pos is null (no anchor recorded) -- prices still resolve, the anchor does not.
+    na_anchor = _entries([{
         "pos": 11, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"), "event": "ENTRY_FILLED",
+        "direction": "bearish", "anchor_pos": pd.NA,
+        "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
+    }])
+    result = reconcile_taken(
+        _label(), "2026-07-31", _emissions([suppressed]), na_anchor, BAR_INDEX
+    )
+    assert result.matched is True
+    assert result.anchor_matched is None
+    assert {d.field: d for d in result.deltas}["trigger"].scoreable is True
+
+    # Case 2: anchor_pos is out of range for this 24-bar frame -- same fallback, not an IndexError.
+    oob_anchor = _entries([{
+        "pos": 11, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"), "event": "ENTRY_FILLED",
+        "direction": "bearish", "anchor_pos": 999,
+        "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
+    }])
+    result = reconcile_taken(
+        _label(), "2026-07-31", _emissions([suppressed]), oob_anchor, BAR_INDEX
+    )
+    assert result.matched is True
+    assert result.anchor_matched is None
+    assert {d.field: d for d in result.deltas}["trigger"].scoreable is True
+
+    # Case 3 (item 1): the row's own pos disagrees with bar_index at that position -- BAR_INDEX[5]
+    # is 14:25, not this row's own ts of 14:55, so bar_index cannot be the frame `pos` was
+    # recorded against. _l3_prices must refuse the whole row, not just translate a wrong anchor.
+    wrong_frame = _entries([{
+        "pos": 5, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"), "event": "ENTRY_FILLED",
         "direction": "bearish", "anchor_pos": 10,
         "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
     }])
-    result = reconcile_taken(_label(), "2026-07-31", _emissions([suppressed]), l3, BAR_INDEX)
+    result = reconcile_taken(
+        _label(), "2026-07-31", _emissions([suppressed]), wrong_frame, BAR_INDEX
+    )
     assert result.matched is True
-    assert result.anchor_matched is True
+    assert result.anchor_matched is None
+    assert all(d.scoreable is False for d in result.deltas)
+    assert any("prices unavailable" in note for note in result.notes)
 
 
 def test_suppressed_anchor_nat_in_a_real_datetime64_column_is_not_a_mismatch():
