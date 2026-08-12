@@ -44,6 +44,12 @@ subagent reports a new recurring error. Bullets only — no explanations, no his
 - Lint with `uvx ruff check --fix`, never a bare `ruff check`. Line length 100.
 - No new dependencies without asking.
 
+## Pandas
+
+- `pd.NaT` and `pd.NA` need explicit identity checks when flattening a DataFrame row to JSON —
+  `isinstance(x, float) and isnan(x)` misses a `NaT` in a datetime64 column and a `pd.NA` in a
+  nullable Int64 one.
+
 ## Timestamps
 
 - Never add `Timedelta(days=1)` to a **tz-aware** timestamp to mean "the next calendar date" — it
@@ -71,9 +77,15 @@ subagent reports a new recurring error. Bullets only — no explanations, no his
   bound.
 - Stratify before gating. One threshold over a mixed population either gates on the wrong subgroup
   or has to be loosened until it gates on nothing.
+- For a half-open span in bar or minute logic, compute the real boundary instant's offset
+  numerically before trusting a fixture built around it.
+- When two rules key off the **identical frozen value**, write one code path, not two that happen to
+  agree — two paths drift and the agreement stops being structural.
 
 ## Tests
 
+- Build bar fixtures at 1m and resample them through `stoic/bars.py`; a hand-written "5m" bar skips
+  that validation and behaves differently once real data flows through the same code.
 - A test helper driving a stateful stepper must snapshot state **after every step**, not return the
   final state — an assertion about an intermediate bar otherwise checks the wrong moment and passes.
 - Ruff `RUF005`: build a fixture list as `[*PREFIX, ...]`, never `PREFIX + [...]`.

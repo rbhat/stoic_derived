@@ -367,15 +367,85 @@ identified the setup (the other half): partially met, not credited.
 setup a bar or two late with approximately right prices. A property of these ten instances, **not
 projected past them.**
 
-Suite is **304 passed**, superseding the 240 baseline above — Phase 6 added `stoic/fidelity.py`,
-`scripts/reconcile_labels.py` and their tests. `scripts/verify_citations.py` still reports **222
+Suite is **355 passed**, superseding the 240 baseline above — Phase 6 added `stoic/fidelity.py`,
+`scripts/reconcile_labels.py` and their tests (304), and Phase 7 added `stoic/tracking.py`,
+`scripts/forward_test.py` and theirs (355, after the 2026-08-12 audit added ten).
+`scripts/verify_citations.py` still reports **222
 citations across 8 sources, all resolve**, negative control PASS — unchanged from baseline.
 
 **Phase 6 found no specification bug in the engine — every one of its eight unmatched labels traced
 to a rule working as written, above.** So building forward is not building on top of a known defect.
-**`docs/PLAN.md`'s Phase 7 is now the forward-test harness**, split 2026-08-11 from the old Phase 7,
+**`docs/PLAN.md`'s Phase 7 is the forward-test harness**, split 2026-08-11 from the old Phase 7,
 which is renamed **Phase 7b** and deferred until the system trades real money — `docs/PLAN.md` has
-both. Neither has started; nothing here should be read as claiming otherwise.
+both. **Phase 7b has not started.**
+
+**Phase 7 is built and has run. `docs/PHASE7.md` is the design — read it first.** `stoic/tracking.py`
+(pure measurement) and `scripts/forward_test.py` (the driver, ledger and report) are built and
+tested; `docs/evidence/phase7_forward_test_NQ_scalp.md` is generated, never hand-written. Suite
+is **355 passed**.
+
+**The run: `NQ` `5m`, `SignalType.SCALP`, frame `2026-06-22` → `2026-08-04`, 8,784 bars,
+`decided_judgment()`, `htf=None`** — the same window and settings as Phase 6, deliberately, so the
+L5 totals cross-check. They do: 212 `signal`, 149 `break_even`, 49 `suppressed`, identical to Phase
+6's recorded run. **212 signals tracked to an outcome:**
+
+| outcome | count |
+|---|---|
+| `tp1` | 121 |
+| `stop` | 63 |
+| `invalidated` | 25 |
+| `flatten` | 2 |
+| `not_taken` | 1 |
+| `ambiguous` | 0 |
+| `open` | 0 |
+
+**Counts, never a verdict** (`CLAUDE.md`) — and one structural fact must be read alongside them
+before anyone reads the first row as a hit rate: **TP1 is the Step 3 extreme frozen at fill**
+(§6.1, **D-16**), which is the *same near level* **D-25** moves the stop to break-even on. A target
+that close being reached often is geometry, not performance. **The report carries no expectancy, win
+rate, average R or drawdown, by design** — that is Phase 9's, and `docs/PHASE7.md` §8 makes its
+absence a requirement rather than an omission.
+
+**72 of the 212 needed the 1m spine to say which level came first**, and none was unresolvable
+(`ambiguous` 0). The exit gate is met: a fresh run over the full frame writes 212 signals and 212
+outcomes, an identical rerun appends **0 rows — byte-identical file**, and the ledger holds 212
+unique signal ids against 212 unique outcome ids. A frame-start disagreement exits non-zero before
+the replay begins.
+
+**`not_taken` 1 is a defect this harness found in its own first build, not a property of the
+market.** An audit on 2026-08-12 traced a trade booked as a `flatten` with its exit priced *before
+its entry existed*: `stoic_123:NQ:scalp:bearish:2026-07-29T20:55:00+00:00`, a sell stop at 27,266.25
+that the 1m bars put in the **20:59** minute against a **20:58** cutoff, recorded at `bars_held` 0
+and −0.20R. The cause was structural — §3's three 1m windows were written as alternative branches
+instead of composed, so a bar that hit no level fell through to the flatten without anyone asking
+whether the trade was live at the cutoff. **The user's call, 2026-08-12: a fill at or after the
+cutoff on a flatten Type is not a trade.** It is recorded, flagged `filled_after_cutoff`, and books
+no P&L. The engine still emits the signal — emission is Phase 5's and changing it would move Phase
+6's numbers.
+
+**There is no `break_even` outcome, and the reason is structural.** TP1 and D-25's break-even
+trigger are the identical frozen `step3_extreme` under the identical strict trade-through test, so
+the bar that trips break-even is the bar that reaches TP1 — and **the user's call on 2026-08-12 is
+that TP1 is a full exit**, because partial sizing is **O-7**, open, and `tp2` is always `None`. The
+first build kept the class and pinned it at zero; the same audit found **that pin was worthless** —
+nothing could construct the member, so the assertion held whatever the code did. A pin by *absence*
+is not a pin by *observation*, which is what makes `tests/test_entry.py` case 18's `ORDER_VOIDED` a
+real tripwire. The class is removed and the tripwire moved to
+`tests/test_forward_test.py::test_tp1_and_the_break_even_trigger_are_the_same_frozen_number`, which
+drives the real engine and asserts L3's break-even level, L3's `ENTRY_FILLED` extreme and L5's `tp1`
+are one number. **That one can fail, and the day it does, O-7 has landed.**
+
+**A holiday early close would have produced no flatten at all** — 2026-07-03 closed at 13:00 ET, so
+no bar contains the 16:58 cutoff and a trade would have ridden 53 hours into Monday. Now the
+session's last bar flattens it, flagged. **No trade was open there in this run**, so no recorded
+number changes; the mechanism was live and unguarded, which is the finding.
+
+**Two facts about L3 were measured during the design and neither is a defect in it.** A §5.4.7
+invalidation that drops open positions emits **no `EntryRecord` for them** — `ORDER_CANCELLED` is
+emitted only when a working order existed — so the exit is read from **L2**, which owns the
+invalidation event. And **L3 drops a position from its book the moment break-even fires**, because
+§5.4.5 is the only stop move there is; the trade is still open, so tracking keeps its own book. Both
+are in `docs/PHASE7.md` §1.
 
 **The Phase 4 room-left audit is done — 2026-08-10, `docs/evidence/phase4_room_left.md`. Nothing
 was decided.** The user's concern was that *"a lot of these rules are going to constrain or make the
@@ -698,6 +768,15 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
 | `scripts/reconcile_labels.py` | The driver — Gate 0 checks every `phase6_scope` block for consistency before any replay runs, then drives `replay_entries` and `replay_signals` over the bars and writes the report |
 | `docs/evidence/phase6_reconciliation.md` | The deliverable. §1 (per-label reconciliation) and §3 (unlabelled emissions) are generated by the driver; §2 (divergences) is hand-written, each entry triaged as a specification bug, a missing rulebook rule, or out of v1 scope |
 
+## What Phase 7 built
+
+| | |
+|---|---|
+| `stoic/tracking.py` | Pure measurement — one row per emitted `SIGNAL` with its outcome, exit bar, exit price and flags. Holds no threshold and no tolerance; never imported by L0–L5, enforced by an import-direction test. Reads **L2's** invalidation events and **L5's** signals; **not L3's** records, which carry nothing the other two do not. Infers its bar span from the index (median of positive diffs, so the CME break cannot poison it), so it is frame-agnostic |
+| `scripts/forward_test.py` | The driver — resamples, runs both replays, tracks, folds and appends the ledger, writes the report, prints per-stage timing. Refuses a frame-start disagreement and refuses `--type swing` / `--type position`, which run on 60m and Daily per **D-7** while this driver resamples to 5m |
+| `.artifacts/ledger/<type>.jsonl` | Append-only, one file per Type (`VISION.md`), `$STOIC_LEDGER_HOME` overriding. A trade closing is a **new row**, never an edit. Gitignored and regenerable by replay — the *report* is the tracked evidence |
+| `docs/evidence/phase7_forward_test_<instrument>_<type>.md` | The deliverable, fully generated. Counts per outcome class, every `ambiguous` and flagged row named, open trades carried forward. **No expectancy, win rate, average R or drawdown** |
+
 ## Open
 
 - **Whether "Step 3 confirmed, no pullback opened yet" is a pending setup under §5.4.7's own scope
@@ -813,8 +892,18 @@ as **inside** (`<=`/`>=`), and the SMA input series is the **close** (§1.1 name
   2025-11-28 hole, and the same disposition — the caller excludes or flags it, the function cannot
   detect it. A frame starting mid-week does the same to `pwc`/`pwh`/`plow`. Documented in the
   module docstring.
+- **Whether §5.4.7 exits a trade that has already moved to break-even is noticed, not decided.**
+  §5.4.7 scopes itself to an open position and a break-even trade is open, so `stoic/tracking.py`
+  applies it — a convention fixed in its docstring, not a rulebook edit. The competing reading is
+  that break-even ends the engine's interest, which is what `stoic/entry.py` does when it drops the
+  position from its book. **Nothing rests on it today**: `Outcome.BREAK_EVEN` cannot fire while TP1
+  is a full exit, so no tracked trade is ever in that state. Same shape as **O-15** and **O-17**;
+  not opened as an O-row because it is a property of the tracker, not of the rulebook.
 - `past_flatten` is 0 for every 5m bar by construction — the cutoff sits in a 2-minute window no 5m
-  bar can start in. Phase 7 will need the bar *containing* the cutoff, not bars after it.
+  bar can start in. **Phase 7 hit this and works around it rather than fixing it**:
+  `stoic/tracking.py` finds the bar *containing* the cutoff with `index.searchsorted` and never
+  reads `past_flatten`. Whether `label_sessions` should grow a `contains_flatten` column is
+  undecided; nothing needs it while one caller exists.
 
 ## What was removed on 2026-07-31, and how to restore it
 

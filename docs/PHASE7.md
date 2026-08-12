@@ -47,10 +47,10 @@ re-run.
 | outcome | fires when | exit price |
 |---|---|---|
 | `stop` | the bar's range reaches the stop (§5.4.1, **D-18**) | the stop |
-| `break_even` | the same, after L5's `BREAK_EVEN` moved the stop to the fill (**D-25**) | the fill |
 | `tp1` | the bar's range reaches L3's frozen `step3_extreme` (§6.1, **D-6**, **D-16**) | TP1 |
 | `invalidated` | L2 emits any of §5.4.7a–c for that direction while the trade is open | that bar's **close** |
 | `flatten` | the bar **containing** 13:58 PT, every Type but Position | §4 |
+| `not_taken` | the order fills at or after the cutoff on a flatten Type — the trade was never takeable | none, and **never a P&L row** |
 | `ambiguous` | two terminal levels reached on one bar and the 1m spine cannot separate them | none — the trade is **closed**, at no recorded price |
 | `open` | the bar spine ends first | none |
 
@@ -66,27 +66,37 @@ than a second convention invented here. §5.4.7 is the exception and stays close
 rulebook makes all three conditions close-based (its engine note) and they are L2's events, already
 decided by the time tracking sees them.
 
-**`break_even` is structurally unreachable, and that is recorded rather than argued.** TP1 is the
-Step 3 extreme frozen at fill (§6.1, **D-6**, **D-16**) and D-25 fires break-even against **that
-same frozen extreme** (`stoic/entry.py` step 3), so the bar that trips break-even is the bar that
-reaches TP1 — and TP1 is a full exit. The class stays in the enum and a test pins the count at zero,
-exactly as `tests/test_entry.py` case 18 pins **D-35**'s `ORDER_VOIDED`: **if it ever fires, that is
-a decision to make, not drift.** The `BREAK_EVEN` *event* is still written to the ledger; what never
-occurs is a trade whose exit price is its fill. **This is a consequence of O-7 being open, not a
-finding about the method** — the moment partial sizing is decided, TP1 stops being a full exit and
-the class becomes live.
+**There is no `break_even` outcome, and the reason is structural.** TP1 is the Step 3 extreme frozen
+at fill (§6.1, **D-6**, **D-16**) and D-25 fires break-even against **that same frozen extreme**
+(`stoic/entry.py` step 3), so the bar that trips break-even is the bar that reaches TP1 — and TP1 is
+a full exit. No trade can ever exit at its fill.
+
+**The first build kept the class and pinned it at zero, and that pin was worthless** — nothing in the
+module could construct it, so the assertion held whatever the code did. A pin by *absence* is not a
+pin by *observation*, which is what makes `tests/test_entry.py` case 18's `ORDER_VOIDED` a real
+tripwire: that one has a producer. So the class is **removed**, and the tripwire moved to where it
+can fire — **a behavioural test over the real engine asserting that a `BREAK_EVEN` emission's linked
+signal carries a `tp1` equal to the level that triggered it.** The day those two stop being the same
+number, that test fails. **This is a consequence of O-7 being open, not a finding about the method:**
+the moment partial sizing is decided, TP1 stops being a full exit and the class comes back.
+
+The `BREAK_EVEN` *event* is still written to the ledger. **A caveat for whoever folds that file
+later:** L3 evaluates break-even on the 5m bar, while tracking resolves the same bar at 1m — so a
+`BREAK_EVEN` row can describe a stop move on a position that the 1m spine says had already stopped
+out. Tracking is the finer instrument and its outcome is the one to trust.
 
 **A gap fill already beyond TP1 exits on its own fill bar, at the fill.** `stoic/entry.py` names the
 case (a gap fill above the frozen extreme opens already beyond break-even). Recording an exit at TP1
 there would book a price the market never offered after entry. The row is **flagged**, and its count
 is reported.
 
-**§5.4.7 exits a trade that has already moved to break-even.** §5.4.7 scopes itself to an open
-position and a break-even trade is open; L3's dropping it is bookkeeping, not a statement about the
-trade. This is a **convention fixed in `stoic/tracking.py`'s docstring**, not a new rulebook rule —
-the same disposition `candles.py`, `judgment.py`, `entry.py`, `gating.py` and `emission.py` each
-took. The competing reading is that break-even ends the engine's interest in the trade; it is not
-adopted, and `docs/STATE.md` Open records that it was noticed rather than decided.
+**`not_taken` is the user's call, 2026-08-12, and it exists because the alternative books a price
+backwards.** The flatten cutoff sits two minutes before the close, so an order can trigger inside a
+bar *after* the cutoff has already passed. The first build of this harness recorded exactly that
+once in 212 trades — a fill in the 20:59 minute booked as a `flatten` priced at 20:58, `bars_held`
+0, a negative R on a trade that could not have been entered. **The engine still emits the signal**:
+emission is Phase 5's and changing it would move Phase 6's numbers. Phase 7 records the signal,
+flags it `filled_after_cutoff`, and books no outcome and no P&L.
 
 **`SUPPRESSED` is written to the ledger and never tracked.** It carries no `SignalRecord` (Phase 6
 §4) and was never a trade. Keeping the row is what lets a later pass measure what the gate cost;
@@ -108,7 +118,49 @@ the real order**. This is the only place in the phase that reads a second frame.
   number, exactly as `stoic/fidelity.py` does not — `docs/CONSTRAINTS.md` keeps `stoic/judgment.py`
   the only module allowed one.
 
-A single-level bar never touches the 1m frame. Drilling is the exception, and its count is reported.
+A bar reaching one level and nothing else never touches the 1m frame. Drilling is the exception, and
+its count is reported.
+
+**Three windows need the 1m frame, not one, and all three are the same question asked over a
+different span.** *Did this level get reached inside the part of the bar where the trade was
+actually live?*
+
+1. **Two levels on one bar** — the span is the whole bar.
+2. **The fill bar** — the span starts at the first 1m bar trading through the trigger. A long's stop
+   sits below its trigger, so a bar can dip to the stop *before* the entry ever triggers, and
+   booking that as a stop-out records a loss on a position that did not exist yet.
+3. **The flatten bar** — the span ends at the cutoff. A level reached at 16:59 is reached after the
+   trade was already flat.
+
+**The three compose; they are not alternatives.** The first build treated them as separate branches
+and consulted the fill window only when a 5m level had been hit, so a bar that hit nothing fell
+through to the flatten branch without anyone asking whether the trade was live at the cutoff — which
+is how a fill in the 20:59 minute got booked as a flatten priced at 20:58. **Compute the live span
+first, on every bar, then ask what it reached.** An empty live span is `not_taken` (§2), never a
+coverage failure: the 1m data being complete and the window being empty are different facts and must
+not report as the same flag.
+
+## 3a. Ordering inside a bar
+
+L3's own ordering, applied to exits: **intrabar before close-based.** `stoic/entry.py` fixes it for
+the fill (§5.3.7 is intrabar; the §5.4.7 engine note makes all three invalidations close-based), and
+an exit tracker that ordered them the other way would book a §5.4.7 close on a bar whose stop was
+taken twenty seconds in. For each open trade, per bar, first match wins:
+
+1. **The fill bar only** — the fill is already beyond TP1 (a gap): exit at the **fill**, flagged.
+2. **Stop or TP1 reached**, per §3's window rules and the 1m drill when both are.
+3. **§5.4.7a–c** for that direction (L2's event, close-based): exit at the bar's **close**.
+4. **The flatten bar** (§4).
+
+**On the flatten bar the order inverts against §5.4.7 and only against it.** The cutoff is 16:58 and
+the bar closes at 17:00, so an invalidating close happens after the trade is already flat — the
+flatten wins. A stop or TP1 still wins if the 1m frame puts it **before** the cutoff, which is
+window 3 above. This is the one place a later step in the list can beat an earlier one, and it is
+the clock saying so, not a preference.
+
+**Terminal checks begin on the fill bar itself**, inclusive. A trade that fills and invalidates on
+one bar opens and closes on that bar — `stoic/entry.py` fills before processing L2's events, so both
+are true and in that order.
 
 ## 4. The flatten — and the gap `docs/STATE.md` already named
 
@@ -119,9 +171,17 @@ DST needs no offset (`stoic/sessions.py`). Two facts make this more than a filte
   5m bar can start in. Tracking needs the bar **containing** the cutoff (the 16:55 ET bar), not bars
   after it. Using `past_flatten` here is the trap; `docs/STATE.md` names it and this is the phase
   that hits it.
-- **The exit price is the 16:58 ET 1m bar's close**, the user's call, 2026-08-12 — exact at the
-  cutoff `VISION.md` names, and the same 1m spine §3 already reads. When that 1m bar is missing, the
-  containing 5m bar's close is used and the row is **flagged**, never silently substituted.
+- **The exit price is the close of the 1m bar ENDING at the cutoff** — the 16:57 bar, whose close is
+  the price at exactly 16:58:00. The user's call, 2026-08-12. The first build read the bar *starting*
+  at 16:58, whose close is struck a minute late, which put pricing and detection in contradiction:
+  §3's window 3 already treats `[bar_start, cutoff)` as the live span, so a stop taken at 16:58:30
+  was invisible to detection while the exit was booked at a price struck 30 seconds after it. When
+  the 1m bar is missing, the containing 5m bar's close is used and the row is **flagged**, never
+  silently substituted.
+- **A session with no bar containing the cutoff still flattens**, at that session's last bar's close,
+  flagged. `VISION.md` makes the flatten unconditional, and a holiday early close otherwise produces
+  no flatten at all — 2026-07-03 closed at 13:00 ET, and a trade open there would have ridden 53
+  hours into the following Monday. The frame's own final session is not flattened: it has not ended.
 
 Without the flatten the recorded outcomes for Scalp and Day are simply wrong, which is why it is in
 this phase and not in 7b. **7b owns the watchdog** that guarantees it when a process died; a replay
@@ -134,9 +194,16 @@ cannot die mid-session.
 (`claude_memories/artifact-locality.md`). Every row carries **trade id, timestamp and source** —
 `VISION.md` requires all three because 7b will have multiple writers.
 
-- **A trade closing is a new row, never an edit.** Current state is a fold over the file, so a
-  truncated tail costs the last row and nothing earlier. Rows are written `<file>.tmp` →
-  `os.replace` per `coding_rules.md`; the fold ignores a trailing partial line.
+- **A trade closing is a new row, never an edit.** Current state is a fold over the file, and the
+  fold drops a torn trailing line.
+- **A torn tail is truncated back to its last newline before the next append, and that is the one
+  sanctioned rewrite of this file.** It removes only bytes that were never a complete row. Appending
+  onto a torn line instead is not a smaller fix, it is a fatal one: the concatenation is still the
+  trailing line, so the whole next run is silently swallowed, and the append after *that* turns it
+  into a malformed **interior** line which every later fold rejects — one torn write bricking the
+  ledger for good. `VISION.md` calls losing or corrupting it unacceptable. `coding_rules.md`'s
+  tmp-then-`os.replace` governs the **report**, not the append path: rewriting an append-only ledger
+  to add a row is the failure the format exists to prevent.
 - **It belongs in `.artifacts/` because a replay regenerates it.** The *report* is evidence and is
   tracked (§7). That is `claude_memories/artifact-locality.md`'s regenerable-vs-evidence line, not
   a size judgement.
@@ -144,11 +211,23 @@ cannot die mid-session.
   (`stoic/emission.py` convention 5), so a longer frame re-derives the same ids and the runner
   appends only ids it has not seen. This is what makes "no row lost or duplicated" a property of the
   design rather than of a lock.
-- **The frame start is pinned per ledger and written to its header row.** Warm-up decides emissions
-  — a frame needs 50 bars before any signal passes and 200 before any long passes on a fast chart
-  (`stoic/gating.py`'s conventions) — so a different start can renumber history. A run whose frame
-  start disagrees with the header is **refused**, not merged. Same disposition as Phase 6's Gate 0:
-  a disagreement is a bug in the request, and the run does not begin.
+- **The frame start is pinned in its own `frame` row, one per `(instrument, timeframe)`** — not in
+  the header, because one Type's ledger holds more than one instrument. Warm-up decides emissions —
+  a frame needs 50 bars before any signal passes and 200 before any signal passes on a fast chart
+  (`stoic/gating.py`'s conventions, symmetric since **D-31**) — so a different start can renumber
+  history. A run whose frame start disagrees is **refused before the replay begins**, exit non-zero,
+  both values named. Same disposition as Phase 6's Gate 0: a disagreement is a bug in the request.
+- **`suppressed` and `break_even` rows need their own idempotency keys**, because neither carries a
+  `signal_id` that identifies it: a `SUPPRESSED` row has no `SignalRecord` at all (Phase 6 §4), and
+  a `BREAK_EVEN` row's `signal_id` names the signal it links to, not itself. **Both keys carry the
+  instrument**: `(instrument, pos, direction)` and `(instrument, pos, direction, signal_id)`. `pos`
+  is a frame-relative index into a *per-instrument* frame while one Type's ledger holds several
+  instruments — the same reason the frame start is pinned per `(instrument, timeframe)`. The first
+  build omitted it, and NQ then ES into one file would have dropped every ES suppression whose
+  `(pos, direction)` matched an NQ one.
+- **Duplicate detection covers every row kind, not just `signal`.** A duplicate absorbed silently
+  into a set is a lost row that reports as success, which is the one thing the exit gate exists to
+  rule out.
 
 ## 6. Resume and progress
 
@@ -159,8 +238,17 @@ time left.
 - **A watermark row** records the last bar processed per `(instrument, timeframe, type)`. Per
   `coding_rules.md`, resumability is gated on **disk state, not a status flag** — the watermark is
   a fast path, and the fold is the truth.
-- Progress prints bars done, bars left, elapsed and ETA, computed from work done **in the current
-  run only** (`coding_rules.md`).
+- Progress is **per stage, not per bar, and that is a consequence of §7 rather than a shortfall.**
+  Both replays are single whole-frame calls with no per-bar hook, and adding one would be the second
+  bar loop §7 forbids. So the runner prints bars total / already recorded / new this run, then
+  elapsed per stage — load, slice, prep, L2, L5, tracking, ledger. Timings cover work done **in the
+  current run only** (`coding_rules.md`).
+
+**The driver runs 5m Types only, and refuses the others rather than resampling them wrong.** §9 /
+**D-7** puts Swing on the 60m and Position on the Daily; the driver resamples to 5m, so `--type
+swing` and `--type position` exit non-zero naming the mismatch. `stoic/tracking.py` itself is
+frame-agnostic — it infers the bar span from the index — so the limit is the driver's, not the
+measurement's, and lifting it is a driver change.
 
 ## 7. Architecture
 
@@ -170,7 +258,7 @@ The shape is Phase 6's, which is the shape that worked: **one pure module, one d
 |---|---|
 | `stoic/tracking.py` | Pure. Takes the L2 and L5 replay frames plus the 5m and 1m bars; returns one row per emitted `SIGNAL` with its outcome, exit bar, exit price and flags. No disk I/O, no network, no clock read, no model, no threshold. Never imported by L0–L5 — pinned by an import-direction test, as `stoic/fidelity.py` is |
 | `scripts/forward_test.py` | The driver. Owns every side effect: reads bars, runs `stoic.sequence.replay` and `stoic.emission.replay_signals` over the same frame, folds and appends the ledger, writes the report, prints progress |
-| `docs/evidence/phase7_forward_test.md` | The report — counts per outcome class, the ambiguous and flagged rows named individually, and the open trades carried forward |
+| `docs/evidence/phase7_forward_test_<instrument>_<type>.md` | The report — counts per outcome class, the ambiguous and flagged rows named individually, and the open trades carried forward. **The instrument and Type are in the filename because they are what the file is about**: one fixed path means a `--type day` run silently destroys the Scalp evidence in place |
 
 **Two replays, and L3's is not one of them.** Everything tracking needs about a filled trade —
 `fill_pos`, `fill`, `stop`, `tp1`, `r`, `direction`, `signal_id` — is already on L5's `SIGNAL` row,
@@ -183,8 +271,10 @@ loop — no second bar loop is written anywhere in this phase.
 ## 8. The report
 
 Generated, never hand-written. Counts per outcome class per Type and instrument; the `ambiguous`
-rows and every flagged flatten listed individually with their bar; open trades carried forward with
-their age. **No expectancy, no win rate, no average R, no drawdown** — those are Phase 9's, they
+rows and every flagged row listed individually; open trades carried forward with their age. **An
+`ambiguous` row is named by its *entry* bar** — it has no exit bar by construction (§2: closed, at
+no recorded price), and printing a blank there would read as a missing value rather than as the
+finding it is. **No expectancy, no win rate, no average R, no drawdown** — those are Phase 9's, they
 measure something this phase is not asking, and `CLAUDE.md` forbids concluding from small n. A
 reader who wants to know whether the method works must be unable to get it from this file.
 
@@ -196,9 +286,13 @@ not a function call in one interpreter.
 
 Every gate gets a **negative control** (`coding_rules.md`): duplicate a ledger row and confirm the
 fold reports it; truncate the tail mid-line and confirm the fold recovers; move the frame start and
-confirm the run is refused. One more test carries a decision rather than a fault — **`break_even`
-pinned at zero over a real replay** (§2), so the day it fires, someone reads it as the O-7 decision
-landing and not as noise.
+confirm the run is refused; **append after a torn tail** and confirm nothing is swallowed, which is
+the step the first build's torn-tail test never took and the step that failed.
+
+**A control that cannot fail is worse than no control**, because it reports as coverage. The first
+build shipped two: an assertion that an `isoformat()` was not the empty string, and a count of an
+`Outcome` member no code path could construct. Both passed whatever the code did. When a test pins
+something at zero, say which producer it is observing.
 
 ## What this phase does not do
 

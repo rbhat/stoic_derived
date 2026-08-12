@@ -117,6 +117,24 @@ def ny_open_utc(session_dates: DateLike) -> pd.DatetimeIndex:
     return _local_instant(session_dates, hour=9, minute=30, tz=ET, day_offset=0)
 
 
+def infer_bar_span(index: pd.DatetimeIndex) -> pd.Timedelta:
+    """The (constant) duration of a bar in `index`, as the **modal** difference between
+    consecutive entries.
+
+    The mode, not the mean or the median: a frame carries gaps that are not bar spans — the
+    17:00-18:00 ET maintenance break, weekends, holidays — and only the mode is unmoved by them.
+    A median in particular averages the two middle diffs on an even count, so a short frame
+    straddling the break reports a span that is not a bar length at all.
+
+    Raises `ValueError` for fewer than 2 rows: one bar has no gap to measure, and there is no
+    honest answer to give.
+    """
+    if len(index) < 2:
+        raise ValueError("bar span cannot be inferred from an index with fewer than 2 rows")
+    diffs = index.to_series().diff().dropna()
+    return pd.Timedelta(diffs.mode().iloc[0])
+
+
 def label_sessions(
     index: pd.DatetimeIndex, *, bar_span: pd.Timedelta | None = None
 ) -> pd.DataFrame:
@@ -146,8 +164,7 @@ def label_sessions(
             raise ValueError(
                 "bar_span must be given explicitly for an index with fewer than 2 rows"
             )
-        diffs = index.to_series().diff().dropna()
-        bar_span = diffs.mode().iloc[0]
+        bar_span = infer_bar_span(index)
 
     sd = session_date(index)
     et = index.tz_convert(ET)
