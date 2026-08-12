@@ -285,9 +285,10 @@ def _l3_prices(entries: pd.DataFrame, ts: pd.Timestamp, direction: str) -> dict[
         "trigger": row["trigger"],
         "stop": row["stop"],
         "fill": row["fill"],
-        # Mirrors stoic/emission.py's own `r=abs(rec.fill - rec.stop)` (§5.4.2, D-18, no floor)
-        # character for character -- this is what the engine would have emitted for the same
-        # trade, including its float behaviour. A `SUPPRESSED` row is measured by the identical
+        # Mirrors stoic/emission.py's own `r=abs(rec.fill - rec.stop)` (§5.4.2 -- no floor: D-18
+        # on the stop, O-10 on gating R) operand for operand -- `_finite` is identity on a float,
+        # so this is the identical arithmetic the engine would have run for the same trade,
+        # including its float behaviour. A `SUPPRESSED` row is measured by the identical
         # arithmetic as a `SIGNAL` row, so real data carries the same ~1e-12 residual against a
         # label's 2-dp literal on both paths. That residual is arithmetic, not a divergence, and
         # Tasks 4/8 must not read it as one -- do not "fix" it with Decimal here or anywhere else.
@@ -408,8 +409,15 @@ def reconcile_taken(
     anchor_matched: bool | None = None
     if anchor_block is not None:
         engine_anchor = engine.get("anchor_ts")
-        anchor_matched = engine_anchor is not None and pd.Timestamp(engine_anchor) == pd.Timestamp(
-            anchor_block["ts"]
+        # Same convention as the no-emission return above: `None` means "not compared" (the
+        # engine emitted no anchor_ts to compare against -- e.g. a SUPPRESSED row with nothing
+        # borrowed from L3), `False` means "compared and differed". Collapsing the first into the
+        # second would turn "no value" into a false mismatch on the one field where deltas already
+        # get this right (Delta.reason == "the engine emitted no value").
+        anchor_matched = (
+            None
+            if engine_anchor is None
+            else pd.Timestamp(engine_anchor) == pd.Timestamp(anchor_block["ts"])
         )
 
     return LabelResult(

@@ -364,6 +364,9 @@ def test_one_bar_off_is_unmatched_and_characterised():
     assert result.nearest_delta_bars == 1
     assert result.nearest_ts == pd.Timestamp("2026-07-31 15:00", tz="UTC")
     assert all(d.scoreable is False for d in result.deltas)
+    # No emission landed on the label's bar, so no anchor comparison ran -- `None`, not `False`
+    # (a regression here would otherwise pass silently: nothing else in this file pins it).
+    assert result.anchor_matched is None
 
 
 def test_opposite_direction_emission_never_matches():
@@ -450,7 +453,14 @@ def test_suppressed_with_no_matching_l3_entry_is_matched_but_unscoreable():
     assert result.matched is True
     assert result.engine_event == "SUPPRESSED"
     assert all(d.scoreable is False for d in result.deltas)
+    by_field = {d.field: d for d in result.deltas}
+    # `trigger` has a scope block (the label states a value), so its unscoreable cause is the
+    # engine's missing value, not a null scope entry -- distinct from e.g. `tp1`, whose scope is
+    # already null in this fixture and would report "unscoreable" for that reason regardless.
+    assert by_field["trigger"].reason == "the engine emitted no value"
     assert any("prices unavailable" in note for note in result.notes)
+    # The engine emitted no anchor_ts at all -- not compared, not a mismatch (item 2, round 3).
+    assert result.anchor_matched is None
 
 
 def test_no_entry_bar_in_scope_states_why_in_notes():
@@ -461,4 +471,6 @@ def test_no_entry_bar_in_scope_states_why_in_notes():
     result = reconcile_taken(
         label, "2026-07-31", _emissions([_signal_row()]), _entries([]), BAR_INDEX
     )
+    assert result.matched is False
+    assert result.anchor_matched is None
     assert result.notes == ("no entry bar in scope -- nothing to pair on",)
