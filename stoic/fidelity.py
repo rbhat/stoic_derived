@@ -472,6 +472,167 @@ def reconcile_taken(
     )
 
 
+def _direction_rows(entries: pd.DataFrame, engine_direction: str) -> pd.DataFrame:
+    return entries[entries["direction"].astype(str) == engine_direction].sort_values("ts")
+
+
+def reconcile_named(
+    label: dict, session: str, entries: pd.DataFrame, bar_index: pd.DatetimeIndex
+) -> LabelResult:
+    """Pair a `named` label to L3's `PTB_ANCHORED` on the same bar (`docs/PHASE6.md` §4).
+
+    The trader declined this setup, so there is nothing to score but whether the engine SAW it.
+    An engine fill here is **correct-but-not-taken, never a false positive** (`docs/PHASE3.md`
+    §2) and is recorded as a note, not as a divergence.
+    """
+    scope = label["phase6_scope"]
+    direction = str(label["direction"])
+    engine_direction = "bullish" if direction == "long" else "bearish"
+    rows = _direction_rows(entries, engine_direction)
+    anchors = rows[rows["event"].astype(str) == "PTB_ANCHORED"]
+
+    anchor_block = scope.get("anchor_bar")
+    if anchor_block is None:
+        return LabelResult(
+            label_id=label["id"], session=session, label_class=str(label["class"]),
+            direction=direction, matched=False, engine_event=None, engine_ts=None,
+            blocked_by=(), anchor_matched=None,
+            deltas=(_unscoreable("trigger", "phase6_scope.anchor_bar is null"),),
+            nearest_ts=None, nearest_delta_bars=None, circular=False,
+            notes=("no anchor bar in scope -- nothing to pair on",),
+        )
+
+    expected = pd.Timestamp(anchor_block["ts"])
+    hit = anchors[anchors["ts"] == expected]
+
+    if hit.empty:
+        nearest_ts, nearest_bars = None, None
+        offsets = [
+            (bar_offset(bar_index, ts, expected), ts)
+            for ts in anchors["ts"]
+            if bar_offset(bar_index, ts, expected) is not None
+        ]
+        if offsets:
+            nearest_bars, nearest_ts = min(offsets, key=lambda pair: (abs(pair[0]), pair[0]))
+        return LabelResult(
+            label_id=label["id"], session=session, label_class=str(label["class"]),
+            direction=direction, matched=False, engine_event=None, engine_ts=None,
+            # Same convention as reconcile_taken's no-match branch: there is no engine anchor on
+            # this bar to compare against, so no comparison ran -- `None`, not `False`
+            # (`anchor_matched`'s three-way convention: True/False only apply once a comparison
+            # actually happened).
+            blocked_by=(), anchor_matched=None,
+            deltas=(_unscoreable("trigger", "the engine anchored no order on this bar"),),
+            nearest_ts=nearest_ts, nearest_delta_bars=nearest_bars, circular=False,
+            notes=("the engine never saw this setup on the label's bar",),
+        )
+
+    row = hit.iloc[0]
+    notes: list[str] = []
+    later = rows[rows["ts"] > expected]
+    terminal = later[later["event"].astype(str).isin(_TERMINAL_EVENTS)]
+    if not terminal.empty and str(terminal.iloc[0]["event"]) == "ENTRY_FILLED":
+        notes.append(
+            "the engine filled this order -- correct-but-not-taken, never a false positive "
+            "(docs/PHASE3.md §2)"
+        )
+
+    trigger_block = scope.get("trigger")
+    if trigger_block is None:
+        delta = _unscoreable("trigger", "phase6_scope.trigger is null")
+    else:
+        label_value = _finite(trigger_block.get("price"))
+        engine_value = _finite(row["trigger"])
+        delta = (
+            Delta("trigger", label_value, engine_value, engine_value - label_value, True)
+            if label_value is not None and engine_value is not None
+            else _unscoreable("trigger", "no trigger on one side", label_value)
+        )
+
+    return LabelResult(
+        label_id=label["id"], session=session, label_class=str(label["class"]),
+        direction=direction, matched=True, engine_event="PTB_ANCHORED", engine_ts=expected,
+        blocked_by=(), anchor_matched=True, deltas=(delta,),
+        nearest_ts=None, nearest_delta_bars=None, circular=False, notes=tuple(notes),
+    )
+
+
+def reconcile_no_opportunity(
+    label: dict, session: str, entries: pd.DataFrame, bar_index: pd.DatetimeIndex
+) -> LabelResult:
+    """Score a `no_opportunity` label over the working order's OWN LIFETIME.
+
+    The label says the bars never traded through the trigger, so the engine is required to emit
+    no fill (`docs/PHASE3.md` §2; the label's own `phase_6_expectation`). This is the one class
+    where absence is the right answer and the bars can settle it -- and it needs **no window**:
+    the interval is the order's life, from its anchor to the first terminal event
+    (`ENTRY_FILLED` / `ORDER_CANCELLED` / `ORDER_VOIDED`, §5.3.4a's closed list of three).
+    A terminal event of `ENTRY_FILLED` is the divergence.
+    """
+    scope = label["phase6_scope"]
+    direction = str(label["direction"])
+    engine_direction = "bullish" if direction == "long" else "bearish"
+    rows = _direction_rows(entries, engine_direction)
+
+    anchor_block = scope.get("anchor_bar") or scope.get("anchor_bar_narrated")
+    expected = pd.Timestamp(anchor_block["ts"]) if anchor_block else None
+    anchors = rows[rows["event"].astype(str) == "PTB_ANCHORED"]
+    hit = anchors[anchors["ts"] == expected] if expected is not None else anchors.iloc[0:0]
+
+    if hit.empty:
+        nearest_ts, nearest_bars = None, None
+        if expected is not None:
+            offsets = [
+                (bar_offset(bar_index, ts, expected), ts)
+                for ts in anchors["ts"]
+                if bar_offset(bar_index, ts, expected) is not None
+            ]
+            if offsets:
+                nearest_bars, nearest_ts = min(offsets, key=lambda pair: (abs(pair[0]), pair[0]))
+        return LabelResult(
+            label_id=label["id"], session=session, label_class=str(label["class"]),
+            direction=direction, matched=False, engine_event=None, engine_ts=None,
+            # Same convention as reconcile_named above and reconcile_taken's no-match branch: no
+            # engine anchor exists on this bar to compare against, so no comparison ran.
+            blocked_by=(), anchor_matched=None, deltas=(),
+            nearest_ts=nearest_ts, nearest_delta_bars=nearest_bars, circular=False,
+            notes=("the engine never anchored an order on this bar",),
+        )
+
+    later = rows[rows["ts"] > expected]
+    terminal = later[later["event"].astype(str).isin(_TERMINAL_EVENTS)]
+    if terminal.empty:
+        return LabelResult(
+            label_id=label["id"], session=session, label_class=str(label["class"]),
+            direction=direction, matched=True, engine_event=None, engine_ts=expected,
+            blocked_by=(), anchor_matched=True, deltas=(),
+            nearest_ts=None, nearest_delta_bars=None, circular=False,
+            notes=("the order was still working at the end of the slice -- no fill",),
+        )
+
+    end = terminal.iloc[0]
+    event = str(end["event"])
+    if event == "ENTRY_FILLED":
+        return LabelResult(
+            label_id=label["id"], session=session, label_class=str(label["class"]),
+            direction=direction, matched=False, engine_event=event, engine_ts=end["ts"],
+            blocked_by=(), anchor_matched=True, deltas=(),
+            nearest_ts=end["ts"], nearest_delta_bars=bar_offset(bar_index, end["ts"], expected),
+            circular=False,
+            notes=(
+                "DIVERGENCE: the engine filled an order the bars never traded through the "
+                "trigger for",
+            ),
+        )
+    return LabelResult(
+        label_id=label["id"], session=session, label_class=str(label["class"]),
+        direction=direction, matched=True, engine_event=event, engine_ts=end["ts"],
+        blocked_by=(), anchor_matched=True, deltas=(),
+        nearest_ts=None, nearest_delta_bars=None, circular=False,
+        notes=("engine emitted no fill -- the label's expectation",),
+    )
+
+
 __all__ = [
     "COMPARED_ATTRS",
     "DECLARATION_KEYS",
@@ -480,6 +641,8 @@ __all__ = [
     "LabelResult",
     "bar_offset",
     "check_scope_consistency",
+    "reconcile_named",
+    "reconcile_no_opportunity",
     "reconcile_taken",
     "resolve_path",
 ]

@@ -18,6 +18,8 @@ from stoic.fidelity import (
     LabelResult,
     bar_offset,
     check_scope_consistency,
+    reconcile_named,
+    reconcile_no_opportunity,
     reconcile_taken,
     resolve_path,
 )
@@ -625,3 +627,115 @@ def test_suppressed_anchor_nat_in_a_real_datetime64_column_is_not_a_mismatch():
     result = reconcile_taken(_label(), "2026-07-31", suppressed, _entries([]), BAR_INDEX)
     assert result.matched is True
     assert result.anchor_matched is None
+
+
+# --- Task 4: pairing for `named` and `no_opportunity` -------------------------------------------
+
+NAMED_INDEX = pd.date_range("2026-07-27 13:30", periods=24, freq="5min", tz="UTC")
+NOPP_INDEX = pd.date_range("2026-07-30 17:00", periods=24, freq="5min", tz="UTC")
+
+
+def _named_label() -> dict:
+    return {
+        "id": "LT-B1",
+        "class": "named",
+        "direction": "short",
+        "phase6_scope": {
+            "anchor_bar": {"ts": _utc(2026, 7, 27, 13, 50), "from": "ptb.pos_ts"},
+            "entry_bar": None,
+            "trigger": {"price": 28446.50, "from": "ptb.trigger.bars"},
+            "stop": None, "tp1": None, "expect_fill": None, "circular": False,
+        },
+    }
+
+
+def _nopp_label() -> dict:
+    return {
+        "id": "PTBV30-N1",
+        "class": "no_opportunity",
+        "direction": "long",
+        "phase6_scope": {
+            "anchor_bar": None, "entry_bar": None, "trigger": None, "stop": None, "tp1": None,
+            "expect_fill": False, "circular": False,
+            "anchor_bar_narrated": {"ts": _utc(2026, 7, 30, 17, 25), "from": "bar_5m_et"},
+        },
+    }
+
+
+def _anchor(ts, direction="bearish", trigger=28446.50) -> dict:
+    """An L3 `PTB_ANCHORED` row, in `_entries`'s real schema. No `anchor_ts` key: the real frame
+    (`stoic/entry.py:471`) has no such column, only `pos`/`anchor_pos` positions, and neither
+    `reconcile_named` nor `reconcile_no_opportunity` reads either -- both pair on `ts`, `event`,
+    `direction` and `trigger` alone."""
+    return {
+        "pos": None, "ts": ts, "event": "PTB_ANCHORED", "direction": direction,
+        "anchor_pos": None, "trigger": trigger, "stop": None, "fill": None, "step3_extreme": None,
+    }
+
+
+def test_named_matches_when_the_engine_anchored_on_that_bar():
+    ts = pd.Timestamp("2026-07-27 13:50", tz="UTC")
+    result = reconcile_named(_named_label(), "2026-07-27", _entries([_anchor(ts)]), NAMED_INDEX)
+    assert result.matched is True
+    assert result.engine_event == "PTB_ANCHORED"
+    trigger = next(d for d in result.deltas if d.field == "trigger")
+    assert trigger.delta == 0.0
+
+
+def test_named_records_a_fill_as_correct_but_not_taken():
+    ts = pd.Timestamp("2026-07-27 13:50", tz="UTC")
+    fill = {
+        "ts": pd.Timestamp("2026-07-27 13:55", tz="UTC"), "event": "ENTRY_FILLED",
+        "direction": "bearish", "trigger": 28446.50, "stop": 28500.0,
+        "fill": 28440.0, "step3_extreme": None,
+    }
+    result = reconcile_named(
+        _named_label(), "2026-07-27", _entries([_anchor(ts), fill]), NAMED_INDEX
+    )
+    assert result.matched is True
+    assert any("correct-but-not-taken" in note for note in result.notes)
+
+
+def test_named_unmatched_is_characterised_by_the_nearest_anchor():
+    ts = pd.Timestamp("2026-07-27 14:00", tz="UTC")
+    result = reconcile_named(_named_label(), "2026-07-27", _entries([_anchor(ts)]), NAMED_INDEX)
+    assert result.matched is False
+    assert result.nearest_delta_bars == 2
+
+
+def test_no_opportunity_with_a_cancelled_order_is_a_match():
+    ts = pd.Timestamp("2026-07-30 17:25", tz="UTC")
+    cancel = {
+        "ts": pd.Timestamp("2026-07-30 17:40", tz="UTC"), "event": "ORDER_CANCELLED",
+        "direction": "bullish", "trigger": 28100.0, "stop": None,
+        "fill": None, "step3_extreme": None,
+    }
+    result = reconcile_no_opportunity(
+        _nopp_label(), "2026-07-30",
+        _entries([_anchor(ts, direction="bullish", trigger=28100.0), cancel]), NOPP_INDEX,
+    )
+    assert result.matched is True
+    assert result.engine_event == "ORDER_CANCELLED"
+    assert result.notes == ("engine emitted no fill -- the label's expectation",)
+
+
+def test_no_opportunity_negative_control_a_fill_is_a_divergence():
+    ts = pd.Timestamp("2026-07-30 17:25", tz="UTC")
+    fill = {
+        "ts": pd.Timestamp("2026-07-30 17:35", tz="UTC"), "event": "ENTRY_FILLED",
+        "direction": "bullish", "trigger": 28100.0, "stop": 28050.0,
+        "fill": 28101.0, "step3_extreme": None,
+    }
+    result = reconcile_no_opportunity(
+        _nopp_label(), "2026-07-30",
+        _entries([_anchor(ts, direction="bullish", trigger=28100.0), fill]), NOPP_INDEX,
+    )
+    assert result.matched is False
+    assert result.engine_event == "ENTRY_FILLED"
+    assert any("DIVERGENCE" in note for note in result.notes)
+
+
+def test_no_opportunity_with_no_anchor_at_all_says_so():
+    result = reconcile_no_opportunity(_nopp_label(), "2026-07-30", _entries([]), NOPP_INDEX)
+    assert result.matched is False
+    assert any("never anchored" in note for note in result.notes)
