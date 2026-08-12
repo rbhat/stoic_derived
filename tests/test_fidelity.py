@@ -21,7 +21,9 @@ from stoic.fidelity import (
     reconcile_named,
     reconcile_no_opportunity,
     reconcile_taken,
+    render_report,
     resolve_path,
+    unlabelled_emissions,
 )
 
 
@@ -786,3 +788,59 @@ def test_no_opportunity_with_scalar_anchor_bar_narrated_is_reported_not_raised()
     assert result.matched is False
     assert result.anchor_matched is None
     assert any("not a mapping" in note for note in result.notes)
+
+
+# --- Task 5: unlabelled emissions and report rendering -----------------------------------------
+
+
+def test_unlabelled_drops_the_matched_bars_only():
+    matched = _signal_row()
+    other = _signal_row(ts=pd.Timestamp("2026-07-31 15:10", tz="UTC"))
+    results = [
+        reconcile_taken(_label(), "2026-07-31", _emissions([matched]), _entries([]), BAR_INDEX)
+    ]
+    left = unlabelled_emissions(_emissions([matched, other]), results)
+    assert len(left) == 1
+    assert left.iloc[0]["ts"] == pd.Timestamp("2026-07-31 15:10", tz="UTC")
+
+
+def test_unlabelled_keeps_a_same_bar_emission_of_the_other_direction():
+    matched = _signal_row()
+    opposite = _signal_row(direction="bullish")
+    results = [
+        reconcile_taken(_label(), "2026-07-31", _emissions([matched]), _entries([]), BAR_INDEX)
+    ]
+    left = unlabelled_emissions(_emissions([matched, opposite]), results)
+    assert len(left) == 1
+    assert str(left.iloc[0]["direction"]) == "bullish"
+
+
+def test_report_states_the_no_verdict_line_and_the_counts():
+    results = [
+        reconcile_taken(
+            _label(), "2026-07-31", _emissions([_signal_row()]), _entries([]), BAR_INDEX
+        )
+    ]
+    text = render_report(results, _emissions([]), {"instrument": "NQ", "frame": "5m"})
+    assert "the label set is not exhaustive" in text
+    assert "no verdict" in text
+    assert "T-A2" in text
+    assert "instrument" in text
+
+
+def test_report_marks_a_circular_row():
+    label = _label()
+    label["phase6_scope"]["circular"] = True
+    results = [
+        reconcile_taken(label, "2026-07-31", _emissions([_signal_row()]), _entries([]), BAR_INDEX)
+    ]
+    assert "circular" in render_report(results, _emissions([]), {}).lower()
+
+
+def test_report_prints_unscoreable_rather_than_a_blank():
+    label = _label()
+    label["phase6_scope"]["trigger"] = None
+    results = [
+        reconcile_taken(label, "2026-07-31", _emissions([_signal_row()]), _entries([]), BAR_INDEX)
+    ]
+    assert "unscoreable" in render_report(results, _emissions([]), {})
