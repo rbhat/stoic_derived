@@ -136,18 +136,39 @@ a single instance. Counts below are counts. **No direction is projected from the
 here says the method does or does not work — the question is only whether our implementation
 generates the trades the method calls for.
 
-**One diagnostic governs eight of the ten rows, so it is stated once here rather than repeated.**
-L2 reaches `step_3_confirmed` during RTH on **all four** sessions (07-27: 3, 07-30: 2, 07-31: 4,
-08-03: 2). L3 opened a PTB walk on only two of them: 07-27 and 07-31 anchored 10 and 6 orders in
-RTH, while **07-30 and 08-03 anchored none at all**. So the sequence machine is running and
-confirming in the window where every label sits; what does not follow is the PTB walk. Five of
-the eight unmatched labels sit on those two silent sessions.
+**One mechanism governs seven of the eight unmatched rows, and it is now identified rather than
+merely localised.** A first pass reported only that L2 confirmed Step 3 in RTH on all four sessions
+while L3 anchored a PTB on just two of them. Tracing the entry machine's own state per bar gives
+the cause: **§5.4.7's invalidation fires between the Step 3 confirmation and the entry, every
+time.** In each case the condition is `invalidated_boundary_close` — **§5.4.7c**, a close beyond
+the Step 2 boundary against the trade direction, which §5.4.7 applies to *"an open position and to
+a pending setup alike."*
 
-**This is localised, not explained.** A confirmed Step 3 that never opens a walk is the correct
-behaviour when no qualifying pullback forms (§5.2.1a / **D-28** — the pullback opens only when
-*both* extremes move against the direction, measured against the parent bar). Whether these
-particular sessions had no qualifying pullback, or the pullback test is wrong, is **not settled
-by this run** and is not settled here. It is the first question the next pass should put to L1/L3.
+| session | Step 3 confirmed | invalidated | gap | order existed? |
+|---|---|---|---|---|
+| 07-30 bullish | 18:05 | 18:15 §5.4.7c | 2 bars | no |
+| 07-30 bullish | 20:15 | 20:50 §5.4.7c | 7 bars | no |
+| 08-03 bullish | 13:15 | 13:25 §5.4.7b + §5.4.7c + reset | 2 bars | no |
+| 08-03 bullish | 14:55 | 15:05 §5.4.7c | 2 bars | no |
+| 07-31 bearish | 14:05 | 14:25 §5.4.7c | 4 bars | **yes** — `ORDER_CANCELLED` |
+
+**The 07-31 row is the engine applying the rule exactly as written.** A PTB anchored at 14:20, a
+close beyond the boundary at 14:25 cancelled it (§5.3.4a's second of three ways the walk ends), and
+the labelled entries follow at 14:40 and 14:55. So `T-A1` and `T-A2` are **not** an engine failure
+to see the setup: the engine saw it, armed it, and then invalidated it on a rule, 3 and 6 bars
+before the trader entered. What is unresolved is *which* side is right — and that is now a narrow
+question about one line, not a general one about the engine.
+
+**The four rows where no order existed raise a separate question the rulebook does not settle.**
+There, §5.4.7 fired with **no open position and no working order** — only an *armed* machine
+waiting for a pullback to open. Its effect in `stoic/entry.py` is to clear `armed`, so the setup
+dies before a PTB can ever anchor. §5.4.7 scopes itself to *"an open position and to a pending
+setup alike"*, and the engine note repeats it: *"evaluated per bar on an open position and on a
+pending setup."* **Whether "Step 3 confirmed, no pullback opened yet" is a pending setup is not
+stated anywhere.** Both readings are defensible — the setup is arguably pending from confirmation,
+or arguably only once an order rests — and this run does not decide it. It is the same shape as
+**O-15** and **O-17**: noticed, not decided. **Do not resolve it by editing the engine.**
+
 
 ### LT-A1 — the engine anchored no order on the label's bar; its nearest emission belongs to a different setup
 
@@ -157,11 +178,18 @@ by this run** and is not settled here. It is the first question the next pass sh
   of `LT-B1`'s order, so the `+3` is not a near-miss of this label.
 - **What the label says:** anchor `13:35`, entry `13:40`, trigger `28525.75` (`ptb.trigger.bars`,
   provenance `read`), stop `28613.75` by the PTB extreme.
-- **Triage:** unresolved — insufficient to classify from this run.
-- **Basis:** the engine ran a bearish sequence through this window and selected a *different*
-  PTB 10 bars later. That is a disagreement about which pullback is the PTB, which is **D-17**
-  (re-anchoring) and **D-23** (the inside-candle skip) territory. Naming which would require
-  re-reading the artifact against the bars, which this run did not do.
+- **What the trace adds:** the engine emitted `step_3_break` at `13:35` — **the label's anchor
+  bar** — and `step_3_confirmed` at `13:40` — **the label's entry bar, exactly.** It then anchored
+  a PTB at `13:50` and filled at `13:55`. So the engine and the label agree on where the sequence
+  is; they disagree on **when you may enter it**. The trader entered on the confirmation bar
+  itself; the engine requires a pullback to open after confirmation (§5.2.1a / **D-28**), anchors
+  the PTB on it, and fills on a trade through its extreme — three bars later here.
+- **Triage:** **out of v1 scope, pending one artifact check.**
+- **Basis:** §5.5 / **D-11** — the anticipatory entry. `docs/STATE.md` already records that it
+  *"appears in the labelled material and the engine must not emit it"*, which is exactly this
+  shape: an entry taken at Step 3 confirmation rather than on the PTB that follows it. The check
+  that would settle it is whether the artifact's `28525.75` is a PTB extreme at all or the Step 3
+  break level. **If it is D-11, the engine is right not to reproduce this row.**
 
 ### LT34-A1, LT34-M1, LT34-M2 — three labelled entries on a session where L3 anchored nothing in RTH
 
@@ -201,14 +229,17 @@ by this run** and is not settled here. It is the first question the next pass sh
 - **What the label says:** `T-A1` entry `14:40`, `ptb` null (the drawn `ptb` line starts at the
   10:50 bar and belongs to `T-A2`), so only direction and entry bar are scoreable. `T-A2` entry
   `14:55`, anchor `14:50`, trigger `28289.75` (`ptb.trigger.bars`, provenance `read`).
-- **Triage:** unresolved — but the sharpest instance in the set, and the one with the most
-  reachable next step.
-- **Basis:** unlike the silent sessions, here the engine *had* a bearish order in the right window
-  and ended it. `ORDER_CANCELLED` is §5.3.4a — one of the §5.4.7a–c invalidations. Which of the
-  three fired at `14:25`, and whether the artifact supports it, is a single bar's worth of
-  reading. **`T-A2` is the label whose `phase6_scope` records the most transcribed reference
-  values** (anchor, trigger, stop and distance all present), so it is the one that would score the
-  most if the walk survived.
+- **Which condition fired:** **§5.4.7c**, `invalidated_boundary_close` — a close beyond the Step 2
+  boundary against the trade direction. Not §5.4.7a and not §5.4.7b.
+- **Triage:** unresolved — and now narrowed to one line of the rulebook.
+- **Basis:** §5.4.7c is **M** and unambiguous as written: the close alone is the whole test, with
+  no strength qualifier, on *"the one already selected under §2.2.8"*. So the engine is applying
+  it correctly, and the open question is upstream — **is the engine's selected boundary the same
+  line the trader was trading against?** That is **D-30** (the boundary is the base's close
+  extreme on the Step 1 side), a decision `docs/STATE.md` records as chosen from a 6-to-5 corpus
+  split that no passage addresses directly. **`T-A2` is the label whose `phase6_scope` records the
+  most transcribed reference values** (anchor, trigger, stop and distance all present), so it is
+  the one that would score the most if the boundary reading changed. **Nothing is changed here.**
 
 ### T-B1 — matched exactly, then suppressed by a gate; and R disagrees by 1.17
 
