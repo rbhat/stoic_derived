@@ -770,3 +770,19 @@ def test_no_opportunity_with_no_anchor_bar_declared_in_scope_says_so():
     assert result.matched is False
     assert result.anchor_matched is None
     assert result.notes == ("no anchor bar in scope -- nothing to pair on",)
+
+
+def test_no_opportunity_with_scalar_anchor_bar_narrated_is_reported_not_raised():
+    """Hardening: `anchor_bar_narrated` is the one anchor source `check_scope_consistency` never
+    mapping-checks (deliberately -- its `from: bar_5m_et` field is a wall-clock string, not
+    comparable by equality, so SCOPE_KEYS excludes it and only DECLARATION_KEYS validates it as a
+    known key). A half-transcribed `anchor_bar_narrated: "TBD"` is therefore a truthy non-mapping
+    that reaches `reconcile_no_opportunity` unchecked. Before the fix this passed the `is None`
+    guard and raised `TypeError` on `anchor_block["ts"]`; it must instead be reported, matching the
+    report-never-raise discipline `check_scope_consistency` already states for itself."""
+    label = _nopp_label()
+    label["phase6_scope"]["anchor_bar_narrated"] = "TBD"
+    result = reconcile_no_opportunity(label, "2026-07-30", _entries([]), NOPP_INDEX)
+    assert result.matched is False
+    assert result.anchor_matched is None
+    assert any("not a mapping" in note for note in result.notes)

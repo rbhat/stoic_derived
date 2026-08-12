@@ -587,17 +587,31 @@ def reconcile_no_opportunity(
     # above `SCOPE_KEYS` on why the narrated field is never a comparison reference elsewhere --
     # here it is only ever used as a bar to pair on, never compared by equality).
     anchor_block = scope.get("anchor_bar") or scope.get("anchor_bar_narrated")
-    if anchor_block is None:
+    if not isinstance(anchor_block, dict):
         # Mirrors reconcile_named's identical branch: a label that names no anchor bar at all was
         # never paired, and reporting anything else here would blame the engine for a gap that is
         # the label's, not the engine's (review finding 2) -- three distinct states (label silent /
         # engine anchored elsewhere / engine never anchored) must not collapse into one accusation.
+        #
+        # Widened past `is None`: `anchor_bar` is checked as a mapping by check_scope_consistency's
+        # SCOPE_KEYS gate before this ever runs, but `anchor_bar_narrated` is deliberately excluded
+        # from that check (its `from: bar_5m_et` field is a wall-clock string, not comparable by
+        # equality -- see the comment above `SCOPE_KEYS`) and validated only as a known key. A
+        # half-transcribed `anchor_bar_narrated: TBD` is therefore a truthy non-mapping that would
+        # otherwise pass this `is None` guard and raise `TypeError` on `anchor_block["ts"]` below --
+        # report it instead, never subscript it, per the report-never-raise discipline
+        # `check_scope_consistency` already states for itself.
+        reason = (
+            "no anchor bar in scope -- nothing to pair on"
+            if anchor_block is None
+            else "phase6_scope.anchor_bar_narrated is not a mapping -- nothing to pair on"
+        )
         return LabelResult(
             label_id=label["id"], session=session, label_class=str(label["class"]),
             direction=direction, matched=False, engine_event=None, engine_ts=None,
             blocked_by=(), anchor_matched=None, deltas=(),
             nearest_ts=None, nearest_delta_bars=None, circular=False,
-            notes=("no anchor bar in scope -- nothing to pair on",),
+            notes=(reason,),
         )
 
     expected = pd.Timestamp(anchor_block["ts"])
