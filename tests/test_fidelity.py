@@ -15,6 +15,8 @@ import pandas as pd
 import pytest
 
 from stoic import fidelity as fidelity_module
+from stoic.emission import EmissionEvent
+from stoic.entry import EntryEvent
 from stoic.fidelity import (
     Delta,
     LabelResult,
@@ -378,7 +380,7 @@ def _entries(rows: list[dict]) -> pd.DataFrame:
 def _signal_row(**over) -> dict:
     row = {
         "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"),
-        "event": "SIGNAL",
+        "event": EmissionEvent.SIGNAL,
         "direction": "bearish",
         "blocked_by": (),
         "anchor_ts": pd.Timestamp("2026-07-31 14:50", tz="UTC"),
@@ -410,7 +412,7 @@ def test_exact_bar_match_produces_zero_deltas():
     )
     assert isinstance(result, LabelResult)
     assert result.matched is True
-    assert result.engine_event == "SIGNAL"
+    assert result.engine_event == EmissionEvent.SIGNAL
     assert result.anchor_matched is True
     by_field = {d.field: d for d in result.deltas}
     assert by_field["trigger"].delta == 0.0
@@ -451,20 +453,20 @@ def test_no_emissions_at_all_leaves_nearest_none():
 
 def test_suppressed_matches_and_borrows_prices_from_l3():
     suppressed = _signal_row(
-        event="SUPPRESSED", blocked_by=("trend_50",),
+        event=EmissionEvent.SUPPRESSED, blocked_by=("trend_50",),
         anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
     )
     l3 = _entries([{
         "pos": 11,
         "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"),
-        "event": "ENTRY_FILLED",
+        "event": EntryEvent.ENTRY_FILLED,
         "direction": "bearish",
         "anchor_pos": 10,  # BAR_INDEX[10] == 14:50 -- the real L3 frame has no anchor_ts column
         "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
     }])
     result = reconcile_taken(_label(), "2026-07-31", _emissions([suppressed]), l3, BAR_INDEX)
     assert result.matched is True
-    assert result.engine_event == "SUPPRESSED"
+    assert result.engine_event == EmissionEvent.SUPPRESSED
     assert result.blocked_by == ("trend_50",)
     by_field = {d.field: d for d in result.deltas}
     assert by_field["trigger"].delta == 0.0
@@ -512,14 +514,14 @@ def test_suppressed_with_no_matching_l3_entry_is_matched_but_unscoreable():
     ENTRY_FILLED on the same bar still pairs (the SUPPRESSED emission itself landed on the
     label's bar), but carries no prices to score, and says so in `notes`."""
     suppressed = _signal_row(
-        event="SUPPRESSED", blocked_by=("trend_50",),
+        event=EmissionEvent.SUPPRESSED, blocked_by=("trend_50",),
         anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
     )
     result = reconcile_taken(
         _label(), "2026-07-31", _emissions([suppressed]), _entries([]), BAR_INDEX
     )
     assert result.matched is True
-    assert result.engine_event == "SUPPRESSED"
+    assert result.engine_event == EmissionEvent.SUPPRESSED
     assert all(d.scoreable is False for d in result.deltas)
     by_field = {d.field: d for d in result.deltas}
     # `trigger` has a scope block (the label states a value), so its unscoreable cause is the
@@ -569,14 +571,14 @@ def test_l3_anchor_translation_never_raises_and_falls_back_to_none():
     `anchor_pos` translating to the label's real anchor bar -- so it is not repeated here.)
     """
     suppressed = _signal_row(
-        event="SUPPRESSED", blocked_by=(),
+        event=EmissionEvent.SUPPRESSED, blocked_by=(),
         anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
     )
 
     # Case 1: anchor_pos is null (no anchor recorded) -- prices still resolve, the anchor does not.
     na_anchor = _entries([{
-        "pos": 11, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"), "event": "ENTRY_FILLED",
-        "direction": "bearish", "anchor_pos": pd.NA,
+        "pos": 11, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"),
+        "event": EntryEvent.ENTRY_FILLED, "direction": "bearish", "anchor_pos": pd.NA,
         "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
     }])
     result = reconcile_taken(
@@ -588,8 +590,8 @@ def test_l3_anchor_translation_never_raises_and_falls_back_to_none():
 
     # Case 2: anchor_pos is out of range for this 24-bar frame -- same fallback, not an IndexError.
     oob_anchor = _entries([{
-        "pos": 11, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"), "event": "ENTRY_FILLED",
-        "direction": "bearish", "anchor_pos": 999,
+        "pos": 11, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"),
+        "event": EntryEvent.ENTRY_FILLED, "direction": "bearish", "anchor_pos": 999,
         "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
     }])
     result = reconcile_taken(
@@ -603,8 +605,8 @@ def test_l3_anchor_translation_never_raises_and_falls_back_to_none():
     # is 14:25, not this row's own ts of 14:55, so bar_index cannot be the frame `pos` was
     # recorded against. _l3_prices must refuse the whole row, not just translate a wrong anchor.
     wrong_frame = _entries([{
-        "pos": 5, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"), "event": "ENTRY_FILLED",
-        "direction": "bearish", "anchor_pos": 10,
+        "pos": 5, "ts": pd.Timestamp("2026-07-31 14:55", tz="UTC"),
+        "event": EntryEvent.ENTRY_FILLED, "direction": "bearish", "anchor_pos": 10,
         "trigger": 28289.75, "stop": 28345.50, "fill": 28286.67, "step3_extreme": None,
     }])
     result = reconcile_taken(
@@ -623,7 +625,7 @@ def test_suppressed_anchor_nat_in_a_real_datetime64_column_is_not_a_mismatch():
     fixture reported `anchor_matched=False` -- "compared and differed" for a comparison that never
     ran. Confirms the fixture actually produces `NaT` (not `None`) before asserting on it."""
     suppressed = _emissions([_signal_row(
-        event="SUPPRESSED", blocked_by=(),
+        event=EmissionEvent.SUPPRESSED, blocked_by=(),
         anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
     )])
     assert pd.isna(suppressed.loc[0, "anchor_ts"])
@@ -631,6 +633,30 @@ def test_suppressed_anchor_nat_in_a_real_datetime64_column_is_not_a_mismatch():
     result = reconcile_taken(_label(), "2026-07-31", suppressed, _entries([]), BAR_INDEX)
     assert result.matched is True
     assert result.anchor_matched is None
+
+
+def test_event_filter_keys_off_the_engines_real_enum_value_not_a_retyped_literal():
+    """The defect the first real engine run exposed: every event filter in `stoic/fidelity.py`
+    compared `.astype(str)` against a hand-retyped uppercase literal (`"SIGNAL"`), while
+    `EmissionEvent`/`EntryEvent` are `StrEnum`s whose real values are lowercase (`"signal"`) --
+    so every filter matched nothing on real data, and all 57 tests still passed because their
+    fixtures independently retyped the same wrong casing. This is the third instance of that
+    fixture-agrees-with-the-bug class in this phase (after the invented `anchor_ts` column and
+    the `None`-vs-`NaT` guard) -- this test pins it structurally rather than by inspection: an
+    emission row carrying the engine's own `EmissionEvent.SIGNAL` must match, and the same row
+    carrying the uppercase string a fixture author (or a regressed filter) might type by hand
+    must not -- so a future re-introduction of a string literal in place of the enum member fails
+    loudly here, not silently on the first real run.
+    """
+    real = _signal_row(event=EmissionEvent.SIGNAL)
+    result = reconcile_taken(_label(), "2026-07-31", _emissions([real]), _entries([]), BAR_INDEX)
+    assert result.matched is True
+
+    retyped = _signal_row(event="SIGNAL")
+    result = reconcile_taken(
+        _label(), "2026-07-31", _emissions([retyped]), _entries([]), BAR_INDEX
+    )
+    assert result.matched is False
 
 
 # --- Task 4: pairing for `named` and `no_opportunity` -------------------------------------------
@@ -672,7 +698,7 @@ def _anchor(ts, direction="bearish", trigger=28446.50) -> dict:
     `reconcile_named` nor `reconcile_no_opportunity` reads either -- both pair on `ts`, `event`,
     `direction` and `trigger` alone."""
     return {
-        "pos": None, "ts": ts, "event": "PTB_ANCHORED", "direction": direction,
+        "pos": None, "ts": ts, "event": EntryEvent.PTB_ANCHORED, "direction": direction,
         "anchor_pos": None, "trigger": trigger, "stop": None, "fill": None, "step3_extreme": None,
     }
 
@@ -681,7 +707,7 @@ def test_named_matches_when_the_engine_anchored_on_that_bar():
     ts = pd.Timestamp("2026-07-27 13:50", tz="UTC")
     result = reconcile_named(_named_label(), "2026-07-27", _entries([_anchor(ts)]), NAMED_INDEX)
     assert result.matched is True
-    assert result.engine_event == "PTB_ANCHORED"
+    assert result.engine_event == EntryEvent.PTB_ANCHORED
     trigger = next(d for d in result.deltas if d.field == "trigger")
     assert trigger.delta == 0.0
 
@@ -701,7 +727,7 @@ def test_named_delta_sign_is_engine_minus_label():
 def test_named_records_a_fill_as_correct_but_not_taken():
     ts = pd.Timestamp("2026-07-27 13:50", tz="UTC")
     fill = {
-        "ts": pd.Timestamp("2026-07-27 13:55", tz="UTC"), "event": "ENTRY_FILLED",
+        "ts": pd.Timestamp("2026-07-27 13:55", tz="UTC"), "event": EntryEvent.ENTRY_FILLED,
         "direction": "bearish", "trigger": 28446.50, "stop": 28500.0,
         "fill": 28440.0, "step3_extreme": None,
     }
@@ -726,7 +752,7 @@ def test_named_unmatched_is_characterised_by_the_nearest_anchor():
 def test_no_opportunity_with_a_cancelled_order_is_a_match():
     ts = pd.Timestamp("2026-07-30 17:25", tz="UTC")
     cancel = {
-        "ts": pd.Timestamp("2026-07-30 17:40", tz="UTC"), "event": "ORDER_CANCELLED",
+        "ts": pd.Timestamp("2026-07-30 17:40", tz="UTC"), "event": EntryEvent.ORDER_CANCELLED,
         "direction": "bullish", "trigger": 28100.0, "stop": None,
         "fill": None, "step3_extreme": None,
     }
@@ -735,14 +761,14 @@ def test_no_opportunity_with_a_cancelled_order_is_a_match():
         _entries([_anchor(ts, direction="bullish", trigger=28100.0), cancel]), NOPP_INDEX,
     )
     assert result.matched is True
-    assert result.engine_event == "ORDER_CANCELLED"
+    assert result.engine_event == EntryEvent.ORDER_CANCELLED
     assert result.notes == ("engine emitted no fill -- the label's expectation",)
 
 
 def test_no_opportunity_negative_control_a_fill_is_a_divergence():
     ts = pd.Timestamp("2026-07-30 17:25", tz="UTC")
     fill = {
-        "ts": pd.Timestamp("2026-07-30 17:35", tz="UTC"), "event": "ENTRY_FILLED",
+        "ts": pd.Timestamp("2026-07-30 17:35", tz="UTC"), "event": EntryEvent.ENTRY_FILLED,
         "direction": "bullish", "trigger": 28100.0, "stop": 28050.0,
         "fill": 28101.0, "step3_extreme": None,
     }
@@ -751,7 +777,7 @@ def test_no_opportunity_negative_control_a_fill_is_a_divergence():
         _entries([_anchor(ts, direction="bullish", trigger=28100.0), fill]), NOPP_INDEX,
     )
     assert result.matched is False
-    assert result.engine_event == "ENTRY_FILLED"
+    assert result.engine_event == EntryEvent.ENTRY_FILLED
     assert any("DIVERGENCE" in note for note in result.notes)
 
 
@@ -867,14 +893,16 @@ def test_report_renders_a_non_empty_unlabelled_table_with_nan_as_an_em_dash():
     literal string 'nan', in a document a human reads."""
     suppressed = _signal_row(
         ts=pd.Timestamp("2026-07-31 15:10", tz="UTC"),
-        event="SUPPRESSED", blocked_by=("trend_50",),
+        event=EmissionEvent.SUPPRESSED, blocked_by=("trend_50",),
         anchor_ts=None, trigger=None, fill=None, stop=None, r=None, tp1=None,
     )
     unlabelled = _emissions([suppressed])
     text = render_report([], unlabelled, {})
     assert "## 3. Emissions not paired to a taken label (n = 1)" in text
     assert "2026-07-31 15:10:00+00:00" in text
-    assert "SUPPRESSED" in text
+    # The table renders the engine's own event string -- lowercase, per EmissionEvent's real
+    # values -- not an uppercase label invented by the fixture.
+    assert EmissionEvent.SUPPRESSED in text
     assert "nan" not in text.lower()
     assert "—" in text
 

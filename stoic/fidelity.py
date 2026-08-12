@@ -33,6 +33,9 @@ from dataclasses import dataclass
 
 import pandas as pd
 
+from stoic.emission import EmissionEvent
+from stoic.entry import EntryEvent
+
 # The keys of a `phase6_scope` block that name a comparable reference, and which attributes of
 # each are checked against the field `from:` points at. This list is not the full set of keys a
 # real block may carry -- see DECLARATION_KEYS below for the rest, and note that each sub-block
@@ -198,7 +201,7 @@ _TAKEN_FIELDS: tuple[tuple[str, str, str, str], ...] = (
 )
 
 _TERMINAL_EVENTS: frozenset[str] = frozenset(
-    {"ENTRY_FILLED", "ORDER_CANCELLED", "ORDER_VOIDED"}
+    {EntryEvent.ENTRY_FILLED, EntryEvent.ORDER_CANCELLED, EntryEvent.ORDER_VOIDED}
 )
 
 
@@ -319,7 +322,7 @@ def _l3_prices(
     hit = entries[
         (entries["ts"] == ts)
         & (entries["direction"].astype(str) == direction)
-        & (entries["event"].astype(str) == "ENTRY_FILLED")
+        & (entries["event"].astype(str) == EntryEvent.ENTRY_FILLED)
     ]
     if hit.empty:
         return {}
@@ -384,7 +387,7 @@ def reconcile_taken(
 
     candidates = emissions[
         (emissions["direction"].astype(str) == engine_direction)
-        & (emissions["event"].astype(str).isin(["SIGNAL", "SUPPRESSED"]))
+        & (emissions["event"].astype(str).isin([EmissionEvent.SIGNAL, EmissionEvent.SUPPRESSED]))
     ]
 
     entry_bar = scope.get("entry_bar")
@@ -430,7 +433,7 @@ def reconcile_taken(
         "anchor_ts": row["anchor_ts"], "trigger": row["trigger"], "stop": row["stop"],
         "r": row["r"], "tp1": row["tp1"],
     }
-    if event == "SUPPRESSED":
+    if event == EmissionEvent.SUPPRESSED:
         borrowed = _l3_prices(entries, expected, engine_direction, bar_index)
         if borrowed:
             engine = borrowed
@@ -510,7 +513,7 @@ def reconcile_named(
     direction = str(label["direction"])
     engine_direction = _engine_direction(direction)
     rows = _direction_rows(entries, engine_direction)
-    anchors = rows[rows["event"].astype(str) == "PTB_ANCHORED"]
+    anchors = rows[rows["event"].astype(str) == EntryEvent.PTB_ANCHORED]
 
     anchor_block = scope.get("anchor_bar")
     if anchor_block is None:
@@ -545,7 +548,7 @@ def reconcile_named(
     notes: list[str] = []
     later = rows[rows["ts"] > expected]
     terminal = later[later["event"].astype(str).isin(_TERMINAL_EVENTS)]
-    if not terminal.empty and str(terminal.iloc[0]["event"]) == "ENTRY_FILLED":
+    if not terminal.empty and str(terminal.iloc[0]["event"]) == EntryEvent.ENTRY_FILLED:
         notes.append(
             "the engine filled this order -- correct-but-not-taken, never a false positive "
             "(docs/PHASE3.md §2)"
@@ -565,7 +568,7 @@ def reconcile_named(
 
     return LabelResult(
         label_id=label["id"], session=session, label_class=str(label["class"]),
-        direction=direction, matched=True, engine_event="PTB_ANCHORED", engine_ts=expected,
+        direction=direction, matched=True, engine_event=EntryEvent.PTB_ANCHORED, engine_ts=expected,
         blocked_by=(), anchor_matched=True, deltas=(delta,),
         nearest_ts=None, nearest_delta_bars=None, circular=False, notes=tuple(notes),
     )
@@ -620,7 +623,7 @@ def reconcile_no_opportunity(
         )
 
     expected = pd.Timestamp(anchor_block["ts"])
-    anchors = rows[rows["event"].astype(str) == "PTB_ANCHORED"]
+    anchors = rows[rows["event"].astype(str) == EntryEvent.PTB_ANCHORED]
     hit = anchors[anchors["ts"] == expected]
 
     if hit.empty:
@@ -648,7 +651,7 @@ def reconcile_no_opportunity(
 
     end = terminal.iloc[0]
     event = str(end["event"])
-    if event == "ENTRY_FILLED":
+    if event == EntryEvent.ENTRY_FILLED:
         return LabelResult(
             label_id=label["id"], session=session, label_class=str(label["class"]),
             direction=direction, matched=False, engine_event=event, engine_ts=end["ts"],
@@ -689,7 +692,8 @@ def unlabelled_emissions(emissions: pd.DataFrame, results: list[LabelResult]) ->
         for r in results
         if r.matched and r.engine_ts is not None and r.label_class == "taken"
     }
-    rows = emissions[emissions["event"].astype(str).isin(["SIGNAL", "SUPPRESSED"])]
+    taken_events = [EmissionEvent.SIGNAL, EmissionEvent.SUPPRESSED]
+    rows = emissions[emissions["event"].astype(str).isin(taken_events)]
     keep = [
         (pd.Timestamp(ts), str(direction)) not in paired
         for ts, direction in zip(rows["ts"], rows["direction"], strict=True)
