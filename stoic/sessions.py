@@ -151,7 +151,14 @@ def label_sessions(
       03:00 / 09:30 ET open instant, i.e. ``bar_start <= open_instant < bar_start + bar_span``. This
       is containment, not equality: 09:30 ET never lands on a 60m UTC grid boundary, so an
       equality test would silently mark nothing on 60m bars.
-    * ``past_flatten`` (bool) — bar start at or past that session_date's 13:58 PT flatten cutoff.
+    * ``contains_flatten`` (bool) — True for the bar that **contains** that session_date's 13:58 PT
+      flatten cutoff, on the same containment rule as the two open columns above. **This is the
+      column a caller flattening a position wants.**
+    * ``past_flatten`` (bool) — bar start at or past that cutoff. **On a 5m frame this is False for
+      every bar, by construction**: the cutoff sits 2 minutes before the 17:00 ET close, inside a
+      window no 5m bar can start in. That is not a bug in this function — it answers exactly what
+      it says — but it is the wrong question for anyone asking "where do I close the trade", and it
+      was read as the right one until Phase 7 needed the answer. Use ``contains_flatten``.
 
     `bar_span` is the (constant) duration of a bar in `index`. If not given, it is inferred as the
     modal difference between consecutive index entries — pass it explicitly when the caller already
@@ -191,6 +198,7 @@ def label_sessions(
     bar_end = bar_start + bar_span
     is_london_open = (bar_start <= london_instant) & (london_instant < bar_end)
     is_ny_open = (bar_start <= ny_instant) & (ny_instant < bar_end)
+    contains_flatten = (bar_start <= flatten_instant) & (flatten_instant < bar_end)
     past_flatten = bar_start >= flatten_instant
 
     return pd.DataFrame(
@@ -200,6 +208,7 @@ def label_sessions(
             "rth": np.asarray(rth),
             "is_london_open": np.asarray(is_london_open),
             "is_ny_open": np.asarray(is_ny_open),
+            "contains_flatten": np.asarray(contains_flatten),
             "past_flatten": np.asarray(past_flatten),
         },
         index=index,

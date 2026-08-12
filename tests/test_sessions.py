@@ -237,3 +237,25 @@ def test_london_open_utc_matches_ny_open_utc_offset():
 def test_pt_zone_used_for_flatten_not_hardcoded_offset():
     """Sanity check that PT is the America/Los_Angeles zone the module claims to use."""
     assert PT.key == "America/Los_Angeles"
+
+
+def test_contains_flatten_finds_the_bar_past_flatten_cannot(): 
+    """`past_flatten` is False for every 5m bar by construction -- the 13:58 PT cutoff sits in a
+    2-minute window no 5m bar can start in. `contains_flatten` is the column that answers "which
+    bar do I close the trade on", and this pins the difference so the trap cannot come back."""
+    index = pd.date_range("2026-07-31 19:00", "2026-07-31 21:30", freq="5min", tz="UTC")
+    out = label_sessions(index)
+
+    assert out["past_flatten"].sum() == 0, "the trap: no 5m bar STARTS at or past the cutoff"
+    assert out["contains_flatten"].sum() == 1, "exactly one bar contains it"
+
+    cutoff = flatten_cutoff_utc([date(2026, 7, 31)])[0]
+    bar = out.index[out["contains_flatten"]][0]
+    assert bar <= cutoff < bar + pd.Timedelta(minutes=5)
+
+
+def test_contains_flatten_on_a_60m_frame_still_finds_exactly_one_bar():
+    """Containment, not equality -- the cutoff never lands on a 60m grid boundary either."""
+    index = pd.date_range("2026-07-31 12:00", "2026-07-31 23:00", freq="60min", tz="UTC")
+    out = label_sessions(index)
+    assert out["contains_flatten"].sum() == 1
